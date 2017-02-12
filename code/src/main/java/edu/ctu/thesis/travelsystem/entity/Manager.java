@@ -5,8 +5,6 @@
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.entity;
 
-import java.util.*;
-
 /** @pdOid 52e0d20c-9638-4406-ad8f-b80af8fb0815 */
 public class Manager {
    /** @pdOid 0b70c5ef-ecc3-451e-8448-74156fe4e2ac */
@@ -34,67 +32,73 @@ public class Manager {
    /** @pdOid dbe1fb54-b9a5-4e03-a363-b884d5580895 */
    public String getIdMan() {
       // TODO: implement
-      return null;
+      return idMan;
    }
    
    /** @pdOid c0e281be-02c9-4c96-bc68-5c92b20961d1 */
-   public void setIdMan() {
+   public void setIdMan(String idMan) {
       // TODO: implement
+	   this.idMan = idMan;
    }
    
    /** @pdOid 1291d524-347c-4a29-a3db-baf885e87a9a */
    public String getNameMan() {
       // TODO: implement
-      return null;
+      return nameMan;
    }
    
    /** @pdOid fc0b86a1-a730-4bd3-bf55-372cc2c855ea */
-   public void setNameMan() {
+   public void setNameMan(String nameMan) {
       // TODO: implement
+	   this.nameMan = nameMan;
    }
    
    /** @pdOid 46e97441-e725-49ef-9569-53fa401241e5 */
    public String getAddressMan() {
       // TODO: implement
-      return null;
+      return addressMan;
    }
    
    /** @pdOid f1ff3ee3-528c-42db-ba20-4d738490b7c0 */
-   public void setAddressMan() {
+   public void setAddressMan(String addressMan) {
       // TODO: implement
+	   this.addressMan = addressMan;
    }
    
    /** @pdOid 3fb3425b-b1b7-41cf-bd63-1f3c6a39ea85 */
    public String getEmailMan() {
       // TODO: implement
-      return null;
+      return emailMan;
    }
    
    /** @pdOid e3431e08-aa28-4025-8b00-9a15ff137f38 */
-   public void setEmailMan() {
+   public void setEmailMan(String emailMan) {
       // TODO: implement
+	   this.emailMan = emailMan;
    }
    
    /** @pdOid 3a8503d4-8610-4388-bb5f-49bd41fe4c30 */
    public Integer getPhoneMan() {
       // TODO: implement
-      return null;
+      return phoneMan;
    }
    
    /** @pdOid a66cd947-60dc-4a8e-a553-a0ca742138aa */
-   public void setPhoneMan() {
+   public void setPhoneMan(Integer phoneMan) {
       // TODO: implement
+	   this.phoneMan = phoneMan;
    }
    
    /** @pdOid 1519185f-7e69-444f-bd2b-1b7fff9a8f6c */
    public String getPassAccMan() {
       // TODO: implement
-      return null;
+      return passAccMan;
    }
    
    /** @pdOid 02063025-b9a7-46f1-9ecb-d6049e4ef96d */
-   public void setPassAccMan() {
+   public void setPassAccMan(String passAccMan) {
       // TODO: implement
+	   this.passAccMan = passAccMan;
    }
    
    
@@ -106,7 +110,7 @@ public class Manager {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorTour() {
+   public java.util.Iterator<Tour> getIteratorTour() {
       if (tour == null)
          tour = new java.util.HashSet<Tour>();
       return tour.iterator();
@@ -116,8 +120,8 @@ public class Manager {
      * @param newTour */
    public void setTour(java.util.Collection<Tour> newTour) {
       removeAllTour();
-      for (java.util.Iterator iter = newTour.iterator(); iter.hasNext();)
-         addTour((Tour)iter.next());
+      for (java.util.Iterator<Tour> iter = newTour.iterator(); iter.hasNext();)
+         addTour(iter.next());
    }
    
    /** @pdGenerated default add
@@ -154,7 +158,7 @@ public class Manager {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorExport() {
+   public java.util.Iterator<Export> getIteratorExport() {
       if (export == null)
          export = new java.util.HashSet<Export>();
       return export.iterator();
@@ -164,8 +168,8 @@ public class Manager {
      * @param newExport */
    public void setExport(java.util.Collection<Export> newExport) {
       removeAllExport();
-      for (java.util.Iterator iter = newExport.iterator(); iter.hasNext();)
-         addExport((Export)iter.next());
+      for (java.util.Iterator<Export> iter = newExport.iterator(); iter.hasNext();)
+         addExport(iter.next());
    }
    
    /** @pdGenerated default add
@@ -202,7 +206,7 @@ public class Manager {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorImport() {
+   public java.util.Iterator<Import> getIteratorImport() {
       if (import_ob == null)
          import_ob = new java.util.HashSet<Import>();
       return import_ob.iterator();
@@ -212,8 +216,8 @@ public class Manager {
      * @param newImport */
    public void setImport(java.util.Collection<Import> newImport) {
       removeAllImport();
-      for (java.util.Iterator iter = newImport.iterator(); iter.hasNext();)
-         addImport((Import)iter.next());
+      for (java.util.Iterator<Import> iter = newImport.iterator(); iter.hasNext();)
+         addImport(iter.next());
    }
    
    /** @pdGenerated default add
@@ -250,7 +254,7 @@ public class Manager {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorAccount() {
+   public java.util.Iterator<Account> getIteratorAccount() {
       if (account == null)
          account = new java.util.HashSet<Account>();
       return account.iterator();
@@ -260,8 +264,8 @@ public class Manager {
      * @param newAccount */
    public void setAccount(java.util.Collection<Account> newAccount) {
       removeAllAccount();
-      for (java.util.Iterator iter = newAccount.iterator(); iter.hasNext();)
-         addAccount((Account)iter.next());
+      for (java.util.Iterator<Account> iter = newAccount.iterator(); iter.hasNext();)
+         addAccount(iter.next());
    }
    
    /** @pdGenerated default add

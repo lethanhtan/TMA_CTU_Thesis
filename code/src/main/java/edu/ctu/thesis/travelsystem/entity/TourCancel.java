@@ -15,28 +15,30 @@ public class TourCancel {
    private Date timeCan;
    
    /** @pdRoleInfo migr=no name=Vistor assc=association18 mult=1..1 type=Composition */
-   public Vistor owner;
+   public Visitor owner;
    
    /** @pdOid a64d005f-0f5a-4729-b9ad-0b9ec3c36618 */
    public String getIdCan() {
       // TODO: implement
-      return null;
+      return idTourCan;
    }
    
    /** @pdOid c736697b-11e3-4c78-8458-a0a0ea594609 */
-   public void setIdCan() {
+   public void setIdCan(String idTourCan) {
       // TODO: implement
+	   this.idTourCan = idTourCan;
    }
    
    /** @pdOid 57ca8b8e-69f8-457c-bde2-340b4290791f */
    public Date getTimeCan() {
       // TODO: implement
-      return null;
+      return timeCan;
    }
    
    /** @pdOid 2d8844e6-0649-4d24-ab8d-25195417c8fe */
-   public void setTimeCan() {
+   public void setTimeCan(Date timeCan) {
       // TODO: implement
+	   this.timeCan = timeCan;
    }
 
 }

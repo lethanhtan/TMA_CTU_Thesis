@@ -17,28 +17,30 @@ public class TourRegister {
    /** @pdRoleInfo migr=no name=TourCancel assc=association17 mult=1..1 type=Composition */
    public TourCancel tourCancel;
    /** @pdRoleInfo migr=no name=Vistor assc=association19 mult=1..1 type=Composition */
-   public Vistor owner;
+   public Visitor owner;
    
    /** @pdOid e7ef14eb-7ca0-418e-97d1-4a771fe243ea */
    public String getIdRes() {
       // TODO: implement
-      return null;
+      return idTourRes;
    }
    
    /** @pdOid f226d0d7-5aec-4fcc-8f43-bc997dbce0a5 */
-   public void setIdRes() {
+   public void setIdRes(String idTourRes) {
       // TODO: implement
+	   this.idTourRes = idTourRes;
    }
    
    /** @pdOid 4b89b303-0d52-43ce-8eeb-b7ecff787c6f */
    public Date getTimeRes() {
       // TODO: implement
-      return null;
+      return timeRes;
    }
    
    /** @pdOid 64475e00-ec02-4780-95a7-041091be73d9 */
-   public void setTimRes() {
+   public void setTimRes(Date timeRes) {
       // TODO: implement
+	   this.timeRes = timeRes;
    }
 
 }

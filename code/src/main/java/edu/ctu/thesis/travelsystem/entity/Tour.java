@@ -5,8 +5,6 @@
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.entity;
 
-import java.util.*;
-
 /** @pdOid f2a4a155-1b52-48c7-90a5-fd16eaf57dc1 */
 public class Tour {
    /** @pdOid f30a861d-8847-4069-a67d-419bc05ca289 */
@@ -36,45 +34,49 @@ public class Tour {
    /** @pdOid b22778bd-9229-4e4c-bebc-33ac23635442 */
    public String getIdTour() {
       // TODO: implement
-      return null;
+      return idTour;
    }
    
    /** @pdOid 0bcd3b2e-af4b-4ecd-a378-aab262c7510c */
-   public void setIdTour() {
+   public void setIdTour(String idTour) {
       // TODO: implement
+	   this.idTour = idTour;
    }
    
    /** @pdOid 8af611e4-7eef-41f2-9f20-47514d846987 */
    public String getNameTour() {
       // TODO: implement
-      return null;
+      return nameTour;
    }
    
    /** @pdOid d99a34ec-a1ce-453e-9fb8-845458f45c7d */
-   public void setNameTour() {
+   public void setNameTour(String nameTour) {
       // TODO: implement
+	   this.nameTour = nameTour;
    }
    
    /** @pdOid 2cc6f67d-e5bf-4841-a9bd-9b04d94b802d */
    public String getDescribeTour() {
       // TODO: implement
-      return null;
+      return describeTour;
    }
    
    /** @pdOid 8bbdacb3-5a8d-4007-b2b6-52e4e7825f28 */
-   public void setDescribeTour() {
+   public void setDescribeTour(String describeTour) {
       // TODO: implement
+	   this.describeTour = describeTour;
    }
    
    /** @pdOid 8d9fc6a7-479e-4e4b-9240-38fe3d771ab2 */
    public String getSchedule() {
       // TODO: implement
-      return null;
+      return schedule;
    }
    
    /** @pdOid 8b52170a-2a94-4b96-a528-86e8962e74cc */
-   public void setSchedule() {
+   public void setSchedule(String schedule) {
       // TODO: implement
+	   this.schedule = schedule;
    }
    
    
@@ -86,7 +88,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorPromotion() {
+   public java.util.Iterator<Promotion> getIteratorPromotion() {
       if (promotion == null)
          promotion = new java.util.HashSet<Promotion>();
       return promotion.iterator();
@@ -96,8 +98,8 @@ public class Tour {
      * @param newPromotion */
    public void setPromotion(java.util.Collection<Promotion> newPromotion) {
       removeAllPromotion();
-      for (java.util.Iterator iter = newPromotion.iterator(); iter.hasNext();)
-         addPromotion((Promotion)iter.next());
+      for (java.util.Iterator<Promotion> iter = newPromotion.iterator(); iter.hasNext();)
+         addPromotion(iter.next());
    }
    
    /** @pdGenerated default add
@@ -134,7 +136,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorFeedback() {
+   public java.util.Iterator<Feedback> getIteratorFeedback() {
       if (feedback == null)
          feedback = new java.util.HashSet<Feedback>();
       return feedback.iterator();
@@ -144,8 +146,8 @@ public class Tour {
      * @param newFeedback */
    public void setFeedback(java.util.Collection<Feedback> newFeedback) {
       removeAllFeedback();
-      for (java.util.Iterator iter = newFeedback.iterator(); iter.hasNext();)
-         addFeedback((Feedback)iter.next());
+      for (java.util.Iterator<Feedback> iter = newFeedback.iterator(); iter.hasNext();)
+         addFeedback(iter.next());
    }
    
    /** @pdGenerated default add
@@ -182,7 +184,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorPlace() {
+   public java.util.Iterator<Place> getIteratorPlace() {
       if (place == null)
          place = new java.util.HashSet<Place>();
       return place.iterator();
@@ -192,8 +194,8 @@ public class Tour {
      * @param newPlace */
    public void setPlace(java.util.Collection<Place> newPlace) {
       removeAllPlace();
-      for (java.util.Iterator iter = newPlace.iterator(); iter.hasNext();)
-         addPlace((Place)iter.next());
+      for (java.util.Iterator<Place> iter = newPlace.iterator(); iter.hasNext();)
+         addPlace(iter.next());
    }
    
    /** @pdGenerated default add
@@ -230,7 +232,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorCost() {
+   public java.util.Iterator<Cost> getIteratorCost() {
       if (cost == null)
          cost = new java.util.HashSet<Cost>();
       return cost.iterator();
@@ -240,8 +242,8 @@ public class Tour {
      * @param newCost */
    public void setCost(java.util.Collection<Cost> newCost) {
       removeAllCost();
-      for (java.util.Iterator iter = newCost.iterator(); iter.hasNext();)
-         addCost((Cost)iter.next());
+      for (java.util.Iterator<Cost> iter = newCost.iterator(); iter.hasNext();)
+         addCost(iter.next());
    }
    
    /** @pdGenerated default add
@@ -278,7 +280,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorTicket() {
+   public java.util.Iterator<Ticket> getIteratorTicket() {
       if (ticket == null)
          ticket = new java.util.HashSet<Ticket>();
       return ticket.iterator();
@@ -288,8 +290,8 @@ public class Tour {
      * @param newTicket */
    public void setTicket(java.util.Collection<Ticket> newTicket) {
       removeAllTicket();
-      for (java.util.Iterator iter = newTicket.iterator(); iter.hasNext();)
-         addTicket((Ticket)iter.next());
+      for (java.util.Iterator<Ticket> iter = newTicket.iterator(); iter.hasNext();)
+         addTicket(iter.next());
    }
    
    /** @pdGenerated default add
@@ -326,7 +328,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorTourCancel() {
+   public java.util.Iterator<TourCancel> getIteratorTourCancel() {
       if (tourCancel == null)
          tourCancel = new java.util.HashSet<TourCancel>();
       return tourCancel.iterator();
@@ -336,8 +338,8 @@ public class Tour {
      * @param newTourCancel */
    public void setTourCancel(java.util.Collection<TourCancel> newTourCancel) {
       removeAllTourCancel();
-      for (java.util.Iterator iter = newTourCancel.iterator(); iter.hasNext();)
-         addTourCancel((TourCancel)iter.next());
+      for (java.util.Iterator<TourCancel> iter = newTourCancel.iterator(); iter.hasNext();)
+         addTourCancel(iter.next());
    }
    
    /** @pdGenerated default add
@@ -374,7 +376,7 @@ public class Tour {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorTourRegister() {
+   public java.util.Iterator<TourRegister> getIteratorTourRegister() {
       if (tourRegister == null)
          tourRegister = new java.util.HashSet<TourRegister>();
       return tourRegister.iterator();
@@ -384,8 +386,8 @@ public class Tour {
      * @param newTourRegister */
    public void setTourRegister(java.util.Collection<TourRegister> newTourRegister) {
       removeAllTourRegister();
-      for (java.util.Iterator iter = newTourRegister.iterator(); iter.hasNext();)
-         addTourRegister((TourRegister)iter.next());
+      for (java.util.Iterator<TourRegister> iter = newTourRegister.iterator(); iter.hasNext();)
+         addTourRegister(iter.next());
    }
    
    /** @pdGenerated default add

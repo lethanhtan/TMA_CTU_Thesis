@@ -19,34 +19,37 @@ public class Export {
    /** @pdOid 62965338-d466-4de6-85f6-f47f449bbe67 */
    public String getIdExp() {
       // TODO: implement
-      return null;
+      return idExp;
    }
    
    /** @pdOid ecef2444-32f2-414e-bc56-08c167343a44 */
-   public void setIdExp() {
+   public void setIdExp(String idExp) {
       // TODO: implement
+	   this.idExp = idExp;
    }
    
    /** @pdOid 029b6dcc-9204-4f61-becf-fe5de5060ffb */
    public String getNameExp() {
       // TODO: implement
-      return null;
+      return nameExp;
    }
    
    /** @pdOid 585522d7-4bc9-4a83-808f-5fb19dfeba93 */
-   public void setNameExp() {
+   public void setNameExp(String nameExp) {
       // TODO: implement
+	   this.nameExp = nameExp;
    }
    
    /** @pdOid 3ddbdcf0-78c8-4374-a324-2fc174697f24 */
    public Date getTimeExp() {
       // TODO: implement
-      return null;
+      return timeCreateExp;
    }
    
    /** @pdOid 5656d545-2084-4494-9646-9483bd7b279f */
-   public void setTimeExp() {
+   public void setTimeExp(Date timeCreateDate) {
       // TODO: implement
+	   this.timeCreateExp = timeCreateDate;
    }
 
 }

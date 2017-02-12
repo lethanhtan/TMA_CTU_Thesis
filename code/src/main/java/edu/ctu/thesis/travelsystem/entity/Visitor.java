@@ -5,10 +5,8 @@
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.entity;
 
-import java.util.*;
-
 /** @pdOid 62f71e5f-c1a7-4abb-be67-bb837f859d43 */
-public class Vistor {
+public class Visitor {
    /** @pdOid cf65a761-5044-4c64-a0b6-525b402ce75e */
    private String nameVis;
    /** @pdOid f2c39396-b5b3-485e-a01e-f61e30a27311 */
@@ -22,34 +20,37 @@ public class Vistor {
    /** @pdOid 0ccc207e-054d-4d56-95ea-94cecd1c9ceb */
    public String getNameVis() {
       // TODO: implement
-      return null;
+      return nameVis;
    }
    
    /** @pdOid 5352df1d-e486-4d59-afee-cc18329184ce */
-   public void setNameVis() {
+   public void setNameVis(String nameVis) {
       // TODO: implement
+	   this.nameVis = nameVis;
    }
    
    /** @pdOid 3a139fb3-c11c-4c0f-b989-e28e5903a75d */
    public String getAddressVis() {
       // TODO: implement
-      return null;
+      return addressVis;
    }
    
    /** @pdOid 6ac9148a-a43c-416b-8a7d-63e59619ca4d */
-   public void setAddressVis() {
+   public void setAddressVis(String addressVis) {
       // TODO: implement
+	   this.addressVis = addressVis;
    }
    
    /** @pdOid 750d6e4e-4110-4715-82bb-bc0e1d2e2a47 */
-   public String getPhoneVis() {
+   public Integer getPhoneVis() {
       // TODO: implement
-      return null;
+      return phoneVis;
    }
    
    /** @pdOid 12564f66-6b68-4b0f-a585-ebb41e020daa */
-   public void setPhoneVis() {
+   public void setPhoneVis(Integer phoneVis) {
       // TODO: implement
+	   this.phoneVis = phoneVis;
    }
    
    
@@ -61,7 +62,7 @@ public class Vistor {
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorTicket() {
+   public java.util.Iterator<Ticket> getIteratorTicket() {
       if (ticket == null)
          ticket = new java.util.HashSet<Ticket>();
       return ticket.iterator();
@@ -71,8 +72,8 @@ public class Vistor {
      * @param newTicket */
    public void setTicket(java.util.Collection<Ticket> newTicket) {
       removeAllTicket();
-      for (java.util.Iterator iter = newTicket.iterator(); iter.hasNext();)
-         addTicket((Ticket)iter.next());
+      for (java.util.Iterator<Ticket> iter = newTicket.iterator(); iter.hasNext();)
+         addTicket(iter.next());
    }
    
    /** @pdGenerated default add
