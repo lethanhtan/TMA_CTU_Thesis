@@ -13,7 +13,7 @@ TravelSystem is a web system that it's based on the J2EE platform. It was build 
 |Spring                |4.2.5               |Spring framework                    |
 |Hibernate             |4.3.6               |Hibernate framework                 |
 |Github                |Available           |Control version and share           |
-|Boostrap              |                    |CSS framewrok                       |
+|Boostrap              |3.0                 |CSS framewrok                       |
 # And more
 ```
 Project structure
