@@ -21,6 +21,8 @@
           <list>
           	<value>edu.ctu.thesis.travelsystem.entity.Account</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Cost</value>
+          	<value>edu.ctu.thesis.travelsystem.entity.Ticket</value>
+          	<!-- 
           	<value>edu.ctu.thesis.travelsystem.entity.Import</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Export</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Customer</value>
@@ -28,11 +30,11 @@
           	<value>edu.ctu.thesis.travelsystem.entity.Manager</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Place</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Promotion</value>
-          	<value>edu.ctu.thesis.travelsystem.entity.Ticket</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Tour</value>
           	<value>edu.ctu.thesis.travelsystem.entity.TourCancel</value>
           	<value>edu.ctu.thesis.travelsystem.entity.TourRegister</value>
           	<value>edu.ctu.thesis.travelsystem.entity.Visitor</value>
+          	-->
           </list>
       </property>
  
@@ -40,7 +42,7 @@
           <props>
               <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
               <prop key="hibernate.show_sql">true</prop>
-              <prop key="hibernate.hbm2ddl.auto">create</prop>
+              <prop key="hibernate.hbm2ddl.auto">update</prop>
           </props>
       </property>
   </bean>
