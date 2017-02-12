@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Jan 15, 2017, 2:43:56 PM
+    Document   : managetour
+    Created on : Feb 08, 2017, 3:30:09 PM
     Author     : TranLeQueNgoc
 --%>
 
@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="css/table.css">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -75,21 +76,11 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="trang-chu" class="fa-home">Trang Chủ</a></li>
-							<li><span class="fa-question">Giới Thiệu</span>
-								<ul>
-									<li><a href="gioi-thieu">Về Chúng Tôi</a></li>
-									<li><a href="cau-hoi-thuong-gap">Câu Hỏi Thường Gặp</a></li>
-								</ul></li>
-							<li><a href="dat-ve" class="fa-book">Đặt Vé</a></li>
-							<li><a href="tin-tuc" class="fa-tachometer">Tin Tức</a></li>
-							<li><a href="blog" class="fa-tasks">Blog</a></li>
-							<li><a href="lien-he" class="fa-phone">Liên Hệ</a></li>
-							<li><span class="fa-users">Tài Khoản</span>
-								<ul>
-									<li><a href="dang-nhap">Đăng Nhập</a></li>
-									<li><a href="dang-ky">Đăng ký</a></li>
-								</ul></li>
+							<li><a href="quan-ly-tour" class="fa-gear">Quản Lý Tour</a></li>
+							<li><a href="quan-ly-dang-ky" class="fa-list-ul">Quản Lý
+									Đăng Ký</a></li>
+							<li><a href="khao-sat" class="fa-file-text">Khảo Sát Ý
+									Kiến</a></li>
 						</ul>
 					</div>
 				</div>
@@ -104,48 +95,94 @@
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
 			<div class="container background-white">
-				<div class="container">
-					<div class="row margin-vert-30">
-						<!-- Login Box -->
-						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form class="login-page">
-								<div class="login-header margin-bottom-30">
-									<h2>Đăng Nhập</h2>
-									<p>
-										Chưa có tài khoản? <a href="dang-ky" style="color: #ef5b92">Đăng
-											ký</a>
-									</p>
-								</div>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input placeholder="Tài khoản" class="form-control"
-										type="text">
-								</div>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-lock"></i>
-									</span> <input placeholder="Mật khẩu" class="form-control"
-										type="password">
+				<div class="row margin-vert-30">
+					<!-- Search Form -->
+					<div class="error-404-page text-center" style="margin-left: 650px;">
+						<form class="form-search search-404">
+							<div class="input-append">
+								<input type="text" class="span2 search-query"
+									placeholder="Nhập từ khóa">
+								<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+							</div>
+						</form>
+					</div>
+					<!-- End Search Form -->
+					<div class="col-md-12">
+						<h2 class="margin-vert-20" style="margin-left: 350px;">Danh
+							Sách Tour Du Lịch</h2>
+						<a href="tao-tour"><button
+								class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
+						<div class="row margin-bottom-30">
+							<div class="col-md-4 animate fadeInRight"></div>
+							<div class="col-md-8 animate fadeIn"></div>
+							<div class="col-md-12 animate fadeInRight"></div>
+						</div>
+						<!-- Table -->
+						<table>
+							<thead>
+								<tr>
+									<th>Mã tour</th>
+									<th>Tên tour</th>
+									<th>Ngày đi</th>
+									<th>Giờ đi</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>NY01</td>
+									<td>Cần Thơ - Vĩnh Long - Bạc Liêu</td>
+									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
+									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
+									<td><a href="tao-tour" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
+									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
+									</a> <a href="quan-ly-tour" title="Xóa"> <i
+											class="fa fa-trash-o"></i>
+									</a></td>
+								</tr>
+								<tr>
+									<td>NY02</td>
+									<td>Cần Thơ - Vĩnh Long - Bạc Liêu - Cà Mau</td>
+									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
+									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
+									<td><a href="tao-tour" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
+									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
+									</a> <a href="quan-ly-tour" title="Xóa"> <i class="fa fa-trash-o"></i>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- End Table -->
+						<hr class="margin-bottom-50">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-3"></div>
 								</div>
 								<div class="row">
-									<div class="col-md-6">
-										<label class="checkbox"> <input type="checkbox">Ghi
-											nhớ
-										</label>
-									</div>
-									<div class="col-md-6">
-										<button class="btn btn-primary pull-right" type="submit">Đăng
-											Nhập</button>
-									</div>
+									<div class="col-sm-3"></div>
 								</div>
-								<hr>
-								<h4>Quên mật khẩu?</h4>
-								<p>
-									<a href="#" style="color: #ef5b92">Nhấn vào đây </a>để khôi
-									phục
-								</p>
-							</form>
+								<div class="row">
+									<div class="col-sm-3"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-3"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-3"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-3"></div>
+								</div>
+							</div>
 						</div>
-						<!-- End Login Box -->
+						<hr class="margin-vert-40">
 					</div>
 				</div>
 			</div>
@@ -153,65 +190,17 @@
 		<!-- === END CONTENT === -->
 		<!-- === BEGIN FOOTER === -->
 		<div id="content-bottom-border" class="container"></div>
-		<div id="base">
-			<div class="container padding-vert-30 margin-top-60">
-				<div class="row">
-					<!-- Contact Details -->
-					<div class="col-md-4 margin-bottom-20">
-						<h3 class="margin-bottom-10">Liên hệ:</h3>
-						<p>
-							<span class="fa-phone">Điện thoại:</span> (0710) 3838 474 <br>
-							<span class="fa-envelope">Email:</span> <a
-								href="mailto:iNYtravel@gmail.com">NYtravel@gmail.com</a> <br>
-							<span class="fa-link">Website:</span> <a
-								href="http://www.NYtravel.com">www.NYtravel.com</a>
-						</p>
-						<p>
-							Đường 3/2, <br>Phường Xuân Khánh, <br>Quận Ninh Kiều, <br>Thành
-							Phố Cần Thơ
-						</p>
-					</div>
-					<!-- End Contact Details -->
-					<!-- Sample Menu -->
-					<div class="col-md-3 margin-bottom-20">
-						<h3 class="margin-bottom-10">NY Travel Company</h3>
-						<ul class="menu">
-							<li><a class="fa-book" href="dat-ve">Đặt Vé</a></li>
-							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="gioi-thieu">Về Chúng Tôi</a>
-							</li>
-							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<!-- End Sample Menu -->
-					<div class="col-md-1"></div>
-					<!-- Disclaimer -->
-					<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-						<h3 class="color-gray margin-bottom-10">Đăng Ký Bản Tin</h3>
-						<p>Nhập địa chỉ email để nhận được những tin tức mới nhất từ
-							chúng tôi</p>
-						<input type="email"> <br>
-						<button class="btn btn-primary btn-lg margin-top-20" type="button">Đăng
-							Ký</button>
-					</div>
-					<!-- End Disclaimer -->
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
+		<div id="base"></div>
 		<!-- Footer Menu -->
 		<div id="footer">
 			<div class="container">
 				<div class="row">
 					<div id="footermenu" class="col-md-8">
 						<ul class="list-unstyled list-inline">
-							<li><a href="trang-chu" target="_blank">Trang Chủ</a></li>
-							<li><a href="dat-ve" target="_blank">Đặt Vé</a></li>
-							<li><a href="tin-tuc" target="_blank">Tin Tức</a></li>
-							<li><a href="gioi-thieu" target="_blank">Chính Sách Bảo
-									Mật</a></li>
+							<li><a href="quan-ly-tour" target="_blank">Quản lý tour</a></li>
+							<li><a href="quan-ly-dang-ky" target="_blank">Quản lý
+									đăng ký</a></li>
+							<li><a href="khao-sat" target="_blank">Khảo sát ý kiến</a></li>
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">

@@ -19,5 +19,11 @@ public class HomeController {
 
 		return "home";
 	}
+	
+	@RequestMapping(value = "admin", method = RequestMethod.GET)
+	public String adminController(ModelMap model) {
+
+		return "managetour";
+	}
 
 }
