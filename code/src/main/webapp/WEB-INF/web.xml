@@ -1,0 +1,45 @@
+<!-- The web.xml is a configuration file to describe how a web application 
+	should * be deployed. * Config with Servlet 3.1 and JavaEE 7 xml schema, 
+	namespace is: http://xmlns.jcp.org/xml/ns/javaee/ -->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<display-name>NY Travel System Application</display-name>
+
+	<!-- Declared a DispatcherServlet servlet to handle request -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/dispatcher-servlet.xml</param-value>
+		</init-param>		
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Mapping with url-pattern -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Other XML Configuration -->
+   <!-- Load by Spring ContextLoaderListener -->
+   <context-param>
+       <param-name>contextConfigLocation</param-name>
+       <param-value>
+          classpath:hibernate/data-source-hiber-cfg.xml,
+          classpath:hibernate/dao-cfg.xml
+          classpath:hibernate/transaction-cfg.xml
+        </param-value>        
+   </context-param>
+ 
+ 
+   <!-- Spring ContextLoaderListener -->
+   <listener>
+       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+
+</web-app>
