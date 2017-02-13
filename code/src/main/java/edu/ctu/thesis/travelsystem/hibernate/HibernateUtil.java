@@ -1,7 +1,5 @@
 package edu.ctu.thesis.travelsystem.hibernate;
 
-import java.io.File;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
@@ -15,7 +13,7 @@ public class HibernateUtil
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml
-            return new AnnotationConfiguration().configure(new File("hibernate-cfg.xml")).buildSessionFactory();
+            return new AnnotationConfiguration().configure("/hibernate/data-source-hiber-cfg.xml").buildSessionFactory();
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed

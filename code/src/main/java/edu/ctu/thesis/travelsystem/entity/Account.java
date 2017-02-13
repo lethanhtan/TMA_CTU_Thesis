@@ -9,25 +9,45 @@ import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "ACCOUNT", uniqueConstraints = { @UniqueConstraint(columnNames = {"ID_ACC"}) })
 public class Account {
    private String idAcc;
-   private String ownerAcc;
    private String emailAcc;
    private Date dateCreateAcc;
    private String passAcc;
+   private Customer customer;
    
    public java.util.Collection<TourCancel> tourCancel;
    public java.util.Collection<TourRegister> tourRegister;
    public java.util.Collection<Ticket> ticket;
    
+   public Account() {};
+   
+   public Account(String idAcc, Customer customer) {
+	   this.idAcc = idAcc;
+	   this.customer = customer;
+   }
+   
+   public Account(String emailAcc, Date dateCreateAcc, String passAcc, Customer customer) {
+	   this.emailAcc = emailAcc;
+	   this.dateCreateAcc = dateCreateAcc;
+	   this.passAcc = passAcc;
+	   this.customer = customer;
+   }
+   
    @Id
-   @Column(name = "ID_ACC")
+   @GeneratedValue(strategy = IDENTITY)
+   @Column(name = "ID_ACC", unique = true, nullable = false, length = 10)
    public String getIdAcc() {
       return idAcc;
    }
@@ -36,16 +56,7 @@ public class Account {
 	   this.idAcc = idAcc;
    }
    
-   @Column(name = "OWNER_ACC")
-   public String getOwner() {
-      return ownerAcc;
-   }
-   
-   public void setOwner(String ownerAcc) {
-	   this.ownerAcc = ownerAcc;
-   }
-   
-   @Column(name = "EMAIL_ACC")
+   @Column(name = "EMAIL_ACC", nullable = true, length = 100)
    public String getEmailAcc() {
       return emailAcc;
    }
@@ -54,7 +65,7 @@ public class Account {
 	   this.emailAcc = emailAcc;
    }
    
-   @Column(name = "DATE_CREATE_ACC")
+   @Column(name = "DATE_CREATE_ACC", nullable = true)
    public Date getDateCreateAcc() {
       return dateCreateAcc;
    }
@@ -63,7 +74,7 @@ public class Account {
 	   this.dateCreateAcc = dateCreateAcc;
    }
    
-   @Column(name = "PASS_ACC")
+   @Column(name = "PASS_ACC", unique = true, nullable = false, length = 20)
    public String getPassAcc() {
       return passAcc;
    }
@@ -72,4 +83,13 @@ public class Account {
 	   this.passAcc = passAcc;
    }
    
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "ID_CUS")
+   public Customer getCustomer() {
+	   return this.customer;
+   }
+   
+   public void setCustomer(Customer customer) {
+	   this.customer = customer;
+   }
 }
