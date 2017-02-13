@@ -30,9 +30,7 @@
    <context-param>
        <param-name>contextConfigLocation</param-name>
        <param-value>
-          classpath:hibernate/data-source-hiber-cfg.xml,
-          classpath:hibernate/dao-cfg.xml
-          classpath:hibernate/transaction-cfg.xml
+          classpath:hibernate/hibernate-cfg.xml,
         </param-value>        
    </context-param>
  

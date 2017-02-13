@@ -27,7 +27,7 @@ public class Customer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String idCus;
+	private Integer idCus;
 	private String nameCus;
 	private String addressCus;
 	private String emailCus;
@@ -38,11 +38,11 @@ public class Customer implements Serializable {
 	public Customer() {
 	};
 
-	public Customer(String idCus) {
+	public Customer(Integer idCus) {
 		this.idCus = idCus;
 	}
 
-	public Customer(String idCus, Set<Account> account) {
+	public Customer(Integer idCus, Set<Account> account) {
 		this.idCus = idCus;
 		this.account = account;
 	}
@@ -50,11 +50,11 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_CUS", nullable = false, unique = true, length = 10)
-	public String getIdCus() {
+	public Integer getIdCus() {
 		return idCus;
 	}
 
-	public void setIdCus(String idCus) {
+	public void setIdCus(Integer idCus) {
 		this.idCus = idCus;
 	}
 
@@ -93,7 +93,8 @@ public class Customer implements Serializable {
 	public void setEmailCus(String emailCus) {
 		this.emailCus = emailCus;
 	}
-	
+
+	/*
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer" )
 	public Set<Account> getAccount() {
 		return this.account;
@@ -102,4 +103,5 @@ public class Customer implements Serializable {
 	public void setAccount(Set<Account> account) {
 		this.account = account;
 	}
+	*/
 }
