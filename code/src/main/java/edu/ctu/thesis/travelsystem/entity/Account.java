@@ -11,12 +11,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.SEQUENCE;;
 
 @Entity
 @Table(name = "ACCOUNT", uniqueConstraints = { @UniqueConstraint(columnNames = {"ID_ACC"}) })
@@ -46,7 +47,6 @@ public class Account {
    }
    
    @Id
-   @GeneratedValue(strategy = IDENTITY)
    @Column(name = "ID_ACC", unique = true, nullable = false, length = 10)
    public Integer getIdAcc() {
       return idAcc;
