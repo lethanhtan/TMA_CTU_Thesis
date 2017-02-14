@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.hibernate;
 
+import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
@@ -8,12 +10,13 @@ public class HibernateUtil
 {
     private static final SessionFactory sessionFactory = buildSessionFactory();
       
-    private static SessionFactory buildSessionFactory() 
+    @SuppressWarnings("static-access")
+	private static SessionFactory buildSessionFactory() 
     {
         try
         {
             // Create the SessionFactory from hibernate.cfg.xml
-            return new AnnotationConfiguration().configure("/hibernate/data-source-hiber-cfg.xml").buildSessionFactory();
+            return new AnnotationConfiguration().configure("/hibernate/hibernate-cfg.xml").buildSessionFactory();
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed

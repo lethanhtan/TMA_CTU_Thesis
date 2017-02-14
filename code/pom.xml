@@ -11,7 +11,7 @@
 	<properties>
 		<java-version>1.8</java-version>
 	</properties>
-
+	<!-- Start dependencies -->
 	<dependencies>
 		<!-- Junit testing  -->
 		<dependency>
@@ -157,7 +157,7 @@
 		</dependency>
 
 	</dependencies>
-
+	<!-- End dependencies -->
 	<build>
 		<finalName>TravelSystem</finalName>
 		<plugins>

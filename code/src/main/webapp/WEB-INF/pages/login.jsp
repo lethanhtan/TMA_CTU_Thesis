@@ -125,7 +125,7 @@
 									<span class="input-group-addon"> <i class="fa fa-lock"></i>
 									</span> <input placeholder="Mật khẩu" class="form-control"
 										type="password">
-								</div>
+									</div>
 								<div class="row">
 									<div class="col-md-6">
 										<label class="checkbox"> <input type="checkbox">Ghi
@@ -133,7 +133,7 @@
 										</label>
 									</div>
 									<div class="col-md-6">
-										<button class="btn btn-primary pull-right" type="submit">Đăng
+										<button class="btn btn-primary pull-right" type="submit"><a href="chung-thuc">Đăng
 											Nhập</button>
 									</div>
 								</div>
