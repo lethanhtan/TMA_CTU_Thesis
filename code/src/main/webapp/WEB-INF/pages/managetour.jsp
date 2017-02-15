@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="css/table.css">
+<link rel="stylesheet" href="css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -134,20 +134,40 @@
 									<td>Cần Thơ - Vĩnh Long - Bạc Liêu</td>
 									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
 									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
-									<td><a href="tao-tour" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
+									<td><a href="#" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a href="quan-ly-tour" title="Xóa"> <i
+									</a> <a data-toggle="modal" href="#deleteConfirm" title="Xóa"> <i
 											class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
+
+								<!-- Popup Cofirm -->
+								<div id="deleteConfirm" class="modal fade">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4></br>
+												<button type="button" class="btn btn-default">Có</button>
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">Không</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Popup Cofirm -->
+
 								<tr>
 									<td>NY02</td>
 									<td>Cần Thơ - Vĩnh Long - Bạc Liêu - Cà Mau</td>
 									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
 									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
-									<td><a href="tao-tour" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
+									<td><a href="tao-tour" title="Xem"> <i
+											class="fa fa-eye">&nbsp;</i>
 									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a href="quan-ly-tour" title="Xóa"> <i class="fa fa-trash-o"></i>
+									</a> <a href="quan-ly-tour" title="Xóa"> <i
+											class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
 							</tbody>
@@ -232,8 +252,6 @@
 		<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="js/modernizr.custom.js" type="text/javascript"></script>
-		<!-- Back to top -->
-		<script src="js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

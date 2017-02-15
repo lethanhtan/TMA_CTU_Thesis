@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -181,13 +182,8 @@
 									</div>
 								</div>
 								<label>Chi tiết tour</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-pencil-square-o"></i>
-									</span>
-									<textarea placeholder="Nhập chi tiết về tour"
-										class="form-control margin-bottom-20" type="text" rows="5"></textarea>
-								</div>
+									<textarea placeholder="Nhập chi tiết về tour" id="area2"
+										class="form-control margin-bottom-20" type="text" rows="10"></textarea>
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">

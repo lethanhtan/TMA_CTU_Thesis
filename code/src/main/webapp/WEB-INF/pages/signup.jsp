@@ -321,8 +321,6 @@
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 			<script type="text/javascript" src="js/calendar.js"
 				type="text/javascript"></script>
-			<!-- Back to top -->
-			<script src="js/backtotop.js" type="text/javascript"></script>
 			<!--  reCAPTCHA -->
 			<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
 			<!-- End JS -->
