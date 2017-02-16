@@ -2,4 +2,4 @@
 function resetForm() {
 	document.getElementById("createTourForm").reset();
 }
-/* Reset Form */
+/* End Reset Form */

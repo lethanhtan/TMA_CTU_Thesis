@@ -275,8 +275,6 @@
 		<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="js/modernizr.custom.js" type="text/javascript"></script>
-		<!-- Back to top -->
-		<script src="js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import edu.ctu.thesis.travelsystem.dao.LoginDao;
 import edu.ctu.thesis.travelsystem.entity.Account;
 
-@Repository("loginDao")
+//@Repository("loginDao")
 public class LoginDaoImpl implements LoginDao{
 	
 	@Resource(name = "sessionFactroy")

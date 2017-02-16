@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import edu.ctu.thesis.travelsystem.dao.LoginDao;
 import edu.ctu.thesis.travelsystem.service.LoginService;
 
-@Service("loginService")
+//@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
