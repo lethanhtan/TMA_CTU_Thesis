@@ -108,7 +108,7 @@
 					<div class="row margin-vert-30">
 						<!-- Register Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form class="signup-page">
+							<form action="dang-ky" method="post" commandName="accountForm" class="signup-page">
 								<div class="signup-header">
 									<h2>Đăng Ký Tài Khoản</h2>
 									<p>
@@ -116,15 +116,11 @@
 											nhập</a>
 									</p>
 								</div>
-								<div class="tooltip">
-									Hover over me <span class="tooltiptext">Tooltip text</span>
-								</div>
-								
 								<label>Tên tài khoản</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
 									</span> <input placeholder="Nhập tên tài khoản"
-										class="form-control margin-bottom-20" type="text">
+										class="form-control margin-bottom-20" type="text" name="idAcc">
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
@@ -132,72 +128,72 @@
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-lock"></i>
 											</span> <input placeholder="Nhập mật khẩu"
-												class="form-control margin-bottom-20" type="password">
+												class="form-control margin-bottom-20" type="password" name="passAcc">
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<label>Xác nhận mật khẩu</label>
+										<!-- <label>Xác nhận mật khẩu</label>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-repeat"></i>
 											</span> <input placeholder="Nhập lại mật khẩu"
 												class="form-control margin-bottom-20" type="password">
-										</div>
-									</div>
+										</div>-->
+									</div> 
 								</div>
 								<div class="row">
 									<div class="col-sm-7">
-										<label>Họ tên</label>
+										<!-- <label>Họ tên</label>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
 											</span> <input placeholder="Nhập họ tên"
 												class="form-control margin-bottom-20" type="text">
-										</div>
+										</div> -->
 									</div>
 									<div class="col-sm-5">
-										<label>Giới tính</label>
+										<!--  <label>Giới tính</label>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-male"></i>
 											</span> <select class="form-control margin-bottom-20">
 												<option>Nam</option>
 												<option>Nữ</option>
 											</select>
-										</div>
-									</div>
+										</div>-->
+									</div> 
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
-										<label>Ngày sinh</label>
+										<!-- <label>Ngày sinh</label>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span> <input placeholder="mm/dd/yyyy" id="datepicker"
 												class="form-control margin-bottom-20" name="dateofbirth">
-										</div>
+										</div> -->
 									</div>
 									<div class="col-sm-6">
-										<label>Số điện thoại</label>
+										<!-- <label>Số điện thoại</label>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-tablet"></i>
 											</span> <input placeholder="Nhập số điện thoại"
 												class="form-control margin-bottom-20" type="text">
-										</div>
-									</div>
+										</div>-->
+									</div> 
 								</div>
 								<label>Email</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
 									</span> <input placeholder="Nhập email"
-										class="form-control margin-bottom-20" type="text">
+										class="form-control margin-bottom-20" type="text" name="emailAcc">
 								</div>
-								<label>Địa chỉ</label>
+								<!-- <label>Địa chỉ</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-home"></i>
 									</span><input placeholder="Nhập địa chỉ"
 										class="form-control margin-bottom-20" type="text">
-								</div>
+								</div> -->
 								<!-- reCAPTCHA -->
 								<div style="margin-left: 37px;" class="g-recaptcha"
 									data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
@@ -212,7 +208,7 @@
 										</label>
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-primary" type="submit">Đăng Ký</button>
+										<button class="btn btn-primary" type="submit" value="Register">Đăng Ký</button>
 									</div>
 								</div>
 							</form>

@@ -24,7 +24,7 @@ import static javax.persistence.GenerationType.SEQUENCE;;
 public class Account {
    private Integer idAcc;
    private String emailAcc;
-   private Date dateCreateAcc;
+   //private Date dateCreateAcc;
    private String passAcc;
    private Customer customer;
    
@@ -39,9 +39,9 @@ public class Account {
 	   this.customer = customer;
    }
    
-   public Account(String emailAcc, Date dateCreateAcc, String passAcc, Customer customer) {
+   public Account(String emailAcc, /*Date dateCreateAcc,*/ String passAcc, Customer customer) {
 	   this.emailAcc = emailAcc;
-	   this.dateCreateAcc = dateCreateAcc;
+	   //this.dateCreateAcc = dateCreateAcc;
 	   this.passAcc = passAcc;
 	   this.customer = customer;
    }
@@ -65,14 +65,14 @@ public class Account {
 	   this.emailAcc = emailAcc;
    }
    
-   @Column(name = "DATE_CREATE_ACC", nullable = true)
+   /*@Column(name = "DATE_CREATE_ACC", nullable = true)
    public Date getDateCreateAcc() {
       return dateCreateAcc;
    }
    
    public void setDateCreateAcc(Date dateCreateAcc) {
 	   this.dateCreateAcc = dateCreateAcc;
-   }
+   }*/
    
    @Column(name = "PASS_ACC", unique = true, nullable = false, length = 20)
    public String getPassAcc() {
