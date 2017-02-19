@@ -26,12 +26,12 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -61,7 +61,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="img/logo.png"
+						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -154,7 +154,7 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="img/blog/5DiemThamQuanThuViOChauDoc.jpg" alt="thumb1">
+											src="resources/img/blog/5DiemThamQuanThuViOChauDoc.jpg" alt="thumb1">
 									</div>
 									<div class="col-md-7">
 										<p>Dọc theo hành trình du lịch trong nước, có dịp ghé thăm
@@ -221,7 +221,7 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="img/blog/9DiaDanhKhongTheBoQuaKhiDuLichVungTau.jpg"
+											src="resources/img/blog/9DiaDanhKhongTheBoQuaKhiDuLichVungTau.jpg"
 											alt="thumb2">
 									</div>
 									<div class="col-md-7">
@@ -287,7 +287,7 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="img/blog/DacSanNoiTiengBaoNguPhuQuoc.jpg" alt="thumb3">
+											src="resources/img/blog/DacSanNoiTiengBaoNguPhuQuoc.jpg" alt="thumb3">
 									</div>
 									<div class="col-md-7">
 										<p>Đến với du lịch Phú Quốc du khách sẽ được thưởng thức
@@ -351,7 +351,7 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="img/blog/DuXuanTrenChoNoiCaiRang.jpg" alt="thumb4">
+											src="resources/img/blog/DuXuanTrenChoNoiCaiRang.jpg" alt="thumb4">
 									</div>
 									<div class="col-md-7">
 										<p>Nếu như ở miền Bắc và miền Trung có những khu chợ phiên
@@ -408,7 +408,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="img/blog/thumbs/LangHoaDepOMienTay.jpg" alt="thumb1">
+											src="resources/img/blog/thumbs/LangHoaDepOMienTay.jpg" alt="thumb1">
 										</a> <a href="#" class="posts-list-title">Làng hoa đẹp ở miền
 											Tây</a> <br> <span class="recent-post-date">
 											03/01/2017 </span>
@@ -418,7 +418,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="img/blog/thumbs/NgamSacXuanConDao.jpg" alt="thumb2">
+											src="resources/img/blog/thumbs/NgamSacXuanConDao.jpg" alt="thumb2">
 										</a> <a href="#" class="posts-list-title">Ngắm sắc xuân Côn
 											Đảo</a> <br> <span class="recent-post-date">
 											29/12/2016 </span>
@@ -428,7 +428,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="img/blog/thumbs/DuLichBuiNhaTrang.jpg" alt="thumb3">
+											src="resources/img/blog/thumbs/DuLichBuiNhaTrang.jpg" alt="thumb3">
 										</a> <a href="#" class="posts-list-title">Du lịch bụi Nha
 											Trang</a> <br> <span class="recent-post-date">
 											16/12/2016 </span>
@@ -438,7 +438,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="img/blog/thumbs/MuiNeNhatDinhPhaiThu.jpg" alt="thumb4">
+											src="resources/img/blog/thumbs/MuiNeNhatDinhPhaiThu.jpg" alt="thumb4">
 										</a> <a href="#" class="posts-list-title">Mũi Né - Nhất định
 											phải thử</a> <br> <span class="recent-post-date">
 											01/12/2016 </span>
@@ -479,12 +479,11 @@
 					<div class="col-md-3 margin-bottom-20">
 						<h3 class="margin-bottom-10">NY Travel Company</h3>
 						<ul class="menu">
-							<li><a class="fa-book" href="dat-ve">Đặt Vé</a></li>
+							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="gioi-thieu">Về Chúng Tôi</a>
+							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
 							</li>
-							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a>
-							</li>
+							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -510,10 +509,10 @@
 				<div class="row">
 					<div id="footermenu" class="col-md-8">
 						<ul class="list-unstyled list-inline">
-							<li><a href="trang-chu" target="_blank">Trang Chủ</a></li>
-							<li><a href="dat-ve" target="_blank">Đặt Vé</a></li>
-							<li><a href="tin-tuc" target="_blank">Tin Tức</a></li>
-							<li><a href="gioi-thieu" target="_blank">Chính Sách Bảo
+							<li><a href="home" target="_blank">Trang Chủ</a></li>
+							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
+							<li><a href="news" target="_blank">Tin Tức</a></li>
+							<li><a href="aboutus" target="_blank">Chính Sách Bảo
 									Mật</a></li>
 						</ul>
 					</div>
@@ -525,27 +524,27 @@
 		</div>
 		<!-- End Footer Menu -->
 		<!-- JS -->
-		<script type="text/javascript" src="js/jquery.min.js"
+		<script type="text/javascript" src="resources/js/jquery.min.js"
 			type="text/javascript"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"
+		<script type="text/javascript" src="resources/js/bootstrap.min.js"
 			type="text/javascript"></script>
-		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript" src="resources/js/scripts.js"></script>
 		<!-- Isotope - Portfolio Sorting -->
-		<script type="text/javascript" src="js/jquery.isotope.js"
+		<script type="text/javascript" src="resources/js/jquery.isotope.js"
 			type="text/javascript"></script>
 		<!-- Mobile Menu - Slicknav -->
-		<script type="text/javascript" src="js/jquery.slicknav.js"
+		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
 			type="text/javascript"></script>
 		<!-- Animate on Scroll-->
-		<script type="text/javascript" src="js/jquery.visible.js"
+		<script type="text/javascript" src="resources/js/jquery.visible.js"
 			charset="utf-8"></script>
 		<!-- Sticky Div -->
-		<script type="text/javascript" src="js/jquery.sticky.js"
+		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
-		<script src="js/modernizr.custom.js" type="text/javascript"></script>
+		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>
