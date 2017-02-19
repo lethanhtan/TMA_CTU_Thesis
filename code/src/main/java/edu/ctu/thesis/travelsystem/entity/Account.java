@@ -7,6 +7,7 @@ package edu.ctu.thesis.travelsystem.entity;
 
 import java.util.*;
 
+import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -27,6 +30,7 @@ public class Account {
    private Date dateCreateAcc;
    private String passAcc;
    private Customer customer;
+   private Set<Role> roles;
    
    public java.util.Collection<TourCancel> tourCancel;
    public java.util.Collection<TourRegister> tourRegister;
@@ -47,6 +51,7 @@ public class Account {
    }
    
    @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "ID_ACC", unique = true, nullable = false, length = 10)
    public Integer getIdAcc() {
       return idAcc;
@@ -82,7 +87,8 @@ public class Account {
    public void setPassAcc(String passAcc) {
 	   this.passAcc = passAcc;
    }
-   /*
+   
+   
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "ID_CUS")
    public Customer getCustomer() {
@@ -92,5 +98,5 @@ public class Account {
    public void setCustomer(Customer customer) {
 	   this.customer = customer;
    }
-   */
+   
 }

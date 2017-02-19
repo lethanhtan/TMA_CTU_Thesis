@@ -26,12 +26,15 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -59,8 +62,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="img/icon/logo.png"
-							alt="Logo" />
+						<a href="trang-chu" title=""> <img
+							src="resources/img/icon/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -73,20 +76,20 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="trang-chu" class="fa-home">Trang Chủ</a></li>
+							<li><a href="home" class="fa-home">Trang Chủ</a></li>
 							<li><span class="fa-question">Giới Thiệu</span>
 								<ul>
-									<li><a href="gioi-thieu">Về Chúng Tôi</a></li>
-									<li><a href="cau-hoi-thuong-gap">Câu Hỏi Thường Gặp</a></li>
+									<li><a href="aboutus">Về Chúng Tôi</a></li>
+									<li><a href="faq">Câu Hỏi Thường Gặp</a></li>
 								</ul></li>
-							<li><a href="dat-ve" class="fa-book">Đặt Vé</a></li>
-							<li><a href="tin-tuc" class="fa-tachometer">Tin Tức</a></li>
+							<li><a href="booktour" class="fa-book">Đặt Vé</a></li>
+							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
-							<li><a href="lien-he" class="fa-phone">Liên Hệ</a></li>
+							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
-									<li><a href="dang-nhap">Đăng Nhập</a></li>
-									<li><a href="dang-ky">Đăng ký</a></li>
+									<li><a href="login">Đăng Nhập</a></li>
+									<li><a href="signup">Đăng ký</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -118,19 +121,19 @@
 						<!-- Carousel Images -->
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="img/slideshow/DongThapMuoi.jpg">
+								<img src="resources/img/slideshow/DongThapMuoi.jpg">
 							</div>
 							<div class="item">
-								<img src="img/slideshow/DaoPhuQuoc.jpg">
+								<img src="resources/img/slideshow/DaoPhuQuoc.jpg">
 							</div>
 							<div class="item">
-								<img src="img/slideshow/DaLat.jpg">
+								<img src="resources/img/slideshow/DaLat.jpg">
 							</div>
 							<div class="item">
-								<img src="img/slideshow/BenTre.jpg">
+								<img src="resources/img/slideshow/BenTre.jpg">
 							</div>
 							<div class="item">
-								<img src="img/slideshow/TienGiang.jpg">
+								<img src="resources/img/slideshow/TienGiang.jpg">
 							</div>
 						</div>
 						<!-- End Carousel Images -->
@@ -213,7 +216,7 @@
 								href="#">
 									<figure class="animate fadeInLeft">
 										<img alt="SaDecFlowerVillage"
-											src="img/frontpage/SaDecFlowerVillage.jpg">
+											src="resources/img/frontpage/SaDecFlowerVillage.jpg">
 										<figcaption>
 											<h3>Làng hoa Sa Đéc - Đồng Tháp</h3>
 											<span style="color: white;">Đến Sa Đéc, du khách sẽ có
@@ -231,7 +234,8 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInRight">
-										<img alt="UMinhHaForest" src="img/frontpage/UMinhHaForest.jpg">
+										<img alt="UMinhHaForest"
+											src="resources/img/frontpage/UMinhHaForest.jpg">
 										<figcaption>
 											<h3>Rừng U Minh Hạ - Cà Mau</h3>
 											<span style="color: white;">Rừng U Minh Hạ có hàng
@@ -249,7 +253,8 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInLeft">
-										<img alt="ValleyOfLove" src="img/frontpage/ValleyOfLove.jpg">
+										<img alt="ValleyOfLove"
+											src="resources/img/frontpage/ValleyOfLove.jpg">
 										<figcaption>
 											<h3>Thung lũng tình yêu - Đà Lạt</h3>
 											<span style="color: white;">Nơi đây có hồ Đa Thiện vắt
@@ -267,7 +272,7 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInRight">
-										<img alt="VanLinhPagoda" src="img/frontpage/VanLinhPagoda.jpg">
+										<img alt="VanLinhPagoda" src="resources/img/frontpage/VanLinhPagoda.jpg">
 										<figcaption>
 											<h3>Chùa Vạn Linh - An Giang</h3>
 											<span style="color: white;">Ngôi chùa Vạn Linh tựa
@@ -286,7 +291,7 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInLeft">
-										<img alt="NhaTrangBeach" src="img/frontpage/NhaTrangBeach.jpg">
+										<img alt="NhaTrangBeach" src="resources/img/frontpage/NhaTrangBeach.jpg">
 										<figcaption>
 											<h3>Biển Nha Trang - Khánh Hòa</h3>
 											<span style="color: white;">Biển Nha Trang như một bức
@@ -306,7 +311,7 @@
 								href="#">
 									<figure class="animate fadeInRight">
 										<img alt="CaiRangFloatingMarket"
-											src="img/frontpage/CaiRangFloatingMarket.jpg">
+											src="resources/img/frontpage/CaiRangFloatingMarket.jpg">
 										<figcaption>
 											<h3>Chợ nổi Cái Răng - Cần Thơ</h3>
 											<span style="color: white;">Chợ nổi Cái Răng buôn bán
@@ -368,9 +373,9 @@
 					<div class="col-md-3 margin-bottom-20">
 						<h3 class="margin-bottom-10">NY Travel Company</h3>
 						<ul class="menu">
-							<li><a class="fa-book" href="dat-ve">Đặt Vé</a></li>
+							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="gioi-thieu">Về Chúng Tôi</a>
+							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
 							</li>
 							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
@@ -398,10 +403,10 @@
 				<div class="row">
 					<div id="footermenu" class="col-md-8">
 						<ul class="list-unstyled list-inline">
-							<li><a href="trang-chu" target="_blank">Trang Chủ</a></li>
-							<li><a href="dat-ve" target="_blank">Đặt Vé</a></li>
-							<li><a href="tin-tuc" target="_blank">Tin Tức</a></li>
-							<li><a href="gioi-thieu" target="_blank">Chính Sách Bảo
+							<li><a href="home" target="_blank">Trang Chủ</a></li>
+							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
+							<li><a href="news" target="_blank">Tin Tức</a></li>
+							<li><a href="aboutus" target="_blank">Chính Sách Bảo
 									Mật</a></li>
 						</ul>
 					</div>
@@ -413,27 +418,27 @@
 		</div>
 		<!-- End Footer Menu -->
 		<!-- JS -->
-		<script type="text/javascript" src="js/jquery.min.js"
+		<script type="text/javascript" src="resources/js/jquery.min.js"
 			type="text/javascript"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"
+		<script type="text/javascript" src="resources/js/bootstrap.min.js"
 			type="text/javascript"></script>
-		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript" src="resources/js/scripts.js"></script>
 		<!-- Isotope - Portfolio Sorting -->
-		<script type="text/javascript" src="js/jquery.isotope.js"
+		<script type="text/javascript" src="resources/js/jquery.isotope.js"
 			type="text/javascript"></script>
 		<!-- Mobile Menu - Slicknav -->
-		<script type="text/javascript" src="js/jquery.slicknav.js"
+		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
 			type="text/javascript"></script>
 		<!-- Animate on Scroll-->
-		<script type="text/javascript" src="js/jquery.visible.js"
+		<script type="text/javascript" src="resources/js/jquery.visible.js"
 			charset="utf-8"></script>
 		<!-- Sticky Div -->
-		<script type="text/javascript" src="js/jquery.sticky.js"
+		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
-		<script src="js/modernizr.custom.js" type="text/javascript"></script>
+		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

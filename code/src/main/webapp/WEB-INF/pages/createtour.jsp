@@ -26,13 +26,12 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
-<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -62,7 +61,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="img/logo.png"
+						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -76,10 +75,10 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="quan-ly-tour" class="fa-gear">Quản Lý Tour</a></li>
-							<li><a href="quan-ly-dang-ky" class="fa-list-ul">Quản Lý
+							<li><a href="managetour" class="fa-gear">Quản Lý Tour</a></li>
+							<li><a href="manageregister" class="fa-list-ul">Quản Lý
 									Đăng Ký</a></li>
-							<li><a href="khao-sat" class="fa-file-text">Khảo Sát Ý
+							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
 						</ul>
 					</div>
@@ -215,10 +214,10 @@
 				<div class="row">
 					<div id="footermenu" class="col-md-8">
 						<ul class="list-unstyled list-inline">
-							<li><a href="quan-ly-tour" target="_blank">Quản lý tour</a></li>
-							<li><a href="quan-ly-dang-ky" target="_blank">Quản lý
+							<li><a href="managetour" target="_blank">Quản lý tour</a></li>
+							<li><a href="manageregister" target="_blank">Quản lý
 									đăng ký</a></li>
-							<li><a href="khao-sat" target="_blank">Khảo sát ý kiến</a></li>
+							<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">
@@ -229,37 +228,36 @@
 		</div>
 		<!-- End Footer Menu -->
 			<!-- JS -->
-			<script type="text/javascript" src="js/jquery.min.js"
-				type="text/javascript"></script>
-			<script type="text/javascript" src="js/bootstrap.min.js"
-				type="text/javascript"></script>
-			<script type="text/javascript" src="js/scripts.js"></script>
-			<!-- Isotope - Portfolio Sorting -->
-			<script type="text/javascript" src="js/jquery.isotope.js"
-				type="text/javascript"></script>
-			<!-- Mobile Menu - Slicknav -->
-			<script type="text/javascript" src="js/jquery.slicknav.js"
-				type="text/javascript"></script>
-			<!-- Animate on Scroll-->
-			<script type="text/javascript" src="js/jquery.visible.js"
-				charset="utf-8"></script>
-			<!-- Sticky Div -->
-			<script type="text/javascript" src="js/jquery.sticky.js"
-				charset="utf-8"></script>
-			<!-- Slimbox2-->
-			<script type="text/javascript" src="js/slimbox2.js" charset="utf-8"></script>
-			<!-- Modernizr -->
-			<script src="js/modernizr.custom.js" type="text/javascript"></script>
-			<script src="js/resetForm.js" type="text/javascript"></script>
+			<script type="text/javascript" src="resources/js/jquery.min.js"
+			type="text/javascript"></script>
+		<script type="text/javascript" src="resources/js/bootstrap.min.js"
+			type="text/javascript"></script>
+		<script type="text/javascript" src="resources/js/scripts.js"></script>
+		<!-- Isotope - Portfolio Sorting -->
+		<script type="text/javascript" src="resources/js/jquery.isotope.js"
+			type="text/javascript"></script>
+		<!-- Mobile Menu - Slicknav -->
+		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
+			type="text/javascript"></script>
+		<!-- Animate on Scroll-->
+		<script type="text/javascript" src="resources/js/jquery.visible.js"
+			charset="utf-8"></script>
+		<!-- Sticky Div -->
+		<script type="text/javascript" src="resources/js/jquery.sticky.js"
+			charset="utf-8"></script>
+		<!-- Slimbox2-->
+		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+		<!-- Modernizr -->
+		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 			<!-- Calendar -->
 			<link rel="stylesheet"
 				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 			<script
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-			<script type="text/javascript" src="js/calendar.js"
+			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
-			<!-- Back to top -->
-			<script src="js/backtotop.js" type="text/javascript"></script>
+			<!-- Text editor -->
+			<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 			<!-- End JS -->
 </body>
 </html>

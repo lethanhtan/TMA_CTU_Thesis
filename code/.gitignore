@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/bin/
+=======
 target/*
 .settings/*
 .classpath
 .project
+>>>>>>> refs/remotes/origin/master
