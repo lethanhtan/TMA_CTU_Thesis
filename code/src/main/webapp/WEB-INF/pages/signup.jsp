@@ -8,12 +8,6 @@
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -67,7 +61,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -114,81 +108,57 @@
 					<div class="row margin-vert-30">
 						<!-- Register Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form:form class="signup-page" method="POST" modelAttribute="userForm">
+							<form class="signup-page">
 								<div class="signup-header">
 									<h2>Đăng Ký Tài Khoản</h2>
 									<p>
-										Đã có tài khoản? <a href="dang-nhap" style="color: #ef5b92">Đăng
+										Đã có tài khoản? <a href="login" style="color: #ef5b92">Đăng
 											nhập</a>
 									</p>
 								</div>
-								<div class="tooltip">
-									Hover over me <span class="tooltiptext">Tooltip text</span>
-								</div>
-								
 								<label>Tên tài khoản</label>
-								<spring:bind path="username">
 								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-user"></i></span>
-										<div class="form-group ${status.error ? 'has-error' : ''}">
-										<form:input placeholder="Nhập tên tài khoản"
-										class="form-control margin-bottom-20" type="text" path="username"></form:input>
-										</div>
+									<span class="input-group-addon"> <i class="fa fa-user"></i>
+									</span> <input placeholder="Nhập tên tài khoản"
+										class="form-control margin-bottom-20" type="text">
 								</div>
-								<small><font color="red"><form:errors path="username"></form:errors></font></small>
-								</spring:bind>
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Mật Khẩu</label>
-										<spring:bind path="password">
 										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-lock"></i></span> 
-											<div class="form-group ${status.error ? 'has-error' : ''}">
-											<form:input placeholder="Nhập mật khẩu"
-												class="form-control margin-bottom-20" type="password" path="password"></form:input>
-											</div>
+											<span class="input-group-addon"> <i class="fa fa-lock"></i>
+											</span> <input placeholder="Nhập mật khẩu"
+												class="form-control margin-bottom-20" type="password">
 										</div>
-										<small><font color="red"><form:errors path="password"></form:errors></font></small>
-										</spring:bind>
 									</div>
 									<div class="col-sm-6">
 										<label>Xác nhận mật khẩu</label>
-										<spring:bind path="passwordConfirm">
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
-												class="fa fa-repeat"></i></span> 
-											<div class="form-group ${status.error ? 'has-error' : ''}">
-											<form:input placeholder="Nhập lại mật khẩu"
-												class="form-control margin-bottom-20" type="password" path="passwordConfirm"></form:input>
-											</div>
+												class="fa fa-repeat"></i>
+											</span> <input placeholder="Nhập lại mật khẩu"
+												class="form-control margin-bottom-20" type="password">
 										</div>
-										<small><font color="red"><form:errors path="passwordConfirm"></form:errors></font></small>
-										</spring:bind>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-7">
 										<label>Họ tên</label>
-										<spring:bind path="fullName">
 										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i></span>
-											<div class="form-group ${status.error ? 'has-error' : ''}">
-											<form:input placeholder="Nhập họ tên"
-												class="form-control margin-bottom-20" type="text" path="fullName"></form:input>
-											</div>
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span> <input placeholder="Nhập họ tên"
+												class="form-control margin-bottom-20" type="text">
 										</div>
-										<small><font color="red"><form:errors path="fullName"></form:errors></font></small>
-										</spring:bind>
 									</div>
 									<div class="col-sm-5">
-										<label>Giới tính</label>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-male"></i>
-											</span> <select class="form-control margin-bottom-20">
-												<option>Nam</option>
-												<option>Nữ</option>
-											</select>
-										</div>
+										<label>Giới tính</label><div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-male"></i>
+										</span> <select class="form-control margin-bottom-20">
+											<option>Nam</option>
+											<option>Nữ</option>
+										</select>
+									</div>
 									</div>
 								</div>
 								<div class="row">
@@ -203,48 +173,27 @@
 									</div>
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
-										<spring:bind path="phone">
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
-												class="fa fa-tablet"></i></span>
-											<div class="form-group ${status.error ? 'has-error' : ''}">
-											<form:input placeholder="Nhập số điện thoại"
-												class="form-control margin-bottom-20" type="text" path="phone"/>
-											</div>
+												class="fa fa-tablet"></i>
+											</span> <input placeholder="Nhập số điện thoại"
+												class="form-control margin-bottom-20" type="text">
 										</div>
-										<small><font color="red"><form:errors path="phone"></form:errors></font></small>
-										</spring:bind>
 									</div>
 								</div>
 								<label>Email</label>
-								<spring:bind path="email">
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
-									</span>
-									<div class="form-group ${status.error ? 'has-error' : ''}">
-									<form:input placeholder="Nhập email"
-										class="form-control margin-bottom-20" type="text" path="email"></form:input>
-									</div>
+									</span> <input placeholder="Nhập email"
+										class="form-control margin-bottom-20" type="text">
 								</div>
-								<small><font color="red"><form:errors path="email"></form:errors></font></small>
-								</spring:bind>
 								<label>Địa chỉ</label>
-								<spring:bind path="address">
-								<div class="input-group margin-bottom-20" style="whitespace: nowrap;">
+								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-home"></i>
-									</span>
-									<div class="form-group ${status.error ? 'has-error' : ''}">
-									<form:input placeholder="Nhập địa chỉ"
-										class="form-control margin-bottom-20" type="text" path="address"></form:input>
-									</div>
+									</span><input placeholder="Nhập địa chỉ"
+										class="form-control margin-bottom-20" type="text">
 								</div>
-								<small><font color="green">This field is not mandatory</font></small>
-								<small><font color="red"><form:errors path="address"></form:errors></font></small>
-								</spring:bind>
-								<!-- reCAPTCHA -->
-								<div style="margin-left: 37px;" class="g-recaptcha"
-									data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
 								<hr>
 								<div class="row">
 									<div class="col-lg-8">
@@ -258,14 +207,12 @@
 										<button class="btn btn-primary" type="submit">Đăng Ký</button>
 									</div>
 								</div>
-							</form:form>
+							</form>
 						</div>
 						<!-- End Register Box -->
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
 			<div id="content-bottom-border" class="container"></div>
@@ -290,74 +237,75 @@
 						<!-- End Contact Details -->
 						<!-- Sample Menu -->
 						<div class="col-md-3 margin-bottom-20">
-						<h3 class="margin-bottom-10">NY Travel Company</h3>
-						<ul class="menu">
-							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
-							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
-							</li>
-							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
-						</ul>
+							<h3 class="margin-bottom-10">NY Travel Company</h3>
+							<ul class="menu">
+								<li><a class="fa-book" href="dat-ve">Đặt Vé</a></li>
+								<li><a class="fa-tasks" href="blog">Blog</a></li>
+								<li><a class="fa-coffee" href="gioi-thieu">Về Chúng Tôi</a>
+								</li>
+								<li><a class="fa-question" href="faq">Câu Hỏi Thường
+										Gặp</a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<!-- End Sample Menu -->
+						<div class="col-md-1"></div>
+						<!-- Disclaimer -->
+						<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
+							<h3 class="color-gray margin-bottom-10">Đăng Ký Bản Tin</h3>
+							<p>Nhập địa chỉ email để nhận được những tin tức mới nhất từ
+								chúng tôi</p>
+							<input type="email"> <br>
+							<button class="btn btn-primary btn-lg margin-top-20"
+								type="button">Đăng Ký</button>
+						</div>
+						<!-- End Disclaimer -->
 						<div class="clearfix"></div>
 					</div>
-					<!-- End Sample Menu -->
-					<div class="col-md-1"></div>
-					<!-- Disclaimer -->
-					<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-						<h3 class="color-gray margin-bottom-10">Đăng Ký Bản Tin</h3>
-						<p>Nhập địa chỉ email để nhận được những tin tức mới nhất từ
-							chúng tôi</p>
-						<input type="email"> <br>
-						<button class="btn btn-primary btn-lg margin-top-20" type="button">Đăng
-							Ký</button>
-					</div>
-					<!-- End Disclaimer -->
-					<div class="clearfix"></div>
 				</div>
 			</div>
-		</div>
-		<!-- Footer Menu -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div id="footermenu" class="col-md-8">
-						<ul class="list-unstyled list-inline">
-							<li><a href="home" target="_blank">Trang Chủ</a></li>
-							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
-							<li><a href="news" target="_blank">Tin Tức</a></li>
-							<li><a href="aboutus" target="_blank">Chính Sách Bảo
-									Mật</a></li>
-						</ul>
-					</div>
-					<div id="copyright" class="col-md-4">
-						<p class="pull-right">(c) 2016 NY Travel Company</p>
+			<!-- Footer Menu -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div id="footermenu" class="col-md-8">
+							<ul class="list-unstyled list-inline">
+								<li><a href="home" target="_blank">Trang Chủ</a></li>
+								<li><a href="booktour" target="_blank">Đặt Vé</a></li>
+								<li><a href="news" target="_blank">Tin Tức</a></li>
+								<li><a href="aboutus" target="_blank">Chính Sách Bảo
+										Mật</a></li>
+							</ul>
+						</div>
+						<div id="copyright" class="col-md-4">
+							<p class="pull-right">(c) 2016 NY Travel Company</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- End Footer Menu -->
-		<!-- JS -->
-		<script type="text/javascript" src="resources/js/jquery.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/bootstrap.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/scripts.js"></script>
-		<!-- Isotope - Portfolio Sorting -->
-		<script type="text/javascript" src="resources/js/jquery.isotope.js"
-			type="text/javascript"></script>
-		<!-- Mobile Menu - Slicknav -->
-		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
-			type="text/javascript"></script>
-		<!-- Animate on Scroll-->
-		<script type="text/javascript" src="resources/js/jquery.visible.js"
-			charset="utf-8"></script>
-		<!-- Sticky Div -->
-		<script type="text/javascript" src="resources/js/jquery.sticky.js"
-			charset="utf-8"></script>
-		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
-		<!-- Modernizr -->
-		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+			<!-- End Footer Menu -->
+			<!-- JS -->
+			<script type="text/javascript" src="resources/js/jquery.min.js"
+				type="text/javascript"></script>
+			<script type="text/javascript" src="resources/js/bootstrap.min.js"
+				type="text/javascript"></script>
+			<script type="text/javascript" src="resources/js/scripts.js"></script>
+			<!-- Isotope - Portfolio Sorting -->
+			<script type="text/javascript" src="resources/js/jquery.isotope.js"
+				type="text/javascript"></script>
+			<!-- Mobile Menu - Slicknav -->
+			<script type="text/javascript" src="resources/js/jquery.slicknav.js"
+				type="text/javascript"></script>
+			<!-- Animate on Scroll-->
+			<script type="text/javascript" src="resources/js/jquery.visible.js"
+				charset="utf-8"></script>
+			<!-- Sticky Div -->
+			<script type="text/javascript" src="resources/js/jquery.sticky.js"
+				charset="utf-8"></script>
+			<!-- Slimbox2-->
+			<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+			<!-- Modernizr -->
+			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 			<!-- Calendar -->
 			<link rel="stylesheet"
 				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -365,8 +313,8 @@
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
-			<!--  reCAPTCHA -->
-			<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
+			<!-- Back to top -->
+			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>
 </html>
