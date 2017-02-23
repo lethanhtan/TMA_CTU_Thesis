@@ -61,7 +61,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -75,20 +75,20 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="trang-chu" class="fa-home">Trang Chủ</a></li>
+							<li><a href="home" class="fa-home">Trang Chủ</a></li>
 							<li><span class="fa-question">Giới Thiệu</span>
 								<ul>
-									<li><a href="gioi-thieu">Về Chúng Tôi</a></li>
-									<li><a href="cau-hoi-thuong-gap">Câu Hỏi Thường Gặp</a></li>
+									<li><a href="aboutus">Về Chúng Tôi</a></li>
+									<li><a href="faq">Câu Hỏi Thường Gặp</a></li>
 								</ul></li>
-							<li><a href="dat-ve" class="fa-book">Đặt Vé</a></li>
-							<li><a href="tin-tuc" class="fa-tachometer">Tin Tức</a></li>
+							<li><a href="booktour" class="fa-book">Đặt Vé</a></li>
+							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
-							<li><a href="lien-he" class="fa-phone">Liên Hệ</a></li>
+							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
-									<li><a href="dang-nhap">Đăng Nhập</a></li>
-									<li><a href="dang-ky">Đăng ký</a></li>
+									<li><a href="login">Đăng Nhập</a></li>
+									<li><a href="signup">Đăng ký</a></li>
 								</ul></li>
 						</ul>
 					</div>

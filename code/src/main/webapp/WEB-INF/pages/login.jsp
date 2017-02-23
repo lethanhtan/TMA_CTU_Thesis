@@ -112,7 +112,7 @@
 								<div class="login-header margin-bottom-30">
 									<h2>Đăng Nhập</h2>
 									<p>
-										Chưa có tài khoản? <a href="dang-ky" style="color: #ef5b92">Đăng
+										Chưa có tài khoản? <a href="signup" style="color: #ef5b92">Đăng
 											ký</a>
 									</p>
 								</div>
