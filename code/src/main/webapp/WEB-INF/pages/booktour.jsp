@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -72,6 +73,13 @@
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -104,6 +112,13 @@
 		</div>
 		<div id="content-top-border" class="container"></div>
 		<!-- === END HEADER === -->
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
 			<div class="container background-white">
@@ -119,14 +134,18 @@
 						</form>
 					</div>
 					<!-- End Search Form -->
+
 					<!-- Register Box -->
 					<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 						<form class="signup-page">
 							<div class="signup-header">
 								<h2>Đặt Vé</h2>
-								</br>
+								<img alt="Web Counter" border="0"
+									src="http://pumpernickelpixie.com/wp-content/uploads/2015/06/31.gif"
+									width="500px" height="250px"
+									style="display: block; margin-right: auto; margin-left: auto; text-align: center" />
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-sm-6">
 									<label>Tỉnh đi</label>
 									<div class="input-group margin-bottom-20">
@@ -207,7 +226,7 @@
 										</span> <input class="form-control" type="text" readonly="readonly">
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="row">
 								<div class="col-sm-8">
 									<label>Họ tên</label>
@@ -370,6 +389,9 @@
 			src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="resources/js/calendar.js"
 			type="text/javascript"></script>
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

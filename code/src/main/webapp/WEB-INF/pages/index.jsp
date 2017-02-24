@@ -35,10 +35,7 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+	<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -195,9 +192,6 @@
 			<div class="container background-white">
 				<div class="row margin-vert-30">
 					<!-- Main Text -->
-
-					<!-- <a href="https://clipartfest.com/download/da18029c316ae36c9425aaa72a5aa426a775ec30" title="Image from clipartfest.com"><img src="https://img.clipartfest.com/5a339d163cfa7e605f091a2946457fbb_red-bus-coach-clip-art-clipart-coach-bus_1052-744.svg" width="1052" alt="clipart coach bus" /></a> -->
-
 					<div class="col-md-12">
 						<h2 class="text-center">Chào mừng đến với công ty NY Travel</h2>
 						<p class="text-center">Chính thức thành lập vào tháng 12 năm
@@ -286,8 +280,7 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInRight">
-										<img alt="VanLinhPagoda"
-											src="resources/img/frontpage/VanLinhPagoda.jpg">
+										<img alt="VanLinhPagoda" src="resources/img/frontpage/VanLinhPagoda.jpg">
 										<figcaption>
 											<h3>Chùa Vạn Linh - An Giang</h3>
 											<span style="color: white;">Ngôi chùa Vạn Linh tựa
@@ -306,8 +299,7 @@
 							<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
 								href="#">
 									<figure class="animate fadeInLeft">
-										<img alt="NhaTrangBeach"
-											src="resources/img/frontpage/NhaTrangBeach.jpg">
+										<img alt="NhaTrangBeach" src="resources/img/frontpage/NhaTrangBeach.jpg">
 										<figcaption>
 											<h3>Biển Nha Trang - Khánh Hòa</h3>
 											<span style="color: white;">Biển Nha Trang như một bức
@@ -391,7 +383,8 @@
 						<ul class="menu">
 							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a></li>
+							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
+							</li>
 							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
 						<div class="clearfix"></div>
@@ -421,7 +414,8 @@
 							<li><a href="home" target="_blank">Trang Chủ</a></li>
 							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
 							<li><a href="news" target="_blank">Tin Tức</a></li>
-							<li><a href="aboutus" target="_blank">Chính Sách Bảo Mật</a></li>
+							<li><a href="aboutus" target="_blank">Chính Sách Bảo
+									Mật</a></li>
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">
@@ -450,8 +444,7 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js"
-			charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 		<!--  Back to top -->
