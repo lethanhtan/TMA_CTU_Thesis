@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/blog")
-public class Blog{
+public class BlogController {
  
    @RequestMapping(method = RequestMethod.GET)
-   public String aboutController() {
+   public String blogController() {
 
       return "blog";
    }
