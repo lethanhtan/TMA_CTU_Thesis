@@ -141,7 +141,7 @@
 							<label>Nội Dung <span class="color-red">*</span></label>
 							<div class="row margin-bottom-20">
 								<div class="col-md-8 col-md-offset-0">
-									<textarea rows="8" class="form-control"></textarea>
+									<textarea rows="7" class="form-control"></textarea>
 								</div>
 							</div>
 							<label style="color: red; font-style: italic;">(*) Nội
@@ -190,6 +190,13 @@
 						<!-- End About -->
 					</div>
 					<!-- End Side Column -->
+					<!--  Map -->
+					<iframe width="1000" height="350" frameborder="0"
+						style="border: 0; display: block; margin-right: auto; margin-left: auto; text-align: center;"
+						src="https://www.google.com/maps/embed/v1/place?q=Can%20Tho%20University&key=AIzaSyCIBw6iN2PD-z9GUqFdLJeeKJuhzodUhe8"
+						allowfullscreen></iframe>
+					</br>
+					<!-- End Map -->
 				</div>
 			</div>
 		</div>
