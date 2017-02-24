@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("managetour")
-public class ManageTour {
+public class ManageTourController {
  
    @RequestMapping(method = RequestMethod.GET)
-   public String aboutController() {
+   public String managetourController() {
 
       return "managetour";
    }
