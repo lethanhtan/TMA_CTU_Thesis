@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/news")
-public class News {
+public class NewsController{
 	@RequestMapping(method = RequestMethod.GET)
-	public String aboutController() {
+	public String newsController() {
 		return "news";
 	}
 }
