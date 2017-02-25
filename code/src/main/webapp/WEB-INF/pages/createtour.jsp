@@ -26,26 +26,16 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<<<<<<< HEAD
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
-=======
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
->>>>>>> refs/remotes/lethanhtan/master
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<<<<<<< HEAD
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
-=======
 <link rel="stylesheet" href="resources/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
->>>>>>> refs/remotes/lethanhtan/master
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -75,13 +65,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-<<<<<<< HEAD
-						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
-							alt="Logo" />
-=======
 						<a href="trang-chu" title=""> <img
 							src="resources/img/logo.png" alt="Logo" />
->>>>>>> refs/remotes/lethanhtan/master
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -233,23 +218,6 @@
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
 			<div id="content-bottom-border" class="container"></div>
-<<<<<<< HEAD
-		<div id="base"></div>
-		<!-- Footer Menu -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div id="footermenu" class="col-md-8">
-						<ul class="list-unstyled list-inline">
-							<li><a href="managetour" target="_blank">Quản lý tour</a></li>
-							<li><a href="manageregister" target="_blank">Quản lý
-									đăng ký</a></li>
-							<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
-						</ul>
-					</div>
-					<div id="copyright" class="col-md-4">
-						<p class="pull-right">(c) 2016 NY Travel Company</p>
-=======
 			<div id="base"></div>
 			<!-- Footer Menu -->
 			<div id="footer">
@@ -266,35 +234,12 @@
 						<div id="copyright" class="col-md-4">
 							<p class="pull-right">(c) 2016 NY Travel Company</p>
 						</div>
->>>>>>> refs/remotes/lethanhtan/master
 					</div>
 				</div>
 			</div>
 			<!-- End Footer Menu -->
 			<!-- JS -->
 			<script type="text/javascript" src="resources/js/jquery.min.js"
-<<<<<<< HEAD
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/bootstrap.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/scripts.js"></script>
-		<!-- Isotope - Portfolio Sorting -->
-		<script type="text/javascript" src="resources/js/jquery.isotope.js"
-			type="text/javascript"></script>
-		<!-- Mobile Menu - Slicknav -->
-		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
-			type="text/javascript"></script>
-		<!-- Animate on Scroll-->
-		<script type="text/javascript" src="resources/js/jquery.visible.js"
-			charset="utf-8"></script>
-		<!-- Sticky Div -->
-		<script type="text/javascript" src="resources/js/jquery.sticky.js"
-			charset="utf-8"></script>
-		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
-		<!-- Modernizr -->
-		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
-=======
 				type="text/javascript"></script>
 			<script type="text/javascript" src="resources/js/bootstrap.min.js"
 				type="text/javascript"></script>
@@ -316,7 +261,6 @@
 				charset="utf-8"></script>
 			<!-- Modernizr -->
 			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
->>>>>>> refs/remotes/lethanhtan/master
 			<!-- Calendar -->
 			<link rel="stylesheet"
 				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -325,14 +269,10 @@
 			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
 			<!-- Text editor -->
-<<<<<<< HEAD
-			<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-=======
 			<script type="text/javascript"
 				src="http://js.nicedit.com/nicEdit-latest.js"></script>
 			<!--  Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
->>>>>>> refs/remotes/lethanhtan/master
 			<!-- End JS -->
 </body>
 </html>

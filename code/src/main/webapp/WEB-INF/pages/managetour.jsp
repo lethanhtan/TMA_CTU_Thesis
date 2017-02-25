@@ -259,11 +259,8 @@
 		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
-<<<<<<< HEAD
-=======
 		<!--  Back to top -->
 		<script src="resources/js/backtotop.js" type="text/javascript"></script>
->>>>>>> refs/remotes/lethanhtan/master
 		<!-- End JS -->
 </body>
 </html>

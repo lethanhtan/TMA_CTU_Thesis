@@ -26,26 +26,16 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<<<<<<< HEAD
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
-=======
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
->>>>>>> refs/remotes/lethanhtan/master
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<<<<<<< HEAD
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
-=======
 <link rel="stylesheet" href="resources/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
->>>>>>> refs/remotes/lethanhtan/master
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -75,13 +65,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-<<<<<<< HEAD
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
-							alt="Logo" />
-=======
 						<a href="home" title=""> <img
 							src="resources/img/logo.png" alt="Logo" />
->>>>>>> refs/remotes/lethanhtan/master
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -243,12 +228,7 @@
 						<ul class="menu">
 							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-<<<<<<< HEAD
-							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
-							</li>
-=======
 							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a></li>
->>>>>>> refs/remotes/lethanhtan/master
 							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
 						<div class="clearfix"></div>
@@ -278,12 +258,7 @@
 							<li><a href="home" target="_blank">Trang Chủ</a></li>
 							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
 							<li><a href="news" target="_blank">Tin Tức</a></li>
-<<<<<<< HEAD
-							<li><a href="aboutus" target="_blank">Chính Sách Bảo
-									Mật</a></li>
-=======
 							<li><a href="aboutus" target="_blank">Chính Sách Bảo Mật</a></li>
->>>>>>> refs/remotes/lethanhtan/master
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">
@@ -312,19 +287,12 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-<<<<<<< HEAD
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
-=======
 		<script type="text/javascript" src="resources/js/slimbox2.js"
 			charset="utf-8"></script>
->>>>>>> refs/remotes/lethanhtan/master
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
-<<<<<<< HEAD
-=======
 		<!--  Back to top -->
 		<script src="resources/js/backtotop.js" type="text/javascript"></script>
->>>>>>> refs/remotes/lethanhtan/master
 		<!-- End JS -->
 </body>
 </html>
