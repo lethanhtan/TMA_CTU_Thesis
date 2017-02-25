@@ -12,11 +12,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
 	<mvc:annotation-driven />
-    <mvc:resources mapping="/css/**" location="/css/" />
-    <mvc:resources mapping="/fonts/**" location="/fonts/" />
-    <mvc:resources mapping="/img/**" location="/img/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
-    <mvc:resources mapping="/less/**" location="/less/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Enable auto scan with "context:component-scan" tag 
 	*	The "base-package" is indicate where are components stored
