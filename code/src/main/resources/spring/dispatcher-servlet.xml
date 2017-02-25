@@ -1,33 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-    http://www.springframework.org/schema/beans     
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/context 
-    http://www.springframework.org/schema/context/spring-context-3.0.xsd
-    http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-	
-	<mvc:annotation-driven />
-    <mvc:resources mapping="/css/**" location="/css/" />
-    <mvc:resources mapping="/fonts/**" location="/fonts/" />
-    <mvc:resources mapping="/img/**" location="/img/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
-    <mvc:resources mapping="/less/**" location="/less/" />
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
 
-	<!-- Enable auto scan with "context:component-scan" tag 
-	*	The "base-package" is indicate where are components stored
-	-->
-	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/security
+                http://www.springframework.org/schema/security/spring-security.xsd">
 	
-	<!-- Bean define  -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- Set package to scan using annotation -->
+    <context:component-scan base-package="edu.ctu.thesis.travelsystem" />
+    <mvc:annotation-driven />
+    <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+    <!-- Using for report errors message -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:message</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>
