@@ -70,6 +70,13 @@
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -252,6 +259,11 @@
 		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+<<<<<<< HEAD
+=======
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
+>>>>>>> refs/remotes/lethanhtan/master
 		<!-- End JS -->
 </body>
 </html>

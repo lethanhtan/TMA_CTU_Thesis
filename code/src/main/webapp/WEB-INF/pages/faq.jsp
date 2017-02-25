@@ -32,6 +32,10 @@
 <link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+>>>>>>> refs/remotes/lethanhtan/master
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -61,7 +65,11 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
+<<<<<<< HEAD
 						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+=======
+						<a href="home" title=""> <img src="resources/img/logo.png"
+>>>>>>> refs/remotes/lethanhtan/master
 							alt="Logo" />
 						</a>
 					</div>
@@ -69,6 +77,13 @@
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -355,6 +370,11 @@
 		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+<<<<<<< HEAD
+=======
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
+>>>>>>> refs/remotes/lethanhtan/master
 		<!-- End JS -->
 </body>
 </html>
