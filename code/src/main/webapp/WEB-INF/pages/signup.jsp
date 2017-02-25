@@ -26,12 +26,17 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/tooltip.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -69,6 +74,13 @@
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -117,15 +129,15 @@
 									</p>
 								</div>
 								<label>Tên tài khoản</label>
-								<div class="input-group margin-bottom-20">
+								<div data-tooltip="Tài khoản viết liền, không dấu, ít nhất 8 kí tự" class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input placeholder="Nhập tên tài khoản"
+									</span> <input  placeholder="Nhập tên tài khoản"
 										class="form-control margin-bottom-20" type="text">
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Mật Khẩu</label>
-										<div class="input-group margin-bottom-20">
+										<div  data-tooltip="Mật khẩu phải từ 8 - 20 kí tự" class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-lock"></i>
 											</span> <input placeholder="Nhập mật khẩu"
 												class="form-control margin-bottom-20" type="password">
@@ -133,7 +145,7 @@
 									</div>
 									<div class="col-sm-6">
 										<label>Xác nhận mật khẩu</label>
-										<div class="input-group margin-bottom-20">
+										<div  data-tooltip="Nhập lại mật khẩu đúng với mật khẩu đã nhập" class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-repeat"></i>
 											</span> <input placeholder="Nhập lại mật khẩu"
@@ -151,20 +163,20 @@
 										</div>
 									</div>
 									<div class="col-sm-5">
-										<label>Giới tính</label><div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-male"></i>
-										</span> <select class="form-control margin-bottom-20">
-											<option>Nam</option>
-											<option>Nữ</option>
-										</select>
-									</div>
+										<label>Giới tính</label>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-male"></i>
+											</span> <select class="form-control margin-bottom-20">
+												<option>Nam</option>
+												<option>Nữ</option>
+											</select>
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label>
-										<div class="input-group margin-bottom-20">
+										<div  data-tooltip="Nhập ngày sinh theo định dạng tháng/ngày/năm" class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span> <input placeholder="mm/dd/yyyy" id="datepicker"
@@ -182,7 +194,7 @@
 									</div>
 								</div>
 								<label>Email</label>
-								<div class="input-group margin-bottom-20">
+								<div  class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
 									</span> <input placeholder="Nhập email"
@@ -303,7 +315,8 @@
 			<script type="text/javascript" src="resources/js/jquery.sticky.js"
 				charset="utf-8"></script>
 			<!-- Slimbox2-->
-			<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+			<script type="text/javascript" src="resources/js/slimbox2.js"
+				charset="utf-8"></script>
 			<!-- Modernizr -->
 			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 			<!-- Calendar -->
@@ -313,7 +326,7 @@
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
-			<!-- Back to top -->
+			<!--  Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>

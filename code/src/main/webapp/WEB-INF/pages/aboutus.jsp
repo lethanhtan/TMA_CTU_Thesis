@@ -26,12 +26,16 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -61,14 +65,21 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
-							alt="Logo" />
+						<a href="trang-chu" title=""> <img
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -129,7 +140,8 @@
 								<!-- Person Details -->
 								<div class="col-md-4 col-sm-4 person-details margin-bottom-30">
 									<figure>
-										<img src="resources/img/theteam/TranLeQueNgoc.jpg" alt="image1">
+										<img src="resources/img/theteam/TranLeQueNgoc.jpg"
+											alt="image1">
 										<figcaption>
 											<h3 class="margin-bottom-10">
 												Trần Lê Quế Ngọc <small> Lập Trình Viên</small>
@@ -410,8 +422,7 @@
 						<ul class="menu">
 							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
-							</li>
+							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a></li>
 							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
 						<div class="clearfix"></div>
@@ -441,8 +452,7 @@
 							<li><a href="home" target="_blank">Trang Chủ</a></li>
 							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
 							<li><a href="news" target="_blank">Tin Tức</a></li>
-							<li><a href="aboutus" target="_blank">Chính Sách Bảo
-									Mật</a></li>
+							<li><a href="aboutus" target="_blank">Chính Sách Bảo Mật</a></li>
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">
@@ -471,9 +481,12 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js"
+			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>
