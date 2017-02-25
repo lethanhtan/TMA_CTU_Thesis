@@ -66,7 +66,7 @@
 					<!-- Logo -->
 					<div class="logo">
 						<a href="home" title=""> <img
-							src="resources/img/icon/logo.png" alt="Logo" />
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
