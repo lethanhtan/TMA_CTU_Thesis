@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
@@ -13,17 +12,29 @@
 	
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
-	<!-- Enable auto scan with "context:component-scan" tag 
-	*	The "base-package" is indicate where are components stored
-	-->
-	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />
 	
-	<!-- Bean define  -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- Set package to scan using annotation -->
+    <context:component-scan base-package="edu.ctu.thesis.travelsystem" />
+    <mvc:annotation-driven />
+    <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+    <!-- Using for report errors message -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:message</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

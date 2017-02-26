@@ -54,6 +54,9 @@ td:last-child {
 .modal-wide .modal-body {
 	overflow-y: auto;
 }
+<<<<<<< HEAD
+/* End Popup */
+=======
 /* End Popup */
 
 /* Back To Top */
@@ -71,3 +74,4 @@ td:last-child {
 }
 /* End Back To Top */
 
+>>>>>>> refs/remotes/lethanhtan/master

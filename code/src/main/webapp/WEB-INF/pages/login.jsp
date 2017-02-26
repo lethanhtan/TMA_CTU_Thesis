@@ -7,6 +7,8 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -96,8 +98,8 @@
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
-									<li><a href="signup">Đăng ký</a></li>
-								</ul></li>
+									<li><a href="register">Đăng ký</a></li>
+							</ul></li>
 						</ul>
 					</div>
 				</div>
@@ -116,23 +118,25 @@
 					<div class="row margin-vert-30">
 						<!-- Login Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form class="login-page">
+							<s:form class="login-page" commandName="customerData"
+								action="${pageContext.request.contextPath }/login" method="POST">
 								<div class="login-header margin-bottom-30">
 									<h2>Đăng Nhập</h2>
 									<p>
-										Chưa có tài khoản? <a href="signup" style="color: #ef5b92">Đăng
+										Chưa có tài khoản? <a href="register" style="color: #ef5b92">Đăng
 											ký</a>
 									</p>
 								</div>
+								<small><font color="red">${failed}</font></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
 									</span> <input placeholder="Tài khoản" class="form-control"
-										type="text">
+										type="text" name="userName">
 								</div>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-lock"></i>
 									</span> <input placeholder="Mật khẩu" class="form-control"
-										type="password">
+										type="password" name="password">
 								</div>
 								<div class="row">
 									<div class="col-md-6">
@@ -151,7 +155,7 @@
 									<a href="#" style="color: #ef5b92">Nhấn vào đây </a>để khôi
 									phục
 								</p>
-							</form>
+								</s:form>
 						</div>
 						<!-- End Login Box -->
 					</div>

@@ -7,6 +7,8 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -35,8 +37,6 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/tooltip.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -45,6 +45,10 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
+<!-- Datepicker -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
 	<div id="body-bg">
@@ -74,13 +78,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- Back To Top -->
-		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
-			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="resources/img/hot-air-balloon.png" width="64px"
-				height="auto"></img>
-		</div>
-		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -120,7 +117,10 @@
 					<div class="row margin-vert-30">
 						<!-- Register Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<form class="signup-page">
+							<s:form class="signup-page" commandName="customerData"
+								action="${pageContext.request.contextPath }/register"
+								method="POST" >
+								
 								<div class="signup-header">
 									<h2>Đăng Ký Tài Khoản</h2>
 									<p>
@@ -129,84 +129,106 @@
 									</p>
 								</div>
 								<label>Tên tài khoản</label>
-								<div data-tooltip="Tài khoản viết liền, không dấu, ít nhất 8 kí tự" class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-user"></i>
-									</span> <input  placeholder="Nhập tên tài khoản"
-										class="form-control margin-bottom-20" type="text">
+								<br />
+								<small><s:errors path="userName" cssStyle="color:red;"/></small>
+								<div class="input-group margin-bottom-20" >
+									<span class="input-group-addon" > <i class="fa fa-user"></i>
+									</span>
+									<s:input placeholder="Nhập tên tài khoản"
+										class="form-control margin-bottom-20" type="text" path="userName" />
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Mật Khẩu</label>
-										<div  data-tooltip="Mật khẩu phải từ 8 - 20 kí tự" class="input-group margin-bottom-20">
+										<br />
+										<small><s:errors path="password" cssStyle="color:red;"/></small>
+										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-lock"></i>
-											</span> <input placeholder="Nhập mật khẩu"
-												class="form-control margin-bottom-20" type="password">
+											</span> <s:input placeholder="Nhập mật khẩu"
+												class="form-control margin-bottom-20" type="password" path="password" />
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<label>Xác nhận mật khẩu</label>
-										<div  data-tooltip="Nhập lại mật khẩu đúng với mật khẩu đã nhập" class="input-group margin-bottom-20">
+										<br />
+										<small><s:errors path="passwordConfirm" cssStyle="color:red;"/></small>
+										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-repeat"></i>
-											</span> <input placeholder="Nhập lại mật khẩu"
-												class="form-control margin-bottom-20" type="password">
+											</span> <s:input placeholder="Nhập lại mật khẩu"
+												class="form-control margin-bottom-20" type="password" path="passwordConfirm" />
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-7">
 										<label>Họ tên</label>
+										<br />
+										<small><s:errors path="nameUser" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span> <input placeholder="Nhập họ tên"
-												class="form-control margin-bottom-20" type="text">
+											</span> <s:input placeholder="Nhập họ tên"
+												class="form-control margin-bottom-20" type="text" path="nameUser" />
 										</div>
 									</div>
 									<div class="col-sm-5">
 										<label>Giới tính</label>
+										<br />
+										<small><s:errors path="sex" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-male"></i>
-											</span> <select class="form-control margin-bottom-20">
+											</span> <s:select class="form-control margin-bottom-20" path="sex">
 												<option>Nam</option>
 												<option>Nữ</option>
-											</select>
+											</s:select>
 										</div>
 									</div>
 								</div>
+								 
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label>
-										<div  data-tooltip="Nhập ngày sinh theo định dạng tháng/ngày/năm" class="input-group margin-bottom-20">
+										<br>
+										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
-											</span> <input placeholder="mm/dd/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" name="dateofbirth">
+											</span> 
+											<input placeholder="mm/dd/yyyy" id="datepicker"
+												class="form-control margin-bottom-20" name="dateofbirth" type="date" />										
 										</div>
 									</div>
+								 
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
+										<br />
+										<small><s:errors path="phoneUser" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-tablet"></i>
-											</span> <input placeholder="Nhập số điện thoại"
-												class="form-control margin-bottom-20" type="text">
+											</span> <s:input placeholder="Nhập số điện thoại"
+												class="form-control margin-bottom-20" type="text" path="phoneUser" />
 										</div>
 									</div>
 								</div>
 								<label>Email</label>
-								<div  class="input-group margin-bottom-20">
+								<br />
+								<small><s:errors path="emailUser" cssStyle="color:red;"/></small>
+								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
-									</span> <input placeholder="Nhập email"
-										class="form-control margin-bottom-20" type="text">
+									</span> <s:input placeholder="Nhập email"
+										class="form-control margin-bottom-20" type="text" path="emailUser" />
 								</div>
 								<label>Địa chỉ</label>
+								<br />
+								<small><s:errors path="addressUser" cssStyle="color:red;"/></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-home"></i>
-									</span><input placeholder="Nhập địa chỉ"
-										class="form-control margin-bottom-20" type="text">
+									</span><s:input placeholder="Nhập địa chỉ"
+										class="form-control margin-bottom-20" type="text" path="addressUser" />
 								</div>
 								<hr>
+								
 								<div class="row">
 									<div class="col-lg-8">
 										<label class="checkbox"> <input type="checkbox">
@@ -219,7 +241,7 @@
 										<button class="btn btn-primary" type="submit">Đăng Ký</button>
 									</div>
 								</div>
-							</form>
+							</s:form>
 						</div>
 						<!-- End Register Box -->
 					</div>
@@ -326,7 +348,7 @@
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
-			<!--  Back to top -->
+			<!-- Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>

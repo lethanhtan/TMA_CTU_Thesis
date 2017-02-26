@@ -11,7 +11,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String redirectController(ModelMap model) {
 
-		return "index";
+		return "home";
 	}
 
 	@RequestMapping(value = "home", method = RequestMethod.GET)
