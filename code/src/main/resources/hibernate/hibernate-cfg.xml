@@ -9,7 +9,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/TestDB"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="091616"></property>
+		<property name="password" value="admin"></property>
 	</bean>
 	
 	<!-- Define bean for hibernate -->
@@ -26,6 +26,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>edu.ctu.thesis.travelsystem.model.User</value>
+				<value>edu.ctu.thesis.travelsystem.model.Tour</value>
 			</list>
 		</property>
 	</bean>
@@ -41,6 +42,13 @@
 	</bean>
 	<bean id="userService" class="edu.ctu.thesis.travelsystem.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="tourDao" class="edu.ctu.thesis.travelsystem.dao.TourDaoImpl">
+		<property name="sessionfactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="tourService" class="edu.ctu.thesis.travelsystem.service.TourServiceImpl">
+		<property name="tourDao" ref="tourDao"></property>
 	</bean>
 
 </beans>
