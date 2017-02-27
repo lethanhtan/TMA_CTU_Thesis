@@ -1,5 +1,5 @@
 <%-- 
-    Document   : signup
+    Document   : register
     Created on : Jan 15, 2017, 3:00:44 PM
     Author     : TranLeQueNgoc
 --%>
@@ -97,7 +97,7 @@
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
-									<li><a href="signup">Đăng ký</a></li>
+									<li><a href="register">Đăng ký</a></li>
 								</ul></li>
 						</ul>
 					</div>
