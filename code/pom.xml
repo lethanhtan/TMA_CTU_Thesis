@@ -134,6 +134,20 @@
 	<build>
 		<finalName>TravelSystem</finalName>
 		<plugins>
+			 
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>${project_loc:TravelSystem}</path>
+					<username>mvn</username>
+					<password>mvn</password>
+				</configuration>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -144,10 +158,11 @@
 					<compilerVersion>1.8</compilerVersion>
 					<encoding>UTF-8</encoding><!-- Working with UTF-8 -->
 					<fork>true</fork>
-					<executable>C:\Program Files\Java\jdk1.8.0_121\bin\javac</executable>
+					<executable>/opt/jdk1.8.0_121/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>

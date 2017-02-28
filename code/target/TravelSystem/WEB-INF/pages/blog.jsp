@@ -26,12 +26,16 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -69,6 +73,13 @@
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -154,7 +165,8 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="resources/img/blog/5DiemThamQuanThuViOChauDoc.jpg" alt="thumb1">
+											src="resources/img/blog/5DiemThamQuanThuViOChauDoc.jpg"
+											alt="thumb1">
 									</div>
 									<div class="col-md-7">
 										<p>Dọc theo hành trình du lịch trong nước, có dịp ghé thăm
@@ -287,7 +299,8 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="resources/img/blog/DacSanNoiTiengBaoNguPhuQuoc.jpg" alt="thumb3">
+											src="resources/img/blog/DacSanNoiTiengBaoNguPhuQuoc.jpg"
+											alt="thumb3">
 									</div>
 									<div class="col-md-7">
 										<p>Đến với du lịch Phú Quốc du khách sẽ được thưởng thức
@@ -351,7 +364,8 @@
 								<div class="blog-post-body row margin-top-15">
 									<div class="col-md-5">
 										<img class="margin-bottom-20"
-											src="resources/img/blog/DuXuanTrenChoNoiCaiRang.jpg" alt="thumb4">
+											src="resources/img/blog/DuXuanTrenChoNoiCaiRang.jpg"
+											alt="thumb4">
 									</div>
 									<div class="col-md-7">
 										<p>Nếu như ở miền Bắc và miền Trung có những khu chợ phiên
@@ -408,7 +422,8 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/blog/thumbs/LangHoaDepOMienTay.jpg" alt="thumb1">
+											src="resources/img/blog/thumbs/LangHoaDepOMienTay.jpg"
+											alt="thumb1">
 										</a> <a href="#" class="posts-list-title">Làng hoa đẹp ở miền
 											Tây</a> <br> <span class="recent-post-date">
 											03/01/2017 </span>
@@ -418,7 +433,8 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/blog/thumbs/NgamSacXuanConDao.jpg" alt="thumb2">
+											src="resources/img/blog/thumbs/NgamSacXuanConDao.jpg"
+											alt="thumb2">
 										</a> <a href="#" class="posts-list-title">Ngắm sắc xuân Côn
 											Đảo</a> <br> <span class="recent-post-date">
 											29/12/2016 </span>
@@ -428,7 +444,8 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/blog/thumbs/DuLichBuiNhaTrang.jpg" alt="thumb3">
+											src="resources/img/blog/thumbs/DuLichBuiNhaTrang.jpg"
+											alt="thumb3">
 										</a> <a href="#" class="posts-list-title">Du lịch bụi Nha
 											Trang</a> <br> <span class="recent-post-date">
 											16/12/2016 </span>
@@ -438,7 +455,8 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/blog/thumbs/MuiNeNhatDinhPhaiThu.jpg" alt="thumb4">
+											src="resources/img/blog/thumbs/MuiNeNhatDinhPhaiThu.jpg"
+											alt="thumb4">
 										</a> <a href="#" class="posts-list-title">Mũi Né - Nhất định
 											phải thử</a> <br> <span class="recent-post-date">
 											01/12/2016 </span>
@@ -481,8 +499,7 @@
 						<ul class="menu">
 							<li><a class="fa-book" href="booktour">Đặt Vé</a></li>
 							<li><a class="fa-tasks" href="blog">Blog</a></li>
-							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a>
-							</li>
+							<li><a class="fa-coffee" href="aboutus">Về Chúng Tôi</a></li>
 							<li><a class="fa-question" href="faq">Câu Hỏi Thường Gặp</a></li>
 						</ul>
 						<div class="clearfix"></div>
@@ -512,8 +529,7 @@
 							<li><a href="home" target="_blank">Trang Chủ</a></li>
 							<li><a href="booktour" target="_blank">Đặt Vé</a></li>
 							<li><a href="news" target="_blank">Tin Tức</a></li>
-							<li><a href="aboutus" target="_blank">Chính Sách Bảo
-									Mật</a></li>
+							<li><a href="aboutus" target="_blank">Chính Sách Bảo Mật</a></li>
 						</ul>
 					</div>
 					<div id="copyright" class="col-md-4">
@@ -542,9 +558,12 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js"
+			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

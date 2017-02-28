@@ -7,7 +7,6 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -19,7 +18,7 @@
 <!--<![endif]-->
 <head>
 <!-- Title -->
-<title>Home NY Travel Company</title>
+<title>NY Travel Company</title>
 <!-- Meta -->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="">
@@ -38,6 +37,10 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -66,13 +69,20 @@
 					<!-- Logo -->
 					<div class="logo">
 						<a href="trang-chu" title=""> <img
-							src="resources/img/icon/logo.png" alt="Logo" />
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -89,7 +99,6 @@
 							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
 							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
-
 							<c:if test="${userName != null}">
 
 								<li><span class="fa-user">
@@ -107,7 +116,7 @@
 									</ul></li>
 
 							</c:if>
-
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -200,6 +209,9 @@
 			<div class="container background-white">
 				<div class="row margin-vert-30">
 					<!-- Main Text -->
+
+					<!-- <a href="https://clipartfest.com/download/da18029c316ae36c9425aaa72a5aa426a775ec30" title="Image from clipartfest.com"><img src="https://img.clipartfest.com/5a339d163cfa7e605f091a2946457fbb_red-bus-coach-clip-art-clipart-coach-bus_1052-744.svg" width="1052" alt="clipart coach bus" /></a> -->
+
 					<div class="col-md-12">
 						<h2 class="text-center">Chào mừng đến với công ty NY Travel</h2>
 						<p class="text-center">Chính thức thành lập vào tháng 12 năm
@@ -456,6 +468,8 @@
 			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+		<!--  Back to top -->
+		<script src="resources/js/backtotop.js" type="text/javascript"></script>
 		<!-- End JS -->
 </body>
 </html>

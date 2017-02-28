@@ -26,12 +26,16 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -61,14 +65,21 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img src="resources/img/logo.png"
-							alt="Logo" />
+						<a href="trang-chu" title=""> <img
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
 				</div>
 			</div>
 		</div>
+		<!-- Back To Top -->
+		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
+			onmouseout="this.style.color='#004993'" id="top-up">
+			<img src="resources/img/hot-air-balloon.png" width="64px"
+				height="auto"></img>
+		</div>
+		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
@@ -181,8 +192,8 @@
 									</div>
 								</div>
 								<label>Chi tiết tour</label>
-									<textarea placeholder="Nhập chi tiết về tour" id="area2"
-										class="form-control margin-bottom-20" type="text" rows="10"></textarea>
+								<textarea placeholder="Nhập chi tiết về tour" id="area2"
+									class="form-control margin-bottom-20" type="text" rows="10"></textarea>
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">
@@ -207,48 +218,49 @@
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
 			<div id="content-bottom-border" class="container"></div>
-		<div id="base"></div>
-		<!-- Footer Menu -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div id="footermenu" class="col-md-8">
-						<ul class="list-unstyled list-inline">
-							<li><a href="managetour" target="_blank">Quản lý tour</a></li>
-							<li><a href="manageregister" target="_blank">Quản lý
-									đăng ký</a></li>
-							<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
-						</ul>
-					</div>
-					<div id="copyright" class="col-md-4">
-						<p class="pull-right">(c) 2016 NY Travel Company</p>
+			<div id="base"></div>
+			<!-- Footer Menu -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div id="footermenu" class="col-md-8">
+							<ul class="list-unstyled list-inline">
+								<li><a href="managetour" target="_blank">Quản lý tour</a></li>
+								<li><a href="manageregister" target="_blank">Quản lý
+										đăng ký</a></li>
+								<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
+							</ul>
+						</div>
+						<div id="copyright" class="col-md-4">
+							<p class="pull-right">(c) 2016 NY Travel Company</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- End Footer Menu -->
+			<!-- End Footer Menu -->
 			<!-- JS -->
 			<script type="text/javascript" src="resources/js/jquery.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/bootstrap.min.js"
-			type="text/javascript"></script>
-		<script type="text/javascript" src="resources/js/scripts.js"></script>
-		<!-- Isotope - Portfolio Sorting -->
-		<script type="text/javascript" src="resources/js/jquery.isotope.js"
-			type="text/javascript"></script>
-		<!-- Mobile Menu - Slicknav -->
-		<script type="text/javascript" src="resources/js/jquery.slicknav.js"
-			type="text/javascript"></script>
-		<!-- Animate on Scroll-->
-		<script type="text/javascript" src="resources/js/jquery.visible.js"
-			charset="utf-8"></script>
-		<!-- Sticky Div -->
-		<script type="text/javascript" src="resources/js/jquery.sticky.js"
-			charset="utf-8"></script>
-		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
-		<!-- Modernizr -->
-		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+				type="text/javascript"></script>
+			<script type="text/javascript" src="resources/js/bootstrap.min.js"
+				type="text/javascript"></script>
+			<script type="text/javascript" src="resources/js/scripts.js"></script>
+			<!-- Isotope - Portfolio Sorting -->
+			<script type="text/javascript" src="resources/js/jquery.isotope.js"
+				type="text/javascript"></script>
+			<!-- Mobile Menu - Slicknav -->
+			<script type="text/javascript" src="resources/js/jquery.slicknav.js"
+				type="text/javascript"></script>
+			<!-- Animate on Scroll-->
+			<script type="text/javascript" src="resources/js/jquery.visible.js"
+				charset="utf-8"></script>
+			<!-- Sticky Div -->
+			<script type="text/javascript" src="resources/js/jquery.sticky.js"
+				charset="utf-8"></script>
+			<!-- Slimbox2-->
+			<script type="text/javascript" src="resources/js/slimbox2.js"
+				charset="utf-8"></script>
+			<!-- Modernizr -->
+			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 			<!-- Calendar -->
 			<link rel="stylesheet"
 				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -257,7 +269,10 @@
 			<script type="text/javascript" src="resources/js/calendar.js"
 				type="text/javascript"></script>
 			<!-- Text editor -->
-			<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+			<script type="text/javascript"
+				src="http://js.nicedit.com/nicEdit-latest.js"></script>
+			<!--  Back to top -->
+			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>
 </html>

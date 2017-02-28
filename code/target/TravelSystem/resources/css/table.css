@@ -54,4 +54,24 @@ td:last-child {
 .modal-wide .modal-body {
 	overflow-y: auto;
 }
+<<<<<<< HEAD
 /* End Popup */
+=======
+/* End Popup */
+
+/* Back To Top */
+#top-up {
+	background: none;
+	font-size: 3em;
+	text-shadow: 0px 0px 5px #c0c0c0;
+	cursor: pointer;
+	position: fixed;
+	z-index: 9999;
+	color: #004993;
+	bottom: 30px;
+	right: 50px;
+	display: none;
+}
+/* End Back To Top */
+
+>>>>>>> refs/remotes/lethanhtan/master

@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
 		return this.userDao.loginUser(user);
 	}
 
+	@Override
+	public Integer authenticationUser(User user) {
+		return this.userDao.authenticationUser(user);
+	}
+
 }

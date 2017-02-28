@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -23,9 +24,15 @@ public class UserDaoImpl implements UserDao {
 	public void saveUser(User user) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		Role role = new Role();
+		role.setIdRole(1);
+		role.setNameRole("role_user");
 		if(user!=null){
 			try {
+				user.setRole(role);
+				System.out.println(user.getRole().getNameRole());
 				session.save(user);
+				System.out.println("In here!");
 				tx.commit();
 				session.close();
 			} catch (Exception e) {
@@ -56,6 +63,26 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	@Override
+	public Integer authenticationUser(User user) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Integer roleId = 1;
+		//String hql = "from edu.ctu.thesis.travelsystem.model.User as u where u.idRole";
+		try {
+			Query query = session.createQuery("select u.idRole from User as u where u.userName =?");
+			query.setParameter(0, user.getUserName());
+			roleId = (Integer) query.uniqueResult();
+			tx.commit();
+			session.close();
+		} catch (Exception e) {
+			tx.rollback();
+			session.close();
+			e.printStackTrace();
+		}
+		return roleId;
 	}
 
 }
