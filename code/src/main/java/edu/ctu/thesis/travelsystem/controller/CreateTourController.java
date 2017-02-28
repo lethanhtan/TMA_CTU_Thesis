@@ -12,11 +12,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CreateTourController {
  
 	@RequestMapping(method = RequestMethod.GET)
-	public String createtourController(ModelMap model, HttpSession session) {
-		if ((Integer)session.getAttribute("roleId") == 2) {
-			return "createtour";
-		} else {
-			return "forbidden";
+	public String createTourController(ModelMap model, HttpSession session) {
+		System.out.println(session.getAttribute("roleId"));
+		String result;
+		try {
+			if ((Integer)session.getAttribute("roleId") == 2) {
+				result = "createtour";
+			} else {
+				result = "forbidden";
+			}
+		}catch (Exception e) {
+			//e.printStackTrace();
+			result = "forbidden";
 		}
+		
+		return result;
 	}
 }

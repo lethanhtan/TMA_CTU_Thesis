@@ -22,7 +22,7 @@ public class ManageTourController {
 				result = "forbidden";
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			result = "forbidden";
 		}
 		
