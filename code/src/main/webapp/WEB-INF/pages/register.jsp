@@ -188,13 +188,14 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label>
-										<br>
+										<br />
+										<small><s:errors path="dateUser" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span> 
-											<input placeholder="mm/dd/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" name="dateofbirth" type="date" />										
+											<s:input placeholder="mm/dd/yyyy" id="datepicker"
+												class="form-control margin-bottom-20" name="dateofbirth" type="date" path="dateUser"/>
 										</div>
 									</div>
 								 
