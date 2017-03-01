@@ -244,8 +244,7 @@
 												type="button">Hủy Bỏ</button></a>
 									</div>
 									<div class="col-lg-4 text-right">
-										<input class="btn btn-primary" type="button"
-											onclick="resetForm()" value="Nhập Lại">
+										<input class="btn btn-primary" type="reset" value="Nhập Lại">
 									</div>
 								</div>
 							</s:form>
