@@ -11,12 +11,10 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 	
 	<!-- Set package to scan using annotation -->
     <context:component-scan base-package="edu.ctu.thesis.travelsystem" />
-    <mvc:annotation-driven />
-    <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">

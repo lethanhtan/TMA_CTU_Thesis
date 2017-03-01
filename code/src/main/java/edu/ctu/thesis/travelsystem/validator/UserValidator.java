@@ -34,7 +34,7 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "addressUser", "NotEmpty.customerData.addressUser");
 		ValidationUtils.rejectIfEmpty(errors, "phoneUser", "NotEmpty.customerData.phoneUser");
 		ValidationUtils.rejectIfEmpty(errors, "emailUser", "NotEmpty.customerData.emailUser");
-		ValidationUtils.rejectIfEmpty(errors, "sex", "NotEmpty.customerData.sex");
+		ValidationUtils.rejectIfEmpty(errors, "dateUser", "NotEmpty.customerData.dateUser");
 		
 		//Catch other errors
 	}

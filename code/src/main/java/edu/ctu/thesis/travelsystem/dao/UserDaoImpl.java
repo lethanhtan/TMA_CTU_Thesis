@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -23,9 +24,15 @@ public class UserDaoImpl implements UserDao {
 	public void saveUser(User user) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		Role role = new Role();
+		role.setIdRole(1);
+		role.setNameRole("role_user");
 		if(user!=null){
 			try {
+				user.setRole(role);
+				System.out.println(user.getRole().getNameRole());
 				session.save(user);
+				System.out.println("In here!");
 				tx.commit();
 				session.close();
 			} catch (Exception e) {
@@ -56,6 +63,29 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	@Override
+	public Integer getRoleUser(User user) {
+		return user.getRole().getIdRole();
+	}
+
+	@Override
+	public void loadUser(User user) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		if(user!=null){
+			try {
+				session.get(User.class, new Integer(2));
+				System.out.println("In here!");
+				tx.commit();
+				session.close();
+			} catch (Exception e) {
+				tx.rollback();
+				session.close();
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

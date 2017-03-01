@@ -26,6 +26,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>edu.ctu.thesis.travelsystem.model.User</value>
+				<value>edu.ctu.thesis.travelsystem.model.Role</value>
 				<value>edu.ctu.thesis.travelsystem.model.Tour</value>
 			</list>
 		</property>
@@ -43,7 +44,7 @@
 	<bean id="userService" class="edu.ctu.thesis.travelsystem.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	
+
 	<bean id="tourDao" class="edu.ctu.thesis.travelsystem.dao.TourDaoImpl">
 		<property name="sessionfactory" ref="sessionFactory"></property>
 	</bean>
@@ -52,4 +53,3 @@
 	</bean>
 
 </beans>
-

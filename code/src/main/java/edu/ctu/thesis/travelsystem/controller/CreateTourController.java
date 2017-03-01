@@ -22,9 +22,21 @@ public class CreateTourController {
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
-		model.put("tourData", new Tour());
-		return "createtour";
+	// Decentralization user and admin
+	public String createtourController(ModelMap model, HttpSession session) {
+		System.out.println(session.getAttribute("roleId"));
+		String result;
+		try {
+			if ((Integer) session.getAttribute("roleId") == 2) {
+				model.put("tourData", new Tour());
+				result = "createtour";
+			} else {
+				result = "forbidden";
+			}
+		} catch (Exception e) {
+			result = "forbidden";
+		}
+		return result;
 	}
 
 	// Processing for form create tour
@@ -35,12 +47,8 @@ public class CreateTourController {
 		tourValidator.validate(tourValidator, br);
 		if (br.hasErrors()) {
 			return "createtour";
-		}
-		else {
+		} else {
 			tourService.saveTour(tour);
-			System.out.println("Lan 1");
-			session.setAttribute("tour", tour);
-			session.setAttribute("tourName", tour.getTourName());
 			return "redirect:managetour";
 		}
 	}

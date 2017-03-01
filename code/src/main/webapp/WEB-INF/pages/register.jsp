@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
+	
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -188,16 +189,15 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label>
-										<br>
+										<small><s:errors path="dateUser" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span> 
-											<input placeholder="mm/dd/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" name="dateofbirth" type="date" />										
+											<s:input placeholder="mm/dd/yyyy" id="datepicker"
+												class="form-control margin-bottom-20" name="dateofbirth" path="dateUser"/>
 										</div>
 									</div>
-								 
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<br />

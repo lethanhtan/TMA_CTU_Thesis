@@ -28,16 +28,13 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css"
-	rel="stylesheet">
+<link href="resources/css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link href="resources/css/animate.css" rel="stylesheet">
+<link href="resources/css/font-awesome.css" rel="stylesheet">
+<link href="resources/css/nexus.css" rel="stylesheet">
+<link href="resources/css/responsive.css" rel="stylesheet">
+<link href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -67,8 +64,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img
-							src="resources/img/logo.png" alt="Logo" />
+						<a href="home" title=""> <img src="resources/img/logo.png"
+							alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -93,6 +90,21 @@
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
+							<!-- Test Account -->
+							<c:if test="${userName != null}">
+								<li><span class="fa-user"> ${userName}</span>
+									<ul>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
+									</ul></li>
+							</c:if>
+							<c:if test="${userName == null}">
+								<li><span class="fa-user">Tài khoản</span>
+									<ul>
+										<li><a href="login">Đăng Nhập</a></li>
+										<li><a href="register">Đăng ký</a></li>
+									</ul></li>
+							</c:if>
+							<!-- End Test Account -->
 						</ul>
 					</div>
 				</div>
@@ -112,7 +124,8 @@
 						<!-- Create Tour Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 							<s:form class="signup-page" commandName="tourData"
-								action="${pageContext.request.contextPath }/createtour" method="POST">
+								action="${pageContext.request.contextPath }/createtour"
+								method="POST">
 								<div class="signup-header">
 									<h2>Thông Tin Tour Du Lịch</h2>
 									</br>
@@ -163,7 +176,7 @@
 										</div>
 									</div>
 								</div>
-								 <div class="row">
+								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày về</label> <small><s:errors
 												path="returnDate" cssStyle="color:red;" /></small>
@@ -219,7 +232,7 @@
 								<small><s:errors path="tourDetail" cssStyle="color:red;" /></small>
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail"/>
+									path="tourDetail" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">

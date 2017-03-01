@@ -7,6 +7,8 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -137,7 +139,7 @@
 											<div class="row">
 												<div class="col-md-2 profile-thumb">
 													<a href="#"> <img class="media-object"
-														src="resources/img/news/UuDaiNgay8Thang3.jpg" alt="">
+														src="resources/img/news/UuDaiNgay8Thang3.jpg" alt="UuDaiNgay8Thang3">
 													</a>
 												</div>
 												<div class="col-md-10">
@@ -246,7 +248,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/news/thumbs/ValentineDiDau.jpg"
+											src="resources/img/hot-air-balloon.png"
 											alt="thumb1">
 										</a> <a href="#" class="posts-list-title">Valentine này đi đâu?</a> <br> <span class="recent-post-date">
 											03/01/2017 </span>

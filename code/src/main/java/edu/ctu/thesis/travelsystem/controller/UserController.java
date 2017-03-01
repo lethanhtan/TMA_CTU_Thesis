@@ -21,7 +21,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
 	//Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
@@ -38,7 +37,6 @@ public class UserController {
 			return "register";
 		} else {
 			userService.saveUser(user);
-			System.out.println("Lan 1");
 			session.setAttribute("user", user);
 			session.setAttribute("userName", user.getNameUser());
 			return "redirect:login";
@@ -63,9 +61,17 @@ public class UserController {
 		if (user.getUserName() != null && user.getPassword() != null && session.getAttribute("user") == null) {
 			user = userService.loginUser(user);
 			if (user != null) {
-				session.setAttribute("user", user);
-				session.setAttribute("userName", user.getNameUser());
-				return "redirect:home";
+				if (userService.getRoleUser(user) == 2) {
+					session.setAttribute("user", user);
+					session.setAttribute("userName", user.getNameUser());
+					session.setAttribute("roleId", user.getRole().getIdRole());
+					return "redirect:managetour";
+				}
+				else {
+					session.setAttribute("user", user);
+					session.setAttribute("userName", user.getNameUser());
+					return "redirect:login";
+				}
 			}
 			else {
 				System.out.println("Here");
@@ -79,9 +85,12 @@ public class UserController {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user");
+		session.removeValue("userName");
+		session.removeValue("roleUser");
 		return "redirect:login";
 	}
 	
