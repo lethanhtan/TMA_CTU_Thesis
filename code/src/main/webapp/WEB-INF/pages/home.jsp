@@ -28,7 +28,8 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/font-awesome.css"

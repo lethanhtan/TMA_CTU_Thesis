@@ -62,7 +62,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -147,7 +147,6 @@
 											class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
-
 								<!-- Popup Cofirm -->
 								<div id="deleteConfirm" class="modal fade">
 									<div class="modal-dialog">
@@ -164,7 +163,6 @@
 									</div>
 								</div>
 								<!-- End Popup Cofirm -->
-
 								<tr>
 									<td>NY02</td>
 									<td>Cần Thơ - Vĩnh Long - Bạc Liêu - Cà Mau</td>

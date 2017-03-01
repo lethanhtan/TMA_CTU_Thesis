@@ -7,8 +7,6 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -99,23 +97,11 @@
 							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
 							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
-							<c:if test="${userName != null}">
-
-								<li><span class="fa-user">
-										${userName}</span>
-									<ul>
-										<li><a href="<c:url value="/logout" />">Logout</a></li>
-									</ul></li>
-							
-							</c:if>
-							<c:if test="${userName == null}">
-								<li><span class="fa-user">Tài khoản</span>
-									<ul>
-										<li><a href="login">Đăng Nhập</a></li>
-										<li><a href="register">Đăng ký</a></li>
-									</ul></li>
-
-							</c:if>
+							<li><span class="fa-users">Tài Khoản</span>
+								<ul>
+									<li><a href="login">Đăng Nhập</a></li>
+									<li><a href="signup">Đăng ký</a></li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
@@ -163,9 +149,9 @@
 						</div>
 						<!-- End Carousel Images -->
 						<!-- Carousel Controls -->
-						<a class="left carousel-control" href="#carousel-example"
+						  <a class="left carousel-control" href="#carousel-example"
 							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left"></span>
+							class="glyphicon glyphicon-chevron-right"></span>
 						</a> <a class="right carousel-control" href="#carousel-example"
 							data-slide="next"> <span
 							class="glyphicon glyphicon-chevron-right"></span>

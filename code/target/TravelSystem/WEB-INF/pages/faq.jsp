@@ -62,7 +62,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/logo.png"
+						<a href="home" title=""> <img src="resources/img/icon/logo.png"
 							alt="Logo" />
 						</a>
 					</div>

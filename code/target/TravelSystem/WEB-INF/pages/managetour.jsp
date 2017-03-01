@@ -117,7 +117,7 @@
 					<div class="col-md-12">
 						<h2 class="margin-vert-20" style="margin-left: 350px;">Danh
 							Sách Tour Du Lịch</h2>
-						<a href="createtour"><button
+						<a href="tao-tour"><button
 								class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>

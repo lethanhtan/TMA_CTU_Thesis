@@ -554,12 +554,6 @@
 			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
-<<<<<<< HEAD
-		<!--  Back to top -->
-		<script src="resources/js/backtotop.js" type="text/javascript"></script>
-		<!-- End JS -->
-</body>
-=======
 		<link rel="stylesheet" href="resources/css/bootstrap.css"
 			rel="stylesheet">
 		<!-- Template CSS -->
@@ -1113,6 +1107,5 @@
 				<script src="resources/js/backtotop.js" type="text/javascript"></script>
 				<!-- End JS -->
 		</body>
->>>>>>> refs/remotes/lethanhtan/master
 </html>
 <!-- === END FOOTER === -->
