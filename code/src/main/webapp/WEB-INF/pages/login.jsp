@@ -126,8 +126,8 @@
 										Chưa có tài khoản? <a href="register" style="color: #ef5b92">Đăng
 											ký</a>
 									</p>
+									<small><font color="red">${failed}</font></small>
 								</div>
-								<small><font color="red">${failed}</font></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-user"></i>
 									</span> <input placeholder="Tài khoản" class="form-control"

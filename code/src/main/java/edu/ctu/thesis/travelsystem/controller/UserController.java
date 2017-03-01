@@ -74,8 +74,8 @@ public class UserController {
 				}
 			}
 			else {
-				System.out.println("Here");
-				model.put("failed", "Login Failed.");
+				System.out.println("The username or password is incorrect");
+				model.put("failed", "Tài khoản hoặc mật khẩu không đúng");
 				return "login";
 			}
 		}
