@@ -95,7 +95,7 @@
 							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
 							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
-							<li><span class="fa-users">Tài Khoản</span>
+							<li><span class="fa-user">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
 									<li><a href="register">Đăng ký</a></li>
