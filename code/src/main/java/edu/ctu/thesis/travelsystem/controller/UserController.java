@@ -85,6 +85,7 @@ public class UserController {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user");
