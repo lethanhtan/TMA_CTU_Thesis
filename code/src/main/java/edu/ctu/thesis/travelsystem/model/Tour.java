@@ -8,9 +8,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.sql.Time;
-import java.util.Date;
-
 @Entity
 @Table(name = "TOUR", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_TOUR" }) })
 public class Tour {
