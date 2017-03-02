@@ -115,7 +115,6 @@
 								action="${pageContext.request.contextPath }/createtour" method="POST">
 								<div class="signup-header">
 									<h2>Thông Tin Tour Du Lịch</h2>
-									</br>
 								</div>
 								<div class="row">
 									<div class="col-sm-8">
@@ -132,10 +131,8 @@
 										</div>
 									</div>
 									<div class="col-lg-4 text-right">
-										</br>
 										<button class="btn btn-primary" type="button">Tải Ảnh
 											Lên</button>
-										</a>
 									</div>
 								</div>
 								<div class="row">
@@ -227,7 +224,7 @@
 											Nhận</button>
 									</div>
 									<div class="col-lg-4 text-center">
-										<a href="quan-ly-tour"><button class="btn btn-primary"
+										<a href="managetour"><button class="btn btn-primary"
 												type="button">Hủy Bỏ</button></a>
 									</div>
 									<div class="col-lg-4 text-right">

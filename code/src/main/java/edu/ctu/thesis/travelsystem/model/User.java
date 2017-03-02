@@ -49,7 +49,7 @@ public class User {
 	private String emailUser;
 	
 	@Column(name = "PHONE_USER", nullable = true)
-	private Integer phoneUser;
+	private String phoneUser;
 	
 	@Column(name = "SEX", nullable = true)
 	private String sex;
@@ -62,7 +62,20 @@ public class User {
 	public User() {}
 	
 	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
-			String addressUser, String emailUser, Integer phoneUser, String sex, Role role) {
+			String addressUser, String emailUser, String phoneUser, String sex) {
+		this.userName = userName;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.dateUser = dateofbirth;
+		this.nameUser = nameUser;
+		this.addressUser = addressUser;
+		this.emailUser = emailUser;
+		this.phoneUser = phoneUser;
+		this.sex = sex;
+	}
+	
+	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
+			String addressUser, String emailUser, String phoneUser, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
@@ -132,11 +145,11 @@ public class User {
 		this.addressUser = addressUser;
 	}
 
-	public Integer getPhoneUser() {
+	public String getPhoneUser() {
 		return phoneUser;
 	}
 
-	public void setPhoneUser(Integer phoneUser) {
+	public void setPhoneUser(String phoneUser) {
 		this.phoneUser = phoneUser;
 	}
 

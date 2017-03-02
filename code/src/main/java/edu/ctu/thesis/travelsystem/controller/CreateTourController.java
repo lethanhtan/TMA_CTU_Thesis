@@ -10,17 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
-
 @Controller
 public class CreateTourController {
 	@Autowired
 	private TourService tourService;
-
-	
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
@@ -30,7 +26,9 @@ public class CreateTourController {
 			String result;
 			try {
 				if ((Integer) session.getAttribute("roleId") == 2) {
-					result = "managetour";
+					System.out.println("Register! In here first!");
+					model.put("tourData", new Tour());
+					result = "createtour";
 				} else {
 					result = "forbidden";
 				}
@@ -54,6 +52,7 @@ public class CreateTourController {
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {
+			System.out.println("Register! In here second!");
 			tourService.saveTour(tour);
 			return "redirect:managetour";
 		}

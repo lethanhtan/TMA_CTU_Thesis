@@ -99,7 +99,7 @@
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
-									<li><a href="signup">Đăng ký</a></li>
+									<li><a href="register">Đăng ký</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -364,7 +364,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-sm-3">

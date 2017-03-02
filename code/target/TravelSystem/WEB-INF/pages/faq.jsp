@@ -62,7 +62,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -96,7 +96,7 @@
 							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
-									<li><a href="signup">Đăng ký</a></li>
+									<li><a href="register">Đăng ký</a></li>
 								</ul></li>
 						</ul>
 					</div>

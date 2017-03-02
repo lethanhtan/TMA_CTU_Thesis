@@ -10,14 +10,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
-
+/*------------------------------------------------------------*/
+/*					UserController                            */
+/*This controller be used to handle login, register and logout*/
+/*request                                                     */
+/*------------------------------------------------------------*/
 @Controller
 public class UserController {
-
 	@Autowired
 	private UserService userService;
 	
@@ -32,10 +34,10 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("customerData") @Valid User user, BindingResult br, HttpSession session) {
 		UserValidator userValidator = new UserValidator();
-		userValidator.validate(userValidator, br);
-		if (br.hasErrors()) {
+		userValidator.validate(user, br);
+		if (br.hasErrors()) {//form input have error
 			return "register";
-		} else {
+		} else {//form input is ok
 			userService.saveUser(user);
 			session.setAttribute("user", user);
 			session.setAttribute("userName", user.getNameUser());
@@ -84,14 +86,13 @@ public class UserController {
 		}
 	}
 	
-	
+	//handel for logout request
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
-		session.removeAttribute("user");
-		session.removeValue("userName");
-		session.removeValue("roleUser");
+		session.removeAttribute("user"); //remove user object from session
+		session.removeValue("userName"); //remove userName value
+		session.removeValue("roleId");	//remove roleId value
 		return "redirect:login";
 	}
-	
 }

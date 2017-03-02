@@ -7,6 +7,8 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -62,7 +64,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -88,6 +90,23 @@
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
+							<c:if test="${userName != null}">
+
+								<li><span class="fa-user">
+										${userName}</span>
+									<ul>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
+									</ul></li>
+							
+							</c:if>
+							<c:if test="${userName == null}">
+								<li><span class="fa-user">Tài khoản</span>
+									<ul>
+										<li><a href="login">Đăng Nhập</a></li>
+										<li><a href="register">Đăng ký</a></li>
+									</ul></li>
+
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -117,7 +136,7 @@
 					<div class="col-md-12">
 						<h2 class="margin-vert-20" style="margin-left: 350px;">Danh
 							Sách Tour Du Lịch</h2>
-						<a href="tao-tour"><button
+						<a href="createtour"><button
 								class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -125,6 +144,10 @@
 							<div class="col-md-12 animate fadeInRight"></div>
 						</div>
 						<!-- Table -->
+						<c:if test="${empty tourList}">
+							<h1>List Tour Empty!</h1>
+						</c:if>
+						<c:if test="${!empty tourList}">
 						<table>
 							<thead>
 								<tr>
@@ -136,49 +159,34 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${tourList}" var="tour">
 								<tr>
-									<td>NY01</td>
-									<td>Cần Thơ - Vĩnh Long - Bạc Liêu</td>
-									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
-									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
+									<td>${tour.idTour}</td>
+									
+									<td>${tour.tourName}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime} &nbsp;&nbsp;&nbsp;</td>
 									<td><a href="#" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a data-toggle="modal" href="#deleteConfirm" title="Xóa"> <i
+									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
+									</a> <a data-toggle="modal" href="<c:url value='managetour/delete/${tour.idTour}'/>" title="Xóa"> <i
 											class="fa fa-trash-o"></i>
 									</a></td>
+									
 								</tr>
-
-								<!-- Popup Cofirm -->
-								<div id="deleteConfirm" class="modal fade">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4></br>
-												<button type="button" class="btn btn-default">Có</button>
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Không</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- End Popup Cofirm -->
-
-								<tr>
-									<td>NY02</td>
-									<td>Cần Thơ - Vĩnh Long - Bạc Liêu - Cà Mau</td>
-									<td>&nbsp;&nbsp;&nbsp; 12/12/2017</td>
-									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
-									<td><a href="tao-tour" title="Xem"> <i
-											class="fa fa-eye">&nbsp;</i>
-									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a href="quan-ly-tour" title="Xóa"> <i
-											class="fa fa-trash-o"></i>
-									</a></td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
+						<!-- Pagination -->
+						<c:if test="${numTour > 2}">
+						<ul class="pagination">
+								<li><a href="#">&laquo;</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">${numTour - 1}</a></li>
+								<li><a href="#">&raquo;</a></li>
+							</ul>
+						<!-- End Pagination -->	
+						</c:if>
+						</c:if>
 						<!-- End Table -->
 						<hr class="margin-bottom-50">
 						<div class="row">
