@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
 		return this.userDao.loginUser(user);
 	}
 
+	@Override
+	public Integer getRoleUser(User user) {
+		return this.userDao.getRoleUser(user);
+	}
+
 }

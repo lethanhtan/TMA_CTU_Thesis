@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
+	
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -94,7 +95,7 @@
 							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
 							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
-							<li><span class="fa-users">Tài Khoản</span>
+							<li><span class="fa-user">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
 									<li><a href="register">Đăng ký</a></li>
@@ -188,16 +189,16 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label>
-										<br>
+										<br />
+										<small><s:errors path="dateUser" cssStyle="color:red;"/></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span> 
-											<input placeholder="mm/dd/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" name="dateofbirth" type="date" />										
+											<s:input placeholder="mm/dd/yyyy" id="datepicker"
+												class="form-control margin-bottom-20" name="dateofbirth" path="dateUser"/>
 										</div>
 									</div>
-								 
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<br />
@@ -206,7 +207,7 @@
 											<span class="input-group-addon"> <i
 												class="fa fa-tablet"></i>
 											</span> <s:input placeholder="Nhập số điện thoại"
-												class="form-control margin-bottom-20" type="text" path="phoneUser" />
+												class="form-control margin-bottom-20" type="number" path="phoneUser"/>
 										</div>
 									</div>
 								</div>
@@ -217,7 +218,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
 									</span> <s:input placeholder="Nhập email"
-										class="form-control margin-bottom-20" type="text" path="emailUser" />
+										class="form-control margin-bottom-20" type="email" path="emailUser" />
 								</div>
 								<label>Địa chỉ</label>
 								<br />

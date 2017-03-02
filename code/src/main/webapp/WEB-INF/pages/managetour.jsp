@@ -7,6 +7,8 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -26,13 +28,13 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link href="resources/css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link href="resources/css/animate.css" rel="stylesheet">
+<link href="resources/css/font-awesome.css" rel="stylesheet">
+<link href="resources/css/nexus.css" rel="stylesheet">
+<link href="resources/css/responsive.css" rel="stylesheet">
+<link href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -62,7 +64,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img src="resources/img/icon/logo.png"
+						<a href="home" title=""> <img src="resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -88,6 +90,21 @@
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
+							<!-- Test Account -->
+							<c:if test="${userName != null}">
+								<li><span class="fa-user"> ${userName}</span>
+									<ul>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
+									</ul></li>
+							</c:if>
+							<c:if test="${userName == null}">
+								<li><span class="fa-user">Tài khoản</span>
+									<ul>
+										<li><a href="login">Đăng Nhập</a></li>
+										<li><a href="register">Đăng ký</a></li>
+									</ul></li>
+							</c:if>
+							<!-- End Test Account -->
 						</ul>
 					</div>
 				</div>
@@ -117,7 +134,7 @@
 					<div class="col-md-12">
 						<h2 class="margin-vert-20" style="margin-left: 350px;">Danh
 							Sách Tour Du Lịch</h2>
-						<a href="tao-tour"><button
+						<a href="createtour"><button
 								class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -143,11 +160,10 @@
 									<td>&nbsp;&nbsp;&nbsp; 10:30 &nbsp;&nbsp;&nbsp;</td>
 									<td><a href="#" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="tao-tour" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a data-toggle="modal" href="#deleteConfirm" title="Xóa"> <i
-											class="fa fa-trash-o"></i>
+									</a> <a data-toggle="modal" href="#deleteConfirm" title="Xóa">
+											<i class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
-
 								<!-- Popup Cofirm -->
 								<div id="deleteConfirm" class="modal fade">
 									<div class="modal-dialog">
@@ -155,7 +171,8 @@
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"
 													aria-hidden="true">&times;</button>
-												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4></br>
+												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
+												</br>
 												<button type="button" class="btn btn-default">Có</button>
 												<button type="button" class="btn btn-primary"
 													data-dismiss="modal">Không</button>
@@ -164,7 +181,6 @@
 									</div>
 								</div>
 								<!-- End Popup Cofirm -->
-
 								<tr>
 									<td>NY02</td>
 									<td>Cần Thơ - Vĩnh Long - Bạc Liêu - Cà Mau</td>
@@ -256,7 +272,8 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js"
+			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 		<!--  Back to top -->
