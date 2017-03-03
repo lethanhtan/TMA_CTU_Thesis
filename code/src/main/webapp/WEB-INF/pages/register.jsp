@@ -37,7 +37,6 @@
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
-	
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -46,10 +45,15 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
-<!-- Datepicker -->
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<!-- Calendar -->
+<!-- 
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="resources/js/calendar.js"
+	type="text/javascript"></script>
+ -->
 </head>
 <body>
 	<div id="body-bg">
@@ -95,7 +99,7 @@
 							<li><a href="news" class="fa-tachometer">Tin Tức</a></li>
 							<li><a href="blog" class="fa-tasks">Blog</a></li>
 							<li><a href="contact" class="fa-phone">Liên Hệ</a></li>
-							<li><span class="fa-user">Tài Khoản</span>
+							<li><span class="fa-users">Tài Khoản</span>
 								<ul>
 									<li><a href="login">Đăng Nhập</a></li>
 									<li><a href="register">Đăng ký</a></li>
@@ -120,8 +124,8 @@
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 							<s:form class="signup-page" commandName="customerData"
 								action="${pageContext.request.contextPath }/register"
-								method="POST" >
-								
+								method="POST">
+
 								<div class="signup-header">
 									<h2>Đăng Ký Tài Khoản</h2>
 									<p>
@@ -131,105 +135,114 @@
 								</div>
 								<label>Tên tài khoản</label>
 								<br />
-								<small><s:errors path="userName" cssStyle="color:red;"/></small>
-								<div class="input-group margin-bottom-20" >
-									<span class="input-group-addon" > <i class="fa fa-user"></i>
+								<small><s:errors path="userName" cssStyle="color:red;" /></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-user"></i>
 									</span>
 									<s:input placeholder="Nhập tên tài khoản"
-										class="form-control margin-bottom-20" type="text" path="userName" />
+										class="form-control margin-bottom-20" type="text"
+										path="userName" />
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
-										<label>Mật Khẩu</label>
-										<br />
-										<small><s:errors path="password" cssStyle="color:red;"/></small>
+										<label>Mật Khẩu</label> <br /> <small><s:errors
+												path="password" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-lock"></i>
-											</span> <s:input placeholder="Nhập mật khẩu"
-												class="form-control margin-bottom-20" type="password" path="password" />
+											</span>
+											<s:input placeholder="Nhập mật khẩu"
+												class="form-control margin-bottom-20" type="password"
+												path="password" />
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<label>Xác nhận mật khẩu</label>
-										<br />
-										<small><s:errors path="passwordConfirm" cssStyle="color:red;"/></small>
+										<label>Xác nhận mật khẩu</label> <br /> <small><s:errors
+												path="passwordConfirm" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-repeat"></i>
-											</span> <s:input placeholder="Nhập lại mật khẩu"
-												class="form-control margin-bottom-20" type="password" path="passwordConfirm" />
+											</span>
+											<s:input placeholder="Nhập lại mật khẩu"
+												class="form-control margin-bottom-20" type="password"
+												path="passwordConfirm" />
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-7">
-										<label>Họ tên</label>
-										<br />
-										<small><s:errors path="nameUser" cssStyle="color:red;"/></small>
+										<label>Họ tên</label> <br /> <small><s:errors
+												path="nameUser" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span> <s:input placeholder="Nhập họ tên"
-												class="form-control margin-bottom-20" type="text" path="nameUser" />
+											</span>
+											<s:input placeholder="Nhập họ tên"
+												class="form-control margin-bottom-20" type="text"
+												path="nameUser" />
 										</div>
 									</div>
 									<div class="col-sm-5">
-										<label>Giới tính</label>
-										<br />
-										<small><s:errors path="sex" cssStyle="color:red;"/></small>
+										<label>Giới tính</label> <br />
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-male"></i>
-											</span> <s:select class="form-control margin-bottom-20" path="sex">
+											</span>
+											<s:select class="form-control margin-bottom-20" path="sex">
 												<option>Nam</option>
 												<option>Nữ</option>
 											</s:select>
 										</div>
 									</div>
 								</div>
-								 
+
 								<div class="row">
 									<div class="col-sm-6">
-										<label>Ngày sinh</label>
-										<br />
-										<small><s:errors path="dateUser" cssStyle="color:red;"/></small>
+										<label>Ngày sinh</label> <br /> <small><s:errors
+												path="dateUser" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
-											</span> 
-											<s:input placeholder="mm/dd/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" name="dateofbirth" path="dateUser"/>
+											</span>
+											<s:input placeholder="dd/mm/yyyy" id="datepicker"
+												class="form-control margin-bottom-20" path="dateUser" />
 										</div>
 									</div>
+
 									<div class="col-sm-6">
-										<label>Số điện thoại</label>
-										<br />
-										<small><s:errors path="phoneUser" cssStyle="color:red;"/></small>
+										<label>Số điện thoại</label> <br /> <small><s:errors
+												path="phoneUser" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-tablet"></i>
-											</span> <s:input placeholder="Nhập số điện thoại"
-												class="form-control margin-bottom-20" type="number" path="phoneUser"/>
+											</span>
+											<s:input placeholder="Nhập số điện thoại"
+												class="form-control margin-bottom-20" type="text"
+												path="phoneUser" />
 										</div>
 									</div>
 								</div>
 								<label>Email</label>
 								<br />
-								<small><s:errors path="emailUser" cssStyle="color:red;"/></small>
+								<small><s:errors path="emailUser" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
-									</span> <s:input placeholder="Nhập email"
-										class="form-control margin-bottom-20" type="email" path="emailUser" />
+									</span>
+									<s:input placeholder="Nhập email"
+										class="form-control margin-bottom-20" type="email"
+										path="emailUser" />
 								</div>
 								<label>Địa chỉ</label>
 								<br />
-								<small><s:errors path="addressUser" cssStyle="color:red;"/></small>
+								<small><s:errors path="addressUser"
+										cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-home"></i>
-									</span><s:input placeholder="Nhập địa chỉ"
-										class="form-control margin-bottom-20" type="text" path="addressUser" />
+									</span>
+									<s:input placeholder="Nhập địa chỉ"
+										class="form-control margin-bottom-20" type="text"
+										path="addressUser" />
 								</div>
 								<hr>
-								
+
 								<div class="row">
 									<div class="col-lg-8">
 										<label class="checkbox"> <input type="checkbox">
@@ -248,6 +261,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
 			<div id="content-bottom-border" class="container"></div>
@@ -342,16 +357,8 @@
 				charset="utf-8"></script>
 			<!-- Modernizr -->
 			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
-			<!-- Calendar -->
-			<link rel="stylesheet"
-				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-			<script type="text/javascript" src="resources/js/calendar.js"
-				type="text/javascript"></script>
 			<!-- Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>
 </html>
-<!-- === END FOOTER === -->

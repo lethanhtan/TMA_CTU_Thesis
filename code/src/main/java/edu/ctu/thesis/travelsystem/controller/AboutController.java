@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/aboutus")
 public class AboutController{
- 
+	
    @RequestMapping(method = RequestMethod.GET)
    public String aboutController() {
 
       return "aboutus";
    }
-
+   
 }

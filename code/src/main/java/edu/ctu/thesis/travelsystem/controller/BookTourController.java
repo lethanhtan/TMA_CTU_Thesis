@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("booktour")
 public class BookTourController {
- 
+	
    @RequestMapping(method = RequestMethod.GET)
 	public String booktourController() {
 
       return "booktour";
    }
-
 }

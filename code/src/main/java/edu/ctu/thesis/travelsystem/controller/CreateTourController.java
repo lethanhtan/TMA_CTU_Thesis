@@ -10,11 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
-
 @Controller
 public class CreateTourController {
 	@Autowired
@@ -22,34 +20,37 @@ public class CreateTourController {
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
-	// Decentralization user and admin
-	public String createtourController(ModelMap model, HttpSession session) {
-		System.out.println(session.getAttribute("roleId"));
-		String result;
-		try {
-			if ((Integer) session.getAttribute("roleId") == 2) {
-				model.put("tourData", new Tour());
-				result = "createtour";
-			} else {
+	//Decentralization user and admin
+		public String createtourController(ModelMap model, HttpSession session) {
+			System.out.println(session.getAttribute("roleId"));
+			String result;
+			try {
+				if ((Integer) session.getAttribute("roleId") == 2) {
+					System.out.println("Register! In here first!");
+					model.put("tourData", new Tour());
+					result = "createtour";
+				} else {
+					result = "forbidden";
+				}
+			} catch (Exception e) {
 				result = "forbidden";
 			}
-		} catch (Exception e) {
-			result = "forbidden";
+			return result;
 		}
-		return result;
-	}
-
+	
 	// Processing for form create tour
 	@RequestMapping(value = "/createtour", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			HttpSession session) {
 		TourValidator tourValidator = new TourValidator();
-		tourValidator.validate(tourValidator, br);
+		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {
+			System.out.println("Register! In here second!");
 			tourService.saveTour(tour);
 			return "redirect:managetour";
 		}
 	}
 }
+

@@ -6,10 +6,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
+import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 public class UserDaoImpl implements UserDao {
+	
+	EncoderPassword ep = new EncoderPassword();
+	
+	GenerateId gid = new GenerateId();
 	
 	//Auto inject fields
 	@Autowired
@@ -29,8 +35,11 @@ public class UserDaoImpl implements UserDao {
 		role.setNameRole("role_user");
 		if(user!=null){
 			try {
-				user.setRole(role);
-				System.out.println(user.getRole().getNameRole());
+				user.setRole(role); //set default role for register account
+				System.out.println(user.getRole().getNameRole()); 
+				user.setPassword(ep.enCoded(user.getPassword())); //encoded password user
+				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
+				user.setIdUser(gid.generateIdUser(user.getUserName())); //generate user id
 				session.save(user);
 				System.out.println("In here!");
 				tx.commit();
@@ -53,7 +62,8 @@ public class UserDaoImpl implements UserDao {
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, user.getUserName());
-			query.setParameter(1, user.getPassword());
+			query.setParameter(1, ep.enCoded(user.getPassword()));
+			System.out.println("Password: " + ep.enCoded(user.getPassword()));
 			user = (User) query.uniqueResult();
 			tx.commit();
 			session.close();
