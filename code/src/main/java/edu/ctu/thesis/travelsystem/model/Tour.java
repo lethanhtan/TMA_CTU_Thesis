@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "TOUR", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_TOUR" }) })
 public class Tour {
-	private Integer idTour;
+	private String idTour;
 	private String tourName;
 	private String departureDate;
 	private String departureTime;
@@ -22,14 +22,15 @@ public class Tour {
 	private String tourDetail;
 	
 	//Getters and Setters method
+	
+	//@GeneratedValue(strategy = IDENTITY)
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_TOUR", nullable = false, unique = true, length = 10)
-	public Integer getIdTour() {
+	public String getIdTour() {
 		return idTour;
 	}
 
-	public void setIdTour(Integer idTour) {
+	public void setIdTour(String idTour) {
 		this.idTour = idTour;
 	}
 	

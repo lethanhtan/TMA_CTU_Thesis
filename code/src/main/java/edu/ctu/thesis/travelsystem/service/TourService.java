@@ -7,13 +7,13 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 public interface TourService {
 	public void saveTour(Tour tour);
 
-	public Tour findByIdTour(Integer idTour);
+	public Tour findByIdTour(String idTour);
 
 	public Tour findByNameTour(String nameTour);
 
 	public void updateTour(Tour tour);
 
-	public void deleteTour(Integer idTour);
+	public void deleteTour(String idTour);
 
 	public List<Tour> listTour();
 	

@@ -16,14 +16,4 @@ public class EncoderPassword {
 		return new String(valueDecoded);
 	}
 	
-	public static void main(String[] args) {
-		EncoderPassword ep = new EncoderPassword();
-		
-		String encoded = ep.enCoded("12345");
-		String decoded = ep.deCoded(encoded);
-		
-		System.out.println("Ma hoa:" + encoded);
-		System.out.println("Giai ma:" + decoded);
-	}
-	
 }

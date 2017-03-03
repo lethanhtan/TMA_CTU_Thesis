@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 public class TourDaoImpl implements TourDao {
+	GenerateId gid = new GenerateId();
 	
 	//Fill the fields automatically
 	@Autowired
@@ -30,6 +32,7 @@ public class TourDaoImpl implements TourDao {
 		Transaction tx = session.beginTransaction();
 		if(tour != null) {
 			try {
+				tour.setIdTour(gid.generateIdTour());
 				session.save(tour);
 				tx.commit();
 				session.close();
@@ -42,10 +45,10 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public Tour findByIdTour(Integer idTour) {
+	public Tour findByIdTour(String idTour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Tour tour =(Tour) session.load(Tour.class, new Integer(idTour));
+		Tour tour =(Tour) session.load(Tour.class, new String(idTour));
 		tx.commit();
 		logger.info("Tour loaded successfully!");
 		return tour;
@@ -80,10 +83,10 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public void deleteTour(Integer idTour) {
+	public void deleteTour(String idTour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Tour tour =(Tour) session.load(Tour.class, new Integer(idTour));
+		Tour tour =(Tour) session.load(Tour.class, new String(idTour));
 		if (tour != null) {
 			session.delete(tour);
 			logger.info("Tour deleted successfully!");

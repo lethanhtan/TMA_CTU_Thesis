@@ -49,14 +49,14 @@ public class ManageTourController {
 	}
 	
 	@RequestMapping(value = "managetour/delete/{idTour}")
-	public String delteTour(@PathVariable("idTour") Integer idTour) {
+	public String delteTour(@PathVariable("idTour") String idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
 	
 	//handle required reuest from client
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idTour") Integer idTour) {
+	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		model.put("tourData", tourService.findByIdTour(idTour));
 		System.out.println("Update !In here first!");
 		return "updatetour";
@@ -64,7 +64,7 @@ public class ManageTourController {
 	
 	//handle form action
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.POST)
-	public String updateTour(@PathVariable("idTour") Integer idTour, ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
+	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			HttpSession session) {
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tourValidator, br);

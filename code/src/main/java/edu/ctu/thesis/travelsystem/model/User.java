@@ -23,9 +23,8 @@ import javax.persistence.CascadeType;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
-	private Integer idUser;
+	private String idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -89,11 +88,11 @@ public class User {
 	}
 	
 	//Getters and Setters method
-	public Integer getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(Integer idUser) {
+	public void setIdUser(String idUser) {
 		this.idUser = idUser;
 	}
 	

@@ -23,7 +23,7 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public Tour findByIdTour(Integer idTour) {
+	public Tour findByIdTour(String idTour) {
 		return this.tourDao.findByIdTour(idTour);
 	}
 
@@ -38,7 +38,7 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public void deleteTour(Integer idTour) {
+	public void deleteTour(String idTour) {
 		this.tourDao.deleteTour(idTour);
 	}
 

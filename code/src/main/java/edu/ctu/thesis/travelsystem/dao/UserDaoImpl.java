@@ -7,12 +7,15 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
+import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 public class UserDaoImpl implements UserDao {
 	
 	EncoderPassword ep = new EncoderPassword();
+	
+	GenerateId gid = new GenerateId();
 	
 	//Auto inject fields
 	@Autowired
@@ -36,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 				System.out.println(user.getRole().getNameRole());
 				user.setPassword(ep.enCoded(user.getPassword()));
 				user.setPasswordConfirm(user.getPassword());
+				user.setIdUser(gid.generateIdUser(user.getUserName()));
 				session.save(user);
 				System.out.println("In here!");
 				tx.commit();
