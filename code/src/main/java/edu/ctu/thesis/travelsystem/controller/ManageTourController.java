@@ -94,4 +94,26 @@ public class ManageTourController {
 		}
 	}
 
+	// Forward to Tour detail page
+	@RequestMapping(value = "/detail/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
+		model.put("tourData", tourService.findByIdTour(idTour));
+		System.out.println("Show tour detail!");
+		return "tourdetail";
+	}
+
+	// Delete tour in Detail tour page
+	@RequestMapping(value = "detail/delete/{idTour}")
+	public String deleteTour(@PathVariable("idTour") String idTour) {
+		tourService.deleteTour(idTour);
+		return "redirect:/managetour";
+	}
+
+	// Forward to Registration List page
+	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
+	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
+		model.put("tourData", tourService.findByIdTour(idTour));
+		System.out.println("Show tour detail!");
+		return "registrationlist";
+	}
 }
