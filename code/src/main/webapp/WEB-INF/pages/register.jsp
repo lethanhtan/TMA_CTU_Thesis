@@ -357,6 +357,13 @@
 				charset="utf-8"></script>
 			<!-- Modernizr -->
 			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+			<!-- Calendar -->
+			<link rel="stylesheet"
+				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+			<script type="text/javascript" src="resources/js/calendar.js"
+				type="text/javascript"></script>
 			<!-- Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
 			<!-- End JS -->
