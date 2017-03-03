@@ -7,14 +7,11 @@ package edu.ctu.thesis.travelsystem.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.CascadeType;
 
@@ -23,9 +20,8 @@ import javax.persistence.CascadeType;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
-	private Integer idUser;
+	private String idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -49,7 +45,7 @@ public class User {
 	private String emailUser;
 	
 	@Column(name = "PHONE_USER", nullable = true)
-	private Integer phoneUser;
+	private String phoneUser;
 	
 	@Column(name = "SEX", nullable = true)
 	private String sex;
@@ -62,7 +58,20 @@ public class User {
 	public User() {}
 	
 	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
-			String addressUser, String emailUser, Integer phoneUser, String sex, Role role) {
+			String addressUser, String emailUser, String phoneUser, String sex) {
+		this.userName = userName;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.dateUser = dateofbirth;
+		this.nameUser = nameUser;
+		this.addressUser = addressUser;
+		this.emailUser = emailUser;
+		this.phoneUser = phoneUser;
+		this.sex = sex;
+	}
+	
+	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
+			String addressUser, String emailUser, String phoneUser, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
@@ -76,11 +85,11 @@ public class User {
 	}
 	
 	//Getters and Setters method
-	public Integer getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(Integer idUser) {
+	public void setIdUser(String idUser) {
 		this.idUser = idUser;
 	}
 	
@@ -132,11 +141,11 @@ public class User {
 		this.addressUser = addressUser;
 	}
 
-	public Integer getPhoneUser() {
+	public String getPhoneUser() {
 		return phoneUser;
 	}
 
-	public void setPhoneUser(Integer phoneUser) {
+	public void setPhoneUser(String phoneUser) {
 		this.phoneUser = phoneUser;
 	}
 
