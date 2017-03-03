@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -50,7 +51,7 @@ public class TourDaoImpl implements TourDao {
 		Transaction tx = session.beginTransaction();
 		Tour tour =(Tour) session.load(Tour.class, new String(idTour));
 		tx.commit();
-		logger.info("Tour loaded successfully!");
+		logger.info("Tour finded successfully!");
 		return tour;
 	}
 
@@ -107,6 +108,27 @@ public class TourDaoImpl implements TourDao {
 		tx.commit();
 		return tourList;
 	}
+	
+	@Override
+	public List<Tour> listTourByValue(String value) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		List<Tour> newTourList = new ArrayList<Tour>();
+		for (Tour tour : listTour()) {
+				if (value.equals(tour.getIdTour().substring(0, value.length()))) {
+					newTourList.add(tour);
+				}
+				else if(value.equals(tour.getTourName().substring(0, value.length()))) {
+					newTourList.add(tour);
+				}
+				else {
+					logger.info("Not find tour input!");
+				}
+		}
+		
+		tx.commit();
+		return newTourList;
+	}
 
 	@Override
 	public Integer getNumTour() {
@@ -117,4 +139,15 @@ public class TourDaoImpl implements TourDao {
 		tx.commit();
 		return numTour;
 	}
+
+	@Override
+	public Integer getNumTourBySearch(String value) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Integer numTour = listTourByValue(value).size();
+		logger.info("Number of tour is: " + numTour);
+		tx.commit();
+		return numTour;
+	}
+
 }

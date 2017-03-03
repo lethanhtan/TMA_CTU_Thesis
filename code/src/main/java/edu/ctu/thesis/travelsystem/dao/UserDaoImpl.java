@@ -35,11 +35,11 @@ public class UserDaoImpl implements UserDao {
 		role.setNameRole("role_user");
 		if(user!=null){
 			try {
-				user.setRole(role);
-				System.out.println(user.getRole().getNameRole());
-				user.setPassword(ep.enCoded(user.getPassword()));
-				user.setPasswordConfirm(user.getPassword());
-				user.setIdUser(gid.generateIdUser(user.getUserName()));
+				user.setRole(role); //set default role for register account
+				System.out.println(user.getRole().getNameRole()); 
+				user.setPassword(ep.enCoded(user.getPassword())); //encoded password user
+				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
+				user.setIdUser(gid.generateIdUser(user.getUserName())); //generate user id
 				session.save(user);
 				System.out.println("In here!");
 				tx.commit();

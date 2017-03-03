@@ -43,7 +43,7 @@ public class CreateTourController {
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			HttpSession session) {
 		TourValidator tourValidator = new TourValidator();
-		tourValidator.validate(tourValidator, br);
+		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {

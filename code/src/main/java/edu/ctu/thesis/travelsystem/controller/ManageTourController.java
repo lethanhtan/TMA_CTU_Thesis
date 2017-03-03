@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -18,56 +19,72 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
 @Controller
 public class ManageTourController {
-	
+
 	@Autowired
 	private TourService tourService;
-	
+
 	public void setTourService(TourService tourService) {
 		this.tourService = tourService;
 	}
-	
-	
+
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
-	public String managetourController(ModelMap model, HttpSession session) {
+	public String managetourController(ModelMap model, HttpSession session,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
 		System.out.println(session.getAttribute("roleId"));
 		String result;
 		try {
-			if ((Integer)session.getAttribute("roleId") == 2) {
-				model.addAttribute("tour", new Tour());
-				model.addAttribute("tourList", tourService.listTour());
-				model.addAttribute("numTour", tourService.getNumTour());
-				result = "managetour";
+			if ((Integer) session.getAttribute("roleId") == 2) {
+				model.addAttribute("searchedValue", valueSearch);
+				if (valueSearch != null) {
+					System.out.println("Search active!");
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourService.listTourById(valueSearch));
+					model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+					result = "managetour";
+				} else {
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourService.listTour());
+					model.addAttribute("numTour", tourService.getNumTour());
+					result = "managetour";
+				}
 			} else {
+				System.out.println("What?");
 				result = "forbidden";
 			}
-		}catch (Exception e) {
-			//e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Why?");
 			result = "forbidden";
 		}
-		
+
 		return result;
 	}
-	
+
+	// handle delete request from client
 	@RequestMapping(value = "managetour/delete/{idTour}")
 	public String delteTour(@PathVariable("idTour") String idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
-	
-	//handle required reuest from client
+
+	// handle required reuest from client
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
-		model.put("tourData", tourService.findByIdTour(idTour));
-		System.out.println("Update !In here first!");
+		System.out.println("Handle update form managetour when user request!");
+		model.put("tourData", tourService.findByIdTour(idTour)); // put tourData
+																	// as a tour
+																	// with id
+																	// specifies
 		return "updatetour";
 	}
-	
-	//handle form action
+
+	// handle form action update tour
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.POST)
-	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
-			HttpSession session) {
+	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model,
+			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
+		System.out.println("Handle update form managetour when user submit value");
 		TourValidator tourValidator = new TourValidator();
-		tourValidator.validate(tourValidator, br);
+		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
 			return "updatetour/{idTour}";
 		} else {
@@ -76,4 +93,5 @@ public class ManageTourController {
 			return "redirect:/managetour";
 		}
 	}
+
 }

@@ -17,5 +17,9 @@ public interface TourService {
 
 	public List<Tour> listTour();
 	
+	public List<Tour> listTourById(String idTour);
+	
 	public Integer getNumTour();
+	
+	public Integer getNumTourByValue(String value);
 }

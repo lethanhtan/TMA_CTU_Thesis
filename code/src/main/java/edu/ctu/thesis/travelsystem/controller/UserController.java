@@ -26,18 +26,20 @@ public class UserController {
 	//Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		model.put("customerData", new User());
+		System.out.println("Handle register request when client send!");
+		model.put("customerData", new User());//put customerData as a User
 		return "register";
 	}
 	
-	//Processing for form register
+	//Processing for form register when submit
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("customerData") @Valid User user, BindingResult br, HttpSession session) {
+		System.out.println("Handle register form action when user submit!");
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
-		if (br.hasErrors()) {//form input have error
+		if (br.hasErrors()) {		//form input have error
 			return "register";
-		} else {//form input is ok
+		} else {					//form input is ok
 			userService.saveUser(user);
 			session.setAttribute("user", user);
 			session.setAttribute("userName", user.getNameUser());
@@ -49,8 +51,9 @@ public class UserController {
 	//Processing for login when required request
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin(ModelMap model, HttpSession session) {
+		System.out.println("Handle login request when client send!");
 		if (session.getAttribute("user") == null) {
-			model.put("customerData", new User());
+			model.put("customerData", new User()); //put customerData as a user
 			return "login";
 		}
 		else {
@@ -58,10 +61,12 @@ public class UserController {
 		}
 	}
 	
+	//Handle for form login when submit
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String doLogin(ModelMap model, @ModelAttribute("customerData") User user, HttpSession session) {
 		if (user.getUserName() != null && user.getPassword() != null && session.getAttribute("user") == null) {
 			user = userService.loginUser(user);
+			System.out.println("Handle login form action when user submit!");
 			if (user != null) {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);

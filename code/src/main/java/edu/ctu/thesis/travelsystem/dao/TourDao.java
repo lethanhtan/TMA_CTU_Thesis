@@ -18,4 +18,9 @@ public interface TourDao {
 	public List<Tour> listTour();
 	
 	public Integer getNumTour();
+	
+	public Integer getNumTourBySearch(String value);
+
+	public List<Tour> listTourByValue(String value);
+	
 }

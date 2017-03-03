@@ -51,4 +51,14 @@ public class TourServiceImpl implements TourService {
 	public Integer getNumTour() {
 		return this.tourDao.getNumTour();
 	}
+
+	@Override
+	public List<Tour> listTourById(String value) {
+		return this.tourDao.listTourByValue(value);
+	}
+
+	@Override
+	public Integer getNumTourByValue(String value) {
+		return this.tourDao.getNumTourBySearch(value);
+	}
 }

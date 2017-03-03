@@ -124,10 +124,10 @@
 				<div class="row margin-vert-30">
 					<!-- Search Form -->
 					<div class="error-404-page text-center" style="margin-left: 650px;">
-						<form class="form-search search-404">
+						<form class="form-search search-404" >
 							<div class="input-append">
 								<input type="text" class="span2 search-query"
-									placeholder="Nhập từ khóa">
+									placeholder="Nhập từ khóa" name="valueSearch"/>
 								<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
 							</div>
 						</form>
