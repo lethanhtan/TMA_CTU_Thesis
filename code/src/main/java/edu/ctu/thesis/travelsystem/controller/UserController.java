@@ -86,27 +86,13 @@ public class UserController {
 		}
 	}
 	
-<<<<<<< HEAD
 	//handel for logout request
-=======
-	
->>>>>>> refs/remotes/tma_ctu/master
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
-<<<<<<< HEAD
 		session.removeAttribute("user"); //remove user object from session
 		session.removeValue("userName"); //remove userName value
 		session.removeValue("roleId");	//remove roleId value
-=======
-		session.removeAttribute("user");
-		session.removeValue("userName");
-		session.removeValue("roleUser");
->>>>>>> refs/remotes/tma_ctu/master
 		return "redirect:login";
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/remotes/tma_ctu/master
 }

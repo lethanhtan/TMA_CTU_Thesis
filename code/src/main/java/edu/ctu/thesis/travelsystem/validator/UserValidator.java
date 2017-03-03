@@ -38,13 +38,8 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.customerData.passwordConfirm");
 		ValidationUtils.rejectIfEmpty(errors, "nameUser", "NotEmpty.customerData.nameUser");
 		ValidationUtils.rejectIfEmpty(errors, "addressUser", "NotEmpty.customerData.addressUser");
-<<<<<<< HEAD
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneUser", "NotEmpty.customerData.phoneUser");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailUser", "NotEmpty.customerData.emailUser");
-=======
-		ValidationUtils.rejectIfEmpty(errors, "phoneUser", "NotEmpty.customerData.phoneUser");
-		ValidationUtils.rejectIfEmpty(errors, "emailUser", "NotEmpty.customerData.emailUser");
->>>>>>> refs/remotes/tma_ctu/master
 		ValidationUtils.rejectIfEmpty(errors, "dateUser", "NotEmpty.customerData.dateUser");
 		
 		//Catch other errors
@@ -76,9 +71,4 @@ public class UserValidator implements Validator {
 			errors.rejectValue("phoneUser", "Invalid.customerData.phoneUser");
 		}
 	}
-<<<<<<< HEAD
-=======
-	
-
->>>>>>> refs/remotes/tma_ctu/master
 }

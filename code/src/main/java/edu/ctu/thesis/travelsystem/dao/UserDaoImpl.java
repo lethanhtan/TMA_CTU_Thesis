@@ -6,11 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-<<<<<<< HEAD
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.extra.GenerateId;
-=======
->>>>>>> refs/remotes/tma_ctu/master
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
@@ -40,12 +37,9 @@ public class UserDaoImpl implements UserDao {
 			try {
 				user.setRole(role);
 				System.out.println(user.getRole().getNameRole());
-<<<<<<< HEAD
 				user.setPassword(ep.enCoded(user.getPassword()));
 				user.setPasswordConfirm(user.getPassword());
 				user.setIdUser(gid.generateIdUser(user.getUserName()));
-=======
->>>>>>> refs/remotes/tma_ctu/master
 				session.save(user);
 				System.out.println("In here!");
 				tx.commit();

@@ -12,22 +12,14 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-<<<<<<< HEAD
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 	<mvc:resources mapping="/updatetour/resources/**" location="/resources/"></mvc:resources>
-=======
-	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
->>>>>>> refs/remotes/tma_ctu/master
 	
 	<!-- Set package to scan using annotation -->
     <context:component-scan base-package="edu.ctu.thesis.travelsystem" />
-<<<<<<< HEAD
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/pages directory -->
-=======
-
->>>>>>> refs/remotes/tma_ctu/master
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">

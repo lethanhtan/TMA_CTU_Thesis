@@ -23,7 +23,6 @@ import javax.persistence.CascadeType;
 public class User {
 
 	@Id
-<<<<<<< HEAD
 	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
 	private String idUser;
 	
@@ -90,62 +89,6 @@ public class User {
 	
 	//Getters and Setters method
 	public String getIdUser() {
-=======
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
-	private Integer idUser;
-	
-	@Column(name = "USER_NAME", nullable = false, length = 40)
-	private String userName;
-	
-	@Column(name = "PASSWORD", nullable = false, length = 20)
-	private String password;
-	
-	@Column(name = "PASSWORD_CONFIRM", nullable = true, length = 20)
-	private String passwordConfirm;
-	
-	@Column(name = "BIRTH_DATE_USER", nullable = true)
-	private String dateUser;
-	
-	@Column(name = "NAME_USER", nullable = false, length = 60)
-	private String nameUser;
-	
-	@Column(name = "ADDRESS_USER", nullable = true, length = 100)
-	private String addressUser;
-	
-	@Column(name = "EMAIL_USER", nullable = true, length = 100)
-	private String emailUser;
-	
-	@Column(name = "PHONE_USER", nullable = true)
-	private Integer phoneUser;
-	
-	@Column(name = "SEX", nullable = true)
-	private String sex;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_ROLE", nullable = false)
-	private Role role;
-	
-	//contructor
-	public User() {}
-	
-	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
-			String addressUser, String emailUser, Integer phoneUser, String sex, Role role) {
-		this.userName = userName;
-		this.password = password;
-		this.passwordConfirm = passwordConfirm;
-		this.dateUser = dateofbirth;
-		this.nameUser = nameUser;
-		this.addressUser = addressUser;
-		this.emailUser = emailUser;
-		this.phoneUser = phoneUser;
-		this.sex = sex;
-		this.role = role;
-	}
-	
-	//Getters and Setters method
-	public Integer getIdUser() {
->>>>>>> refs/remotes/tma_ctu/master
 		return idUser;
 	}
 
@@ -201,11 +144,7 @@ public class User {
 		this.addressUser = addressUser;
 	}
 
-<<<<<<< HEAD
 	public String getPhoneUser() {
-=======
-	public Integer getPhoneUser() {
->>>>>>> refs/remotes/tma_ctu/master
 		return phoneUser;
 	}
 
