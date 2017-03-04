@@ -248,7 +248,7 @@
 								<li>
 									<div class="recent-post">
 										<a href=""> <img class="pull-left"
-											src="resources/img/hot-air-balloon.png"
+											src="resources/img/news/thumbs/ValentineDiDay.jpg"
 											alt="thumb1">
 										</a> <a href="#" class="posts-list-title">Valentine này đi đâu?</a> <br> <span class="recent-post-date">
 											03/01/2017 </span>
