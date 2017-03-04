@@ -143,6 +143,8 @@
 							<div class="col-md-8 animate fadeIn"></div>
 							<div class="col-md-12 animate fadeInRight"></div>
 						</div>
+						
+						<hr class="margin-bottom-50">
 						<!-- Table -->
 						<c:if test="${empty tourList}">
 							<h1>List Tour Empty!</h1>
@@ -159,7 +161,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${tourList}" var="tour">
+							<c:forEach items="${tourList}" var="tour"> <!-- use subList render list tour to display --> 
 								<tr>
 									<td>${tour.idTour}</td>
 									
@@ -177,17 +179,21 @@
 							</tbody>
 						</table>
 						<!-- Pagination -->
-						<c:if test="${numTour > 2}">
+						<c:if test="${numTour >= 5}"> <!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 								<li><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">${numTour - 1}</a></li>
+								<c:forEach items="${pageNum}" var="pageE">
+										<li><a href="managetour">${pageE}</a></li>
+								</c:forEach>
 								<li><a href="#">&raquo;</a></li>
 							</ul>
 						<!-- End Pagination -->	
 						</c:if>
 						</c:if>
+						<hr class="margin-vert-40">
+						
 						<!-- End Table -->
+						<!-- 
 						<hr class="margin-bottom-50">
 						<div class="row">
 							<div class="col-md-6">
@@ -218,6 +224,7 @@
 							</div>
 						</div>
 						<hr class="margin-vert-40">
+						 -->
 					</div>
 				</div>
 			</div>

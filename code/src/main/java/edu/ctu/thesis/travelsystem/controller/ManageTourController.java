@@ -1,5 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -26,7 +31,8 @@ public class ManageTourController {
 	public void setTourService(TourService tourService) {
 		this.tourService = tourService;
 	}
-
+	
+	//handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
 	public String managetourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
@@ -35,25 +41,42 @@ public class ManageTourController {
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
-				if (valueSearch != null) {
-					System.out.println("Search active!");
+				if (valueSearch != null) { //search active! Update list tour
 					model.addAttribute("tour", new Tour());
 					model.addAttribute("tourList", tourService.listTourById(valueSearch));
 					model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 					result = "managetour";
-				} else {
+				} else { //search none active ! Update list tour
+					Integer num = 0;
+					/*
+					if ((tourService.getNumTour() % 5) == 0) {
+						num = tourService.getNumTour() / 5;
+					}
+					else {
+						num = (tourService.getNumTour() / 5) + 1;
+					}
+					*/
+					Integer n = 41;
+					if ((n % 5) == 0) {
+						num =n / 5;
+					}
+					else {
+						num = (n / 5) + 1;
+					}
+					
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("tour", new Tour());
-					model.addAttribute("tourList", tourService.listTour());
-					model.addAttribute("numTour", tourService.getNumTour());
+					model.addAttribute("tourList", tourService.listTour()); //create list tour
+					model.addAttribute("numTour", tourService.getNumTour()); //create number of tour
+					model.addAttribute("pageNum", pageNum); //create number of page display
+					model.addAttribute("pageE", new ArrayList<Integer>()); //create var for loop
 					result = "managetour";
 				}
 			} else {
-				System.out.println("What?");
 				result = "forbidden";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Why?");
 			result = "forbidden";
 		}
 

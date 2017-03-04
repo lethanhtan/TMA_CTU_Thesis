@@ -46,6 +46,9 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
+<!-- Calendar -->
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 	<div id="body-bg">
@@ -67,7 +70,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img
+						<a href="home" title=""> <img
 							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
@@ -88,11 +91,27 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="managetour" class="fa-gear">Quản Lý Tour</a></li>
+							<li><a href="${pageContext.request.contextPath}/managetour" class="fa-gear">Quản Lý Tour</a></li>
 							<li><a href="manageregister" class="fa-list-ul">Quản Lý
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
+							<c:if test="${userName != null}">
+
+								<li><span class="fa-user"> ${userName}</span>
+									<ul>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
+									</ul></li>
+
+							</c:if>
+							<c:if test="${userName == null}">
+								<li><span class="fa-user">Tài khoản</span>
+									<ul>
+										<li><a href="login">Đăng Nhập</a></li>
+										<li><a href="register">Đăng ký</a></li>
+									</ul></li>
+
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -112,7 +131,8 @@
 						<!-- Create Tour Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 							<s:form class="signup-page" commandName="tourData"
-								action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}" method="POST">
+								action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
+								method="POST">
 								<div class="signup-header">
 									<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
 								</div>
@@ -125,10 +145,10 @@
 											</span>
 											<s:input placeholder="${tourData.idTour}"
 												class="form-control margin-bottom-20" type="text"
-												path="idTour" disabled="true"/>
+												path="idTour" disabled="true" />
 										</div>
 									</div>
-									
+
 									<div class="col-sm-8">
 										<label>Tên tour</label>
 										<!-- Show error -->
@@ -172,7 +192,7 @@
 										</div>
 									</div>
 								</div>
-								 <div class="row">
+								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày về</label> <small><s:errors
 												path="returnDate" cssStyle="color:red;" /></small>
@@ -228,7 +248,7 @@
 								<small><s:errors path="tourDetail" cssStyle="color:red;" /></small>
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail"/>
+									path="tourDetail" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">
@@ -260,7 +280,7 @@
 					<div class="row">
 						<div id="footermenu" class="col-md-8">
 							<ul class="list-unstyled list-inline">
-								<li><a href="managetour" target="_blank">Quản lý tour</a></li>
+								<li><a href="${pageContext.request.contextPath }/managetour" target="_blank">Quản lý tour</a></li>
 								<li><a href="manageregister" target="_blank">Quản lý
 										đăng ký</a></li>
 								<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
@@ -297,8 +317,6 @@
 			<!-- Modernizr -->
 			<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 			<!-- Calendar -->
-			<link rel="stylesheet"
-				href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 			<script
 				src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 			<script type="text/javascript" src="resources/js/calendar.js"

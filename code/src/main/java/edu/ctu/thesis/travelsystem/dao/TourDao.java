@@ -23,4 +23,10 @@ public interface TourDao {
 
 	public List<Tour> listTourByValue(String value);
 	
+	//return start list number index
+	public Integer startIndex(Integer numPage, Integer curPage);
+	
+	//return edn list number index
+	public Integer endIndex(Integer numPage, Integer startNum, Integer curPage);
+	
 }

@@ -150,4 +150,18 @@ public class TourDaoImpl implements TourDao {
 		return numTour;
 	}
 
+	@Override
+	public Integer startIndex(Integer numPage, Integer curPage) {
+		for (int i=0; i < numPage; i++) {
+			Integer startNum = 0;
+		}
+		return null;
+	}
+
+	@Override
+	public Integer endIndex(Integer numPage, Integer startNum, Integer curPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

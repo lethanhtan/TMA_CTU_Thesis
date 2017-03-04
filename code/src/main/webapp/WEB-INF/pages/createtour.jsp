@@ -67,7 +67,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img
+						<a href="home" title=""> <img
 							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
@@ -93,6 +93,23 @@
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
+							<c:if test="${userName != null}">
+
+								<li><span class="fa-user">
+										${userName}</span>
+									<ul>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
+									</ul></li>
+							
+							</c:if>
+							<c:if test="${userName == null}">
+								<li><span class="fa-user">Tài khoản</span>
+									<ul>
+										<li><a href="login">Đăng Nhập</a></li>
+										<li><a href="register">Đăng ký</a></li>
+									</ul></li>
+
+							</c:if>
 						</ul>
 					</div>
 				</div>
