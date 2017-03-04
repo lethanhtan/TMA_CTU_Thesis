@@ -24,21 +24,22 @@ public class Role {
 	@Column(name = "NAME_ROLE", nullable = false, length = 40)
 	private String nameRole;
 	
+	/*
 	@OneToMany(mappedBy = "role")
 	private Set<User> user = new HashSet<User>(0);
-	
-	//contructor
+	*/
+	//constructor
 	public Role() {}
 	
 	public Role(String nameRole) {
 		this.nameRole = nameRole;
 	}
-	
+	/*
 	public Role(String nameRole, Set<User> user) {
 		this.nameRole = nameRole;
 		this.user = user;
 	}
-	
+	*/
 	//Setters and Getter method
 	
 	public Integer getIdRole() {
@@ -55,7 +56,7 @@ public class Role {
 	public void setNameRole(String nameRole) {
 		this.nameRole = nameRole;
 	}
-	
+	/*
 	public Set<User> getUser() {
 		return this.user;
 	}
@@ -63,4 +64,5 @@ public class Role {
 	public void setUser(Set<User> user) {
 		this.user = user;
 	}
+	*/
 }

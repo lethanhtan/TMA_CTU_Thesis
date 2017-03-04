@@ -33,11 +33,13 @@ public class TourDaoImpl implements TourDao {
 		Transaction tx = session.beginTransaction();
 		if(tour != null) {
 			try {
+				logger.info("Save tour be called!");
 				tour.setIdTour(gid.generateIdTour());
 				session.save(tour);
 				tx.commit();
 				session.close();
 			} catch (Exception e) {
+				logger.info("Exception when call save tour!");
 				tx.rollback();
 				session.close();
 				e.printStackTrace();
@@ -76,6 +78,7 @@ public class TourDaoImpl implements TourDao {
 				logger.info("Tour updated successfully, Tour details = " + tour);
 				session.close();
 			} catch (Exception e) {
+				logger.info("Exception when update tour!");
 				tx.rollback();
 				session.close();
 				e.printStackTrace();
@@ -103,7 +106,7 @@ public class TourDaoImpl implements TourDao {
 		String hql = "from edu.ctu.thesis.travelsystem.model.Tour";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for(Tour tour : tourList){
-			logger.info("Tour List::" + tour);
+			logger.info("Tour List:" + tour);
 		}
 		tx.commit();
 		return tourList;
@@ -149,7 +152,7 @@ public class TourDaoImpl implements TourDao {
 		tx.commit();
 		return numTour;
 	}
-
+	
 	@Override
 	public Integer startIndex(Integer numPage, Integer curPage) {
 		for (int i=0; i < numPage; i++) {
@@ -163,5 +166,6 @@ public class TourDaoImpl implements TourDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

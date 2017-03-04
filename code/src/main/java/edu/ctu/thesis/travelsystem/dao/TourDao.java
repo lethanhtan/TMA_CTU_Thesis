@@ -5,6 +5,7 @@ import java.util.List;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 public interface TourDao {
+	
 	public void saveTour(Tour tour);
 	
 	public Tour findByIdTour(String idTour);

@@ -122,7 +122,7 @@
 					<div class="row margin-vert-30">
 						<!-- Register Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<s:form class="signup-page" commandName="customerData"
+							<s:form class="signup-page" commandName="userData"
 								action="${pageContext.request.contextPath }/register"
 								method="POST">
 
@@ -171,13 +171,13 @@
 								<div class="row">
 									<div class="col-sm-7">
 										<label>Họ tên</label> <br /> <small><s:errors
-												path="nameUser" cssStyle="color:red;" /></small>
+												path="fullName" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
 											</span>
 											<s:input placeholder="Nhập họ tên"
 												class="form-control margin-bottom-20" type="text"
-												path="nameUser" />
+												path="fullName" />
 										</div>
 									</div>
 									<div class="col-sm-5">
@@ -196,50 +196,50 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Ngày sinh</label> <br /> <small><s:errors
-												path="dateUser" cssStyle="color:red;" /></small>
+												path="birthDate" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span>
 											<s:input placeholder="dd/mm/yyyy" id="datepicker"
-												class="form-control margin-bottom-20" path="dateUser" />
+												class="form-control margin-bottom-20" path="birthDate" />
 										</div>
 									</div>
 
 									<div class="col-sm-6">
 										<label>Số điện thoại</label> <br /> <small><s:errors
-												path="phoneUser" cssStyle="color:red;" /></small>
+												path="phone" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-tablet"></i>
 											</span>
 											<s:input placeholder="Nhập số điện thoại"
 												class="form-control margin-bottom-20" type="text"
-												path="phoneUser" />
+												path="phone" />
 										</div>
 									</div>
 								</div>
 								<label>Email</label>
 								<br />
-								<small><s:errors path="emailUser" cssStyle="color:red;" /></small>
+								<small><s:errors path="email" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-envelope"></i>
 									</span>
 									<s:input placeholder="Nhập email"
 										class="form-control margin-bottom-20" type="email"
-										path="emailUser" />
+										path="email" />
 								</div>
 								<label>Địa chỉ</label>
 								<br />
-								<small><s:errors path="addressUser"
+								<small><s:errors path="address"
 										cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-home"></i>
 									</span>
 									<s:input placeholder="Nhập địa chỉ"
 										class="form-control margin-bottom-20" type="text"
-										path="addressUser" />
+										path="address" />
 								</div>
 								<hr>
 
@@ -262,7 +262,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
 			<div id="content-bottom-border" class="container"></div>

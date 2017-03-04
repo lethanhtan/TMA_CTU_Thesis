@@ -3,6 +3,8 @@ package edu.ctu.thesis.travelsystem.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,16 +19,18 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class CreateTourController {
 	@Autowired
 	private TourService tourService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(CreateTourController.class);
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
 	//Decentralization user and admin
 		public String createtourController(ModelMap model, HttpSession session) {
-			System.out.println(session.getAttribute("roleId"));
+			logger.info("Create tour request is called!");
 			String result;
 			try {
 				if ((Integer) session.getAttribute("roleId") == 2) {
-					System.out.println("Register! In here first!");
+					logger.info("Register! In here first!");
 					model.put("tourData", new Tour());
 					result = "createtour";
 				} else {
@@ -47,7 +51,7 @@ public class CreateTourController {
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {
-			System.out.println("Register! In here second!");
+			logger.info("Create tour when submit form!");
 			tourService.saveTour(tour);
 			return "redirect:managetour";
 		}

@@ -118,7 +118,7 @@
 					<div class="row margin-vert-30">
 						<!-- Login Box -->
 						<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-							<s:form class="login-page" commandName="customerData"
+							<s:form class="login-page" commandName="userData"
 								action="${pageContext.request.contextPath }/login" method="POST">
 								<div class="login-header margin-bottom-30">
 									<h2>Đăng Nhập</h2>

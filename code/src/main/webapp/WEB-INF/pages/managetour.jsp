@@ -180,7 +180,7 @@
 						</table>
 						<!-- Pagination -->
 						<c:if test="${numTour >= 5}"> <!-- set active pagination when numTour >= 5 -->
-						<ul class="pagination">
+							<ul class="pagination" >
 								<li><a href="#">&laquo;</a></li>
 								<c:forEach items="${pageNum}" var="pageE">
 										<li><a href="managetour">${pageE}</a></li>

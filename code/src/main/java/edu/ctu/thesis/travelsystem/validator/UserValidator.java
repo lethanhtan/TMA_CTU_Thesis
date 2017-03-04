@@ -33,42 +33,42 @@ public class UserValidator implements Validator {
 		
 		User user =(User) target;
 		//Catch empty and whitespace errors
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.customerData.userName");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.customerData.password");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.customerData.passwordConfirm");
-		ValidationUtils.rejectIfEmpty(errors, "nameUser", "NotEmpty.customerData.nameUser");
-		ValidationUtils.rejectIfEmpty(errors, "addressUser", "NotEmpty.customerData.addressUser");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneUser", "NotEmpty.customerData.phoneUser");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailUser", "NotEmpty.customerData.emailUser");
-		ValidationUtils.rejectIfEmpty(errors, "dateUser", "NotEmpty.customerData.dateUser");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.userData.userName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.userData.password");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.userData.passwordConfirm");
+		ValidationUtils.rejectIfEmpty(errors, "fullName", "NotEmpty.userData.fullName");
+		ValidationUtils.rejectIfEmpty(errors, "address", "NotEmpty.userData.address");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.userData.phone");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.userData.email");
+		ValidationUtils.rejectIfEmpty(errors, "birthDate", "NotEmpty.userData.birthDate");
 		
 		//Catch other errors
 		//Catch size user name
 		if (user.getUserName().length() > 40 || user.getUserName().length() < 6) {
-			errors.rejectValue("userName", "Size.customerData.userName");
+			errors.rejectValue("userName", "Size.userData.userName");
 		}
 		
 		//catch size password
 		if (user.getPassword().length() > 20 || user.getPassword().length() < 8) {
-			errors.rejectValue("password", "Size.customerData.password");
+			errors.rejectValue("password", "Size.userData.password");
 		}
 		
 		//catch not same password confirm
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
-			errors.rejectValue("passwordConfirm", "Diff.customerData.passwordConfirm");
+			errors.rejectValue("passwordConfirm", "Diff.userData.passwordConfirm");
 		}
 		
 		//cath fullname exception
-		if (user.getNameUser().length() > 80 || user.getNameUser().length() < 8) {
-			errors.rejectValue("nameUser", "Size.customerData.nameUser");
+		if (user.getFullName().length() > 80 || user.getFullName().length() < 8) {
+			errors.rejectValue("fullName", "Size.userData.fullName");
 		}
-		if (fDigit.findDigit(user.getNameUser())) {
-			errors.rejectValue("nameUser", "Invalid.customerData.nameUser");
+		if (fDigit.findDigit(user.getFullName())) {
+			errors.rejectValue("fullName", "Invalid.userData.fullName");
 		}
 		
 		//catch phone invalid
-		if (fAlphabet.findAlphabet(user.getPhoneUser())) {
-			errors.rejectValue("phoneUser", "Invalid.customerData.phoneUser");
+		if (fAlphabet.findAlphabet(user.getPhone())) {
+			errors.rejectValue("phone", "Invalid.userData.phone");
 		}
 	}
 }

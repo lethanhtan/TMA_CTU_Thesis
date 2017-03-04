@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +26,8 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
 @Controller
 public class ManageTourController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ManageTourController.class);
 
 	@Autowired
 	private TourService tourService;
@@ -36,7 +40,7 @@ public class ManageTourController {
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
 	public String managetourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
-		System.out.println(session.getAttribute("roleId"));
+		logger.info("Handle when managetour request from admin!");
 		String result;
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
@@ -48,22 +52,12 @@ public class ManageTourController {
 					result = "managetour";
 				} else { //search none active ! Update list tour
 					Integer num = 0;
-					/*
 					if ((tourService.getNumTour() % 5) == 0) {
 						num = tourService.getNumTour() / 5;
 					}
 					else {
 						num = (tourService.getNumTour() / 5) + 1;
 					}
-					*/
-					Integer n = 41;
-					if ((n % 5) == 0) {
-						num =n / 5;
-					}
-					else {
-						num = (n / 5) + 1;
-					}
-					
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("tour", new Tour());
 					model.addAttribute("tourList", tourService.listTour()); //create list tour
@@ -93,11 +87,8 @@ public class ManageTourController {
 	// handle required reuest from client
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
-		System.out.println("Handle update form managetour when user request!");
-		model.put("tourData", tourService.findByIdTour(idTour)); // put tourData
-																	// as a tour
-																	// with id
-																	// specifies
+		logger.info("Handle update form managetour when user request!");
+		model.put("tourData", tourService.findByIdTour(idTour)); 
 		return "updatetour";
 	}
 
@@ -105,13 +96,13 @@ public class ManageTourController {
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.POST)
 	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
-		System.out.println("Handle update form managetour when user submit value");
+		logger.info("Handle update form managetour when user submit value");
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
 			return "updatetour/{idTour}";
 		} else {
-			System.out.println("Update! In Update Tour Second!");
+			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
 			return "redirect:/managetour";
 		}
