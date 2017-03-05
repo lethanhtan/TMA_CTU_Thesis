@@ -163,7 +163,6 @@
 									<c:forEach items="${tourList}" var="tour">
 										<tr>
 											<td>${tour.idTour}</td>
-
 											<td>${tour.tourName}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}

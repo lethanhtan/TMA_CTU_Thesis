@@ -138,7 +138,7 @@
 									</span>
 									<s:input placeholder="Nhập tên tour"
 										class="form-control margin-bottom-20" type="text"
-										path="tourName" disabled="true" />
+										path="name" disabled="true" />
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
@@ -215,7 +215,7 @@
 								<label>Chi tiết tour</label>
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail" disabled="true" />
+									path="detail" disabled="true" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">

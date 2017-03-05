@@ -67,7 +67,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="trang-chu" title=""> <img
+						<a href="home" title=""> <img
 							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
@@ -121,8 +121,7 @@
 									<div class="col-sm-8">
 										<label>Tên tour</label>
 										<!-- Show Error -->
-										</br> <small><s:errors path="tourName"
-												cssStyle="color:red;" /></small>
+										</br> <small><s:errors path="name" cssStyle="color:red;" /></small>
 										<!--  End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
@@ -130,7 +129,7 @@
 											</span>
 											<s:input placeholder="Nhập tên tour"
 												class="form-control margin-bottom-20" type="text"
-												path="tourName" />
+												path="name" />
 										</div>
 									</div>
 									<div class="col-lg-4 text-right">
@@ -144,7 +143,7 @@
 										<!-- Show error -->
 										</br> <small><s:errors path="departureDate"
 												cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
@@ -154,12 +153,11 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<label>Giờ đi</label> 
+										<label>Giờ đi</label>
 										<!-- Show Error -->
-										</br>
-										<small><s:errors
-												path="departureTime" cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										</br> <small><s:errors path="departureTime"
+												cssStyle="color:red;" /></small>
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-clock-o"></i>
@@ -172,12 +170,11 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
-										<label>Ngày về</label> 
+										<label>Ngày về</label>
 										<!-- Show Error -->
-										</br>
-										<small><s:errors
-												path="returnDate" cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										</br> <small><s:errors path="returnDate"
+												cssStyle="color:red;" /></small>
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
@@ -187,12 +184,11 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<label>Giờ về</label> 
+										<label>Giờ về</label>
 										<!-- Show Error -->
-										</br>
-										<small><s:errors
-												path="returnTime" cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										</br> <small><s:errors path="returnTime"
+												cssStyle="color:red;" /></small>
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-clock-o"></i>
@@ -205,12 +201,10 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
-										<label>Giá vé</label> 
+										<label>Giá vé</label>
 										<!-- Show Error -->
-										</br>
-										<small><s:errors path="price"
-												cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										</br> <small><s:errors path="price" cssStyle="color:red;" /></small>
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-money"></i>
@@ -221,12 +215,10 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<label>Số lượng</label> 
+										<label>Số lượng</label>
 										<!-- Show Error -->
-										</br>
-										<small><s:errors
-												path="quantum" cssStyle="color:red;" /></small>
-												<!-- End Show Error -->
+										</br> <small><s:errors path="quantum" cssStyle="color:red;" /></small>
+										<!-- End Show Error -->
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-building-o"></i>
@@ -238,13 +230,13 @@
 									</div>
 								</div>
 								<label>Chi tiết tour</label>
-<!-- Show Error -->
-										</br>
-								<small><s:errors path="tourDetail" cssStyle="color:red;" /></small>
+								<!-- Show Error -->
+								</br>
+								<small><s:errors path="detail" cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail" />
+									path="detail" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">

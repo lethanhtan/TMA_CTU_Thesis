@@ -36,11 +36,11 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.customerData.userName");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.customerData.password");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.customerData.passwordConfirm");
-		ValidationUtils.rejectIfEmpty(errors, "nameUser", "NotEmpty.customerData.nameUser");
-		ValidationUtils.rejectIfEmpty(errors, "addressUser", "NotEmpty.customerData.addressUser");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneUser", "NotEmpty.customerData.phoneUser");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailUser", "NotEmpty.customerData.emailUser");
-		ValidationUtils.rejectIfEmpty(errors, "dateUser", "NotEmpty.customerData.dateUser");
+		ValidationUtils.rejectIfEmpty(errors, "fullName", "NotEmpty.customerData.fullName");
+		ValidationUtils.rejectIfEmpty(errors, "address", "NotEmpty.customerData.address");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.customerData.phone");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.customerData.email");
+		ValidationUtils.rejectIfEmpty(errors, "birthday", "NotEmpty.customerData.birthday");
 		
 		//Catch other errors
 		//Catch size user name
@@ -59,16 +59,16 @@ public class UserValidator implements Validator {
 		}
 		
 		//cath fullname exception
-		if (user.getNameUser().length() > 80 || user.getNameUser().length() < 8) {
-			errors.rejectValue("nameUser", "Size.customerData.nameUser");
+		if (user.getFullName().length() > 80 || user.getFullName().length() < 8) {
+			errors.rejectValue("fullName", "Size.customerData.fullName");
 		}
-		if (fDigit.findDigit(user.getNameUser())) {
-			errors.rejectValue("nameUser", "Invalid.customerData.nameUser");
+		if (fDigit.findDigit(user.getFullName())) {
+			errors.rejectValue("fullName", "Invalid.customerData.fullName");
 		}
 		
 		//catch phone invalid
-		if (fAlphabet.findAlphabet(user.getPhoneUser())) {
-			errors.rejectValue("phoneUser", "Invalid.customerData.phoneUser");
+		if (fAlphabet.findAlphabet(user.getPhone())) {
+			errors.rejectValue("phone", "Invalid.customerData.phone");
 		}
 	}
 }

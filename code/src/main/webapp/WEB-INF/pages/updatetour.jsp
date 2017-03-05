@@ -137,14 +137,14 @@
 									<div class="col-sm-8">
 										<label>Tên tour</label>
 										<!-- Show error -->
-										<small><s:errors path="tourName" cssStyle="color:red;" /></small>
+										<small><s:errors path="name" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-map-marker"></i>
 											</span>
 											<s:input placeholder="Nhập tên tour"
 												class="form-control margin-bottom-20" type="text"
-												path="tourName" />
+												path="name" />
 										</div>
 									</div>
 									<div class="col-lg-4 text-right">
@@ -229,11 +229,10 @@
 									</div>
 								</div>
 								<label>Chi tiết tour</label>
-
-								<small><s:errors path="tourDetail" cssStyle="color:red;" /></small>
+								<small><s:errors path="detail" cssStyle="color:red;" /></small>
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail" />
+									path="detail" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">

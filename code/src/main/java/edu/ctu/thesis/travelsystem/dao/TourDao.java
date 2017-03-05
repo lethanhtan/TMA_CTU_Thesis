@@ -7,9 +7,9 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 public interface TourDao {
 	public void saveTour(Tour tour);
 	
-	public Tour findByIdTour(String idTour);
+	public Tour findId(String idTour);
 	
-	public Tour findByNameTour(String nameTour);
+	public Tour findName(String name);
 	
 	public void updateTour(Tour tour);
 	
