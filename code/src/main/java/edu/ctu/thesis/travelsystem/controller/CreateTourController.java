@@ -3,8 +3,7 @@ package edu.ctu.thesis.travelsystem.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
+
 @Controller
 public class CreateTourController {
 	@Autowired
 	private TourService tourService;
 
-	private static final Logger logger = LoggerFactory.getLogger(CreateTourController.class);
+	private static final Logger logger = Logger.getLogger(CreateTourController.class);
 	
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
