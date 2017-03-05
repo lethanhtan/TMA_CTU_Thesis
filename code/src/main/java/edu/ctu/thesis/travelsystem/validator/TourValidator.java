@@ -28,23 +28,23 @@ public class TourValidator implements Validator {
 		FindAlphabet findAl = new FindAlphabet();
 
 		// Catch empty errors
-		ValidationUtils.rejectIfEmpty(errors, "tourName", "NotEmpty.tourData.tourName");
+		ValidationUtils.rejectIfEmpty(errors, "name", "NotEmpty.tourData.name");
 		ValidationUtils.rejectIfEmpty(errors, "departureDate", "NotEmpty.tourData.departureDate");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "departureTime", "NotEmpty.tourData.departureTime");
 		ValidationUtils.rejectIfEmpty(errors, "returnDate", "NotEmpty.tourData.returnDate");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "returnTime", "NotEmpty.tourData.returnTime");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "NotEmpty.tourData.price");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantum", "NotEmpty.tourData.quantum");
-		ValidationUtils.rejectIfEmpty(errors, "tourDetail", "NotEmpty.tourData.tourDetail");
+		ValidationUtils.rejectIfEmpty(errors, "detail", "NotEmpty.tourData.detail");
 
 		// Catch length character errors
 		// In Tour name field
-		if (tour.getTourName().length() > 50 || tour.getTourName().length() < 6) {
-			errors.rejectValue("tourName", "Size.tourData.tourName");
+		if (tour.getName().length() > 50 || tour.getName().length() < 6) {
+			errors.rejectValue("name", "Size.tourData.name");
 		}
 		// In Tour detail field
-		if (tour.getTourDetail().length() > 2000 || tour.getTourDetail().length() < 10) {
-			errors.rejectValue("tourDetail", "Size.tourData.tourDetail");
+		if (tour.getDetail().length() > 2000 || tour.getDetail().length() < 10) {
+			errors.rejectValue("detail", "Size.tourData.detail");
 		}
 
 		// Catch characters errors

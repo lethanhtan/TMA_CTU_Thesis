@@ -126,7 +126,7 @@
 					<!-- End Search Form -->
 					<div class="col-md-12">
 						<h2 class="margin-vert-20" style="text-align: center;">Danh
-							Sách Tour Du Lịch</h2>
+							Sách Đăng Ký</h2>
 						<a href="createtour"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 						<div class="row margin-bottom-30">
@@ -155,7 +155,7 @@
 										<tr>
 											<td>${tour.idTour}</td>
 
-											<td>${tour.tourName}</td>
+											<td>${tour.name}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
 												&nbsp;&nbsp;&nbsp;</td>

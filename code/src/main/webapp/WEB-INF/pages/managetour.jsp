@@ -152,8 +152,7 @@
 									<c:forEach items="${tourList}" var="tour">
 										<tr>
 											<td>${tour.idTour}</td>
-
-											<td>${tour.tourName}</td>
+											<td>${tour.name}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
 												&nbsp;&nbsp;&nbsp;</td>
@@ -180,7 +179,6 @@
 									</div>
 								</div>
 								<!-- End Popup Cofirm -->
-
 											</a></td>
 										</tr>
 									</c:forEach>

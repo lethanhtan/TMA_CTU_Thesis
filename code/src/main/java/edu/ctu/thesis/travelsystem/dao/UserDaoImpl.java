@@ -4,44 +4,51 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.ctu.thesis.travelsystem.controller.BookTourController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 public class UserDaoImpl implements UserDao {
-	
+
 	EncoderPassword ep = new EncoderPassword();
-	
+
 	GenerateId gid = new GenerateId();
-	
-	//Auto inject fields
+
+	// Auto inject fields
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void setSessionfactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	//Using for register
+	// Using for register
 	@Override
 	public void saveUser(User user) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Role role = new Role();
-		role.setIdRole(1);
-		role.setNameRole("role_user");
-		if(user!=null){
+		role.setId(1);
+		role.setDescription("role_user");
+		if (user != null) {
 			try {
-				user.setRole(role); //set default role for register account
-				System.out.println(user.getRole().getNameRole()); 
-				user.setPassword(ep.enCoded(user.getPassword())); //encoded password user
-				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
-				user.setIdUser(gid.generateIdUser(user.getUserName())); //generate user id
+				user.setRole(role); // set default role for register account
+				System.out.println(user.getRole().getDescription());
+				user.setPassword(ep.enCoded(user.getPassword())); // encoded
+																	// password
+																	// user
+				user.setPasswordConfirm(user.getPassword()); // encoded password
+																// confirm user
+				user.setIdUser(gid.generateIdUser(user.getUserName())); // generate
+																		// user
+																		// id
 				session.save(user);
-				System.out.println("In here!");
 				tx.commit();
 				session.close();
 			} catch (Exception e) {
@@ -52,8 +59,8 @@ public class UserDaoImpl implements UserDao {
 		}
 
 	}
-	
-	//Using for login
+
+	// Using for login
 	@Override
 	public User loginUser(User user) {
 		Session session = sessionFactory.openSession();
@@ -77,17 +84,16 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Integer getRoleUser(User user) {
-		return user.getRole().getIdRole();
+		return user.getRole().getId();
 	}
 
 	@Override
 	public void loadUser(User user) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		if(user!=null){
+		if (user != null) {
 			try {
 				session.get(User.class, new Integer(2));
-				System.out.println("In here!");
 				tx.commit();
 				session.close();
 			} catch (Exception e) {
@@ -97,5 +103,4 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 	}
-
 }

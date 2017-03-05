@@ -16,14 +16,11 @@ public class HomeController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("redirectController is executed!");
 		}
-		//log exception
-		//logger.error("This is error message!", new Exception("Testing"));
 		return "home";
 	}
 
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String homeController(ModelMap model) {
-
 		return "home";
 	}
 }

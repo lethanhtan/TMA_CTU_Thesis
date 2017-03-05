@@ -3,6 +3,8 @@ package edu.ctu.thesis.travelsystem.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,10 +25,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	//Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		System.out.println("Handle register request when client send!");
+		logger.info("Handle register request when client send!");
 		model.put("customerData", new User());//put customerData as a User
 		return "register";
 	}
@@ -34,7 +38,7 @@ public class UserController {
 	//Processing for form register when submit
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("customerData") @Valid User user, BindingResult br, HttpSession session) {
-		System.out.println("Handle register form action when user submit!");
+		logger.info("Handle register form action when user submit!");
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
 		if (br.hasErrors()) {		//form input have error
@@ -42,7 +46,7 @@ public class UserController {
 		} else {					//form input is ok
 			userService.saveUser(user);
 			session.setAttribute("user", user);
-			session.setAttribute("userName", user.getNameUser());
+			session.setAttribute("userName", user.getFullName());
 			return "redirect:login";
 		}
 		
@@ -51,7 +55,7 @@ public class UserController {
 	//Processing for login when required request
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin(ModelMap model, HttpSession session) {
-		System.out.println("Handle login request when client send!");
+		logger.info("Handle login request when client send!");
 		if (session.getAttribute("user") == null) {
 			model.put("customerData", new User()); //put customerData as a user
 			return "login";
@@ -66,22 +70,22 @@ public class UserController {
 	public String doLogin(ModelMap model, @ModelAttribute("customerData") User user, HttpSession session) {
 		if (user.getUserName() != null && user.getPassword() != null && session.getAttribute("user") == null) {
 			user = userService.loginUser(user);
-			System.out.println("Handle login form action when user submit!");
+			logger.info("Handle login form action when user submit!");
 			if (user != null) {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);
-					session.setAttribute("userName", user.getNameUser());
-					session.setAttribute("roleId", user.getRole().getIdRole());
+					session.setAttribute("userName", user.getFullName());
+					session.setAttribute("roleId", user.getRole().getId());
 					return "redirect:managetour";
 				}
 				else {
 					session.setAttribute("user", user);
-					session.setAttribute("userName", user.getNameUser());
+					session.setAttribute("userName", user.getFullName());
 					return "redirect:login";
 				}
 			}
 			else {
-				System.out.println("The username or password is incorrect");
+				logger.info("The username or password is incorrect");
 				model.put("failed", "Tài khoản hoặc mật khẩu không đúng");
 				return "login";
 			}

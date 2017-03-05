@@ -32,20 +32,20 @@ public class User {
 	@Column(name = "PASSWORD_CONFIRM", nullable = true, length = 20)
 	private String passwordConfirm;
 	
-	@Column(name = "BIRTH_DATE_USER", nullable = true)
-	private String dateUser;
+	@Column(name = "BIRTHDAY", nullable = true)
+	private String birthday;
 	
-	@Column(name = "NAME_USER", nullable = false, length = 60)
-	private String nameUser;
+	@Column(name = "FULL_NAME", nullable = false, length = 60)
+	private String fullName;
 	
-	@Column(name = "ADDRESS_USER", nullable = true, length = 100)
-	private String addressUser;
+	@Column(name = "ADDRESS", nullable = true, length = 100)
+	private String address;
 	
-	@Column(name = "EMAIL_USER", nullable = true, length = 100)
-	private String emailUser;
+	@Column(name = "EMAIL", nullable = true, length = 100)
+	private String email;
 	
-	@Column(name = "PHONE_USER", nullable = true)
-	private String phoneUser;
+	@Column(name = "PHONE", nullable = true)
+	private String phone;
 	
 	@Column(name = "SEX", nullable = true)
 	private String sex;
@@ -57,29 +57,29 @@ public class User {
 	//contructor
 	public User() {}
 	
-	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
-			String addressUser, String emailUser, String phoneUser, String sex) {
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+			String address, String email, String phone, String sex) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
-		this.dateUser = dateofbirth;
-		this.nameUser = nameUser;
-		this.addressUser = addressUser;
-		this.emailUser = emailUser;
-		this.phoneUser = phoneUser;
+		this.birthday = birthday;
+		this.fullName = fullName;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
 		this.sex = sex;
 	}
 	
-	public User(String userName, String password, String passwordConfirm, String dateofbirth, String nameUser,
-			String addressUser, String emailUser, String phoneUser, String sex, Role role) {
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
-		this.dateUser = dateofbirth;
-		this.nameUser = nameUser;
-		this.addressUser = addressUser;
-		this.emailUser = emailUser;
-		this.phoneUser = phoneUser;
+		this.birthday = birthday;
+		this.fullName = fullName;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
 		this.sex = sex;
 		this.role = role;
 	}
@@ -117,44 +117,44 @@ public class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 	
-	public String getDateUser() {
-		return dateUser;
+	public String getBirthday() {
+		return birthday;
 	}
 	
-	public void setDateUser(String birthdateUser) {
-		this.dateUser = birthdateUser;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
-	public String getNameUser() {
-		return nameUser;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setNameUser(String nameUser) {
-		this.nameUser = nameUser;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getAddressUser() {
-		return addressUser;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressUser(String addressUser) {
-		this.addressUser = addressUser;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getPhoneUser() {
-		return phoneUser;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setPhoneUser(String phoneUser) {
-		this.phoneUser = phoneUser;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getEmailUser() {
-		return emailUser;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmailUser(String emailUser) {
-		this.emailUser = emailUser;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

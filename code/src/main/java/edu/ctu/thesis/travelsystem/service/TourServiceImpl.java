@@ -23,13 +23,13 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public Tour findByIdTour(String idTour) {
-		return this.tourDao.findByIdTour(idTour);
+	public Tour findId(String idTour) {
+		return this.tourDao.findId(idTour);
 	}
 
 	@Override
-	public Tour findByNameTour(String nameTour) {
-		return this.tourDao.findByNameTour(nameTour);
+	public Tour findName(String name) {
+		return this.tourDao.findName(name);
 	}
 
 	@Override
