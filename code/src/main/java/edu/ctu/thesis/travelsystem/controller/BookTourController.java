@@ -2,16 +2,14 @@ package edu.ctu.thesis.travelsystem.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import edu.ctu.thesis.travelsystem.dao.TourDaoImpl;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
@@ -25,7 +23,7 @@ public class BookTourController {
 		this.tourService = tourService;
 	}
 	
-	private static final Logger logger = LoggerFactory.getLogger(BookTourController.class);
+	private static final Logger logger = Logger.getLogger(BookTourController.class);
 
 	// Forward to Tour List page
 	@RequestMapping(value = "booktour", method = RequestMethod.GET)
