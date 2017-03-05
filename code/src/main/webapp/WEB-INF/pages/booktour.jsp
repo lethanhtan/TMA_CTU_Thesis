@@ -288,10 +288,11 @@
 									<button class="btn btn-primary" type="submit">Đăng Ký</button>
 								</div>
 								<div class="col-lg-4 text-center">
-									<button class="btn btn-primary" type="submit">Hủy Bỏ</button>
+									<a href="/TravelSystem/booktour"><button class="btn btn-primary"
+											type="button">Hủy Bỏ</button></a>
 								</div>
 								<div class="col-lg-4 text-right">
-									<button class="btn btn-primary" type="submit">Nhập Lại</button>
+									<button class="btn btn-primary" type="reset">Nhập Lại</button>
 								</div>
 							</div>
 						</form>

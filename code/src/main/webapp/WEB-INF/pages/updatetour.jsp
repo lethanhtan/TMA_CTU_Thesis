@@ -70,8 +70,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="home" title=""> <img
-							src="resources/img/logo.png" alt="Logo" />
+						<a href="/TravelSystem/home" title=""> <img src="resources/img/logo.png"
+							alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -94,7 +94,7 @@
 							<li><a href="${pageContext.request.contextPath}/managetour" class="fa-gear">Quản Lý Tour</a></li>
 							<li><a href="manageregister" class="fa-list-ul">Quản Lý
 									Đăng Ký</a></li>
-							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
+							<li><a href="/TravelSystem/survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
 							<c:if test="${userName != null}">
 
@@ -135,6 +135,7 @@
 								method="POST">
 								<div class="signup-header">
 									<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
+									</br>
 								</div>
 								<div class="row">
 									<div class="col-sm-8">
@@ -148,18 +149,17 @@
 												path="idTour" disabled="true" />
 										</div>
 									</div>
-
 									<div class="col-sm-8">
 										<label>Tên tour</label>
 										<!-- Show error -->
-										<small><s:errors path="tourName" cssStyle="color:red;" /></small>
+										<small><s:errors path="name" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-map-marker"></i>
 											</span>
 											<s:input placeholder="Nhập tên tour"
 												class="form-control margin-bottom-20" type="text"
-												path="tourName" />
+												path="name" />
 										</div>
 									</div>
 									<div class="col-lg-4 text-right">
@@ -244,11 +244,10 @@
 									</div>
 								</div>
 								<label>Chi tiết tour</label>
-
-								<small><s:errors path="tourDetail" cssStyle="color:red;" /></small>
+								<small><s:errors path="detail" cssStyle="color:red;" /></small>
 								<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 									class="form-control margin-bottom-20" type="text" rows="10"
-									path="tourDetail" />
+									path="detail" />
 								<hr>
 								<div class="row">
 									<div class="col-lg-4 text-left">
@@ -256,12 +255,11 @@
 											Nhận</button>
 									</div>
 									<div class="col-lg-4 text-center">
-										<a href="managetour"><button class="btn btn-primary"
+										<a href="/TravelSystem/managetour"><button class="btn btn-primary"
 												type="button">Hủy Bỏ</button></a>
 									</div>
 									<div class="col-lg-4 text-right">
-										<input class="btn btn-primary" type="button"
-											onclick="resetForm()" value="Nhập Lại">
+										<input class="btn btn-primary" type="reset" value="Nhập Lại">
 									</div>
 								</div>
 							</s:form>
@@ -283,7 +281,7 @@
 								<li><a href="${pageContext.request.contextPath }/managetour" target="_blank">Quản lý tour</a></li>
 								<li><a href="manageregister" target="_blank">Quản lý
 										đăng ký</a></li>
-								<li><a href="survey" target="_blank">Khảo sát ý kiến</a></li>
+								<li><a href="/TravelSystem/survey" target="_blank">Khảo sát ý kiến</a></li>
 							</ul>
 						</div>
 						<div id="copyright" class="col-md-4">
@@ -326,6 +324,8 @@
 				src="http://js.nicedit.com/nicEdit-latest.js"></script>
 			<!--  Back to top -->
 			<script src="resources/js/backtotop.js" type="text/javascript"></script>
+			<!--  History back -->
+			<script src="resources/js/historyback.js" type="text/javascript"></script>
 			<!-- End JS -->
 </body>
 </html>

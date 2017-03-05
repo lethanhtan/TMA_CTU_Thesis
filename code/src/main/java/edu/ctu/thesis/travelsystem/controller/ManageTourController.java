@@ -8,8 +8,7 @@ import java.util.stream.IntStream;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,10 +26,10 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 @Controller
 public class ManageTourController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ManageTourController.class);
-
 	@Autowired
 	private TourService tourService;
+	
+	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 
 	public void setTourService(TourService tourService) {
 		this.tourService = tourService;
@@ -45,7 +44,8 @@ public class ManageTourController {
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
-				if (valueSearch != null) { //search active! Update list tour
+				if (valueSearch != null) {
+					logger.info("Search active!");
 					model.addAttribute("tour", new Tour());
 					model.addAttribute("tourList", tourService.listTourById(valueSearch));
 					model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
@@ -73,7 +73,6 @@ public class ManageTourController {
 			e.printStackTrace();
 			result = "forbidden";
 		}
-
 		return result;
 	}
 
@@ -88,7 +87,6 @@ public class ManageTourController {
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Handle update form managetour when user request!");
-		model.put("tourData", tourService.findByIdTour(idTour)); 
 		return "updatetour";
 	}
 
@@ -108,4 +106,26 @@ public class ManageTourController {
 		}
 	}
 
+	// Forward to Tour detail page
+	@RequestMapping(value = "/detail/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
+		model.put("tourData", tourService.findId(idTour));
+		logger.info("Show tour detail!");
+		return "tourdetail";
+	}
+
+	// Delete tour in Detail tour page
+	@RequestMapping(value = "detail/delete/{idTour}")
+	public String deleteTour(@PathVariable("idTour") String idTour) {
+		tourService.deleteTour(idTour);
+		return "redirect:/managetour";
+	}
+
+	// Forward to Registration List page
+	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
+	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
+		model.put("tourData", tourService.findId(idTour));
+		logger.info("Show tour detail!");
+		return "registrationlist";
+	}
 }

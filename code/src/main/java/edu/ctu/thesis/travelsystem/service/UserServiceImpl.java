@@ -29,5 +29,4 @@ public class UserServiceImpl implements UserService {
 	public Integer getRoleUser(User user) {
 		return this.userDao.getRoleUser(user);
 	}
-
 }

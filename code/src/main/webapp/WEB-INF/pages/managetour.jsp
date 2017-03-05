@@ -28,12 +28,15 @@
 <!-- Favicon -->
 <link href="favicon.ico" rel="shortcut icon">
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/bootstrap.css"
+	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
@@ -90,23 +93,10 @@
 									Đăng Ký</a></li>
 							<li><a href="survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
-							<c:if test="${userName != null}">
-
-								<li><span class="fa-user">
-										${userName}</span>
-									<ul>
-										<li><a href="<c:url value="/logout" />">Logout</a></li>
-									</ul></li>
-							
-							</c:if>
-							<c:if test="${userName == null}">
-								<li><span class="fa-user">Tài khoản</span>
-									<ul>
-										<li><a href="login">Đăng Nhập</a></li>
-										<li><a href="register">Đăng ký</a></li>
-									</ul></li>
-
-							</c:if>
+							<li><span class="fa-user"> ${userName}</span>
+								<ul>
+									<li><a href="<c:url value="/logout" />">Logout</a></li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
@@ -124,17 +114,17 @@
 				<div class="row margin-vert-30">
 					<!-- Search Form -->
 					<div class="error-404-page text-center" style="margin-left: 650px;">
-						<form class="form-search search-404" >
+						<form class="form-search search-404">
 							<div class="input-append">
 								<input type="text" class="span2 search-query"
-									placeholder="Nhập từ khóa" name="valueSearch"/>
+									placeholder="Nhập từ khóa">
 								<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
 							</div>
 						</form>
 					</div>
 					<!-- End Search Form -->
 					<div class="col-md-12">
-						<h2 class="margin-vert-20" style="margin-left: 350px;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Tour Du Lịch</h2>
 						<a href="createtour"><button
 								class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
@@ -147,37 +137,58 @@
 						<hr class="margin-bottom-50">
 						<!-- Table -->
 						<c:if test="${empty tourList}">
-							<h1>List Tour Empty!</h1>
+							<h1>Không có tour nào!</h1>
 						</c:if>
 						<c:if test="${!empty tourList}">
-						<table>
-							<thead>
-								<tr>
-									<th>Mã tour</th>
-									<th>Tên tour</th>
-									<th>Ngày đi</th>
-									<th>Giờ đi</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach items="${tourList}" var="tour"> <!-- use subList render list tour to display --> 
-								<tr>
-									<td>${tour.idTour}</td>
-									
-									<td>${tour.tourName}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime} &nbsp;&nbsp;&nbsp;</td>
-									<td><a href="#" title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>" title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a data-toggle="modal" href="<c:url value='managetour/delete/${tour.idTour}'/>" title="Xóa"> <i
-											class="fa fa-trash-o"></i>
-									</a></td>
-									
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
+							<table>
+								<thead>
+									<tr>
+										<th>Mã tour</th>
+										<th>Tên tour</th>
+										<th>Ngày đi</th>
+										<th>Giờ đi</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${tourList}" var="tour"> <!-- use subList render list tour to display --> 
+										<tr>
+											<td>${tour.idTour}</td>
+											<td>${tour.name}</td>
+											<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
+											<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
+												&nbsp;&nbsp;&nbsp;</td>
+											<td><a href="<c:url value='detail/${tour.idTour}'/>"
+												title="Xem"> <i class="fa fa-eye">&nbsp;</i>
+											</a> <a href="<c:url value='updatetour/${tour.idTour}'/>"
+												title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
+											</a> <a data-toggle="modal"
+												href="<c:url value='managetour/delete/${tour.idTour}'/>"
+												title="Xóa"> <i class="fa fa-trash-o"></i> <!-- Popup Cofirm -->
+													<!-- <div id="deleteConfirm" class="modal fade">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
+												</br>
+												<button type="button" class="btn btn-default"><a href="<c:url value='managetour#deleteCofirm/delete/${tour.idTour}'/>">Có</a></button>
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">Không</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Popup Cofirm -->
+											</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:if>
+						<!-- End Table -->
+						<hr class="margin-vert-50">
 						<!-- Pagination -->
 						<c:if test="${numTour >= 5}"> <!-- set active pagination when numTour >= 5 -->
 							<ul class="pagination" >
@@ -187,44 +198,9 @@
 								</c:forEach>
 								<li><a href="#">&raquo;</a></li>
 							</ul>
-						<!-- End Pagination -->	
-						</c:if>
 						</c:if>
 						<hr class="margin-vert-40">
-						
-						<!-- End Table -->
-						<!-- 
-						<hr class="margin-bottom-50">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-sm-3"></div>
-								</div>
-							</div>
-						</div>
-						<hr class="margin-vert-40">
-						 -->
+						<!-- End Pagination -->
 					</div>
 				</div>
 			</div>
@@ -271,7 +247,8 @@
 		<script type="text/javascript" src="resources/js/jquery.sticky.js"
 			charset="utf-8"></script>
 		<!-- Slimbox2-->
-		<script type="text/javascript" src="resources/js/slimbox2.js" charset="utf-8"></script>
+		<script type="text/javascript" src="resources/js/slimbox2.js"
+			charset="utf-8"></script>
 		<!-- Modernizr -->
 		<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
 		<!--  Back to top -->

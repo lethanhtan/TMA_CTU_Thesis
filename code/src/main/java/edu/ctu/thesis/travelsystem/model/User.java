@@ -32,8 +32,8 @@ public class User {
 	@Column(name = "PASSWORD_CONFIRM", nullable = true, length = 20)
 	private String passwordConfirm;
 	
-	@Column(name = "BIRTH_DATE", nullable = true)
-	private String birthDate;
+	@Column(name = "BIRTHDAY", nullable = true)
+	private String birthday;
 	
 	@Column(name = "FULL_NAME", nullable = false, length = 60)
 	private String fullName;
@@ -57,12 +57,25 @@ public class User {
 	//constructor
 	public User() {}
 	
-	public User(String userName, String password, String passwordConfirm, String birthDate, String fullName,
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+			String address, String email, String phone, String sex) {
+		this.userName = userName;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.birthday = birthday;
+		this.fullName = fullName;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
+		this.sex = sex;
+	}
+	
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
 			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
-		this.birthDate = birthDate;
+		this.birthday = birthday;
 		this.fullName = fullName;
 		this.address = address;
 		this.email = email;
@@ -104,12 +117,12 @@ public class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 	
-	public String getBirthDate() {
-		return birthDate;
+	public String getBirthday() {
+		return birthday;
 	}
 	
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getFullName() {
@@ -160,5 +173,4 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
 }

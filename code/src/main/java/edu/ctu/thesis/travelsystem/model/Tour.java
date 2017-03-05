@@ -10,14 +10,14 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "TOUR", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_TOUR" }) })
 public class Tour {
 	private String idTour;
-	private String tourName;
+	private String name;
 	private String departureDate;
 	private String departureTime;
 	private String returnDate;
 	private String returnTime;
-	private Integer price;
-	private Integer quantum;
-	private String tourDetail;
+	private String price;
+	private String quantum;
+	private String detail;
 	
 	//Getters and Setters method
 	
@@ -33,13 +33,13 @@ public class Tour {
 	}
 	
 	//Create column Tour name
-	@Column(name = "TOUR_NAME", nullable = false, length = 50)
-	public String getTourName() {
-		return tourName;
+	@Column(name = "NAME", nullable = false, length = 50)
+	public String getName() {
+		return name;
 	}
 	
-	public void setTourName(String tourName) {
-		this.tourName = tourName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	//Create column Departure date
@@ -84,31 +84,31 @@ public class Tour {
 	
 	//Create column Price
 	@Column(name = "PRICE", nullable = false)
-	public Integer getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	
 	//Create column Quantum
 	@Column(name = "QUANTUM", nullable = false)
-	public Integer getQuantum() {
+	public String getQuantum() {
 		return quantum;
 	}
 
-	public void setQuantum(Integer quantum) {
+	public void setQuantum(String quantum) {
 		this.quantum = quantum;
 	}
 	
 	//Create column Tour detail 
-	@Column(name = "TOUR_DETAIL", nullable = false, length = 2000)
-	public String getTourDetail() {
-		return tourDetail;
+	@Column(name = "DETAIL", nullable = false, length = 2000)
+	public String getDetail() {
+		return detail;
 	}
 	
-	public void setTourDetail(String tourDetail) {
-		this.tourDetail = tourDetail;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 }

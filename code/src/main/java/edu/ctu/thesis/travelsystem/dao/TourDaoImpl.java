@@ -15,23 +15,23 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 
 public class TourDaoImpl implements TourDao {
 	GenerateId gid = new GenerateId();
-	
-	//Fill the fields automatically
+
+	// Fill the fields automatically
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
+
 	public void setSessionfactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	//Create tour
+	// Create tour
 	@Override
 	public void saveTour(Tour tour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		if(tour != null) {
+		if (tour != null) {
 			try {
 				logger.info("Save tour be called!");
 				tour.setIdTour(gid.generateIdTour());
@@ -48,20 +48,20 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public Tour findByIdTour(String idTour) {
+	public Tour findId(String idTour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Tour tour =(Tour) session.load(Tour.class, new String(idTour));
+		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		tx.commit();
 		logger.info("Tour finded successfully!");
 		return tour;
 	}
 
 	@Override
-	public Tour findByNameTour(String nameTour) {
+	public Tour findName(String name) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Tour tour =(Tour) session.load(Tour.class, new String(nameTour));
+		Tour tour = (Tour) session.load(Tour.class, new String(name));
 		tx.commit();
 		logger.info("Tour loaded successfully!");
 		return tour;
@@ -71,7 +71,7 @@ public class TourDaoImpl implements TourDao {
 	public void updateTour(Tour tour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		if(tour != null) {
+		if (tour != null) {
 			try {
 				session.update(tour);
 				tx.commit();
@@ -90,7 +90,7 @@ public class TourDaoImpl implements TourDao {
 	public void deleteTour(String idTour) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Tour tour =(Tour) session.load(Tour.class, new String(idTour));
+		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		if (tour != null) {
 			session.delete(tour);
 			logger.info("Tour deleted successfully!");
@@ -111,24 +111,22 @@ public class TourDaoImpl implements TourDao {
 		tx.commit();
 		return tourList;
 	}
-	
+
 	@Override
 	public List<Tour> listTourByValue(String value) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		List<Tour> newTourList = new ArrayList<Tour>();
 		for (Tour tour : listTour()) {
-				if (value.equals(tour.getIdTour().substring(0, value.length()))) {
-					newTourList.add(tour);
-				}
-				else if(value.equals(tour.getTourName().substring(0, value.length()))) {
-					newTourList.add(tour);
-				}
-				else {
-					logger.info("Not find tour input!");
-				}
+			if (value.equals(tour.getIdTour().substring(0, value.length()))) {
+				newTourList.add(tour);
+			} else if (value.equals(tour.getName().substring(0, value.length()))) {
+				newTourList.add(tour);
+			} else {
+				logger.info("Not find tour input!");
+			}
 		}
-		
+
 		tx.commit();
 		return newTourList;
 	}
@@ -152,20 +150,4 @@ public class TourDaoImpl implements TourDao {
 		tx.commit();
 		return numTour;
 	}
-	
-	@Override
-	public Integer startIndex(Integer numPage, Integer curPage) {
-		for (int i=0; i < numPage; i++) {
-			Integer startNum = 0;
-		}
-		return null;
-	}
-
-	@Override
-	public Integer endIndex(Integer numPage, Integer startNum, Integer curPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
 }
