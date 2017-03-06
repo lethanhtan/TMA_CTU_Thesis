@@ -87,6 +87,7 @@ public class ManageTourController {
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Handle update form managetour when user request!");
+		model.put("tourData", tourService.findId(idTour));
 		return "updatetour";
 	}
 

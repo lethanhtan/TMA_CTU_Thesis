@@ -1,5 +1,5 @@
 /***********************************************************************
- * Module:  Customer.java
+ * Module:  User.java
  * Author:  Le Nhu Y
  * Purpose: Defines the Class User
  ***********************************************************************/
@@ -172,5 +172,21 @@ public class User {
 	
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "Id= " + id;
+		
+	}
+	
+	@Override
+	public boolean equals(Object user) {
+		if (user == null || (user.getClass() != this.getClass())) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }

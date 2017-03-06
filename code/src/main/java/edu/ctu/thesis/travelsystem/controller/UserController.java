@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,8 +18,14 @@ import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
 @Controller
 public class UserController {
-	@Autowired
+	
 	private UserService userService;
+	
+	@Autowired(required=true)
+	@Qualifier(value="userService")
+	public void setUserService(UserService us){
+		this.userService = us;
+	}
 	
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	

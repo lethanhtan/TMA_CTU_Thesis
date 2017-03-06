@@ -9,12 +9,12 @@ import javax.persistence.UniqueConstraint;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "ROLE", uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"}) })
+@Table(name = "ROLE", uniqueConstraints = {@UniqueConstraint(columnNames = {"ID_ROLE"}) })
 public class Role {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID", nullable = false)
+	@Column(name = "ID_ROLE", nullable = false)
 	private Integer id;
 	
 	@Column(name = "DESCRIPTION", nullable = false, length = 40)
