@@ -16,7 +16,7 @@
 </head>
 <body>
 		<h1>Forbidden</h1>
-		<h3 style="color:red">You don't have permission to access!</h1>
+		<h3 style="color:red">You don't have permission to access!</h3>
 		
 </body>
 </html>
