@@ -23,33 +23,32 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		<property name="annotatedClasses">
-			<list>
-				<value>edu.ctu.thesis.travelsystem.model.User</value>
-				<value>edu.ctu.thesis.travelsystem.model.Role</value>
-				<value>edu.ctu.thesis.travelsystem.model.Tour</value>
-			</list>
+		<property name="packagesToScan">
+				<value>edu.ctu.thesis.travelsystem.model</value>
 		</property>
 	</bean>
 	
 	<!-- Define bean for transaction -->
+	 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+	 
+	<!--
 	<bean id="userDao" class="edu.ctu.thesis.travelsystem.dao.UserDaoImpl">
-		<property name="sessionfactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="userService" class="edu.ctu.thesis.travelsystem.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-
+	
 	<bean id="tourDao" class="edu.ctu.thesis.travelsystem.dao.TourDaoImpl">
-		<property name="sessionfactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="tourService" class="edu.ctu.thesis.travelsystem.service.TourServiceImpl">
 		<property name="tourDao" ref="tourDao"></property>
 	</bean>
-
+	-->
+	
 </beans>

@@ -5,7 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.controller.UserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
@@ -13,7 +13,7 @@ import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
-@Repository
+@Service
 public class UserDaoImpl implements UserDao {
 
 	EncoderPassword ep = new EncoderPassword();
@@ -22,14 +22,16 @@ public class UserDaoImpl implements UserDao {
 	
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	
-	//@Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
 	
+	/*
 	@Autowired
 	public void setSessionfactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	*/
+	
 	// Using for register
 	@Override
 	public void saveUser(User user) {

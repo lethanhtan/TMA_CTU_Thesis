@@ -20,7 +20,9 @@
 	<mvc:resources mapping="/booktour/resources/**" location="/resources/"></mvc:resources>
 	
 	<!-- Set package to scan using annotation -->
-    <context:component-scan base-package="edu.ctu.thesis.travelsystem" />
+	<context:component-scan base-package="edu.ctu.thesis.travelsystem.controller" />
+    <context:component-scan base-package="edu.ctu.thesis.travelsystem.dao" />
+    <context:component-scan base-package="edu.ctu.thesis.travelsystem.service" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/pages directory -->
     <bean
