@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import edu.ctu.thesis.travelsystem.extra.FindAlphabet;
+import edu.ctu.thesis.travelsystem.extra.FindDigit;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -26,6 +27,7 @@ public class TourValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Tour tour = (Tour) target;
 		FindAlphabet findAl = new FindAlphabet();
+		FindDigit findDigit = new FindDigit();
 
 		// Catch empty errors
 		ValidationUtils.rejectIfEmpty(errors, "name", "NotEmpty.tourData.name");
@@ -63,6 +65,11 @@ public class TourValidator implements Validator {
 		// In Quantum field
 		if (findAl.findAlphabet(tour.getQuantum())) {
 			errors.rejectValue("quantum", "Invalid.tourData.quantum");
+		}
+
+		// Catch digit error in Tour name field
+		if (findDigit.findDigit(tour.getName())) {
+			errors.rejectValue("name", "Invalid.tourData.name");
 		}
 	}
 }

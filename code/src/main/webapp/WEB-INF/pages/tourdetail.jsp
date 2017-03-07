@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="adminheader.jsp"%>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">

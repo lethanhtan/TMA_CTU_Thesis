@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp" %>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -90,4 +92,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp" %>
+<!-- === END FOOTER === -->

@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp" %>
+<%@ include file="userheader.jsp"%>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -137,7 +139,7 @@
 						<li>
 							<div class="recent-post">
 								<a href=""> <img class="pull-left"
-									src="resources/img/news/thumbs/ValentineDiDay.jpg" alt="thumb1">
+									src="resources/img/news/thumbs/ValentineDiDau.jpg" alt="thumb1">
 								</a> <a href="#" class="posts-list-title">Valentine này đi đâu?</a>
 								<br> <span class="recent-post-date"> 03/01/2017 </span>
 							</div>
@@ -173,4 +175,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp" %>
+<!-- === END FOOTER === -->
