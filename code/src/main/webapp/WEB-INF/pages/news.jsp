@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
-=======
-<%@page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp" %>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -145,11 +139,7 @@
 						<li>
 							<div class="recent-post">
 								<a href=""> <img class="pull-left"
-<<<<<<< HEAD
 									src="resources/img/news/thumbs/ValentineDiDau.jpg" alt="thumb1">
-=======
-									src="resources/img/news/thumbs/ValentineDiDay.jpg" alt="thumb1">
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 								</a> <a href="#" class="posts-list-title">Valentine này đi đâu?</a>
 								<br> <span class="recent-post-date"> 03/01/2017 </span>
 							</div>
@@ -185,10 +175,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<<<<<<< HEAD
 <!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp" %>
 <!-- === END FOOTER === -->
-=======
-<%@ include file="userfooter.jsp" %>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0

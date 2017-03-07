@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
-=======
-<%@page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp"%>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -19,10 +13,6 @@
 					<s:form class="signup-page" commandName="userData"
 						action="${pageContext.request.contextPath }/register"
 						method="POST">
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 						<div class="signup-header">
 							<h2>Đăng Ký Tài Khoản</h2>
 							<p>
@@ -34,19 +24,11 @@
 						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
-<<<<<<< HEAD
 								<span class="input-group-addon"> <i class="fa fa-user"></i>
 								</span>
 								<s:input placeholder="Nhập tên tài khoản"
 									class="form-control margin-bottom-20" type="text"
 									path="userName" />
-=======
-							<span class="input-group-addon"> <i class="fa fa-user"></i>
-							</span>
-							<s:input placeholder="Nhập tên tài khoản"
-								class="form-control margin-bottom-20" type="text"
-								path="userName" />
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
@@ -159,13 +141,7 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp"%>
 <!-- === END FOOTER === -->
-=======
-
-<!-- === END CONTENT === -->
-<%@ include file="userfooter.jsp" %>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0

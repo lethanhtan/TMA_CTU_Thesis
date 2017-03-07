@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp" %>
 <!-- === END HEADER === -->
-=======
-<%@page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp" %>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -98,10 +92,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<<<<<<< HEAD
 <!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp" %>
 <!-- === END FOOTER === -->
-=======
-<%@ include file="userfooter.jsp" %>
->>>>>>> 2e01d0fb0f21ac9e80fe063dcf4a0e00c54efdc0
