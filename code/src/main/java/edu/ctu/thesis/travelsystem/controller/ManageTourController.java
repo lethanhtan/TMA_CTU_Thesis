@@ -1,5 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -20,7 +25,7 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
 @Controller
 public class ManageTourController {
-
+	
 	@Autowired
 	private TourService tourService;
 	
@@ -29,10 +34,12 @@ public class ManageTourController {
 	public void setTourService(TourService tourService) {
 		this.tourService = tourService;
 	}
-
+	
+	//handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
 	public String managetourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
+		logger.info("Handle when managetour request from admin!");
 		String result;
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
@@ -43,10 +50,20 @@ public class ManageTourController {
 					model.addAttribute("tourList", tourService.listTourById(valueSearch));
 					model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 					result = "managetour";
-				} else {
+				} else { //search none active ! Update list tour
+					Integer num = 0;
+					if ((tourService.getNumTour() % 5) == 0) {
+						num = tourService.getNumTour() / 5;
+					}
+					else {
+						num = (tourService.getNumTour() / 5) + 1;
+					}
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("tour", new Tour());
-					model.addAttribute("tourList", tourService.listTour());
-					model.addAttribute("numTour", tourService.getNumTour());
+					model.addAttribute("tourList", tourService.listTour()); //create list tour
+					model.addAttribute("numTour", tourService.getNumTour()); //create number of tour
+					model.addAttribute("pageNum", pageNum); //create number of page display
+					model.addAttribute("pageE", new ArrayList<Integer>()); //create var for loop
 					result = "managetour";
 				}
 			} else {
@@ -70,10 +87,7 @@ public class ManageTourController {
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Handle update form managetour when user request!");
-		model.put("tourData", tourService.findId(idTour)); // put tourData
-																	// as a tour
-																	// with id
-																	// specifies
+		model.put("tourData", tourService.findId(idTour));
 		return "updatetour";
 	}
 

@@ -19,6 +19,7 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class CreateTourController {
 	@Autowired
 	private TourService tourService;
+	
 
 	private static final Logger logger = Logger.getLogger(CreateTourController.class);
 	
@@ -26,7 +27,7 @@ public class CreateTourController {
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
 	//Decentralization user and admin
 		public String createtourController(ModelMap model, HttpSession session) {
-			System.out.println(session.getAttribute("roleId"));
+			logger.info("Create tour request is called!");
 			String result;
 			try {
 				if ((Integer) session.getAttribute("roleId") == 2) {
@@ -51,7 +52,7 @@ public class CreateTourController {
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {
-			logger.info("Register! In here second!");
+			logger.info("Create tour when submit form!");
 			tourService.saveTour(tour);
 			return "redirect:managetour";
 		}
