@@ -95,9 +95,9 @@
 								<li><span class="fa-user"> ${userName}</span>
 									<ul>
 										<c:if test="${roleId == 2}">
-											<li><a href="<c:url value="${pageContext.request.contextPath }/managetour" />">Quản lý tour</a></li>
+											<li><a href="<c:url value="/managetour" />">Quản lý tour</a></li>
 										</c:if>
-										<li><a href="<c:url value="${pageContext.request.contextPath }/logout" />">Logout</a></li>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
 									</ul>
 							</c:if>
 							<c:if test="${userName == null}">

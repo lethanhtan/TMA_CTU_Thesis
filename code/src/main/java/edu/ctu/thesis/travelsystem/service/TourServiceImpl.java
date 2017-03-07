@@ -16,10 +16,6 @@ public class TourServiceImpl implements TourService {
 	@Autowired
 	private TourDao tourDao;
 	
-	public void setTourDao(TourDao tourDao) {
-		this.tourDao = tourDao;
-	}
-
 	@Override
 	@Transactional
 	public void saveTour(Tour tour) {

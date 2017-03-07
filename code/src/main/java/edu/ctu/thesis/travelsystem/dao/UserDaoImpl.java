@@ -25,13 +25,6 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	/*
-	@Autowired
-	public void setSessionfactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	*/
-	
 	// Using for register
 	@Override
 	public void saveUser(User user) {
