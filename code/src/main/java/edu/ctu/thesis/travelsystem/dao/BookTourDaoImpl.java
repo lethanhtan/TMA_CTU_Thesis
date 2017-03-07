@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,5 +43,18 @@ public class BookTourDaoImpl implements BookTourDao {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> registrationList(String idTour) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE ID_TOUR = :idTour";
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
+		List<BookTour> registrationList = query.list();
+		tx.commit();
+		return registrationList;
 	}
 }
