@@ -169,10 +169,11 @@
 					<compilerVersion>1.8</compilerVersion>
 					<encoding>UTF-8</encoding><!-- Working with UTF-8 -->
 					<fork>true</fork>
-					<executable>C:\Program Files\Java\jdk1.8.0_121\bin\javac</executable>
+					<executable>/opt/jdk1.8.0_121/bin/javac</executable> <!-- should be reupdate in Windows -->
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
