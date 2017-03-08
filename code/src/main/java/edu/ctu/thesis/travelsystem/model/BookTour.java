@@ -12,7 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.CascadeType;
 
-@Entity
+//@Entity
 @Table(name = "BOOK_TOUR", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_TOUR" }) })
 public class BookTour {
 	private String customerName;
@@ -96,9 +96,9 @@ public class BookTour {
 	public void setCustomerAddress(String customerAddress) {
 		this.customerAddress= customerAddress;
 	}
-
+	/*
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_TOUR", nullable = false)
+	@JoinColumn(name = "ID_TOUR", nullable = false, insertable=false, updatable=false)
 
 	public Tour getTour() {
 		return tour;
@@ -107,4 +107,5 @@ public class BookTour {
 	public void setTour(Tour tour) {
 		this.tour = tour;
 	}
+	*/
 }

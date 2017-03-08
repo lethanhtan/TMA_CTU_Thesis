@@ -28,8 +28,8 @@
 								</div>
 							</div>
 							<div class="col-sm-8">
-								<label>Tên tour</label>
 								<!-- Show error -->
+								<label>Tên tour</label>
 								<small><s:errors path="name" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
-@Controller
+//@Controller
 public class BookTourController {
 
 	@Autowired

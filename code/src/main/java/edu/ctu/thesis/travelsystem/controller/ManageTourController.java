@@ -84,29 +84,33 @@ public class ManageTourController {
 	}
 
 	// handle required reuest from client
-	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Handle update form managetour when user request!");
-		model.put("tourData", tourService.findId(idTour));
+		try{
+			model.addAttribute("tourData", tourService.findId(idTour));
+		}catch (Exception e) {
+			logger.info("==================================");
+			e.printStackTrace();
+		}
 		return "updatetour";
 	}
-
+	
 	// handle form action update tour
-	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.POST)
-	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model,
+	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.POST)
+	public String updateTour(ModelMap model, @PathVariable("idTour") String idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
-		logger.info("Handle update form managetour when user submit value");
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
-			return "updatetour/{idTour}";
+			return "updatetour";
 		} else {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
 			return "redirect:/managetour";
 		}
 	}
-
+	
 	// Forward to Tour detail page
 	@RequestMapping(value = "/detail/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {

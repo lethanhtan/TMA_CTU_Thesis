@@ -40,10 +40,9 @@ public class UserDaoImpl implements UserDao {
 				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
 				user.setId(gid.generateIdUser(user.getUserName())); //generate user id
 				session.save(user);
-				session.close();
+				session.flush();
 			} catch (Exception e) {
 				logger.info("Exception when save user!");
-				session.close();
 				e.printStackTrace();
 			}
 		}
@@ -61,10 +60,8 @@ public class UserDaoImpl implements UserDao {
 			query.setParameter(0, user.getUserName());
 			query.setParameter(1, ep.enCoded(user.getPassword()));
 			user = (User) query.uniqueResult();
-			session.close();
 		} catch (Exception e) {
 			logger.info("Exception when login user!");
-			session.close();
 			e.printStackTrace();
 		}
 		return user;

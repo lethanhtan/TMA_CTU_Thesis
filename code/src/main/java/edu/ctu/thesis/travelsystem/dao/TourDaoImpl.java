@@ -31,11 +31,10 @@ public class TourDaoImpl implements TourDao {
 			try {
 				logger.info("Save tour be called!");
 				tour.setIdTour(gid.generateIdTour());
-				session.save(tour);
-				session.close();
+				session.saveOrUpdate(tour);
+				session.flush();
 			} catch (Exception e) {
 				logger.info("Exception when call save tour!");
-				session.close();
 				e.printStackTrace();
 			}
 		}
@@ -44,8 +43,11 @@ public class TourDaoImpl implements TourDao {
 	@Override
 	public Tour findId(String idTour) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
-		logger.info("Tour finded successfully!");
+		Tour tour = (Tour) session.load(Tour.class, idTour);
+		logger.info("Tour finded successfully!" + tour.getName());
+		if (tour != null) {
+			session.delete(tour);
+		}
 		return tour;
 	}
 
@@ -63,11 +65,10 @@ public class TourDaoImpl implements TourDao {
 		if (tour != null) {
 			try {
 				session.update(tour);
+				session.flush();
 				logger.info("Tour updated successfully, Tour details = " + tour);
-				session.close();
 			} catch (Exception e) {
 				logger.info("Exception when update tour!");
-				session.close();
 				e.printStackTrace();
 			}
 		}
@@ -79,6 +80,7 @@ public class TourDaoImpl implements TourDao {
 		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		if (tour != null) {
 			session.delete(tour);
+			session.flush();
 			logger.info("Tour deleted successfully!");
 		}
 	}
