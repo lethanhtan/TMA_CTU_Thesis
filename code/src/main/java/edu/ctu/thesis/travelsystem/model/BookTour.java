@@ -19,7 +19,7 @@ public class BookTour {
 	private String cusEmail;
 	private String cusPhone;
 	private String cusAddress;
-	private Tour tour;
+	private static Tour tour;
 
 	public BookTour() {
 	}
@@ -106,8 +106,8 @@ public class BookTour {
 	// Join table Tour by column ID tour
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_TOUR", nullable = true)
-	public Tour getTour() {
-		return this.tour;
+	public static Tour getTour() {
+		return tour;
 	}
 
 	public void setTour(Tour tour) {

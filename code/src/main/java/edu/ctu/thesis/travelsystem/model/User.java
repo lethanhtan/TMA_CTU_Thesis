@@ -1,7 +1,7 @@
 /***********************************************************************
- * Module:  User.java
- * Author:  Le Nhu Y
- * Purpose: Defines the Class User
+ * Module:  Customer.java
+ * Author:  Lê Như Ý
+ * Purpose: Defines the Class Customer
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
 
@@ -16,12 +16,12 @@ import javax.persistence.UniqueConstraint;
 import javax.persistence.CascadeType;
 
 @Entity
-@Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
+@Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_USER" }) })
 public class User {
 
 	@Id
-	@Column(name = "ID", nullable = false, unique = true, length = 10)
-	private String id;
+	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
+	private String idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -54,7 +54,7 @@ public class User {
 	@JoinColumn(name = "ID_ROLE", nullable = false)
 	private Role role;
 	
-	//constructor
+	//contructor
 	public User() {}
 	
 	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
@@ -84,13 +84,13 @@ public class User {
 		this.role = role;
 	}
 	
-	//getters and setters method
-	public String getId() {
-		return id;
+	//Getters and Setters method
+	public String getIdUser() {
+		return idUser;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
 	}
 	
 	public String getUserName() {
@@ -172,21 +172,5 @@ public class User {
 	
 	public void setRole(Role role) {
 		this.role = role;
-	}
-	
-	@Override
-	public String toString() {
-		return this.getClass().getName() + "Id= " + id;
-		
-	}
-	
-	@Override
-	public boolean equals(Object user) {
-		if (user == null || (user.getClass() != this.getClass())) {
-			return false;
-		}
-		else {
-			return true;
-		}
 	}
 }
