@@ -8,9 +8,9 @@ public interface TourDao {
 	
 	public void saveTour(Tour tour);
 	
-	public Tour findId(String idTour);
+	public Tour findTourById(String idTour);
 	
-	public Tour findName(String name);
+	public Tour findTourByName(String name);
 	
 	public void updateTour(Tour tour);
 	
@@ -23,5 +23,9 @@ public interface TourDao {
 	public Integer getNumTourBySearch(String value);
 
 	public List<Tour> listTourByValue(String value);
+	
+	public Integer paginationX(Integer currentPage, Integer page);
+	
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
 	
 }

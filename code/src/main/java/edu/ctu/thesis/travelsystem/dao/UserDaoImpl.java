@@ -80,7 +80,6 @@ public class UserDaoImpl implements UserDao {
 			try {
 				logger.info("Loaded user!");
 				session.get(User.class, new Integer(2));
-				session.close();
 			} catch (Exception e) {
 				logger.info("Exception when loaded user!");
 				session.close();

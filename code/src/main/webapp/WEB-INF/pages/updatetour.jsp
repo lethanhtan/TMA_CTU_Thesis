@@ -8,8 +8,8 @@
 			<div class="row margin-vert-30">
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" commandName="tourData"
-						action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
+					<s:form class="signup-page" modelAttribute="tourData"
+						action="${pageContext.request.contextPath }/updatetour/${idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
@@ -22,7 +22,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-map-marker"></i>
 									</span>
-									<s:input placeholder="${tourData.idTour}"
+									<s:input placeholder="${idTour}"
 										class="form-control margin-bottom-20" type="text"
 										path="idTour" disabled="true" />
 								</div>

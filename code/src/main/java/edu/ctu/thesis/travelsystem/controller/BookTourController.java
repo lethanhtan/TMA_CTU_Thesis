@@ -37,7 +37,7 @@ public class BookTourController {
 	// Forward to Book Tour page
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
 	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
-		model.put("tourData", tourService.findId(idTour));
+		model.put("tourData", tourService.findTourById(idTour));
 		logger.info("Show tour detail!");
 		return "booktour";
 	}

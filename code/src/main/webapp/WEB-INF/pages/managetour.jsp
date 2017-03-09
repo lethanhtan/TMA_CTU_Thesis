@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -36,6 +36,7 @@
 					<table>
 						<thead>
 							<tr>
+								<th>STT</th>
 								<th>Mã tour</th>
 								<th>Tên tour</th>
 								<th>Ngày đi</th>
@@ -44,9 +45,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${tourList}" var="tour">
+							<c:forEach items="${tourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
+									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.idTour}</td>
 									<td>${tour.name}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
@@ -83,21 +85,75 @@
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-vert-50">
-				<!-- Pagination -->
-				<c:if test="${numTour >= 5}">
-					<!-- set active pagination when numTour >= 5 -->
-					<ul class="pagination">
-						<li><a href="#">&laquo;</a></li>
-						<c:forEach items="${pageNum}" var="pageE">
-							<li><a href="managetour">${pageE}</a></li>
-						</c:forEach>
-						<li><a href="#">&raquo;</a></li>
-					</ul>
-				</c:if>
+				<div class="text-center">
+					<!-- Pagination -->
+					<c:if test="${numTour >= 5}">
+						<!-- set active pagination when numTour >= 5 -->
+						<ul class="pagination">
+							<c:if test="${param.page != null}">
+								<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+								</c:if>
+								<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
+									<li><a
+										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
+									</li>
+								</c:if>
+							</c:if>
+							<c:forEach items="${pageNum}" var="pageE">
+								<c:if test="${param.valueSearch == null}">
+								<c:if test="${pageE == param.page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != param.page}">
+									<li><a
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								</c:if>
+								<c:if test="${param.valueSearch != null}">
+								<c:if test="${pageE == param.page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/managetour?valueSearch=${param.valueSearch}?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != param.page}">
+									<li><a
+										href="${pageContext.request.contextPath}/managetour?valueSearch=${param.valueSearch}?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								</c:if>
+							</c:forEach>
+							<c:if test="${param.valueSearch == null}">
+								<c:if test="${numTour/5 - param.page == 0}">
+									<li class="disabled"><a
+										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									</li>
+								</c:if>
+								<c:if test="${numTour/5 - param.page > 0}">
+									<li><a
+										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									</li>
+								</c:if>
+							</c:if>
+							<c:if test="${param.valueSearch != null}">
+								<c:if test="${numTour/5 - param.page == 0}">
+									<li class="disabled"><a
+										href="${pageContext.request.contextPath }/managetour?valueSearh=${param.valueSearh}?page=${param.page + 1}">&raquo;FOR</a>
+									</li>
+								</c:if>
+								<c:if test="${numTour/5 - param.page > 0}">
+									<li><a
+										href="${pageContext.request.contextPath }/managetour?valueSearh=${param.valueSearh}?page=${param.page + 1}">&raquo;FOR1</a>
+									</li>
+								</c:if>
+							</c:if>
+						</ul>
+					</c:if>
+				</div>
 				<!-- End Pagination -->
+				<h6>${param.valueSearch }</h6>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp" %>
+<%@ include file="adminfooter.jsp"%>
