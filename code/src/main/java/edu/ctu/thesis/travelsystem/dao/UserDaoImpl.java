@@ -5,7 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.controller.UserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
@@ -13,22 +13,17 @@ import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
-@Repository
+@Service
 public class UserDaoImpl implements UserDao {
 
 	EncoderPassword ep = new EncoderPassword();
 
 	GenerateId gid = new GenerateId();
-	
+
 	private static final Logger logger = Logger.getLogger(UserController.class);
-	
-	//@Autowired
-	private SessionFactory sessionFactory;
-	
+
 	@Autowired
-	public void setSessionfactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	private SessionFactory sessionFactory;
 
 	// Using for register
 	@Override
@@ -40,19 +35,17 @@ public class UserDaoImpl implements UserDao {
 		if (user != null) {
 			try {
 				logger.info("Save User Object! With encoded password!");
-				user.setRole(role); //set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); //encoded password user
-				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
-				user.setId(gid.generateIdUser(user.getUserName())); //generate user id
+				user.setRole(role); // set default role for register account
+				user.setPassword(ep.enCoded(user.getPassword())); // encoded password user
+				user.setPasswordConfirm(user.getPassword()); // encoded password confirm user
+				user.setIdUser(gid.generateIdUser(user.getUserName())); // generate user id
 				session.save(user);
-				session.close();
+				session.flush();
 			} catch (Exception e) {
 				logger.info("Exception when save user!");
-				session.close();
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	// Using for login
@@ -66,10 +59,8 @@ public class UserDaoImpl implements UserDao {
 			query.setParameter(0, user.getUserName());
 			query.setParameter(1, ep.enCoded(user.getPassword()));
 			user = (User) query.uniqueResult();
-			session.close();
 		} catch (Exception e) {
 			logger.info("Exception when login user!");
-			session.close();
 			e.printStackTrace();
 		}
 		return user;
@@ -91,7 +82,6 @@ public class UserDaoImpl implements UserDao {
 				session.close();
 			} catch (Exception e) {
 				logger.info("Exception when loaded user!");
-				session.close();
 				e.printStackTrace();
 			}
 		}
