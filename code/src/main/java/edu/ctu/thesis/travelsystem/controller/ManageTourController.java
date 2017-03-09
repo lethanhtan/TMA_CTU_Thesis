@@ -31,9 +31,6 @@ public class ManageTourController {
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 
-	public void setTourService(TourService tourService) {
-		this.tourService = tourService;
-	}
 
 	// handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
@@ -136,7 +133,7 @@ public class ManageTourController {
 	}
 
 	// Forward to Tour detail page
-	@RequestMapping(value = "/detail/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
@@ -144,12 +141,12 @@ public class ManageTourController {
 	}
 
 	// Delete tour in Detail tour page
-	@RequestMapping(value = "detail/delete/{idTour}")
+	@RequestMapping(value = "tourdetail/delete/{idTour}")
 	public String deleteTour(@PathVariable("idTour") String idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
-
+	/*
 	// Forward to Registration List page
 	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
 	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
@@ -157,4 +154,5 @@ public class ManageTourController {
 		logger.info("Show tour detail!");
 		return "registrationlist";
 	}
+	*/
 }

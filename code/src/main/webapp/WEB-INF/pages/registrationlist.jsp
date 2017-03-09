@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="adminheader.jsp" %>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -19,7 +21,7 @@
 			<div class="col-md-12">
 				<h2 class="margin-vert-20" style="text-align: center;">Danh
 					Sách Đăng Ký</h2>
-				<a href="createtour"><button
+				<a href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
 						class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 				<div class="row margin-bottom-30">
 					<div class="col-md-4 animate fadeInRight"></div>
@@ -27,10 +29,10 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<!-- Table -->
-				<c:if test="${empty tourList}">
+				<c:if test="${empty registrationList}">
 					<h1>Chưa có người đăng ký tham gia tour này!</h1>
 				</c:if>
-				<c:if test="${!empty tourList}">
+				<c:if test="${!empty registrationList}">
 					<table>
 						<thead>
 							<tr>
@@ -38,25 +40,24 @@
 								<th>Giới tính</th>
 								<th>Số điện thoại</th>
 								<th>Email</th>
-								<th>Địa chỉ</th>
+								<th></th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${tourList}" var="tour">
+							<c:forEach items="${registrationList}" var="bookTour">
 								<tr>
-									<td>${tour.idTour}</td>
-
-									<td>${tour.name}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
+									<td>${bookTour.cusName}</td>
+									<td>${bookTour.cusSex}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='detail/${tour.idTour}'/>"
+									<td><a href="<c:url value='/customerdetail/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>"
+									</a> <a href="<c:url value='/editcustomer/${tour.idTour}'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
 									</a> <a data-toggle="modal"
-										href="<c:url value='managetour/delete/${tour.idTour}'/>"
+										href="<c:url value='/deletecustomer/${tour.idTour}'/>"
 										title="Xóa"> <i class="fa fa-trash-o"></i> <!-- Popup Cofirm -->
 											<!-- <div id="deleteConfirm" class="modal fade">
 									<div class="modal-dialog">
@@ -74,7 +75,6 @@
 									</div>
 								</div>
 								<!-- End Popup Cofirm -->
-
 									</a></td>
 								</tr>
 							</c:forEach>
@@ -98,4 +98,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
 <%@ include file="adminfooter.jsp" %>
+<!-- === END FOOTER === -->

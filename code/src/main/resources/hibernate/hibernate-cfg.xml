@@ -34,21 +34,4 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	 
-	<!--
-	<bean id="userDao" class="edu.ctu.thesis.travelsystem.dao.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="userService" class="edu.ctu.thesis.travelsystem.service.UserServiceImpl">
-		<property name="userDao" ref="userDao"></property>
-	</bean>
-	
-	<bean id="tourDao" class="edu.ctu.thesis.travelsystem.dao.TourDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="tourService" class="edu.ctu.thesis.travelsystem.service.TourServiceImpl">
-		<property name="tourDao" ref="tourDao"></property>
-	</bean>
-	-->
-	
 </beans>

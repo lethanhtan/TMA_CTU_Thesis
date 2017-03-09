@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp"%>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -11,7 +13,6 @@
 					<s:form class="signup-page" commandName="userData"
 						action="${pageContext.request.contextPath }/register"
 						method="POST">
-
 						<div class="signup-header">
 							<h2>Đăng Ký Tài Khoản</h2>
 							<p>
@@ -23,11 +24,11 @@
 						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"> <i class="fa fa-user"></i>
-							</span>
-							<s:input placeholder="Nhập tên tài khoản"
-								class="form-control margin-bottom-20" type="text"
-								path="userName" />
+								<span class="input-group-addon"> <i class="fa fa-user"></i>
+								</span>
+								<s:input placeholder="Nhập tên tài khoản"
+									class="form-control margin-bottom-20" type="text"
+									path="userName" />
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
@@ -140,6 +141,7 @@
 		</div>
 	</div>
 </div>
-
 <!-- === END CONTENT === -->
-<%@ include file="userfooter.jsp" %>
+<!-- === BEGIN FOOTER === -->
+<%@ include file="userfooter.jsp"%>
+<!-- === END FOOTER === -->

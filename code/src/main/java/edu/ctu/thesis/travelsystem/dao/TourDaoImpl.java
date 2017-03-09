@@ -35,7 +35,7 @@ public class TourDaoImpl implements TourDao {
 				session.flush();
 			} catch (Exception e) {
 				logger.info("Exception when call save tour!");
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class TourDaoImpl implements TourDao {
 				logger.info("Tour updated successfully, Tour details = " + tour);
 			} catch (Exception e) {
 				logger.info("Exception when update tour!");
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	}

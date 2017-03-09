@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,15 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
-
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
-	public void setUserService(UserService us){
-		this.userService = us;
-	}
 	
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	
@@ -75,8 +69,10 @@ public class UserController {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
+					logger.info(user.getFullName());
 					session.setAttribute("roleId", user.getRole().getId());
-					return "redirect:managetour";
+					logger.info(user.getRole().getId());
+					return "redirect:/managetour";
 				}
 				else {
 					session.setAttribute("user", user);

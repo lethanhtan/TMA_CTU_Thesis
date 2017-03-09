@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 	EncoderPassword ep = new EncoderPassword();
 
 	GenerateId gid = new GenerateId();
-	
+
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired
@@ -35,10 +35,10 @@ public class UserDaoImpl implements UserDao {
 		if (user != null) {
 			try {
 				logger.info("Save User Object! With encoded password!");
-				user.setRole(role); //set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); //encoded password user
-				user.setPasswordConfirm(user.getPassword()); //encoded password confirm user
-				user.setId(gid.generateIdUser(user.getUserName())); //generate user id
+				user.setRole(role); // set default role for register account
+				user.setPassword(ep.enCoded(user.getPassword())); // encoded password user
+				user.setPasswordConfirm(user.getPassword()); // encoded password confirm user
+				user.setIdUser(gid.generateIdUser(user.getUserName())); // generate user id
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {
@@ -46,7 +46,6 @@ public class UserDaoImpl implements UserDao {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	// Using for login
@@ -82,7 +81,6 @@ public class UserDaoImpl implements UserDao {
 				session.get(User.class, new Integer(2));
 			} catch (Exception e) {
 				logger.info("Exception when loaded user!");
-				session.close();
 				e.printStackTrace();
 			}
 		}

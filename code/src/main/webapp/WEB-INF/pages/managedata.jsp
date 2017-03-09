@@ -30,7 +30,7 @@
 									</span>
 									<input placeholder="Nhập tên file export"
 										class="form-control margin-bottom-20" type="text" />
-								</div>
+				 				</div>
 							</div>
 							<div class="col-lg-4 text-right">
 								<button class="btn btn-primary" type="button">Chọn file

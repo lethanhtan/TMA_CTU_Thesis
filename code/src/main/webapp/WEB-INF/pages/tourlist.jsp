@@ -1,6 +1,8 @@
+<!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp" %>
+<!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
@@ -47,7 +49,7 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='detail/${tour.idTour}'/>"
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="<c:url value='booktour/${tour.idTour}'/>"
 										title="Đăng Ký"> <i class="fa fa-edit">&nbsp;</i>
@@ -74,4 +76,6 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp" %>
+<!-- === END FOOTER === -->
