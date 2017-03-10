@@ -21,7 +21,7 @@
 			<!-- Register Box -->
 			<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 				<s:form class="signup-page" commandName="cusData"
-						action="${pageContext.request.contextPath}/booktour/${tour.idTour}"
+						action="${pageContext.request.contextPath}/booktour/${idTour}"
 						method="POST">
 					<div class="signup-header">
 						<h2>Đặt Vé</h2>

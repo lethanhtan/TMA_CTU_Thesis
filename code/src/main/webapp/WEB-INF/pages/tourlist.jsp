@@ -49,7 +49,7 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='detail/${tour.idTour}'/>"
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="<c:url value='booktour/${tour.idTour}'/>"
 										title="Đăng Ký"> <i class="fa fa-edit">&nbsp;</i>

@@ -21,10 +21,10 @@ public class UserDaoImpl implements UserDao {
 	GenerateId gid = new GenerateId();
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
-
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	// Using for register
 	@Override
 	public void saveUser(User user) {
@@ -79,7 +79,6 @@ public class UserDaoImpl implements UserDao {
 			try {
 				logger.info("Loaded user!");
 				session.get(User.class, new Integer(2));
-				session.close();
 			} catch (Exception e) {
 				logger.info("Exception when loaded user!");
 				e.printStackTrace();

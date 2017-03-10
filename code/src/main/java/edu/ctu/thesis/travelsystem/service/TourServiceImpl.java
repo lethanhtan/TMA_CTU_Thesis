@@ -24,14 +24,14 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public Tour findId(String idTour) {
-		return this.tourDao.findId(idTour);
+	public Tour findTourById(String idTour) {
+		return this.tourDao.findTourById(idTour);
 	}
 
 	@Override
 	@Transactional
-	public Tour findName(String name) {
-		return this.tourDao.findName(name);
+	public Tour findTourByName(String name) {
+		return this.tourDao.findTourByName(name);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public List<Tour> listTourById(String value) {
+	public List<Tour> listTourByValue(String value) {
 		return this.tourDao.listTourByValue(value);
 	}
 
@@ -68,5 +68,15 @@ public class TourServiceImpl implements TourService {
 	@Transactional
 	public Integer getNumTourByValue(String value) {
 		return this.tourDao.getNumTourBySearch(value);
+	}
+
+	@Override
+	public Integer paginationX(Integer currentPage, Integer page) {
+		return this.tourDao.paginationX(currentPage, page);
+	}
+
+	@Override
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
+		return this.tourDao.paginationY(numOfPage, currentPage, page);
 	}
 }

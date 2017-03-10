@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
-/*------------------------------------------------------------*/
-/*					UserController                            */
-/*This controller be used to handle login, register and logout*/
-/*request                                                     */
-/*------------------------------------------------------------*/
 @Controller
 public class UserController {
 	@Autowired
@@ -74,8 +69,10 @@ public class UserController {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
+					logger.info(user.getFullName());
 					session.setAttribute("roleId", user.getRole().getId());
-					return "redirect:managetour";
+					logger.info(user.getRole().getId());
+					return "redirect:/managetour";
 				}
 				else {
 					session.setAttribute("user", user);
