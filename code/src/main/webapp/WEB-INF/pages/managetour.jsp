@@ -103,7 +103,6 @@
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
-								<c:if test="${param.valueSearch == null}">
 								<c:if test="${pageE == param.page}">
 									<li class="active"><a
 										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
@@ -111,20 +110,8 @@
 								<c:if test="${pageE != param.page}">
 									<li><a
 										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
-								</c:if>
-								</c:if>
-								<c:if test="${param.valueSearch != null}">
-								<c:if test="${pageE == param.page}">
-									<li class="active"><a
-										href="${pageContext.request.contextPath}/managetour?valueSearch=${param.valueSearch}?page=${pageE}">${pageE}</a></li>
-								</c:if>
-								<c:if test="${pageE != param.page}">
-									<li><a
-										href="${pageContext.request.contextPath}/managetour?valueSearch=${param.valueSearch}?page=${pageE}">${pageE}</a></li>
-								</c:if>
 								</c:if>
 							</c:forEach>
-							<c:if test="${param.valueSearch == null}">
 								<c:if test="${numTour/5 - param.page == 0}">
 									<li class="disabled"><a
 										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
@@ -135,19 +122,6 @@
 										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
 									</li>
 								</c:if>
-							</c:if>
-							<c:if test="${param.valueSearch != null}">
-								<c:if test="${numTour/5 - param.page == 0}">
-									<li class="disabled"><a
-										href="${pageContext.request.contextPath }/managetour?valueSearh=${param.valueSearh}?page=${param.page + 1}">&raquo;FOR</a>
-									</li>
-								</c:if>
-								<c:if test="${numTour/5 - param.page > 0}">
-									<li><a
-										href="${pageContext.request.contextPath }/managetour?valueSearh=${param.valueSearh}?page=${param.page + 1}">&raquo;FOR1</a>
-									</li>
-								</c:if>
-							</c:if>
 						</ul>
 					</c:if>
 				</div>
