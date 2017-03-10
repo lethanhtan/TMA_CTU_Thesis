@@ -43,7 +43,7 @@ public class RegistrationListController {
 	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour) {
 		logger.info("Show registration list!");
 		model.addAttribute("bookTour", new BookTour());
-		model.addAttribute("tour", tourService.findId(idTour));
+		model.addAttribute("tour", tourService.findTourById(idTour));
 		model.addAttribute("registrationList", bookTourService.registrationList(idTour));
 		return "registrationlist";
 	}

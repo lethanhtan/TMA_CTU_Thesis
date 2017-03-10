@@ -3,6 +3,7 @@ package edu.ctu.thesis.travelsystem.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +21,8 @@ import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
 public class BookTourController {
+	
+	private static final Logger logger = Logger.getLogger(BookTourController.class);
 
 	@Autowired
 	private TourService tourService;
@@ -48,8 +51,12 @@ public class BookTourController {
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour) {
 		// Put Customer data into table Book Tour;
+		try{
 		model.put("cusData", new BookTour());
-		model.addAttribute("tour", tourService.findId(idTour));
+		model.addAttribute("tour", idTour);
+		}catch(Exception e) {
+			logger.info("================================");
+		}
 		return "booktour";
 	}
 
@@ -60,8 +67,9 @@ public class BookTourController {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
-			return "booktour/{idTour}";
+			return "booktour";
 		} else {
+			logger.info("Handle for save booktour!");
 			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/home";
 		}

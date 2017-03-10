@@ -1,5 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -23,31 +28,63 @@ public class ManageTourController {
 
 	@Autowired
 	private TourService tourService;
-	
+
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 
-	public void setTourService(TourService tourService) {
-		this.tourService = tourService;
-	}
 
+	// handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
 	public String managetourController(ModelMap model, HttpSession session,
-			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
+			@RequestParam(required = false, value = "valueSearch") String valueSearch,
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
+		logger.info("Handle when managetour request from admin!");
 		String result;
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
+				
 				if (valueSearch != null) {
-					logger.info("Search active!");
-					model.addAttribute("tour", new Tour());
-					model.addAttribute("tourList", tourService.listTourById(valueSearch));
-					model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
-					result = "managetour";
-				} else {
-					model.addAttribute("tour", new Tour());
-					model.addAttribute("tourList", tourService.listTour());
-					model.addAttribute("numTour", tourService.getNumTour());
-					result = "managetour";
+					Integer num = 0;
+					if ((tourService.getNumTourByValue(valueSearch) % 5) == 0) {
+						num = tourService.getNumTourByValue(valueSearch) / 5;
+					} else {
+						num = (tourService.getNumTourByValue(valueSearch) / 5) + 1;
+					}
+					if (page <= num) {
+						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+						logger.info("Search active!");
+						model.addAttribute("tour", new Tour());
+						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
+						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("pageE", new ArrayList<Integer>()); // create
+						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
+						result = "managetour";
+					} else {
+						result = "forbidden";
+					}
+				} else { // search none active ! Update list tour
+					Integer num = 0;
+					if ((tourService.getNumTour() % 5) == 0) {
+						num = tourService.getNumTour() / 5;
+					} else {
+						num = (tourService.getNumTour() / 5) + 1;
+					}
+					if (page <= num) {
+						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+						model.addAttribute("tour", new Tour());
+						model.addAttribute("tourList", tourService.listTour()); // create
+						model.addAttribute("numTour", tourService.getNumTour()); // create
+						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("pageE", new ArrayList<Integer>()); // create
+						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
+						result = "managetour";
+					} else {
+						result = "forbidden";
+					}
+
 				}
 			} else {
 				result = "forbidden";
@@ -67,25 +104,27 @@ public class ManageTourController {
 	}
 
 	// handle required reuest from client
-	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Handle update form managetour when user request!");
-		model.put("tourData", tourService.findId(idTour)); // put tourData
-																	// as a tour
-																	// with id
-																	// specifies
+		Tour tour = tourService.findTourById(idTour);
+		if (tour != null) {
+			model.addAttribute("tourData", tour);
+			model.addAttribute("idTour", idTour);
+		} else {
+			logger.info("Null Object!");
+		}
 		return "updatetour";
 	}
 
 	// handle form action update tour
-	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.POST)
-	public String updateTour(@PathVariable("idTour") String idTour, ModelMap model,
+	@RequestMapping(value = "/updatetour/{idTour}")
+	public String updateTour(ModelMap model, @PathVariable("idTour") String idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
-		logger.info("Handle update form managetour when user submit value");
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
-			return "updatetour/{idTour}";
+			return "updatetour";
 		} else {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
@@ -96,8 +135,8 @@ public class ManageTourController {
 	// Forward to Tour detail page
 	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
-		model.put("tourData", tourService.findId(idTour));
 		logger.info("Show tour detail!");
+		model.put("tourData", tourService.findTourById(idTour));
 		return "tourdetail";
 	}
 
@@ -107,4 +146,13 @@ public class ManageTourController {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
+	/*
+	// Forward to Registration List page
+	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
+	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
+		model.put("tourData", tourService.findTourById(idTour));
+		logger.info("Show tour detail!");
+		return "registrationlist";
+	}
+	*/
 }

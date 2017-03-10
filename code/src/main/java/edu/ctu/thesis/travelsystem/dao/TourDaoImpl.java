@@ -1,8 +1,8 @@
 package edu.ctu.thesis.travelsystem.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -41,15 +41,24 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public Tour findId(String idTour) {
+	public Tour findTourById(String idTour) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
-		logger.info("Tour finded successfully! " + tour.getIdTour());
+		Tour tour = new Tour();
+		logger.info("Tour infor: " + idTour);
+		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour =?";
+		try {
+			Query query = session.createQuery(hql);
+			query.setParameter(0, idTour);
+			tour = (Tour) query.uniqueResult();
+		} catch (Exception e) {
+			logger.info("Exception when find tour!");
+			//e.printStackTrace();
+		}
 		return tour;
 	}
 
 	@Override
-	public Tour findName(String name) {
+	public Tour findTourByName(String name) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new String(name));
 		logger.info("Tour loaded successfully!");
@@ -96,17 +105,14 @@ public class TourDaoImpl implements TourDao {
 
 	@Override
 	public List<Tour> listTourByValue(String value) {
-		List<Tour> newTourList = new ArrayList<Tour>();
-		for (Tour tour : listTour()) {
-			if (value.equals(tour.getIdTour().substring(0, value.length()))) {
-				newTourList.add(tour);
-			} else if (value.equals(tour.getName().substring(0, value.length()))) {
-				newTourList.add(tour);
-			} else {
-				logger.info("Not find tour input!");
-			}
-		}
-		return newTourList;
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour like :value "
+				+ "or t.name like :value ";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%"+value+"%");
+		@SuppressWarnings("unchecked")
+		List<Tour> tourList = query.list();
+		return tourList;
 	}
 
 	@Override
@@ -122,4 +128,29 @@ public class TourDaoImpl implements TourDao {
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
 	}
+
+	@Override
+	public Integer paginationX(Integer currentPage, Integer page) {
+		return currentPage*page - page;
+	}
+
+	@Override
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
+		Integer y = 0;
+		if (numOfPage < currentPage * page){
+			y = numOfPage % 10;
+			if (y > page) {
+				y = paginationX(currentPage,page) + (y - page);
+			}
+			else{
+				y = paginationX(currentPage,page) + y;
+			}
+		}
+		else{
+			y = paginationX(currentPage,page) + page;
+		}
+		
+		return y;
+	}
+
 }

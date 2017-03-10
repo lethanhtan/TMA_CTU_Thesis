@@ -32,15 +32,16 @@ public class BookTourDaoImpl implements BookTourDao {
 	@Override
 	public void saveBookTour(BookTour bookTour, String idTour) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		if (bookTour != null) {
 			try {
 				bookTour.setIdBT(gid.generateIdBT());
-				session.saveOrUpdate(bookTour);
 				Query query = session.createQuery("update BookTour set ID_TOUR = :idTour where ID_BT = :idBT");
-				query.setParameter("idTour", tour.getIdTour());
+				logger.info(idTour);
+				query.setParameter("idTour",idTour);
+				logger.info("L2:" +  bookTour.getIdBT());
 				query.setParameter("idBT", bookTour.getIdBT());
-				query.executeUpdate();
+				session.persist(bookTour);
+				session.flush();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

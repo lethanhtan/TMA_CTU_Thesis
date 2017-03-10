@@ -20,7 +20,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- Favicon -->
+<!-- 
 <link href="favicon.ico" rel="shortcut icon">
+ -->
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
@@ -85,6 +87,7 @@
 							<li><a href="${pageContext.request.contextPath }/managetour" class="fa-gear">Quản Lý Tour</a></li>
 							<li><a href="${pageContext.request.contextPath }/manageregister" class="fa-list-ul">Quản Lý
 									Đăng Ký</a></li>
+							<li><a href="${pageContext.request.contextPath }/managedata" class="fa-gear">Quản Lý Dữ Liệu</a></li>
 							<li><a href="${pageContext.request.contextPath }/survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
 							<li><span class="fa-user"> ${userName}</span>
