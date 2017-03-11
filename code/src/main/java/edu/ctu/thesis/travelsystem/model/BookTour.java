@@ -105,7 +105,7 @@ public class BookTour {
 
 	// Join table Tour by column ID tour
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_TOUR", nullable = false)
+	@JoinColumn(name = "ID_TOUR", nullable = true)
 	public Tour getTour() {
 		return tour;
 	}
