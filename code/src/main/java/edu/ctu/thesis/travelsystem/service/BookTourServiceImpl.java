@@ -30,8 +30,8 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public BookTour searchId(String idBT) {
-		return this.bookTourDao.searchId(idBT);
+	public BookTour searchById(String idBT) {
+		return this.bookTourDao.searchById(idBT);
 	}
 	
 	@Override
@@ -44,5 +44,51 @@ public class BookTourServiceImpl implements BookTourService {
 	@Transactional
 	public void deleteBookTour(String idBT, String idTour) {
 		this.bookTourDao.deleteBookTour(idBT, idTour);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByName(String cusName) {
+		return this.bookTourDao.searchByName(cusName);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByEmail(String cusEmail) {
+		return this.bookTourDao.searchByEmail(cusEmail);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByPhone(String cusPhone) {
+		return this.bookTourDao.searchByPhone(cusPhone);
+	}
+	
+	@Override
+	@Transactional
+	public Integer getNumBookTour(String idTour) {
+		return this.bookTourDao.getNumBookTour(idTour);
+	}
+
+	@Override
+	@Transactional
+	public List<BookTour> registrationListByValue(String value) {
+		return this.bookTourDao.registrationListByValue(value);
+	}
+
+	@Override
+	@Transactional
+	public Integer getNumBTBySearch(String value) {
+		return this.bookTourDao.getNumBTBySearch(value);
+	}
+
+	@Override
+	public Integer paginationX(Integer currentPage, Integer page) {
+		return this.bookTourDao.paginationX(currentPage, page);
+	}
+
+	@Override
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
+		return this.bookTourDao.paginationY(numOfPage, currentPage, page);
 	}
 }

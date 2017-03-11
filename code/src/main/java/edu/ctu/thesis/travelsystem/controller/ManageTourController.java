@@ -146,13 +146,4 @@ public class ManageTourController {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
-	/*
-	// Forward to Registration List page
-	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
-	public String registrationList(ModelMap model, @PathVariable("idTour") String idTour) {
-		model.put("tourData", tourService.findTourById(idTour));
-		logger.info("Show tour detail!");
-		return "registrationlist";
-	}
-	*/
 }

@@ -60,6 +60,8 @@
 <!-- Text editor -->
 <script type="text/javascript"
 	src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<!-- History back -->
+<script src="resources/js/historyback.js" type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>

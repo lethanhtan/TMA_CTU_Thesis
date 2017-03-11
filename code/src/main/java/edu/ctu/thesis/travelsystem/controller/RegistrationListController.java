@@ -1,5 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
@@ -30,28 +36,64 @@ public class RegistrationListController {
 
 	private static final Logger logger = Logger.getLogger(RegistrationListController.class);
 
-	public void setBookTourService(BookTourService bookTourService) {
-		this.bookTourService = bookTourService;
-	}
-
-	public void setTourService(TourService tourService) {
-		this.tourService = tourService;
-	}
-
 	// Forward to Registration List page
 	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
-	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour) {
-		logger.info("Show registration list!");
-		model.addAttribute("bookTour", new BookTour());
-		model.addAttribute("tour", tourService.findTourById(idTour));
-		model.addAttribute("registrationList", bookTourService.registrationList(idTour));
-		return "registrationlist";
+	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch,
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
+		model.addAttribute("searchedValue", valueSearch);
+		if (valueSearch != null) {
+			Integer num = 0;
+			if ((bookTourService.getNumBTBySearch(valueSearch) % 5) == 0) {
+				num = bookTourService.getNumBTBySearch(valueSearch) / 5;
+			} else {
+				num = (bookTourService.getNumBTBySearch(valueSearch) / 5) + 1;
+			}
+			if (page <= num) {
+				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+				logger.info("Search active!");
+				model.addAttribute("bookTour", new BookTour());
+				model.addAttribute("tour", tourService.findTourById(idTour));
+				model.addAttribute("registrationList", bookTourService.registrationListByValue(valueSearch));
+				model.addAttribute("numBookTour", bookTourService.getNumBTBySearch(valueSearch));
+				model.addAttribute("pageNum", pageNum); // create number
+				model.addAttribute("pageE", new ArrayList<Integer>()); // create
+				model.addAttribute("x", tourService.paginationX(page, 5));
+				model.addAttribute("y", bookTourService
+						.paginationY(bookTourService.registrationListByValue(valueSearch).size(), page, 5));
+				return "registrationlist";
+			} else {
+				return "registrationlist";
+			}
+		} else { // search none active ! Update list tour
+			Integer num = 0;
+			if ((bookTourService.getNumBookTour(idTour) % 5) == 0) {
+				num = bookTourService.getNumBookTour(idTour) / 5;
+			} else {
+				num = (bookTourService.getNumBookTour(idTour) / 5) + 1;
+			}
+			if (page <= num) {
+				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+				model.addAttribute("bookTour", new BookTour());
+				model.addAttribute("tour", tourService.findTourById(idTour));
+				model.addAttribute("registrationList", bookTourService.registrationList(idTour)); // create
+				model.addAttribute("numBookTour", bookTourService.getNumBookTour(idTour)); // create
+				model.addAttribute("pageNum", pageNum); // create number
+				model.addAttribute("pageE", new ArrayList<Integer>()); // create
+				model.addAttribute("x", bookTourService.paginationX(page, 5));
+				model.addAttribute("y",
+						bookTourService.paginationY(bookTourService.registrationList(idTour).size(), page, 5));
+				return "registrationlist";
+			} else {
+				return "registrationlist";
+			}
+		}
 	}
 
 	// Forward to Customer detail page
 	@RequestMapping(value = "/booktourdetail/{idBT}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idBT") String idBT) {
-		model.put("cusData", bookTourService.searchId(idBT));
+		model.put("cusData", bookTourService.searchById(idBT));
 		logger.info("Show information of customer when book tour");
 		return "booktourdetail";
 	}
@@ -60,9 +102,7 @@ public class RegistrationListController {
 	@RequestMapping(value = "editbooktour/{idBT}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idBT") String idBT) {
 		logger.info("Display edit form when admin request!");
-		model.put("cusData", bookTourService.searchId(idBT));
-		// model.put("tourData", BookTour.getTour().getIdTour());
-		//model.addAttribute("tour", tourService.findId(idTour));
+		model.put("cusData", bookTourService.searchById(idBT));
 		return "editbooktour";
 	}
 
@@ -74,12 +114,11 @@ public class RegistrationListController {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
-			return "editbooktour/{idBT}";
+			return "editbooktour";
 		} else {
 			logger.info("Edit success!");
-			// model.put("cusData", BookTour.getTour().getIdTour());
 			bookTourService.editBookTour(bookTour);
-			return "redirect:/registrationlist/{idTour}";
+			return "redirect:/managetour";
 		}
 	}
 

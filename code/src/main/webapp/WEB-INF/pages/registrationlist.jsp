@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -12,7 +12,7 @@
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
-							placeholder="Nhập từ khóa">
+							placeholder="Nhập họ tên/ điện thoại/ email" name="valueSearch">
 						<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
 					</div>
 				</form>
@@ -36,6 +36,7 @@
 					<table>
 						<thead>
 							<tr>
+								<th>STT</th>
 								<th>Họ tên</th>
 								<th>Giới tính</th>
 								<th>Số điện thoại</th>
@@ -45,59 +46,76 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${registrationList}" var="bookTour">
+							<c:forEach items="${registrationList.subList(x,y)}"
+								var="bookTour">
+								<!-- use subList render list tour to display -->
 								<tr>
+									<td>${registrationList.indexOf(bookTour) + 1}</td>
 									<td>${bookTour.cusName}</td>
 									<td>${bookTour.cusSex}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='/customerdetail/${tour.idTour}'/>"
+									<td><a
+										href="<c:url value='/booktourdetail/${bookTour.idBT}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='/editcustomer/${tour.idTour}'/>"
+									</a> <a href="<c:url value='/editbooktour/${bookTour.idBT}'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
 									</a> <a data-toggle="modal"
-										href="<c:url value='/deletecustomer/${tour.idTour}'/>"
-										title="Xóa"> <i class="fa fa-trash-o"></i> <!-- Popup Cofirm -->
-											<!-- <div id="deleteConfirm" class="modal fade">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
-												</br>
-												<button type="button" class="btn btn-default"><a href="<c:url value='managetour#deleteCofirm/delete/${tour.idTour}'/>">Có</a></button>
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Không</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- End Popup Cofirm -->
+										href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour }'/>"
+										title="Xóa"> <i class="fa fa-trash-o"></i> 
 									</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<!-- Pagination -->
-					<c:if test="${numTour > 2}">
-						<ul class="pagination">
-							<li><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">${numTour - 1}</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
-						<!-- End Pagination -->
-					</c:if>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-vert-50">
+				<div class="text-center">
+					<!-- Pagination -->
+					<c:if test="${numBookTour >= 5}">
+						<!-- set active pagination when numTour >= 5 -->
+						<ul class="pagination">
+							<c:if test="${param.page != null}">
+								<c:if test="${numBookTour/5 - param.page == numBookTour/5 - 1}">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+								</c:if>
+								<c:if test="${numBookTour/5 - param.page != numBookTour/5 - 1}">
+									<li><a
+										href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page -1}">&laquo;</a>
+									</li>
+								</c:if>
+							</c:if>
+							<c:forEach items="${pageNum}" var="pageE">
+								<c:if test="${pageE == param.page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/registrationlist/${tour.idTour }?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != param.page}">
+									<li><a
+										href="${pageContext.request.contextPath}/registrationlist/${tour.idTour }?page=${pageE}">${pageE}</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${numBookTour/5 - param.page == 0}">
+								<li class="disabled"><a
+									href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${numBookTour/5 - param.page > 0}">
+								<li><a
+									href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</c:if>
+				</div>
+				<!-- End Pagination -->
 			</div>
 		</div>
 	</div>
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp" %>
+<%@ include file="adminfooter.jsp"%>
 <!-- === END FOOTER === -->

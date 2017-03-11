@@ -33,7 +33,7 @@ public class Tour {
 	}
 	
 	//Create column Tour name
-	@Column(name = "NAME", nullable = false, length = 100)
+	@Column(name = "NAME", nullable = false, length = 50)
 	public String getName() {
 		return name;
 	}
