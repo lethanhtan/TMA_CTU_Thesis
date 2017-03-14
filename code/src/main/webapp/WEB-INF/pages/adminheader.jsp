@@ -24,6 +24,11 @@
 <link href="favicon.ico" rel="shortcut icon">
  -->
 <!-- Bootstrap Core CSS -->
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
@@ -87,7 +92,12 @@
 							<li><a href="${pageContext.request.contextPath }/managetour" class="fa-gear">Quản Lý Tour</a></li>
 							<li><a href="${pageContext.request.contextPath }/manageregister" class="fa-list-ul">Quản Lý
 									Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/managedata" class="fa-gear">Quản Lý Dữ Liệu</a></li>
+							<li><a href="${pageContext.request.contextPath }/managedata" class="fa-gear">Quản Lý Dữ Liệu</a>
+								<ul>
+									<li><a href="<c:url value="/import" />">Import</a></li>
+									<li><a href="<c:url value="/export" />">Export</a></li>
+								</ul>
+							</li>
 							<li><a href="${pageContext.request.contextPath }/survey" class="fa-file-text">Khảo Sát Ý
 									Kiến</a></li>
 							<li><span class="fa-user"> ${userName}</span>

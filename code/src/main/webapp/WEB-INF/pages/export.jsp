@@ -82,7 +82,7 @@
 										type="button">Hủy Bỏ</button></a>
 							</div>
 							<div class="col-lg-4 text-right">
-								<input class="btn btn-primary" type="reset" value="Nhập Lại">
+								<input class="btn btn-primary" type="reset" value="Download">
 							</div>
 						</div>
 					</form>

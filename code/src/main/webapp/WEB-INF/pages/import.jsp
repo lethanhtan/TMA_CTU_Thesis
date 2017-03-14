@@ -12,32 +12,31 @@
 					<form class="signup-page">
 						<div class="signup-header">
 							<div class="text-center">
-								<h2>Quản lý Export</h2>
+								<h2>Quản lý Import</h2>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12">
-								<label>Tên export</label>
-								<br />
-								<small><font color="red">${failedName}</font></small>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-map-marker"></i>
-									</span> <input placeholder="Nhập tên tour"
-										class="form-control margin-bottom-20" type="text" name="nameFile"/>
+
+							<div>
+								<h4>Documents</h4>
+								<div class="input-group col-sm-8">
+									<span class="input-group-btn"> <span
+										class="btn btn-primary btn-file"> Browse&hellip; <input
+											type="file" single>
+									</span>
+									</span> <input type="text" class="form-control" readonly>
 								</div>
 							</div>
+
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Từ ngày</label>
-								<br />
-								<small><font color="red">${failedDate}</font></small>
+								<label>Từ ngày</label> <br /> <small><font color="red">${failedDate}</font></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span> <input placeholder="mm/dd/yyyy" id="datepicker"
-										class="form-control margin-bottom-20" name="Date1"/>
+										class="form-control margin-bottom-20" name="Date1" />
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -46,7 +45,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span> <input placeholder="mm/dd/yyyy" id="datepicker2"
-										class="form-control margin-bottom-20" name="Date2"/>
+										class="form-control margin-bottom-20" name="Date2" />
 								</div>
 							</div>
 						</div>
@@ -55,7 +54,8 @@
 								<label>Loại Export</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-male"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportList">
+									</span> <select class="form-control margin-bottom-20"
+										name="exportList">
 										<option>Danh sách tour</option>
 										<option>Danh sách đăng ký</option>
 									</select>
@@ -65,7 +65,8 @@
 								<label>Loại File</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-male"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportType">
+									</span> <select class="form-control margin-bottom-20"
+										name="exportType">
 										<option>Pdf</option>
 										<option>Excel</option>
 									</select>
@@ -88,6 +89,20 @@
 					</form>
 				</div>
 				<!-- End Export Box -->
+				<div class="row">
+
+							<div>
+								<h4>Documents</h4>
+								<div class="input-group col-sm-offset-6">
+									<span class="input-group-btn col-sm-4"> <span
+										class="btn btn-primary btn-file"> Browse&hellip; <input
+											type="file" single>
+									</span>
+									</span> <input type="text" class="form-control" readonly>
+								</div>
+							</div>
+
+						</div>
 			</div>
 		</div>
 	</div>

@@ -22,19 +22,19 @@
 	<mvc:resources mapping="/editbooktour/resources/**" location="/resources/"></mvc:resources>
 	
 	<!-- Set package to scan using annotation -->
-	<context:component-scan base-package="edu.ctu.thesis.travelsystem.controller" />
-    <context:component-scan base-package="edu.ctu.thesis.travelsystem.dao" />
-    <context:component-scan base-package="edu.ctu.thesis.travelsystem.service" />
+	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/pages directory -->
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
+    <bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value="views"/>
+    </bean>
+     
+    <bean id="viewResolver2"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="2"/>
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
     </bean>
     
     <!-- Using for report errors message -->

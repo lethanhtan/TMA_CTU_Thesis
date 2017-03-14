@@ -89,7 +89,7 @@
 				<hr class="margin-vert-50">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numTour >= 5}">
+					<c:if test="${numTour > 5}">
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
