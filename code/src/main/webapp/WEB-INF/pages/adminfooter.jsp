@@ -26,6 +26,8 @@
 </div>
 <!-- End Footer Menu -->
 <!-- JS -->
+<script type="text/javascript" src="resources/js/input.js"></script>
+
 <script type="text/javascript" src="resources/js/jquery.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript" src="resources/js/bootstrap.min.js"

@@ -13,6 +13,10 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/**" location="/" />
+	
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 	<mvc:resources mapping="/updatetour/resources/**" location="/resources/"></mvc:resources>
 	<mvc:resources mapping="/tourdetail/resources/**" location="/resources/"></mvc:resources>
@@ -46,5 +50,14 @@
         </property>
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
+    
+    <!-- Using set size upload file -->
+    <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		 <!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="1000000" />
+
+	</bean>
 
 </beans>

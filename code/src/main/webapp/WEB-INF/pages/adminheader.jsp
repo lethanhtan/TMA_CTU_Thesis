@@ -23,12 +23,20 @@
 <!-- 
 <link href="favicon.ico" rel="shortcut icon">
  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+	integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js">
+	
+</script>
 <!-- Bootstrap Core CSS -->
-
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
@@ -68,8 +76,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath }/home" title=""> <img src="resources/img/logo.png"
-							alt="Logo" />
+						<a href="${pageContext.request.contextPath }/home" title=""> <img
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -89,17 +97,19 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/managetour" class="fa-gear">Quản Lý Tour</a></li>
-							<li><a href="${pageContext.request.contextPath }/manageregister" class="fa-list-ul">Quản Lý
-									Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/managedata" class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a href="${pageContext.request.contextPath }/managetour"
+								class="fa-gear">Quản Lý Tour</a></li>
+							<li><a href="${pageContext.request.contextPath }/statistics"
+								class="fa-gear">Thống kê dữ liệu</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/manageregister"
+								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
+							<li><a href="${pageContext.request.contextPath }/managedata"
+								class="fa-gear">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
-								</ul>
-							</li>
-							<li><a href="${pageContext.request.contextPath }/survey" class="fa-file-text">Khảo Sát Ý
-									Kiến</a></li>
+								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Logout</a></li>
