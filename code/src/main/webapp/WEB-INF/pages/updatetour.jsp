@@ -25,7 +25,7 @@
 										class="fa fa-map-marker"></i>
 									</span>
 									<s:input placeholder="${tourData.idTour}"
-										class="form-control margin-bottom-20" type="text"
+										class="form-control margin-bottom-20" type="number"
 										path="idTour" disabled="true" />
 								</div>
 							</div>

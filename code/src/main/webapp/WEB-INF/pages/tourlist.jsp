@@ -35,10 +35,12 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								<th>Mã tour</th>
 								<th>Tên tour</th>
 								<th>Ngày đi</th>
 								<th>Giờ đi</th>
+								<th>Ngày về</th>
+								<th>Giờ về</th>
+								<th>Số chỗ còn</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -47,15 +49,16 @@
 								<!-- use subList render list tour to display -->
 								<tr>
 									<td>${tourList.indexOf(tour) + 1}</td>
-									<td>${tour.idTour}</td>
 									<td>${tour.name}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
-										&nbsp;&nbsp;&nbsp;</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
 									<td><a href="<c:url value='viewtour/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='booktour/${tour.idTour}'/>" title="Đăng Ký">
-											<i class="fa fa-edit">&nbsp;</i>
+									</a> <a href="<c:url value='booktour/${tour.idTour}'/>"
+										title="Đăng Ký"> <i class="fa fa-edit">&nbsp;</i>
 									</a></td>
 								</tr>
 							</c:forEach>

@@ -14,13 +14,6 @@
 	<mvc:annotation-driven />
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/updatetour/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/tourdetail/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/registrationlist/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/booktour/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/booktourdetail/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/editbooktour/resources/**" location="/resources/"></mvc:resources>
-		<mvc:resources mapping="/viewtour/resources/**" location="/resources/"></mvc:resources>
 	
 	<!-- Set package to scan using annotation -->
     <context:component-scan base-package="edu.ctu.thesis.travelsystem" />

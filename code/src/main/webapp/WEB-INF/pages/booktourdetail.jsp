@@ -11,7 +11,7 @@
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
-						action="${pageContext.request.contextPath }/booktourdetail/${cusData.idBT}"
+						action="${pageContext.request.contextPath }/booktourdetail/${cusData.idBT}/${idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2>Thông Tin Khách Hàng Đặt Vé</h2>
@@ -22,7 +22,7 @@
 							<span class="input-group-addon"> <i
 								class="fa fa-key"></i>
 							</span>
-							<s:input class="form-control margin-bottom-20" type="text"
+							<s:input class="form-control margin-bottom-20" type="number"
 								path="idBT" disabled="true" />
 						</div>
 						<label>Họ tên</label>
@@ -64,7 +64,7 @@
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/editbooktour/${cusData.idBT}'/>"><button
+								<a href="<c:url value='/editbooktour/${cusData.idBT}/${idTour}'/>"><button
 										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 							</div>
 							<div class="col-lg-6 text-center">

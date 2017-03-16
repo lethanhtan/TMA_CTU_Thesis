@@ -58,7 +58,8 @@ public class BookTourController {
 				model.addAttribute("pageNum", pageNum); // create number
 				model.addAttribute("pageE", new ArrayList<Integer>()); // create
 				model.addAttribute("x", tourService.paginationX(page, 5));
-				model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
+				model.addAttribute("y",
+						tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
 				return "tourlist";
 			} else {
 				return "forbidden";
@@ -88,32 +89,39 @@ public class BookTourController {
 
 	// Forward to Book tour page, display book tour form
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour) {
+	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") Integer idTour) {
 		// Put Customer data into table Book Tour;
-		model.put("cusData", new BookTour());
-		model.addAttribute("idTour", idTour);
+		try {
+			model.put("cusData", new BookTour());
+			 model.addAttribute("tour", idTour);
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+		}
 		return "booktour";
 	}
 
 	// Test errors
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") String idTour) {
+			HttpSession session, @PathVariable("idTour") Integer idTour) {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
 			return "booktour";
 		} else {
+			Tour tour = tourService.findTourById(idTour);
+			bookTour.setTour(tour);
+			logger.info("Handle for save booktour!");
 			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/home";
 		}
 	}
-	
+
 	// Forward to Tour detail page
-		@RequestMapping(value = "/viewtour/{idTour}", method = RequestMethod.GET)
-		public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
-			logger.info("Show tour detail!");
-			model.put("tourData", tourService.findTourById(idTour));
-			return "viewtour";
-		}
+	@RequestMapping(value = "/viewtour/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") Integer idTour) {
+		logger.info("Show tour detail!");
+		model.put("tourData", tourService.findTourById(idTour));
+		return "viewtour";
+	}
 }

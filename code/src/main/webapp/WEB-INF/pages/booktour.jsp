@@ -94,7 +94,7 @@
 							<button class="btn btn-primary" type="submit">Đăng Ký</button>
 						</div>
 						<div class="col-lg-6 text-center">
-							<a href="${pageContext.request.contextPath }/tourlist"><button
+							<a href="${pageContext.request.contextPath}/tourlist"><button
 									class="btn btn-primary" type="button">Hủy Bỏ</button></a>
 						</div>
 					</div>

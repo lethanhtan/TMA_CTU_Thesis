@@ -34,7 +34,7 @@
 								class="fa fa-map-marker"></i>
 							</span>
 							<s:input placeholder="${tourData.idTour}"
-								class="form-control margin-bottom-20" type="text" path="idTour"
+								class="form-control margin-bottom-20" type="number" path="idTour"
 								disabled="true" />
 						</div>
 						<label>Tên tour</label>
@@ -124,7 +124,7 @@
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
-								<a href="tourlist"><button class="btn btn-primary"
+								<a href="${pageContext.request.contextPath }/tourlist"><button class="btn btn-primary"
 										type="button">Trở Về</button></a>
 							</div>
 							<div class="col-lg-6 text-center">

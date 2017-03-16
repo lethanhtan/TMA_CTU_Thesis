@@ -24,7 +24,7 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public Tour findTourById(String idTour) {
+	public Tour findTourById(Integer idTour) {
 		return this.tourDao.findTourById(idTour);
 	}
 
@@ -42,7 +42,7 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public void deleteTour(String idTour) {
+	public void deleteTour(Integer idTour) {
 		this.tourDao.deleteTour(idTour);
 	}
 

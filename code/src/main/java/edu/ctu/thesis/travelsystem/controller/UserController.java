@@ -14,52 +14,57 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
+
+/*------------------------------------------------------------*/
+/*					UserController                            */
+/*This controller be used to handle login, register and logout*/
+/*request                                                     */
+/*------------------------------------------------------------*/
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	private static final Logger logger = Logger.getLogger(UserController.class);
-	
-	//Processing for register when required request
+
+	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		logger.info("Handle register request when client send!");
-		model.put("userData", new User());//put userData as a User
+		model.put("userData", new User());// put userData as a User
 		return "register";
 	}
-	
-	//Processing for form register when submit
+
+	// Processing for form register when submit
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session) {
+	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
+			HttpSession session) {
 		logger.info("Handle register form action when user submit!");
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
-		if (br.hasErrors()) {		//form input have error
+		if (br.hasErrors()) { // form input have error
 			return "register";
-		} else {					//form input is ok
+		} else { // form input is ok
 			userService.saveUser(user);
 			session.setAttribute("user", user);
 			session.setAttribute("userName", user.getFullName());
 			return "redirect:login";
 		}
-		
 	}
-	
-	//Processing for login when required request
+
+	// Processing for login when required request
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin(ModelMap model, HttpSession session) {
 		logger.info("Handle login request when client send!");
 		if (session.getAttribute("user") == null) {
-			model.put("userData", new User()); //put userData as a user
+			model.put("userData", new User()); // put userData as a user
 			return "login";
-		}
-		else {
+		} else {
 			return "redirect:home";
 		}
 	}
-	
-	//Handle for form login when submit
+
+	// Handle for form login when submit
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String doLogin(ModelMap model, @ModelAttribute("userData") User user, HttpSession session) {
 		if (user.getUserName() != null && user.getPassword() != null && session.getAttribute("user") == null) {
@@ -69,35 +74,30 @@ public class UserController {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
-					logger.info(user.getFullName());
 					session.setAttribute("roleId", user.getRole().getId());
-					logger.info(user.getRole().getId());
-					return "redirect:/managetour";
-				}
-				else {
+					return "redirect:managetour";
+				} else {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
 					return "redirect:login";
 				}
-			}
-			else {
+			} else {
 				logger.info("The username or password is incorrect");
 				model.put("failed", "Tài khoản hoặc mật khẩu không đúng");
 				return "login";
 			}
-		}
-		else {
+		} else {
 			return "redirect:home";
 		}
 	}
-	
-	//handel for logout request
+
+	// Handel for logout request
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
-		session.removeAttribute("user"); //remove user object from session
-		session.removeValue("userName"); //remove userName value
-		session.removeValue("roleId");	//remove roleId value
+		session.removeAttribute("user"); // remove user object from session
+		session.removeValue("userName"); // remove userName value
+		session.removeValue("roleId"); // remove roleId value
 		return "redirect:login";
 	}
 }

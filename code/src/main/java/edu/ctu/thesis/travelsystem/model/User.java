@@ -5,23 +5,24 @@
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import javax.persistence.CascadeType;
 
 @Entity
-@Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_USER" }) })
+@Table(name = "USER")
 public class User {
-
 	@Id
-	@Column(name = "ID_USER", nullable = false, unique = true, length = 10)
-	private String idUser;
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID_USER", nullable = false)
+	private Integer idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -85,11 +86,11 @@ public class User {
 	}
 	
 	//Getters and Setters method
-	public String getIdUser() {
+	public Integer getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(String idUser) {
+	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
 	
@@ -172,5 +173,20 @@ public class User {
 	
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "Id = " + idUser;
+	}
+	
+	@Override
+	public boolean equals(Object user) {
+		if (user == null || (user.getClass() != this.getClass())) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
