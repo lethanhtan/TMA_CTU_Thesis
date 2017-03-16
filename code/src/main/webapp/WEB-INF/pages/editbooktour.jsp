@@ -12,7 +12,7 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
 						id="createTourForm"
-						action="${pageContext.request.contextPath }/editbooktour/${cusData.idBT}"
+						action="${pageContext.request.contextPath }/editbooktour/${cusData.idBT}/${idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2>Cập nhật Thông Tin Khách Hàng Đặt Vé</h2>
@@ -23,7 +23,7 @@
 							<span class="input-group-addon"> <i class="fa fa-key"></i>
 							</span>
 							<s:input placeholder="${cusData.idBT}"
-								class="form-control margin-bottom-20" type="text" path="idBT"
+								class="form-control margin-bottom-20" type="number" path="idBT"
 								disabled="true" />
 						</div>
 						<label>Họ tên</label>

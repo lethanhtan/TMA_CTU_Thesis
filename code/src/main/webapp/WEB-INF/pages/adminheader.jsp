@@ -20,16 +20,25 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/animate.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/nexus.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/table.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -59,7 +68,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath }/home" title=""> <img src="resources/img/logo.png"
+						<a href="${pageContext.request.contextPath}/home" title=""> <img
+							src="${pageContext.request.contextPath}/resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -70,7 +80,7 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="resources/img/hot-air-balloon.png" width="64px"
+			<img src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png" width="64px"
 				height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
@@ -80,11 +90,13 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/managetour" class="fa-gear">Quản Lý Tour</a></li>
-							<li><a href="${pageContext.request.contextPath }/manageregister" class="fa-list-ul">Quản Lý
-									Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/survey" class="fa-file-text">Khảo Sát Ý
-									Kiến</a></li>
+							<li><a href="${pageContext.request.contextPath}/managetour"
+								class="fa-gear">Quản Lý Tour</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/manageregister"
+								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
+							<li><a href="${pageContext.request.contextPath}/survey"
+								class="fa-file-text">Khảo Sát Ý Kiến</a></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Logout</a></li>

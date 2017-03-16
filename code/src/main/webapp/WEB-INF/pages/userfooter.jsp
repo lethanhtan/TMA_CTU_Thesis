@@ -26,14 +26,13 @@
 				<h3 class="margin-bottom-10">NY Travel Company</h3>
 				<ul class="menu">
 					<li><a class="fa-book"
-						href="${pageContext.request.contextPath }/booktour">Đặt Vé</a></li>
+						href="${pageContext.request.contextPath}/booktour">Đặt Vé</a></li>
 					<li><a class="fa-tasks"
-						href="${pageContext.request.contextPath }/blog">Blog</a></li>
+						href="${pageContext.request.contextPath}/blog">Blog</a></li>
 					<li><a class="fa-coffee"
-						href="${pageContext.request.contextPath }/aboutus">Về Chúng
-							Tôi</a></li>
+						href="${pageContext.request.contextPath}/aboutus">Về Chúng Tôi</a></li>
 					<li><a class="fa-question"
-						href="${pageContext.request.contextPath }/faq">Câu Hỏi Thường
+						href="${pageContext.request.contextPath}/faq">Câu Hỏi Thường
 							Gặp</a></li>
 				</ul>
 				<div class="clearfix"></div>
@@ -60,13 +59,13 @@
 		<div class="row">
 			<div id="footermenu" class="col-md-8">
 				<ul class="list-unstyled list-inline">
-					<li><a href="${pageContext.request.contextPath }/home"
+					<li><a href="${pageContext.request.contextPath}/home"
 						target="_blank">Trang Chủ</a></li>
-					<li><a href="${pageContext.request.contextPath }/booktour"
+					<li><a href="${pageContext.request.contextPath}/booktour"
 						target="_blank">Đặt Vé</a></li>
-					<li><a href="${pageContext.request.contextPath }/news"
+					<li><a href="${pageContext.request.contextPath}/news"
 						target="_blank">Tin Tức</a></li>
-					<li><a href="${pageContext.request.contextPath }/aboutus"
+					<li><a href="${pageContext.request.contextPath}/aboutus"
 						target="_blank">Chính Sách Bảo Mật</a></li>
 				</ul>
 			</div>
@@ -78,37 +77,49 @@
 </div>
 <!-- End Footer Menu -->
 <!-- JS -->
-<script type="text/javascript" src="resources/js/jquery.min.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"
 	type="text/javascript"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"
 	type="text/javascript"></script>
-<script type="text/javascript" src="resources/js/scripts.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 <!-- Isotope - Portfolio Sorting -->
-<script type="text/javascript" src="resources/js/jquery.isotope.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"
 	type="text/javascript"></script>
 <!-- Mobile Menu - Slicknav -->
-<script type="text/javascript" src="resources/js/jquery.slicknav.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"
 	type="text/javascript"></script>
 <!-- Animate on Scroll-->
-<script type="text/javascript" src="resources/js/jquery.visible.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.visible.js"
 	charset="utf-8"></script>
 <!-- Sticky Div -->
-<script type="text/javascript" src="resources/js/jquery.sticky.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"
 	charset="utf-8"></script>
 <!-- Slimbox2-->
-<script type="text/javascript" src="resources/js/slimbox2.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/slimbox2.js"
 	charset="utf-8"></script>
 <!-- Modernizr -->
-<script src="resources/js/modernizr.custom.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/modernizr.custom.js"
+	type="text/javascript"></script>
 <!--  Back to top -->
-<script src="resources/js/backtotop.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/backtotop.js"
+	type="text/javascript"></script>
 <!-- Calendar -->
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="resources/js/calendar.js"
-	type="text/javascript"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/calendar.js"></script>
 <!-- End JS -->
 </body>
 </html>

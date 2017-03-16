@@ -6,8 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import edu.ctu.thesis.travelsystem.extra.FindAlphabet;
-import edu.ctu.thesis.travelsystem.extra.FindDigit;
+import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 
@@ -25,8 +24,7 @@ public class BookTourValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		BookTour bookTour = (BookTour) target;
-		FindAlphabet findAl = new FindAlphabet();
-		FindDigit findDigit = new FindDigit();
+		ValidUtil validUtil = new ValidUtil();
 
 		// Catch empty errors
 		ValidationUtils.rejectIfEmpty(errors, "cusName", "NotEmpty.cusData.cusName");
@@ -44,13 +42,14 @@ public class BookTourValidator implements Validator {
 			errors.rejectValue("cusAddress", "Size.cusData.cusAddress");
 		}
 
+		//ValidUtil validaUtil;
 		// Catch characters error in Customer phone field
-		if (findAl.findAlphabet(bookTour.getCusPhone())) {
+		if (validUtil.findAlphabet(bookTour.getCusPhone())) {
 			errors.rejectValue("cusPhone", "Invalid.cusData.cusPhone");
 		}
 		
 		// Catch digit error in Customer name field
-		if (findDigit.findDigit(bookTour.getCusName())) {
+		if (validUtil.findDigit(bookTour.getCusName())) {
 			errors.rejectValue("cusName", "Invalid.cusData.cusName");
 		}
 	}

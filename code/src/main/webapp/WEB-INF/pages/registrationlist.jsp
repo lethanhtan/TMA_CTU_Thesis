@@ -41,6 +41,7 @@
 								<th>Giới tính</th>
 								<th>Số điện thoại</th>
 								<th>Email</th>
+								<th>Số vé</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -54,16 +55,16 @@
 									<td>${bookTour.cusName}</td>
 									<td>${bookTour.cusSex}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}
-										&nbsp;&nbsp;&nbsp;</td>
+									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
 									<td><a
-										href="<c:url value='/booktourdetail/${bookTour.idBT}'/>"
+										href="<c:url value='/booktourdetail/${bookTour.idBT}/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='/editbooktour/${bookTour.idBT}'/>"
+									</a> <a href="<c:url value='/editbooktour/${bookTour.idBT}/${tour.idTour }'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
 									</a> <a data-toggle="modal"
 										href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour }'/>"
-										title="Xóa"> <i class="fa fa-trash-o"></i> 
+										title="Xóa"> <i class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
 							</c:forEach>

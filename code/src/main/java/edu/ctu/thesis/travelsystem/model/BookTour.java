@@ -1,19 +1,20 @@
 package edu.ctu.thesis.travelsystem.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import javax.persistence.CascadeType;
 
 @Entity
-@Table(name = "BOOK_TOUR", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID_BT" }) })
+@Table(name = "BOOK_TOUR")
 public class BookTour {
-	private String idBT;
+	private Integer idBT;
 	private String cusName;
 	private String cusSex;
 	private String cusEmail;
@@ -41,14 +42,14 @@ public class BookTour {
 		this.tour = tour;
 	}
 
-	// Create column ID customer book tour
 	@Id
-	@Column(name = "ID_BT", unique = true, nullable = false)
-	public String getIdBT() {
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID_BT", nullable = false)
+	public Integer getIdBT() {
 		return this.idBT;
 	}
 
-	public void setIdBT(String idBT) {
+	public void setIdBT(Integer idBT) {
 		this.idBT = idBT;
 	}
 
@@ -112,5 +113,19 @@ public class BookTour {
 
 	public void setTour(Tour tour) {
 		this.tour = tour;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "Id = " + idBT;
+	}
+
+	@Override
+	public boolean equals(Object bookTour) {
+		if (bookTour == null || (bookTour.getClass() != this.getClass())) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

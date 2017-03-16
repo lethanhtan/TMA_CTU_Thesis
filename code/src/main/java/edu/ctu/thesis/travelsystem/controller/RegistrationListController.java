@@ -24,7 +24,6 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
-import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
 @Controller
 public class RegistrationListController {
@@ -38,7 +37,7 @@ public class RegistrationListController {
 
 	// Forward to Registration List page
 	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
-	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") String idTour,
+	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") Integer idTour,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
 		model.addAttribute("searchedValue", valueSearch);
@@ -91,40 +90,43 @@ public class RegistrationListController {
 	}
 
 	// Forward to Customer detail page
-	@RequestMapping(value = "/booktourdetail/{idBT}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") String idBT) {
+	@RequestMapping(value = "/booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
 		model.put("cusData", bookTourService.searchById(idBT));
 		logger.info("Show information of customer when book tour");
 		return "booktourdetail";
 	}
 
 	// Forward to Edit information of customer booked tour
-	@RequestMapping(value = "editbooktour/{idBT}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idBT") String idBT) {
+	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showForm(ModelMap model, @PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
 		return "editbooktour";
 	}
 
 	// Test errors
-	@RequestMapping(value = "editbooktour/{idBT}", method = RequestMethod.POST)
-	public String editBookTour(@PathVariable("idBT") String idBT, ModelMap model,
-			@ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br, HttpSession session) {
+	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
+	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour,
+			ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
+			HttpSession session) {
 		logger.info("Handle edit information customer form when admin submit!");
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
 			return "editbooktour";
 		} else {
+			Tour tour = tourService.findTourById(idTour);
+			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTourService.editBookTour(bookTour);
-			return "redirect:/managetour";
+			return "redirect:/registrationlist/{idTour}";
 		}
 	}
 
 	// Delete customer booked tour
 	@RequestMapping(value = "deletebooktour/{idBT}/{idTour}")
-	public String deleteBookTour(@PathVariable("idBT") String idBT, @PathVariable("idBT") String idTour) {
+	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") Integer idTour) {
 		bookTourService.deleteBookTour(idBT, idTour);
 		return "redirect:/registrationlist/{idTour}";
 	}

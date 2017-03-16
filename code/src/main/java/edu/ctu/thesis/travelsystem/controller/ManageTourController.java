@@ -31,7 +31,6 @@ public class ManageTourController {
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 
-
 	// handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
 	public String managetourController(ModelMap model, HttpSession session,
@@ -42,7 +41,6 @@ public class ManageTourController {
 		try {
 			if ((Integer) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
-				
 				if (valueSearch != null) {
 					Integer num = 0;
 					if ((tourService.getNumTourByValue(valueSearch) % 5) == 0) {
@@ -62,7 +60,7 @@ public class ManageTourController {
 						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
 						result = "managetour";
 					} else {
-						result = "forbidden";
+						result = "managetour";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
@@ -82,9 +80,8 @@ public class ManageTourController {
 						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
 						result = "managetour";
 					} else {
-						result = "forbidden";
+						result = "managetour";
 					}
-
 				}
 			} else {
 				result = "forbidden";
@@ -98,14 +95,14 @@ public class ManageTourController {
 
 	// handle delete request from client
 	@RequestMapping(value = "managetour/delete/{idTour}")
-	public String delteTour(@PathVariable("idTour") String idTour) {
+	public String delteTour(@PathVariable("idTour") Integer idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
 
 	// handle required reuest from client
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idTour") String idTour) {
+	public String showForm(ModelMap model, @PathVariable("idTour") Integer idTour) {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		if (tour != null) {
@@ -119,7 +116,7 @@ public class ManageTourController {
 
 	// handle form action update tour
 	@RequestMapping(value = "/updatetour/{idTour}")
-	public String updateTour(ModelMap model, @PathVariable("idTour") String idTour,
+	public String updateTour(ModelMap model, @PathVariable("idTour") Integer idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
@@ -134,7 +131,7 @@ public class ManageTourController {
 
 	// Forward to Tour detail page
 	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
+	public String showDetail(ModelMap model, @PathVariable("idTour") Integer idTour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
 		return "tourdetail";
@@ -142,7 +139,7 @@ public class ManageTourController {
 
 	// Delete tour in Detail tour page
 	@RequestMapping(value = "tourdetail/delete/{idTour}")
-	public String deleteTour(@PathVariable("idTour") String idTour) {
+	public String deleteTour(@PathVariable("idTour") Integer idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}

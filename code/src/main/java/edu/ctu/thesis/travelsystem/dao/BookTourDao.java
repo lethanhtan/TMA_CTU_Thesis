@@ -5,15 +5,15 @@ import java.util.List;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
 public interface BookTourDao {
-	public void saveBookTour(BookTour bookTour, String idTour);
+	public void saveBookTour(BookTour bookTour, Integer idTour);
 
-	public List<BookTour> registrationList(String idTour);
+	public List<BookTour> registrationList(Integer idTour);
 
-	public BookTour searchById(String idBT);
+	public BookTour searchById(Integer idBT);
 
 	public void editBookTour(BookTour bookTour);
 
-	public void deleteBookTour(String idBT, String idTour);
+	public void deleteBookTour(Integer idBT, Integer idTour);
 
 	public BookTour searchByName(String cusName);
 
@@ -21,7 +21,7 @@ public interface BookTourDao {
 
 	public BookTour searchByPhone(String cusPhone);
 
-	public Integer getNumBookTour(String idTour);
+	public Integer getNumBookTour(Integer idTour);
 
 	public List<BookTour> registrationListByValue(String value);
 
