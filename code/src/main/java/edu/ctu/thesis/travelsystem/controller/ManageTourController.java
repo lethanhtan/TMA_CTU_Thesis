@@ -133,7 +133,7 @@ public class ManageTourController {
 	}
 
 	// Forward to Tour detail page
-	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "tourdetail/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idTour") String idTour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));

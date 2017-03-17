@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import edu.ctu.thesis.travelsystem.model.Tour;
  
+@SuppressWarnings("deprecation")
 public class ExcelBuilder extends AbstractExcelView {
  
     @Override
@@ -24,7 +25,8 @@ public class ExcelBuilder extends AbstractExcelView {
             HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         // get data model which is passed by the Spring container
-        List<Tour> listTours = (List<Tour>) model.get("listTours");
+        @SuppressWarnings("unchecked")
+		List<Tour> listTours = (List<Tour>) model.get("listTours");
          
         // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("List Tour");
@@ -49,13 +51,19 @@ public class ExcelBuilder extends AbstractExcelView {
         header.createCell(1).setCellValue("Name");
         header.getCell(1).setCellStyle(style);
          
-        header.createCell(2).setCellValue("Date");
+        header.createCell(2).setCellValue("Departure Date");
         header.getCell(2).setCellStyle(style);
          
-        header.createCell(3).setCellValue("Time");
+        header.createCell(3).setCellValue("Departure Time");
+        header.getCell(3).setCellStyle(style);
+        
+        header.createCell(4).setCellValue("Return Date");
+        header.getCell(2).setCellStyle(style);
+         
+        header.createCell(5).setCellValue("Return Time");
         header.getCell(3).setCellStyle(style);
          
-        header.createCell(4).setCellValue("Detail");
+        header.createCell(6).setCellValue("Detail");
         header.getCell(4).setCellStyle(style);
          
         // create data rows
@@ -67,7 +75,9 @@ public class ExcelBuilder extends AbstractExcelView {
             aRow.createCell(1).setCellValue(tour.getName());
             aRow.createCell(2).setCellValue(tour.getDepartureDate());
             aRow.createCell(3).setCellValue(tour.getDepartureTime());
-            aRow.createCell(4).setCellValue(tour.getDetail());
+            aRow.createCell(4).setCellValue(tour.getReturnDate());
+            aRow.createCell(5).setCellValue(tour.getReturnTime());
+            aRow.createCell(6).setCellValue(tour.getDetail());
         }
     }
  

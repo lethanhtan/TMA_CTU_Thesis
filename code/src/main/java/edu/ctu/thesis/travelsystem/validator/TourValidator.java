@@ -8,7 +8,6 @@ import org.springframework.validation.Validator;
 
 import edu.ctu.thesis.travelsystem.extra.FindAlphabet;
 import edu.ctu.thesis.travelsystem.model.Tour;
-import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Component

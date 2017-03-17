@@ -15,7 +15,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2>Thông Tin Tour Du Lịch</h2>
-							</br>
+							<br />
 						</div>
 						<label>Id tour</label>
 						<div class="input-group margin-bottom-20">
@@ -114,7 +114,7 @@
 						<div class="row">
 							<div class="col-lg-4 text-left">
 								<a href="<c:url value='/updatetour/${tourData.idTour}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button>
+										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 							</div>
 							<div class="col-lg-4 text-center">
 								<a href="<c:url value='delete/${tourData.idTour}'/>"><button

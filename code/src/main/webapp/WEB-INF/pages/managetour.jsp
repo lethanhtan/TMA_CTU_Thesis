@@ -1,35 +1,39 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
-		<div class="row margin-vert-30">
-			<!-- Search Form -->
-			<div class="error-404-page text-center" style="margin-left: 650px;">
-				<form class="form-search search-404">
-					<div class="input-append">
-						<input type="text" class="span2 search-query"
-							placeholder="Nhập từ khóa" name="valueSearch">
-						<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+		<!-- Search Form -->
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<form id="imaginary_container">
+					<div class="input-group stylish-input-group">
+						<input type="text" class="form-control" placeholder="Search"
+							name="valueSearch"> <span class="input-group-addon">
+							<button type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
 					</div>
 				</form>
 			</div>
-			<!-- End Search Form -->
-			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+		</div>
+		<!-- End Search Form -->
+		<h2 class="margin-vert-20" style="text-align: center;">Danh
 					Sách Tour Du Lịch</h2>
+		<div class="row">
+			<div class="col-md-12">
 				<a href="createtour"><button
 						class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
-				<div class="row margin-bottom-30">
-					<div class="col-md-4 animate fadeInRight"></div>
-					<div class="col-md-8 animate fadeIn"></div>
-					<div class="col-md-12 animate fadeInRight"></div>
+				<div class="row margin-bottom-20">
+					<div class="col-md-2 animate fadeInRight"></div>
+					<div class="col-md-6 animate fadeIn"></div>
+					<div class="col-md-8 animate fadeInRight"></div>
 				</div>
-
-				<hr class="margin-bottom-50">
+				<hr class="margin-vert-20">
 				<!-- Table -->
 				<c:if test="${empty tourList}">
 					<h1 align="center">Không có tour nào!</h1>
@@ -56,7 +60,7 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='detail/${tour.idTour}'/>"
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
@@ -86,7 +90,7 @@
 					</table>
 				</c:if>
 				<!-- End Table -->
-				<hr class="margin-vert-50">
+				<hr class="margin-bottom-20">
 				<div class="text-center">
 					<!-- Pagination -->
 					<c:if test="${numTour > 5}">
@@ -112,26 +116,25 @@
 										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
 								</c:if>
 							</c:forEach>
-								<c:if test="${numTour/5 - param.page == 0}">
-									<li class="disabled"><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
-									</li>
-								</c:if>
-								<c:if test="${numTour/5 - param.page > 0}">
-									<li><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
-									</li>
-								</c:if>
+							<c:if test="${numTour/5 - param.page == 0}">
+								<li class="disabled"><a
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${numTour/5 - param.page > 0}">
+								<li><a
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
 						</ul>
 					</c:if>
 				</div>
 				<!-- End Pagination -->
-				<h6>${param.valueSearch }</h6>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp" %>
+<%@ include file="adminfooter.jsp"%>
 <!-- === END FOOTER === -->

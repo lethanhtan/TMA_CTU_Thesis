@@ -37,6 +37,7 @@
 	
 </script>
 <!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="resources/css/search.css" />
 <link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->

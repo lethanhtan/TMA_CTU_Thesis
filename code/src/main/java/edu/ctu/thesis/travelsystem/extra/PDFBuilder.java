@@ -15,7 +15,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -34,15 +33,15 @@ public class PDFBuilder extends AbstractITextPdfView {
             PdfWriter writer, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         // get data model which is passed by the Spring container
-        List<Tour> listTours = (List<Tour>) model.get("listTours");
-        String[] header = (String[]) model.get("fileName");
+        @SuppressWarnings("unchecked")
+		List<Tour> listTours = (List<Tour>) model.get("listTours");
         doc.add(new Paragraph("List Tour"));
         doc.addTitle("NYTravel List Tour");
         doc.addSubject("List tour");
          
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(7);
         table.setWidthPercentage(100.0f);
-        table.setWidths(new float[] {1.0f, 3.0f, 2.0f, 1.0f, 3.0f});
+        table.setWidths(new float[] {1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 3.0f});
         table.setSpacingBefore(10);
          
         // define font for table header row
@@ -53,9 +52,13 @@ public class PDFBuilder extends AbstractITextPdfView {
          
         table.addCell(getNormalCell("Name", 11, font));
  
-        table.addCell(getNormalCell("Date", 11, font));
+        table.addCell(getNormalCell("Departure Date", 11, font));
          
-        table.addCell(getNormalCell("Time", 11, font));
+        table.addCell(getNormalCell("Departure Time", 11, font));
+        
+        table.addCell(getNormalCell("Return Date", 11, font));
+        
+        table.addCell(getNormalCell("Return Time", 11, font));
          
         table.addCell(getNormalCell("Detail", 11, font));
          
@@ -65,6 +68,8 @@ public class PDFBuilder extends AbstractITextPdfView {
             table.addCell(getNormalCell(tour.getName(), 11, font));
             table.addCell(getNormalCell(tour.getDepartureDate(), 11, font));
             table.addCell(getNormalCell(tour.getDepartureTime(), 11, font));
+            table.addCell(getNormalCell(tour.getReturnDate(), 11, font));
+            table.addCell(getNormalCell(tour.getReturnTime(), 11, font));
             table.addCell(getNormalCell(tour.getDetail(), 11, font));
         }
          

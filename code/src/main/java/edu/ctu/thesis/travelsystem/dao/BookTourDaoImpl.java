@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
 public class BookTourDaoImpl implements BookTourDao {
