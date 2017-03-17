@@ -135,15 +135,12 @@
 							path="detail" />
 						<hr>
 						<div class="row">
-							<div class="col-lg-4 text-left">
+							<div class="col-lg-6 text-center">
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
-							<div class="col-lg-4 text-center">
+							<div class="col-lg-6 text-center">
 								<a href="managetour"><button class="btn btn-primary"
 										type="button">Hủy Bỏ</button></a>
-							</div>
-							<div class="col-lg-4 text-right">
-								<input class="btn btn-primary" type="reset" value="Nhập Lại">
 							</div>
 						</div>
 					</s:form>

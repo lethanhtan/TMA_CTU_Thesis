@@ -55,7 +55,7 @@
 								<label>Loại Export</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-male"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportList">
+									</span> <select class="form-control margin-bottom-20" name="exportList" >
 										<option>Danh sách tour</option>
 										<option>Danh sách đăng ký</option>
 									</select>
@@ -65,7 +65,7 @@
 								<label>Loại File</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-male"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportType">
+									</span> <select class="form-control margin-bottom-20" name="exportType" >
 										<option>Pdf</option>
 										<option>Excel</option>
 									</select>

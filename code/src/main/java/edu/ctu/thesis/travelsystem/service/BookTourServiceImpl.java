@@ -18,20 +18,20 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public void saveBookTour(BookTour bookTour, String idTour) {
+	public void saveBookTour(BookTour bookTour, Integer idTour) {
 		this.bookTourDao.saveBookTour(bookTour, idTour);
 	}
 	
 	@Override
 	@Transactional
-	public List<BookTour> registrationList(String idTour) {
+	public List<BookTour> registrationList(Integer idTour) {
 		return this.bookTourDao.registrationList(idTour);
 	}
 	
 	@Override
 	@Transactional
-	public BookTour searchId(String idBT) {
-		return this.bookTourDao.searchId(idBT);
+	public BookTour searchById(Integer idBT) {
+		return this.bookTourDao.searchById(idBT);
 	}
 	
 	@Override
@@ -42,7 +42,53 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public void deleteBookTour(String idBT, String idTour) {
+	public void deleteBookTour(Integer idBT, Integer idTour) {
 		this.bookTourDao.deleteBookTour(idBT, idTour);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByName(String cusName) {
+		return this.bookTourDao.searchByName(cusName);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByEmail(String cusEmail) {
+		return this.bookTourDao.searchByEmail(cusEmail);
+	}
+	
+	@Override
+	@Transactional
+	public BookTour searchByPhone(String cusPhone) {
+		return this.bookTourDao.searchByPhone(cusPhone);
+	}
+	
+	@Override
+	@Transactional
+	public Integer getNumBookTour(Integer idTour) {
+		return this.bookTourDao.getNumBookTour(idTour);
+	}
+
+	@Override
+	@Transactional
+	public List<BookTour> registrationListByValue(String value) {
+		return this.bookTourDao.registrationListByValue(value);
+	}
+
+	@Override
+	@Transactional
+	public Integer getNumBTBySearch(String value) {
+		return this.bookTourDao.getNumBTBySearch(value);
+	}
+
+	@Override
+	public Integer paginationX(Integer currentPage, Integer page) {
+		return this.bookTourDao.paginationX(currentPage, page);
+	}
+
+	@Override
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
+		return this.bookTourDao.paginationY(numOfPage, currentPage, page);
 	}
 }

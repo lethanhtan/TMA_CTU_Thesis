@@ -19,21 +19,26 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<!--  
-<link href="favicon.ico" rel="shortcut icon">
--->
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/animate.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/nexus.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/table.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -63,7 +68,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath }/home" title=""> <img src="resources/img/logo.png"
+						<a href="${pageContext.request.contextPath}/home" title=""> <img
+							src="${pageContext.request.contextPath}/resources/img/logo.png"
 							alt="Logo" />
 						</a>
 					</div>
@@ -74,8 +80,9 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="resources/img/hot-air-balloon.png" width="64px"
-				height="auto"></img>
+			<img
+				src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png"
+				width="64px" height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
 		<!-- Top Menu -->
@@ -84,41 +91,38 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/home"
+							<li><a href="${pageContext.request.contextPath}/home"
 								class="fa-home">Trang Chủ</a></li>
 							<li><span class="fa-question">Giới Thiệu</span>
 								<ul>
 									<li><a href="aboutus">Về Chúng Tôi</a></li>
 									<li><a href="faq">Câu Hỏi Thường Gặp</a></li>
 								</ul></li>
-							<li><a href="${pageContext.request.contextPath }/tourlist"
+							<li><a href="${pageContext.request.contextPath}/tourlist"
 								class="fa-book">Đặt Vé</a></li>
-							<li><a href="${pageContext.request.contextPath }/news"
+							<li><a href="${pageContext.request.contextPath}/news"
 								class="fa-tachometer">Tin Tức</a></li>
-							<li><a href="${pageContext.request.contextPath }/blog"
+							<li><a href="${pageContext.request.contextPath}/blog"
 								class="fa-tasks">Blog</a></li>
-							<li><a href="${pageContext.request.contextPath }/contact"
+							<li><a href="${pageContext.request.contextPath}/contact"
 								class="fa-phone">Liên Hệ</a></li>
 							<!-- Test Account -->
 							<c:if test="${userName != null}">
 								<li><span class="fa-user"> ${userName}</span>
 									<ul>
 										<c:if test="${roleId == 2}">
-											<li><a
-												href="<c:url value="/managetour" />">Quản
-													lý tour</a></li>
+											<li><a href="<c:url value="/managetour" />">Quản lý
+													tour</a></li>
 										</c:if>
-										<li><a
-											href="<c:url value="/logout" />">Logout</a></li>
+										<li><a href="<c:url value="/logout" />">Logout</a></li>
 									</ul>
 							</c:if>
 							<c:if test="${userName == null}">
 								<li><span class="fa-user">Tài khoản</span>
 									<ul>
-										<li><a href="${pageContext.request.contextPath }/login">Đăng
+										<li><a href="${pageContext.request.contextPath}/login">Đăng
 												Nhập</a></li>
-										<li><a
-											href="${pageContext.request.contextPath }/register">Đăng
+										<li><a href="${pageContext.request.contextPath}/register">Đăng
 												ký</a></li>
 									</ul></li>
 							</c:if>

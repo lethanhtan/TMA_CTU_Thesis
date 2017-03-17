@@ -19,10 +19,6 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-<!-- 
-<link href="favicon.ico" rel="shortcut icon">
- -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
 	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
@@ -36,18 +32,29 @@
 <script type="text/javascript" src="js/bootstrap-filestyle.min.js">
 	
 </script>
+
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/search.css" />
-<link rel="stylesheet" href="resources/css/bootstrap.css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/input.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/animate.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/nexus.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/table.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -77,8 +84,9 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath }/home" title=""> <img
-							src="resources/img/logo.png" alt="Logo" />
+						<a href="${pageContext.request.contextPath}/home" title=""> <img
+							src="${pageContext.request.contextPath}/resources/img/logo.png"
+							alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -88,7 +96,7 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="resources/img/hot-air-balloon.png" width="64px"
+			<img src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png" width="64px"
 				height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
@@ -105,7 +113,7 @@
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/managedata"
+							<li><a href="#"
 								class="fa-gear">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>

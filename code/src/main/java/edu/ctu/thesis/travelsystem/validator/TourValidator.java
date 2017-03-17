@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import edu.ctu.thesis.travelsystem.extra.FindAlphabet;
+import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
@@ -24,8 +24,8 @@ public class TourValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Tour tour = (Tour) target;
-		FindAlphabet findAl = new FindAlphabet();
-
+		ValidUtil validUtil = new ValidUtil();
+		
 		// Catch empty errors
 		ValidationUtils.rejectIfEmpty(errors, "name", "NotEmpty.tourData.name");
 		ValidationUtils.rejectIfEmpty(errors, "departureDate", "NotEmpty.tourData.departureDate");
@@ -48,20 +48,22 @@ public class TourValidator implements Validator {
 
 		// Catch characters errors
 		// In Departure time field
-		if (findAl.findAlphabet(tour.getDepartureTime())) {
+		if (validUtil.findAlphabet(tour.getDepartureTime())) {
 			errors.rejectValue("departureTime", "Invalid.tourData.departureTime");
 		}
 		// In Return time field
-		if (findAl.findAlphabet(tour.getReturnTime())) {
+		if (validUtil.findAlphabet(tour.getReturnTime())) {
 			errors.rejectValue("returnTime", "Invalid.tourData.returnTime");
 		}
 		// In Price field
-		if (findAl.findAlphabet(tour.getPrice())) {
+		if (validUtil.findAlphabet(tour.getPrice())) {
 			errors.rejectValue("price", "Invalid.tourData.price");
 		}
+		/*
 		// In Quantum field
-		if (findAl.findAlphabet(tour.getQuantum())) {
+		if (validUtil.findAlphabet(tour.getQuantum())) {
 			errors.rejectValue("quantum", "Invalid.tourData.quantum");
 		}
+		*/
 	}
 }

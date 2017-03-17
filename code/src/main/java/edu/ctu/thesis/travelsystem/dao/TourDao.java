@@ -8,13 +8,13 @@ public interface TourDao {
 	
 	public void saveTour(Tour tour);
 	
-	public Tour findTourById(String idTour);
+	public Tour findTourById(Integer idTour);
 	
 	public Tour findTourByName(String name);
 	
 	public void updateTour(Tour tour);
 	
-	public void deleteTour(String idTour);
+	public void deleteTour(Integer idTour);
 	
 	public List<Tour> listTour();
 	
@@ -27,5 +27,4 @@ public interface TourDao {
 	public Integer paginationX(Integer currentPage, Integer page);
 	
 	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
-	
 }

@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp" %>
+<%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -12,7 +12,7 @@
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
-							placeholder="Nhập họ tên/ điện thoại/ email">
+							placeholder="Nhập từ khóa" name="valueSearch">
 						<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
 					</div>
 				</form>
@@ -34,22 +34,28 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Mã tour</th>
+								<th>STT</th>
 								<th>Tên tour</th>
 								<th>Ngày đi</th>
 								<th>Giờ đi</th>
+								<th>Ngày về</th>
+								<th>Giờ về</th>
+								<th>Số chỗ còn</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${tourList}" var="tour">
+							<c:forEach items="${tourList.subList(x,y)}" var="tour">
+								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${tour.idTour}</td>
+									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}
-										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td><a href="<c:url value='viewtour/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="<c:url value='booktour/${tour.idTour}'/>"
 										title="Đăng Ký"> <i class="fa fa-edit">&nbsp;</i>
@@ -61,15 +67,44 @@
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-vert-50">
-				<!-- Pagination -->
-				<c:if test="${numTour > 2}">
-					<ul class="pagination">
-						<li><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">${numTour - 1}</a></li>
-						<li><a href="#">&raquo;</a></li>
-					</ul>
-				</c:if>
+				<div class="text-center">
+					<!-- Pagination -->
+					<c:if test="${numTour >= 5}">
+						<!-- set active pagination when numTour >= 5 -->
+						<ul class="pagination">
+							<c:if test="${param.page != null}">
+								<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+								</c:if>
+								<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
+									<li><a
+										href="${pageContext.request.contextPath }/tourlist?page=${param.page -1}">&laquo;</a>
+									</li>
+								</c:if>
+							</c:if>
+							<c:forEach items="${pageNum}" var="pageE">
+								<c:if test="${pageE == param.page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/tourlist?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != param.page}">
+									<li><a
+										href="${pageContext.request.contextPath}/tourlist?page=${pageE}">${pageE}</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${numTour/5 - param.page == 0}">
+								<li class="disabled"><a
+									href="${pageContext.request.contextPath }/tourlist?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${numTour/5 - param.page > 0}">
+								<li><a
+									href="${pageContext.request.contextPath }/tourlist?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</c:if>
+				</div>
 				<!-- End Pagination -->
 			</div>
 		</div>
@@ -77,5 +112,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="userfooter.jsp" %>
+<%@ include file="userfooter.jsp"%>
 <!-- === END FOOTER === -->

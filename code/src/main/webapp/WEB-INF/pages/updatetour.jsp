@@ -10,8 +10,8 @@
 			<div class="row margin-vert-30">
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" modelAttribute="tourData"
-						action="${pageContext.request.contextPath }/updatetour/${idTour}"
+					<s:form class="signup-page" commandName="tourData"
+						action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
@@ -23,14 +23,14 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-map-marker"></i>
 									</span>
-									<s:input placeholder="${idTour}"
-										class="form-control margin-bottom-20" type="text"
+									<s:input placeholder="${tourData.idTour}"
+										class="form-control margin-bottom-20" type="number"
 										path="idTour" disabled="true" />
 								</div>
 							</div>
 							<div class="col-sm-8">
-								<!-- Show error -->
 								<label>Tên tour</label>
+								<!-- Show error -->
 								<small><s:errors path="name" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
@@ -126,15 +126,12 @@
 							path="detail" />
 						<hr>
 						<div class="row">
-							<div class="col-lg-4 text-left">
+							<div class="col-lg-6 text-center">
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
-							<div class="col-lg-4 text-center">
-								<a href="/TravelSystem/managetour"><button
+							<div class="col-lg-6 text-center">
+								<a href="${pageContext.request.contextPath }/managetour"><button
 										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
-							</div>
-							<div class="col-lg-4 text-right">
-								<input class="btn btn-primary" type="reset" value="Nhập Lại">
 							</div>
 						</div>
 					</s:form>

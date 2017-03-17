@@ -8,6 +8,17 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
+				<!-- Search Form -->
+				<div class="error-404-page text-center" style="margin-left: 650px;">
+					<form class="form-search search-404">
+						<div class="input-append">
+							<input type="text" class="span2 search-query"
+								placeholder="Nhập họ tên/ email/ họ tên" name="valueSearch">
+							<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+						</div>
+					</form>
+				</div>
+				<!-- End Search Form -->
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="tourData"
@@ -15,7 +26,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2>Thông Tin Tour Du Lịch</h2>
-							<br />
+							</br>
 						</div>
 						<label>Id tour</label>
 						<div class="input-group margin-bottom-20">
@@ -112,17 +123,13 @@
 							path="detail" disabled="true" />
 						<hr>
 						<div class="row">
-							<div class="col-lg-4 text-left">
-								<a href="<c:url value='/updatetour/${tourData.idTour}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
+							<div class="col-lg-6 text-center">
+								<a href="${pageContext.request.contextPath }/tourlist"><button class="btn btn-primary"
+										type="button">Trở Về</button></a>
 							</div>
-							<div class="col-lg-4 text-center">
-								<a href="<c:url value='delete/${tourData.idTour}'/>"><button
-										class="btn btn-primary" type="button">Xóa</button></a>
-							</div>
-							<div class="col-lg-4 text-right">
-								<a href="<c:url value='/registrationlist/${tourData.idTour}'/>"><button
-										class="btn btn-primary" type="button">DS Đăng Ký</button></a>
+							<div class="col-lg-6 text-center">
+								<a href="<c:url value='/booktour/${tourData.idTour}'/>"><button
+										class="btn btn-primary" type="button">Đăng Ký</button></a>
 							</div>
 						</div>
 					</s:form>
@@ -132,4 +139,4 @@
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+	<%@ include file="adminfooter.jsp"%>

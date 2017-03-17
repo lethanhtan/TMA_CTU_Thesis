@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.ctu.thesis.travelsystem.dao.ImportDataDao;
+import edu.ctu.thesis.travelsystem.model.Import;
 
 @Service
 public class ImportDataServiceImpl implements ImportDataService {
@@ -17,6 +18,19 @@ public class ImportDataServiceImpl implements ImportDataService {
 	@Transactional
 	public void importExcel(MultipartFile excelfile) {
 		this.importDao.importExcel(excelfile);
+	}
+
+	@Override
+	@Transactional
+	public void saveImport(Import object) {
+		this.importDao.saveImport(object);
+	}
+
+	@Override
+	@Transactional
+	public Integer getNumImport() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

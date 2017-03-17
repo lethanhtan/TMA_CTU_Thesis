@@ -9,4 +9,6 @@ public interface UserService {
 	public User loginUser(User user);
 	
 	public Integer getRoleUser(User user);
+	
+	public String findFullName(String userName);
 }

@@ -5,44 +5,29 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ctu.thesis.travelsystem.extra.GenerateId;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
 @Service
-public class BookTourDaoImpl implements BookTourDao {
-	GenerateId gid = new GenerateId();
+public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
+	//GenerateId gid = new GenerateId();
 
 	// Fill the fields automatically
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	private static final Logger logger = Logger.getLogger(BookTourDaoImpl.class);
-
-	/*
-	 * public void setSessionfactory(SessionFactory sessionFactory) {
-	 * this.sessionFactory = sessionFactory; }
-	 */
 
 	// Save book tour form when have id tour
 	@Override
-	public void saveBookTour(BookTour bookTour, String idTour) {
-		Session session = this.sessionFactory.getCurrentSession();
+	public void saveBookTour(BookTour bookTour, Integer idTour) {
+		Session session = getCurrentSession();
+		// Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		if (bookTour != null) {
 			try {
-				bookTour.setIdBT(gid.generateIdBT());
-				Query query = session.createQuery("update BookTour set ID_TOUR = :idTour where ID_BT = :idBT");
-				logger.info(idTour);
-				query.setParameter("idTour",idTour);
-				logger.info("L2:" +  bookTour.getIdBT());
-				query.setParameter("idBT", bookTour.getIdBT());
-				session.persist(bookTour);
+				logger.info("Save tour be called!");
+				session.saveOrUpdate(bookTour);
 				session.flush();
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("Occured ex", e);
 			}
 		}
 	}
@@ -50,8 +35,8 @@ public class BookTourDaoImpl implements BookTourDao {
 	// Display registration list by Id tour
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BookTour> registrationList(String idTour) {
-		Session session = this.sessionFactory.getCurrentSession();
+	public List<BookTour> registrationList(Integer idTour) {
+		Session session = getCurrentSession();
 		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE ID_TOUR = :idTour";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
@@ -62,35 +47,42 @@ public class BookTourDaoImpl implements BookTourDao {
 		return registrationList;
 	}
 
-	// Search id of customer booked tour
+	// Search information of customer booked tour by Id
 	@Override
-	public BookTour searchId(String idBT) {
-		Session session = this.sessionFactory.getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(idBT));
-		logger.info("Search Customer booked tour successfully!" + bookTour.getIdBT());
+	public BookTour searchById(Integer idBT) {
+		Session session = getCurrentSession();
+		BookTour bookTour = new BookTour();
+		logger.info("Information of customer have ID: " + idBT);
+		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE idBT = ?";
+		try {
+			Query query = session.createQuery(hql);
+			query.setParameter(0, idBT);
+			bookTour = (BookTour) query.uniqueResult();
+		} catch (Exception e) {
+			logger.info("Exception when find tour!");
+		}
 		return bookTour;
 	}
 
 	// Edit information of customer after booked tour
 	@Override
 	public void editBookTour(BookTour bookTour) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = getCurrentSession();
 		if (bookTour != null) {
 			try {
 				session.update(bookTour);
 				session.flush();
 				logger.info("Edit information of customer booked tour successfully: " + bookTour);
 			} catch (Exception e) {
-				logger.info("Exception when edit information of customer!");
-				e.printStackTrace();
+				logger.error("Occured ex", e);
 			}
 		}
 	}
 
 	@Override
-	public void deleteBookTour(String idBT, String idTour) {
-		Session session = this.sessionFactory.getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(idBT));
+	public void deleteBookTour(Integer idBT, Integer idTour) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("update BookTour set ID_TOUR = null where ID_BT = :idBT");
 			query.setParameter("idBT", bookTour.getIdBT());
@@ -99,5 +91,78 @@ public class BookTourDaoImpl implements BookTourDao {
 			session.flush();
 			logger.info("Delete customer success!");
 		}
+	}
+
+	// Search information of customer booked tour by Name
+	@Override
+	public BookTour searchByName(String cusName) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusName));
+		logger.info("Information of customer have: " + cusName);
+		return bookTour;
+	}
+
+	// Search information of customer booked tour by Email
+	@Override
+	public BookTour searchByEmail(String cusEmail) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusEmail));
+		logger.info("Information of customer have: " + cusEmail);
+		return bookTour;
+	}
+
+	// Search information of customer booked tour by Phone
+	@Override
+	public BookTour searchByPhone(String cusPhone) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusPhone));
+		logger.info("Information of customer have: " + cusPhone);
+		return bookTour;
+	}
+
+	@Override
+	public List<BookTour> registrationListByValue(String value) {
+		Session session = getCurrentSession();
+		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE idBT like :value or cusName like :value or cusEmail like :value or cusPhone like :value";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<BookTour> registrationList = query.list();
+		return registrationList;
+	}
+
+	@Override
+	public Integer getNumBookTour(Integer idTour) {
+		Integer numBookTour = registrationList(idTour).size();
+		logger.info("Number of registration are: " + numBookTour);
+		return numBookTour;
+	}
+
+	@Override
+	public Integer getNumBTBySearch(String value) {
+		Integer numBookTour = registrationListByValue(value).size();
+		logger.info("Number of registration are: " + numBookTour);
+		return numBookTour;
+	}
+
+	@Override
+	public Integer paginationX(Integer currentPage, Integer page) {
+		return currentPage * page - page;
+	}
+
+	@Override
+	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
+		Integer y = 0;
+		if (numOfPage < currentPage * page) {
+			y = numOfPage % 10;
+			if (y > page) {
+				y = paginationX(currentPage, page) + (y - page);
+			} else {
+				y = paginationX(currentPage, page) + y;
+			}
+		} else {
+			y = paginationX(currentPage, page) + page;
+		}
+		return y;
 	}
 }

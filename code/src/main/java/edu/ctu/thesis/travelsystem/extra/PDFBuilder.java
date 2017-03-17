@@ -64,11 +64,11 @@ public class PDFBuilder extends AbstractITextPdfView {
          
         // write table row data
         for (Tour tour : listTours) {
-            table.addCell(getNormalCell(tour.getIdTour(), 11, font));
+            table.addCell(getNormalCell(tour.getIdTour().toString(), 11, font));
             table.addCell(getNormalCell(tour.getName(), 11, font));
-            table.addCell(getNormalCell(tour.getDepartureDate(), 11, font));
+            table.addCell(getNormalCell(tour.getDepartureDate().toString(), 11, font));
             table.addCell(getNormalCell(tour.getDepartureTime(), 11, font));
-            table.addCell(getNormalCell(tour.getReturnDate(), 11, font));
+            table.addCell(getNormalCell(tour.getReturnDate().toString(), 11, font));
             table.addCell(getNormalCell(tour.getReturnTime(), 11, font));
             table.addCell(getNormalCell(tour.getDetail(), 11, font));
         }

@@ -9,7 +9,7 @@
 				<!-- Create Export Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 
-					<s:form class="signup-page" action="processExcel"
+					<s:form class="signup-page" action="processExcel" commandName="importData"
 						enctype="multipart/form-data" method="POST">
 						<div class="signup-header">
 							<div class="text-center">
@@ -28,6 +28,7 @@
 							</div>
 						</div>
 						</div>
+						<br />
 							<div class="row">
 								<div class="col-sm-12">
 									<label>Tên file import</label>
@@ -44,23 +45,24 @@
 									<label>Loại Import</label> <br />
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-male"></i>
-										</span> <select class="form-control margin-bottom-20"
-											name="exportList">
+										</span> <s:select class="form-control margin-bottom-20"
+											name="exportList" path="importType">
 											<option>Danh sách tour</option>
+											<option>Danh sách người dùng</option>
 											<option>Danh sách đăng ký</option>
-											<option>Tour du lịch</option>
-										</select>
+											<option>Danh sách hủy đăng đăng ký</option>
+										</s:select>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<label>Loại File</label> <br />
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-male"></i>
-										</span> <select class="form-control margin-bottom-20"
-											name="exportType">
+										</span> <s:select class="form-control margin-bottom-20"
+											name="exportType" path="fileType">
 											<option>Excel</option>
 											<option>Xml</option>
-										</select>
+										</s:select>
 									</div>
 								</div>
 							</div>

@@ -16,9 +16,6 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/updatetour/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/tourdetail/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/registrationlist/resources/**" location="/resources/"></mvc:resources>
 	
 	<!-- Set package to scan using annotation -->
 	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />
