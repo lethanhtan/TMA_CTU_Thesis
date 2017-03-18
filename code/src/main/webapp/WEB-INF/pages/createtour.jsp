@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -30,9 +30,12 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<div class="col-lg-4 text-right">
-								<button class="btn btn-primary" type="button">Tải Ảnh
-									Lên</button>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tải
+								ảnh lên</label>
+							<div class="col-sm-4">
+								<div class="col-lg-4 text-right">
+									<button class="btn btn-primary" type="button">Chọn tệp</button>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -120,8 +123,8 @@
 										class="fa fa-building-o"></i>
 									</span>
 									<s:input placeholder="Nhập số lượng"
-										class="form-control margin-bottom-20" type="text"
-										path="quantum" />
+										class="form-control margin-bottom-20" type="number"
+										path="quantum" min="10" />
 								</div>
 							</div>
 						</div>
@@ -150,6 +153,6 @@
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
-<!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp" %>
-<!-- === END FOOTER === -->
+	<!-- === BEGIN FOOTER === -->
+	<%@ include file="adminfooter.jsp"%>
+	<!-- === END FOOTER === -->

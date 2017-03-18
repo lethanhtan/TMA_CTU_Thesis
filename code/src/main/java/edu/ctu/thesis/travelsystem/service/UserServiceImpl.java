@@ -28,10 +28,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public Integer getRoleUser(User user) {
+	public int getRoleUser(User user) {
 		return this.userDao.getRoleUser(user);
 	}
-
+	
 	@Override
 	public String findFullName(String userName) {
 		return this.userDao.findFullName(userName);

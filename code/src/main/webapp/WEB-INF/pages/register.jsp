@@ -12,7 +12,7 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="userData"
 						action="${pageContext.request.contextPath }/register"
-						method="POST">
+						method="POST" id="checkboxV">
 						<div class="signup-header">
 							<h2>Đăng Ký Tài Khoản</h2>
 							<p>
@@ -24,11 +24,11 @@
 						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i class="fa fa-user"></i>
-								</span>
-								<s:input placeholder="Nhập tên tài khoản"
-									class="form-control margin-bottom-20" type="text"
-									path="userName" />
+							<span class="input-group-addon"> <i class="fa fa-user"></i>
+							</span>
+							<s:input placeholder="Nhập tên tài khoản"
+								class="form-control margin-bottom-20" type="text"
+								path="userName" />
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
@@ -78,7 +78,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Ngày sinh</label> <br /> <small><s:errors
@@ -91,7 +90,6 @@
 										class="form-control margin-bottom-20" path="birthday" />
 								</div>
 							</div>
-
 							<div class="col-sm-6">
 								<label>Số điện thoại</label> <br /> <small><s:errors
 										path="phone" cssStyle="color:red;" /></small>
@@ -121,13 +119,17 @@
 							<s:input placeholder="Nhập địa chỉ"
 								class="form-control margin-bottom-20" type="text" path="address" />
 						</div>
+						<!-- reCAPTCHA -->
+						<div style="margin-left: 37px;" class="g-recaptcha"
+							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+						</br>
 						<hr>
-
 						<div class="row">
 							<div class="col-lg-8">
-								<label class="checkbox"> <input type="checkbox">
-									Tôi đồng ý với <a href="gioi-thieu" style="color: blueviolet;">
-										điều khoản và chính sách </a> của NY Travel Company
+								<label class="checkbox"> <input type="checkbox"
+									id="field_terms" required name="terms"> Tôi đồng ý với
+									<a href="gioi-thieu" style="color: blueviolet;"> điều khoản
+										và chính sách </a> của NY Travel Company
 								</label>
 							</div>
 							<div class="col-lg-4 text-right">

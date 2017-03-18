@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "EXPORT")
 public class Export {
-	private Integer id;
+	private int id;
 	private String owner;
 	private Date date;
 	private Date time;
@@ -25,10 +25,10 @@ public class Export {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID", nullable = false)
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

@@ -8,11 +8,10 @@
 			<div class="row margin-vert-40">
 				<!-- Create Export Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-
 					<form class="signup-page">
 						<div class="signup-header">
 							<div class="text-center">
-								<h2>Quản lý Export</h2>
+								<h2>Quản lý Export</h2></br>
 							</div>
 						</div>
 						<div class="row">
@@ -22,7 +21,7 @@
 								<small><font color="red">${failedName}</font></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
-										class="fa fa-map-marker"></i>
+										class="fa fa-font"></i>
 									</span> <input placeholder="Nhập tên tour"
 										class="form-control margin-bottom-20" type="text" name="nameFile"/>
 								</div>
@@ -51,20 +50,20 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-7">
 								<label>Loại Export</label> <br />
 								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-male"></i>
+									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
 									</span> <select class="form-control margin-bottom-20" name="exportList" >
 										<option>Danh sách tour</option>
 										<option>Danh sách đăng ký</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-5">
 								<label>Loại File</label> <br />
 								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-male"></i>
+									<span class="input-group-addon"> <i class="fa fa-folder-open"></i>
 									</span> <select class="form-control margin-bottom-20" name="exportType" >
 										<option>Pdf</option>
 										<option>Excel</option>

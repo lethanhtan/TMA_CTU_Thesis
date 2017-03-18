@@ -30,6 +30,14 @@
 							width="500px" height="250px"
 							style="display: block; margin-right: auto; margin-left: auto; text-align: center" />
 					</div>
+					<label>Id customer</label>
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon"> <i class="fa fa-key"></i>
+							</span>
+							<s:input placeholder="${ticketAvailability}"
+								class="form-control margin-bottom-20" type="number" path="idBT"
+								disabled="true" />
+								</div>
 					<div class="row">
 						<div class="col-sm-8">
 							<label>Họ tên</label>
@@ -56,28 +64,37 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-7">
-							<label>Email</label>
-							<!-- Show error -->
-							<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-envelope"></i>
-								</span>
-								<s:input placeholder="Nhập email" class="form-control"
-									type="text" path="cusEmail" />
-							</div>
-						</div>
-						<div class="col-sm-5">
 							<label>Số điện thoại</label>
 							<!-- Show error -->
 							<small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
 							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i class="fa fa-tablet"></i>
+								<span class="input-group-addon"> <i
+									class="fa fa-envelope"></i>
 								</span>
-								<s:input placeholder="Nhập điện thoại" class="form-control"
+								<s:input placeholder="Nhập số điện thoại" class="form-control"
 									type="text" path="cusPhone" />
 							</div>
 						</div>
+						<div class="col-sm-5">
+							<label>Số lượng</label>
+							<!-- Show error -->
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon"> <i
+									class="fa fa-building-o"></i>
+								</span>
+								<s:input type="number" class="form-control margin-bottom-20"
+									path="cusNoOfTicket" min="1" max="10" />
+							</div>
+						</div>
+					</div>
+					<label>Email</label>
+					<!-- Show error -->
+					<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
+					<div class="input-group margin-bottom-20">
+						<span class="input-group-addon"> <i class="fa fa-envelope"></i>
+						</span>
+						<s:input placeholder="Nhập email" class="form-control" type="text"
+							path="cusEmail" />
 					</div>
 					<label>Địa chỉ</label>
 					<!-- Show error -->

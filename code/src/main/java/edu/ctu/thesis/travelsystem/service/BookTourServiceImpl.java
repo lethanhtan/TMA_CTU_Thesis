@@ -12,25 +12,24 @@ import edu.ctu.thesis.travelsystem.dao.BookTourDao;
 
 @Service
 public class BookTourServiceImpl implements BookTourService {
-	
 	@Autowired
 	private BookTourDao bookTourDao;
 	
 	@Override
 	@Transactional
-	public void saveBookTour(BookTour bookTour, Integer idTour) {
+	public void saveBookTour(BookTour bookTour, int idTour) {
 		this.bookTourDao.saveBookTour(bookTour, idTour);
 	}
 	
 	@Override
 	@Transactional
-	public List<BookTour> registrationList(Integer idTour) {
+	public List<BookTour> registrationList(int idTour) {
 		return this.bookTourDao.registrationList(idTour);
 	}
 	
 	@Override
 	@Transactional
-	public BookTour searchById(Integer idBT) {
+	public BookTour searchById(int idBT) {
 		return this.bookTourDao.searchById(idBT);
 	}
 	
@@ -42,7 +41,7 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public void deleteBookTour(Integer idBT, Integer idTour) {
+	public void deleteBookTour(int idBT, int idTour) {
 		this.bookTourDao.deleteBookTour(idBT, idTour);
 	}
 	
@@ -66,7 +65,7 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public Integer getNumBookTour(Integer idTour) {
+	public Integer getNumBookTour(int idTour) {
 		return this.bookTourDao.getNumBookTour(idTour);
 	}
 
@@ -91,10 +90,20 @@ public class BookTourServiceImpl implements BookTourService {
 	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
 		return this.bookTourDao.paginationY(numOfPage, currentPage, page);
 	}
-
+	
 	@Override
 	@Transactional
 	public List<BookTour> listBookTour() {
 		return this.bookTourDao.listBookTour();
+	}
+	
+	@Override
+	public int getNoTicketBooked(int idTour) {
+		return this.bookTourDao.getNoTicketBooked(idTour);
+	}
+	
+	@Override
+	public int getNoTicketAvailability(int idTour) {
+		return this.bookTourDao.getNoTicketAvailability(idTour);
 	}
 }

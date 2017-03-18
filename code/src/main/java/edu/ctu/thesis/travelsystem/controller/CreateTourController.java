@@ -28,7 +28,7 @@ public class CreateTourController {
 		public String createtourController(ModelMap model, HttpSession session) {
 			String result;
 			try {
-				if ((Integer) session.getAttribute("roleId") == 2) {
+				if ((int) session.getAttribute("roleId") == 2) {
 					logger.info("Register! In here first!");
 					model.put("tourData", new Tour());
 					result = "createtour";

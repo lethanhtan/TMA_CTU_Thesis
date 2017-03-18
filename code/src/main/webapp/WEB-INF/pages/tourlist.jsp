@@ -54,7 +54,7 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
-									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td>&nbsp;&nbsp;&nbsp;${tour.ticketAvailability}&nbsp;&nbsp;&nbsp;</td>
 									<td><a href="<c:url value='viewtour/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a href="<c:url value='booktour/${tour.idTour}'/>"
