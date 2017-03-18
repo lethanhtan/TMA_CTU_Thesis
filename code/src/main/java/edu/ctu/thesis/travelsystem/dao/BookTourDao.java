@@ -6,6 +6,8 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 
 public interface BookTourDao {
 	public void saveBookTour(BookTour bookTour, Integer idTour);
+	
+	public List<BookTour> listBookTour();
 
 	public List<BookTour> registrationList(Integer idTour);
 

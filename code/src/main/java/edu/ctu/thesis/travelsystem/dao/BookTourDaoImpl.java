@@ -165,4 +165,16 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 		return y;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> listBookTour() {
+		Session session = getCurrentSession();
+		String hql = "from edu.ctu.thesis.travelsystem.model.BookTour";
+		List<BookTour> bookTourList = session.createQuery(hql).list();
+		for (BookTour bookTour : bookTourList) {
+			logger.info("Tour List:" + bookTour);
+		}
+		return bookTourList;
+	}
 }

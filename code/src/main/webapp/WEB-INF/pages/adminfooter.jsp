@@ -26,11 +26,12 @@
 </div>
 <!-- End Footer Menu -->
 <!-- JS -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"
-	type="text/javascript"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"
-	type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/input.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+
 <!-- Isotope - Portfolio Sorting -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"
 	type="text/javascript"></script>

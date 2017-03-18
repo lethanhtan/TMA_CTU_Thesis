@@ -15,7 +15,6 @@
 						method="POST">
 						<div class="signup-header">
 							<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
-							</br>
 						</div>
 						<div class="row">
 							<div class="col-sm-8">

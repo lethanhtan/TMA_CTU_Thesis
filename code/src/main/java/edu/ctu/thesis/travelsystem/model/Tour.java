@@ -2,24 +2,29 @@ package edu.ctu.thesis.travelsystem.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TOUR")
 public class Tour {
 	private Integer idTour;
 	private String name;
-	private String departureDate;
+	private Date departureDate;
 	private String departureTime;
-	private String returnDate;
+	private Date returnDate;
 	private String returnTime;
 	private String price;
-	private String quantum;
+	private Integer quantum;
 	private String detail;
+	private String image;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -43,12 +48,13 @@ public class Tour {
 	}
 
 	// Create column Departure date
-	@Column(name = "DEPARTURE_DATE", nullable = false, length = 10)
-	public String getDepartureDate() {
+	@Column(name = "DEPARTURE_DATE", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getDepartureDate() {
 		return departureDate;
 	}
 
-	public void setDepartureDate(String departureDate) {
+	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
 
@@ -63,12 +69,13 @@ public class Tour {
 	}
 
 	// Create column Return date
-	@Column(name = "RETURN_DATE", nullable = false, length = 10)
-	public String getReturnDate() {
+	@Column(name = "RETURN_DATE", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(String returnDate) {
+	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
 
@@ -94,11 +101,11 @@ public class Tour {
 
 	// Create column Quantum
 	@Column(name = "QUANTUM", nullable = false)
-	public String getQuantum() {
+	public Integer getQuantum() {
 		return quantum;
 	}
 
-	public void setQuantum(String quantum) {
+	public void setQuantum(Integer quantum) {
 		this.quantum = quantum;
 	}
 
@@ -110,6 +117,15 @@ public class Tour {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+	
+	@Column(name = "IMAGE", nullable = true, length = 200)
+	public String getImage() {
+		return this.image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

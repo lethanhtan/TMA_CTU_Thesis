@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,11 +30,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			try {
 				logger.info("Save User Object! With encoded password!");
 				user.setRole(role); // set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); // encoded
-																	// password
-																	// user
-				user.setPasswordConfirm(user.getPassword()); // encoded password
-																// confirm user id
+				user.setPassword(ep.enCoded(user.getPassword())); 
+				user.setPasswordConfirm(user.getPassword()); 
+				Date now = new Date();
+				user.setResTime(now);
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {
@@ -75,5 +76,20 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				logger.error("Occured ex", e);
 			}
 		}
+	}
+
+	@Override
+	public String findFullName(String userName) {
+		String result = "";
+		Session session = getCurrentSession();
+		String hql = "select u.fullName edu.ctu.thesis.travelsystem.model.User as u where u.userName = ?";
+		try {
+			Query query = session.createQuery(hql);
+			query.setParameter(0, userName);
+			result = (String) query.uniqueResult();
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+		}
+		return result;
 	}
 }
