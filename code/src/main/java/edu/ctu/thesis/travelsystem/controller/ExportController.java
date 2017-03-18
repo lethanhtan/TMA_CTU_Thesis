@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.ExportDataService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
@@ -26,6 +28,9 @@ public class ExportController {
 	@Autowired
 	ExportDataService exportDataService;
 	
+	@Autowired
+	BookTourService bookTourService;
+	
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView showFormData(@RequestParam(value = "nameFile", required = false) String nameFile,
 			@RequestParam(value = "exportList", required = false) String exportList,
@@ -34,7 +39,9 @@ public class ExportController {
 			@RequestParam(value = "exportType", required = false) String exportType,
 			HttpSession session) {
 		ModelAndView model = new ModelAndView();
+		Export objExport = new Export();
 		List<Tour> listTours = tourService.listTour();
+		List<BookTour> listBookTours = bookTourService.listBookTour();
 		String failedName = "Bạn phải nhập tên file!";
 		String failedDate = "Bạn phải nhập ngày hợp lệ!";
 		if (exportType != null) {
@@ -46,18 +53,22 @@ public class ExportController {
 					} else {
 						model.addObject("fileName", nameFile);
 						model.addObject("listTours", listTours);
-						Export objExport = new Export();
-						Date now = new Date();
+						model.addObject("listBookTours", listBookTours);
+						model.addObject("exportList", exportList);
 						objExport.setOwner(session.getAttribute("userName").toString());
 						objExport.setFileType(exportType);
 						objExport.setExportType(exportList);
-						objExport.setDate(now);
-						objExport.setTime(now);
-						
+						exportDataService.saveExport(objExport);
 						model.setViewName("pdfView");
 					}
 				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {//2
 					model.addObject("listTours", listTours);
+					model.addObject("listBookTours", listBookTours);
+					model.addObject("exportList", exportList);
+					objExport.setOwner(session.getAttribute("userName").toString());
+					objExport.setFileType(exportType);
+					objExport.setExportType(exportList);
+					exportDataService.saveExport(objExport);
 					model.setViewName("pdfView");
 				} else if (nameFile.length() != 0 && (Date1 == null || Date2 == null)) {//3
 					model.addObject("failedDate", failedDate);
@@ -68,8 +79,35 @@ public class ExportController {
 				}
 				
 			} else {
-				model.addObject("listTours", listTours);
-				model.setViewName("excelView");
+				if (nameFile.length() != 0 && Date1 != null && Date2 != null) {//1
+					if (Date1.after(Date2)) {
+						model.addObject("failedDate", failedDate);
+						model.setViewName("export");
+					} else {
+						model.addObject("fileName", nameFile);
+						model.addObject("listTours", listTours);
+						model.addObject("listBookTour", listBookTours);
+						objExport.setOwner(session.getAttribute("userName").toString());
+						objExport.setFileType(exportType);
+						objExport.setExportType(exportList);
+						exportDataService.saveExport(objExport);
+						model.setViewName("excelView");
+					}
+				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {//2
+					model.addObject("listTours", listTours);
+					model.addObject("listBookTour", listBookTours);
+					objExport.setOwner(session.getAttribute("userName").toString());
+					objExport.setFileType(exportType);
+					objExport.setExportType(exportList);
+					exportDataService.saveExport(objExport);
+					model.setViewName("excelView");
+				} else if (nameFile.length() != 0 && (Date1 == null || Date2 == null)) {//3
+					model.addObject("failedDate", failedDate);
+					model.setViewName("export");
+				} else {//4
+					model.addObject("failedName", failedName);
+					model.setViewName("export");
+				}
 			}
 		}
 		return model;

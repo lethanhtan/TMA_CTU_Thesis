@@ -74,17 +74,17 @@
 						</div>
 						<hr class="margin-bottom-20">
 						<div class="row">
-							<div class="col-lg-4 text-left">
-								<button class="btn btn-primary" type="submit">Xác Nhận</button>
+								<div class="col-lg-4 text-left">
+									<button class="btn btn-primary" type="submit">Xác Nhận</button>
+								</div>
+								<div class="col-lg-4 text-center">
+									<a href="managetour"><button class="btn btn-primary"
+											type="button">Hủy Bỏ</button></a>
+								</div>
+								<div class="col-lg-4 text-right">
+									<input class="btn btn-primary" type="reset" value="Nhập Lại">
+								</div>
 							</div>
-							<div class="col-lg-4 text-center">
-								<a href="managetour"><button class="btn btn-primary"
-										type="button">Hủy Bỏ</button></a>
-							</div>
-							<div class="col-lg-4 text-right">
-								<input class="btn btn-primary" type="reset" value="Download">
-							</div>
-						</div>
 					</form>
 				</div>
 				<!-- End Export Box -->

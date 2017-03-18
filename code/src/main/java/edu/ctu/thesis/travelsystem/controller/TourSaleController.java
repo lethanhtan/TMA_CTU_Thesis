@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class StatisticDataController {
+public class TourSaleController {
 	
-	@RequestMapping(value="statistics", method = RequestMethod.GET)
-	public String showFormStatisticData(ModelMap model) {
-		return "statistics";
+	@RequestMapping(value="toursales", method = RequestMethod.GET)
+	public String tourSalesController(ModelMap model) {
+		return "charttoursales";
 	}
 }

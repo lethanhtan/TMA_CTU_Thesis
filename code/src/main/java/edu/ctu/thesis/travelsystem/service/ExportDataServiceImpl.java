@@ -8,7 +8,7 @@ import edu.ctu.thesis.travelsystem.dao.ExportDataDao;
 import edu.ctu.thesis.travelsystem.model.Export;
 
 @Service
-public class ExportDataServiceImpl implements ExportDataDao {
+public class ExportDataServiceImpl implements ExportDataService {
 
 	@Autowired
 	ExportDataDao exportDataDao;

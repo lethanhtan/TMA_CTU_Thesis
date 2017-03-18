@@ -103,8 +103,11 @@
 						<ul id="hornavmenu" class="nav navbar-nav">
 							<li><a href="${pageContext.request.contextPath }/managetour"
 								class="fa-gear">Quản Lý Tour</a></li>
-							<li><a href="${pageContext.request.contextPath }/statistics"
-								class="fa-gear">Thống kê dữ liệu</a></li>
+							<li><a class="fa-gear">Thống kê dữ liệu</a>
+								<ul>
+									<li><a href="<c:url value="/toursales" />">Doanh số tour</a></li>
+									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
+								</ul></li>
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>

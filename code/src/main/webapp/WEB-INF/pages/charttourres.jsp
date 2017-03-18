@@ -19,41 +19,35 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-	crossorigin="anonymous">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-	integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-	crossorigin="anonymous"></script>
-<script type="text/javascript"
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js">
-	
-</script>
+
+<!-- Styles -->
+<!-- Styles -->
+<style>
+#chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}							
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/input.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
+<link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css"
+<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/font-awesome.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
+<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/responsive.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nexus.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/table.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -83,9 +77,8 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath}/home" title=""> <img
-							src="${pageContext.request.contextPath}/resources/img/logo.png"
-							alt="Logo" />
+						<a href="${pageContext.request.contextPath }/home" title=""> <img
+							src="resources/img/logo.png" alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -95,7 +88,7 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png" width="64px"
+			<img src="resources/img/hot-air-balloon.png" width="64px"
 				height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
@@ -115,7 +108,8 @@
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a href="${pageContext.request.contextPath }/managedata"
+								class="fa-gear">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
@@ -135,3 +129,42 @@
 		</div>
 		<div id="content-top-border" class="container"></div>
 		<!-- === END HEADER === -->
+		<!-- === BEGIN CONTENT === -->
+		<div id="content">
+			<div class="container background-white">
+				<h1 align="center">Biểu đồ doanh tình hình bán tour</h1>
+				<div class="container">
+					<!-- Chart code -->
+					<!-- Chart code -->
+					<script>
+						var chart = AmCharts.makeChart("chartdiv", {
+							"type" : "pie",
+							"theme" : "light",
+							"dataProvider" : [ {
+								"title" : "New",
+								"value" : 4852
+							}, {
+								"title" : "Returning",
+								"value" : 9899
+							} ],
+							"titleField" : "title",
+							"valueField" : "value",
+							"labelRadius" : 5,
+
+							"radius" : "42%",
+							"innerRadius" : "60%",
+							"labelText" : "[[title]]",
+							"export" : {
+								"enabled" : true
+							}
+						});
+					</script>
+
+					<div class="row margin-vert-40">
+						<div id="chartdiv"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- === END CONTENT === -->
+		<%@ include file="adminfooter.jsp"%>
