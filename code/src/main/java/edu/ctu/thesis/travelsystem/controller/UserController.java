@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -26,7 +27,7 @@ public class UserController {
 	private UserService userService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
-
+	
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {

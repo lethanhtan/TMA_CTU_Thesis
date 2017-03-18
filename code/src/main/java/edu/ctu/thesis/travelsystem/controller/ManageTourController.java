@@ -54,8 +54,8 @@ public class ManageTourController {
 						model.addAttribute("tour", new Tour());
 						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
+						model.addAttribute("pageNum", pageNum);
+						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
 						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
 						result = "managetour";
@@ -72,10 +72,10 @@ public class ManageTourController {
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTour()); // create
-						model.addAttribute("numTour", tourService.getNumTour()); // create
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
+						model.addAttribute("tourList", tourService.listTour()); 
+						model.addAttribute("numTour", tourService.getNumTour());
+						model.addAttribute("pageNum", pageNum);
+						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
 						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
 						result = "managetour";

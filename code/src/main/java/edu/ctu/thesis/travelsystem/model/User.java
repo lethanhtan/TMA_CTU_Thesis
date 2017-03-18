@@ -1,11 +1,13 @@
 /***********************************************************************
- * Module:  Customer.java
- * Author:  Lê Như Ý
- * Purpose: Defines the Class Customer
+ * Module:  User.java
+ * Author:  Le Nhu Y
+ * Purpose: Defines the User
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "USER")
@@ -34,7 +38,12 @@ public class User {
 	private String passwordConfirm;
 	
 	@Column(name = "BIRTHDAY", nullable = true)
-	private String birthday;
+	@Temporal(TemporalType.DATE)
+	private Date birthday;
+	
+	@Column(name = "RES_TIME", nullable = true)
+	@Temporal(TemporalType.TIME)
+	private Date resTime;
 	
 	@Column(name = "FULL_NAME", nullable = false, length = 60)
 	private String fullName;
@@ -58,25 +67,13 @@ public class User {
 	//contructor
 	public User() {}
 	
-	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
-			String address, String email, String phone, String sex) {
-		this.userName = userName;
-		this.password = password;
-		this.passwordConfirm = passwordConfirm;
-		this.birthday = birthday;
-		this.fullName = fullName;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
-		this.sex = sex;
-	}
-	
-	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+	public User(String userName, String password, String passwordConfirm, Date birthday, Date resTime,String fullName,
 			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
 		this.birthday = birthday;
+		this.resTime = resTime;
 		this.fullName = fullName;
 		this.address = address;
 		this.email = email;
@@ -118,12 +115,20 @@ public class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 	
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 	
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+	
+	public Date getResTime() {
+		return resTime;
+	}
+	
+	public void setResTime(Date resTime) {
+		this.resTime = resTime;
 	}
 
 	public String getFullName() {

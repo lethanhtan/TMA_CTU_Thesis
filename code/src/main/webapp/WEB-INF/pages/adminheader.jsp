@@ -19,7 +19,22 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+	integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js">
+	
+</script>
+
 <!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/input.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
@@ -90,13 +105,21 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath}/managetour"
+							<li><a href="${pageContext.request.contextPath }/managetour"
 								class="fa-gear">Quản Lý Tour</a></li>
+							<li><a class="fa-gear">Thống kê dữ liệu</a>
+								<ul>
+									<li><a href="<c:url value="/toursales" />">Doanh số tour</a></li>
+									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
+								</ul></li>
 							<li><a
-								href="${pageContext.request.contextPath}/manageregister"
+								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath}/survey"
-								class="fa-file-text">Khảo Sát Ý Kiến</a></li>
+							<li><a class="fa-gear">Quản Lý Dữ Liệu</a>
+								<ul>
+									<li><a href="<c:url value="/import" />">Import</a></li>
+									<li><a href="<c:url value="/export" />">Export</a></li>
+								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Logout</a></li>

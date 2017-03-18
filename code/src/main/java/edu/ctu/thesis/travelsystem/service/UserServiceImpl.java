@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
 	public Integer getRoleUser(User user) {
 		return this.userDao.getRoleUser(user);
 	}
+
+	@Override
+	public String findFullName(String userName) {
+		return this.userDao.findFullName(userName);
+	}
 }

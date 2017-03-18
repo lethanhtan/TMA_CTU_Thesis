@@ -59,9 +59,11 @@ public class TourValidator implements Validator {
 		if (validUtil.findAlphabet(tour.getPrice())) {
 			errors.rejectValue("price", "Invalid.tourData.price");
 		}
+		/*
 		// In Quantum field
 		if (validUtil.findAlphabet(tour.getQuantum())) {
 			errors.rejectValue("quantum", "Invalid.tourData.quantum");
 		}
+		*/
 	}
 }

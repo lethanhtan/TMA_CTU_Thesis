@@ -91,4 +91,10 @@ public class BookTourServiceImpl implements BookTourService {
 	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
 		return this.bookTourDao.paginationY(numOfPage, currentPage, page);
 	}
+
+	@Override
+	@Transactional
+	public List<BookTour> listBookTour() {
+		return this.bookTourDao.listBookTour();
+	}
 }

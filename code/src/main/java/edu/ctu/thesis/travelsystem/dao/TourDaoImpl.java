@@ -96,11 +96,12 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> listTourByValue(String value) {
+		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour like :value "
-				+ "or t.name like :value ";
-		Query query = session.createQuery(hql);
-		query.setParameter("value", "%" + value + "%");
+		//String hql1 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour = :value1 ";
+		String hql2 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.name like :value2 ";
+		Query query = session.createQuery(hql2);
+		query.setParameter("value2", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<Tour> tourList = query.list();
 		return tourList;
