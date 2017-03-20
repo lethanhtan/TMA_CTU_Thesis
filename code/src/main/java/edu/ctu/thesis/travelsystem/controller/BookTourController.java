@@ -89,11 +89,13 @@ public class BookTourController {
 
 	// Forward to Book tour page, display book tour form
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") Integer idTour) {
+	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour, @Valid BookTour bookTour) {
 		// Put Customer data into table Book Tour;
 		try {
 			model.put("cusData", new BookTour());
 			 model.addAttribute("tour", idTour);
+			 Tour tour = tourService.findTourById(idTour);
+				bookTour.setTour(tour);
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
@@ -103,7 +105,7 @@ public class BookTourController {
 	// Test errors
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") Integer idTour) {
+			HttpSession session, @PathVariable("idTour") int idTour) {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
@@ -119,7 +121,7 @@ public class BookTourController {
 
 	// Forward to Tour detail page
 	@RequestMapping(value = "/viewtour/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idTour") Integer idTour) {
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
 		return "viewtour";

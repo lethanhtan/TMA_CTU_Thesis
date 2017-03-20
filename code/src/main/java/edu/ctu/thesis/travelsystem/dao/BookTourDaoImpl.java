@@ -8,17 +8,18 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Service
 public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
-	//GenerateId gid = new GenerateId();
-
 	// Fill the fields automatically
 	private static final Logger logger = Logger.getLogger(BookTourDaoImpl.class);
+	private TourService tourService;
 
 	// Save book tour form when have id tour
 	@Override
-	public void saveBookTour(BookTour bookTour, Integer idTour) {
+	public void saveBookTour(BookTour bookTour, int idTour) {
 		Session session = getCurrentSession();
 		// Tour tour = (Tour) session.load(Tour.class, new String(idTour));
 		if (bookTour != null) {
@@ -35,7 +36,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	// Display registration list by Id tour
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BookTour> registrationList(Integer idTour) {
+	public List<BookTour> registrationList(int idTour) {
 		Session session = getCurrentSession();
 		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE ID_TOUR = :idTour";
 		Query query = session.createQuery(hql);
@@ -80,7 +81,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void deleteBookTour(Integer idBT, Integer idTour) {
+	public void deleteBookTour(int idBT, int idTour) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
@@ -132,7 +133,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public Integer getNumBookTour(Integer idTour) {
+	public Integer getNumBookTour(int idTour) {
 		Integer numBookTour = registrationList(idTour).size();
 		logger.info("Number of registration are: " + numBookTour);
 		return numBookTour;
@@ -165,7 +166,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 		return y;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> listBookTour() {
@@ -176,5 +177,40 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			logger.info("Tour List:" + bookTour);
 		}
 		return bookTourList;
+	}
+	
+	@Override
+	public int getNoTicketBooked(int idTour) {
+		int noTicketBooked = 0;
+		Session session = getCurrentSession();
+		String hql = "SELECT SUM(o.cusNoOfTicket) FROM BookTour o WHERE o.tour.id = :idTour";
+		logger.info(session);
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
+		Object obj = query.uniqueResult();
+		try {
+            if (obj != null) {
+                noTicketBooked = ((Long) obj).intValue();
+                logger.info("Total ticket booked: " + noTicketBooked);
+            }
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+		}
+		logger.info("No Ticket: " + noTicketBooked);
+		return noTicketBooked;
+	}
+	
+	@Override
+	public int getNoTicketAvailability(int idTour) {
+		int noTicketBooked = getNoTicketBooked(idTour);
+		logger.info("No. Ticket booked: " + noTicketBooked);
+		Tour tour = tourService.findTourById(idTour);
+		int noTicketAvailability = tour.getQuantum();
+		int quantum = tour.getQuantum();
+		logger.info("Total Ticket: " + quantum);
+		for(int i = 0; i <= quantum; i++) {
+			noTicketAvailability = quantum - noTicketBooked;
+		}
+		return noTicketAvailability;
 	}
 }

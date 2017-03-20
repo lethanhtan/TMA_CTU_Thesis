@@ -120,6 +120,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/calendar.js"></script>
+<!-- Checkbox validation-->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/checkboxvalidation.js"></script>
+<!--  reCAPTCHA -->
+<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
 <!-- End JS -->
 </body>
 </html>

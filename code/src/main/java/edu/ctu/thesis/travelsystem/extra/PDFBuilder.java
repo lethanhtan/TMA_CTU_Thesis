@@ -65,7 +65,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			// write table row data
 			for (Tour tour : listTours) {
-				table.addCell(getNormalCell(tour.getIdTour().toString(), 11, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), 11, font));
 				table.addCell(getNormalCell(tour.getName(), 11, font));
 				table.addCell(getNormalCell(tour.getDepartureDate().toString(), 11, font));
 				table.addCell(getNormalCell(tour.getDepartureTime(), 11, font));
@@ -110,13 +110,13 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			// write table row data
 			for (BookTour bookTour : listBookTours) {
-				table.addCell(getNormalCell(bookTour.getIdBT().toString(), 11, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), 11, font));
 				table.addCell(getNormalCell(bookTour.getCusName(), 11, font));
 				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), 11, font));
 				table.addCell(getNormalCell(bookTour.getCusAddress(), 11, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), 11, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), 11, font));
-				table.addCell(getNormalCell(bookTour.getTour().getIdTour().toString(), 11, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), 11, font));
 			}
 
 			doc.add(table);

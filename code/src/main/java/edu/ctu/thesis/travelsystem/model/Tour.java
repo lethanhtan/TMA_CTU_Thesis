@@ -15,25 +15,26 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "TOUR")
 public class Tour {
-	private Integer idTour;
+	private int idTour;
 	private String name;
 	private Date departureDate;
 	private String departureTime;
 	private Date returnDate;
 	private String returnTime;
 	private String price;
-	private Integer quantum;
+	private int quantum;
 	private String detail;
 	private String image;
+	private Integer ticketAvailability;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_TOUR", nullable = false)
-	public Integer getIdTour() {
+	public int getIdTour() {
 		return idTour;
 	}
 
-	public void setIdTour(Integer idTour) {
+	public void setIdTour(int idTour) {
 		this.idTour = idTour;
 	}
 
@@ -101,11 +102,11 @@ public class Tour {
 
 	// Create column Quantum
 	@Column(name = "QUANTUM", nullable = false)
-	public Integer getQuantum() {
+	public int getQuantum() {
 		return quantum;
 	}
 
-	public void setQuantum(Integer quantum) {
+	public void setQuantum(int quantum) {
 		this.quantum = quantum;
 	}
 
@@ -128,6 +129,21 @@ public class Tour {
 		this.image = image;
 	}
 
+	// Create column Number ticket availability
+	@Column(name = "TICKET_AVAILABILITY", nullable = false)
+	public Integer getTicketAvailability() {
+		return ticketAvailability;
+	}
+
+	public void setTicketAvailability(Integer ticketAvailability) {
+		this.ticketAvailability = ticketAvailability;
+	}
+
+	@Override
+	public int hashCode() {
+		return idTour;
+	}
+
 	@Override
 	public String toString() {
 		return this.getClass().getName() + "Id = " + idTour;
@@ -138,7 +154,7 @@ public class Tour {
 		if (tour == null || (tour.getClass() != this.getClass())) {
 			return false;
 		} else {
-			return true;
+			return this.idTour == ((Tour) tour).getIdTour();
 		}
 	}
 }

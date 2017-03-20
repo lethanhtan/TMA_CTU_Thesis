@@ -37,7 +37,7 @@ public class RegistrationListController {
 
 	// Forward to Registration List page
 	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
-	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") Integer idTour,
+	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
 		model.addAttribute("searchedValue", valueSearch);
@@ -91,7 +91,7 @@ public class RegistrationListController {
 
 	// Forward to Customer detail page
 	@RequestMapping(value = "/booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
+	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		model.put("cusData", bookTourService.searchById(idBT));
 		logger.info("Show information of customer when book tour");
 		return "booktourdetail";
@@ -99,7 +99,7 @@ public class RegistrationListController {
 
 	// Forward to Edit information of customer booked tour
 	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
+	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
 		return "editbooktour";
@@ -107,7 +107,7 @@ public class RegistrationListController {
 
 	// Test errors
 	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
-	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour,
+	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour,
 			ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
 			HttpSession session) {
 		logger.info("Handle edit information customer form when admin submit!");
@@ -126,7 +126,7 @@ public class RegistrationListController {
 
 	// Delete customer booked tour
 	@RequestMapping(value = "deletebooktour/{idBT}/{idTour}")
-	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") Integer idTour) {
+	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
 		bookTourService.deleteBookTour(idBT, idTour);
 		return "redirect:/registrationlist/{idTour}";
 	}

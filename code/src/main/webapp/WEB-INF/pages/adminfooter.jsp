@@ -26,42 +26,62 @@
 </div>
 <!-- End Footer Menu -->
 <!-- JS -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/input.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/input.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 
 <!-- Isotope - Portfolio Sorting -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"
 	type="text/javascript"></script>
 <!-- Mobile Menu - Slicknav -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"
 	type="text/javascript"></script>
 <!-- Animate on Scroll-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.visible.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.visible.js"
 	charset="utf-8"></script>
 <!-- Sticky Div -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"
 	charset="utf-8"></script>
 <!-- Slimbox2-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/slimbox2.js"
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/slimbox2.js"
 	charset="utf-8"></script>
 <!-- Modernizr -->
-<script src="${pageContext.request.contextPath}/resources/js/modernizr.custom.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/modernizr.custom.js"
+	type="text/javascript"></script>
 <!--  Back to top -->
-<script src="${pageContext.request.contextPath}/resources/js/backtotop.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/backtotop.js"
+	type="text/javascript"></script>
 <!-- Calendar -->
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calendar.js"></script>
-<!-- Text editor -->
 <script type="text/javascript"
-	src="http://js.nicedit.com/nicEdit-latest.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/calendar.js"></script>
+<!-- Text editor -->
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/texteditor.js"
+	type="text/javascript"></script>
 <!-- History back -->
-<script src="${pageContext.request.contextPath}/resources/js/historyback.js" type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/historyback.js"
+	type="text/javascript"></script>
+
+
 <!-- End JS -->
 </body>
 </html>

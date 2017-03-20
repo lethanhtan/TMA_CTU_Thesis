@@ -15,7 +15,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_ROLE", nullable = false)
-	private Integer id;
+	private int id;
 
 	@Column(name = "DESCRIPTION", nullable = false, length = 40)
 	private String description;
@@ -29,11 +29,11 @@ public class Role {
 	}
 
 	// Setters and Getter method
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

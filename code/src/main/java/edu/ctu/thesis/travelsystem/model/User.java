@@ -26,7 +26,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_USER", nullable = false)
-	private Integer idUser;
+	private int idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -83,11 +83,11 @@ public class User {
 	}
 	
 	//Getters and Setters method
-	public Integer getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(Integer idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 	
@@ -181,17 +181,21 @@ public class User {
 	}
 	
 	@Override
+	public int hashCode() {
+		return idUser;
+	}
+
+	@Override
 	public String toString() {
 		return this.getClass().getName() + "Id = " + idUser;
 	}
-	
+
 	@Override
 	public boolean equals(Object user) {
 		if (user == null || (user.getClass() != this.getClass())) {
 			return false;
-		}
-		else {
-			return true;
+		} else {
+			return this.idUser == ((User) user).getIdUser();
 		}
 	}
 }

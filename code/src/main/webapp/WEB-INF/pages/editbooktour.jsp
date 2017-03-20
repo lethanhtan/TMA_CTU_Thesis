@@ -18,14 +18,6 @@
 							<h2>Cập nhật Thông Tin Khách Hàng Đặt Vé</h2>
 							</br>
 						</div>
-						<label>Id customer</label>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"> <i class="fa fa-key"></i>
-							</span>
-							<s:input placeholder="${cusData.idBT}"
-								class="form-control margin-bottom-20" type="number" path="idBT"
-								disabled="true" />
-						</div>
 						<label>Họ tên</label>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-font"></i>

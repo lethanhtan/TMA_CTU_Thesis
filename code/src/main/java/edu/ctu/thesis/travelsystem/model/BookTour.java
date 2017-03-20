@@ -14,42 +14,47 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BOOK_TOUR")
 public class BookTour {
-	private Integer idBT;
+	private int idBT;
 	private String cusName;
 	private String cusSex;
 	private String cusEmail;
 	private String cusPhone;
 	private String cusAddress;
+	private int cusNoOfTicket;
 	private Tour tour;
 
 	public BookTour() {
 	}
 
-	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress) {
+	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
+			int cusNoOfTicket) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
 		this.cusPhone = cusPhone;
 		this.cusAddress = cusAddress;
+		this.cusNoOfTicket = cusNoOfTicket;
 	}
 
-	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress, Tour tour) {
+	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
+			int cusNoOfTicket, Tour tour) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
 		this.cusPhone = cusPhone;
 		this.cusAddress = cusAddress;
+		this.cusNoOfTicket = cusNoOfTicket;
 		this.tour = tour;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_BT", nullable = false)
-	public Integer getIdBT() {
+	public int getIdBT() {
 		return this.idBT;
 	}
 
-	public void setIdBT(Integer idBT) {
+	public void setIdBT(int idBT) {
 		this.idBT = idBT;
 	}
 
@@ -104,6 +109,17 @@ public class BookTour {
 		this.cusAddress = cusAddress;
 	}
 
+	// Create column Number of ticket
+	@Column(name = "CUS_NOOFTICKET", nullable = false)
+
+	public int getCusNoOfTicket() {
+		return this.cusNoOfTicket;
+	}
+
+	public void setCusNoOfTicket(int cusNoOfTicket) {
+		this.cusNoOfTicket = cusNoOfTicket;
+	}
+
 	// Join table Tour by column ID tour
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_TOUR", nullable = true)
@@ -116,6 +132,11 @@ public class BookTour {
 	}
 
 	@Override
+	public int hashCode() {
+		return idBT;
+	}
+
+	@Override
 	public String toString() {
 		return this.getClass().getName() + "Id = " + idBT;
 	}
@@ -125,7 +146,7 @@ public class BookTour {
 		if (bookTour == null || (bookTour.getClass() != this.getClass())) {
 			return false;
 		} else {
-			return true;
+			return this.idBT == ((BookTour) bookTour).getIdBT();
 		}
 	}
 }

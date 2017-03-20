@@ -6,14 +6,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class TourDaoImpl extends AbstractDao implements TourDao {
-	//GenerateId gid = new GenerateId();
-
+	@Autowired
+	private BookTourService bookTourService;
 	// Fill the fields automatically
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
@@ -24,7 +26,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		if (tour != null) {
 			try {
 				logger.info("Save tour be called!");
-				// tour.setIdTour(gid.generateIdTour());
+				if (tour.getTicketAvailability() == null) {
+					tour.setTicketAvailability(tour.getQuantum());
+				} 
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -34,7 +38,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public Tour findTourById(Integer idTour) {
+	public Tour findTourById(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = new Tour();
 		logger.info("Tour infor: " + idTour);
@@ -72,7 +76,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public void deleteTour(Integer idTour) {
+	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
 		if (tour != null) {
@@ -89,6 +93,13 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		String hql = "from edu.ctu.thesis.travelsystem.model.Tour";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
+			// Sync noTicketAvailability
+			Integer noTicketBooked = bookTourService.getNoTicketBooked(tour.getIdTour());
+			Integer newAvailability = tour.getQuantum() - noTicketBooked;
+			if (tour.getTicketAvailability() != newAvailability) {
+				tour.setTicketAvailability(newAvailability);
+				saveTour(tour);
+			}
 			logger.info("Tour List:" + tour);
 		}
 		return tourList;
@@ -96,12 +107,11 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> listTourByValue(String value) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		//String hql1 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour = :value1 ";
-		String hql2 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.name like :value2 ";
-		Query query = session.createQuery(hql2);
-		query.setParameter("value2", "%" + value + "%");
+		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour like :value "
+				+ "or t.name like :value ";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<Tour> tourList = query.list();
 		return tourList;

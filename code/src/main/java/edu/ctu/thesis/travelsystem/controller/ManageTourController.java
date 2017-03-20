@@ -25,7 +25,6 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
 @Controller
 public class ManageTourController {
-
 	@Autowired
 	private TourService tourService;
 
@@ -39,7 +38,7 @@ public class ManageTourController {
 		logger.info("Handle when managetour request from admin!");
 		String result;
 		try {
-			if ((Integer) session.getAttribute("roleId") == 2) {
+			if ((int) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
@@ -54,8 +53,8 @@ public class ManageTourController {
 						model.addAttribute("tour", new Tour());
 						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
-						model.addAttribute("pageNum", pageNum);
-						model.addAttribute("pageE", new ArrayList<Integer>());
+						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, 5));
 						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
 						result = "managetour";
@@ -72,10 +71,10 @@ public class ManageTourController {
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTour()); 
-						model.addAttribute("numTour", tourService.getNumTour());
-						model.addAttribute("pageNum", pageNum);
-						model.addAttribute("pageE", new ArrayList<Integer>());
+						model.addAttribute("tourList", tourService.listTour()); // create
+						model.addAttribute("numTour", tourService.getNumTour()); // create
+						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, 5));
 						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
 						result = "managetour";
@@ -87,7 +86,7 @@ public class ManageTourController {
 				result = "forbidden";
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Occured ex", e);
 			result = "forbidden";
 		}
 		return result;
@@ -95,14 +94,14 @@ public class ManageTourController {
 
 	// handle delete request from client
 	@RequestMapping(value = "managetour/delete/{idTour}")
-	public String delteTour(@PathVariable("idTour") Integer idTour) {
+	public String delteTour(@PathVariable("idTour") int idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
 
 	// handle required reuest from client
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idTour") Integer idTour) {
+	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		if (tour != null) {
@@ -116,7 +115,7 @@ public class ManageTourController {
 
 	// handle form action update tour
 	@RequestMapping(value = "/updatetour/{idTour}")
-	public String updateTour(ModelMap model, @PathVariable("idTour") Integer idTour,
+	public String updateTour(ModelMap model, @PathVariable("idTour") int idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
@@ -131,7 +130,7 @@ public class ManageTourController {
 
 	// Forward to Tour detail page
 	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idTour") Integer idTour) {
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
 		return "tourdetail";
@@ -139,7 +138,7 @@ public class ManageTourController {
 
 	// Delete tour in Detail tour page
 	@RequestMapping(value = "tourdetail/delete/{idTour}")
-	public String deleteTour(@PathVariable("idTour") Integer idTour) {
+	public String deleteTour(@PathVariable("idTour") int idTour) {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}

@@ -28,15 +28,6 @@
 							<h2>Thông Tin Tour Du Lịch</h2>
 							</br>
 						</div>
-						<label>Id tour</label>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"> <i
-								class="fa fa-map-marker"></i>
-							</span>
-							<s:input placeholder="${tourData.idTour}"
-								class="form-control margin-bottom-20" type="number" path="idTour"
-								disabled="true" />
-						</div>
 						<label>Tên tour</label>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i
@@ -113,12 +104,12 @@
 									</span>
 									<s:input placeholder="Nhập số lượng"
 										class="form-control margin-bottom-20" type="text"
-										path="quantum" disabled="true" />
+										path="ticketAvailability" disabled="true" />
 								</div>
 							</div>
 						</div>
 						<label>Chi tiết tour</label>
-						<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
+						<s:input placeholder="Nhập chi tiết về tour" id="area2"
 							class="form-control margin-bottom-20" type="text" rows="10"
 							path="detail" disabled="true" />
 						<hr>
