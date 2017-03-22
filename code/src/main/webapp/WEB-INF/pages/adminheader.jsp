@@ -105,24 +105,24 @@
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
 							<li><a href="${pageContext.request.contextPath}/managetour"
-								class="fa-gear">Quản Lý Tour</a></li>
-							<li><a class="fa-gear">Thống kê dữ liệu</a>
-								<ul>
-									<li><a href="<c:url value="/toursales" />">Doanh số
-											tour</a></li>
-									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
-								</ul></li>
+								class="fa-cogs">Quản Lý Tour</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a class="fa-print">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
 								</ul></li>
+							<li><a class="fa-bar-chart-o">Thống kê</a>
+								<ul>
+									<li><a href="<c:url value="/toursales" />"> Doanh số
+											tour</a></li>
+									<li><a href="<c:url value="/tourres" />"> Tour đăng ký</a></li>
+								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Logout</a></li>
+									<li><a href="<c:url value="/logout" />"> Đăng xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>

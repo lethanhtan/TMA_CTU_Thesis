@@ -1,6 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,20 +21,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
 public class BookTourController {
-
 	@Autowired
 	private TourService tourService;
-
 	@Autowired
 	private BookTourService bookTourService;
-
+	@Autowired
+	private RegInfoService regInfoService;
 	private static final Logger logger = Logger.getLogger(BookTourController.class);
 
 	// Display Tour list for user choose
@@ -53,10 +55,10 @@ public class BookTourController {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				logger.info("Search active!");
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
+				model.addAttribute("showTourList", tourService.listTourByValue(valueSearch));
 				model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
-				model.addAttribute("pageNum", pageNum); // create number
-				model.addAttribute("pageE", new ArrayList<Integer>()); // create
+				model.addAttribute("pageNum", pageNum); // Create number of page
+				model.addAttribute("pageE", new ArrayList<Integer>()); 
 				model.addAttribute("x", tourService.paginationX(page, 5));
 				model.addAttribute("y",
 						tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
@@ -64,7 +66,7 @@ public class BookTourController {
 			} else {
 				return "forbidden";
 			}
-		} else { // search none active ! Update list tour
+		} else { // Search none active ! Update list tour
 			Integer num = 0;
 			if ((tourService.getNumTour() % 5) == 0) {
 				num = tourService.getNumTour() / 5;
@@ -74,12 +76,12 @@ public class BookTourController {
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("tourList", tourService.listTour()); // create
-				model.addAttribute("numTour", tourService.getNumTour()); // create
-				model.addAttribute("pageNum", pageNum); // create number
-				model.addAttribute("pageE", new ArrayList<Integer>()); // create
+				model.addAttribute("showTourList", tourService.showTourList()); // Display tour list
+				model.addAttribute("numTour", tourService.getNumTourList()); // Get number of tour list
+				model.addAttribute("pageNum", pageNum); // Create number of page
+				model.addAttribute("pageE", new ArrayList<Integer>()); 
 				model.addAttribute("x", tourService.paginationX(page, 5));
-				model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
+				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, 5));
 				return "tourlist";
 			} else {
 				return "forbidden";
@@ -89,13 +91,19 @@ public class BookTourController {
 
 	// Forward to Book tour page, display book tour form
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour, @Valid BookTour bookTour) {
+	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour,
+			@Valid BookTour bookTour, @Valid RegistrationInfo regInfo, @Valid Tour tour) {
 		// Put Customer data into table Book Tour;
 		try {
 			model.put("cusData", new BookTour());
-			 model.addAttribute("tour", idTour);
-			 Tour tour = tourService.findTourById(idTour);
-				bookTour.setTour(tour);
+			regInfo = regInfoService.searchRegInfoById(idTour);
+			logger.info("Reg Info: " + regInfo);
+			if (regInfo != null) {
+				model.addAttribute("regInfo", regInfo);
+			}
+			tour = tourService.findTourById(idTour);
+			model.addAttribute("tour", tour);
+			bookTour.setTour(tour);
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
@@ -105,14 +113,20 @@ public class BookTourController {
 	// Test errors
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") int idTour) {
+			HttpSession session, @PathVariable("idTour") int idTour, @Valid RegistrationInfo regInfo) {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
+			regInfo = regInfoService.searchRegInfoById(idTour);
+			logger.info("Reg Info: " + regInfo);
+			if (regInfo != null) {
+				model.addAttribute("regInfo", regInfo);
+			}
 			return "booktour";
 		} else {
 			Tour tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
+			bookTour.setDateBook(Calendar.getInstance().getTime());
 			logger.info("Handle for save booktour!");
 			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/home";

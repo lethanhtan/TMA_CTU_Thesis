@@ -1,7 +1,5 @@
 package edu.ctu.thesis.travelsystem.service;
 
-import edu.ctu.thesis.travelsystem.model.BookTour;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.BookTourDao;
+import edu.ctu.thesis.travelsystem.model.BookTour;
 
 @Service
 public class BookTourServiceImpl implements BookTourService {
@@ -98,12 +97,12 @@ public class BookTourServiceImpl implements BookTourService {
 	}
 	
 	@Override
-	public int getNoTicketBooked(int idTour) {
-		return this.bookTourDao.getNoTicketBooked(idTour);
+	public int getNumTicketBooked(int idTour) {
+		return this.bookTourDao.getNumTicketBooked(idTour);
 	}
 	
 	@Override
-	public int getNoTicketAvailability(int idTour) {
-		return this.bookTourDao.getNoTicketAvailability(idTour);
+	public int getNumTicketAvailability(int idTour) {
+		return this.bookTourDao.getNumTicketAvailability(idTour);
 	}
 }

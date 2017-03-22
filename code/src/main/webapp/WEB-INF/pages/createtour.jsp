@@ -30,12 +30,10 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tải
-								ảnh lên</label>
-							<div class="col-sm-4">
-								<div class="col-lg-4 text-right">
-									<button class="btn btn-primary" type="button">Chọn tệp</button>
-								</div>
+							<div class="col-lg-4 text-left">
+								<label>Tải ảnh lên</label>
+								<button class="btn btn-primary" type="button">Chọn tập
+									tin</button>
 							</div>
 						</div>
 						<div class="row">
@@ -94,7 +92,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-clock-o"></i>
 									</span>
-									<s:input placeholder="Nhập giờ đi"
+									<s:input placeholder="Nhập giờ về"
 										class="form-control margin-bottom-20" type="text"
 										path="returnTime" />
 								</div>
@@ -125,6 +123,28 @@
 									<s:input placeholder="Nhập số lượng"
 										class="form-control margin-bottom-20" type="number"
 										path="quantum" min="10" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Ngày cho phép đăng ký</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+										class="form-control margin-bottom-20" path="dateAllowReg" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Ngày cho phép hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+										class="form-control margin-bottom-20" path="dateAllowCancel" />
 								</div>
 							</div>
 						</div>

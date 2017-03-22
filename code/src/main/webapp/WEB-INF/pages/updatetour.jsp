@@ -14,21 +14,10 @@
 						action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
 						method="POST">
 						<div class="signup-header">
-							<h2>Cập nhật Thông Tin Tour Du Lịch</h2>
+							<h2>Cập nhật Thông Tin Tour</h2>
 							</br>
 						</div>
 						<div class="row">
-							<div class="col-sm-8">
-								<label>Id tour</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-map-marker"></i>
-									</span>
-									<s:input placeholder="${tourData.idTour}"
-										class="form-control margin-bottom-20" type="number"
-										path="idTour" disabled="true" />
-								</div>
-							</div>
 							<div class="col-sm-8">
 								<label>Tên tour</label>
 								<!-- Show error -->
@@ -41,15 +30,19 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<div class="col-lg-4 text-right">
-								<button class="btn btn-primary" type="button">Tải Ảnh
-									Lên</button>
+							<div class="col-lg-4 text-left">
+								<label>Tải ảnh lên</label>
+								<button class="btn btn-primary" type="button">Chọn tập
+									tin</button>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Ngày đi</label> <small><s:errors
-										path="departureDate" cssStyle="color:red;" /></small>
+								<label>Ngày đi</label>
+								<!-- Show error -->
+								</br> <small><s:errors path="departureDate"
+										cssStyle="color:red;" /></small>
+								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
@@ -117,6 +110,52 @@
 									<s:input placeholder="Nhập số lượng"
 										class="form-control margin-bottom-20" type="text"
 										path="quantum" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Số vé còn</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-building-o"></i>
+									</span>
+									<s:input placeholder="Nhập số lượng"
+										class="form-control margin-bottom-20" type="text"
+										path="ticketAvailability" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Số vé hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-building-o"></i>
+									</span>
+									<s:input placeholder="Nhập số lượng"
+										class="form-control margin-bottom-20" type="text"
+										path="ticketAvailability" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Ngày cho phép đăng ký</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+										class="form-control margin-bottom-20" path="dateAllowReg" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Ngày cho phép hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+										class="form-control margin-bottom-20" path="dateAllowCancel" />
 								</div>
 							</div>
 						</div>

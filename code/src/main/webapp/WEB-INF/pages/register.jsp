@@ -14,7 +14,7 @@
 						action="${pageContext.request.contextPath }/register"
 						method="POST" id="checkboxV">
 						<div class="signup-header">
-							<h2>Đăng Ký Tài Khoản</h2>
+							<h2 style="text-align: center;">Đăng Ký Tài Khoản</h2>
 							<p>
 								Đã có tài khoản? <a href="login" style="color: #ef5b92">Đăng
 									nhập</a>
@@ -122,6 +122,7 @@
 						<!-- reCAPTCHA -->
 						<div style="margin-left: 37px;" class="g-recaptcha"
 							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+						<!-- End reCAPTCHA -->
 						</br>
 						<hr>
 						<div class="row">

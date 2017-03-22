@@ -2,6 +2,8 @@ package edu.ctu.thesis.travelsystem.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "BOOK_TOUR")
@@ -20,30 +24,36 @@ public class BookTour {
 	private String cusEmail;
 	private String cusPhone;
 	private String cusAddress;
-	private int cusNoOfTicket;
+	private int cusNumOfTicket = 1;
+	private String cusIdCard;
+	private Date dateBook;
 	private Tour tour;
 
 	public BookTour() {
 	}
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
-			int cusNoOfTicket) {
+			int cusNumOfTicket, String cusIdCard, Date dateBook) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
 		this.cusPhone = cusPhone;
 		this.cusAddress = cusAddress;
-		this.cusNoOfTicket = cusNoOfTicket;
+		this.cusNumOfTicket = cusNumOfTicket;
+		this.cusIdCard = cusIdCard;
+		this.dateBook = dateBook;
 	}
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
-			int cusNoOfTicket, Tour tour) {
+			int cusNumOfTicket, String cusIdCard, Date dateBook, Tour tour) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
 		this.cusPhone = cusPhone;
 		this.cusAddress = cusAddress;
-		this.cusNoOfTicket = cusNoOfTicket;
+		this.cusNumOfTicket = cusNumOfTicket;
+		this.cusIdCard = cusIdCard;
+		this.dateBook = dateBook;
 		this.tour = tour;
 	}
 
@@ -59,7 +69,7 @@ public class BookTour {
 	}
 
 	// Create column customer name
-	@Column(name = "CUS_NAME", nullable = false, length = 40)
+	@Column(name = "CUS_NAME", nullable = true, length = 40)
 	public String getCusName() {
 		return this.cusName;
 	}
@@ -79,7 +89,7 @@ public class BookTour {
 	}
 
 	// Create column customer email
-	@Column(name = "CUS_EMAIL", nullable = false, length = 50)
+	@Column(name = "CUS_EMAIL", nullable = true, length = 50)
 	public String getCusEmail() {
 		return this.cusEmail;
 	}
@@ -89,7 +99,7 @@ public class BookTour {
 	}
 
 	// Create column customer phone
-	@Column(name = "CUS_PHONE", nullable = false)
+	@Column(name = "CUS_PHONE", nullable = true)
 	public String getCusPhone() {
 		return this.cusPhone;
 	}
@@ -99,8 +109,7 @@ public class BookTour {
 	}
 
 	// Create column customer address
-	@Column(name = "CUS_ADDRESS", nullable = false, length = 100)
-
+	@Column(name = "CUS_ADDRESS", nullable = true, length = 100)
 	public String getCusAddress() {
 		return this.cusAddress;
 	}
@@ -110,14 +119,34 @@ public class BookTour {
 	}
 
 	// Create column Number of ticket
-	@Column(name = "CUS_NOOFTICKET", nullable = false)
-
-	public int getCusNoOfTicket() {
-		return this.cusNoOfTicket;
+	@Column(name = "CUS_NumOFTICKET", nullable = true)
+	public int getCusNumOfTicket() {
+		return this.cusNumOfTicket;
 	}
 
-	public void setCusNoOfTicket(int cusNoOfTicket) {
-		this.cusNoOfTicket = cusNoOfTicket;
+	public void setCusNumOfTicket(int cusNumOfTicket) {
+		this.cusNumOfTicket = cusNumOfTicket;
+	}
+	
+	// Create column customer id card
+		@Column(name = "CUS_IDCARD", nullable = true)
+		public String getCusIdCard() {
+			return this.cusIdCard;
+		}
+
+		public void setCusIdCard(String cusIdCard) {
+			this.cusIdCard = cusIdCard;
+		}
+
+	// Create column Date book
+	@Column(name = "DATE_BOOK", nullable = true)
+	@Temporal(TemporalType.DATE)
+	public Date getDateBook() {
+		return this.dateBook;
+	}
+
+	public void setDateBook(Date dateBook) {
+		this.dateBook = dateBook;
 	}
 
 	// Join table Tour by column ID tour

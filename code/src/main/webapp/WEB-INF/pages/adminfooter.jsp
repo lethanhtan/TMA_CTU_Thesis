@@ -76,12 +76,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/texteditor.js"
 	type="text/javascript"></script>
-<!-- History back -->
+<!--  Select all -->
 <script
-	src="${pageContext.request.contextPath}/resources/js/historyback.js"
+	src="${pageContext.request.contextPath}/resources/js/selectall.js"
 	type="text/javascript"></script>
-
-
 <!-- End JS -->
 </body>
 </html>

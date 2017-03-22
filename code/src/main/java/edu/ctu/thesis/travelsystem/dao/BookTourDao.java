@@ -11,7 +11,7 @@ public interface BookTourDao {
 
 	public List<BookTour> registrationList(int idTour);
 
-	public BookTour searchById(Integer idBT);
+	public BookTour searchById(int idBT);
 
 	public void editBookTour(BookTour bookTour);
 
@@ -33,7 +33,7 @@ public interface BookTourDao {
 
 	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
 
-	public int getNoTicketBooked(int idTour);
-
-	public int getNoTicketAvailability(int idTour);
+	public int getNumTicketBooked(int idTour);
+	
+	public int getNumTicketAvailability(int idTour);
 }

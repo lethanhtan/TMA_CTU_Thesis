@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -90,48 +90,48 @@
 				<hr class="margin-bottom-20">
 				<div class="text-center">
 					<!-- Pagination -->
-						<c:if test="${numTour > 5}">
-							<!-- set active pagination when numTour >= 5 -->
-							<ul class="pagination">
-								<c:if test="${param.page != null}">
-									<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
-										<li class="disabled"><a href="#">&laquo;</a></li>
-									</c:if>
-									<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
-										<li><a
-											href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
-										</li>
-									</c:if>
+					<c:if test="${numTour > 5}">
+						<!-- set active pagination when numTour >= 5 -->
+						<ul class="pagination">
+							<c:if test="${param.page != null}">
+								<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
+									<li class="disabled"><a href="#">&laquo;</a></li>
 								</c:if>
-								<c:forEach items="${pageNum}" var="pageE">
-									<c:if test="${pageE == param.page}">
-										<li class="active"><a
-											href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
-									</c:if>
-									<c:if test="${pageE != param.page}">
-										<li><a
-											href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
-									</c:if>
-								</c:forEach>
-								<c:if test="${numTour/5 - param.page == 0}">
-									<li class="disabled"><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
-									</li>
-								</c:if>
-								<c:if test="${numTour/5 - param.page > 0}">
+								<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
 									<li><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
-							</ul>
-						</c:if>
-					</div>
-					<!-- End Pagination -->
+							</c:if>
+							<c:forEach items="${pageNum}" var="pageE">
+								<c:if test="${pageE == param.page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != param.page}">
+									<li><a
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${numTour/5 - param.page == 0}">
+								<li class="disabled"><a
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${numTour/5 - param.page > 0}">
+								<li><a
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</c:if>
+				</div>
+				<!-- End Pagination -->
 			</div>
 		</div>
 	</div>
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp" %>
+<%@ include file="adminfooter.jsp"%>
 <!-- === END FOOTER === -->
