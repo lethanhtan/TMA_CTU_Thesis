@@ -119,7 +119,7 @@ public class BookTour {
 	}
 
 	// Create column Number of ticket
-	@Column(name = "CUS_NumOFTICKET", nullable = true)
+	@Column(name = "CUS_NUMOFTICKET", nullable = true)
 	public int getCusNumOfTicket() {
 		return this.cusNumOfTicket;
 	}
