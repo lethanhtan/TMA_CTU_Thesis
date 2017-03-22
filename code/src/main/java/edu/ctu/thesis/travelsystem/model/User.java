@@ -1,13 +1,11 @@
 /***********************************************************************
- * Module:  User.java
- * Author:  Le Nhu Y
- * Purpose: Defines the User
+ * Module:  Customer.java
+ * Author:  LÃª NhÆ° Ã
+ * Purpose: Defines the Class Customer
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "USER")
@@ -26,7 +22,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_USER", nullable = false)
-	private int idUser;
+	private Integer idUser;
 	
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	private String userName;
@@ -38,12 +34,7 @@ public class User {
 	private String passwordConfirm;
 	
 	@Column(name = "BIRTHDAY", nullable = true)
-	@Temporal(TemporalType.DATE)
-	private Date birthday;
-	
-	@Column(name = "RES_TIME", nullable = true)
-	@Temporal(TemporalType.TIME)
-	private Date resTime;
+	private String birthday;
 	
 	@Column(name = "FULL_NAME", nullable = false, length = 60)
 	private String fullName;
@@ -67,13 +58,25 @@ public class User {
 	//contructor
 	public User() {}
 	
-	public User(String userName, String password, String passwordConfirm, Date birthday, Date resTime,String fullName,
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+			String address, String email, String phone, String sex) {
+		this.userName = userName;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.birthday = birthday;
+		this.fullName = fullName;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
+		this.sex = sex;
+	}
+	
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
 			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
 		this.birthday = birthday;
-		this.resTime = resTime;
 		this.fullName = fullName;
 		this.address = address;
 		this.email = email;
@@ -83,11 +86,11 @@ public class User {
 	}
 	
 	//Getters and Setters method
-	public int getIdUser() {
+	public Integer getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
 	
@@ -115,20 +118,12 @@ public class User {
 		this.passwordConfirm = passwordConfirm;
 	}
 	
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 	
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
-	}
-	
-	public Date getResTime() {
-		return resTime;
-	}
-	
-	public void setResTime(Date resTime) {
-		this.resTime = resTime;
 	}
 
 	public String getFullName() {
@@ -181,21 +176,17 @@ public class User {
 	}
 	
 	@Override
-	public int hashCode() {
-		return idUser;
-	}
-
-	@Override
 	public String toString() {
 		return this.getClass().getName() + "Id = " + idUser;
 	}
-
+	
 	@Override
 	public boolean equals(Object user) {
 		if (user == null || (user.getClass() != this.getClass())) {
 			return false;
-		} else {
-			return this.idUser == ((User) user).getIdUser();
+		}
+		else {
+			return true;
 		}
 	}
 }
