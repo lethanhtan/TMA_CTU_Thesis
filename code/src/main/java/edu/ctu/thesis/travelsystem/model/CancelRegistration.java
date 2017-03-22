@@ -1,7 +1,5 @@
 package edu.ctu.thesis.travelsystem.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -12,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -74,61 +71,61 @@ public class CancelRegistration {
 
 	// Create column customer name
 	@Column(name = "C_NAME", nullable = false, length = 40)
-	public String getcName() {
+	public String getCName() {
 		return this.cName;
 	}
 
-	public void setcName(String cName) {
+	public void setCName(String cName) {
 		this.cName = cName;
 	}
 
 	// Create column customer sex
 	@Column(name = "C_SEX", nullable = false)
-	public String getcSex() {
+	public String getCSex() {
 		return this.cSex;
 	}
 
-	public void setcSex(String cSex) {
+	public void setCSex(String cSex) {
 		this.cSex = cSex;
 	}
 
 	// Create column customer email
 	@Column(name = "C_EMAIL", nullable = false, length = 50)
-	public String getcEmail() {
+	public String getCEmail() {
 		return this.cEmail;
 	}
 
-	public void setcEmail(String cEmail) {
+	public void setCEmail(String cEmail) {
 		this.cEmail = cEmail;
 	}
 
 	// Create column customer phone
 	@Column(name = "C_PHONE", nullable = false)
-	public String getcPhone() {
+	public String getCPhone() {
 		return this.cPhone;
 	}
 
-	public void setcPhone(String cPhone) {
+	public void setCPhone(String cPhone) {
 		this.cPhone = cPhone;
 	}
 
 	// Create column customer address
 	@Column(name = "C_ADDRESS", nullable = false, length = 100)
-	public String getcAddress() {
+	public String getCAddress() {
 		return this.cAddress;
 	}
 
-	public void setcAddress(String cAddress) {
+	public void setCAddress(String cAddress) {
 		this.cAddress = cAddress;
 	}
 
 	// Create column Number of ticket
 	@Column(name = "C_NUMOFTICKET", nullable = false)
-	public int getcNumOfTicket() {
+	public int getCNumOfTicket() {
 		return this.cNumOfTicket;
 	}
 
-	public void setcNumOfTicket(int cNumOfTicket) {
+	public void setCNumOfTicket(int cNumOfTicket) {
 		this.cNumOfTicket = cNumOfTicket;
 	}
 
