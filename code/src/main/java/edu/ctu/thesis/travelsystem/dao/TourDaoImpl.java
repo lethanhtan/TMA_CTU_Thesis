@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,13 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
-import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Autowired
-	private BookTourService bookTourService;
+	private BookTourDao bookTourDao;
 	// Fill the fields automatically
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
@@ -28,7 +29,18 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 				logger.info("Save tour be called!");
 				if (tour.getTicketAvailability() == null) {
 					tour.setTicketAvailability(tour.getQuantum());
-				} 
+				}
+				tour.setFullOrNot(false);
+				RegistrationInfo regInfo = new RegistrationInfo();
+				regInfo.setFieldName(true);
+				regInfo.setFieldSex(true);
+				regInfo.setFieldEmail(true);
+				regInfo.setFieldPhone(true);
+				regInfo.setFieldAddress(true);
+				regInfo.setFieldIdCard(false);
+				regInfo.setFieldNumOfTicket(true);
+				tour.setRegInfo(regInfo);
+				regInfo.setTour(tour);
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -79,6 +91,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
+		String hql = "DELETE FROM BOOKTOUR WHERE ID_TOUR = :idTour";
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
 		if (tour != null) {
 			session.delete(tour);
 			session.flush();
@@ -93,13 +108,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		String hql = "from edu.ctu.thesis.travelsystem.model.Tour";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
-			// Sync noTicketAvailability
-			Integer noTicketBooked = bookTourService.getNoTicketBooked(tour.getIdTour());
-			Integer newAvailability = tour.getQuantum() - noTicketBooked;
-			if (tour.getTicketAvailability() != newAvailability) {
-				tour.setTicketAvailability(newAvailability);
-				saveTour(tour);
-			}
 			logger.info("Tour List:" + tour);
 		}
 		return tourList;
@@ -118,15 +126,15 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public Integer getNumTour() {
+	public int getNumTour() {
 		Integer numTour = listTour().size();
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
 	}
 
 	@Override
-	public Integer getNumTourBySearch(String value) {
-		Integer numTour = listTourByValue(value).size();
+	public int getNumTourBySearch(String value) {
+		int numTour = listTourByValue(value).size();
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
 	}
@@ -150,5 +158,49 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			y = paginationX(currentPage, page) + page;
 		}
 		return y;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tour> showTourList() {
+		Session session = getCurrentSession();
+		String hql = "from edu.ctu.thesis.travelsystem.model.Tour WHERE FULL_OR_NOT = FALSE AND REG_OR_NOT = TRUE";
+		List<Tour> showTourList = session.createQuery(hql).list();
+		for (Tour tour : showTourList) {
+			// Sync noTicketAvailability
+			Integer numTicketBooked = bookTourDao.getNumTicketBooked(tour.getIdTour());
+			Integer newAvailability = tour.getQuantum() - numTicketBooked;
+			if (tour.getTicketAvailability() != newAvailability) {
+				tour.setTicketAvailability(newAvailability);
+				updateTour(tour);
+			}
+			if (tour != null && tour.getTicketAvailability() == 0) {
+				tour.setFullOrNot(true);
+				logger.info("Full or not: " + tour.getFullOrNot());
+				updateTour(tour);
+			} else {
+				tour.setFullOrNot(false);
+				logger.info("Full or not: " + tour.getFullOrNot());
+				updateTour(tour);
+			}
+			if (tour != null && tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+				tour.setRegOrNot(false);
+				logger.info("Reg or not: " + tour.getRegOrNot());
+				updateTour(tour);
+			} else {
+				tour.setRegOrNot(true);
+				logger.info("Reg or not: " + tour.getRegOrNot());
+				updateTour(tour);
+			}
+			logger.info("Tour List:" + tour);
+		}
+		return showTourList;
+	}
+
+	@Override
+	public int getNumTourList() {
+		Integer numTourList = showTourList().size();
+		logger.info("Number of tour is: " + numTourList);
+		return numTourList;
 	}
 }

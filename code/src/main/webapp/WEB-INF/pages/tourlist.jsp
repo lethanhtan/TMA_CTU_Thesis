@@ -27,10 +27,10 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<!-- Table -->
-				<c:if test="${empty tourList}">
+				<c:if test="${empty showTourList}">
 					<h1>Không có tour nào!</h1>
 				</c:if>
-				<c:if test="${!empty tourList}">
+				<c:if test="${!empty showTourList}">
 					<table>
 						<thead>
 							<tr>
@@ -45,10 +45,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${tourList.subList(x,y)}" var="tour">
+							<c:forEach items="${showTourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${tourList.indexOf(tour) + 1}</td>
+									<td>${showTourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
