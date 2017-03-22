@@ -4,10 +4,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +29,50 @@ public class Tour {
 	private String detail;
 	private String image;
 	private Integer ticketAvailability;
+	private Date dateAllowReg;
+	private Date dateAllowCancel;
+	private boolean fullOrNot;
+	private boolean regOrNot = true;
+	private boolean cancelOrNot = true;
+	private RegistrationInfo regInfo;
+	/*private boolean fieldName = true;
+	private boolean fieldSex = true;
+	private boolean fieldEmail = true;
+	private boolean fieldPhone = true;
+	private boolean fieldAddress = true;
+	private boolean fieldIdCard = true;
+	private boolean fieldNoOfTicket = true;
+
+	public Tour() {
+	}
+
+	public Tour(String name, Date departureDate, String departureTime, Date returnDate, String returnTime, String price,
+			int quantum, String detail, String image, int ticketAvailability, Date dateAllowReg, Date dateAllowCancel,
+			boolean fullOrNot, boolean regOrNot, boolean cancelOrNot, boolean fieldName, boolean fieldSex, boolean fieldEmail, boolean fieldPhone,
+			boolean fieldAddress, boolean fieldIdCard, boolean fieldNoOfTicket) {
+		this.name = name;
+		this.departureDate = departureDate;
+		this.departureTime = departureTime;
+		this.returnDate = returnDate;
+		this.returnTime = returnTime;
+		this.price = price;
+		this.quantum = quantum;
+		this.detail = detail;
+		this.image = image;
+		this.ticketAvailability = ticketAvailability;
+		this.dateAllowReg = dateAllowReg;
+		this.dateAllowCancel = dateAllowCancel;
+		this.fullOrNot = fullOrNot;
+		this.regOrNot = regOrNot;
+		this.cancelOrNot = cancelOrNot;
+		this.fieldName = fieldName;
+		this.fieldSex = fieldSex;
+		this.fieldEmail = fieldEmail;
+		this.fieldPhone = fieldPhone;
+		this.fieldAddress = fieldAddress;
+		this.fieldIdCard = fieldIdCard;
+		this.fieldNoOfTicket = fieldNoOfTicket;
+	}*/
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -119,12 +166,12 @@ public class Tour {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	
+
 	@Column(name = "IMAGE", nullable = true, length = 200)
 	public String getImage() {
 		return this.image;
 	}
-	
+
 	public void setImage(String image) {
 		this.image = image;
 	}
@@ -139,6 +186,64 @@ public class Tour {
 		this.ticketAvailability = ticketAvailability;
 	}
 
+	// Create column Date allow register
+	@Column(name = "DATE_ALLOW_REG", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getDateAllowReg() {
+		return dateAllowReg;
+	}
+
+	public void setDateAllowReg(Date dateAllowReg) {
+		this.dateAllowReg = dateAllowReg;
+	}
+
+	// Create column Date allow cancel
+	@Column(name = "DATE_ALLOW_CANCEL", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getDateAllowCancel() {
+		return dateAllowCancel;
+	}
+
+	public void setDateAllowCancel(Date dateAllowCancel) {
+		this.dateAllowCancel = dateAllowCancel;
+	}
+
+	@Column(name = "FULL_OR_NOT", nullable = false)
+	public boolean getFullOrNot() {
+		return fullOrNot;
+	}
+
+	public void setFullOrNot(boolean fullOrNot) {
+		this.fullOrNot = fullOrNot;
+	}
+
+	@Column(name = "REG_OR_NOT", nullable = false)
+	public boolean getRegOrNot() {
+		return regOrNot;
+	}
+
+	public void setRegOrNot(boolean regOrNot) {
+		this.regOrNot = regOrNot;
+	}
+
+	@Column(name = "CANCEL_OR_NOT", nullable = false)
+	public boolean getCancelOrNot() {
+		return cancelOrNot;
+	}
+
+	public void setCancelOrNot(boolean cancelOrNot) {
+		this.cancelOrNot = cancelOrNot;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
+	public RegistrationInfo getRegInfo() {
+		return regInfo;
+	}
+
+	public void setRegInfo(RegistrationInfo regInfo) {
+		this.regInfo = regInfo;
+	}
+	
 	@Override
 	public int hashCode() {
 		return idTour;
