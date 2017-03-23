@@ -28,7 +28,7 @@
 				</div>
 				<!-- Table -->
 				<c:if test="${empty showTourList}">
-					<h1>Không có tour nào!</h1>
+					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
 					<table>

@@ -25,16 +25,6 @@ public class BookTourValidator implements Validator {
 		BookTour bookTour = (BookTour) target;
 		ValidUtil validUtil = new ValidUtil();
 
-		// Catch empty errors
-		// ValidationUtils.rejectIfEmpty(errors, "cusName",
-		// "NotEmpty.cusData.cusName");
-		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cusEmail",
-		// "NotEmpty.cusData.cusEmail");
-		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cusPhone",
-		// "NotEmpty.cusData.cusPhone");
-		// ValidationUtils.rejectIfEmpty(errors, "cusAddress",
-		// "NotEmpty.cusData.cusAddress");
-
 		// Catch length character errors
 		// In Customer name field
 		if (bookTour.getCusName() != null
@@ -42,7 +32,7 @@ public class BookTourValidator implements Validator {
 			errors.rejectValue("cusName", "Size.cusData.cusName");
 		}
 		// In Customer email field
-		/*if (bookTour.getCusEmail() != null
+		if (bookTour.getCusEmail() != null
 				&& (bookTour.getCusEmail().length() > 40 || bookTour.getCusEmail().length() < 10)) {
 			errors.rejectValue("cusEmail", "Size.cusData.cusEmail");
 		}
@@ -50,17 +40,17 @@ public class BookTourValidator implements Validator {
 		if (bookTour.getCusPhone() != null
 				&& (bookTour.getCusPhone().length() > 15 || bookTour.getCusPhone().length() < 10)) {
 			errors.rejectValue("cusPhone", "Size.cusData.cusPhone");
-		}*/
+		}
 		// In Customer address field
 		if (bookTour.getCusAddress() != null
 				&& (bookTour.getCusAddress().length() > 100 || bookTour.getCusAddress().length() < 6)) {
 			errors.rejectValue("cusAddress", "Size.cusData.cusAddress");
 		}
 		// In Customer id card field
-		/*if (bookTour.getCusIdCard() != null
-				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 10)) {
+		if (bookTour.getCusIdCard() != null
+				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 9)) {
 			errors.rejectValue("cusIdCard", "Size.cusData.cusIdCard");
-		}*/
+		}
 
 		// Catch characters errors
 		// In Customer phone field

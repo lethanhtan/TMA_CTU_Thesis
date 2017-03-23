@@ -8,13 +8,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.RegInfoDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.CancelRegistration;
 import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 
 @Service
 public class RegInfoServiceImpl implements RegInfoService {
 	@Autowired
 	private RegInfoDao regInfoDao;
+
+	@Override
+	@Transactional
+	public List<BookTour> registrationList(int idTour) {
+		return this.regInfoDao.registrationList(idTour);
+	}
+	
+	@Override
+	@Transactional
+	public Integer getNumBookTour(int idTour) {
+		return this.regInfoDao.getNumBookTour(idTour);
+	}
+
+	@Override
+	@Transactional
+	public void deleteBookTour(int idBT, int idTour) {
+		this.regInfoDao.deleteBookTour(idBT, idTour);
+	}
 	
 	@Override
 	@Transactional
@@ -30,13 +47,13 @@ public class RegInfoServiceImpl implements RegInfoService {
 	
 	@Override
 	@Transactional
-	public List<CancelRegistration> cancelList(int idTour) {
+	public List<BookTour> cancelList(int idTour) {
 		return this.regInfoDao.cancelList(idTour);
 	}
 	
 	@Override
 	@Transactional
-	public List<CancelRegistration> cancelListByValue(String value) {
+	public List<BookTour> cancelListByValue(String value) {
 		return this.regInfoDao.cancelListByValue(value);
 	}
 
@@ -50,5 +67,11 @@ public class RegInfoServiceImpl implements RegInfoService {
 	@Transactional
 	public Integer getNumCancelBySearch(String value) {
 		return this.regInfoDao.getNumCancelBySearch(value);
+	}
+	
+	@Override
+	@Transactional
+	public void undoCancel(int idBT, int idTour) {
+		this.regInfoDao.undoCancel(idBT, idTour);
 	}
 }

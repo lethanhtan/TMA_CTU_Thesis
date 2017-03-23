@@ -27,13 +27,15 @@ public class BookTour {
 	private int cusNumOfTicket = 1;
 	private String cusIdCard;
 	private Date dateBook;
+	private boolean cusCancel = false;
+	private int ticketCancel = 0;
 	private Tour tour;
 
 	public BookTour() {
 	}
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
-			int cusNumOfTicket, String cusIdCard, Date dateBook) {
+			int cusNumOfTicket, String cusIdCard, Date dateBook, boolean cusCancel) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
@@ -42,10 +44,11 @@ public class BookTour {
 		this.cusNumOfTicket = cusNumOfTicket;
 		this.cusIdCard = cusIdCard;
 		this.dateBook = dateBook;
+		this.cusCancel = cusCancel;
 	}
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
-			int cusNumOfTicket, String cusIdCard, Date dateBook, Tour tour) {
+			int cusNumOfTicket, String cusIdCard, Date dateBook, boolean cusCancel, Tour tour) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
@@ -54,6 +57,7 @@ public class BookTour {
 		this.cusNumOfTicket = cusNumOfTicket;
 		this.cusIdCard = cusIdCard;
 		this.dateBook = dateBook;
+		this.cusCancel = cusCancel;
 		this.tour = tour;
 	}
 
@@ -119,7 +123,7 @@ public class BookTour {
 	}
 
 	// Create column Number of ticket
-	@Column(name = "CUS_NumOFTICKET", nullable = true)
+	@Column(name = "CUS_NUMOFTICKET", nullable = true)
 	public int getCusNumOfTicket() {
 		return this.cusNumOfTicket;
 	}
@@ -127,16 +131,16 @@ public class BookTour {
 	public void setCusNumOfTicket(int cusNumOfTicket) {
 		this.cusNumOfTicket = cusNumOfTicket;
 	}
-	
-	// Create column customer id card
-		@Column(name = "CUS_IDCARD", nullable = true)
-		public String getCusIdCard() {
-			return this.cusIdCard;
-		}
 
-		public void setCusIdCard(String cusIdCard) {
-			this.cusIdCard = cusIdCard;
-		}
+	// Create column customer id card
+	@Column(name = "CUS_IDCARD", nullable = true)
+	public String getCusIdCard() {
+		return this.cusIdCard;
+	}
+
+	public void setCusIdCard(String cusIdCard) {
+		this.cusIdCard = cusIdCard;
+	}
 
 	// Create column Date book
 	@Column(name = "DATE_BOOK", nullable = true)
@@ -148,6 +152,26 @@ public class BookTour {
 	public void setDateBook(Date dateBook) {
 		this.dateBook = dateBook;
 	}
+
+	// Create column customer cancel book tour
+	@Column(name = "CUS_CANCEL", nullable = true, length = 40)
+	public boolean getCusCancel() {
+		return this.cusCancel;
+	}
+
+	public void setCusCancel(boolean cusCancel) {
+		this.cusCancel = cusCancel;
+	}
+	
+	// Create column Number of ticket
+		@Column(name = "TICKET_CANCEL")
+		public int getTicketCancel() {
+			return this.ticketCancel;
+		}
+
+		public void setTicketCancel(int ticketCancel) {
+			this.ticketCancel = ticketCancel;
+		}
 
 	// Join table Tour by column ID tour
 	@ManyToOne(cascade = CascadeType.ALL)

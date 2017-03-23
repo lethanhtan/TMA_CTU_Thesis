@@ -91,4 +91,10 @@ public class TourServiceImpl implements TourService {
 	public int getNumTourList() {
 		return this.tourDao.getNumTourList();
 	}
+	
+	@Override
+	@Transactional
+	public List<Tour> tourListByValue(String value) {
+		return this.tourDao.tourListByValue(value);
+	}
 }

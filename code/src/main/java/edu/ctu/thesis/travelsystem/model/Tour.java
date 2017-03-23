@@ -35,44 +35,6 @@ public class Tour {
 	private boolean regOrNot = true;
 	private boolean cancelOrNot = true;
 	private RegistrationInfo regInfo;
-	/*private boolean fieldName = true;
-	private boolean fieldSex = true;
-	private boolean fieldEmail = true;
-	private boolean fieldPhone = true;
-	private boolean fieldAddress = true;
-	private boolean fieldIdCard = true;
-	private boolean fieldNoOfTicket = true;
-
-	public Tour() {
-	}
-
-	public Tour(String name, Date departureDate, String departureTime, Date returnDate, String returnTime, String price,
-			int quantum, String detail, String image, int ticketAvailability, Date dateAllowReg, Date dateAllowCancel,
-			boolean fullOrNot, boolean regOrNot, boolean cancelOrNot, boolean fieldName, boolean fieldSex, boolean fieldEmail, boolean fieldPhone,
-			boolean fieldAddress, boolean fieldIdCard, boolean fieldNoOfTicket) {
-		this.name = name;
-		this.departureDate = departureDate;
-		this.departureTime = departureTime;
-		this.returnDate = returnDate;
-		this.returnTime = returnTime;
-		this.price = price;
-		this.quantum = quantum;
-		this.detail = detail;
-		this.image = image;
-		this.ticketAvailability = ticketAvailability;
-		this.dateAllowReg = dateAllowReg;
-		this.dateAllowCancel = dateAllowCancel;
-		this.fullOrNot = fullOrNot;
-		this.regOrNot = regOrNot;
-		this.cancelOrNot = cancelOrNot;
-		this.fieldName = fieldName;
-		this.fieldSex = fieldSex;
-		this.fieldEmail = fieldEmail;
-		this.fieldPhone = fieldPhone;
-		this.fieldAddress = fieldAddress;
-		this.fieldIdCard = fieldIdCard;
-		this.fieldNoOfTicket = fieldNoOfTicket;
-	}*/
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

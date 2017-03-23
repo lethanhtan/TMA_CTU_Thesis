@@ -14,7 +14,7 @@
 						action="${pageContext.request.contextPath}/createtour"
 						method="POST">
 						<div class="signup-header">
-							<h2>Thông Tin Tour Du Lịch</h2>
+							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
 						</div>
 						<div class="row">
 							<div class="col-sm-8">
@@ -121,7 +121,7 @@
 										class="fa fa-building-o"></i>
 									</span>
 									<s:input placeholder="Nhập số lượng"
-										class="form-control margin-bottom-20" type="number"
+										class="form-control margin-bottom-20" type="number" value="10"
 										path="quantum" min="10" />
 								</div>
 							</div>

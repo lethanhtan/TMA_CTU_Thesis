@@ -22,12 +22,6 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public List<BookTour> registrationList(int idTour) {
-		return this.bookTourDao.registrationList(idTour);
-	}
-	
-	@Override
-	@Transactional
 	public BookTour searchById(int idBT) {
 		return this.bookTourDao.searchById(idBT);
 	}
@@ -36,12 +30,6 @@ public class BookTourServiceImpl implements BookTourService {
 	@Transactional
 	public void editBookTour(BookTour bookTour) {
 		this.bookTourDao.editBookTour(bookTour);
-	}
-
-	@Override
-	@Transactional
-	public void deleteBookTour(int idBT, int idTour) {
-		this.bookTourDao.deleteBookTour(idBT, idTour);
 	}
 	
 	@Override
@@ -61,33 +49,17 @@ public class BookTourServiceImpl implements BookTourService {
 	public BookTour searchByPhone(String cusPhone) {
 		return this.bookTourDao.searchByPhone(cusPhone);
 	}
-	
-	@Override
-	@Transactional
-	public Integer getNumBookTour(int idTour) {
-		return this.bookTourDao.getNumBookTour(idTour);
-	}
 
 	@Override
 	@Transactional
-	public List<BookTour> registrationListByValue(String value) {
-		return this.bookTourDao.registrationListByValue(value);
+	public List<BookTour> registrationListByValue(String value, int idTour) {
+		return this.bookTourDao.registrationListByValue(value, idTour);
 	}
 
 	@Override
 	@Transactional
-	public Integer getNumBTBySearch(String value) {
-		return this.bookTourDao.getNumBTBySearch(value);
-	}
-
-	@Override
-	public Integer paginationX(Integer currentPage, Integer page) {
-		return this.bookTourDao.paginationX(currentPage, page);
-	}
-
-	@Override
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
-		return this.bookTourDao.paginationY(numOfPage, currentPage, page);
+	public Integer getNumBTBySearch(String value, int idTour) {
+		return this.bookTourDao.getNumBTBySearch(value, idTour);
 	}
 	
 	@Override
@@ -104,5 +76,17 @@ public class BookTourServiceImpl implements BookTourService {
 	@Override
 	public int getNumTicketAvailability(int idTour) {
 		return this.bookTourDao.getNumTicketAvailability(idTour);
+	}
+	
+	@Override
+	@Transactional
+	public List<BookTour> registrationInfoByValue(String value, int idTour) {
+		return this.bookTourDao.registrationInfoByValue(value, idTour);
+	}
+	
+	@Override
+	@Transactional
+	public void cancelBookTour(int idBT, int idTour) {
+		this.bookTourDao.cancelBookTour(idBT, idTour);
 	}
 }

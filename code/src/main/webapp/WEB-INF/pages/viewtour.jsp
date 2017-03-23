@@ -9,23 +9,23 @@
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Search Form -->
-				<div class="error-404-page text-center" style="margin-left: 650px;">
-					<form class="form-search search-404">
-						<div class="input-append">
-							<input type="text" class="span2 search-query"
-								placeholder="Nhập họ tên/ email/ họ tên" name="valueSearch">
-							<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-						</div>
-					</form>
-				</div>
-				<!-- End Search Form -->
+			<div class="error-404-page text-center" style="margin-left: 625px;">
+				<form class="form-search search-404">
+					<div class="input-append">
+						<input type="text" class="span2 search-query"
+							placeholder="Nhập email hoặc số điện thoại" name="valueSearch">
+						<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+					</div>
+				</form>
+			</div>
+			<!-- End Search Form -->
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="tourData"
 						action="${pageContext.request.contextPath }/detail/${tourData.idTour}"
 						method="POST">
 						<div class="signup-header">
-							<h2>Thông Tin Tour Du Lịch</h2>
+							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
 							</br>
 						</div>
 						<label>Tên tour</label>

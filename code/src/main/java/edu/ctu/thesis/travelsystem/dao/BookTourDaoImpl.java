@@ -31,28 +31,13 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 	}
 
-	// Display registration list by Id tour
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<BookTour> registrationList(int idTour) {
-		Session session = getCurrentSession();
-		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE ID_TOUR = :idTour";
-		Query query = session.createQuery(hql);
-		query.setParameter("idTour", idTour);
-		List<BookTour> registrationList = query.list();
-		for (BookTour bookTour : registrationList) {
-			logger.info("Registration List:" + bookTour);
-		}
-		return registrationList;
-	}
-
 	// Search information of customer booked tour by Id
 	@Override
 	public BookTour searchById(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = new BookTour();
 		logger.info("Information of customer have ID: " + idBT);
-		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE idBT = ?";
+		String hql = "FROM BookTour WHERE idBT = ?";
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, idBT);
@@ -75,20 +60,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			} catch (Exception e) {
 				logger.error("Occured ex", e);
 			}
-		}
-	}
-
-	@Override
-	public void deleteBookTour(int idBT, int idTour) {
-		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
-		if (bookTour != null) {
-			Query query = session.createQuery("update BookTour set ID_TOUR = null where ID_BT = :idBT");
-			query.setParameter("idBT", bookTour.getIdBT());
-			query.executeUpdate();
-			session.delete(bookTour);
-			session.flush();
-			logger.info("Delete customer success!");
 		}
 	}
 
@@ -120,10 +91,12 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public List<BookTour> registrationListByValue(String value) {
+	public List<BookTour> registrationListByValue(String value, int idTour) {
+		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "FROM edu.ctu.thesis.travelsystem.model.BookTour WHERE idBT like :value or cusName like :value or cusEmail like :value or cusPhone like :value";
+		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
 		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<BookTour> registrationList = query.list();
@@ -131,45 +104,17 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public Integer getNumBookTour(int idTour) {
-		Integer numBookTour = registrationList(idTour).size();
+	public Integer getNumBTBySearch(String value, int idTour) {
+		Integer numBookTour = registrationListByValue(value, idTour).size();
 		logger.info("Number of registration are: " + numBookTour);
 		return numBookTour;
-	}
-
-	@Override
-	public Integer getNumBTBySearch(String value) {
-		Integer numBookTour = registrationListByValue(value).size();
-		logger.info("Number of registration are: " + numBookTour);
-		return numBookTour;
-	}
-
-	@Override
-	public Integer paginationX(Integer currentPage, Integer page) {
-		return currentPage * page - page;
-	}
-
-	@Override
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
-		Integer y = 0;
-		if (numOfPage < currentPage * page) {
-			y = numOfPage % 10;
-			if (y > page) {
-				y = paginationX(currentPage, page) + (y - page);
-			} else {
-				y = paginationX(currentPage, page) + y;
-			}
-		} else {
-			y = paginationX(currentPage, page) + page;
-		}
-		return y;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> listBookTour() {
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.BookTour";
+		String hql = "FROM BookTour";
 		List<BookTour> bookTourList = session.createQuery(hql).list();
 		for (BookTour bookTour : bookTourList) {
 			logger.info("Tour List:" + bookTour);
@@ -210,5 +155,34 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			numTicketAvailability = quantum - numTicketBooked;
 		}
 		return numTicketAvailability;
+	}
+
+	@Override
+	public List<BookTour> registrationInfoByValue(String value, int idTour) {
+		System.out.println(value.contains(value));
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<BookTour> registrationInfo = query.list();
+		return registrationInfo;
+	}
+
+	@Override
+	public void cancelBookTour(int idBT, int idTour) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		if (bookTour != null) {
+			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
+					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE ID_BT = :idBT");
+			query.setParameter("idBT", bookTour.getIdBT());
+			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
+			query.executeUpdate();
+			session.saveOrUpdate(bookTour);
+			session.flush();
+			logger.info("Delete customer success!");
+		}
 	}
 }

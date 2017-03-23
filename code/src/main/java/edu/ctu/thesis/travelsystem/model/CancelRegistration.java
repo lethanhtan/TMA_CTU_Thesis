@@ -1,7 +1,5 @@
 package edu.ctu.thesis.travelsystem.model;
 
-import static javax.persistence.GenerationType.IDENTITY;	
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -17,17 +15,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 @Table(name = "CANCEL_REGISTRATION")
 public class CancelRegistration {
-	private int idCancel;
+	private int idBT;
 	private String cName;
 	private String cSex;
 	private String cEmail;
 	private String cPhone;
 	private String cAddress;
-	private int cNoOfTicket;
-	private String cIdCard;
+	private int cNumOfTicket;
 	private Date dateCancel;
 	private BookTour bookTour;
 
@@ -35,28 +35,38 @@ public class CancelRegistration {
 	}
 
 	public CancelRegistration(String cName, String cSex, String cEmail, String cPhone, String cAddress,
-			int cNoOfTicket, String cIdCard, Date dateCancel) {
+			int cNumOfTicket, Date dateCancel) {
 		this.cName = cName;
 		this.cSex = cSex;
 		this.cEmail = cEmail;
 		this.cPhone = cPhone;
 		this.cAddress = cAddress;
-		this.cNoOfTicket = cNoOfTicket;
-		this.cIdCard = cIdCard;
+		this.cNumOfTicket = cNumOfTicket;
 		this.dateCancel = dateCancel;
 	}
 
-	public CancelRegistration(String cName, String cSex, String cEmail, String cPhone, String cAddress, int cNoOfTicket, String cIdCard, Date dateCancel,
-			BookTour bookTour) {
+	public CancelRegistration(String cName, String cSex, String cEmail, String cPhone, String cAddress,
+			int cNumOfTicket, Date dateCancel, BookTour bookTour) {
 		this.cName = cName;
 		this.cSex = cSex;
 		this.cEmail = cEmail;
 		this.cPhone = cPhone;
 		this.cAddress = cAddress;
-		this.cNoOfTicket = cNoOfTicket;
-		this.cIdCard = cIdCard;
+		this.cNumOfTicket = cNumOfTicket;
 		this.dateCancel = dateCancel;
 		this.bookTour = bookTour;
+	}
+
+	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "book_tour"))
+	@Id
+	@GeneratedValue(generator = "generator")
+	@Column(name = "ID_BT", unique = true, nullable = false)
+	public int getIdBT() {
+		return this.idBT;
+	}
+
+	public void setIdBT(int idBT) {
+		this.idBT = idBT;
 	}
 
 	// Create column customer name
@@ -110,24 +120,14 @@ public class CancelRegistration {
 	}
 
 	// Create column Number of ticket
-	@Column(name = "C_NOOFTICKET", nullable = false)
-	public int getCNoOfTicket() {
-		return this.cNoOfTicket;
+	@Column(name = "C_NUMOFTICKET", nullable = false)
+	public int getCNumOfTicket() {
+		return this.cNumOfTicket;
 	}
 
-	public void setCNoOfTicket(int cNoOfTicket) {
-		this.cNoOfTicket = cNoOfTicket;
+	public void setCNumOfTicket(int cNumOfTicket) {
+		this.cNumOfTicket = cNumOfTicket;
 	}
-	
-	// Create column customer id card
-		@Column(name = "C_IDCARD", nullable = false)
-		public String getCIdCard() {
-			return this.cIdCard;
-		}
-
-		public void setCIdCard(String cIdCard) {
-			this.cIdCard = cIdCard;
-		}
 
 	// Create column Date book
 	@Column(name = "DATE_CANCEL", nullable = false)
@@ -150,23 +150,4 @@ public class CancelRegistration {
 	public void setBookTour(BookTour bookTour) {
 		this.bookTour = bookTour;
 	}
-
-	@Override
-	public int hashCode() {
-		return idCancel;
-	}
-
-	@Override
-	public String toString() {
-		return this.getClass().getName() + "Id = " + idCancel;
-	}
-
-	/*@Override
-	public boolean equals(Object cancelReg) {
-		if (cancelReg == null || (cancelReg.getClass() != this.getClass())) {
-			return false;
-		} else {
-			return this.idCancel == ((CancelRegistration) cancelReg).getIdCancel();
-		}
-	}*/
 }

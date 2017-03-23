@@ -31,4 +31,6 @@ public interface TourDao {
 	public List<Tour> showTourList();
 	
 	public int getNumTourList();
+	
+	public List<Tour> tourListByValue(String value);
 }

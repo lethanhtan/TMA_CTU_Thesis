@@ -9,13 +9,9 @@ public interface BookTourDao {
 	
 	public List<BookTour> listBookTour();
 
-	public List<BookTour> registrationList(int idTour);
-
 	public BookTour searchById(int idBT);
 
 	public void editBookTour(BookTour bookTour);
-
-	public void deleteBookTour(int idBT, int idTour);
 
 	public BookTour searchByName(String cusName);
 
@@ -23,17 +19,15 @@ public interface BookTourDao {
 
 	public BookTour searchByPhone(String cusPhone);
 
-	public Integer getNumBookTour(int idTour);
+	public List<BookTour> registrationListByValue(String value, int idTour);
 
-	public List<BookTour> registrationListByValue(String value);
-
-	public Integer getNumBTBySearch(String value);
-
-	public Integer paginationX(Integer currentPage, Integer page);
-
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
+	public Integer getNumBTBySearch(String value, int idTour);
 
 	public int getNumTicketBooked(int idTour);
 	
 	public int getNumTicketAvailability(int idTour);
+	
+	public List<BookTour> registrationInfoByValue(String value, int idTour);
+	
+	public void cancelBookTour(int idBT, int idTour);
 }

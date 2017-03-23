@@ -55,13 +55,13 @@ public class BookTourController {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				logger.info("Search active!");
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", tourService.listTourByValue(valueSearch));
+				model.addAttribute("showTourList", tourService.tourListByValue(valueSearch));
 				model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 				model.addAttribute("pageNum", pageNum); // Create number of page
-				model.addAttribute("pageE", new ArrayList<Integer>()); 
+				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, 5));
 				model.addAttribute("y",
-						tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
+						tourService.paginationY(tourService.tourListByValue(valueSearch).size(), page, 5));
 				return "tourlist";
 			} else {
 				return "forbidden";
@@ -76,10 +76,12 @@ public class BookTourController {
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", tourService.showTourList()); // Display tour list
-				model.addAttribute("numTour", tourService.getNumTourList()); // Get number of tour list
+				model.addAttribute("showTourList", tourService.showTourList());
+				// Display tour list
+				model.addAttribute("numTour", tourService.getNumTourList());
+				// Get number of tour list
 				model.addAttribute("pageNum", pageNum); // Create number of page
-				model.addAttribute("pageE", new ArrayList<Integer>()); 
+				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, 5));
 				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, 5));
 				return "tourlist";
@@ -92,18 +94,29 @@ public class BookTourController {
 	// Forward to Book tour page, display book tour form
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour,
-			@Valid BookTour bookTour, @Valid RegistrationInfo regInfo, @Valid Tour tour) {
+			@Valid BookTour bookTour, @Valid RegistrationInfo regInfo, @Valid Tour tour,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
 		// Put Customer data into table Book Tour;
 		try {
-			model.put("cusData", new BookTour());
-			regInfo = regInfoService.searchRegInfoById(idTour);
-			logger.info("Reg Info: " + regInfo);
-			if (regInfo != null) {
-				model.addAttribute("regInfo", regInfo);
+			model.addAttribute("searchedValue", valueSearch);
+			if (valueSearch != null) {
+				logger.info("Search active!");
+				model.addAttribute("bookTour", new BookTour());
+				model.addAttribute("tour", tourService.findTourById(idTour));
+				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
+				return "booktour";
+			} else {
+				model.put("cusData", new BookTour());
+				regInfo = regInfoService.searchRegInfoById(idTour);
+				logger.info("Reg Info: " + regInfo);
+				if (regInfo != null) {
+					model.addAttribute("regInfo", regInfo);
+				}
+				tour = tourService.findTourById(idTour);
+				model.addAttribute("tour", tour);
+				bookTour.setTour(tour);
+				return "booktour";
 			}
-			tour = tourService.findTourById(idTour);
-			model.addAttribute("tour", tour);
-			bookTour.setTour(tour);
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
@@ -139,5 +152,69 @@ public class BookTourController {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
 		return "viewtour";
+	}
+
+	// Forward to Customer detail page
+	@RequestMapping(value = "/booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
+			@Valid RegistrationInfo regInfo) {
+		logger.info("Show information of customer when book tour");
+		model.put("cusData", bookTourService.searchById(idBT));
+		regInfo = regInfoService.searchRegInfoById(idTour);
+		logger.info("Reg Info: " + regInfo);
+		if (regInfo != null) {
+			model.addAttribute("regInfo", regInfo);
+		}
+		return "booktourdetail";
+	}
+
+	// Forward to Edit information of customer booked tour
+	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
+			@Valid RegistrationInfo regInfo) {
+		logger.info("Display edit form when admin request!");
+		model.put("cusData", bookTourService.searchById(idBT));
+		regInfo = regInfoService.searchRegInfoById(idTour);
+		logger.info("Reg Info: " + regInfo);
+		if (regInfo != null) {
+			model.addAttribute("regInfo", regInfo);
+		}
+		return "editbooktour";
+	}
+
+	// Test errors
+	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
+	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
+			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
+			@Valid RegistrationInfo regInfo) {
+		logger.info("Handle edit information customer form when admin submit!");
+		BookTourValidator bookTourValidator = new BookTourValidator();
+		bookTourValidator.validate(bookTour, br);
+		if (br.hasErrors()) {
+			regInfo = regInfoService.searchRegInfoById(idTour);
+			logger.info("Reg Info: " + regInfo);
+			if (regInfo != null) {
+				model.addAttribute("regInfo", regInfo);
+			}
+			return "editbooktour";
+		} else {
+			Tour tour = tourService.findTourById(idTour);
+			bookTour.setTour(tour);
+			logger.info("Edit success!");
+			bookTour.setDateBook(Calendar.getInstance().getTime());
+			bookTourService.editBookTour(bookTour);
+			if ((int) session.getAttribute("roleId") == 2) {
+				return "redirect:/registrationlist/{idTour}";
+			} else {
+				return "redirect:/tourlist";
+			}
+		}
+	}
+
+	// Customer cancel registration tour
+	@RequestMapping(value = "cancelbooktour/{idBT}/{idTour}")
+	public String cancelBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
+		bookTourService.cancelBookTour(idBT, idTour);
+		return "redirect:/tourlist";
 	}
 }
