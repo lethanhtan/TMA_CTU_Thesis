@@ -54,7 +54,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		Session session = getCurrentSession();
 		Tour tour = new Tour();
 		logger.info("Tour infor: " + idTour);
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour =?";
+		String hql = "from Tour as t where t.idTour =?";
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, idTour);
@@ -91,7 +91,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
-		String hql = "DELETE FROM BOOKTOUR WHERE ID_TOUR = :idTour";
+		String hql = "DELETE FROM BookTour WHERE ID_TOUR = :idTour";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
 		if (tour != null) {
@@ -105,7 +105,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> listTour() {
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour";
+		String hql = "from Tour";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
 			logger.info("Tour List:" + tour);
@@ -115,9 +115,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> listTourByValue(String value) {
+		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour like :value "
-				+ "or t.name like :value ";
+		String hql = "from Tour as t where t.name like :value";
 		Query query = session.createQuery(hql);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -164,7 +164,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> showTourList() {
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour WHERE FULL_OR_NOT = FALSE AND REG_OR_NOT = TRUE";
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true";
 		List<Tour> showTourList = session.createQuery(hql).list();
 		for (Tour tour : showTourList) {
 			// Sync noTicketAvailability
@@ -172,35 +172,61 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			Integer newAvailability = tour.getQuantum() - numTicketBooked;
 			if (tour.getTicketAvailability() != newAvailability) {
 				tour.setTicketAvailability(newAvailability);
-				updateTour(tour);
 			}
-			if (tour != null && tour.getTicketAvailability() == 0) {
+			if (tour.getTicketAvailability() == 0) {
 				tour.setFullOrNot(true);
-				logger.info("Full or not: " + tour.getFullOrNot());
-				updateTour(tour);
 			} else {
 				tour.setFullOrNot(false);
-				logger.info("Full or not: " + tour.getFullOrNot());
-				updateTour(tour);
 			}
-			if (tour != null && tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+			if (tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
 				tour.setRegOrNot(false);
-				logger.info("Reg or not: " + tour.getRegOrNot());
-				updateTour(tour);
 			} else {
 				tour.setRegOrNot(true);
-				logger.info("Reg or not: " + tour.getRegOrNot());
-				updateTour(tour);
 			}
+			if (tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
+				tour.setCancelOrNot(false);
+			} else {
+				tour.setCancelOrNot(true);
+			}
+			updateTour(tour);
 			logger.info("Tour List:" + tour);
 		}
 		return showTourList;
 	}
+	/*
+	 * if (tour != null && tour.getTicketAvailability() == 0) {
+	 * tour.setFullOrNot(true); logger.info("Full or not: " +
+	 * tour.getFullOrNot()); updateTour(tour); } else {
+	 * tour.setFullOrNot(false); logger.info("Full or not: " +
+	 * tour.getFullOrNot()); updateTour(tour); } if (tour != null &&
+	 * tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+	 * tour.setRegOrNot(false); logger.info("Reg or not: " +
+	 * tour.getRegOrNot()); updateTour(tour); } else { tour.setRegOrNot(true);
+	 * logger.info("Reg or not: " + tour.getRegOrNot()); updateTour(tour); } if
+	 * (tour != null &&
+	 * tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
+	 * tour.setCancelOrNot(false); logger.info("Reg or not: " +
+	 * tour.getCancelOrNot()); updateTour(tour); } else {
+	 * tour.setCancelOrNot(true); logger.info("Cancel or not: " +
+	 * tour.getCancelOrNot()); updateTour(tour); }
+	 */
 
 	@Override
 	public int getNumTourList() {
 		Integer numTourList = showTourList().size();
 		logger.info("Number of tour is: " + numTourList);
 		return numTourList;
+	}
+
+	@Override
+	public List<Tour> tourListByValue(String value) {
+		System.out.println(value.contains(value));
+		Session session = getCurrentSession();
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<Tour> tourList = query.list();
+		return tourList;
 	}
 }
