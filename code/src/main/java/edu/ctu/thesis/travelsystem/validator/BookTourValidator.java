@@ -48,7 +48,7 @@ public class BookTourValidator implements Validator {
 		}
 		// In Customer id card field
 		if (bookTour.getCusIdCard() != null
-				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 10)) {
+				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 9)) {
 			errors.rejectValue("cusIdCard", "Size.cusData.cusIdCard");
 		}
 

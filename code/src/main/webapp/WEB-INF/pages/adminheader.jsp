@@ -109,6 +109,9 @@
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/manageaccount"
+								class="fa-users">Quản Lý Tài Khoản</a></li>
 							<li><a class="fa-print">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>

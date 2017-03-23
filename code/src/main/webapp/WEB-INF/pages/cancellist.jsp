@@ -21,14 +21,15 @@
 			<div class="col-md-12">
 				<h2 class="margin-vert-20" style="text-align: center;">Danh
 					Sách Hủy Đăng Ký</h2>
-				<!-- <div class="row margin-bottom-30">
+				<div class="row margin-bottom-30">
 					<div class="col-md-4 animate fadeInRight"></div>
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
-				</div> -->
+				</div>
 				<!-- Table -->
 				<c:if test="${empty cancelList}">
-					<h1>Không có người hủy đăng ký tham gia tour này!</h1>
+					<h1 style="text-align: center;">Không có người hủy đăng ký
+						tham gia tour này!</h1>
 				</c:if>
 				<c:if test="${!empty cancelList}">
 					<table>
@@ -45,24 +46,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${cancelList.subList(x,y)}"
-								var="bookTour">
+							<c:forEach items="${cancelList.subList(x,y)}" var="cancelReg">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${cancelList.indexOf(bookTour) + 1}</td>
-									<td>${cancelReg.cName}</td>
-									<td>${cancelReg.cSex}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cPhone}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cEmail}</td>
-									<td>&nbsp;&nbsp;&nbsp;${cancelReg.cNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+									<td>${cancelList.indexOf(cancelReg) + 1}</td>
+									<td>${cancelReg.cusName}</td>
+									<td>${cancelReg.cusSex}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusPhone}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusEmail}</td>
+									<td>&nbsp;&nbsp;&nbsp;${cancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
 									<td><a
-										href="<c:url value='/canceldetail/${cancelReg.idBT}/${tour.idTour}'/>"
+										href="<c:url value='/booktourdetail/${cancelReg.idBT}/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a
 										href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"
 										title="Phục hồi"> <i class="fa fa-undo">&nbsp;</i>
 									</a> <a data-toggle="modal"
-										href="<c:url value='/delete/${cancelReg.idBT}/${tour.idTour }'/>"
+										href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>"
 										title="Xóa"> <i class="fa fa-trash-o"></i>
 									</a></td>
 								</tr>
@@ -78,10 +78,12 @@
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
-								<c:if test="${numCancelReg/5 - param.page == numCancelReg/5 - 1}">
+								<c:if
+									test="${numCancelReg/5 - param.page == numCancelReg/5 - 1}">
 									<li class="disabled"><a href="#">&laquo;</a></li>
 								</c:if>
-								<c:if test="${numCancelReg/5 - param.page != numCancelReg/5 - 1}">
+								<c:if
+									test="${numCancelReg/5 - param.page != numCancelReg/5 - 1}">
 									<li><a
 										href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page -1}">&laquo;</a>
 									</li>

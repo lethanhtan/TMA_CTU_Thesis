@@ -28,7 +28,7 @@
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
 										<s:input placeholder="Nhập họ tên" class="form-control"
-											type="text" path="cusName" />
+											type="text" path="cusName" disabled="true"/>
 									</div>
 								</div>
 							</c:if>
@@ -38,7 +38,7 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-male"></i>
 										</span>
-										<s:select class="form-control margin-bottom-20" path="cusSex">
+										<s:select class="form-control margin-bottom-20" path="cusSex" disabled="true">
 											<option>Nam</option>
 											<option>Nữ</option>
 										</s:select>
@@ -58,7 +58,7 @@
 											class="fa fa-envelope"></i>
 										</span>
 										<s:input placeholder="Nhập số điện thoại" class="form-control"
-											type="text" path="cusPhone" />
+											type="text" path="cusPhone" disabled="true" />
 									</div>
 								</div>
 							</c:if>
@@ -70,9 +70,8 @@
 										<span class="input-group-addon"> <i
 											class="fa fa-building-o"></i>
 										</span>
-										<s:input type="number" class="form-control margin-bottom-20"
-											value="1" path="cusNumOfTicket" min="1"
-											max="${tour.ticketAvailability}" />
+										<s:input type="number" class="form-control margin-bottom-20" path="cusNumOfTicket" min="1"
+											max="${tour.ticketAvailability}" disabled="true" />
 									</div>
 								</div>
 							</c:if>
@@ -87,7 +86,7 @@
 									class="fa fa-envelope"></i>
 								</span>
 								<s:input placeholder="Nhập email" class="form-control"
-									type="text" path="cusEmail" />
+									type="text" path="cusEmail" disabled="true" />
 							</div>
 						</c:if>
 						<c:if test="${regInfo.fieldAddress == true}">
@@ -105,7 +104,7 @@
 									class="fa fa-credit-card"></i>
 								</span>
 								<s:input placeholder="Nhập chứng minh nhân dân"
-									class="form-control" type="text" path="cusIdCard" />
+									class="form-control" type="text" path="cusIdCard" disabled="true" />
 							</div>
 						</c:if>
 						<hr>

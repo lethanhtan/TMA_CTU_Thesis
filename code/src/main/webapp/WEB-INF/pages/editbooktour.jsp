@@ -15,7 +15,8 @@
 						action="${pageContext.request.contextPath }/editbooktour/${cusData.idBT}/${idTour}"
 						method="POST">
 						<div class="signup-header">
-							<h2 style="text-align: center;">Cập nhật Thông Tin Khách Hàng Đặt Vé</h2>
+							<h2 style="text-align: center;">Cập nhật Thông Tin Khách
+								Hàng Đặt Vé</h2>
 							</br>
 						</div>
 						<div class="row">
@@ -23,8 +24,7 @@
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
-									</br>
-									<small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
@@ -52,8 +52,7 @@
 								<div class="col-sm-7">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
-									</br>
-									<small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
+									</br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i
 											class="fa fa-envelope"></i>
@@ -72,7 +71,7 @@
 											class="fa fa-building-o"></i>
 										</span>
 										<s:input type="number" class="form-control margin-bottom-20"
-											value="1" path="cusNumOfTicket" min="1"
+											path="cusNumOfTicket" min="1"
 											max="${tour.ticketAvailability}" />
 									</div>
 								</div>

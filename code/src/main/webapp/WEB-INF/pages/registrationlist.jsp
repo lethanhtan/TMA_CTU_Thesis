@@ -30,7 +30,7 @@
 				</div>
 				<!-- Table -->
 				<c:if test="${empty registrationList}">
-					<h1>Chưa có người đăng ký tham gia tour này!</h1>
+					<h1 style="text-align: center;">Chưa có người đăng ký tham gia tour này!</h1>
 				</c:if>
 				<c:if test="${!empty registrationList}">
 					<table>
