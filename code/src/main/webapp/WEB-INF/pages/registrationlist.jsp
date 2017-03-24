@@ -28,9 +28,11 @@
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
+				<hr class="margin-vert-20">
 				<!-- Table -->
 				<c:if test="${empty registrationList}">
-					<h1 style="text-align: center;">Chưa có người đăng ký tham gia tour này!</h1>
+					<h1 style="text-align: center;">Chưa có người đăng ký tham gia
+						tour này!</h1>
 				</c:if>
 				<c:if test="${!empty registrationList}">
 					<table>
@@ -58,10 +60,10 @@
 									<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
 									<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
 									<td><a
-										href="<c:url value='/booktourdetail/${bookTour.idBT}/${tour.idTour}'/>"
+										href="<c:url value='/reginfodetail/${bookTour.idBT}/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
 									</a> <a
-										href="<c:url value='/editbooktour/${bookTour.idBT}/${tour.idTour }'/>"
+										href="<c:url value='/editreginfo/${bookTour.idBT}/${tour.idTour }'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
 									</a> <a data-toggle="modal"
 										href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour }'/>"

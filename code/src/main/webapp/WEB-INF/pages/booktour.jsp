@@ -56,7 +56,7 @@
 				</table>
 			</c:if>
 			<c:if test="${empty registrationList}">
-				<!-- Register Box -->
+				<!-- Book Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
 						action="${pageContext.request.contextPath}/booktour/${tour.idTour}"
@@ -177,7 +177,7 @@
 					</s:form>
 				</div>
 			</c:if>
-			<!-- End Register Box -->
+			<!-- End Book Tour Box -->
 		</div>
 	</div>
 </div>
