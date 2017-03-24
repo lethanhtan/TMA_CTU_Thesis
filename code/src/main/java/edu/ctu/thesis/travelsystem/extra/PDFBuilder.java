@@ -28,6 +28,8 @@ public class PDFBuilder extends AbstractITextPdfView {
 	public static final String FONT = "/fonts/unicode/arial.ttf";
 	public static final String FONT1 = "/fonts/unicode/times.ttf";
 	public static final String FONT2 = "/fonts/unicode/tahoma.ttf";
+	private static final int SIZE1 = 8;
+	private static final int SIZE2 = 10;
 
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
@@ -40,38 +42,58 @@ public class PDFBuilder extends AbstractITextPdfView {
 			doc.addTitle("NYTravel List Tour");
 			doc.addSubject("List tour");
 
-			PdfPTable table = new PdfPTable(7);
+			PdfPTable table = new PdfPTable(13);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 3.0f });
+			table.setWidths(new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });
 			table.setSpacingBefore(10);
 
 			// define font for table header row
 			FontFactory.register(FONT2);
 			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			// write table header
-			table.addCell(getNormalCell("Id", 11, font));
+			table.addCell(getNormalCell("Id", SIZE1, font));
 
-			table.addCell(getNormalCell("Name", 11, font));
+			table.addCell(getNormalCell("Name", SIZE1, font));
 
-			table.addCell(getNormalCell("Departure Date", 11, font));
+			table.addCell(getNormalCell("Departure Date", SIZE1, font));
 
-			table.addCell(getNormalCell("Departure Time", 11, font));
+			table.addCell(getNormalCell("Departure Time", SIZE1, font));
 
-			table.addCell(getNormalCell("Return Date", 11, font));
+			table.addCell(getNormalCell("Return Date", SIZE1, font));
 
-			table.addCell(getNormalCell("Return Time", 11, font));
+			table.addCell(getNormalCell("Return Time", SIZE1, font));
 
-			table.addCell(getNormalCell("Detail", 11, font));
+			table.addCell(getNormalCell("Quantum", SIZE1, font));
+			
+			table.addCell(getNormalCell("Price", SIZE1, font));
+
+			table.addCell(getNormalCell("Cancel or not", SIZE1, font));
+
+			table.addCell(getNormalCell("Date allow cancel", SIZE1, font));
+
+			table.addCell(getNormalCell("Date allow reg", SIZE1, font));
+
+			table.addCell(getNormalCell("Full or not", SIZE1, font));
+
+			table.addCell(getNormalCell("Ticket available", SIZE1, font));
 
 			// write table row data
 			for (Tour tour : listTours) {
-				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), 11, font));
-				table.addCell(getNormalCell(tour.getName(), 11, font));
-				table.addCell(getNormalCell(tour.getDepartureDate().toString(), 11, font));
-				table.addCell(getNormalCell(tour.getDepartureTime(), 11, font));
-				table.addCell(getNormalCell(tour.getReturnDate().toString(), 11, font));
-				table.addCell(getNormalCell(tour.getReturnTime(), 11, font));
-				table.addCell(getNormalCell(tour.getDetail(), 11, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), SIZE1, font));
+				table.addCell(getNormalCell(tour.getName(), SIZE1, font));
+				table.addCell(getNormalCell(tour.getDepartureDate().toString(), SIZE1, font));
+				table.addCell(getNormalCell(tour.getDepartureTime(), SIZE1, font));
+				table.addCell(getNormalCell(tour.getReturnDate().toString(), SIZE1, font));
+				table.addCell(getNormalCell(tour.getReturnTime(), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getQuantum()), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getPrice()), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getCancelOrNot()), SIZE1, font));
+				table.addCell(getNormalCell(tour.getDateAllowCancel().toString(), SIZE1, font));
+				table.addCell(getNormalCell(tour.getDateAllowReg().toString(), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getFullOrNot()), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(tour.getTicketAvailability()), SIZE1, font));
+				
+				
 			}
 
 			doc.add(table);
@@ -94,29 +116,29 @@ public class PDFBuilder extends AbstractITextPdfView {
 			FontFactory.register(FONT2);
 			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			// write table header
-			table.addCell(getNormalCell("Id", 11, font));
+			table.addCell(getNormalCell("Id", SIZE1, font));
 
-			table.addCell(getNormalCell("Name", 11, font));
+			table.addCell(getNormalCell("Name", SIZE1, font));
 
-			table.addCell(getNormalCell("Email", 11, font));
+			table.addCell(getNormalCell("Email", SIZE1, font));
 
-			table.addCell(getNormalCell("Address", 11, font));
+			table.addCell(getNormalCell("Address", SIZE1, font));
 
-			table.addCell(getNormalCell("Phone", 11, font));
+			table.addCell(getNormalCell("Phone", SIZE1, font));
 
-			table.addCell(getNormalCell("Sex", 11, font));
+			table.addCell(getNormalCell("Sex", SIZE1, font));
 
-			table.addCell(getNormalCell("Id Tour", 11, font));
+			table.addCell(getNormalCell("Id Tour", SIZE1, font));
 
 			// write table row data
 			for (BookTour bookTour : listBookTours) {
-				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), 11, font));
-				table.addCell(getNormalCell(bookTour.getCusName(), 11, font));
-				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), 11, font));
-				table.addCell(getNormalCell(bookTour.getCusAddress(), 11, font));
-				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), 11, font));
-				table.addCell(getNormalCell(bookTour.getCusSex(), 11, font));
-				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), 11, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), SIZE1, font));
 			}
 
 			doc.add(table);

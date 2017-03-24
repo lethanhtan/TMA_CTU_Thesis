@@ -1,6 +1,5 @@
 package edu.ctu.thesis.travelsystem.controller;
 
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 

@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,11 +30,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			try {
 				logger.info("Save User Object! With encoded password!");
 				user.setRole(role); // set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); // encoded
-																	// password
-																	// user
-				user.setPasswordConfirm(user.getPassword()); // encoded password
-																// confirm user id
+				user.setPassword(ep.enCoded(user.getPassword()));
+				Date date = new Date();
+				user.setDate(date);
+				user.setTime(date);
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {

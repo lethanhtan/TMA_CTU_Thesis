@@ -28,7 +28,7 @@ public class UserValidator implements Validator {
 		// Catch empty and whitespace errors
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.userData.userName");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.userData.password");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.userData.passwordConfirm");
+		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty.userData.passwordConfirm");
 		ValidationUtils.rejectIfEmpty(errors, "fullName", "NotEmpty.userData.fullName");
 		ValidationUtils.rejectIfEmpty(errors, "address", "NotEmpty.userData.address");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.userData.phone");
@@ -46,10 +46,12 @@ public class UserValidator implements Validator {
 			errors.rejectValue("password", "Size.userData.password");
 		}
 
+		/*
 		// catch not same password confirm
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
 			errors.rejectValue("passwordConfirm", "Diff.userData.passwordConfirm");
 		}
+		*/
 
 		// cath fullname exception
 		if (user.getFullName().length() > 80 || user.getFullName().length() < 8) {

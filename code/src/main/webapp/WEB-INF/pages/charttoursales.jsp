@@ -139,11 +139,7 @@
 		<div class="container">
 			<!-- Chart code -->
 <script>
-var chart = AmCharts.makeChart("chartdiv", {
-  "type": "serial",
-  "theme": "light",
-  "marginRight": 70,
-  "dataProvider": [{
+var chartData = [{
     "month": "1",
     "sales": 3025,
     "color": "#FF0F00"
@@ -191,7 +187,13 @@ var chart = AmCharts.makeChart("chartdiv", {
     "month": "12",
     "sales": 441,
     "color": "#CD0D74"
-  }],
+  }];
+
+var chart = AmCharts.makeChart("chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "marginRight": 70,
+  "dataProvider": chartData,
   "valueAxes": [{
     "axisAlpha": 0,
     "position": "left",
