@@ -58,13 +58,34 @@ public class ExcelBuilder extends AbstractExcelView {
         header.getCell(3).setCellStyle(style);
         
         header.createCell(4).setCellValue("Return Date");
-        header.getCell(2).setCellStyle(style);
+        header.getCell(4).setCellStyle(style);
          
         header.createCell(5).setCellValue("Return Time");
-        header.getCell(3).setCellStyle(style);
+        header.getCell(5).setCellStyle(style);
          
         header.createCell(6).setCellValue("Detail");
-        header.getCell(4).setCellStyle(style);
+        header.getCell(6).setCellStyle(style);
+        
+        header.createCell(7).setCellValue("Cancel or not");
+        header.getCell(7).setCellStyle(style);
+        
+        header.createCell(8).setCellValue("Reg or not");
+        header.getCell(8).setCellStyle(style);
+        
+        header.createCell(9).setCellValue("Date allow reg");
+        header.getCell(9).setCellStyle(style);
+        
+        header.createCell(10).setCellValue("Date allow canel");
+        header.getCell(10).setCellStyle(style);
+        
+        header.createCell(11).setCellValue("Ful or not");
+        header.getCell(11).setCellStyle(style);
+        
+        header.createCell(12).setCellValue("Ticket avaiable");
+        header.getCell(12).setCellStyle(style);
+        
+        header.createCell(13).setCellValue("Quantum");
+        header.getCell(13).setCellStyle(style);
          
         // create data rows
         int rowCount = 1;
@@ -78,6 +99,13 @@ public class ExcelBuilder extends AbstractExcelView {
             aRow.createCell(4).setCellValue(tour.getReturnDate());
             aRow.createCell(5).setCellValue(tour.getReturnTime());
             aRow.createCell(6).setCellValue(tour.getDetail());
+            aRow.createCell(7).setCellValue(tour.getCancelOrNot());
+            aRow.createCell(8).setCellValue(tour.getRegOrNot());
+            aRow.createCell(9).setCellValue(tour.getDateAllowReg());
+            aRow.createCell(10).setCellValue(tour.getDateAllowCancel());
+            aRow.createCell(11).setCellValue(tour.getFullOrNot());
+            aRow.createCell(12).setCellValue(tour.getTicketAvailability());
+            aRow.createCell(13).setCellValue(tour.getQuantum());
         }
     }
  

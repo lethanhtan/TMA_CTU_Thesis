@@ -48,7 +48,7 @@
 										class="fa fa-calendar"></i>
 									</span>
 									<s:input placeholder="yyyy/mm/dd" id="datepicker"
-										class="form-control margin-bottom-20" type="date" path="departureDate" />
+										class="form-control margin-bottom-20" path="departureDate" />
 								</div>
 							</div>
 							<div class="col-sm-6">

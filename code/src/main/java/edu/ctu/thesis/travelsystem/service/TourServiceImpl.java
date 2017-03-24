@@ -97,4 +97,9 @@ public class TourServiceImpl implements TourService {
 	public List<Tour> tourListByValue(String value) {
 		return this.tourDao.tourListByValue(value);
 	}
+
+	@Override
+	public List<Tour> listTourByYear(int year) {
+		return this.tourDao.listTourByYear(year);
+	}
 }

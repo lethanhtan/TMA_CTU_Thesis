@@ -138,6 +138,7 @@
 		<h1 align="center">Biểu đồ doanh số tour theo tháng</h1>
 		<div class="container">
 			<!-- Chart code -->
+			<h1>${Size}</h1>
 <script>
 var chartData = [{
     "month": "1",
