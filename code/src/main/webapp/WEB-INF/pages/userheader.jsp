@@ -114,6 +114,10 @@
 											<li><a href="<c:url value="/managetour" />">Quản lý
 													tour</a></li>
 										</c:if>
+										<c:if test="${roleId == 1}">
+											<li><a href="<c:url value="/manageaccount" />">Quản
+													lý tài khoản</a></li>
+										</c:if>
 										<li><a href="<c:url value="/logout" />">Logout</a></li>
 									</ul>
 							</c:if>

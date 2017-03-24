@@ -5,6 +5,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$("#datepicker2").datepicker();
 });
+$(document).ready(function() {
+	$("#datepicker3").datepicker();
+});
+$(document).ready(function() {
+	$("#datepicker4").datepicker();
+});
 /* End Calendar */
 
 /* Popup */

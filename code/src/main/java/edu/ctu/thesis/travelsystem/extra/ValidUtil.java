@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidUtil {
-	static String pattern = "[a-z,A-Z,\\s]";
-	static Pattern p = Pattern.compile(pattern);
-	static String pattern2 = "[0-9]";
-	static Pattern p2 = Pattern.compile(pattern2);
+	public static String pattern = "[a-z,A-Z,\\s]";
+	public static Pattern p = Pattern.compile(pattern);
+	public static String pattern2 = "[0-9]";
+	public static Pattern p2 = Pattern.compile(pattern2);
 
 	public final boolean findAlphabet(String str) {
 		// create matcher object

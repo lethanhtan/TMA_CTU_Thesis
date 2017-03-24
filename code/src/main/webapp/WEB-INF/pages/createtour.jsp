@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -14,7 +14,7 @@
 						action="${pageContext.request.contextPath}/createtour"
 						method="POST">
 						<div class="signup-header">
-							<h2>Thông Tin Tour Du Lịch</h2>
+							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
 						</div>
 						<div class="row">
 							<div class="col-sm-8">
@@ -30,9 +30,10 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<div class="col-lg-4 text-right">
-								<button class="btn btn-primary" type="button">Tải Ảnh
-									Lên</button>
+							<div class="col-lg-4 text-left">
+								<label>Tải ảnh lên</label>
+								<button class="btn btn-primary" type="button">Chọn tập
+									tin</button>
 							</div>
 						</div>
 						<div class="row">
@@ -91,7 +92,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-clock-o"></i>
 									</span>
-									<s:input placeholder="Nhập giờ đi"
+									<s:input placeholder="Nhập giờ về"
 										class="form-control margin-bottom-20" type="text"
 										path="returnTime" />
 								</div>
@@ -120,8 +121,30 @@
 										class="fa fa-building-o"></i>
 									</span>
 									<s:input placeholder="Nhập số lượng"
-										class="form-control margin-bottom-20" type="text"
-										path="quantum" />
+										class="form-control margin-bottom-20" type="number" value="10"
+										path="quantum" min="10" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Ngày cho phép đăng ký</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+										class="form-control margin-bottom-20" path="dateAllowReg" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Ngày cho phép hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+										class="form-control margin-bottom-20" path="dateAllowCancel" />
 								</div>
 							</div>
 						</div>
@@ -150,6 +173,6 @@
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
-<!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp" %>
-<!-- === END FOOTER === -->
+	<!-- === BEGIN FOOTER === -->
+	<%@ include file="adminfooter.jsp"%>
+	<!-- === END FOOTER === -->

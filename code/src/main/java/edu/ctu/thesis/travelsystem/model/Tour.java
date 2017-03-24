@@ -4,10 +4,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,25 +18,32 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "TOUR")
 public class Tour {
-	private Integer idTour;
+	private int idTour;
 	private String name;
 	private Date departureDate;
 	private String departureTime;
 	private Date returnDate;
 	private String returnTime;
 	private String price;
-	private Integer quantum;
+	private int quantum;
 	private String detail;
 	private String image;
+	private Integer ticketAvailability;
+	private Date dateAllowReg;
+	private Date dateAllowCancel;
+	private boolean fullOrNot;
+	private boolean regOrNot = true;
+	private boolean cancelOrNot = true;
+	private RegistrationInfo regInfo;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_TOUR", nullable = false)
-	public Integer getIdTour() {
+	public int getIdTour() {
 		return idTour;
 	}
 
-	public void setIdTour(Integer idTour) {
+	public void setIdTour(int idTour) {
 		this.idTour = idTour;
 	}
 
@@ -101,11 +111,11 @@ public class Tour {
 
 	// Create column Quantum
 	@Column(name = "QUANTUM", nullable = false)
-	public Integer getQuantum() {
+	public int getQuantum() {
 		return quantum;
 	}
 
-	public void setQuantum(Integer quantum) {
+	public void setQuantum(int quantum) {
 		this.quantum = quantum;
 	}
 
@@ -118,14 +128,87 @@ public class Tour {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	
+
 	@Column(name = "IMAGE", nullable = true, length = 200)
 	public String getImage() {
 		return this.image;
 	}
-	
+
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	// Create column Number ticket availability
+	@Column(name = "TICKET_AVAILABILITY", nullable = false)
+	public Integer getTicketAvailability() {
+		return ticketAvailability;
+	}
+
+	public void setTicketAvailability(Integer ticketAvailability) {
+		this.ticketAvailability = ticketAvailability;
+	}
+
+	// Create column Date allow register
+	@Column(name = "DATE_ALLOW_REG", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getDateAllowReg() {
+		return dateAllowReg;
+	}
+
+	public void setDateAllowReg(Date dateAllowReg) {
+		this.dateAllowReg = dateAllowReg;
+	}
+
+	// Create column Date allow cancel
+	@Column(name = "DATE_ALLOW_CANCEL", nullable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getDateAllowCancel() {
+		return dateAllowCancel;
+	}
+
+	public void setDateAllowCancel(Date dateAllowCancel) {
+		this.dateAllowCancel = dateAllowCancel;
+	}
+
+	@Column(name = "FULL_OR_NOT", nullable = false)
+	public boolean getFullOrNot() {
+		return fullOrNot;
+	}
+
+	public void setFullOrNot(boolean fullOrNot) {
+		this.fullOrNot = fullOrNot;
+	}
+
+	@Column(name = "REG_OR_NOT", nullable = false)
+	public boolean getRegOrNot() {
+		return regOrNot;
+	}
+
+	public void setRegOrNot(boolean regOrNot) {
+		this.regOrNot = regOrNot;
+	}
+
+	@Column(name = "CANCEL_OR_NOT", nullable = false)
+	public boolean getCancelOrNot() {
+		return cancelOrNot;
+	}
+
+	public void setCancelOrNot(boolean cancelOrNot) {
+		this.cancelOrNot = cancelOrNot;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
+	public RegistrationInfo getRegInfo() {
+		return regInfo;
+	}
+
+	public void setRegInfo(RegistrationInfo regInfo) {
+		this.regInfo = regInfo;
+	}
+	
+	@Override
+	public int hashCode() {
+		return idTour;
 	}
 
 	@Override
@@ -138,7 +221,7 @@ public class Tour {
 		if (tour == null || (tour.getClass() != this.getClass())) {
 			return false;
 		} else {
-			return true;
+			return this.idTour == ((Tour) tour).getIdTour();
 		}
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
@@ -28,7 +29,7 @@ public class CreateTourController {
 		public String createtourController(ModelMap model, HttpSession session) {
 			String result;
 			try {
-				if ((Integer) session.getAttribute("roleId") == 2) {
+				if ((int) session.getAttribute("roleId") == 2) {
 					logger.info("Register! In here first!");
 					model.put("tourData", new Tour());
 					result = "createtour";
@@ -50,7 +51,7 @@ public class CreateTourController {
 		if (br.hasErrors()) {
 			return "createtour";
 		} else {
-			logger.info("Register! In here second!");
+			logger.info("Create tour! In here second!");
 			tourService.saveTour(tour);
 			return "redirect:managetour";
 		}

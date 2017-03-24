@@ -15,16 +15,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2>Thông Tin Tour Du Lịch</h2>
-							<br />
-						</div>
-						<label>Id tour</label>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"> <i
-								class="fa fa-map-marker"></i>
-							</span>
-							<s:input placeholder="${tourData.idTour}"
-								class="form-control margin-bottom-20" type="number" path="idTour"
-								disabled="true" />
+							</br>
 						</div>
 						<label>Tên tour</label>
 						<div class="input-group margin-bottom-20">
@@ -106,15 +97,64 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Số vé còn</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-building-o"></i>
+									</span>
+									<s:input placeholder="Nhập số lượng"
+										class="form-control margin-bottom-20" type="text"
+										path="ticketAvailability" disabled="true" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Số vé hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-building-o"></i>
+									</span>
+									<s:input placeholder="Nhập số lượng"
+										class="form-control margin-bottom-20" type="text"
+										path="ticketAvailability" disabled="true" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Ngày cho phép đăng ký</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+										class="form-control margin-bottom-20" path="dateAllowReg"
+										disabled="true" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label>Ngày cho phép hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-calendar"></i>
+									</span>
+									<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+										class="form-control margin-bottom-20" path="dateAllowCancel"
+										disabled="true" />
+								</div>
+							</div>
+						</div>
 						<label>Chi tiết tour</label>
-						<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
+						<s:input placeholder="Nhập chi tiết về tour"
 							class="form-control margin-bottom-20" type="text" rows="10"
 							path="detail" disabled="true" />
+						</br>
 						<hr>
 						<div class="row">
 							<div class="col-lg-4 text-left">
 								<a href="<c:url value='/updatetour/${tourData.idTour}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
+										class="btn btn-primary" type="button">Chỉnh Sửa</button>
 							</div>
 							<div class="col-lg-4 text-center">
 								<a href="<c:url value='delete/${tourData.idTour}'/>"><button
@@ -132,4 +172,4 @@
 		</div>
 	</div>
 	<!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+	<%@ include file="adminfooter.jsp"%>

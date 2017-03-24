@@ -30,10 +30,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			try {
 				logger.info("Save User Object! With encoded password!");
 				user.setRole(role); // set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); 
-				user.setPasswordConfirm(user.getPassword()); 
-				Date now = new Date();
-				user.setResTime(now);
+				user.setPassword(ep.enCoded(user.getPassword()));
+				Date date = new Date();
+				user.setDate(date);
+				user.setTime(date);
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {
@@ -60,7 +60,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public Integer getRoleUser(User user) {
+	public int getRoleUser(User user) {
 		logger.info("User role id be called!");
 		return user.getRole().getId();
 	}
@@ -77,7 +77,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			}
 		}
 	}
-
+	
 	@Override
 	public String findFullName(String userName) {
 		String result = "";

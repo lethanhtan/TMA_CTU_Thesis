@@ -29,12 +29,10 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js">
-	
-</script>
-
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/input.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/input.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
@@ -95,8 +93,9 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png" width="64px"
-				height="auto"></img>
+			<img
+				src="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png"
+				width="64px" height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
 		<!-- Top Menu -->
@@ -105,24 +104,29 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/managetour"
-								class="fa-gear">Quản Lý Tour</a></li>
-							<li><a class="fa-gear">Thống kê dữ liệu</a>
-								<ul>
-									<li><a href="<c:url value="/toursales" />">Doanh số tour</a></li>
-									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
-								</ul></li>
+							<li><a href="${pageContext.request.contextPath}/managetour"
+								class="fa-cogs">Quản Lý Tour</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a
+								href="${pageContext.request.contextPath }/manageaccount"
+								class="fa-users">Quản Lý Tài Khoản</a></li>
+							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
+									<li class="parent"><span>Thống kê</span>
+										<ul>
+											<li><a href="<c:url value="/toursales" />"> Doanh số
+													tour</a></li>
+											<li><a href="<c:url value="/tourres" />"> Tour đăng
+													ký</a></li>
+										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Logout</a></li>
+									<li><a href="<c:url value="/logout" />"> Đăng xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>

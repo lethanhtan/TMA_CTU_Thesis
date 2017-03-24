@@ -1,19 +1,23 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
 public class TourDaoImpl extends AbstractDao implements TourDao {
-	//GenerateId gid = new GenerateId();
-
+	@Autowired
+	private BookTourDao bookTourDao;
 	// Fill the fields automatically
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
@@ -24,7 +28,20 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		if (tour != null) {
 			try {
 				logger.info("Save tour be called!");
-				// tour.setIdTour(gid.generateIdTour());
+				if (tour.getTicketAvailability() == null) {
+					tour.setTicketAvailability(tour.getQuantum());
+				}
+				tour.setFullOrNot(false);
+				RegistrationInfo regInfo = new RegistrationInfo();
+				regInfo.setFieldName(true);
+				regInfo.setFieldSex(true);
+				regInfo.setFieldEmail(true);
+				regInfo.setFieldPhone(true);
+				regInfo.setFieldAddress(true);
+				regInfo.setFieldIdCard(false);
+				regInfo.setFieldNumOfTicket(true);
+				tour.setRegInfo(regInfo);
+				regInfo.setTour(tour);
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -34,11 +51,11 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public Tour findTourById(Integer idTour) {
+	public Tour findTourById(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = new Tour();
 		logger.info("Tour infor: " + idTour);
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour =?";
+		String hql = "from Tour as t where t.idTour =?";
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, idTour);
@@ -72,9 +89,12 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public void deleteTour(Integer idTour) {
+	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
+		String hql = "DELETE FROM BookTour WHERE ID_TOUR = :idTour";
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
 		if (tour != null) {
 			session.delete(tour);
 			session.flush();
@@ -86,7 +106,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> listTour() {
 		Session session = getCurrentSession();
-		String hql = "from edu.ctu.thesis.travelsystem.model.Tour";
+		String hql = "from Tour";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
 			logger.info("Tour List:" + tour);
@@ -97,25 +117,24 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> listTourByValue(String value) {
 		Session session = getCurrentSession();
-		//String hql1 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.idTour = :value1 ";
-		String hql2 = "from edu.ctu.thesis.travelsystem.model.Tour as t where t.name like :value2 ";
-		Query query = session.createQuery(hql2);
-		query.setParameter("value2", "%" + value + "%");
+		String hql = "from Tour as t where t.name like :value";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<Tour> tourList = query.list();
 		return tourList;
 	}
 
 	@Override
-	public Integer getNumTour() {
+	public int getNumTour() {
 		Integer numTour = listTour().size();
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
 	}
 
 	@Override
-	public Integer getNumTourBySearch(String value) {
-		Integer numTour = listTourByValue(value).size();
+	public int getNumTourBySearch(String value) {
+		int numTour = listTourByValue(value).size();
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
 	}
@@ -139,5 +158,75 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			y = paginationX(currentPage, page) + page;
 		}
 		return y;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tour> showTourList() {
+		Session session = getCurrentSession();
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true";
+		List<Tour> showTourList = session.createQuery(hql).list();
+		for (Tour tour : showTourList) {
+			// Sync noTicketAvailability
+			Integer numTicketBooked = bookTourDao.getNumTicketBooked(tour.getIdTour());
+			Integer newAvailability = tour.getQuantum() - numTicketBooked;
+			if (tour.getTicketAvailability() != newAvailability) {
+				tour.setTicketAvailability(newAvailability);
+			}
+			if (tour.getTicketAvailability() == 0) {
+				tour.setFullOrNot(true);
+			} else {
+				tour.setFullOrNot(false);
+			}
+			if (tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+				tour.setRegOrNot(false);
+			} else {
+				tour.setRegOrNot(true);
+			}
+			if (tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
+				tour.setCancelOrNot(false);
+			} else {
+				tour.setCancelOrNot(true);
+			}
+			updateTour(tour);
+			logger.info("Tour List:" + tour);
+		}
+		return showTourList;
+	}
+	/*
+	 * if (tour != null && tour.getTicketAvailability() == 0) {
+	 * tour.setFullOrNot(true); logger.info("Full or not: " +
+	 * tour.getFullOrNot()); updateTour(tour); } else {
+	 * tour.setFullOrNot(false); logger.info("Full or not: " +
+	 * tour.getFullOrNot()); updateTour(tour); } if (tour != null &&
+	 * tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+	 * tour.setRegOrNot(false); logger.info("Reg or not: " +
+	 * tour.getRegOrNot()); updateTour(tour); } else { tour.setRegOrNot(true);
+	 * logger.info("Reg or not: " + tour.getRegOrNot()); updateTour(tour); } if
+	 * (tour != null &&
+	 * tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
+	 * tour.setCancelOrNot(false); logger.info("Reg or not: " +
+	 * tour.getCancelOrNot()); updateTour(tour); } else {
+	 * tour.setCancelOrNot(true); logger.info("Cancel or not: " +
+	 * tour.getCancelOrNot()); updateTour(tour); }
+	 */
+
+	@Override
+	public int getNumTourList() {
+		Integer numTourList = showTourList().size();
+		logger.info("Number of tour is: " + numTourList);
+		return numTourList;
+	}
+
+	@Override
+	public List<Tour> tourListByValue(String value) {
+		System.out.println(value.contains(value));
+		Session session = getCurrentSession();
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<Tour> tourList = query.list();
+		return tourList;
 	}
 }
