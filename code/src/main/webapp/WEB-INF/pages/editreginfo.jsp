@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp"%>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -12,7 +12,7 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
 						id="createTourForm"
-						action="${pageContext.request.contextPath }/editbooktour/${cusData.idBT}/${idTour}"
+						action="${pageContext.request.contextPath }/editreginfo/${cusData.idBT}/${idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Cập nhật Thông Tin Khách
@@ -55,7 +55,8 @@
 									</br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
-											class="fa fa-envelope"></i> </span>
+											class="fa fa-envelope"></i>
+										</span>
 										<s:input placeholder="Nhập số điện thoại" class="form-control"
 											type="text" path="cusPhone" />
 									</div>
@@ -67,7 +68,8 @@
 									<!-- Show error -->
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
-											class="fa fa-building-o"></i> </span>
+											class="fa fa-building-o"></i>
+										</span>
 										<s:input type="number" class="form-control margin-bottom-20"
 											path="cusNumOfTicket" min="1"
 											max="${tour.ticketAvailability}" />
@@ -81,7 +83,8 @@
 							</br>
 							<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
 							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"><i class="fa fa-envelope"></i>
+								<span class="input-group-addon"><i
+									class="fa fa-envelope"></i>
 								</span>
 								<s:input placeholder="Nhập email" class="form-control"
 									type="text" path="cusEmail" />
@@ -100,7 +103,8 @@
 							<label>Số chứng minh nhân dân</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"><i
-									class="fa fa-credit-card"></i> </span>
+									class="fa fa-credit-card"></i>
+								</span>
 								<s:input placeholder="Nhập chứng minh nhân dân"
 									class="form-control" type="text" path="cusIdCard" />
 							</div>
@@ -111,7 +115,7 @@
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/tourlist'/>"><button
+								<a href="<c:url value='/registrationlist/${idTour}'/>"><button
 										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
 							</div>
 						</div>
@@ -121,8 +125,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-<!-- === END CONTENT === -->
-<!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp"%>
-<!-- === END FOOTER === -->
+	<!-- === END CONTENT === -->
+	<!-- === BEGIN FOOTER === -->
+	<%@ include file="adminfooter.jsp"%>
+	<!-- === END FOOTER === -->
