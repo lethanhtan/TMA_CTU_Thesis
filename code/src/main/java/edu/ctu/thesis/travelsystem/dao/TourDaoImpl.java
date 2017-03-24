@@ -91,7 +91,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
-		String hql = "DELETE FROM BookTour WHERE ID_TOUR = :idTour";
+		String hql = "DELETE FROM Tour WHERE ID_TOUR = :idTour";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
 		if (tour != null) {
@@ -133,7 +133,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public int getNumTourBySearch(String value) {
+	public int getNumTourByValue(String value) {
 		int numTour = listTourByValue(value).size();
 		logger.info("Number of tour is: " + numTour);
 		return numTour;
@@ -193,23 +193,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		}
 		return showTourList;
 	}
-	/*
-	 * if (tour != null && tour.getTicketAvailability() == 0) {
-	 * tour.setFullOrNot(true); logger.info("Full or not: " +
-	 * tour.getFullOrNot()); updateTour(tour); } else {
-	 * tour.setFullOrNot(false); logger.info("Full or not: " +
-	 * tour.getFullOrNot()); updateTour(tour); } if (tour != null &&
-	 * tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
-	 * tour.setRegOrNot(false); logger.info("Reg or not: " +
-	 * tour.getRegOrNot()); updateTour(tour); } else { tour.setRegOrNot(true);
-	 * logger.info("Reg or not: " + tour.getRegOrNot()); updateTour(tour); } if
-	 * (tour != null &&
-	 * tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
-	 * tour.setCancelOrNot(false); logger.info("Reg or not: " +
-	 * tour.getCancelOrNot()); updateTour(tour); } else {
-	 * tour.setCancelOrNot(true); logger.info("Cancel or not: " +
-	 * tour.getCancelOrNot()); updateTour(tour); }
-	 */
 
 	@Override
 	public int getNumTourList() {
