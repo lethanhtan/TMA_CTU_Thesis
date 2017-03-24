@@ -1,21 +1,22 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
-import edu.ctu.thesis.travelsystem.controller.UserController;
+import edu.ctu.thesis.travelsystem.controller.ManageUserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 
 @Service
 public class UserDaoImpl extends AbstractDao implements UserDao {
-
 	EncoderPassword ep = new EncoderPassword();
 
-	private static final Logger logger = Logger.getLogger(UserController.class);
+	private static final Logger logger = Logger.getLogger(ManageUserController.class);
 
 	// Using for register
 	@Override
@@ -28,11 +29,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			try {
 				logger.info("Save User Object! With encoded password!");
 				user.setRole(role); // set default role for register account
-				user.setPassword(ep.enCoded(user.getPassword())); // encoded
-																	// password
-																	// user
-				user.setPasswordConfirm(user.getPassword()); // encoded password
-																// confirm user id
+				user.setPassword(ep.enCoded(user.getPassword()));
+				// Encoded password user
+				user.setPasswordConfirm(user.getPassword());
+				// Encoded password confirm user id
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {
@@ -76,7 +76,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			}
 		}
 	}
-	
+
 	@Override
 	public String findFullName(String userName) {
 		String result = "";
@@ -90,5 +90,87 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.error("Occured ex", e);
 		}
 		return result;
+	}
+
+	@Override
+	public List<User> userListByValue(String value) {
+		System.out.println(value.contains(value));
+		Session session = getCurrentSession();
+		String hql = "FROM User WHERE FULL_NAME LIKE :value OR EMAIL LIKE :value OR PHONE LIKE :value OR USER_NAME LIKE :value";
+		Query query = session.createQuery(hql);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<User> userList = query.list();
+		return userList;
+	}
+
+	@Override
+	public int getNumUserByValue(String value) {
+		int numUser = userListByValue(value).size();
+		logger.info("Total user: " + numUser);
+		return numUser;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> userList() {
+		Session session = getCurrentSession();
+		String hql = "FROM User";
+		List<User> userList = session.createQuery(hql).list();
+		for (User user : userList) {
+			logger.info("User List:" + user);
+		}
+		return userList;
+	}
+
+	@Override
+	public int getNumUser() {
+		Integer numUser = userList().size();
+		logger.info("Total user: " + numUser);
+		return numUser;
+	}
+
+	@Override
+	public User searchUserById(int idUser) {
+		Session session = getCurrentSession();
+		User user = new User();
+		logger.info("Information of user have ID is: " + idUser);
+		String hql = "FROM User WHERE idUser = ?";
+		try {
+			Query query = session.createQuery(hql);
+			query.setParameter(0, idUser);
+			user = (User) query.uniqueResult();
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+		}
+		return user;
+	}
+
+	@Override
+	public void deleteUser(int idUser) {
+		Session session = getCurrentSession();
+		User user = (User) session.load(User.class, new Integer(idUser));
+		String hql = "DELETE FROM User WHERE ID_USER = :idUser";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		if (user != null) {
+			session.delete(user);
+			session.flush();
+			logger.info("Delete user successfully!");
+		}
+	}
+
+	@Override
+	public void editUser(User user) {
+		Session session = getCurrentSession();
+		if (user != null) {
+			try {
+				session.update(user);
+				session.flush();
+				logger.info("Update information of user successfully, user detail: " + user);
+			} catch (Exception e) {
+				logger.error("Occured ex", e);
+			}
+		}
 	}
 }

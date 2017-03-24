@@ -12,12 +12,6 @@ public interface BookTourService {
 	public BookTour searchById(int idBT);
 	
 	public void editBookTour(BookTour bookTour);
-
-	public BookTour searchByName(String cusName);
-	
-	public BookTour searchByEmail(String cusEmail);
-	
-	public BookTour searchByPhone(String cusPhone);
 	
 	public List<BookTour> registrationListByValue(String value, int idTour);
 	

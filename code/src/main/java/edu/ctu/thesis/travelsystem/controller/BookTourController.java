@@ -203,11 +203,7 @@ public class BookTourController {
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
 			bookTourService.editBookTour(bookTour);
-			if ((int) session.getAttribute("roleId") == 2) {
-				return "redirect:/registrationlist/{idTour}";
-			} else {
-				return "redirect:/tourlist";
-			}
+			return "redirect:/tourlist";
 		}
 	}
 

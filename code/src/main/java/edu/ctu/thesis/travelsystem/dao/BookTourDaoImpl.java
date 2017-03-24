@@ -63,33 +63,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 	}
 
-	// Search information of customer booked tour by Name
-	@Override
-	public BookTour searchByName(String cusName) {
-		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusName));
-		logger.info("Information of customer have: " + cusName);
-		return bookTour;
-	}
-
-	// Search information of customer booked tour by Email
-	@Override
-	public BookTour searchByEmail(String cusEmail) {
-		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusEmail));
-		logger.info("Information of customer have: " + cusEmail);
-		return bookTour;
-	}
-
-	// Search information of customer booked tour by Phone
-	@Override
-	public BookTour searchByPhone(String cusPhone) {
-		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new String(cusPhone));
-		logger.info("Information of customer have: " + cusPhone);
-		return bookTour;
-	}
-
 	@Override
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		System.out.println(value.contains(value));
@@ -161,10 +134,10 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	public List<BookTour> registrationInfoByValue(String value, int idTour) {
 		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (CUS_EMAIL = :value OR CUS_PHONE = :value OR CUS_IDCARD = :value)";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
-		query.setParameter("value", "%" + value + "%");
+		query.setParameter("value", value);
 		@SuppressWarnings("unchecked")
 		List<BookTour> registrationInfo = query.list();
 		return registrationInfo;

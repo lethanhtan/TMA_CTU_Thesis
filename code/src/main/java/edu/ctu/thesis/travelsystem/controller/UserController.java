@@ -1,6 +1,5 @@
 package edu.ctu.thesis.travelsystem.controller;
 
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,24 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
-/*------------------------------------------------------------*/
-/*					UserController                            */
-/*This controller be used to handle login, register and logout*/
-/*request                                                     */
-/*------------------------------------------------------------*/
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
-	
+
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
@@ -49,6 +46,7 @@ public class UserController {
 			userService.saveUser(user);
 			session.setAttribute("user", user);
 			session.setAttribute("userName", user.getFullName());
+			session.setAttribute("idUser", user.getIdUser());
 			return "redirect:login";
 		}
 	}
@@ -76,10 +74,12 @@ public class UserController {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
 					session.setAttribute("roleId", user.getRole().getId());
+					session.setAttribute("idUser", user.getIdUser());
 					return "redirect:managetour";
 				} else {
 					session.setAttribute("user", user);
 					session.setAttribute("userName", user.getFullName());
+					session.setAttribute("idUser", user.getIdUser());
 					return "redirect:login";
 				}
 			} else {
@@ -100,5 +100,40 @@ public class UserController {
 		session.removeValue("userName"); // remove userName value
 		session.removeValue("roleId"); // remove roleId value
 		return "redirect:login";
+	}
+
+	// Forward to manage my account page
+	@RequestMapping(value = "managemyacc/{idUser}", method = RequestMethod.GET)
+	public String showMyAccDetail(ModelMap model, @PathVariable("idUser") int idUser) {
+		logger.info("Show user detail!");
+		model.put("userData", userService.searchUserById(idUser));
+		return "managemyacc";
+	}
+
+	// Handle required request from client
+	@RequestMapping(value = "editmyacc/{idUser}", method = RequestMethod.GET)
+	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser) {
+		logger.info("Handle edit form when administrator request!");
+		logger.info("Display edit user form when administrator request!");
+		model.addAttribute("userData", userService.searchUserById(idUser));
+		return "editmyacc";
+	}
+
+	// Handle form action edit my account
+	@RequestMapping(value = "editmyacc/{idUser}")
+	public String editUser(ModelMap model, @PathVariable("idUser") int idUser,
+			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session) {
+		UserValidator userValidator = new UserValidator();
+		userValidator.validate(user, br);
+		if (br.hasErrors()) {
+			return "editmyacc";
+		} else {
+			logger.info("Update user if haven't error!");
+			Role role = new Role();
+			role.setId(1);
+			user.setRole(role);
+			userService.editUser(user);
+			return "redirect:/managemyacc/{idUser}";
+		}
 	}
 }
