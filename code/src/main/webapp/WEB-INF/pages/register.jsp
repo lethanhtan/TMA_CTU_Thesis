@@ -43,14 +43,12 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<label>Xác nhận mật khẩu</label> <br /> <small><s:errors
-										path="passwordConfirm" cssStyle="color:red;" /></small>
+								<label>Xác nhận mật khẩu</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-repeat"></i>
 									</span>
-									<s:input placeholder="Nhập lại mật khẩu"
-										class="form-control margin-bottom-20" type="password"
-										path="passwordConfirm" />
+									<input placeholder="Nhập lại mật khẩu"
+										class="form-control margin-bottom-20" type="password" />
 								</div>
 							</div>
 						</div>
@@ -86,7 +84,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="dd/mm/yyyy" id="datepicker"
+									<s:input placeholder="mm/dd/yyyy" id="datepicker"
 										class="form-control margin-bottom-20" path="birthday" />
 								</div>
 							</div>

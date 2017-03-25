@@ -71,4 +71,14 @@ public class BookTourServiceImpl implements BookTourService {
 	public void cancelBookTour(int idBT, int idTour) {
 		this.bookTourDao.cancelBookTour(idBT, idTour);
 	}
+
+	@Override
+	public List<BookTour> listTourByYear(int year) {
+		return this.bookTourDao.listTourByYear(year);
+	}
+
+	@Override
+	public int listBookTourByMonth(int month, List<BookTour> list) {
+		return this.bookTourDao.listBookTourByMonth(month, list);
+	}
 }

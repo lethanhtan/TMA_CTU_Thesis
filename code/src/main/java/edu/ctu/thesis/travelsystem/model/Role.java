@@ -12,12 +12,8 @@ import javax.persistence.Table;
 @Table(name = "ROLE")
 public class Role {
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID_ROLE", nullable = false)
 	private int id;
 
-	@Column(name = "DESCRIPTION", nullable = false, length = 40)
 	private String description;
 
 	// constructor
@@ -29,6 +25,9 @@ public class Role {
 	}
 
 	// Setters and Getter method
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID_ROLE", nullable = false)
 	public int getId() {
 		return id;
 	}
@@ -37,6 +36,7 @@ public class Role {
 		this.id = id;
 	}
 
+	@Column(name = "DESCRIPTION", nullable = false, length = 40)
 	public String getDescription() {
 		return description;
 	}

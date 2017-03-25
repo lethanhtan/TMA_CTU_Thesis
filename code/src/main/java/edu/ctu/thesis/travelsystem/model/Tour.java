@@ -196,6 +196,7 @@ public class Tour {
 	public void setCancelOrNot(boolean cancelOrNot) {
 		this.cancelOrNot = cancelOrNot;
 	}
+	
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
 	public RegistrationInfo getRegInfo() {

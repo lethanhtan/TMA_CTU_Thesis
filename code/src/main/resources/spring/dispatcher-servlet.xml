@@ -53,7 +53,8 @@
 		<property name="maxUploadSize" value="1000000" />
 
 	</bean>
-
+	
+	<!-- 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -76,5 +77,6 @@
 			</props>
 		</property>
 	</bean>
-	
+	 -->
+
 </beans>

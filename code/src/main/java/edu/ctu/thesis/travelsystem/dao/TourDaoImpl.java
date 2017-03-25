@@ -1,6 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -31,6 +32,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 					tour.setTicketAvailability(tour.getQuantum());
 				}
 				tour.setFullOrNot(false);
+				tour.setRegOrNot(true);
 				RegistrationInfo regInfo = new RegistrationInfo();
 				regInfo.setFieldName(true);
 				regInfo.setFieldSex(true);
@@ -115,7 +117,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> listTourByValue(String value) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
 		String hql = "from Tour as t where t.name like :value";
 		Query query = session.createQuery(hql);
@@ -203,13 +204,27 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> tourListByValue(String value) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
 		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value";
 		Query query = session.createQuery(hql);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<Tour> tourList = query.list();
+		return tourList;
+	}
+
+	@Override
+	public List<Tour> listTourByYear(int year) {
+		System.out.println(year);
+		Session session = getCurrentSession();
+		String hql = "from Tour as t where t.year = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, year);
+		@SuppressWarnings("unchecked")
+		List<Tour> tourList = query.list();
+		for (Tour tour : tourList) {
+			logger.info("Tour List:" + tour);
+		}
 		return tourList;
 	}
 }

@@ -78,7 +78,7 @@ public class ExportController {
 					model.setViewName("export");
 				}
 				
-			} else {
+			} else {// type excel
 				if (nameFile.length() != 0 && Date1 != null && Date2 != null) {//1
 					if (Date1.after(Date2)) {
 						model.addObject("failedDate", failedDate);
@@ -86,7 +86,8 @@ public class ExportController {
 					} else {
 						model.addObject("fileName", nameFile);
 						model.addObject("listTours", listTours);
-						model.addObject("listBookTour", listBookTours);
+						model.addObject("listBookTours", listBookTours);
+						model.addObject("exportList", exportList);
 						objExport.setOwner(session.getAttribute("userName").toString());
 						objExport.setFileType(exportType);
 						objExport.setExportType(exportList);
@@ -95,7 +96,8 @@ public class ExportController {
 					}
 				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {//2
 					model.addObject("listTours", listTours);
-					model.addObject("listBookTour", listBookTours);
+					model.addObject("listBookTours", listBookTours);
+					model.addObject("exportList", exportList);
 					objExport.setOwner(session.getAttribute("userName").toString());
 					objExport.setFileType(exportType);
 					objExport.setExportType(exportList);
