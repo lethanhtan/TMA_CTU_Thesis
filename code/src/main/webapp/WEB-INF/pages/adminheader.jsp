@@ -29,7 +29,9 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+<!-- 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-filestyle.min.js"></script>
+ -->
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/input.css" />
@@ -60,6 +62,9 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
+<script type="text/javascript">
+var date = $('#datepicker').datepicker2({ dateFormat: 'yy-mm-dd' }).val();
+</script>
 </head>
 <body>
 	<div id="body-bg">

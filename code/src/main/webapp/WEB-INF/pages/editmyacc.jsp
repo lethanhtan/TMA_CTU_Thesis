@@ -19,7 +19,6 @@
 						</div>
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
-						<s:input path="passwordConfirm" hidden="true" />
 						<div class="row">
 							<div class="col-sm-8">
 								<label>Họ tên</label>
@@ -53,8 +52,8 @@
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
 										class="fa fa-calendar"></i></span>
-									<s:input class="form-control margin-bottom-20" id="datepicker2"
-										type="text" path="birthday" />
+									<s:input class="form-control margin-bottom-20" id="datepicker1"
+									 path="birthday" />
 								</div>
 							</div>
 							<div class="col-sm-6">

@@ -1,7 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -102,10 +105,19 @@ public class ManageTourController {
 
 	// handle required reuest from client
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) {
+	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) throws ParseException {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		if (tour != null) {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String departureDate = sdf.format(tour.getDepartureDate());
+			String returnDate = sdf.format(tour.getReturnDate());
+			String dateAllowReg = sdf.format(tour.getDateAllowReg());
+			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
+			model.addAttribute("date1", departureDate);
+			model.addAttribute("date2", returnDate);
+			model.addAttribute("date3", dateAllowReg);
+			model.addAttribute("date4", dateAllowCancel);
 			model.addAttribute("tourData", tour);
 			model.addAttribute("idTour", idTour);
 		} else {

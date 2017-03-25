@@ -120,7 +120,7 @@ public class UserController {
 	}
 
 	// Handle form action edit my account
-	@RequestMapping(value = "editmyacc/{idUser}")
+	@RequestMapping(value = "editmyacc/{idUser}", method = RequestMethod.POST)
 	public String editUser(ModelMap model, @PathVariable("idUser") int idUser,
 			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session) {
 		UserValidator userValidator = new UserValidator();

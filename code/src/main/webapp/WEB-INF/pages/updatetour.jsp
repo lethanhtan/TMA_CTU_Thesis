@@ -47,7 +47,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="yyyy/mm/dd" id="datepicker"
+									<s:input placeholder="yyyy/mm/dd" id="datepicker" value="${date1}"
 										class="form-control margin-bottom-20" path="departureDate" />
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+									<s:input placeholder="mm/dd/yyyy" id="datepicker2" value="${date2}"
 										class="form-control margin-bottom-20" path="returnDate" />
 								</div>
 							</div>
@@ -144,7 +144,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+									<s:input placeholder="mm/dd/yyyy" id="datepicker3" value="${date3}"
 										class="form-control margin-bottom-20" path="dateAllowReg" />
 								</div>
 							</div>
@@ -154,7 +154,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+									<s:input placeholder="mm/dd/yyyy" id="datepicker4" value="${date4}"
 										class="form-control margin-bottom-20" path="dateAllowCancel" />
 								</div>
 							</div>
