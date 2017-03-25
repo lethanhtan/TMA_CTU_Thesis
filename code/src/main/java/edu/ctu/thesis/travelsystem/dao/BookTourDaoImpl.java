@@ -1,5 +1,10 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -157,5 +162,42 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			session.flush();
 			logger.info("Delete customer success!");
 		}
+	}
+
+	@Override
+	public List<BookTour> listTourByYear(int year) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date d1 = new Date();
+		try {
+			d1 = sdf.parse("01/01/"+year);
+		} catch (ParseException e) {
+			logger.error("Occured ex", e);
+		}
+		Date d2 = new Date();
+		try {
+			d2 = sdf.parse("31/12/"+year);
+		} catch (ParseException e) {
+			logger.error("Occured ex", e);
+		}
+		List<BookTour> listBookTour = new ArrayList<BookTour>();
+		for (BookTour bookTour : listBookTour()) {
+			if (bookTour.getDateBook().after(d1) && bookTour.getDateBook().before(d2)) {
+				listBookTour.add(bookTour);
+				logger.info("Added success!");
+			}
+		}
+		return listBookTour;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public int listBookTourByMonth(int month, List<BookTour> list) {
+		int sales = 0;
+		for (BookTour bookTour : list) {
+			if (bookTour.getDateBook().getMonth() + 1 == month) {
+				sales  += bookTour.getCusNumOfTicket();
+			}
+		}
+		return sales;
 	}
 }

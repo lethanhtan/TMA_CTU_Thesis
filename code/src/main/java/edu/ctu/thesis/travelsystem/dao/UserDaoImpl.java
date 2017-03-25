@@ -31,8 +31,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				user.setRole(role); // set default role for register account
 				user.setPassword(ep.enCoded(user.getPassword()));
 				// Encoded password user
-				user.setPasswordConfirm(user.getPassword());
-				// Encoded password confirm user id
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {

@@ -31,7 +31,7 @@ public class ImportController {
 		objImp.setOwner(session.getAttribute("userName").toString());
 		importDataService.saveImport(objImp);
 		importDataService.importExcel(excelfile);
-		return "managetour";
+		return "redirect:/managetour";
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)

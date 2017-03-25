@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -114,7 +115,7 @@ public class ManageTourController {
 	}
 
 	// handle form action update tour
-	@RequestMapping(value = "/updatetour/{idTour}")
+	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.POST)
 	public String updateTour(ModelMap model, @PathVariable("idTour") int idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
 		TourValidator tourValidator = new TourValidator();

@@ -24,4 +24,8 @@ public interface BookTourService {
 	public List<BookTour> registrationInfoByValue(String value, int idTour);
 	
 	public void cancelBookTour(int idBT, int idTour);
+	
+	public List<BookTour> listTourByYear(int year);
+	
+	public int listBookTourByMonth(int month, List<BookTour> list);
 }

@@ -43,8 +43,14 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 				tour.setReturnDate(row.getCell(3).getDateCellValue());
 				tour.setReturnTime(formatter.formatCellValue(row.getCell(4)));
 				tour.setQuantum((int) row.getCell(5).getNumericCellValue());
-				tour.setPrice(formatter.formatCellValue(row.getCell(6)));
-				tour.setDetail(formatter.formatCellValue(row.getCell(7)));
+				tour.setDetail(formatter.formatCellValue(row.getCell(6)));
+				tour.setPrice(formatter.formatCellValue(row.getCell(7)));
+				tour.setCancelOrNot(row.getCell(8).getBooleanCellValue());
+				tour.setRegOrNot(row.getCell(9).getBooleanCellValue());
+				tour.setDateAllowCancel(row.getCell(10).getDateCellValue());
+				tour.setDateAllowReg(row.getCell(11).getDateCellValue());
+				tour.setFullOrNot(row.getCell(12).getBooleanCellValue());
+				tour.setTicketAvailability((int) row.getCell(13).getNumericCellValue());
 				// persist data into database in here
 				listTours.add(tour);
 				session.save(tour);
