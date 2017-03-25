@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "USER")
 public class User {
-	
+
 	private Integer idUser;
 	private String userName;
 	private String password;
@@ -44,6 +44,7 @@ public class User {
 	
 	public User(String userName, String password, Date birthday, String fullName,
 			String address, String email, String phone, String sex, Date dateRes, Date timeRes) {
+
 		this.userName = userName;
 		this.password = password;
 		this.birthday = birthday;
@@ -55,8 +56,8 @@ public class User {
 		this.dateRes = dateRes;
 		this.timeRes = timeRes;
 	}
-	
-	public User(String userName, String password, Date birthday, String fullName,
+
+	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
 			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
@@ -80,7 +81,7 @@ public class User {
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
-	
+
 	@Column(name = "USER_NAME", nullable = false, length = 40)
 	public String getUserName() {
 		return userName;
@@ -89,7 +90,7 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+  
 	@Column(name = "PASSWORD", nullable = false, length = 20)
 	public String getPassword() {
 		return password;
@@ -98,6 +99,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	@Column(name = "BIRTHDAY", nullable = true)
 	@Temporal(TemporalType.DATE)
 	public Date getBirthday() {
@@ -105,6 +107,7 @@ public class User {
 	}
 	
 	public void setBirthday(Date birthday) {
+
 		this.birthday = birthday;
 	}
 	
@@ -143,7 +146,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	@Column(name = "SEX", nullable = true)
 	public String getSex() {
 		return sex;
@@ -152,6 +155,7 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+
 	@Column(name = "TIME_RES", nullable = true)
 	@Temporal(TemporalType.TIME)
 	public Date getTime() {
