@@ -57,7 +57,7 @@ public class User {
 		this.timeRes = timeRes;
 	}
 
-	public User(String userName, String password, String passwordConfirm, String birthday, String fullName,
+	public User(String userName, String password, String passwordConfirm, Date birthday, String fullName,
 			String address, String email, String phone, String sex, Role role) {
 		this.userName = userName;
 		this.password = password;
