@@ -24,17 +24,20 @@
 <!-- Styles -->
 <style>
 #chartdiv {
-	width		: 100%;
-	height		: 500px;
-	font-size	: 11px;
-}							
+	width: 100%;
+	height: 500px;
+	font-size: 11px;
+}
 </style>
 
 <!-- Resources -->
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/pie.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script
+	src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet"
+	href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+	type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
@@ -98,25 +101,28 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/managetour"
-								class="fa-gear">Quản Lý Tour</a></li>
-							<li><a class="fa-gear">Thống kê dữ liệu</a>
-								<ul>
-									<li><a href="<c:url value="/toursales" />">Doanh số tour</a></li>
-									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
-								</ul></li>
+							<li><a href="${pageContext.request.contextPath}/managetour"
+								class="fa-cogs">Quản Lý Tour</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/manageregister"
+								href="${pageContext.request.contextPath}/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/managedata"
-								class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a href="${pageContext.request.contextPath}/manageuser"
+								class="fa-users">Quản Lý Tài Khoản</a></li>
+							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
+									<li class="parent"><span>Thống kê</span>
+										<ul>
+											<li><a href="<c:url value="/toursales" />">Doanh số
+													tour</a></li>
+											<li><a href="<c:url value="/tourres" />">Tour đăng
+													ký</a></li>
+										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Logout</a></li>
+									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -124,6 +130,7 @@
 			</div>
 		</div>
 		<!-- End Top Menu -->
+
 		<div id="post_header" class="container" style="height: 40px">
 			<!-- Spacing below header -->
 		</div>
@@ -134,17 +141,27 @@
 			<div class="container background-white">
 				<h1 align="center">Biểu đồ doanh tình hình bán tour</h1>
 				<div class="container">
-					<!-- Chart code -->
+					<!-- Search Form -->
+					<div class="error-404-page text-center" style="margin-left: 50px;">
+						<form class="form-search search-404">
+							<div class="input-append">
+								<input type="text" class="span2 search-query"
+									placeholder="Nhập năm" name="year">
+								<button type="submit" class="btn btn-primary">Chọn</button>
+							</div>
+						</form>
+					</div>
+					<!-- End Search Form -->
 					<!-- Chart code -->
 					<script>
 						var chart = AmCharts.makeChart("chartdiv", {
 							"type" : "pie",
 							"theme" : "light",
 							"dataProvider" : [ {
-								"title" : "New",
+								"title" : "Số tour hủy",
 								"value" : 4852
 							}, {
-								"title" : "Returning",
+								"title" : "Số tour đăng ký",
 								"value" : 9899
 							} ],
 							"titleField" : "title",

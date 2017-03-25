@@ -1,6 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,6 +26,7 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
+import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
 public class ManageRegController {
@@ -286,5 +288,58 @@ public class ManageRegController {
 	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
 		regInfoService.undoCancel(idBT, idTour);
 		return "redirect:/cancellist/{idTour}";
+	}
+	
+	// Forward to Customer detail page
+		@RequestMapping(value = "/reginfodetail/{idBT}/{idTour}", method = RequestMethod.GET)
+		public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
+				@Valid RegistrationInfo regInfo) {
+			logger.info("Show information of customer when book tour");
+			model.put("cusData", bookTourService.searchById(idBT));
+			regInfo = regInfoService.searchRegInfoById(idTour);
+			logger.info("Reg Info: " + regInfo);
+			if (regInfo != null) {
+				model.addAttribute("regInfo", regInfo);
+			}
+			return "reginfodetail";
+		}
+
+	// Forward to Edit information of customer booked tour
+	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
+			@Valid RegistrationInfo regInfo) {
+		logger.info("Display edit form when admin request!");
+		model.put("cusData", bookTourService.searchById(idBT));
+		regInfo = regInfoService.searchRegInfoById(idTour);
+		logger.info("Reg Info: " + regInfo);
+		if (regInfo != null) {
+			model.addAttribute("regInfo", regInfo);
+		}
+		return "editreginfo";
+	}
+
+	// Test errors
+	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.POST)
+	public String editRegInfo(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
+			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
+			@Valid RegistrationInfo regInfo) {
+		logger.info("Handle edit information customer form when admin submit!");
+		BookTourValidator bookTourValidator = new BookTourValidator();
+		bookTourValidator.validate(bookTour, br);
+		if (br.hasErrors()) {
+			regInfo = regInfoService.searchRegInfoById(idTour);
+			logger.info("Reg Info: " + regInfo);
+			if (regInfo != null) {
+				model.addAttribute("regInfo", regInfo);
+			}
+			return "editreginfo";
+		} else {
+			Tour tour = tourService.findTourById(idTour);
+			bookTour.setTour(tour);
+			logger.info("Edit success!");
+			bookTour.setDateBook(Calendar.getInstance().getTime());
+			bookTourService.editBookTour(bookTour);
+			return "redirect:/registrationlist/{idTour}";
+		}
 	}
 }

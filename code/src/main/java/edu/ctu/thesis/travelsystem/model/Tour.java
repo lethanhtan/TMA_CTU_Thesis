@@ -35,8 +35,6 @@ public class Tour {
 	private boolean regOrNot = true;
 	private boolean cancelOrNot = true;
 	private RegistrationInfo regInfo;
-	private int year;
-	private int month;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -199,23 +197,6 @@ public class Tour {
 		this.cancelOrNot = cancelOrNot;
 	}
 	
-	@Column(name = "YEAR", nullable = true)
-	public int getYear() {
-		return this.year;
-	}
-	
-	public void setYear(int year) {
-		this.year = year;
-	}
-	
-	@Column(name = "MONTH", nullable = true)
-	public int getMonth() {
-		return this.month;
-	}
-	
-	public void setMonth(int month) {
-		this.month = month;
-	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
 	public RegistrationInfo getRegInfo() {

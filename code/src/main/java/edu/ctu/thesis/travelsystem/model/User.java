@@ -1,11 +1,13 @@
 /***********************************************************************
  * Module:  Customer.java
- * Author:  LÃª NhÆ° Ã
+ * Author:  Le Nhu Y
  * Purpose: Defines the Class Customer
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Date;
 
 import java.util.Date;
 
@@ -25,27 +27,16 @@ import javax.persistence.TemporalType;
 public class User {
 	
 	private Integer idUser;
-	
 	private String userName;
-	
 	private String password;
-	
 	private Date timeRes;
-	
 	private Date dateRes;
-	
 	private Date birthday;
-	
 	private String fullName;
-	
 	private String address;
-	
 	private String email;
-	
 	private String phone;
-	
 	private String sex;
-	
 	private Role role;
 	
 	//contructor
@@ -94,7 +85,7 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
-	
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -103,11 +94,10 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	@Column(name = "BIRTHDAY", nullable = true)
 	@Temporal(TemporalType.DATE)
 	public Date getBirthday() {
@@ -158,11 +148,10 @@ public class User {
 	public String getSex() {
 		return sex;
 	}
-	
+
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	
 	@Column(name = "TIME_RES", nullable = true)
 	@Temporal(TemporalType.TIME)
 	public Date getTime() {
@@ -188,23 +177,27 @@ public class User {
 	public Role getRole() {
 		return role;
 	}
-	
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return idUser;
+	}
+
 	@Override
 	public String toString() {
 		return this.getClass().getName() + "Id = " + idUser;
 	}
-	
+
 	@Override
 	public boolean equals(Object user) {
 		if (user == null || (user.getClass() != this.getClass())) {
 			return false;
-		}
-		else {
-			return true;
+		} else {
+			return this.idUser == ((User) user).getIdUser();
 		}
 	}
 }

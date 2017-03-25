@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<!-- Create Tour Box -->
+				<!-- Update Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="tourData"
 						action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
@@ -176,11 +176,12 @@
 						</div>
 					</s:form>
 				</div>
-				<!-- End Create Tour Box -->
+				<!-- End Update Tour Box -->
 			</div>
 		</div>
 	</div>
-	<!-- === END CONTENT === -->
-	<!-- === BEGIN FOOTER === -->
-	<%@ include file="adminfooter.jsp"%>
-	<!-- === END FOOTER === -->
+</div>
+<!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
+<%@ include file="adminfooter.jsp"%>
+<!-- === END FOOTER === -->

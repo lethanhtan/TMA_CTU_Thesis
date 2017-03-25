@@ -51,8 +51,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 				tour.setDateAllowReg(row.getCell(11).getDateCellValue());
 				tour.setFullOrNot(row.getCell(12).getBooleanCellValue());
 				tour.setTicketAvailability((int) row.getCell(13).getNumericCellValue());
-				tour.setYear(2017);
-				tour.setMonth(3);
 				// persist data into database in here
 				listTours.add(tour);
 				session.save(tour);

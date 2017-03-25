@@ -12,12 +12,6 @@ public interface BookTourService {
 	public BookTour searchById(int idBT);
 	
 	public void editBookTour(BookTour bookTour);
-
-	public BookTour searchByName(String cusName);
-	
-	public BookTour searchByEmail(String cusEmail);
-	
-	public BookTour searchByPhone(String cusPhone);
 	
 	public List<BookTour> registrationListByValue(String value, int idTour);
 	
@@ -30,4 +24,8 @@ public interface BookTourService {
 	public List<BookTour> registrationInfoByValue(String value, int idTour);
 	
 	public void cancelBookTour(int idBT, int idTour);
+	
+	public List<BookTour> listTourByYear(int year);
+	
+	public int listBookTourByMonth(int month, List<BookTour> list);
 }

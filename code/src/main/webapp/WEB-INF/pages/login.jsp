@@ -31,11 +31,12 @@
 								type="password" name="password">
 						</div>
 						<div class="row">
-							<div class="col-sm-6">
-								<button class="btn btn-primary pull-right" type="submit">Đăng
-									Nhập</button>
+							<div class="col-md-6">
+								<label class="checkbox"> <input type="checkbox">Ghi
+									nhớ
+								</label>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-md-6">
 								<button class="btn btn-primary pull-right" type="submit">Đăng
 									Nhập</button>
 							</div>

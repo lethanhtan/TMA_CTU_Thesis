@@ -107,10 +107,10 @@
 							<li><a href="${pageContext.request.contextPath}/managetour"
 								class="fa-cogs">Quản Lý Tour</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/manageregister"
+								href="${pageContext.request.contextPath}/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/manageaccount"
+								href="${pageContext.request.contextPath}/manageuser"
 								class="fa-users">Quản Lý Tài Khoản</a></li>
 							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
@@ -118,15 +118,15 @@
 									<li><a href="<c:url value="/export" />">Export</a></li>
 									<li class="parent"><span>Thống kê</span>
 										<ul>
-											<li><a href="<c:url value="/toursales" />"> Doanh số
+											<li><a href="<c:url value="/toursales" />">Doanh số
 													tour</a></li>
-											<li><a href="<c:url value="/tourres" />"> Tour đăng
+											<li><a href="<c:url value="/tourres" />">Tour đăng
 													ký</a></li>
 										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />"> Đăng xuất</a></li>
+									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>

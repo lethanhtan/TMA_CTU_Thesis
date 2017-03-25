@@ -34,24 +34,6 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public BookTour searchByName(String cusName) {
-		return this.bookTourDao.searchByName(cusName);
-	}
-	
-	@Override
-	@Transactional
-	public BookTour searchByEmail(String cusEmail) {
-		return this.bookTourDao.searchByEmail(cusEmail);
-	}
-	
-	@Override
-	@Transactional
-	public BookTour searchByPhone(String cusPhone) {
-		return this.bookTourDao.searchByPhone(cusPhone);
-	}
-
-	@Override
-	@Transactional
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		return this.bookTourDao.registrationListByValue(value, idTour);
 	}
@@ -88,5 +70,15 @@ public class BookTourServiceImpl implements BookTourService {
 	@Transactional
 	public void cancelBookTour(int idBT, int idTour) {
 		this.bookTourDao.cancelBookTour(idBT, idTour);
+	}
+
+	@Override
+	public List<BookTour> listTourByYear(int year) {
+		return this.bookTourDao.listTourByYear(year);
+	}
+
+	@Override
+	public int listBookTourByMonth(int month, List<BookTour> list) {
+		return this.bookTourDao.listBookTourByMonth(month, list);
 	}
 }

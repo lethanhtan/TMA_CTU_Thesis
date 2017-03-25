@@ -20,7 +20,7 @@ public interface TourDao {
 	
 	public int getNumTour();
 	
-	public int getNumTourBySearch(String value);
+	public int getNumTourByValue(String value);
 
 	public List<Tour> listTourByValue(String value);
 	

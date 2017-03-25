@@ -67,7 +67,7 @@ public class TourServiceImpl implements TourService {
 	@Override
 	@Transactional
 	public int getNumTourByValue(String value) {
-		return this.tourDao.getNumTourBySearch(value);
+		return this.tourDao.getNumTourByValue(value);
 	}
 
 	@Override

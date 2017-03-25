@@ -59,9 +59,9 @@
 										&nbsp;&nbsp;&nbsp;</td>
 									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
 										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>"
+									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"
 										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a> <a data-toggle="modal"
+									</a><a data-toggle="modal"
 										href="<c:url value='managetour/delete/${tour.idTour}'/>"
 										title="Xóa"> <i class="fa fa-trash-o"></i> <!-- Popup Cofirm -->
 											<!-- <div id="deleteConfirm" class="modal fade">

@@ -15,5 +15,4 @@ public class EncoderPassword {
 		byte[] valueDecoded = b64.decode(tmp);
 		return new String(valueDecoded);
 	}
-	
 }
