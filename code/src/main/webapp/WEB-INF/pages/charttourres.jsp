@@ -141,17 +141,23 @@
 			<div class="container background-white">
 				<h1 align="center">Biểu đồ doanh tình hình bán tour</h1>
 				<div class="container">
-					<!-- Search Form -->
-					<div class="error-404-page text-center" style="margin-left: 50px;">
-						<form class="form-search search-404">
-							<div class="input-append">
-								<input type="text" class="span2 search-query"
-									placeholder="Nhập năm" name="year">
-								<button type="submit" class="btn btn-primary">Chọn</button>
+					<div class="row">
+						<form role="form" class="form-inline">
+							<div class="form-group">
+								<label for="selectUser"
+									style="float: left; padding: 6px 12px 2px 12px;">Năm:</label>
+								<select id="selectUser" style="width: auto;"
+									class="form-control selectWidth" name="year">
+									<option class="">2016</option>
+									<option class="">2017</option>
+									<option class="">2018</option>
+								</select>
+							</div>
+							<div class="btn-group">
+								<button class="btn btn-default">Chọn</button>
 							</div>
 						</form>
 					</div>
-					<!-- End Search Form -->
 					<!-- Chart code -->
 					<script>
 						var chart = AmCharts.makeChart("chartdiv", {

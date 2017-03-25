@@ -98,7 +98,7 @@
 				height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
-			<!-- Top Menu -->
+		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
 			<div class="row">
 				<div class="col-md-12 no-padding">
@@ -109,8 +109,7 @@
 							<li><a
 								href="${pageContext.request.contextPath}/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/manageuser"
+							<li><a href="${pageContext.request.contextPath}/manageuser"
 								class="fa-users">Quản Lý Tài Khoản</a></li>
 							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
@@ -146,17 +145,26 @@
 				<h1 align="center">Biểu đồ doanh số tour theo tháng</h1>
 				<h1 align="center">(${year})</h1>
 				<div class="container">
-					<!-- Search Form -->
-					<div class="error-404-page text-center" style="margin-left: 50px;">
-						<form class="form-search search-404">
-							<div class="input-append">
-								<input type="text" class="span2 search-query"
-									placeholder="Nhập năm" name="year">
-								<button type="submit" class="btn btn-primary">Chọn</button>
-							</div>
-						</form>
-					</div>
-					<!-- End Search Form -->
+						<div class="row">
+							<form role="form" class="form-inline">
+								<div class="form-group">
+									<label for="selectUser"
+										style="float: left; padding: 6px 12px 2px 12px;">Năm:</label>
+									<select id="selectUser" style="width: auto;"
+										class="form-control selectWidth" name="year">
+										<option class="">2016</option>
+										<option class="">2017</option>
+										<option class="">2018</option>
+									</select>
+								</div>
+								<div class="btn-group">
+									<button class="btn btn-default">Chọn</button>
+								</div>
+							</form>
+						</div>
+						<!-- End Row -->
+					<!-- End Container -->
+
 					<!-- Chart code -->
 					<script>
 						var chartData = [ {
