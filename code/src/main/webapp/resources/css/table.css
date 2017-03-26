@@ -5,8 +5,7 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 	border: 2px solid #ed1c40;
-	width: auto;
-	margin: 50px auto;
+	width: 100%;
 	border-radius: .25rem;
 	font-size: 18px;
 }

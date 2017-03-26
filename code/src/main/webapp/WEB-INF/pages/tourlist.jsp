@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Search Form -->
-			<div class="error-404-page text-center" style="margin-left: 650px;">
+			<div class="error-404-page text-center"style="margin-left: 60%;">
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
