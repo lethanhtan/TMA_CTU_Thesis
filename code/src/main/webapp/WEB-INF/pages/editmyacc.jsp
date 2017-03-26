@@ -52,8 +52,8 @@
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
 										class="fa fa-calendar"></i></span>
-									<s:input class="form-control margin-bottom-20" id="datepicker1"
-									 path="birthday" />
+									<s:input class="form-control margin-bottom-20" id="datepicker"
+										value="${dateofbirth}" path="birthday" />
 								</div>
 							</div>
 							<div class="col-sm-6">
