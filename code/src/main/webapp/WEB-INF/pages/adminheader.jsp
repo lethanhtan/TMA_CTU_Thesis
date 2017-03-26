@@ -125,8 +125,6 @@ var date = $('#datepicker').datepicker2({ dateFormat: 'yy-mm-dd' }).val();
 										<ul>
 											<li><a href="<c:url value="/toursales" />">Doanh số
 													tour</a></li>
-											<li><a href="<c:url value="/tourres" />">Tour đăng
-													ký</a></li>
 										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>

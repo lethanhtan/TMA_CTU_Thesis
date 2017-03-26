@@ -8,6 +8,8 @@ public interface BookTourDao {
 	public void saveBookTour(BookTour bookTour, int idTour);
 	
 	public List<BookTour> listBookTour();
+	
+	public List<BookTour> listBookTourById(int idTour);
 
 	public BookTour searchById(int idBT);
 
@@ -29,5 +31,4 @@ public interface BookTourDao {
 	
 	public int listBookTourByMonth(int month, List<BookTour> list);
 	
-	public int getNumRegById(int id);
 }

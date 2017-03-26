@@ -55,39 +55,39 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
-										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}&nbsp;&nbsp;&nbsp;</td>
+									<td>
+										<a href="<c:url value='tourdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-violet">
 												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>
-									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
+										</a>
+										<a href="<c:url value='updatetour/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-success">
 												<i class="fa fa-pencil">&nbsp;Sửa</i>
-											</button></a> <!-- <a data-toggle="modal" --> <a
-										href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
+											</button>
+										</a> <!-- <a data-toggle="modal" --> 
+										<a href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-danger">
 												<i class="fa fa-trash-o">&nbsp;Xóa</i>
-											</button> <!-- Popup Cofirm --> <!-- <div id="deleteConfirm" class="modal fade">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
-												</br>
-												<button type="button" class="btn btn-default"><a href="<c:url value='managetour#deleteCofirm/delete/${tour.idTour}'/>">Có</a></button>
-												<button type="button" class="btn btn-primary"
-													data-dismiss="modal">Không</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- End Popup Cofirm --></a></td>
+											</button> 
+										</a>
+										<a href="<c:url value='tourreg/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-trash-o">&nbsp;Biểu đồ</i>
+											</button> 
+										</a>
+										<a href="<c:url value='export/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-trash-o">&nbsp;Export</i>
+											</button> 
+										</a>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table></br>
+					</table>
+					<br/>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">
