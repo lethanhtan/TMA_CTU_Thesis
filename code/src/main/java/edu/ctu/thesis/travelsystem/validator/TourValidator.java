@@ -32,7 +32,7 @@ public class TourValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "departureTime", "NotEmpty.tourData.departureTime");
 		ValidationUtils.rejectIfEmpty(errors, "returnDate", "NotEmpty.tourData.returnDate");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "returnTime", "NotEmpty.tourData.returnTime");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "NotEmpty.tourData.price");
+		ValidationUtils.rejectIfEmpty(errors, "price", "NotEmpty.tourData.price");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantum", "NotEmpty.tourData.quantum");
 		ValidationUtils.rejectIfEmpty(errors, "detail", "NotEmpty.tourData.detail");
 
@@ -54,10 +54,6 @@ public class TourValidator implements Validator {
 		// In Return time field
 		if (validUtil.findAlphabet(tour.getReturnTime())) {
 			errors.rejectValue("returnTime", "Invalid.tourData.returnTime");
-		}
-		// In Price field
-		if (validUtil.findAlphabet(tour.getPrice())) {
-			errors.rejectValue("price", "Invalid.tourData.price");
 		}
 	}
 }

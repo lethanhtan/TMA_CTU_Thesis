@@ -108,7 +108,8 @@
 									<span class="input-group-addon"> <i class="fa fa-money"></i>
 									</span>
 									<s:input placeholder="Nhập giá vé"
-										class="form-control margin-bottom-20" type="text" path="price" />
+										class="form-control margin-bottom-20 number" type="text"
+										path="price" />
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -172,7 +173,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- === END CONTENT === -->
-	<!-- === BEGIN FOOTER === -->
-	<%@ include file="adminfooter.jsp"%>
-	<!-- === END FOOTER === -->
+</div>
+<!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
+<%@ include file="adminfooter.jsp"%>
+<!-- === END FOOTER === -->

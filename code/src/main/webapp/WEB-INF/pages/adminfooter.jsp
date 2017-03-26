@@ -80,6 +80,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/selectall.js"
 	type="text/javascript"></script>
+<!-- Add commas when typing price -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/addcommas.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>

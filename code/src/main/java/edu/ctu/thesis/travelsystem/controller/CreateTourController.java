@@ -30,7 +30,7 @@ public class CreateTourController {
 			String result;
 			try {
 				if ((int) session.getAttribute("roleId") == 2) {
-					logger.info("Register! In here first!");
+					logger.info("Create tour! In here first!");
 					model.put("tourData", new Tour());
 					result = "createtour";
 				} else {
