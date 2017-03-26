@@ -1,5 +1,9 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -112,10 +116,18 @@ public class UserController {
 
 	// Handle required request from client
 	@RequestMapping(value = "editmyacc/{idUser}", method = RequestMethod.GET)
-	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser) {
+	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser) throws ParseException {
 		logger.info("Handle edit form when administrator request!");
 		logger.info("Display edit user form when administrator request!");
-		model.addAttribute("userData", userService.searchUserById(idUser));
+		User user = userService.searchUserById(idUser);
+		if (user != null) {
+			model.addAttribute("userData", userService.searchUserById(idUser));
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String birthday = sdf.format(user.getBirthday());
+			model.addAttribute("dateofbirth", birthday);
+		} else {
+			logger.info("Null Object!");
+		}
 		return "editmyacc";
 	}
 

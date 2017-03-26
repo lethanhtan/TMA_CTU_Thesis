@@ -17,10 +17,8 @@
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
 							</br>
 						</div>
-						
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
-						 
 						<div class="row">
 							<div class="col-sm-8">
 								<label>Họ tên</label>
@@ -50,14 +48,13 @@
 							<div class="col-sm-6">
 								<label>Ngày sinh</label>
 								<!-- Show error -->
-								<br /> <small><s:errors path="birthday"
-										cssStyle="color:red;" /></small>
+								</br> <small><s:errors path="birthday" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
 										class="fa fa-calendar"></i></span>
 									<s:input placeholder="mm/dd/yyyy"
-										class="form-control margin-bottom-20" id="datepicker2"
-										path="birthday" />
+										class="form-control margin-bottom-20" id="datepicker"
+										value="${dateofbirth}" path="birthday" />
 								</div>
 							</div>
 							<div class="col-sm-6">
