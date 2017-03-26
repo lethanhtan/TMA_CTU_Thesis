@@ -125,7 +125,7 @@ public class ManageUserController {
 	}
 
 	// Handle form action edit user
-	@RequestMapping(value = "edituser/{idUser}")
+	@RequestMapping(value = "edituser/{idUser}", method = RequestMethod.POST)
 	public String editUser(ModelMap model, @PathVariable("idUser") int idUser,
 			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session) {
 		UserValidator userValidator = new UserValidator();

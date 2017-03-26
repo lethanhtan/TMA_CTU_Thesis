@@ -77,7 +77,6 @@ public class BookTourController {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
 				model.addAttribute("showTourList", tourService.showTourList());
-				System.out.println(">>>>>>>>>>>>>>>" +  tourService.showTourList().size());
 				// Display tour list
 				model.addAttribute("numTour", tourService.getNumTourList());
 				// Get number of tour list

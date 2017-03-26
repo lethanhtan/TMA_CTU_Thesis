@@ -28,4 +28,6 @@ public interface BookTourDao {
 	public List<BookTour> listTourByYear(int year);
 	
 	public int listBookTourByMonth(int month, List<BookTour> list);
+	
+	public int getNumRegById(int id);
 }
