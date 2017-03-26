@@ -57,14 +57,18 @@
 										<td>&nbsp;&nbsp;&nbsp; ${user.birthday}</td>
 										<td>&nbsp;&nbsp;&nbsp; ${user.email}</td>
 										<td>&nbsp;&nbsp;&nbsp; ${user.phone}&nbsp;&nbsp;&nbsp;</td>
-										<td><a href="<c:url value='userdetail/${user.idUser}'/>"
-											title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-										</a><a href="<c:url value='edituser/${user.idUser}'/>" title="Sửa">
-												<i class="fa fa-pencil">&nbsp;</i>
-										</a><a
-											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>"
-											title="Xóa"> <i class="fa fa-trash-o">&nbsp;</i>
-										</a></td>
+										<td><a href="<c:url value='userdetail/${user.idUser}'/>">
+												<button class="btn btn-sm btn-violet">
+													<i class="fa fa-eye">&nbsp;Xem</i>
+												</button>
+										</a><a href="<c:url value='edituser/${user.idUser}'/>"><button
+													class="btn btn-sm btn-success">
+													<i class="fa fa-pencil">&nbsp;Sửa</i>
+												</button></a> <a
+											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>"><button
+													class="btn btn-sm btn-danger">
+													<i class="fa fa-trash-o">&nbsp;Xóa</i>
+												</button></a></td>
 									</c:if>
 								</tr>
 							</c:forEach>
