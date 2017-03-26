@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Search Form -->
-			<div class="error-404-page text-center" style="margin-left: 650px;">
+			<div class="error-404-page text-center" style="margin-left: 60%;">
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
@@ -58,19 +58,19 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
 										&nbsp;&nbsp;&nbsp;</td>
 									<td><a
-										href="<c:url value='registrationlist/${tour.idTour}'/>"
-										title="Danh sách đăng ký"> <i class="fa fa-list-ol">&nbsp;</i>
-									</a><a href="<c:url value='cancellist/${tour.idTour}'/>"
-										title="Danh sách hủy"> <i class="fa fa-ban">&nbsp;</i>
-									</a>
-									<a href="<c:url value='designform/${tour.idTour}'/>"
-										title="Thiết kế form"> <i class="fa fa-check-square-o">&nbsp;</i>
-									</a>
-									</td>
+										href="<c:url value='registrationlist/${tour.idTour}'/>">
+											<button class="btn btn-sm btn-success">
+												<i class="fa fa-list-ol">&nbsp;Quản Lý Danh Sách</i>
+											</button>
+									</a><a href="<c:url value='designform/${tour.idTour}'/>">
+											<button class="btn btn-sm btn-danger">
+												<i class="fa fa-check-square-o">&nbsp;Thiết Kế Form</i>
+											</button>
+									</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table>
+					</table></br>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">
