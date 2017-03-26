@@ -67,7 +67,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			}
 		}
 	}
-
+	
+	// list user reg tour
 	@Override
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		System.out.println(value.contains(value));
@@ -163,7 +164,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			logger.info("Delete customer success!");
 		}
 	}
-
+	
+	// list all booktour with specifices year
 	@Override
 	public List<BookTour> listTourByYear(int year) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -188,7 +190,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 		return listBookTour;
 	}
-
+	
+	// list number of tour sales with a month 
 	@SuppressWarnings("deprecation")
 	@Override
 	public int listBookTourByMonth(int month, List<BookTour> list) {
@@ -199,5 +202,10 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			}
 		}
 		return sales;
+	}
+
+	@Override
+	public int getNumRegById(int id) {
+		return 0;
 	}
 }
