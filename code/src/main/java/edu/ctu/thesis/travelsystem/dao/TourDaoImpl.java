@@ -1,7 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -32,7 +31,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 					tour.setTicketAvailability(tour.getQuantum());
 				}
 				tour.setFullOrNot(false);
-				tour.setRegOrNot(true);
 				RegistrationInfo regInfo = new RegistrationInfo();
 				regInfo.setFieldName(true);
 				regInfo.setFieldSex(true);
@@ -107,7 +105,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> listTour() {
 		Session session = getCurrentSession();
-		String hql = "from Tour";
+		String hql = "FROM Tour ORDER BY ID_TOUR DESC";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
 			logger.info("Tour List:" + tour);
@@ -118,7 +116,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> listTourByValue(String value) {
 		Session session = getCurrentSession();
-		String hql = "from Tour as t where t.name like :value";
+		String hql = "from Tour as t where t.name like :value ORDER BY ID_TOUR DESC";
 		Query query = session.createQuery(hql);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -165,7 +163,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> showTourList() {
 		Session session = getCurrentSession();
-		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true";
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true ORDER BY ID_TOUR DESC";
 		List<Tour> showTourList = session.createQuery(hql).list();
 		for (Tour tour : showTourList) {
 			// Sync noTicketAvailability
@@ -204,8 +202,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> tourListByValue(String value) {
+		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value";
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value ORDER BY ID_TOUR DESC";
 		Query query = session.createQuery(hql);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")

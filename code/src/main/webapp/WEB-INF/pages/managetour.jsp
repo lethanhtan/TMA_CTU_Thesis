@@ -57,14 +57,18 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>"
-										title="Xem"> <i class="fa fa-eye">&nbsp;</i>
-									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"
-										title="Sửa"> <i class="fa fa-pencil">&nbsp;</i>
-									</a><a data-toggle="modal"
-										href="<c:url value='managetour/delete/${tour.idTour}'/>"
-										title="Xóa"> <i class="fa fa-trash-o"></i> <!-- Popup Cofirm -->
-											<!-- <div id="deleteConfirm" class="modal fade">
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
+											<button class="btn btn-sm btn-violet">
+												<i class="fa fa-eye">&nbsp;Xem</i>
+											</button>
+									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-success">
+												<i class="fa fa-pencil">&nbsp;Sửa</i>
+											</button></a> <!-- <a data-toggle="modal" --> <a
+										href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-trash-o">&nbsp;Xóa</i>
+											</button> <!-- Popup Cofirm --> <!-- <div id="deleteConfirm" class="modal fade">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -79,8 +83,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- End Popup Cofirm -->
-									</a></td>
+								<!-- End Popup Cofirm --></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
