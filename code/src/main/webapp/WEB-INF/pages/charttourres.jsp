@@ -41,16 +41,27 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/input.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
-<link rel="stylesheet" href="resources/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/animate.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/responsive.css"
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/table.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/nexus.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/table.css"
+	rel="stylesheet">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -80,8 +91,9 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="logo">
-						<a href="${pageContext.request.contextPath }/home" title=""> <img
-							src="resources/img/logo.png" alt="Logo" />
+						<a href="${pageContext.request.contextPath}/home" title=""> <img
+							src="${pageContext.request.contextPath}/resources/img/logo.png"
+							alt="Logo" />
 						</a>
 					</div>
 					<!-- End Logo -->
@@ -116,8 +128,6 @@
 										<ul>
 											<li><a href="<c:url value="/toursales" />">Doanh số
 													tour</a></li>
-											<li><a href="<c:url value="/tourres" />">Tour đăng
-													ký</a></li>
 										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
@@ -139,36 +149,27 @@
 		<!-- === BEGIN CONTENT === -->
 		<div id="content">
 			<div class="container background-white">
-				<h1 align="center">Biểu đồ doanh tình hình bán tour</h1>
+				<h1 align="center">Biểu đồ tình hình bán tour</h1>
+				<h3 style="color:red" align="center">${tourName}</h3>
+				<h6 style="color:green" align="center">Đi từ ngày: ${departureDate} đến ${returnDate}</h6>
+				<c:if test="${status == 1}">
+					<h6 style="color:blue" align="center">(Có thể đăng ký)</h6>
+				</c:if>
+				<c:if test="${status == 0}">
+					<h6 style="color:red" align="center">(Không thể đăng ký)</h6>
+				</c:if>
 				<div class="container">
-					<div class="row">
-						<form role="form" class="form-inline">
-							<div class="form-group">
-								<label for="selectUser"
-									style="float: left; padding: 6px 12px 2px 12px;">Năm:</label>
-								<select id="selectUser" style="width: auto;"
-									class="form-control selectWidth" name="year">
-									<option class="">2016</option>
-									<option class="">2017</option>
-									<option class="">2018</option>
-								</select>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-default">Chọn</button>
-							</div>
-						</form>
-					</div>
 					<!-- Chart code -->
 					<script>
 						var chart = AmCharts.makeChart("chartdiv", {
 							"type" : "pie",
 							"theme" : "light",
 							"dataProvider" : [ {
-								"title" : "Số tour hủy",
-								"value" : 4852
+								"title" : "Số vé hủy",
+								"value" : "${numCan}"
 							}, {
-								"title" : "Số tour đăng ký",
-								"value" : 9899
+								"title" : "Số vé đăng ký",
+								"value" : "${numReg}"
 							} ],
 							"titleField" : "title",
 							"valueField" : "value",

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +23,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.ExportDataService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
@@ -31,6 +37,12 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class ManageTourController {
 	@Autowired
 	private TourService tourService;
+	
+	@Autowired
+	private BookTourService bookTourService;
+	
+	@Autowired
+	ExportDataService exportDataService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 
@@ -155,4 +167,53 @@ public class ManageTourController {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
+	
+	// create chart for a tour
+	@RequestMapping(value="tourreg/{idTour}", method = RequestMethod.GET)
+	public String creatDataChart(ModelMap model, @PathVariable("idTour") int idTour) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar ca = Calendar.getInstance();
+		Date d = new Date();
+		ca.setTime(d);
+		int numReg = 0;
+		int numCan = 0;
+		List<BookTour> list = bookTourService.listBookTourById(idTour);
+		for (BookTour bt : list) {
+			numReg += bt.getCusNumOfTicket();
+			numCan += bt.getTicketCancel();
+		}
+		model.addAttribute("numReg", numReg);
+		model.addAttribute("numCan", numCan);
+		model.addAttribute("tourName", tourService.findTourById(idTour).getName());
+		model.addAttribute("departure", tourService.findTourById(idTour).getDepartureDate());
+		model.addAttribute("departureDate", sdf.format(tourService.findTourById(idTour).getDepartureDate()));
+		model.addAttribute("returnDate", sdf.format(tourService.findTourById(idTour).getReturnDate()));
+		model.addAttribute("now", d);
+		if(tourService.findTourById(idTour).getDepartureDate().after(d)) {
+			model.addAttribute("status", 1);
+		} else {
+			model.addAttribute("status", 0);
+		}
+		return "charttourres";
+	}
+	
+	@RequestMapping(value="tourreg/{idTour}", method = RequestMethod.POST)
+	public String creatChart(ModelMap model, @PathVariable("idTour") int idTour) {
+		return "redirect:/charttourres";
+	}
+	
+	@RequestMapping(value="export/{idTour}", method = RequestMethod.GET)
+	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		Export objExport = new Export();
+		model.addObject("exportList", "Tour");
+		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
+		objExport.setOwner(session.getAttribute("userName").toString());
+		objExport.setFileType("Pdf");
+		objExport.setExportType("Registration list");
+		exportDataService.saveExport(objExport);
+		model.setViewName("pdfView");
+		return model;
+	}
+	
 }

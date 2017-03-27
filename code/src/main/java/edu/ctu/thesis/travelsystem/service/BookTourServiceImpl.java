@@ -81,4 +81,9 @@ public class BookTourServiceImpl implements BookTourService {
 	public int listBookTourByMonth(int month, List<BookTour> list) {
 		return this.bookTourDao.listBookTourByMonth(month, list);
 	}
+
+	@Override
+	public List<BookTour> listBookTourById(int idTour) {
+		return this.bookTourDao.listBookTourById(idTour);
+	}
 }
