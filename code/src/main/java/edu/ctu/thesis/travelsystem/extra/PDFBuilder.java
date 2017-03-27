@@ -29,7 +29,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 	public static final String FONT1 = "/fonts/unicode/times.ttf";
 	public static final String FONT2 = "/fonts/unicode/tahoma.ttf";
 	private static final int SIZE1 = 8;
-	private static final int SIZE2 = 10;
 
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
@@ -44,7 +43,8 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			PdfPTable table = new PdfPTable(13);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });
+			table.setWidths(
+					new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });
 			table.setSpacingBefore(10);
 
 			// define font for table header row
@@ -64,7 +64,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.addCell(getNormalCell("Return Time", SIZE1, font));
 
 			table.addCell(getNormalCell("Quantum", SIZE1, font));
-			
+
 			table.addCell(getNormalCell("Price", SIZE1, font));
 
 			table.addCell(getNormalCell("Cancel or not", SIZE1, font));
@@ -92,14 +92,58 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell(getNormalCell(tour.getDateAllowReg().toString(), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getFullOrNot()), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getTicketAvailability()), SIZE1, font));
-				
-				
+
 			}
 
 			doc.add(table);
 
 		}
 		if (model.get("exportList").equals("Danh sách đăng ký")) {
+			// get data model which is passed by the Spring container
+			@SuppressWarnings("unchecked")
+			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
+			doc.add(new Paragraph("List BookTour"));
+			doc.addTitle("NYTravel List BookTour");
+			doc.addSubject("List booktour");
+
+			PdfPTable table = new PdfPTable(7);
+			table.setWidthPercentage(100.0f);
+			table.setWidths(new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 1.0f, 1.0f, 1.0f });
+			table.setSpacingBefore(10);
+
+			// define font for table header row
+			FontFactory.register(FONT2);
+			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			// write table header
+			table.addCell(getNormalCell("Id", SIZE1, font));
+
+			table.addCell(getNormalCell("Name", SIZE1, font));
+
+			table.addCell(getNormalCell("Email", SIZE1, font));
+
+			table.addCell(getNormalCell("Address", SIZE1, font));
+
+			table.addCell(getNormalCell("Phone", SIZE1, font));
+
+			table.addCell(getNormalCell("Sex", SIZE1, font));
+
+			table.addCell(getNormalCell("Id Tour", SIZE1, font));
+
+			// write table row data
+			for (BookTour bookTour : listBookTours) {
+				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
+				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), SIZE1, font));
+			}
+
+			doc.add(table);
+
+		}
+		if (model.get("exportList").equals("Tour")) {
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");

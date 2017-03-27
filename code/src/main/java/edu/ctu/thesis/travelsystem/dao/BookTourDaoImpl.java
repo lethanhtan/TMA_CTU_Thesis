@@ -3,7 +3,6 @@ package edu.ctu.thesis.travelsystem.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -138,7 +137,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 
 	@Override
 	public List<BookTour> registrationInfoByValue(String value, int idTour) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (CUS_EMAIL = :value OR CUS_PHONE = :value OR CUS_IDCARD = :value)";
 		Query query = session.createQuery(hql);
@@ -204,8 +202,18 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		return sales;
 	}
 
+
+	@SuppressWarnings("unchecked")
 	@Override
-	public int getNumRegById(int id) {
-		return 0;
+	public List<BookTour> listBookTourById(int idTour) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_TOUR = :idTour";
+		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
+		List<BookTour> bookTourList = query.list();
+		for (BookTour bookTour : bookTourList) {
+			logger.info("Tour List:" + bookTour);
+		}
+		return bookTourList;
 	}
 }
