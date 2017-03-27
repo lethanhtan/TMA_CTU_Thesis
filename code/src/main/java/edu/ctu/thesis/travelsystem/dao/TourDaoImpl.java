@@ -151,7 +151,12 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			if (y > page) {
 				y = paginationX(currentPage, page) + (y - page);
 			} else {
-				y = paginationX(currentPage, page) + y;
+				if (y + page > numOfPage) {
+					y = y + page - numOfPage;
+					y = paginationX(currentPage, page) + y -1;
+				} else {
+					y = paginationX(currentPage, page) + y;
+				}
 			}
 		} else {
 			y = paginationX(currentPage, page) + page;
