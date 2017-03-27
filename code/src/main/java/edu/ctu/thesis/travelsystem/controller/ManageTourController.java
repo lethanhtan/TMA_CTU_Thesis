@@ -37,15 +37,15 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class ManageTourController {
 	@Autowired
 	private TourService tourService;
-	
+
 	@Autowired
 	private BookTourService bookTourService;
-	
+
 	@Autowired
 	ExportDataService exportDataService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
-	
+
 	private static int numOnPage = 5;
 
 	// handle for mangeagetour request from admin
@@ -55,10 +55,10 @@ public class ManageTourController {
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when managetour request from admin!");
-		String result;
+		String result; // view page mapping
 		try{
 			if (!numOn.equals(null)) {
-				numOnPage = numOn;
+				numOnPage = numOn; // numOn 
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
@@ -81,6 +81,7 @@ public class ManageTourController {
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
@@ -102,6 +103,7 @@ public class ManageTourController {
 						model.addAttribute("numTour", tourService.getNumTour()); // create
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, numOnPage));
@@ -179,9 +181,9 @@ public class ManageTourController {
 		tourService.deleteTour(idTour);
 		return "redirect:/managetour";
 	}
-	
+
 	// create chart for a tour
-	@RequestMapping(value="tourreg/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "tourreg/{idTour}", method = RequestMethod.GET)
 	public String creatDataChart(ModelMap model, @PathVariable("idTour") int idTour) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar ca = Calendar.getInstance();
@@ -201,20 +203,20 @@ public class ManageTourController {
 		model.addAttribute("departureDate", sdf.format(tourService.findTourById(idTour).getDepartureDate()));
 		model.addAttribute("returnDate", sdf.format(tourService.findTourById(idTour).getReturnDate()));
 		model.addAttribute("now", d);
-		if(tourService.findTourById(idTour).getDepartureDate().after(d)) {
+		if (tourService.findTourById(idTour).getDepartureDate().after(d)) {
 			model.addAttribute("status", 1);
 		} else {
 			model.addAttribute("status", 0);
 		}
 		return "charttourres";
 	}
-	
-	@RequestMapping(value="tourreg/{idTour}", method = RequestMethod.POST)
+
+	@RequestMapping(value = "tourreg/{idTour}", method = RequestMethod.POST)
 	public String creatChart(ModelMap model, @PathVariable("idTour") int idTour) {
 		return "redirect:/charttourres";
 	}
-	
-	@RequestMapping(value="export/{idTour}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
 	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		Export objExport = new Export();
@@ -227,5 +229,5 @@ public class ManageTourController {
 		model.setViewName("pdfView");
 		return model;
 	}
-	
+
 }

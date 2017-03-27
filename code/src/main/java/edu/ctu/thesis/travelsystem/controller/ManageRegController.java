@@ -36,6 +36,8 @@ public class ManageRegController {
 	private TourService tourService;
 	@Autowired
 	private RegInfoService regInfoService;
+	
+	private static int numOnPage = 5;
 
 	private static final Logger logger = Logger.getLogger(ManageRegController.class);
 
@@ -43,18 +45,26 @@ public class ManageRegController {
 	@RequestMapping(value = "manageregister", method = RequestMethod.GET)
 	public String manageRegController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
-			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page, 
+			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when manage register request from admin!");
 		String result;
+		try{
+			if (!numOn.equals(null)) {
+				numOnPage = numOn; // numOn 
+			}
+		} catch (Exception e) {
+			logger.info("None select number of tour on page!");
+		}
 		try {
 			if ((int) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((tourService.getNumTourByValue(valueSearch) % 5) == 0) {
-						num = tourService.getNumTourByValue(valueSearch) / 5;
+					if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
+						num = tourService.getNumTourByValue(valueSearch) / numOnPage;
 					} else {
-						num = (tourService.getNumTourByValue(valueSearch) / 5) + 1;
+						num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -63,20 +73,22 @@ public class ManageRegController {
 						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y",
-								tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, 5));
+								tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((tourService.getNumTour() % 5) == 0) {
-						num = tourService.getNumTour() / 5;
+					if ((tourService.getNumTour() % numOnPage) == 0) {
+						num = tourService.getNumTour() / numOnPage;
 					} else {
-						num = (tourService.getNumTour() / 5) + 1;
+						num = (tourService.getNumTour() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -84,9 +96,11 @@ public class ManageRegController {
 						model.addAttribute("tourList", tourService.listTour()); // create
 						model.addAttribute("numTour", tourService.getNumTour()); // create
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, 5));
+						model.addAttribute("x", tourService.paginationX(page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
