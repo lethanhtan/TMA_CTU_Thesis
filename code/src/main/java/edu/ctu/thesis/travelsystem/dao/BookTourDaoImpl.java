@@ -66,11 +66,9 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			}
 		}
 	}
-	
-	// list user reg tour
+
 	@Override
 	public List<BookTour> registrationListByValue(String value, int idTour) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
 		Query query = session.createQuery(hql);
@@ -90,7 +88,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BookTour> listBookTour() {
+	public List<BookTour> bookTourList() {
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour";
 		List<BookTour> bookTourList = session.createQuery(hql).list();
@@ -148,13 +146,13 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void cancelBookTour(int idBT, int idTour) {
+	public void cancelBookTour(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
 					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", bookTour.getIdBT());
+			query.setParameter("idBT", idBT);
 			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
@@ -162,25 +160,25 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			logger.info("Delete customer success!");
 		}
 	}
-	
-	// list all booktour with specifices year
+
+	// List all booktour with specifices year
 	@Override
 	public List<BookTour> listTourByYear(int year) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date d1 = new Date();
 		try {
-			d1 = sdf.parse("01/01/"+year);
+			d1 = sdf.parse("01/01/" + year);
 		} catch (ParseException e) {
 			logger.error("Occured ex", e);
 		}
 		Date d2 = new Date();
 		try {
-			d2 = sdf.parse("31/12/"+year);
+			d2 = sdf.parse("31/12/" + year);
 		} catch (ParseException e) {
 			logger.error("Occured ex", e);
 		}
 		List<BookTour> listBookTour = new ArrayList<BookTour>();
-		for (BookTour bookTour : listBookTour()) {
+		for (BookTour bookTour : bookTourList()) {
 			if (bookTour.getDateBook().after(d1) && bookTour.getDateBook().before(d2)) {
 				listBookTour.add(bookTour);
 				logger.info("Added success!");
@@ -188,20 +186,19 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 		return listBookTour;
 	}
-	
-	// list number of tour sales with a month 
+
+	// List number of tour sales with a month
 	@SuppressWarnings("deprecation")
 	@Override
 	public int listBookTourByMonth(int month, List<BookTour> list) {
 		int sales = 0;
 		for (BookTour bookTour : list) {
 			if (bookTour.getDateBook().getMonth() + 1 == month) {
-				sales  += bookTour.getCusNumOfTicket();
+				sales += bookTour.getCusNumOfTicket();
 			}
 		}
 		return sales;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override
