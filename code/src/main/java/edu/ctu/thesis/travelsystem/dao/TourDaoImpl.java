@@ -162,7 +162,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		} else {
 			y += page;
 		}
-		if (numOfPage < 5 || numOfPage < 10 || numOfPage < 15) {
+		if (numOfPage < 5 && page == 5 || numOfPage < 10 && page == 10|| numOfPage < 15 && page == 15) {
 			y = numOfPage;
 		}
 		return y;

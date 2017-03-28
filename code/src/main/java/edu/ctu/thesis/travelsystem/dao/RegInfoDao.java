@@ -25,4 +25,5 @@ public interface RegInfoDao {
 	public Integer getNumCancelBySearch(String value);
 	
 	public void undoCancel(int idBT, int idTour);
+	
 }
