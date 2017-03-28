@@ -134,7 +134,7 @@ public class BookTourController {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			bookTour.setIdUser((int) session.getAttribute("idUser"));
+			/*bookTour.setIdUser((int) session.getAttribute("idUser"));*/
 		}
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
@@ -198,7 +198,7 @@ public class BookTourController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			//bookTour.setDateBook(Calendar.getInstance().getTime());
-			bookTour.setIdUser((int) session.getAttribute("idUser"));
+			/*bookTour.setIdUser((int) session.getAttribute("idUser"));*/
 			bookTourService.editBookTour(bookTour);
 			return "redirect:/tourlist";
 		}

@@ -34,6 +34,8 @@ public class ManageUserController {
 	private UserService userService;
 	@Autowired
 	private TourService tourService;
+	
+	private static int numOnPage = 5;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
 
@@ -41,19 +43,27 @@ public class ManageUserController {
 	@RequestMapping(value = "manageuser", method = RequestMethod.GET)
 	public String manageUserController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
-			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
+			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when managetour request from admin!");
 		String result;
+		try{
+			if (!numOn.equals(null)) {
+				numOnPage = numOn; // numOn 
+			}
+		} catch (Exception e) {
+			logger.info("None select number of tour on page!");
+		}
 		int id = (int) session.getAttribute("idUser");
 		try {
 			if ((int) session.getAttribute("roleId") == 2) {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((userService.getNumUserByValue(valueSearch) % 5) == 0) {
-						num = userService.getNumUserByValue(valueSearch) / 5;
+					if ((userService.getNumUserByValue(valueSearch) % numOnPage) == 0) {
+						num = userService.getNumUserByValue(valueSearch) / numOnPage;
 					} else {
-						num = (userService.getNumUserByValue(valueSearch) / 5) + 1;
+						num = (userService.getNumUserByValue(valueSearch) / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -63,20 +73,22 @@ public class ManageUserController {
 						model.addAttribute("userList", userService.userListByValue(valueSearch));
 						model.addAttribute("numUser", userService.getNumUserByValue(valueSearch));
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y",
-								tourService.paginationY(userService.userListByValue(valueSearch).size(), page, 5));
+								tourService.paginationY(userService.userListByValue(valueSearch).size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((userService.getNumUser() % 5) == 0) {
-						num = userService.getNumUser() / 5;
+					if ((userService.getNumUser() % numOnPage) == 0) {
+						num = userService.getNumUser() / numOnPage;
 					} else {
-						num = (userService.getNumUser() / 5) + 1;
+						num = (userService.getNumUser() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -85,9 +97,11 @@ public class ManageUserController {
 						model.addAttribute("userList", userService.userList()); // create
 						model.addAttribute("numUser", userService.getNumUser()); // create
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(userService.userList().size(), page, 5));
+						model.addAttribute("x", tourService.paginationX(page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(userService.userList().size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";

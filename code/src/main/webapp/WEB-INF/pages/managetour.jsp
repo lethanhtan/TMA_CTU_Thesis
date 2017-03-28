@@ -29,25 +29,24 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<hr class="margin-vert-20">
-				
 				<div class="row">
-							<form role="form" class="form-inline">
-								<div class="form-group">
-									<label for="selectUser"
-										style="float: left; padding: 6px 12px 2px 12px;">Số tour/trang:</label>
-									<select id="selectUser" style="width: auto;"
-										class="form-control selectWidth" name="numOn">
-										<option class="">5</option>
-										<option class="">10</option>
-										<option class="">15</option>
-									</select>
-								</div>
-								<div class="btn-group">
-									<button class="btn btn-default">Chọn</button>
-								</div>
-							</form>
+					<form role="form" class="form-inline" action="managetour" method="get">
+						<div class="form-group">
+							<label for="selectUser"
+								style="float: left; padding: 6px 12px 2px 12px;">Số
+								tour/trang:</label> <select id="selectUser" style="width: auto;"
+								class="form-control selectWidth" name="numOn">
+								<option >5</option>
+								<option >10</option>
+								<option >15</option>
+							</select>
 						</div>
-				
+						<div class="btn-group">
+							<button class="btn btn-default">Chọn</button>
+						</div>
+					</form>
+				</div>
+
 				<!-- Table -->
 				<c:if test="${empty tourList}">
 					<h1 align="center">Không có tour nào!</h1>
@@ -74,63 +73,56 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}&nbsp;&nbsp;&nbsp;</td>
-									<td>
-										<a href="<c:url value='tourdetail/${tour.idTour}'/>">
+									<td>&nbsp;&nbsp;&nbsp;
+										${tour.returnTime}&nbsp;&nbsp;&nbsp;</td>
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-violet">
 												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>
-										</a>
-										<a href="<c:url value='updatetour/${tour.idTour}'/>"><button
+									</a> <a href="<c:url value='updatetour/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-success">
 												<i class="fa fa-pencil">&nbsp;Sửa</i>
-											</button>
-										</a> <!-- <a data-toggle="modal" --> 
-										<a href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
+											</button> </a> <!-- <a data-toggle="modal" --> <a
+										href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-danger">
 												<i class="fa fa-trash-o">&nbsp;Xóa</i>
-											</button> 
-										</a>
-										<a href="<c:url value='tourreg/${tour.idTour}'/>"><button
+											</button> </a> <a href="<c:url value='tourreg/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-danger">
 												<i class="fa fa-trash-o">&nbsp;Biểu đồ</i>
-											</button> 
-										</a>
-										<a href="<c:url value='export/${tour.idTour}'/>"><button
+											</button> </a> <a href="<c:url value='export/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-danger">
 												<i class="fa fa-trash-o">&nbsp;Export</i>
-											</button> 
-										</a>
-									</td>
+											</button> </a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<br/>
+					<br />
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numTour > 5}">
+					<c:if test="${numTour > numOnPage}">
+						<!-- Paging when number of element > number of tour -->
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
-								<c:if test="${numTour/numOnPage - param.page == numTour/numOnPage - 1}">
-									<li class="disabled"><a href="#">&laquo;</a></li>
+								<c:if test="${param.page == 1}">
+									<li class="disabled"></li>
 								</c:if>
-								<c:if test="${numTour/numOnPage - param.page != numTour/numOnPage - 1}">
+								<c:if test="${param.page > 1 }">
 									<li><a
 										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
-								<c:if test="${pageE == param.page}">
+								<c:if test="${pageE == page}">
 									<li class="active"><a
 										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
 								</c:if>
-								<c:if test="${pageE != param.page}">
+								<c:if test="${pageE != page}">
 									<li><a
 										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
 								</c:if>
