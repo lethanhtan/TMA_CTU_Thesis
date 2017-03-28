@@ -238,8 +238,9 @@ public class ManageRegController {
 	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid RegistrationInfo regInfo,
 			BindingResult br, HttpSession session, @PathVariable("idTour") int idTour,
 			@RequestParam("other") String other, @RequestParam("type") String type) {
-		if (other != null && type != null) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>");
+		if (other.length() != 0 && type != null) {
+			bookTourService.addFiledOption(other, type); // add a fied
+			//bookTourService.dropFiledOption(other); // drop a filed
 		}
 		// Checking at least one field of registration is true
 		if ((regInfo.getFieldAddress() || regInfo.getFieldEmail() || regInfo.getFieldIdCard() || regInfo.getFieldName()

@@ -69,9 +69,12 @@
 										<span class="input-group-addon"> <i class="fa fa-exchange"></i>
 										</span> <select class="form-control margin-bottom-20"
 											name="type">
-											<option>String</option>
-											<option>Date</option>
-											<option>Number</option>
+											<option>varchar(10)</option>
+											<option>varchar(20)</option>
+											<option>varchar(50)</option>
+											<option>date</option>
+											<option>int</option>
+											<option>bit(1)</option>
 										</select>
 									</div>
 								</div>
