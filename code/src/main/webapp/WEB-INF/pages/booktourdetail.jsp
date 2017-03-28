@@ -18,7 +18,7 @@
 							</br>
 						</div>
 						<div class="row">
-							<c:if test="${regInfo.fieldName == true}">
+							<c:if test="${tour.fieldName == true}">
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
@@ -31,7 +31,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${regInfo.fieldSex == true}">
+							<c:if test="${tour.fieldSex == true}">
 								<div class="col-sm-4">
 									<label>Giới tính</label>
 									<div class="input-group margin-bottom-20">
@@ -44,7 +44,7 @@
 							</c:if>
 						</div>
 						<div class="row">
-							<c:if test="${regInfo.fieldPhone == true}">
+							<c:if test="${tour.fieldPhone == true}">
 								<div class="col-sm-7">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${regInfo.fieldNumOfTicket == true}">
+							<c:if test="${tour.fieldNumOfTicket == true}">
 								<div class="col-sm-5">
 									<label>Số lượng</label>
 									<!-- Show error -->
@@ -71,7 +71,7 @@
 								</div>
 							</c:if>
 						</div>
-						<c:if test="${regInfo.fieldEmail}">
+						<c:if test="${tour.fieldEmail}">
 							<label>Email</label>
 							<!-- Show error -->
 							</br>
@@ -83,7 +83,7 @@
 								<s:input class="form-control" path="cusEmail" disabled="true" />
 							</div>
 						</c:if>
-						<c:if test="${regInfo.fieldAddress == true}">
+						<c:if test="${tour.fieldAddress == true}">
 							<label>Địa chỉ</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"> <i class="fa fa-home"></i>
@@ -91,7 +91,7 @@
 								<s:input class="form-control" path="cusAddress" disabled="true" />
 							</div>
 						</c:if>
-						<c:if test="${regInfo.fieldIdCard == true}">
+						<c:if test="${tour.fieldIdCard == true}">
 							<label>Số chứng minh nhân dân</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"> <i

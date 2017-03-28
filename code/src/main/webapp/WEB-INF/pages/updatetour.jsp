@@ -47,8 +47,9 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="yyyy/mm/dd" id="datepicker" value="${date1}"
-										class="form-control margin-bottom-20" path="departureDate" />
+									<s:input placeholder="yyyy/mm/dd" id="datepicker"
+										value="${date1}" class="form-control margin-bottom-20"
+										path="departureDate" />
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -72,8 +73,9 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker2" value="${date2}"
-										class="form-control margin-bottom-20" path="returnDate" />
+									<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+										value="${date2}" class="form-control margin-bottom-20"
+										path="returnDate" />
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -115,37 +117,14 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Số vé còn</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-building-o"></i>
-									</span>
-									<s:input placeholder="Nhập số lượng"
-										class="form-control margin-bottom-20" type="text"
-										path="ticketAvailability" />
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<label>Số vé hủy</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-building-o"></i>
-									</span>
-									<s:input placeholder="Nhập số lượng"
-										class="form-control margin-bottom-20" type="text"
-										path="ticketAvailability" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
 								<label>Ngày cho phép đăng ký</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker3" value="${date3}"
-										class="form-control margin-bottom-20" path="dateAllowReg" />
+									<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+										value="${date3}" class="form-control margin-bottom-20"
+										path="dateAllowReg" />
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -154,11 +133,58 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
 									</span>
-									<s:input placeholder="mm/dd/yyyy" id="datepicker4" value="${date4}"
-										class="form-control margin-bottom-20" path="dateAllowCancel" />
+									<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+										value="${date4}" class="form-control margin-bottom-20"
+										path="dateAllowCancel" />
 								</div>
 							</div>
 						</div>
+						<p style="text-align: center; color: #ef5b92;">Hãy chọn những
+							thông tin bắt buộc khách hàng phải điền khi đăng ký tham gia tour
+							du lịch!</p>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldName" />Họ
+									tên </label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldSex" />Giới
+									tính </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldPhone" />Số
+									điện thoại</label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox
+										path="fieldNumOfTicket" />Số lượng vé </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldEmail" />Địa
+									chỉ email</label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldAddress" />Địa
+									chỉ </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldIdCard" />Số
+									chứng minh nhân dân </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-8">
+								<label class="checkbox"><input type="checkbox"
+									name="select-all" id="select-all">Chọn tất cả </label>
+							</div>
+						</div>
+						<s:input path="ticketAvailability" hidden="true" />
 						<label>Chi tiết tour</label>
 						<small><s:errors path="detail" cssStyle="color:red;" /></small>
 						<s:textarea placeholder="Nhập chi tiết về tour" id="area2"

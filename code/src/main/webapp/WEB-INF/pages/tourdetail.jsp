@@ -88,26 +88,6 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Số vé còn</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"><i
-										class="fa fa-building-o"></i> </span>
-									<s:input class="form-control margin-bottom-20"
-										path="ticketAvailability" disabled="true" />
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<label>Số vé hủy</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"><i
-										class="fa fa-building-o"></i> </span>
-									<s:input class="form-control margin-bottom-20"
-										path="ticketAvailability" disabled="true" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
 								<label>Ngày cho phép đăng ký</label>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
@@ -126,6 +106,79 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label>Số vé còn</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"><i
+										class="fa fa-building-o"></i> </span>
+									<s:input class="form-control margin-bottom-20"
+										path="ticketAvailability" disabled="true" />
+								</div>
+							</div>
+						</div>
+						<p style="text-align: center; color: #ef5b92;">Những thông tin
+							bắt buộc khách hàng phải điền khi đăng ký tham gia tour du lịch</p>
+						<div class="row">
+							<c:if test="${tourData.fieldName == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldName"
+											disabled="true" />Họ tên </label>
+								</div>
+							</c:if>
+							<c:if test="${tourData.fieldSex == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldSex"
+											disabled="true" />Giới tính </label>
+								</div>
+							</c:if>
+						</div>
+						<div class="row">
+							<c:if test="${tourData.fieldPhone == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldPhone"
+											disabled="true" />Số điện thoại</label>
+								</div>
+							</c:if>
+							<c:if test="${tourData.fieldNumOfTicket == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox
+											path="fieldNumOfTicket" disabled="true" />Số lượng vé </label>
+								</div>
+							</c:if>
+						</div>
+						<div class="row">
+							<c:if test="${tourData.fieldEmail == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldEmail"
+											disabled="true" />Địa chỉ email</label>
+								</div>
+							</c:if>
+							<c:if test="${tourData.fieldAddress == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldAddress"
+											disabled="true" />Địa chỉ </label>
+								</div>
+							</c:if>
+						</div>
+						<div class="row">
+							<c:if test="${tourData.fieldIdCard == true}">
+								<div class="col-lg-6">
+									<label class="checkbox"><s:checkbox path="fieldIdCard"
+											disabled="true" />Số chứng minh nhân dân </label>
+								</div>
+							</c:if>
+						</div>
+						<!-- <div class="col-sm-6">
+								<label>Số vé hủy</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"><i
+										class="fa fa-building-o"></i> </span>
+									<s:input class="form-control margin-bottom-20"
+										path="ticketAvailability" disabled="true" />
+								</div>
+							</div>
+						</div> -->
 						<label>Chi tiết tour</label>
 						<s:input class="form-control margin-bottom-20" path="detail"
 							disabled="true" />
