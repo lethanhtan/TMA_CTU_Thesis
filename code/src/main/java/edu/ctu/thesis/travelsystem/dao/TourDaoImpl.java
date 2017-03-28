@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
@@ -31,16 +30,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 					tour.setTicketAvailability(tour.getQuantum());
 				}
 				tour.setFullOrNot(false);
-				RegistrationInfo regInfo = new RegistrationInfo();
-				regInfo.setFieldName(true);
-				regInfo.setFieldSex(true);
-				regInfo.setFieldEmail(true);
-				regInfo.setFieldPhone(true);
-				regInfo.setFieldAddress(true);
-				regInfo.setFieldIdCard(false);
-				regInfo.setFieldNumOfTicket(true);
-				tour.setRegInfo(regInfo);
-				regInfo.setTour(tour);
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -108,6 +97,28 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		String hql = "FROM Tour ORDER BY ID_TOUR DESC";
 		List<Tour> tourList = session.createQuery(hql).list();
 		for (Tour tour : tourList) {
+			// Sync noTicketAvailability
+			Integer numTicketBooked = bookTourDao.getNumTicketBooked(tour.getIdTour());
+			Integer newAvailability = tour.getQuantum() - numTicketBooked;
+			if (tour.getTicketAvailability() != newAvailability) {
+				tour.setTicketAvailability(newAvailability);
+			}
+			if (tour.getTicketAvailability() == 0) {
+				tour.setFullOrNot(true);
+			} else {
+				tour.setFullOrNot(false);
+			}
+			if (tour.getDateAllowReg().before(Calendar.getInstance().getTime())) {
+				tour.setRegOrNot(false);
+			} else {
+				tour.setRegOrNot(true);
+			}
+			if (tour.getDateAllowCancel().before(Calendar.getInstance().getTime())) {
+				tour.setCancelOrNot(false);
+			} else {
+				tour.setCancelOrNot(true);
+			}
+			updateTour(tour);
 			logger.info("Tour List:" + tour);
 		}
 		return tourList;
@@ -151,12 +162,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			if (y > page) {
 				y = paginationX(currentPage, page) + (y - page);
 			} else {
-				if (y + page > numOfPage) {
-					y = y + page - numOfPage;
-					y = paginationX(currentPage, page) + y -1;
-				} else {
-					y = paginationX(currentPage, page) + y;
-				}
+				y = paginationX(currentPage, page) + y;
 			}
 		} else {
 			y = paginationX(currentPage, page) + page;

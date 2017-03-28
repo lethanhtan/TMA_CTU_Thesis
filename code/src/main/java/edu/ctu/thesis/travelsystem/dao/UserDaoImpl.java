@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.controller.ManageUserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
+import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.model.User;
 
 @Service
@@ -170,5 +173,153 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				logger.error("Occured ex", e);
 			}
 		}
+	}
+
+	@Override
+	public List<BookTour> myRegListByValue(String value, int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<BookTour> registrationList = query.list();
+		return registrationList;
+	}
+
+	@Override
+	public Integer getMyNumBTBySearch(String value, int idUser) {
+		Integer myNumBT = myRegListByValue(value, idUser).size();
+		logger.info("Number of my registration are: " + myNumBT);
+		return myNumBT;
+	}
+
+	// Display registration list by Id user
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> myRegList(int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		List<BookTour> myRegList = query.list();
+		for (BookTour bookTour : myRegList) {
+			logger.info("My registration List:" + bookTour);
+		}
+		return myRegList;
+	}
+
+	@Override
+	public Integer getMyNumBT(int idUser) {
+		Integer myNumBT = myRegList(idUser).size();
+		logger.info("Number of my registration are: " + myNumBT);
+		return myNumBT;
+	}
+
+	@Override
+	public List<BookTour> myCancelListByValue(String value, int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<BookTour> cancelList = query.list();
+		return cancelList;
+	}
+
+	@Override
+	public Integer getMyNumCancelBySearch(String value, int idUser) {
+		Integer myNumCancel = myCancelListByValue(value, idUser).size();
+		logger.info("Number of my registration are: " + myNumCancel);
+		return myNumCancel;
+	}
+
+	// Display registration list by Id user
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> myCancelList(int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		List<BookTour> myCancelList = query.list();
+		for (BookTour bookTour : myCancelList) {
+			logger.info("My cancel registration list:" + bookTour);
+		}
+		return myCancelList;
+	}
+
+	@Override
+	public Integer getMyNumCancelReg(int idUser) {
+		Integer myNumCancelReg = myCancelList(idUser).size();
+		logger.info("Number of my registration are: " + myNumCancelReg);
+		return myNumCancelReg;
+	}
+
+	@Override
+	public void undoCancel(int idBT, int idTour) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		if (bookTour != null) {
+			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
+					+ "CUS_CANCEL = false," + "TICKET_CANCEL = 0" + "WHERE ID_BT = :idBT");
+			query.setParameter("idBT", bookTour.getIdBT());
+			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
+			query.executeUpdate();
+			session.saveOrUpdate(bookTour);
+			session.flush();
+			logger.info("Delete customer success!");
+		}
+	}
+
+	@Override
+	public List<BookTour> myBookTourListByValue(String value, int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		query.setParameter("value", "%" + value + "%");
+		@SuppressWarnings("unchecked")
+		List<BookTour> myBookTourList = query.list();
+		return myBookTourList;
+	}
+
+	@Override
+	public Integer getMyNumBookTourBySearch(String value, int idUser) {
+		Integer myNumBookTour = myBookTourListByValue(value, idUser).size();
+		logger.info("Number of my tour gone are: " + myNumBookTour);
+		return myNumBookTour;
+	}
+
+	// Display registration list by Id user
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> myBookTourList(int idUser) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true";
+		Query query = session.createQuery(hql);
+		query.setParameter("idUser", idUser);
+		List<BookTour> myBookTourList = query.list();
+		for (BookTour bookTour : myBookTourList) {
+			//Tour tour = tourService.findTourById(idTour);
+			/*bookTour.setTour(tour);
+			if (tour.getDepartureDate().before(Calendar.getInstance().getTime())) {
+				bookTour.setGoneOrNot(true);
+			} else {
+				bookTour.setGoneOrNot(false);
+			}
+			bookTourService.editBookTour(bookTour);
+			logger.info("Registration List:" + bookTour);*/
+			logger.info("My registration List:" + bookTour);
+		}
+		return myBookTourList;
+	}
+
+	@Override
+	public Integer getMyNumBookTour(int idUser) {
+		Integer myNumBookTour = myBookTourList(idUser).size();
+		logger.info("Number of my tour gone are: " + myNumBookTour);
+		return myNumBookTour;
 	}
 }

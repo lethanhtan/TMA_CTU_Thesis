@@ -4,13 +4,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +31,13 @@ public class Tour {
 	private boolean fullOrNot;
 	private boolean regOrNot = true;
 	private boolean cancelOrNot = true;
-	private RegistrationInfo regInfo;
+	private boolean fieldName = true;
+	private boolean fieldSex = true;
+	private boolean fieldEmail = true;
+	private boolean fieldPhone = true;
+	private boolean fieldAddress = true;
+	private boolean fieldIdCard = false;
+	private boolean fieldNumOfTicket = true;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -196,17 +199,95 @@ public class Tour {
 	public void setCancelOrNot(boolean cancelOrNot) {
 		this.cancelOrNot = cancelOrNot;
 	}
-	
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
-	public RegistrationInfo getRegInfo() {
-		return regInfo;
+	// Create column Field name
+	@Column(name = "FIELD_NAME", nullable = false)
+	public boolean getFieldName() {
+		return this.fieldName;
 	}
 
-	public void setRegInfo(RegistrationInfo regInfo) {
-		this.regInfo = regInfo;
+	public void setFieldName(boolean fieldName) {
+		this.fieldName = fieldName;
 	}
-	
+
+	// Create column Field sex
+	@Column(name = "FIELD_SEX", nullable = false)
+	public boolean getFieldSex() {
+		return this.fieldSex;
+	}
+
+	public void setFieldSex(boolean fieldSex) {
+		this.fieldSex = fieldSex;
+	}
+
+	// Create column Field email
+	@Column(name = "FIELD_EMAIL", nullable = false)
+	public boolean getFieldEmail() {
+		return this.fieldEmail;
+	}
+
+	public void setFieldEmail(boolean fieldEmail) {
+		this.fieldEmail = fieldEmail;
+	}
+
+	// Create column Field phone
+	@Column(name = "FIELD_PHONE", nullable = false)
+	public boolean getFieldPhone() {
+		return this.fieldPhone;
+	}
+
+	public void setFieldPhone(boolean fieldPhone) {
+		this.fieldPhone = fieldPhone;
+	}
+
+	// Create column Field address
+	@Column(name = "FIELD_ADDRESS", nullable = false)
+	public boolean getFieldAddress() {
+		return this.fieldAddress;
+	}
+
+	public void setFieldAddress(boolean fieldAddress) {
+		this.fieldAddress = fieldAddress;
+	}
+
+	// Create column Field id card
+	@Column(name = "FIELD_IDCARD", nullable = false)
+	public boolean getFieldIdCard() {
+		return this.fieldIdCard;
+	}
+
+	public void setFieldIdCard(boolean fieldIdCard) {
+		this.fieldIdCard = fieldIdCard;
+	}
+
+	// Create column Field number of ticket
+	@Column(name = "FIELD_NUMOFTICKET", nullable = false)
+	public boolean getFieldNumOfTicket() {
+		return this.fieldNumOfTicket;
+	}
+
+	public void setFieldNumOfTicket(boolean fieldNumOfTicket) {
+		this.fieldNumOfTicket = fieldNumOfTicket;
+	}
+
+	/*
+	 * @OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade =
+	 * CascadeType.ALL) public RegistrationInfo getRegInfo() { return regInfo; }
+	 * 
+	 * public void setRegInfo(RegistrationInfo regInfo) { this.regInfo =
+	 * regInfo; }
+	 */
+
+	// Create column tour gone
+	/*@Column(name = "GONE_OR_NOT", nullable = true, length = 40)
+	public boolean getGoneOrNot() {
+		return this.goneOrNot;
+	}
+
+	public void setGoneOrNot(boolean goneOrNot) {
+		this.goneOrNot = goneOrNot;
+	}*/
+
 	@Override
 	public int hashCode() {
 		return idTour;

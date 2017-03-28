@@ -3,6 +3,10 @@ package edu.ctu.thesis.travelsystem.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,9 +20,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
@@ -26,6 +34,10 @@ import edu.ctu.thesis.travelsystem.validator.UserValidator;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BookTourService bookTourService;
+	@Autowired
+	private TourService tourService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -147,5 +159,179 @@ public class UserController {
 			userService.editUser(user);
 			return "redirect:/managemyacc/{idUser}";
 		}
+	}
+
+	// Forward to Registration List page
+	@RequestMapping(value = "managemyreg/{idUser}", method = RequestMethod.GET)
+	public String myRegList(ModelMap model, HttpSession session, @PathVariable("idUser") int idUser,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch,
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
+			@RequestParam(required = false, value = "valueSearch2") String valueSearch2,
+			@RequestParam(required = true, defaultValue = "1", value = "page2") Integer page2,
+			@RequestParam(required = false, value = "valueSearch3") String valueSearch3,
+			@RequestParam(required = true, defaultValue = "1", value = "page3") Integer page3) {
+		logger.info("Handle when manage register request from admin!");
+		String result;
+		try {
+			// Display registration list
+			model.addAttribute("searchedValue", valueSearch);
+			if (valueSearch != null) {
+				Integer num = 0;
+				if ((userService.getMyNumBTBySearch(valueSearch, idUser) % 5) == 0) {
+					num = userService.getMyNumBTBySearch(valueSearch, idUser) / 5;
+				} else {
+					num = (userService.getMyNumBTBySearch(valueSearch, idUser) / 5) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("bookTour", new BookTour());
+					model.addAttribute("myRegList", userService.myRegListByValue(valueSearch, idUser));
+					model.addAttribute("myNumBT", userService.getMyNumBTBySearch(valueSearch, idUser));
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", tourService.paginationX(page, 5));
+					model.addAttribute("y",
+							tourService.paginationY(userService.myRegListByValue(valueSearch, idUser).size(), page, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			} else { // search none active ! Update list tour
+				Integer num = 0;
+				if ((userService.getMyNumBT(idUser) % 5) == 0) {
+					num = userService.getMyNumBT(idUser) / 5;
+				} else {
+					num = (userService.getMyNumBT(idUser) / 5) + 1;
+				}
+
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("bookTour", new BookTour());
+					model.addAttribute("myRegList", userService.myRegList(idUser));
+					model.addAttribute("myNumBT", userService.getMyNumBT(idUser));
+					model.addAttribute("pageNum", pageNum);
+					model.addAttribute("pageE", new ArrayList<Integer>());
+					model.addAttribute("x", tourService.paginationX(page, 5));
+					model.addAttribute("y", tourService.paginationY(userService.myRegList(idUser).size(), page, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			}
+			// Display cancel registration list
+			model.addAttribute("searchedValue2", valueSearch2);
+			if (valueSearch2 != null) {
+				Integer num2 = 0;
+				if ((userService.getMyNumCancelBySearch(valueSearch2, idUser) % 5) == 0) {
+					num2 = userService.getMyNumCancelBySearch(valueSearch2, idUser) / 5;
+				} else {
+					num2 = (userService.getMyNumCancelBySearch(valueSearch2, idUser) / 5) + 1;
+				}
+				if (page2 <= num2) {
+					List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("myCancelReg", new BookTour());
+					model.addAttribute("myCancelList", userService.myCancelListByValue(valueSearch2, idUser));
+					model.addAttribute("myNumCancelReg", userService.getMyNumCancelBySearch(valueSearch2, idUser));
+					model.addAttribute("pageNum2", pageNum2);
+					model.addAttribute("pageE2", new ArrayList<Integer>());
+					model.addAttribute("x2", tourService.paginationX(page2, 5));
+					model.addAttribute("y2", tourService
+							.paginationY(userService.myCancelListByValue(valueSearch2, idUser).size(), page2, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			} else { // search none active ! Update list tour
+				Integer num2 = 0;
+				if ((userService.getMyNumCancelReg(idUser) % 5) == 0) {
+					num2 = userService.getMyNumCancelReg(idUser) / 5;
+				} else {
+					num2 = (userService.getMyNumCancelReg(idUser) / 5) + 1;
+				}
+				if (page2 <= num2) {
+					List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
+					model.addAttribute("myCancelReg", new BookTour());
+					model.addAttribute("myCancelList", userService.myCancelList(idUser));
+					model.addAttribute("myNumCancelReg", userService.getMyNumCancelReg(idUser));
+					model.addAttribute("pageNum2", pageNum2);
+					model.addAttribute("pageE2", new ArrayList<Integer>());
+					model.addAttribute("x2", tourService.paginationX(page2, 5));
+					model.addAttribute("y2",
+							tourService.paginationY(userService.myCancelList(idUser).size(), page2, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			}
+
+			// Display my tour gone
+			model.addAttribute("searchedValue2", valueSearch2);
+			if (valueSearch3 != null) {
+				Integer num3 = 0;
+				if ((userService.getMyNumBookTourBySearch(valueSearch3, idUser) % 5) == 0) {
+					num3 = userService.getMyNumBookTourBySearch(valueSearch3, idUser) / 5;
+				} else {
+					num3 = (userService.getMyNumBookTourBySearch(valueSearch3, idUser) / 5) + 1;
+				}
+				if (page3 <= num3) {
+					List<Integer> pageNum3 = IntStream.rangeClosed(1, num3).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("myBookTour", new BookTour());
+					model.addAttribute("myBookTourList", userService.myBookTourListByValue(valueSearch3, idUser));
+					model.addAttribute("myNumBookTour", userService.getMyNumBookTourBySearch(valueSearch3, idUser));
+					model.addAttribute("pageNum3", pageNum3); // create number
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", tourService.paginationX(page3, 5));
+					model.addAttribute("y", tourService
+							.paginationY(userService.myBookTourListByValue(valueSearch3, idUser).size(), page3, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			} else { // search none active ! Update list tour
+				Integer num3 = 0;
+				if ((userService.getMyNumBT(idUser) % 5) == 0) {
+					num3 = userService.getMyNumBT(idUser) / 5;
+				} else {
+					num3 = (userService.getMyNumBT(idUser) / 5) + 1;
+				}
+				if (page3 <= num3) {
+					List<Integer> pageNum3 = IntStream.rangeClosed(1, num3).boxed().collect(Collectors.toList());
+					model.addAttribute("myBookTour", new BookTour());
+					model.addAttribute("myBookTourList", userService.myBookTourList(idUser));
+					model.addAttribute("myNumBookTour", userService.getMyNumBookTour(idUser));
+					model.addAttribute("pageNum3", pageNum3);
+					model.addAttribute("pageE3", new ArrayList<Integer>());
+					model.addAttribute("x3", tourService.paginationX(page3, 5));
+					model.addAttribute("y3", tourService.paginationY(userService.myBookTourList(idUser).size(), page3, 5));
+					result = "managemyreg";
+				} else {
+					result = "managemyreg";
+				}
+			}
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+			result = "forbidden";
+		}
+		return result;
+	}
+
+	// Customer cancel registration tour
+	@RequestMapping(value = "cancel/{idBT}")
+	public String cancelBookTour(@PathVariable("idBT") Integer idBT, HttpSession session, ModelMap model) {
+		bookTourService.cancelBookTour(idBT);
+		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
+		return "redirect:/managemyreg/{idUser}";
+	}
+
+	// User undo cancel registration
+	@RequestMapping(value = "undo/{idBT}/{idTour}")
+	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour, HttpSession session,
+			ModelMap model) {
+		userService.undoCancel(idBT, idTour);
+		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
+		return "redirect:/managemyreg/{idUser}";
 	}
 }

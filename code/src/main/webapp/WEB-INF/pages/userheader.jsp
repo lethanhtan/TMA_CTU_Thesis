@@ -117,6 +117,8 @@
 										<c:if test="${!(roleId == 2)}">
 											<li><a href="<c:url value="/managemyacc/${idUser}" />">Quản
 													lý tài khoản</a></li>
+											<li><a href="<c:url value="/managemyreg/${idUser}" />">Quản
+													lý đăng ký</a></li>
 										</c:if>
 										<li><a href="<c:url value="/logout" />">Đăng Xuất</a></li>
 									</ul>

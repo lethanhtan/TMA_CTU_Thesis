@@ -104,7 +104,7 @@ public class ManageRegController {
 	}
 
 	// Forward to Registration List page
-	@RequestMapping(value = "/registrationlist/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "registrationlist/{idTour}", method = RequestMethod.GET)
 	public String registrationList(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
@@ -148,7 +148,6 @@ public class ManageRegController {
 					} else {
 						num = (regInfoService.getNumBookTour(idTour) / 5) + 1;
 					}
-
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
@@ -165,27 +164,26 @@ public class ManageRegController {
 						result = "registrationlist";
 					}
 				}
-				
 				// Display cancel registration list
 				model.addAttribute("searchedValue2", valueSearch2);
 				if (valueSearch2 != null) {
 					Integer num2 = 0;
-					if ((regInfoService.getNumCancelBySearch(valueSearch2) % 5) == 0) {
-						num2 = regInfoService.getNumCancelBySearch(valueSearch2) / 5;
+					if ((regInfoService.getNumCancelBySearch(valueSearch2, idTour) % 5) == 0) {
+						num2 = regInfoService.getNumCancelBySearch(valueSearch2, idTour) / 5;
 					} else {
-						num2 = (regInfoService.getNumCancelBySearch(valueSearch2) / 5) + 1;
+						num2 = (regInfoService.getNumCancelBySearch(valueSearch2, idTour) / 5) + 1;
 					}
 					if (page2 <= num2) {
 						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("cancelReg", new BookTour());
-						model.addAttribute("cancelList", regInfoService.cancelListByValue(valueSearch2));
-						model.addAttribute("numCancelReg", regInfoService.getNumCancelBySearch(valueSearch2));
+						model.addAttribute("cancelList", regInfoService.cancelListByValue(valueSearch2, idTour));
+						model.addAttribute("numCancelReg", regInfoService.getNumCancelBySearch(valueSearch2, idTour));
 						model.addAttribute("pageNum2", pageNum2); 
 						model.addAttribute("pageE2", new ArrayList<Integer>()); 
 						model.addAttribute("x2", tourService.paginationX(page2, 5));
 						model.addAttribute("y2", tourService
-								.paginationY(regInfoService.cancelListByValue(valueSearch2).size(), page2, 5));
+								.paginationY(regInfoService.cancelListByValue(valueSearch2, idTour).size(), page2, 5));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -214,7 +212,7 @@ public class ManageRegController {
 					}
 				}
 			} else {
-				result = "registrationlist";
+				result = "forbidden";
 			}
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
@@ -232,16 +230,14 @@ public class ManageRegController {
 
 	// Forward to Design form
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.GET)
-	public String designForm(ModelMap model, @PathVariable("idTour") int idTour, @Valid RegistrationInfo regInfo) {
+	public String designForm(ModelMap model, @PathVariable("idTour") int idTour, @Valid Tour tour) {
 		logger.info("Display design form page when admin request!");
-		regInfo = regInfoService.searchRegInfoById(idTour);
-		logger.info("Reg Info: " + regInfo);
-		if (regInfo != null) {
-			model.addAttribute("designForm", regInfo);
+		tour = tourService.findTourById(idTour);
+		logger.info("Tour Info: " + tour);
+		if (tour != null) {
+			model.addAttribute("designForm", tour);
 			model.addAttribute("tour", idTour);
 			logger.info("Design form for: " + idTour);
-			Tour tour = tourService.findTourById(idTour);
-			regInfo.setTour(tour);
 		}
 		logger.info("Load design form success");
 		return "designform";
@@ -281,13 +277,13 @@ public class ManageRegController {
 	// Forward to Customer detail page
 	@RequestMapping(value = "/reginfodetail/{idBT}/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid RegistrationInfo regInfo) {
+			@Valid Tour tour) {
 		logger.info("Show information of customer when book tour");
 		model.put("cusData", bookTourService.searchById(idBT));
-		regInfo = regInfoService.searchRegInfoById(idTour);
-		logger.info("Reg Info: " + regInfo);
-		if (regInfo != null) {
-			model.addAttribute("regInfo", regInfo);
+		tour = tourService.findTourById(idTour);
+		logger.info("Tour Info: " + tour);
+		if (tour != null) {
+			model.addAttribute("tour", tour);
 		}
 		return "reginfodetail";
 	}
@@ -295,13 +291,13 @@ public class ManageRegController {
 	// Forward to Edit information of customer booked tour
 	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.GET)
 	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid RegistrationInfo regInfo) {
+			@Valid Tour tour) {
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
-		regInfo = regInfoService.searchRegInfoById(idTour);
-		logger.info("Reg Info: " + regInfo);
-		if (regInfo != null) {
-			model.addAttribute("regInfo", regInfo);
+		tour = tourService.findTourById(idTour);
+		logger.info("Tour Info: " + tour);
+		if (tour != null) {
+			model.addAttribute("tour", tour);
 		}
 		return "editreginfo";
 	}
@@ -310,22 +306,22 @@ public class ManageRegController {
 	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.POST)
 	public String editRegInfo(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
 			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			@Valid RegistrationInfo regInfo) {
+			@Valid Tour tour) {
 		logger.info("Handle edit information customer form when admin submit!");
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		if (br.hasErrors()) {
-			regInfo = regInfoService.searchRegInfoById(idTour);
-			logger.info("Reg Info: " + regInfo);
-			if (regInfo != null) {
-				model.addAttribute("regInfo", regInfo);
+			tour = tourService.findTourById(idTour);
+			logger.info("Tour info: " + tour);
+			if (tour != null) {
+				model.addAttribute("tour", tour);
 			}
 			return "editreginfo";
 		} else {
-			Tour tour = tourService.findTourById(idTour);
+			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
-			bookTour.setDateBook(Calendar.getInstance().getTime());
+			//bookTour.setDateBook(Calendar.getInstance().getTime());
 			bookTourService.editBookTour(bookTour);
 			return "redirect:/registrationlist/{idTour}";
 		}
