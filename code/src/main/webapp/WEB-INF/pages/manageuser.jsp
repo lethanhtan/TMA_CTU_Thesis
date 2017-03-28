@@ -96,7 +96,7 @@
 				<hr class="margin-vert-50">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numTour > numOnPage}"> <!-- Paging when number of element > number of tour -->
+					<c:if test="${numUser > numOnPage}"> <!-- Paging when number of element > number of tour -->
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
@@ -105,28 +105,28 @@
 								</c:if>
 								<c:if test="${param.page > 1 }">
 									<li><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
+										href="${pageContext.request.contextPath }/manageuser?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
 								<c:if test="${pageE == page}">
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/manageuser?page=${pageE}">${pageE}</a></li>
 								</c:if>
 								<c:if test="${pageE != page}">
 									<li><a
-										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/manageuser?page=${pageE}">${pageE}</a></li>
 								</c:if>
 							</c:forEach>
-							<c:if test="${numTour/numOnPage - param.page == 0}">
+							<c:if test="${numUser/numOnPage - param.page == 0}">
 								<li class="disabled"><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/manageuser?page=${param.page + 1}">&raquo;</a>
 								</li>
 							</c:if>
-							<c:if test="${numTour/numOnPage - param.page > 0}">
+							<c:if test="${numUser/numOnPage - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/manageuser?page=${page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>
