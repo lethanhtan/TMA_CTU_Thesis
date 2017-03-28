@@ -87,7 +87,7 @@
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table></br>
+					</table><br />
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">
@@ -102,28 +102,27 @@
 								</c:if>
 								<c:if test="${param.page > 1 }">
 									<li><a
-										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
+										href="${pageContext.request.contextPath }/manageregister?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
 								<c:if test="${pageE == page}">
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/manageregister?page=${pageE}">${pageE}</a></li>
 								</c:if>
 								<c:if test="${pageE != page}">
 									<li><a
-										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/manageregister?page=${pageE}">${pageE}</a></li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+								<li class="disabled"><a>&raquo;</a>
 								</li>
 							</c:if>
 							<c:if test="${numTour/numOnPage - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/manageregister?page=${page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>

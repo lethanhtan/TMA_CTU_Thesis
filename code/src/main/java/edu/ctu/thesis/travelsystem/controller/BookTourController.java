@@ -21,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
-import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
@@ -34,6 +32,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
+	
+	private static int numOnPage = 5;
 
 	private static final Logger logger = Logger.getLogger(BookTourController.class);
 
@@ -41,14 +41,22 @@ public class BookTourController {
 	@RequestMapping(value = "tourlist", method = RequestMethod.GET)
 	public String booktourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
-			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page) {
+			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
+			@RequestParam(required = false, value = "numOn") Integer numOn){
 		model.addAttribute("searchedValue", valueSearch);
+		try{
+			if (!numOn.equals(null)) {
+				numOnPage = numOn; // numOn 
+			}
+		} catch (Exception e) {
+			logger.info("None select number of tour on page!");
+		}
 		if (valueSearch != null) {
 			Integer num = 0;
-			if ((tourService.getNumTourByValue(valueSearch) % 5) == 0) {
-				num = tourService.getNumTourByValue(valueSearch) / 5;
+			if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
+				num = tourService.getNumTourByValue(valueSearch) / numOnPage;
 			} else {
-				num = (tourService.getNumTourByValue(valueSearch) / 5) + 1;
+				num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
 			}
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -57,20 +65,22 @@ public class BookTourController {
 				model.addAttribute("showTourList", tourService.tourListByValue(valueSearch));
 				model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 				model.addAttribute("pageNum", pageNum); // Create number of page
+				model.addAttribute("numOnPage", numOnPage);
+				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", tourService.paginationX(page, 5));
+				model.addAttribute("x", tourService.paginationX(page, numOnPage));
 				model.addAttribute("y",
-						tourService.paginationY(tourService.tourListByValue(valueSearch).size(), page, 5));
+						tourService.paginationY(tourService.tourListByValue(valueSearch).size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";
 			}
 		} else { // Search none active ! Update list tour
 			Integer num = 0;
-			if ((tourService.getNumTour() % 5) == 0) {
-				num = tourService.getNumTour() / 5;
+			if ((tourService.getNumTour() % numOnPage) == 0) {
+				num = tourService.getNumTourList() / numOnPage;
 			} else {
-				num = (tourService.getNumTour() / 5) + 1;
+				num = (tourService.getNumTourList() / numOnPage) + 1;
 			}
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -80,9 +90,11 @@ public class BookTourController {
 				model.addAttribute("numTour", tourService.getNumTourList());
 				// Get number of tour list
 				model.addAttribute("pageNum", pageNum); // Create number of page
+				model.addAttribute("numOnPage", numOnPage);
+				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", tourService.paginationX(page, 5));
-				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, 5));
+				model.addAttribute("x", tourService.paginationX(page, numOnPage));
+				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";

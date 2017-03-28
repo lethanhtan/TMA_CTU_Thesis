@@ -46,7 +46,7 @@
 						</div>
 					</form>
 				</div>
-
+				<h6>${x} - ${y}</h6>
 				<!-- Table -->
 				<c:if test="${empty tourList}">
 					<h1 align="center">Không có tour nào!</h1>
@@ -128,13 +128,11 @@
 								</c:if>
 							</c:forEach>
 							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
-								</li>
+								<li class="disabled"></li>
 							</c:if>
 							<c:if test="${numTour/numOnPage - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/managetour?page=${page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>

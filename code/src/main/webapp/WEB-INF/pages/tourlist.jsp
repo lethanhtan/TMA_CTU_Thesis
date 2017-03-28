@@ -26,6 +26,23 @@
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
+				<div class="row">
+					<form role="form" class="form-inline" action="tourlist" method="get">
+						<div class="form-group">
+							<label for="selectUser"
+								style="float: left; padding: 6px 12px 2px 12px;">Số
+								tour/trang:</label> <select id="selectUser" style="width: auto;"
+								class="form-control selectWidth" name="numOn">
+								<option >5</option>
+								<option >10</option>
+								<option >15</option>
+							</select>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-default">Chọn</button>
+						</div>
+					</form>
+				</div>
 				<!-- Table -->
 				<c:if test="${empty showTourList}">
 					<h1 style="text-align: center;">Không có tour nào!</h1>
@@ -72,37 +89,38 @@
 				<hr class="margin-vert-50">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numTour >= 5}">
+					<c:if test="${numTour > numOnPage}">
+						<!-- Paging when number of element > number of tour -->
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
-								<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
-									<li class="disabled"><a href="#">&laquo;</a></li>
+								<c:if test="${param.page == 1}">
+									<li class="disabled"></li>
 								</c:if>
-								<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
+								<c:if test="${param.page > 1 }">
 									<li><a
 										href="${pageContext.request.contextPath }/tourlist?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
-								<c:if test="${pageE == param.page}">
+								<c:if test="${pageE == page}">
 									<li class="active"><a
 										href="${pageContext.request.contextPath}/tourlist?page=${pageE}">${pageE}</a></li>
 								</c:if>
-								<c:if test="${pageE != param.page}">
+								<c:if test="${pageE != page}">
 									<li><a
 										href="${pageContext.request.contextPath}/tourlist?page=${pageE}">${pageE}</a></li>
 								</c:if>
 							</c:forEach>
-							<c:if test="${numTour/5 - param.page == 0}">
+							<c:if test="${numTour/numOnPage - param.page == 0}">
 								<li class="disabled"><a
 									href="${pageContext.request.contextPath }/tourlist?page=${param.page + 1}">&raquo;</a>
 								</li>
 							</c:if>
-							<c:if test="${numTour/5 - param.page > 0}">
+							<c:if test="${numTour/numOnPage - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/tourlist?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/tourlist?page=${page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>
