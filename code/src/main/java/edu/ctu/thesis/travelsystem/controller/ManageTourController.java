@@ -37,15 +37,12 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class ManageTourController {
 	@Autowired
 	private TourService tourService;
-
 	@Autowired
 	private BookTourService bookTourService;
-
 	@Autowired
 	ExportDataService exportDataService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
-
 	private static int numOnPage = 5;
 
 	// handle for mangeagetour request from admin
@@ -84,7 +81,8 @@ public class ManageTourController {
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
+						model.addAttribute("y",
+								tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
 						result = "managetour";
 					} else {
 						result = "managetour";
@@ -169,7 +167,7 @@ public class ManageTourController {
 
 	// Forward to Tour detail page
 	@RequestMapping(value = "/tourdetail/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour) {
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour, @Valid Tour tour) {
 		logger.info("Show tour detail!");
 		model.put("tourData", tourService.findTourById(idTour));
 		return "tourdetail";
@@ -229,5 +227,4 @@ public class ManageTourController {
 		model.setViewName("pdfView");
 		return model;
 	}
-
 }

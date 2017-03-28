@@ -10,7 +10,7 @@
 			<div class="row margin-vert-30">
 				<!-- Create Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" commandName="tourData"
+					<s:form commandName="tourData"
 						action="${pageContext.request.contextPath}/createtour"
 						method="POST">
 						<div class="signup-header">
@@ -149,6 +149,52 @@
 								</div>
 							</div>
 						</div>
+						<p style="text-align: center; color: #ef5b92;">Hãy chọn những
+							thông tin bắt buộc khách hàng phải điền khi đăng ký tham gia tour
+							du lịch!</p>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldName" />Họ
+									tên </label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldSex" />Giới
+									tính </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldPhone" />Số
+									điện thoại</label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox
+										path="fieldNumOfTicket" />Số lượng vé </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldEmail" />Địa
+									chỉ email</label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldAddress" />Địa
+									chỉ </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldIdCard" />Số
+									chứng minh nhân dân </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-8">
+								<label class="checkbox"><input type="checkbox"
+									name="select-all" id="select-all">Chọn tất cả </label>
+							</div>
+						</div>
+						<hr>
 						<label>Chi tiết tour</label>
 						<!-- Show Error -->
 						</br>
