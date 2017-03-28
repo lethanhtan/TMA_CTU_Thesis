@@ -13,7 +13,6 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +29,7 @@ import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
-@Controller
+//@Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
@@ -50,22 +49,35 @@ public class UserController {
 	}
 
 	// Processing for form register when submit
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
-			HttpSession session) {
-		logger.info("Handle register form action when user submit!");
-		UserValidator userValidator = new UserValidator();
-		userValidator.validate(user, br);
-		if (br.hasErrors()) { // form input have error
-			return "register";
-		} else { // form input is ok
-			userService.saveUser(user);
-			session.setAttribute("user", user);
-			session.setAttribute("userName", user.getFullName());
-			session.setAttribute("idUser", user.getIdUser());
-			return "redirect:login";
+		@RequestMapping(value = "/register", method = RequestMethod.POST)
+		public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
+				HttpSession session, @RequestParam("passwordConfirm") String passwordConfirm) {
+			logger.info("Handle register form action when user submit!");
+			UserValidator userValidator = new UserValidator();
+			userValidator.validate(user, br);
+			try {
+				if (!user.getBirthday().equals(null)) {
+					logger.info("Normal birthday input !");
+				}
+			} catch (Exception e) {
+				logger.info("None select birthday!");
+				model.addAttribute("failedBirthday", "Bạn phải chọn ngày sinh!");
+			}
+			if(!user.getPassword().equals(passwordConfirm)){
+				model.addAttribute("failedPass", "Password không trùng khớp!");
+				return "register";
+			}
+			if (br.hasErrors()) { // form input have error
+				return "register";
+			} else { // form input is ok
+				
+				userService.saveUser(user);
+				session.setAttribute("user", user);
+				session.setAttribute("userName", user.getFullName());
+				session.setAttribute("idUser", user.getIdUser());
+				return "redirect:login";
+			}
 		}
-	}
 
 	// Processing for login when required request
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

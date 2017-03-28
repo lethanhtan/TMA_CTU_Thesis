@@ -52,10 +52,10 @@ public class ManageTourController {
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when managetour request from admin!");
-		String result;
-		try {
+		String result; // view page mapping
+		try{
 			if (!numOn.equals(null)) {
-				numOnPage = numOn;
+				numOnPage = numOn; // numOn 
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
@@ -77,6 +77,8 @@ public class ManageTourController {
 						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y",
@@ -98,6 +100,8 @@ public class ManageTourController {
 						model.addAttribute("tourList", tourService.listTour()); // create
 						model.addAttribute("numTour", tourService.getNumTour()); // create
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, numOnPage));
