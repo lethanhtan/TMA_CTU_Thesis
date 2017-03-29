@@ -19,25 +19,27 @@
 <meta name="author" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-	
+
 <!-- Styles -->
 <style>
 #chartdiv {
-  width: 100%;
-  height: 500px;
+	width: 100%;
+	height: 500px;
 }
-
 .amcharts-export-menu-top-right {
-  top: 10px;
-  right: 0;
+	top: 10px;
+	right: 0;
 }
 </style>
 
 <!-- Resources -->
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script
+	src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet"
+	href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+	type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
@@ -101,25 +103,28 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath }/managetour"
-								class="fa-gear">Quản Lý Tour</a></li>
-							<li><a class="fa-gear">Thống kê dữ liệu</a>
-								<ul>
-									<li><a href="<c:url value="/toursales" />">Doanh số tour</a></li>
-									<li><a href="<c:url value="/tourres" />">Tour đăng ký</a></li>
-								</ul></li>
+							<li><a href="${pageContext.request.contextPath}/managetour"
+								class="fa-cogs">Quản Lý Tour</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/manageregister"
+								href="${pageContext.request.contextPath}/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath }/managedata"
-								class="fa-gear">Quản Lý Dữ Liệu</a>
+							<li><a href="${pageContext.request.contextPath}/manageuser"
+								class="fa-users">Quản Lý Tài Khoản</a></li>
+							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
+									<li class="parent"><span>Thống kê</span>
+										<ul>
+											<li><a href="<c:url value="/toursales" />">Doanh số
+													tour</a></li>
+											<li><a href="<c:url value="/tourres" />">Tour đăng
+													ký</a></li>
+										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Logout</a></li>
+									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -127,106 +132,131 @@
 			</div>
 		</div>
 		<!-- End Top Menu -->
+
 		<div id="post_header" class="container" style="height: 40px">
 			<!-- Spacing below header -->
 		</div>
 		<div id="content-top-border" class="container"></div>
 		<!-- === END HEADER === -->
-<!-- === BEGIN CONTENT === -->
-<div id="content">
-	<div class="container background-white">
-		<h1 align="center">Biểu đồ doanh số tour theo tháng</h1>
-		<div class="container">
-			<!-- Chart code -->
-<script>
-var chart = AmCharts.makeChart("chartdiv", {
-  "type": "serial",
-  "theme": "light",
-  "marginRight": 70,
-  "dataProvider": [{
-    "month": "1",
-    "sales": 3025,
-    "color": "#FF0F00"
-  }, {
-    "month": "2",
-    "sales": 1882,
-    "color": "#FF6600"
-  }, {
-    "month": "3",
-    "sales": 1809,
-    "color": "#FF9E01"
-  }, {
-    "month": "4",
-    "sales": 1322,
-    "color": "#FCD202"
-  }, {
-    "month": "5",
-    "sales": 1122,
-    "color": "#F8FF01"
-  }, {
-    "month": "6",
-    "sales": 1114,
-    "color": "#B0DE09"
-  }, {
-    "month": "7",
-    "sales": 984,
-    "color": "#04D215"
-  }, {
-    "month": "8",
-    "sales": 711,
-    "color": "#0D8ECF"
-  }, {
-    "month": "9",
-    "sales": 665,
-    "color": "#0D52D1"
-  }, {
-    "month": "10",
-    "sales": 580,
-    "color": "#2A0CD0"
-  }, {
-    "month": "11",
-    "sales": 443,
-    "color": "#8A0CCF"
-  }, {
-    "month": "12",
-    "sales": 441,
-    "color": "#CD0D74"
-  }],
-  "valueAxes": [{
-    "axisAlpha": 0,
-    "position": "left",
-    "title": "Biểu đồ doanh số tour"
-  }],
-  "startDuration": 1,
-  "graphs": [{
-    "balloonText": "<b>[[category]]: [[value]]</b>",
-    "fillColorsField": "color",
-    "fillAlphas": 0.9,
-    "lineAlpha": 0.2,
-    "type": "column",
-    "valueField": "sales"
-  }],
-  "chartCursor": {
-    "categoryBalloonEnabled": false,
-    "cursorAlpha": 0,
-    "zoomable": false
-  },
-  "categoryField": "month",
-  "categoryAxis": {
-    "gridPosition": "start",
-    "labelRotation": 45
-  },
-  "export": {
-    "enabled": true
-  }
+		<!-- === BEGIN CONTENT === -->
+		<div id="content">
+			<div class="container background-white">
+				<h1 align="center">Biểu đồ doanh số tour theo tháng</h1>
+				<h1 align="center">(${year})</h1>
+				<div class="container">
+						<div class="row">
+							<form role="form" class="form-inline">
+								<div class="form-group">
+									<label for="selectUser"
+										style="float: left; padding: 6px 12px 2px 12px;">Năm:</label>
+									<select id="selectUser" style="width: auto;"
+										class="form-control selectWidth" name="year">
+										<option class="">2016</option>
+										<option class="">2017</option>
+										<option class="">2018</option>
+									</select>
+								</div>
+								<div class="btn-group">
+									<button class="btn btn-default">Chọn</button>
+								</div>
+							</form>
+						</div>
+						<!-- End Row -->
+					<!-- End Container -->
 
-});
-</script>
-			<div class="row margin-vert-40">
-				<div id="chartdiv"></div>
+					<!-- Chart code -->
+					<script>
+						var chartData = [ {
+							"month" : "1",
+							"sales" : "${sales1}",
+							"color" : "#FF0F00"
+						}, {
+							"month" : "2",
+							"sales" : "${sales2}",
+							"color" : "#FF6600"
+						}, {
+							"month" : "3",
+							"sales" : "${sales3}",
+							"color" : "#FF9E01"
+						}, {
+							"month" : "4",
+							"sales" : "${sales4}",
+							"color" : "#FCD202"
+						}, {
+							"month" : "5",
+							"sales" : "${sales5}",
+							"color" : "#F8FF01"
+						}, {
+							"month" : "6",
+							"sales" : "${sales6}",
+							"color" : "#B0DE09"
+						}, {
+							"month" : "7",
+							"sales" : "${sales7}",
+							"color" : "#04D215"
+						}, {
+							"month" : "8",
+							"sales" : "${sales8}",
+							"color" : "#0D8ECF"
+						}, {
+							"month" : "9",
+							"sales" : "${sales9}",
+							"color" : "#0D52D1"
+						}, {
+							"month" : "10",
+							"sales" : "${sales10}",
+							"color" : "#2A0CD0"
+						}, {
+							"month" : "11",
+							"sales" : "${sales11}",
+							"color" : "#8A0CCF"
+						}, {
+							"month" : "12",
+							"sales" : "${sales12}",
+							"color" : "#CD0D74"
+						} ];
+						var chart = AmCharts
+								.makeChart(
+										"chartdiv",
+										{
+											"type" : "serial",
+											"theme" : "light",
+											"marginRight" : 70,
+											"dataProvider" : chartData,
+											"valueAxes" : [ {
+												"axisAlpha" : 0,
+												"position" : "left",
+												"title" : "Biểu đồ doanh số tour"
+											} ],
+											"startDuration" : 1,
+											"graphs" : [ {
+												"balloonText" : "<b>[[category]]: [[value]]</b>",
+												"fillColorsField" : "color",
+												"fillAlphas" : 0.9,
+												"lineAlpha" : 0.2,
+												"type" : "column",
+												"valueField" : "sales"
+											} ],
+											"chartCursor" : {
+												"categoryBalloonEnabled" : false,
+												"cursorAlpha" : 0,
+												"zoomable" : false
+											},
+											"categoryField" : "month",
+											"categoryAxis" : {
+												"gridPosition" : "start",
+												"labelRotation" : 45
+											},
+											"export" : {
+												"enabled" : true
+											}
+										});
+					</script>
+					<div class="row margin-vert-40">
+						<div id="chartdiv"></div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<!-- === END CONTENT === -->
+		<!-- === END CONTENT === -->
 <%@ include file="adminfooter.jsp"%>
