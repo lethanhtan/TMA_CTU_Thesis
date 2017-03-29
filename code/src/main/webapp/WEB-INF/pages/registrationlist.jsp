@@ -10,8 +10,8 @@
 			<!-- Tab v2 -->
 			<div class="tabs alternative">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#registrationlist" data-toggle="tab">Danh
-							Sách Đăng Ký</a></li>
+					<li class="active"><a href="#registrationlist"
+						data-toggle="tab">Danh Sách Đăng Ký</a></li>
 					<li><a href="#cancellist" data-toggle="tab">Danh Sách Hủy</a></li>
 				</ul>
 				<div class="tab-content">
@@ -46,6 +46,23 @@
 								gia tour này!</h1>
 						</c:if>
 						<c:if test="${!empty registrationList}">
+							<!-- Choose Number For Display -->
+							<div class="row">
+								<form role="form" class="form-inline" action="tourlist"
+									method="get">
+									<label for="selectTour"
+										style="text-align: left; margin-left: 2%">Số người
+										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
+										name="numOn">
+										<option>5</option>
+										<option>10</option>
+										<option>15</option>
+									</select>
+									<button class="btn btn-aqua">Chọn</button>
+								</form>
+							</div>
+							</br>
+							<!-- End Choose Number For Display -->
 							<table>
 								<thead>
 									<tr>
@@ -80,6 +97,10 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <a
+												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+														class="btn btn-sm btn-aqua">
+														<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+													</button></a> <a
 												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
@@ -93,39 +114,35 @@
 						<hr class="margin-vert-50">
 						<div class="text-center">
 							<!-- Pagination -->
-							<c:if test="${numBookTour >= 5}">
-								<!-- set active pagination when numTour >= 5 -->
+							<c:if test="${numBookTour > numOnPage}">
+								<!-- Paging when number of element > number of book tour -->
 								<ul class="pagination">
 									<c:if test="${param.page != null}">
-										<c:if
-											test="${numBookTour/5 - param.page == numBookTour/5 - 1}">
-											<li class="disabled"><a href="#">&laquo;</a></li>
+										<c:if test="${param.page == 1}">
+											<li class="disabled"></li>
 										</c:if>
-										<c:if
-											test="${numBookTour/5 - param.page != numBookTour/5 - 1}">
+										<c:if test="${param.page > 1 }">
 											<li><a
-												href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page -1}">&laquo;</a>
+												href="${pageContext.request.contextPath }/registrationlist/${tour.idTour}?page=${param.page -1}">&laquo;</a>
 											</li>
 										</c:if>
 									</c:if>
 									<c:forEach items="${pageNum}" var="pageE">
-										<c:if test="${pageE == param.page}">
+										<c:if test="${pageE == page}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour }?page=${pageE}">${pageE}</a></li>
+												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour}?page=${pageE}">${pageE}</a></li>
 										</c:if>
-										<c:if test="${pageE != param.page}">
+										<c:if test="${pageE != page}">
 											<li><a
-												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour }?page=${pageE}">${pageE}</a></li>
+												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour}?page=${pageE}">${pageE}</a></li>
 										</c:if>
 									</c:forEach>
-									<c:if test="${numBookTour/5 - param.page == 0}">
-										<li class="disabled"><a
-											href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page + 1}">&raquo;</a>
-										</li>
+									<c:if test="${numBookTour/numOnPage - param.page == 0}">
+										<li class="disabled"><a>&raquo;</a></li>
 									</c:if>
-									<c:if test="${numBookTour/5 - param.page > 0}">
+									<c:if test="${numBookTour/numOnPage - param.page > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/registrationlist/${tour.idTour }?page=${param.page + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath }/registrationlist/${tour.idTour}?page=${page + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
@@ -161,6 +178,23 @@
 								tham gia tour này!</h1>
 						</c:if>
 						<c:if test="${!empty cancelList}">
+							<!-- Choose Number For Display -->
+							<div class="row">
+								<form role="form" class="form-inline" action="registrationlist"
+									method="get">
+									<label for="selectTour"
+										style="text-align: left; margin-left: 2%">Số người
+										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
+										name="numOn">
+										<option>5</option>
+										<option>10</option>
+										<option>15</option>
+									</select>
+									<button class="btn btn-aqua">Chọn</button>
+								</form>
+							</div>
+							</br>
+							<!-- End Choose Number For Display -->
 							<table>
 								<thead>
 									<tr>
@@ -207,50 +241,85 @@
 						<hr class="margin-vert-50">
 						<div class="text-center">
 							<!-- Pagination -->
-							<c:if test="${numCancelReg >= 5}">
-								<!-- set active pagination when numTour >= 5 -->
+							<c:if test="${numCancelReg > numOnPage2}">
+								<!-- Paging when number of element > number of book tour -->
 								<ul class="pagination">
 									<c:if test="${param.page2 != null}">
-										<c:if
-											test="${numCancelReg/5 - param.page2 == numCancelReg/5 - 1}">
-											<li class="disabled"><a href="#">&laquo;</a></li>
+										<c:if test="${param.page2 == 1}">
+											<li class="disabled"></li>
 										</c:if>
-										<c:if
-											test="${numCancelReg/5 - param.page2 != numCancelReg/5 - 1}">
+										<c:if test="${param.page2 > 1 }">
 											<li><a
-												href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 -1}">&laquo;</a>
+												href="${pageContext.request.contextPath }/cancellist/${tour.idTour}?page=${param.page2 -1}">&laquo;</a>
 											</li>
 										</c:if>
 									</c:if>
-									<c:forEach items="${pageNum2}" var="pageE">
-										<c:if test="${pageE2 == param.page2}">
+									<c:forEach items="${pageNum2}" var="pageE2">
+										<c:if test="${pageE2 == page2}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/cancellist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
 										</c:if>
-										<c:if test="${pageE2 != param.page2}">
+										<c:if test="${pageE2 != page2}">
 											<li><a
-												href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/cancellist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
 										</c:if>
 									</c:forEach>
-									<c:if test="${numCancelReg/5 - param.page2 == 0}">
-										<li class="disabled"><a
-											href="${pageContext.request.contextPath }/canellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
-										</li>
+									<c:if test="${numCancelReg/numOnPage2 - param.page2 == 0}">
+										<li class="disabled"><a>&raquo;</a></li>
 									</c:if>
-									<c:if test="${numCancelReg/5 - param.page2 > 0}">
+									<c:if test="${numCancelReg/numOnPage2 - param.page2 > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath }/cancellist/${tour.idTour}?page=${page2 + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
 							</c:if>
 						</div>
 						<!-- End Pagination -->
+						<!-- Pagination -->
+						<c:if test="${numCancelReg >= 5}">
+							<!-- set active pagination when numTour >= 5 -->
+							<ul class="pagination">
+								<c:if test="${param.page2 != null}">
+									<c:if
+										test="${numCancelReg/5 - param.page2 == numCancelReg/5 - 1}">
+										<li class="disabled"><a href="#">&laquo;</a></li>
+									</c:if>
+									<c:if
+										test="${numCancelReg/5 - param.page2 != numCancelReg/5 - 1}">
+										<li><a
+											href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 -1}">&laquo;</a>
+										</li>
+									</c:if>
+								</c:if>
+								<c:forEach items="${pageNum2}" var="pageE">
+									<c:if test="${pageE2 == param.page2}">
+										<li class="active"><a
+											href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
+									</c:if>
+									<c:if test="${pageE2 != param.page2}">
+										<li><a
+											href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
+									</c:if>
+								</c:forEach>
+								<c:if test="${numCancelReg/5 - param.page2 == 0}">
+									<li class="disabled"><a
+										href="${pageContext.request.contextPath }/canellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
+									</li>
+								</c:if>
+								<c:if test="${numCancelReg/5 - param.page2 > 0}">
+									<li><a
+										href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
+									</li>
+								</c:if>
+							</ul>
+						</c:if>
 					</div>
+					<!-- End Pagination -->
 				</div>
 			</div>
-			<!-- End Tab v2 -->
 		</div>
+		<!-- End Tab v2 -->
 	</div>
 </div>
 <!-- === END CONTENT === -->
