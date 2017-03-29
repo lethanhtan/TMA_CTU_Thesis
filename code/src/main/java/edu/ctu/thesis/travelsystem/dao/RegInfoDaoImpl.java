@@ -138,4 +138,5 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			logger.info("Delete customer success!");
 		}
 	}
+
 }

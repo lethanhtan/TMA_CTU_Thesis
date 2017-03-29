@@ -16,7 +16,9 @@
 							</div>
 						</div>
 						<div class="row">
-						<div class="col-lg-12 col-sm-8">
+						<div class="col-lg-12 col-sm-12">
+							<small style="color:red">${error}</small>
+							<br />
 							<label>Chọn tệp</label>
 							<div class="input-group">
 								<label class="input-group-btn"> <span

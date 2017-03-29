@@ -94,6 +94,7 @@ public class ManageUserController {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("user", new User());
 						model.addAttribute("id", id);
+						System.out.println(">>>>" + numOnPage);
 						model.addAttribute("userList", userService.userList()); // create
 						model.addAttribute("numUser", userService.getNumUser()); // create
 						model.addAttribute("pageNum", pageNum); // create number
