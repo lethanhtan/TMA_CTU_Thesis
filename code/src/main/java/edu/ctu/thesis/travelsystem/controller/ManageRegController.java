@@ -1,6 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
@@ -38,7 +41,7 @@ public class ManageRegController {
 
 	private static int numOnPage = 5;
 	private static int numOnPage2 = 5;
-	
+
 	private static final Logger logger = Logger.getLogger(ManageRegController.class);
 
 	// Display tour list
@@ -131,10 +134,10 @@ public class ManageRegController {
 		String result;
 		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; 
+				numOnPage = numOn;
 			}
 			if (!numOn2.equals(null)) {
-				numOnPage = numOn2; 
+				numOnPage = numOn2;
 			}
 		} catch (Exception e) {
 			logger.info("None select number of book tour on page!");
@@ -188,8 +191,8 @@ public class ManageRegController {
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y",
-								tourService.paginationY(regInfoService.registrationList(idTour).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(regInfoService.registrationList(idTour).size(),
+								page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -215,8 +218,8 @@ public class ManageRegController {
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
-						model.addAttribute("y2", tourService
-								.paginationY(regInfoService.cancelListByValue(valueSearch2, idTour).size(), page2, numOnPage2));
+						model.addAttribute("y2", tourService.paginationY(
+								regInfoService.cancelListByValue(valueSearch2, idTour).size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -265,38 +268,34 @@ public class ManageRegController {
 
 	// Forward to Design form
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.GET)
-	public String designForm(ModelMap model, @PathVariable("idTour") int idTour, @Valid Tour tour) {
+	public String designForm(ModelMap model, @PathVariable("idTour") int idTour) throws ParseException {
 		logger.info("Display design form page when admin request!");
-		tour = tourService.findTourById(idTour);
-		logger.info("Tour Info: " + tour);
+		Tour tour = tourService.findTourById(idTour);
 		if (tour != null) {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String departureDate = sdf.format(tour.getDepartureDate());
+			String returnDate = sdf.format(tour.getReturnDate());
+			String dateAllowReg = sdf.format(tour.getDateAllowReg());
+			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
+			model.addAttribute("date1", departureDate);
+			model.addAttribute("date2", returnDate);
+			model.addAttribute("date3", dateAllowReg);
+			model.addAttribute("date4", dateAllowCancel);
 			model.addAttribute("designForm", tour);
-			model.addAttribute("tour", idTour);
-			logger.info("Design form for: " + idTour);
+			model.addAttribute("idTour", idTour);
+		} else {
+			logger.info("Null Object!");
 		}
-		logger.info("Load design form success");
 		return "designform";
 	}
 
 	// Test errors
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.POST)
-	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid RegistrationInfo regInfo,
-			BindingResult br, HttpSession session, @PathVariable("idTour") int idTour,
-			@RequestParam("other") String other, @RequestParam("type") String type) {
-		if (other != null && type != null) {
-			regInfoService.addFieldOption(other, type); // add a field
-		}
-		// Checking at least one field of registration is true
-		if ((regInfo.getFieldAddress() || regInfo.getFieldEmail() || regInfo.getFieldIdCard() || regInfo.getFieldName()
-				|| regInfo.getFieldPhone() || regInfo.getFieldSex()) == true) {
-			// Have at least 1 field is true
-			regInfoService.saveRegInfoForm(regInfo, idTour);
-			logger.info("Saved registration form into DB successfully");
-			return "redirect:/manageregister";
-		} else {
-			// Haven't field is true
-			return "designform";
-		}
+	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid Tour tour, BindingResult br,
+			HttpSession session, @PathVariable("idTour") int idTour) {
+		tourService.updateTour(tour);
+		logger.info("Saved registration form into DB successfully");
+		return "redirect:/manageregister";
 	}
 
 	// Delete customer after cancel registration
@@ -360,7 +359,7 @@ public class ManageRegController {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
-			// bookTour.setDateBook(Calendar.getInstance().getTime());
+			bookTour.setDateBook(Calendar.getInstance().getTime());
 			bookTourService.editBookTour(bookTour);
 			return "redirect:/registrationlist/{idTour}";
 		}

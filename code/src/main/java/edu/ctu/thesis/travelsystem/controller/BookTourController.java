@@ -206,7 +206,7 @@ public class BookTourController {
 			if (tour != null) {
 				model.addAttribute("tour", tour);
 			}
-			return "editbooktour";
+			return "editbooktour	";
 		} else {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
