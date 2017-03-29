@@ -110,9 +110,8 @@
 							<div class="col-lg-6 text-center">
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
-							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/tourlist'/>"><button
-										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
+							<div class="col-lg-6 text-center"><button onclick="goBack()"
+										class="btn btn-primary" type="button">Hủy Bỏ</button>
 							</div>
 						</div>
 					</s:form>
@@ -124,5 +123,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp"%>
+<%@ include file="userfooter.jsp"%>
 <!-- === END FOOTER === -->

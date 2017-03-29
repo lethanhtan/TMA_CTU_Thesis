@@ -108,8 +108,8 @@
 										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 							</div>
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/tourlist'/>"><button
-										class="btn btn-primary" type="button">Trở Về</button></a>
+								<button onclick="goBack()"
+										class="btn btn-primary" type="button">Trở Về</button>
 							</div>
 						</div>
 					</s:form>
@@ -120,4 +120,4 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+<%@ include file="userfooter.jsp"%>

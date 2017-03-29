@@ -125,6 +125,14 @@
 	src="${pageContext.request.contextPath}/resources/js/checkboxvalidation.js"></script>
 <!--  reCAPTCHA -->
 <script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
+<!--  History back -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/historyback.js"
+	type="text/javascript"></script>
+<!-- Show/ hidden fields -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/showhiddenfields.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>
