@@ -73,7 +73,7 @@ public class ManageRegController {
 						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(),
 								page, numOnPage));
 						result = "manageregister";
@@ -93,6 +93,8 @@ public class ManageRegController {
 						model.addAttribute("tourList", tourService.listTour()); // create
 						model.addAttribute("numTour", tourService.getNumTour()); // create
 						model.addAttribute("pageNum", pageNum); // create number
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y",
