@@ -26,7 +26,6 @@
 	width: 100%;
 	height: 500px;
 }
-
 .amcharts-export-menu-top-right {
 	top: 10px;
 	right: 0;
@@ -251,7 +250,6 @@
 											"export" : {
 												"enabled" : true
 											}
-
 										});
 					</script>
 					<div class="row margin-vert-40">
@@ -261,4 +259,4 @@
 			</div>
 		</div>
 		<!-- === END CONTENT === -->
-		<%@ include file="adminfooter.jsp"%>
+<%@ include file="adminfooter.jsp"%>

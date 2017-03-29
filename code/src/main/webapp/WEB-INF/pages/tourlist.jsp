@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Search Form -->
-			<div class="error-404-page text-center"style="margin-left: 60%;">
+			<div class="error-404-page text-center" style="margin-left: 60%;">
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
@@ -27,15 +27,16 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<div class="row">
-					<form role="form" class="form-inline" action="tourlist" method="get">
+					<form role="form" class="form-inline" action="tourlist"
+						method="get">
 						<div class="form-group">
 							<label for="selectUser"
 								style="float: left; padding: 6px 12px 2px 12px;">Số
 								tour/trang:</label> <select id="selectUser" style="width: auto;"
 								class="form-control selectWidth" name="numOn">
-								<option >5</option>
-								<option >10</option>
-								<option >15</option>
+								<option>5</option>
+								<option>10</option>
+								<option>15</option>
 							</select>
 						</div>
 						<div class="btn-group">

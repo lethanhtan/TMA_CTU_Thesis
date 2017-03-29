@@ -58,26 +58,26 @@
 							</div>
 						</div>
 						<div class="row col-sm-6">
+							<div class="input-group margin-bottom-20">
+								<label>Thông thông khác</label> <input
+									placeholder="Thông tin khác" class="form-control" type="text"
+									name="other">
+							</div>
+							<div>
+								<label>Kiểu dữ liệu</label> <br />
 								<div class="input-group margin-bottom-20">
-									<label>Thông thông khác</label> 
-									<input placeholder="Thông tin khác" class="form-control"
-										type="text" name="other">
+									<span class="input-group-addon"> <i
+										class="fa fa-exchange"></i>
+									</span> <select class="form-control margin-bottom-20" name="type">
+										<option>varchar(10)</option>
+										<option>varchar(20)</option>
+										<option>varchar(50)</option>
+										<option>date</option>
+										<option>int</option>
+										<option>bit(1)</option>
+									</select>
 								</div>
-								<div >
-									<label>Kiểu dữ liệu</label> <br />
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i class="fa fa-exchange"></i>
-										</span> <select class="form-control margin-bottom-20"
-											name="type">
-											<option>varchar(10)</option>
-											<option>varchar(20)</option>
-											<option>varchar(50)</option>
-											<option>date</option>
-											<option>int</option>
-											<option>bit(1)</option>
-										</select>
-									</div>
-								</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-8">

@@ -12,6 +12,5 @@ public class TourRegController {
 	public String showForm(ModelMap model) {
 		return "charttourres";
 	}
-	
 }
 

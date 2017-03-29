@@ -3,22 +3,27 @@ package edu.ctu.thesis.travelsystem.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	// Fill the fields automatically
 	private static final Logger logger = Logger.getLogger(BookTourDaoImpl.class);
 	private TourDao tourDao;
+	@Autowired
+	private BookTourService bookTourService;
 
 	// Save book tour form when have id tour
 	@Override
@@ -93,6 +98,12 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		String hql = "FROM BookTour";
 		List<BookTour> bookTourList = session.createQuery(hql).list();
 		for (BookTour bookTour : bookTourList) {
+			if (bookTour.getTour().getDepartureDate().before(Calendar.getInstance().getTime())) {
+				bookTour.setGoneOrNot(true);
+			} else {
+				bookTour.setGoneOrNot(false);
+			}
+			bookTourService.editBookTour(bookTour);
 			logger.info("Tour List:" + bookTour);
 		}
 		return bookTourList;
@@ -209,12 +220,12 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		query.setParameter("idTour", idTour);
 		List<BookTour> bookTourList = query.list();
 		for (BookTour bookTour : bookTourList) {
-			logger.info("Tour List:" + bookTour);
+			logger.info("Book tour List:" + bookTour);
 		}
 		return bookTourList;
 	}
-	
-	// add a new colum to tbale
+
+	// Add a new colum to table
 	@Override
 	public void addFiledOption(String name, String type) {
 		Session session = getCurrentSession();
@@ -222,8 +233,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		session.createSQLQuery(sql).addEntity(BookTour.class).executeUpdate();
 		session.flush();
 	}
-	
-	// drop a column to table
+
+	// Drop a column to table
 	@Override
 	public void dropFiledOption(String name) {
 		Session session = getCurrentSession();

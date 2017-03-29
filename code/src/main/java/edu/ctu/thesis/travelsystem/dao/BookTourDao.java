@@ -8,7 +8,7 @@ public interface BookTourDao {
 	public void saveBookTour(BookTour bookTour, int idTour);
 
 	public List<BookTour> bookTourList();
-	
+
 	public List<BookTour> listBookTourById(int idTour);
 
 	public BookTour searchById(int idBT);
@@ -30,9 +30,8 @@ public interface BookTourDao {
 	public List<BookTour> listTourByYear(int year);
 
 	public int listBookTourByMonth(int month, List<BookTour> list);
-	
-	public void addFiledOption(String name, String type);
-	
-	public void dropFiledOption(String name);
 
+	public void addFiledOption(String name, String type);
+
+	public void dropFiledOption(String name);
 }

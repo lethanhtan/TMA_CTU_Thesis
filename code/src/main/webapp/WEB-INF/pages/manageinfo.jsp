@@ -29,23 +29,6 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<hr class="margin-vert-20">
-				<div class="row">
-					<form role="form" class="form-inline">
-						<div class="form-group">
-							<label for="selectUser"
-								style="float: left; padding: 6px 12px 2px 12px;">Số
-								tour/trang:</label> <select id="selectUser" style="width: auto;"
-								class="form-control selectWidth" name="numOn">
-								<option class="">5</option>
-								<option class="">10</option>
-								<option class="">15</option>
-							</select>
-						</div>
-						<div class="btn-group">
-							<button class="btn btn-default">Chọn</button>
-						</div>
-					</form>
-				</div>
 				<!-- Table -->
 				<c:if test="${empty tourList}">
 					<h1 align="center">Không có tour nào!</h1>
@@ -74,57 +57,73 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
 										&nbsp;&nbsp;&nbsp;</td>
-									<td><a
-										href="<c:url value='registrationlist/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-success">
-												<i class="fa fa-list-ol">&nbsp;Quản Lý Danh Sách</i>
+									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
+											<button class="btn btn-sm btn-violet">
+												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>
-									</a><a href="<c:url value='designform/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-danger">
-												<i class="fa fa-check-square-o">&nbsp;Thiết Kế Form</i>
-											</button>
-									</a></td>
+									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-success">
+												<i class="fa fa-pencil">&nbsp;Sửa</i>
+											</button></a> <!-- <a data-toggle="modal" --> <a
+										href="<c:url value='managetour/delete/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-trash-o">&nbsp;Xóa</i>
+											</button> <!-- Popup Cofirm --> <!-- <div id="deleteConfirm" class="modal fade">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
+												</br>
+												<button type="button" class="btn btn-default"><a href="<c:url value='managetour#deleteCofirm/delete/${tour.idTour}'/>">Có</a></button>
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">Không</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- End Popup Cofirm --></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table>
-					</br>
+					</table></br>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numTour > numOnPage}">
-						<!-- Paging when number of element > number of tour -->
+					<c:if test="${numTour > 5}">
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">
-								<c:if test="${param.page == 1}">
-									<li class="disabled"></li>
+								<c:if test="${numTour/5 - param.page == numTour/5 - 1}">
+									<li class="disabled"><a href="#">&laquo;</a></li>
 								</c:if>
-								<c:if test="${param.page > 1 }">
+								<c:if test="${numTour/5 - param.page != numTour/5 - 1}">
 									<li><a
-										href="${pageContext.request.contextPath }/manageregister?page=${param.page -1}">&laquo;</a>
+										href="${pageContext.request.contextPath }/managetour?page=${param.page -1}">&laquo;</a>
 									</li>
 								</c:if>
 							</c:if>
 							<c:forEach items="${pageNum}" var="pageE">
-								<c:if test="${pageE == page}">
+								<c:if test="${pageE == param.page}">
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/manageregister?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
 								</c:if>
-								<c:if test="${pageE != page}">
+								<c:if test="${pageE != param.page}">
 									<li><a
-										href="${pageContext.request.contextPath}/manageregister?page=${pageE}">${pageE}</a></li>
+										href="${pageContext.request.contextPath}/managetour?page=${pageE}">${pageE}</a></li>
 								</c:if>
 							</c:forEach>
-							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"><a>&raquo;</a>
+							<c:if test="${numTour/5 - param.page == 0}">
+								<li class="disabled"><a
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
 								</li>
 							</c:if>
-							<c:if test="${numTour/numOnPage - param.page > 0}">
+							<c:if test="${numTour/5 - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/manageregister?page=${page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/managetour?page=${param.page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>

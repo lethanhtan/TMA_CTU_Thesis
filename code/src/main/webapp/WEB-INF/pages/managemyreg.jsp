@@ -51,6 +51,7 @@
 								<thead>
 									<tr>
 										<th>STT</th>
+										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
@@ -65,6 +66,7 @@
 										<!-- use subList render list book tour to display -->
 										<tr>
 											<td>${myRegList.indexOf(bookTour) + 1}</td>
+											<td>${bookTour.tour.name}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
@@ -82,7 +84,7 @@
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
 															class="btn btn-sm btn-danger">
-															<i class="fa fa-pencil">&nbsp;Hủy Đăng Ký</i>
+															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
 												</c:if></td>
 										</tr>
@@ -158,18 +160,26 @@
 						<hr class="margin-vert-20">
 						<!-- Table -->
 						<c:if test="${empty myCancelList}">
-							<h1 style="text-align: center;">Bạn chưa hủy đăng ký tham
-								gia tour nào!</h1>
+							<c:choose>
+								<c:when test="${search2 == 1}">
+									<h1 style="text-align: center;">Không tìm thấy kết quả
+										trùng khớp!</h1>
+								</c:when>
+								<c:otherwise>
+									<h1 style="text-align: center;">Bạn chưa hủy đăng ký tham
+										gia tour nào!</h1>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 						<c:if test="${!empty myCancelList}">
 							<table>
 								<thead>
 									<tr>
 										<th>STT</th>
+										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
 										<th>Số vé</th>
 										<th></th>
 										<th></th>
@@ -181,10 +191,10 @@
 										<!-- use subList render list cancel book tour to display -->
 										<tr>
 											<td>${myCancelList.indexOf(myCancelReg) + 1}</td>
+											<td>${myCancelReg.tour.name}</td>
 											<td>${myCancelReg.cusName}</td>
 											<td>${myCancelReg.cusSex}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${myCancelReg.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myCancelReg.cusEmail}</td>
 											<td>&nbsp;&nbsp;&nbsp;
 												${myCancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
 											<td><a
@@ -281,10 +291,10 @@
 								<thead>
 									<tr>
 										<th>STT</th>
+										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
 										<th>Số vé</th>
 										<th></th>
 										<th></th>
@@ -296,12 +306,12 @@
 										<!-- use subList render list cancel book tour to display -->
 										<tr>
 											<td>${myBookTourList.indexOf(myBookTour) + 1}</td>
+											<td>${myBookTour.tour.name}</td>
 											<td>${myBookTour.cusName}</td>
 											<td>${myBookTour.cusSex}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${myBookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myBookTour.cusEmail}</td>
 											<td>&nbsp;&nbsp;&nbsp;
-												${myBookTour.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
+												${myBookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myBookTour.idBT}/${myBookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -366,5 +376,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="adminfooter.jsp"%>
+<%@ include file="userfooter.jsp"%>
 <!-- === END FOOTER === -->

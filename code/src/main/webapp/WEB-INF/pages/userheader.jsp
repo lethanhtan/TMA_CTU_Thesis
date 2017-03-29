@@ -95,8 +95,8 @@
 								class="fa-home">Trang Chủ</a></li>
 							<li><span class="fa-question">Giới Thiệu</span>
 								<ul>
-									<li><a href="aboutus">Về Chúng Tôi</a></li>
-									<li><a href="faq">Câu Hỏi Thường Gặp</a></li>
+									<li><a href="${pageContext.request.contextPath}/aboutus">Về Chúng Tôi</a></li>
+									<li><a href="${pageContext.request.contextPath}/faq">Câu Hỏi Thường Gặp</a></li>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath}/tourlist"
 								class="fa-book">Đặt Vé</a></li>

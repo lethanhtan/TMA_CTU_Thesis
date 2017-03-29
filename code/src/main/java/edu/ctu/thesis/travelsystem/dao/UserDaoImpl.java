@@ -6,17 +6,21 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.controller.ManageUserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
-import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.model.User;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class UserDaoImpl extends AbstractDao implements UserDao {
+	@Autowired
+	private BookTourService bookTourService;
+
 	EncoderPassword ep = new EncoderPassword();
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
@@ -178,7 +182,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myRegListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
 		Query query = session.createQuery(hql);
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
@@ -199,11 +203,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myRegList(int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false";
+		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = false";
 		Query query = session.createQuery(hql);
 		query.setParameter("idUser", idUser);
 		List<BookTour> myRegList = query.list();
 		for (BookTour bookTour : myRegList) {
+			if (bookTour.getTour().getDepartureDate().before(Calendar.getInstance().getTime())) {
+				bookTour.setGoneOrNot(true);
+			} else {
+				bookTour.setGoneOrNot(false);
+			}
+			bookTourService.editBookTour(bookTour);
 			logger.info("My registration List:" + bookTour);
 		}
 		return myRegList;
@@ -302,15 +312,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		query.setParameter("idUser", idUser);
 		List<BookTour> myBookTourList = query.list();
 		for (BookTour bookTour : myBookTourList) {
-			//Tour tour = tourService.findTourById(idTour);
-			/*bookTour.setTour(tour);
-			if (tour.getDepartureDate().before(Calendar.getInstance().getTime())) {
-				bookTour.setGoneOrNot(true);
-			} else {
-				bookTour.setGoneOrNot(false);
-			}
-			bookTourService.editBookTour(bookTour);
-			logger.info("Registration List:" + bookTour);*/
 			logger.info("My registration List:" + bookTour);
 		}
 		return myBookTourList;

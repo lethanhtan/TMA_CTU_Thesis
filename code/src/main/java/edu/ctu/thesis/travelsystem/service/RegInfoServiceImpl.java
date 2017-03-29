@@ -53,8 +53,8 @@ public class RegInfoServiceImpl implements RegInfoService {
 	
 	@Override
 	@Transactional
-	public List<BookTour> cancelListByValue(String value) {
-		return this.regInfoDao.cancelListByValue(value);
+	public List<BookTour> cancelListByValue(String value, int idTour) {
+		return this.regInfoDao.cancelListByValue(value, idTour);
 	}
 
 	@Override
@@ -65,8 +65,8 @@ public class RegInfoServiceImpl implements RegInfoService {
 	
 	@Override
 	@Transactional
-	public Integer getNumCancelBySearch(String value) {
-		return this.regInfoDao.getNumCancelBySearch(value);
+	public Integer getNumCancelBySearch(String value, int idTour) {
+		return this.regInfoDao.getNumCancelBySearch(value, idTour);
 	}
 	
 	@Override

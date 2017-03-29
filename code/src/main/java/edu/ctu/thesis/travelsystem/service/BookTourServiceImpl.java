@@ -91,12 +91,12 @@ public class BookTourServiceImpl implements BookTourService {
 	@Transactional
 	public void addFiledOption(String name, String type) {
 		this.bookTourDao.addFiledOption(name, type);
-		
+
 	}
 
 	@Override
 	public void dropFiledOption(String name) {
 		this.bookTourDao.dropFiledOption(name);
-		
+
 	}
 }

@@ -32,7 +32,7 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	
+
 	private static int numOnPage = 5;
 
 	private static final Logger logger = Logger.getLogger(BookTourController.class);
@@ -42,11 +42,11 @@ public class BookTourController {
 	public String booktourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
-			@RequestParam(required = false, value = "numOn") Integer numOn){
+			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		model.addAttribute("searchedValue", valueSearch);
-		try{
+		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; // numOn 
+				numOnPage = numOn; // numOn
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
@@ -90,8 +90,6 @@ public class BookTourController {
 				model.addAttribute("numTour", tourService.getNumTourList());
 				// Get number of tour list
 				model.addAttribute("pageNum", pageNum); // Create number of page
-				model.addAttribute("numOnPage", numOnPage);
-				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, numOnPage));
 				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, numOnPage));
@@ -111,8 +109,8 @@ public class BookTourController {
 		try {
 			model.addAttribute("searchedValue", valueSearch);
 			if (valueSearch != null) {
-				logger.info("Search active!");
-				model.addAttribute("bookTour", new BookTour());
+				logger.info("Search active!");			
+				model.addAttribute("bookTour", new BookTour());				
 				model.addAttribute("tour", tourService.findTourById(idTour));
 				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
 				return "booktour";
@@ -146,7 +144,11 @@ public class BookTourController {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			/*bookTour.setIdUser((int) session.getAttribute("idUser"));*/
+			if (session.getAttribute("idUser") != null) {
+				bookTour.setIdUser((int) session.getAttribute("idUser"));
+			} else {
+				bookTour.setIdUser(0);
+			}
 		}
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
@@ -209,8 +211,8 @@ public class BookTourController {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
-			//bookTour.setDateBook(Calendar.getInstance().getTime());
-			/*bookTour.setIdUser((int) session.getAttribute("idUser"));*/
+			bookTour.setDateBook(Calendar.getInstance().getTime());
+			bookTour.setIdUser((int) session.getAttribute("idUser"));
 			bookTourService.editBookTour(bookTour);
 			return "redirect:/tourlist";
 		}

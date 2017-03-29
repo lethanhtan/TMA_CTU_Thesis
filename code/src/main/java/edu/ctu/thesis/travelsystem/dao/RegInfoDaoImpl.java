@@ -1,17 +1,22 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
+import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
+	@Autowired
+	private BookTourService bookTourService;
 	// Fill the fields automatically
 	private static final Logger logger = Logger.getLogger(RegInfoDaoImpl.class);
 
@@ -25,7 +30,12 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		query.setParameter("idTour", idTour);
 		List<BookTour> registrationList = query.list();
 		for (BookTour bookTour : registrationList) {
-			logger.info("Registration List:" + bookTour);
+			if (bookTour.getTour().getDepartureDate().before(Calendar.getInstance().getTime())) {
+				bookTour.setGoneOrNot(true);
+			} else {
+				bookTour.setGoneOrNot(false);
+			}
+			bookTourService.editBookTour(bookTour);
 		}
 		return registrationList;
 	}
@@ -98,11 +108,11 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public List<BookTour> cancelListByValue(String value) {
-		System.out.println(value.contains(value));
+	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		String hql = "FROM BookTour WHERE ID_TOUR := idTour AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
 		Query query = session.createQuery(hql);
+		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
 		List<BookTour> cancelList = query.list();
@@ -117,12 +127,12 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public Integer getNumCancelBySearch(String value) {
-		Integer numCancel = cancelListByValue(value).size();
+	public Integer getNumCancelBySearch(String value, int idTour) {
+		Integer numCancel = cancelListByValue(value, idTour).size();
 		logger.info("Number of registration are: " + numCancel);
 		return numCancel;
 	}
-	
+
 	@Override
 	public void undoCancel(int idBT, int idTour) {
 		Session session = getCurrentSession();
@@ -138,5 +148,4 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			logger.info("Delete customer success!");
 		}
 	}
-
 }

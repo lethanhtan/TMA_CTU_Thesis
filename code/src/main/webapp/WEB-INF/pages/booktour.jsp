@@ -114,17 +114,104 @@
 							<c:if test="${tour.fieldNumOfTicket == true}">
 								<div class="col-sm-5">
 									<label>Số lượng</label>
-									<!-- Show error -->
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i
 											class="fa fa-building-o"></i>
 										</span>
-										<s:input type="number" class="form-control margin-bottom-20"
-											value="1" path="cusNumOfTicket" min="1"
-											max="${tour.ticketAvailability}" />
+										<s:select class="form-control margin-bottom-20"
+											name="cus_offered" id="selectMe" path="cusNumOfTicket">
+											<c:forEach var="j" begin="1" end="4">
+												<option value="${j}">${j}</option>
+											</c:forEach>
+										</s:select>
 									</div>
 								</div>
 							</c:if>
+						</div>
+						<div id="2" class="group">
+								<div class="row">
+									<div class="col-sm-8">
+										<label>Họ tên người thứ 2</label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span>
+											<s:input placeholder="Nhập họ tên" class="form-control"
+												type="text" path="cusName1" />
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label>Năm sinh</label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input placeholder="Nhập năm sinh" class="form-control"
+												type="text" path="cusYearOfBirth1" />
+										</div>
+									</div>
+								</div>
+						</div>
+						<div id="3" class="group">
+							<c:forEach var="i" begin="1" end="2">
+								<div class="row">
+									<div class="col-sm-8">
+										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span>
+											<s:input placeholder="Nhập họ tên" class="form-control"
+												type="text" path="cusName${i}" />
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label>Năm sinh</label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input placeholder="Nhập năm sinh" class="form-control"
+												type="text" path="cusYearOfBirth${i}" />
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						<div id="4" class="group">
+							<c:forEach var="i" begin="1" end="3">
+								<div class="row">
+									<div class="col-sm-8">
+										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span>
+											<s:input placeholder="Nhập họ tên" class="form-control"
+												type="text" path="cusName${i}" />
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label>Năm sinh</label>
+										<!-- Show error -->
+										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input placeholder="Nhập năm sinh" class="form-control"
+												type="text" path="cusYearOfBirth${i}" />
+										</div>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
 						<c:if test="${tour.fieldEmail}">
 							<label>Email</label>

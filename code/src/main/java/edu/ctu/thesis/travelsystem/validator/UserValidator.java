@@ -14,7 +14,7 @@ import edu.ctu.thesis.travelsystem.service.UserService;
 public class UserValidator implements Validator {
 	@Autowired
 	UserService userService;
-	
+
 	@Override
 	public boolean supports(Class<?> arg0) {
 		return User.class.equals(arg0);
@@ -32,6 +32,7 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "address", "NotEmpty.userData.address");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.userData.phone");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.userData.email");
+		ValidationUtils.rejectIfEmpty(errors, "birthday", "NotEmpty.userData.birthday");
 
 		// Catch other errors
 		// Catch size user name
@@ -43,6 +44,7 @@ public class UserValidator implements Validator {
 		if (user.getPassword().length() > 20 || user.getPassword().length() < 8) {
 			errors.rejectValue("password", "Size.userData.password");
 		}
+
 		// cath fullname exception
 		if (user.getFullName().length() > 80 || user.getFullName().length() < 8) {
 			errors.rejectValue("fullName", "Size.userData.fullName");
@@ -55,7 +57,5 @@ public class UserValidator implements Validator {
 		if (validUtil.findAlphabet(user.getPhone())) {
 			errors.rejectValue("phone", "Invalid.userData.phone");
 		}
-		
-		
 	}
 }

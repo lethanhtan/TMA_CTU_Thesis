@@ -90,4 +90,4 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+<%@ include file="userfooter.jsp"%>

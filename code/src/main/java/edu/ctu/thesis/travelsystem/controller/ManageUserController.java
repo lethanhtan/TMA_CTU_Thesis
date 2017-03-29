@@ -34,7 +34,7 @@ public class ManageUserController {
 	private UserService userService;
 	@Autowired
 	private TourService tourService;
-	
+
 	private static int numOnPage = 5;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
@@ -47,9 +47,9 @@ public class ManageUserController {
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when managetour request from admin!");
 		String result;
-		try{
+		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; // numOn 
+				numOnPage = numOn; // numOn
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
@@ -77,8 +77,8 @@ public class ManageUserController {
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y",
-								tourService.paginationY(userService.userListByValue(valueSearch).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(userService.userListByValue(valueSearch).size(),
+								page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
@@ -94,7 +94,6 @@ public class ManageUserController {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("user", new User());
 						model.addAttribute("id", id);
-						System.out.println(">>>>" + numOnPage);
 						model.addAttribute("userList", userService.userList()); // create
 						model.addAttribute("numUser", userService.getNumUser()); // create
 						model.addAttribute("pageNum", pageNum); // create number
@@ -140,10 +139,10 @@ public class ManageUserController {
 		logger.info("Display edit user form when administrator request!");
 		User user = userService.searchUserById(idUser);
 		if (user != null) {
-		model.addAttribute("userData", userService.searchUserById(idUser));
-		DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		String birthday = sdf.format(user.getBirthday());
-		model.addAttribute("dateofbirth", birthday);
+			model.addAttribute("userData", userService.searchUserById(idUser));
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String birthday = sdf.format(user.getBirthday());
+			model.addAttribute("dateofbirth", birthday);
 		} else {
 			logger.info("Null Object!");
 		}
