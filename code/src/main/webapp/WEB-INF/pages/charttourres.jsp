@@ -123,7 +123,7 @@
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Logout</a></li>
+									<li><a href="<c:url value="/logout" />">Đăng Xuất</a></li>
 								</ul></li>
 						</ul>
 					</div>
