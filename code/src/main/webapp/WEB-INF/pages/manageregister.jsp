@@ -119,13 +119,12 @@
 								</c:if>
 							</c:forEach>
 							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"><a
-									href="${pageContext.request.contextPath }/manageregister?page=${param.page + 1}">&raquo;</a>
+								<li class="disabled"><a>&raquo;</a>
 								</li>
 							</c:if>
 							<c:if test="${numTour/numOnPage - param.page > 0}">
 								<li><a
-									href="${pageContext.request.contextPath }/manageregister?page=${param.page + 1}">&raquo;</a>
+									href="${pageContext.request.contextPath }/manageregister?page=${page + 1}">&raquo;</a>
 								</li>
 							</c:if>
 						</ul>
