@@ -109,10 +109,8 @@ public class BookTourController {
 		try {
 			model.addAttribute("searchedValue", valueSearch);
 			if (valueSearch != null) {
-				logger.info("Search active!");
-				// List<BookTour> otherBookTours = new ArrayList<BookTour>();
-				model.addAttribute("bookTour", new BookTour());
-				// model.put("otherBookTours", otherBookTours);
+				logger.info("Search active!");			
+				model.addAttribute("bookTour", new BookTour());				
 				model.addAttribute("tour", tourService.findTourById(idTour));
 				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
 				return "booktour";
@@ -213,7 +211,7 @@ public class BookTourController {
 			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
-			// bookTour.setDateBook(Calendar.getInstance().getTime());
+			bookTour.setDateBook(Calendar.getInstance().getTime());
 			bookTour.setIdUser((int) session.getAttribute("idUser"));
 			bookTourService.editBookTour(bookTour);
 			return "redirect:/tourlist";
@@ -226,11 +224,4 @@ public class BookTourController {
 		bookTourService.cancelBookTour(idBT);
 		return "redirect:/tourlist";
 	}
-
-	@RequestMapping(value = "getInfoGroup", method = RequestMethod.GET)
-	public String getInfoGroup(@RequestParam("numOfInfo") Integer numOfInfo, ModelMap model) {
-		model.put("numOfInfo", numOfInfo);
-		return "info";
-	}
-
 }
