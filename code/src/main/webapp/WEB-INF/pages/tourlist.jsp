@@ -26,29 +26,27 @@
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
-				<div class="row">
-					<form role="form" class="form-inline" action="tourlist"
-						method="get">
-						<div class="form-group">
-							<label for="selectUser"
-								style="float: left; padding: 6px 12px 2px 12px;">Số
-								tour/trang:</label> <select id="selectUser" style="width: auto;"
-								class="form-control selectWidth" name="numOn">
-								<option>5</option>
-								<option>10</option>
-								<option>15</option>
-							</select>
-						</div>
-						<div class="btn-group">
-							<button class="btn btn-default">Chọn</button>
-						</div>
-					</form>
-				</div>
 				<!-- Table -->
 				<c:if test="${empty showTourList}">
 					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
+					<!-- Choose Number For Display -->
+					<div class="row">
+						<form role="form" class="form-inline" action="tourlist"
+							method="get">
+							<label for="selectTour" style="text-align: left; margin-left: 2%">Số
+								tour/ trang: </label> <select id="selectTour" class="form-control"
+								name="numOn">
+								<option>5</option>
+								<option>10</option>
+								<option>15</option>
+							</select>
+							<button class="btn btn-aqua">Chọn</button>
+						</form>
+					</div>
+					</br>
+					<!-- End Choose Number For Display -->
 					<table>
 						<thead>
 							<tr>
