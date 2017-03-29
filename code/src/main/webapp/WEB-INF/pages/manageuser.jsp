@@ -30,22 +30,22 @@
 				</div>
 				<hr class="margin-vert-20">
 				<div class="row">
-							<form role="form" class="form-inline">
-								<div class="form-group">
-									<label for="selectUser"
-										style="float: left; padding: 6px 12px 2px 12px;">Số tour/trang:</label>
-									<select id="selectUser" style="width: auto;"
-										class="form-control selectWidth" name="numOn">
-										<option class="">5</option>
-										<option class="">10</option>
-										<option class="">15</option>
-									</select>
-								</div>
-								<div class="btn-group">
-									<button class="btn btn-default">Chọn</button>
-								</div>
-							</form>
+					<form role="form" class="form-inline">
+						<div class="form-group">
+							<label for="selectUser"
+								style="float: left; padding: 6px 12px 2px 12px;">Số
+								tour/trang:</label> <select id="selectUser" style="width: auto;"
+								class="form-control selectWidth" name="numOn">
+								<option class="">5</option>
+								<option class="">10</option>
+								<option class="">15</option>
+							</select>
 						</div>
+						<div class="btn-group">
+							<button class="btn btn-default">Chọn</button>
+						</div>
+					</form>
+				</div>
 				<!-- Table -->
 				<c:if test="${empty userList}">
 					<h1 style="text-align: center;">Không có tour nào!</h1>
@@ -65,7 +65,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${userList.subList(x,y)}" var="user">
-								<!-- use subList render list tour to display -->
+								<!-- use subList render list user to display -->
 								<tr>
 									<c:if test="${user.idUser != id}">
 										<td>${userList.indexOf(user) + 1}</td>
@@ -96,7 +96,8 @@
 				<hr class="margin-vert-50">
 				<div class="text-center">
 					<!-- Pagination -->
-					<c:if test="${numUser > numOnPage}"> <!-- Paging when number of element > number of tour -->
+					<c:if test="${numUser > numOnPage}">
+						<!-- Paging when number of element > number of tour -->
 						<!-- set active pagination when numTour >= 5 -->
 						<ul class="pagination">
 							<c:if test="${param.page != null}">

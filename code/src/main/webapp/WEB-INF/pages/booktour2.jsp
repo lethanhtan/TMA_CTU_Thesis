@@ -111,156 +111,153 @@
 									</div>
 								</div>
 							</c:if>
+
 							<c:if test="${tour.fieldNumOfTicket == true}">
+								<!-- <div class="col-sm-5">
+									<label>Số lượng</label>
+									<!-- Show error 
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-building-o"></i>
+										</span>
+										<s:input type="number" class="form-control margin-bottom-20"
+											value="1" path="cusNumOfTicket" min="1"
+											max="${tour.ticketAvailability}" />
+									</div>
+								</div> -->
 								<div class="col-sm-5">
 									<label>Số lượng</label>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i
 											class="fa fa-building-o"></i>
-										</span>
-										<s:select class="form-control margin-bottom-20"
-											name="cus_offered" id="selectMe" path="cusNumOfTicket">
-											<c:forEach var="j" begin="1" end="4">
-												<option value="${j}">${j}</option>
+										</span><select class="form-control margin-bottom-20"
+											name="cus_offered" id="selectMe">
+											<c:forEach var="numOfInfo" begin="1" end="${tour.ticketAvailability}">
+												<option value="${numOfInfo}">${numOfInfo}</option>
 											</c:forEach>
-										</s:select>
+										</select>
 									</div>
 								</div>
 							</c:if>
-						</div>
-						<div id="2" class="group">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ 2</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName1" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth1" />
-										</div>
-									</div>
-								</div>
-						</div>
+							<div id="group"></div>
+							<!-- <div id="cus_relationship"></div> -->
+							<!-- <div id="group"></div>
 						<div id="3" class="group">
-							<c:forEach var="i" begin="1" end="2">
+							<!--<c:forEach var="i" begin="1" end="2">
 								<div class="row">
 									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<!-- Show error -->
+										<label>Họ tên người thứ <c:out value="${i}" /></label>
+										<!-- Show error 
 										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
 											</span>
 											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName${i}" />
+												type="text" path="cusName" />
 										</div>
 									</div>
 									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+										<label>Giới tính</label>
 										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
+											<span class="input-group-addon"> <i class="fa fa-male"></i>
 											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth${i}" />
+											<s:select class="form-control margin-bottom-20" path="cusSex">
+												<option>Nam</option>
+												<option>Nữ</option>
+											</s:select>
 										</div>
 									</div>
 								</div>
-							</c:forEach>
-						</div>
-						<div id="4" class="group">
-							<c:forEach var="i" begin="1" end="3">
 								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<!-- Show error -->
+									<div class="col-sm-6">
+										<label>Năm sinh</label>
+										<!-- Show error 
 										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i class="fa fa-font"></i>
 											</span>
-											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName${i}" />
+											<s:input placeholder="Nhập năm sinh" class="form-control"
+												type="text" path="cusName" />
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<div class="col-sm-6">
+										<label>Mối quan hệ</label>
 										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
+											<span class="input-group-addon"> <i class="fa fa-male"></i>
 											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth${i}" />
+											<s:select class="form-control margin-bottom-20" path="cusSex">
+												<option>Cha</option>
+												<option>Mẹ</option>
+												<option>Chồng</option>
+												<option>Vợ</option>
+												<option>Con</option>
+												<option>Khác</option>
+											</s:select>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
-						</div>
-						<c:if test="${tour.fieldEmail}">
-							<label>Email</label>
-							<!-- Show error -->
-							</br>
-							<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-envelope"></i>
-								</span>
-								<s:input placeholder="Nhập email" class="form-control"
-									type="text" path="cusEmail" />
+						</div> -->
+
+							<div id="div3" class="group">
+								<label><input type="checkbox" id='4' />D</label> <label><input
+									type="checkbox" id='5' />E</label> <label><input
+									type="checkbox" id='6' />F</label>
 							</div>
-						</c:if>
-						<c:if test="${tour.fieldAddress}">
-							<label>Địa chỉ</label>
-							<!-- Show error -->
-							</br>
-							<small><s:errors path="cusAddress" cssStyle="color:red;" /></small>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i class="fa fa-home"></i>
-								</span>
-								<s:input placeholder="Nhập địa chỉ" class="form-control"
-									type="text" path="cusAddress" />
+
+							<div id="div4" class="group">
+								<label><input type="checkbox" id='4' />K</label> <label><input
+									type="checkbox" id='5' />E</label> <label><input
+									type="checkbox" id='6' />F</label>
 							</div>
-						</c:if>
-						<c:if test="${tour.fieldIdCard}">
-							<label>Số chứng minh nhân dân</label>
-							<!-- Show error -->
-							</br>
-							<small><s:errors path="cusIdCard" cssStyle="color:red;" /></small>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-credit-card"></i>
-								</span>
-								<s:input placeholder="Nhập địa chỉ" class="form-control"
-									type="text" path="cusIdCard" />
+							<c:if test="${tour.fieldEmail}">
+								<label>Email</label>
+								<!-- Show error -->
+								</br>
+								<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-envelope"></i>
+									</span>
+									<s:input placeholder="Nhập email" class="form-control"
+										type="text" path="cusEmail" />
+								</div>
+							</c:if>
+							<c:if test="${tour.fieldAddress}">
+								<label>Địa chỉ</label>
+								<!-- Show error -->
+								</br>
+								<small><s:errors path="cusAddress" cssStyle="color:red;" /></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-home"></i>
+									</span>
+									<s:input placeholder="Nhập địa chỉ" class="form-control"
+										type="text" path="cusAddress" />
+								</div>
+							</c:if>
+							<c:if test="${tour.fieldIdCard}">
+								<label>Số chứng minh nhân dân</label>
+								<!-- Show error -->
+								</br>
+								<small><s:errors path="cusIdCard" cssStyle="color:red;" /></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-credit-card"></i>
+									</span>
+									<s:input placeholder="Nhập địa chỉ" class="form-control"
+										type="text" path="cusIdCard" />
+								</div>
+							</c:if>
+							<hr>
+							<div class="row">
+								<div class="col-lg-6 text-center">
+									<button class="btn btn-primary" type="submit">Đăng Ký</button>
+								</div>
+								<div class="col-lg-6 text-center">
+									<a href="${pageContext.request.contextPath}/tourlist"><button
+											class="btn btn-primary" type="button">Hủy Bỏ</button></a>
+								</div>
 							</div>
-						</c:if>
-						<hr>
-						<div class="row">
-							<div class="col-lg-6 text-center">
-								<button class="btn btn-primary" type="submit">Đăng Ký</button>
-							</div>
-							<div class="col-lg-6 text-center">
-								<a href="${pageContext.request.contextPath}/tourlist"><button
-										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
-							</div>
-						</div>
 					</s:form>
 				</div>
 			</c:if>

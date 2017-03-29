@@ -9,8 +9,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

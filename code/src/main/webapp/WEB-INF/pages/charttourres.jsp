@@ -41,27 +41,19 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/input.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
+<link rel="stylesheet" href="resources/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Template CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nexus.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/nexus.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/responsive.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/table.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/table.css">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -113,26 +105,25 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a href="${pageContext.request.contextPath}/managetour"
-								class="fa-cogs">Quản Lý Tour</a></li>
+							<li><a href="${pageContext.request.contextPath }/managetour"
+								class="fa-gear">Quản Lý Tour</a></li>
+							<li><a class="fa-gear">Thống kê dữ liệu</a>
+								<ul>
+									<li><a href="<c:url value="/toursales" />">Doanh số
+											tour</a></li>
+								</ul></li>
 							<li><a
-								href="${pageContext.request.contextPath}/manageregister"
+								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a href="${pageContext.request.contextPath}/manageuser"
-								class="fa-users">Quản Lý Tài Khoản</a></li>
-							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
+							<li><a href="${pageContext.request.contextPath }/managedata"
+								class="fa-gear">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
-									<li class="parent"><span>Thống kê</span>
-										<ul>
-											<li><a href="<c:url value="/toursales" />">Doanh số
-													tour</a></li>
-										</ul></li>
 								</ul></li>
 							<li><span class="fa-user"> ${userName}</span>
 								<ul>
-									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
+									<li><a href="<c:url value="/logout" />">Logout</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -140,7 +131,6 @@
 			</div>
 		</div>
 		<!-- End Top Menu -->
-
 		<div id="post_header" class="container" style="height: 40px">
 			<!-- Spacing below header -->
 		</div>
@@ -150,13 +140,14 @@
 		<div id="content">
 			<div class="container background-white">
 				<h1 align="center">Biểu đồ tình hình bán tour</h1>
-				<h3 style="color:red" align="center">${tourName}</h3>
-				<h6 style="color:green" align="center">Đi từ ngày: ${departureDate} đến ${returnDate}</h6>
+				<h3 style="color: red" align="center">${tourName}</h3>
+				<h6 style="color: green" align="center">Đi từ ngày:
+					${departureDate} đến ${returnDate}</h6>
 				<c:if test="${status == 1}">
-					<h6 style="color:blue" align="center">(Có thể đăng ký)</h6>
+					<h6 style="color: blue" align="center">(Có thể đăng ký)</h6>
 				</c:if>
 				<c:if test="${status == 0}">
-					<h6 style="color:red" align="center">(Không thể đăng ký)</h6>
+					<h6 style="color: red" align="center">(Không thể đăng ký)</h6>
 				</c:if>
 				<div class="container">
 					<!-- Chart code -->

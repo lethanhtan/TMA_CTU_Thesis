@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <!-- Title -->
 <title>403 Not Found</title>
 <!-- Meta -->
@@ -15,8 +16,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <body>
-		<h1>Not found</h1>
-		<h3 style="color:red">Woops. Look like this page doesn't exists!</h3>
-		
+	<h1>Not found</h1>
+	<h3 style="color: red">Woops. Look like this page doesn't exists!</h3>
+
 </body>
 </html>

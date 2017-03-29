@@ -63,7 +63,9 @@
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
 <script type="text/javascript">
-var date = $('#datepicker').datepicker2({ dateFormat: 'yy-mm-dd' }).val();
+	var date = $('#datepicker').datepicker2({
+		dateFormat : 'yy-mm-dd'
+	}).val();
 </script>
 </head>
 <body>
@@ -114,8 +116,7 @@ var date = $('#datepicker').datepicker2({ dateFormat: 'yy-mm-dd' }).val();
 							<li><a
 								href="${pageContext.request.contextPath}/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/manageuser"
+							<li><a href="${pageContext.request.contextPath}/manageuser"
 								class="fa-users">Quản Lý Tài Khoản</a></li>
 							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>

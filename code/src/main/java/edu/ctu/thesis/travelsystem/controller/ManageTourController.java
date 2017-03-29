@@ -53,7 +53,7 @@ public class ManageTourController {
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle when managetour request from admin!");
 		String result; // view page mapping
-		try{
+		try {
 			if (!numOn.equals(null)) {
 				numOnPage = numOn; // numOn 
 			}

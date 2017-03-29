@@ -12,10 +12,10 @@ import edu.ctu.thesis.travelsystem.dao.TourDao;
 
 @Service
 public class TourServiceImpl implements TourService {
-	
+
 	@Autowired
 	private TourDao tourDao;
-	
+
 	@Override
 	@Transactional
 	public void saveTour(Tour tour) {
@@ -79,19 +79,19 @@ public class TourServiceImpl implements TourService {
 	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
 		return this.tourDao.paginationY(numOfPage, currentPage, page);
 	}
-	
+
 	@Override
 	@Transactional
 	public List<Tour> showTourList() {
 		return this.tourDao.showTourList();
 	}
-	
+
 	@Override
 	@Transactional
 	public int getNumTourList() {
 		return this.tourDao.getNumTourList();
 	}
-	
+
 	@Override
 	@Transactional
 	public List<Tour> tourListByValue(String value) {

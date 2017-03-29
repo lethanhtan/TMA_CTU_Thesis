@@ -18,12 +18,11 @@ public interface RegInfoDao {
 	
 	public List<BookTour> cancelList(int idTour);
 	
-	public List<BookTour> cancelListByValue(String value);
+	public List<BookTour> cancelListByValue(String value, int idTour);
 	
 	public Integer getNumCancelReg(int idTour);
 	
-	public Integer getNumCancelBySearch(String value);
+	public Integer getNumCancelBySearch(String value, int idTour);
 	
 	public void undoCancel(int idBT, int idTour);
-	
 }

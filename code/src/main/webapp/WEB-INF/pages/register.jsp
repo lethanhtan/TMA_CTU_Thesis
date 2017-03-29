@@ -44,12 +44,11 @@
 							</div>
 							<div class="col-sm-6">
 								<label>Xác nhận mật khẩu</label>
-								 <small Style="color:red">${failedPass}</small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-repeat"></i>
 									</span>
 									<input placeholder="Nhập lại mật khẩu"
-										class="form-control margin-bottom-20" type="password" name="passwordConfirm"/>
+										class="form-control margin-bottom-20" type="password" />
 								</div>
 							</div>
 						</div>
@@ -79,8 +78,8 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Ngày sinh</label> <br /> 
-								 <small Style="color:red">${failedBirthday}</small>
+								<label>Ngày sinh</label> <br /> <small><s:errors
+										path="birthday" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>

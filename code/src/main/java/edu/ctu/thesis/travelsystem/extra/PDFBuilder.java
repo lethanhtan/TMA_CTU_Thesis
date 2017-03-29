@@ -45,7 +45,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.setWidthPercentage(100.0f);
 			table.setWidths(
 					new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });
-			table.setSpacingBefore(10);
 
 			// define font for table header row
 			FontFactory.register(FONT2);
