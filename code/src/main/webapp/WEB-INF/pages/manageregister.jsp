@@ -29,28 +29,27 @@
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
 				<hr class="margin-vert-20">
-				<div class="row">
-					<form role="form" class="form-inline">
-						<div class="form-group">
-							<label for="selectUser"
-								style="float: left; padding: 6px 12px 2px 12px;">Số
-								tour/trang:</label> <select id="selectUser" style="width: auto;"
-								class="form-control selectWidth" name="numOn">
-								<option class="">5</option>
-								<option class="">10</option>
-								<option class="">15</option>
-							</select>
-						</div>
-						<div class="btn-group">
-							<button class="btn btn-default">Chọn</button>
-						</div>
-					</form>
-				</div>
 				<!-- Table -->
 				<c:if test="${empty tourList}">
 					<h1 align="center">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty tourList}">
+					<!-- Choose Number For Display -->
+					<div class="row">
+						<form role="form" class="form-inline" action="tourlist"
+							method="get">
+							<label for="selectTour" style="text-align: left; margin-left: 2%">Số
+								tour/ trang:</label> <select id="selectTour" class="form-control"
+								name="numOn">
+								<option>5</option>
+								<option>10</option>
+								<option>15</option>
+							</select>
+							<button class="btn btn-aqua">Chọn</button>
+						</form>
+					</div>
+					</br>
+					<!-- End Choose Number For Display -->
 					<table>
 						<thead>
 							<tr>
@@ -119,8 +118,7 @@
 								</c:if>
 							</c:forEach>
 							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"><a>&raquo;</a>
-								</li>
+								<li class="disabled"><a>&raquo;</a></li>
 							</c:if>
 							<c:if test="${numTour/numOnPage - param.page > 0}">
 								<li><a

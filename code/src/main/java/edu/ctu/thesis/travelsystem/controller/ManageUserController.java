@@ -52,7 +52,7 @@ public class ManageUserController {
 				numOnPage = numOn; // numOn
 			}
 		} catch (Exception e) {
-			logger.info("None select number of tour on page!");
+			logger.info("None select number of account on page!");
 		}
 		int id = (int) session.getAttribute("idUser");
 		try {

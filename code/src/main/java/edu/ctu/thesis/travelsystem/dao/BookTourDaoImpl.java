@@ -226,22 +226,4 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 		return bookTourList;
 	}
-
-	// Add a new colum to table
-	@Override
-	public void addFiledOption(String name, String type) {
-		Session session = getCurrentSession();
-		String sql = "ALTER TABLE BOOK_TOUR ADD " + name + " " + type;
-		session.createSQLQuery(sql).addEntity(BookTour.class).executeUpdate();
-		session.flush();
-	}
-
-	// Drop a column to table
-	@Override
-	public void dropFiledOption(String name) {
-		Session session = getCurrentSession();
-		String sql = "ALTER TABLE BOOK_TOUR DROP " + name;
-		session.createSQLQuery(sql).addEntity(BookTour.class).executeUpdate();
-		session.flush();
-	}
 }

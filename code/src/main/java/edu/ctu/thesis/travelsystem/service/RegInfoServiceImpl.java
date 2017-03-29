@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.RegInfoDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
 
 @Service
 public class RegInfoServiceImpl implements RegInfoService {
@@ -31,18 +30,6 @@ public class RegInfoServiceImpl implements RegInfoService {
 	@Transactional
 	public void deleteBookTour(int idBT, int idTour) {
 		this.regInfoDao.deleteBookTour(idBT, idTour);
-	}
-	
-	@Override
-	@Transactional
-	public void saveRegInfoForm(RegistrationInfo regInfo, int idTour) {
-		this.regInfoDao.saveRegInfoForm(regInfo, idTour);
-	}
-	
-	@Override
-	@Transactional
-	public RegistrationInfo searchRegInfoById(int idTour) {
-		return this.regInfoDao.searchRegInfoById(idTour);
 	}
 	
 	@Override
@@ -73,5 +60,16 @@ public class RegInfoServiceImpl implements RegInfoService {
 	@Transactional
 	public void undoCancel(int idBT, int idTour) {
 		this.regInfoDao.undoCancel(idBT, idTour);
+	}
+	
+	@Override
+	@Transactional
+	public void addFieldOption(String name, String type) {
+		this.regInfoDao.addFieldOption(name, type);
+	}
+
+	@Override
+	public void dropFieldOption(String name) {
+		this.regInfoDao.dropFieldOption(name);
 	}
 }
