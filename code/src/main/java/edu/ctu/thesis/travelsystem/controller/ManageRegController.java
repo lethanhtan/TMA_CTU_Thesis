@@ -261,7 +261,8 @@ public class ManageRegController {
 			BindingResult br, HttpSession session, @PathVariable("idTour") int idTour,
 			@RequestParam("other") String other, @RequestParam("type") String type) {
 		if (other != null && type != null) {
-			bookTourService.addFiledOption(other, type); // add a field
+			//bookTourService.addFiledOption(other, type); // add a field
+			bookTourService.dropFiledOption(other);
 		}
 		// Checking at least one field of registration is true
 		if ((regInfo.getFieldAddress() || regInfo.getFieldEmail() || regInfo.getFieldIdCard() || regInfo.getFieldName()

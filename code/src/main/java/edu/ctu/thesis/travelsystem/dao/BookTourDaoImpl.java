@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ctu.thesis.travelsystem.extra.ConfirmCode;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
@@ -32,6 +33,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		if (bookTour != null) {
 			try {
 				logger.info("Save book tour be called!");
+				bookTour.setConfirmCode(ConfirmCode.generateCode(12));
 				session.saveOrUpdate(bookTour);
 				session.flush();
 			} catch (Exception e) {
