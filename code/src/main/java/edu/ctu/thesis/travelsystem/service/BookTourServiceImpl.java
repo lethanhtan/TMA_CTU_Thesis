@@ -86,17 +86,4 @@ public class BookTourServiceImpl implements BookTourService {
 	public List<BookTour> listBookTourById(int idTour) {
 		return this.bookTourDao.listBookTourById(idTour);
 	}
-
-	@Override
-	@Transactional
-	public void addFiledOption(String name, String type) {
-		this.bookTourDao.addFiledOption(name, type);
-
-	}
-
-	@Override
-	public void dropFiledOption(String name) {
-		this.bookTourDao.dropFiledOption(name);
-
-	}
 }

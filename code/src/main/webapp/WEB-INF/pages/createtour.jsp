@@ -14,7 +14,7 @@
 						action="${pageContext.request.contextPath}/createtour"
 						method="POST">
 						<div class="signup-header">
-							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
+							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2></br>
 						</div>
 						<div class="row">
 							<div class="col-sm-8">

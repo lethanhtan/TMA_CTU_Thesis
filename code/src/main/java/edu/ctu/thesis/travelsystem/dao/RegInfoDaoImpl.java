@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.RegistrationInfo;
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
@@ -59,37 +59,6 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			session.flush();
 			logger.info("Delete customer success!");
 		}
-	}
-
-	// Save book tour form when have id tour
-	@Override
-	public void saveRegInfoForm(RegistrationInfo regInfo, int idTour) {
-		Session session = getCurrentSession();
-		if (regInfo != null) {
-			try {
-				logger.info("Update design form be called!");
-				session.merge(regInfo);
-				session.flush();
-			} catch (Exception e) {
-				logger.error("Occured ex", e);
-			}
-		}
-	}
-
-	@Override
-	public RegistrationInfo searchRegInfoById(int idTour) {
-		Session session = getCurrentSession();
-		RegistrationInfo regInfo = new RegistrationInfo();
-		logger.info("Registration infor: " + idTour);
-		String hql = "FROM edu.ctu.thesis.travelsystem.model.RegistrationInfo WHERE idTour = ?";
-		try {
-			Query query = session.createQuery(hql);
-			query.setParameter(0, idTour);
-			regInfo = (RegistrationInfo) query.uniqueResult();
-		} catch (Exception e) {
-			logger.error("Occured ex", e);
-		}
-		return regInfo;
 	}
 
 	// Display registration list by Id tour
@@ -147,5 +116,27 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			session.flush();
 			logger.info("Delete customer success!");
 		}
+	}
+
+	// Add a new column to Tour table when design form
+	@Override
+	public void addFieldOption(String name, String type) {
+		Session session = getCurrentSession();
+		String sql = "ALTER TABLE BOOK_TOUR ADD " + name + " " + type;
+		session.createSQLQuery(sql).addEntity(BookTour.class).executeUpdate();
+		String sql2 = "ALTER TABLE TOUR ADD " + name + " " + "bit(1)";
+		session.createSQLQuery(sql2).addEntity(Tour.class).executeUpdate();
+		session.flush();
+	}
+
+	// Remove a column when design form
+	@Override
+	public void dropFieldOption(String name) {
+		Session session = getCurrentSession();
+		String sql = "ALTER TABLE BOOK_TOUR DROP " + name;
+		session.createSQLQuery(sql).addEntity(BookTour.class).executeUpdate();
+		String sql2 = "ALTER TABLE TOUR DROP " + name;
+		session.createSQLQuery(sql2).addEntity(Tour.class).executeUpdate();
+		session.flush();
 	}
 }

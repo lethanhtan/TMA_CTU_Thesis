@@ -30,8 +30,4 @@ public interface BookTourService {
 	public List<BookTour> listTourByYear(int year);
 
 	public int listBookTourByMonth(int month, List<BookTour> list);
-	
-	public void addFiledOption(String name, String type);
-
-	public void dropFiledOption(String name);
 }
