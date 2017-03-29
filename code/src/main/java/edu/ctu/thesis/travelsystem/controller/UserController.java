@@ -50,35 +50,22 @@ public class UserController {
 	}
 
 	// Processing for form register when submit
-		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
-				HttpSession session, @RequestParam("passwordConfirm") String passwordConfirm) {
-			logger.info("Handle register form action when user submit!");
-			UserValidator userValidator = new UserValidator();
-			userValidator.validate(user, br);
-			try {
-				if (!user.getBirthday().equals(null)) {
-					logger.info("Normal birthday input !");
-				}
-			} catch (Exception e) {
-				logger.info("None select birthday!");
-				model.addAttribute("failedBirthday", "Bạn phải chọn ngày sinh!");
-			}
-			if(!user.getPassword().equals(passwordConfirm)){
-				model.addAttribute("failedPass", "Password không trùng khớp!");
-				return "register";
-			}
-			if (br.hasErrors()) { // form input have error
-				return "register";
-			} else { // form input is ok
-				
-				userService.saveUser(user);
-				session.setAttribute("user", user);
-				session.setAttribute("userName", user.getFullName());
-				session.setAttribute("idUser", user.getIdUser());
-				return "redirect:login";
-			}
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
+			HttpSession session) {
+		logger.info("Handle register form action when user submit!");
+		UserValidator userValidator = new UserValidator();
+		userValidator.validate(user, br);
+		if (br.hasErrors()) { // form input have error
+			return "register";
+		} else { // form input is ok
+			userService.saveUser(user);
+			session.setAttribute("user", user);
+			session.setAttribute("userName", user.getFullName());
+			session.setAttribute("idUser", user.getIdUser());
+			return "redirect:login";
 		}
+	}
 
 	// Processing for login when required request
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -280,7 +267,7 @@ public class UserController {
 			}
 
 			// Display my tour gone
-			model.addAttribute("searchedValue2", valueSearch2);
+			model.addAttribute("searchedValue3", valueSearch3);
 			if (valueSearch3 != null) {
 				Integer num3 = 0;
 				if ((userService.getMyNumBookTourBySearch(valueSearch3, idUser) % 5) == 0) {
@@ -295,9 +282,9 @@ public class UserController {
 					model.addAttribute("myBookTourList", userService.myBookTourListByValue(valueSearch3, idUser));
 					model.addAttribute("myNumBookTour", userService.getMyNumBookTourBySearch(valueSearch3, idUser));
 					model.addAttribute("pageNum3", pageNum3); // create number
-					model.addAttribute("pageE", new ArrayList<Integer>()); // create
-					model.addAttribute("x", tourService.paginationX(page3, 5));
-					model.addAttribute("y", tourService
+					model.addAttribute("pageE3", new ArrayList<Integer>()); // create
+					model.addAttribute("x3", tourService.paginationX(page3, 5));
+					model.addAttribute("y3", tourService
 							.paginationY(userService.myBookTourListByValue(valueSearch3, idUser).size(), page3, 5));
 					result = "managemyreg";
 				} else {

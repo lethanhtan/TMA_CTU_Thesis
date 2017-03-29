@@ -270,24 +270,6 @@ public class Tour {
 		this.fieldNumOfTicket = fieldNumOfTicket;
 	}
 
-	/*
-	 * @OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade =
-	 * CascadeType.ALL) public RegistrationInfo getRegInfo() { return regInfo; }
-	 * 
-	 * public void setRegInfo(RegistrationInfo regInfo) { this.regInfo =
-	 * regInfo; }
-	 */
-
-	// Create column tour gone
-	/*@Column(name = "GONE_OR_NOT", nullable = true, length = 40)
-	public boolean getGoneOrNot() {
-		return this.goneOrNot;
-	}
-
-	public void setGoneOrNot(boolean goneOrNot) {
-		this.goneOrNot = goneOrNot;
-	}*/
-
 	@Override
 	public int hashCode() {
 		return idTour;
