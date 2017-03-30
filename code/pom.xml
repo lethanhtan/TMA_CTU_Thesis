@@ -89,6 +89,25 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
 		<!-- Hibernate -->
 		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
@@ -206,7 +225,7 @@
 					<compilerVersion>1.8</compilerVersion>
 					<encoding>UTF-8</encoding><!-- Working with UTF-8 -->
 					<fork>true</fork>
-					<executable>C:\Program Files\Java\jdk1.8.0_121\bin\javac</executable> <!-- should be reupdate in Windows -->
+					<executable>/opt/jdk1.8.0_121/bin/javac</executable> <!-- should be reupdate in Windows -->
 				</configuration>
 			</plugin>
 			<plugin>

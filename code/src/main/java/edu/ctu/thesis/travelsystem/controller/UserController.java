@@ -60,10 +60,7 @@ public class UserController {
 			return "register";
 		} else { // form input is ok
 			userService.saveUser(user);
-			session.setAttribute("user", user);
-			session.setAttribute("userName", user.getFullName());
-			session.setAttribute("idUser", user.getIdUser());
-			return "redirect:login";
+			return "redirect:regsuccess";
 		}
 	}
 
