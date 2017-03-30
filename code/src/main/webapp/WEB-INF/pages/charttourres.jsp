@@ -41,8 +41,7 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <!-- Template CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/animate.css">
@@ -95,7 +94,7 @@
 		<!-- Back To Top -->
 		<div title="Về đầu trang" onmouseover="this.style.color='#590059'"
 			onmouseout="this.style.color='#004993'" id="top-up">
-			<img src="resources/img/hot-air-balloon.png" width="64px"
+			<img src="${pageContext.request.contextPath }/resources/img/hot-air-balloon.png" width="64px"
 				height="auto"></img>
 		</div>
 		<!-- End Back To Top -->
@@ -181,5 +180,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- === END CONTENT === -->
-		<%@ include file="adminfooter.jsp"%>
+<!-- === END CONTENT === -->
+<%@ include file="adminfooter.jsp"%>

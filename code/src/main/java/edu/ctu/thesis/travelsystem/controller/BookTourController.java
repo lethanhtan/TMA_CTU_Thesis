@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.EMailSender;
+import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
@@ -28,10 +30,15 @@ import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
 public class BookTourController {
+	
 	@Autowired
 	private TourService tourService;
+	
 	@Autowired
 	private BookTourService bookTourService;
+	
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 
@@ -152,7 +159,12 @@ public class BookTourController {
 		}
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
-		return "redirect:/home";
+		String fromAddress =  MailTemplate.hostMail;
+		String toAddress = bookTour.getCusEmail();
+		String subject = MailTemplate.bookSuccessTitle;
+		String msgBody = MailTemplate.bookSuccessBody;
+		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
+		return "redirect:/booksuccess";
 		// }
 	}
 
@@ -221,7 +233,11 @@ public class BookTourController {
 	// Customer cancel registration tour
 	@RequestMapping(value = "cancelbooktour/{idBT}")
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
-		bookTourService.cancelBookTour(idBT);
-		return "redirect:/tourlist";
+		String fromAddress = MailTemplate.hostMail;
+		String toAddress = bookTourService.searchById(idBT).getCusEmail();
+		String subject = MailTemplate.confirmCancelTitle;
+		String msgBody = MailTemplate.confirmCancelBody + bookTourService.searchById(idBT).getConfirmCode();
+		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
+		return "redirect:/cancelbook/{idBT}";
 	}
 }

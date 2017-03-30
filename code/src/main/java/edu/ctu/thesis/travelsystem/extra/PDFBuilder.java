@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -146,32 +147,40 @@ public class PDFBuilder extends AbstractITextPdfView {
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
-			doc.add(new Paragraph("List BookTour"));
-			doc.addTitle("NYTravel List BookTour");
-			doc.addSubject("List booktour");
-
-			PdfPTable table = new PdfPTable(7);
-			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 1.0f, 1.0f, 1.0f });
-			table.setSpacingBefore(10);
 
 			// define font for table header row
 			FontFactory.register(FONT2);
 			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-			// write table header
-			table.addCell(getNormalCell("Id", SIZE1, font));
+			Paragraph title = new Paragraph("Danh sách người đăng ký", font);
+			title.setIndentationLeft(180.0f);
+			doc.add(title);
+			if (!listBookTours.isEmpty()) {
+				Paragraph nameTour = new Paragraph(listBookTours.get(0).getTour().getName(), font);
+				nameTour.setIndentationLeft(200.0f);
+				doc.add(nameTour);
+			}
+			doc.addTitle("NYTravel List BookTour");
+			doc.addSubject("Danh sách người đăng ký");
 
-			table.addCell(getNormalCell("Name", SIZE1, font));
+			PdfPTable table = new PdfPTable(7);
+			table.setWidthPercentage(100.0f);
+			table.setWidths(new float[] { 0.5f, 1.5f, 1.5f, 2.0f, 1.0f, 0.5f, 3.0f });
+			table.setSpacingBefore(10);
+
+			// write table header
+			table.addCell(getNormalCell("STT", SIZE1, font));
+
+			table.addCell(getNormalCell("Người đăng ký", SIZE1, font));
 
 			table.addCell(getNormalCell("Email", SIZE1, font));
 
-			table.addCell(getNormalCell("Address", SIZE1, font));
+			table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
 
-			table.addCell(getNormalCell("Phone", SIZE1, font));
+			table.addCell(getNormalCell("Điện thoại", SIZE1, font));
 
-			table.addCell(getNormalCell("Sex", SIZE1, font));
+			table.addCell(getNormalCell("Giới tính", SIZE1, font));
 
-			table.addCell(getNormalCell("Id Tour", SIZE1, font));
+			table.addCell(getNormalCell("Người đi cùng", SIZE1, font));
 
 			// write table row data
 			for (BookTour bookTour : listBookTours) {
@@ -181,7 +190,9 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
-				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), SIZE1, font));
+				table.addCell(getNormalCell(
+						bookTour.getCusName1() + ", " + bookTour.getCusName2() + ", " + bookTour.getCusName3(), SIZE1,
+						font));
 			}
 
 			doc.add(table);
