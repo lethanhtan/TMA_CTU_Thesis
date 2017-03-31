@@ -1,14 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Đặt vé thành công</title>
-</head>
-<body>
-	<h3 style="color: red" align="center">Bạn đẵ đặt vé thành công!</h3>
-	<h4 style="color: green" align="center">Email thông báo đã được gửi tới hộp thư của bạn, vui lòng kiểm tra lại thông tin!.</h4>
-	<h4 align="center"><a href="/TravelSystem">Nhấn vào đây để trở về.</a></h4>
-</body>
-</html>
+<!-- === BEGIN HEADER === -->
+<%@page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ include file="userheader.jsp"%>
+<!-- === END HEADER === -->
+<!-- === BEGIN CONTENT === -->
+<div id="content">
+	<div class="container background-white">
+		<div class="container">
+			<div class="row margin-vert-30">
+				<title>Đặt vé thành công</title>
+				<h2 style="color: red" align="center">Quý khách đã đặt vé thành công!</h2>
+				</br>
+				<h2 style="color: green" align="center">Email thông báo đã gửi
+					tới hộp thư của bạn, vui lòng kiểm tra lại thông tin!</h2>
+				</br>
+				<h2 align="center">
+					<a href="/TravelSystem">Nhấn vào đây để trở về.</a>
+				</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- === END CONTENT === -->
+<%@ include file="userfooter.jsp"%>

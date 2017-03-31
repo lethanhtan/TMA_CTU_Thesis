@@ -67,11 +67,34 @@
 								<label class="checkbox"><s:checkbox path="fieldIdCard" />Số
 									chứng minh nhân dân </label>
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-lg-8">
 								<label class="checkbox"><input type="checkbox"
 									name="select-all" id="select-all">Chọn tất cả </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-7">
+								<label>Thêm thông tin khác</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span><input placeholder="Thông tin khác" class="form-control"
+										type="text" name="other">
+								</div>
+							</div>
+							<div class="col-sm-5">
+								<label>Kiểu dữ liệu</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-database"></i>
+									</span> <select class="form-control margin-bottom-20" name="type">
+										<option>varchar(10)</option>
+										<option>varchar(20)</option>
+										<option>varchar(50)</option>
+										<option>date</option>
+										<option>int</option>
+										<option>bit(1)</option>
+									</select>
+								</div>
 							</div>
 						</div>
 						<hr>

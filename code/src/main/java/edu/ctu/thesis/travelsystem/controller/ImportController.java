@@ -18,7 +18,6 @@ import edu.ctu.thesis.travelsystem.service.UserService;
 
 @Controller
 public class ImportController {
-	public static int status;
 	
 	@Autowired
 	ImportDataService importDataService;
@@ -32,13 +31,7 @@ public class ImportController {
 		objImp.setOwner(session.getAttribute("userName").toString());
 		importDataService.saveImport(objImp);
 		importDataService.importExcel(excelfile);
-		if (status != 1) {
-			return "redirect:/managetour";
-		} else {
-			model.addAttribute("error", "Vui lòng kiểm tra định dạnh file import!");
-			return "import";
-		}
-		
+		return "redirect:/managetour";
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)
