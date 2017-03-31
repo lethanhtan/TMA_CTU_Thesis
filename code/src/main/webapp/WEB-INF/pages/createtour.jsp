@@ -12,15 +12,15 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form commandName="tourData"
 						action="${pageContext.request.contextPath}/createtour"
-						method="POST">
+						enctype="multipart/form-data" method="POST">
 						<div class="signup-header">
-							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2></br>
+							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
 						</div>
 						<div class="row">
-							<div class="col-sm-8">
+							<div class="col-sm-12">
 								<label>Tên tour</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="name" cssStyle="color:red;" /></small>
+								<small><s:errors path="name" cssStyle="color:red;" /></small>
 								<!--  End Show Error -->
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
@@ -30,17 +30,27 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<div class="col-lg-4 text-left">
-								<label>Tải ảnh lên</label>
-								<button class="btn btn-primary" type="button">Chọn tập
-									tin</button>
+						</div>
+						
+						<div class="row">
+						<div class="col-lg-12 col-sm-12">
+							<label>Hình ảnh</label>
+							<div class="input-group">
+								<label class="input-group-btn"> <span
+									class="btn btn-primary"> Tập tin&hellip; <input
+										type="file" name="file" style="display: none;" multiple>
+								</span>
+								</label> <input type="text" name="nameFile" class="form-control" readonly>
 							</div>
 						</div>
+						</div>
+						<br />
+						
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Ngày đi</label>
 								<!-- Show error -->
-								</br> <small><s:errors path="departureDate"
+								<small><s:errors path="departureDate"
 										cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
@@ -54,7 +64,7 @@
 							<div class="col-sm-6">
 								<label>Giờ đi</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="departureTime"
+								<small><s:errors path="departureTime"
 										cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
@@ -71,7 +81,7 @@
 							<div class="col-sm-6">
 								<label>Ngày về</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="returnDate"
+								<small><s:errors path="returnDate"
 										cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
@@ -85,7 +95,7 @@
 							<div class="col-sm-6">
 								<label>Giờ về</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="returnTime"
+								<small><s:errors path="returnTime"
 										cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
@@ -102,7 +112,7 @@
 							<div class="col-sm-6">
 								<label>Giá vé</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="price" cssStyle="color:red;" /></small>
+								<small><s:errors path="price" cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-money"></i>
@@ -115,7 +125,7 @@
 							<div class="col-sm-6">
 								<label>Số lượng</label>
 								<!-- Show Error -->
-								</br> <small><s:errors path="quantum" cssStyle="color:red;" /></small>
+								<small><s:errors path="quantum" cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
@@ -149,6 +159,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<p style="text-align: center; color: #ef5b92;">Hãy chọn những
 							thông tin bắt buộc khách hàng phải điền khi đăng ký tham gia tour
 							du lịch!</p>
@@ -197,7 +208,6 @@
 						<hr>
 						<label>Chi tiết tour</label>
 						<!-- Show Error -->
-						</br>
 						<small><s:errors path="detail" cssStyle="color:red;" /></small>
 						<!-- End Show Error -->
 						<s:textarea placeholder="Nhập chi tiết về tour" id="area2"

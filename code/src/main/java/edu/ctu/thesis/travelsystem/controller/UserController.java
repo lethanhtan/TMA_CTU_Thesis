@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.EMailSender;
+import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
@@ -38,6 +40,9 @@ public class UserController {
 	private BookTourService bookTourService;
 	@Autowired
 	private TourService tourService;
+	
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -60,6 +65,11 @@ public class UserController {
 			return "register";
 		} else { // form input is ok
 			userService.saveUser(user);
+			String fromAddress = MailTemplate.hostMail;
+			String toAddress = user.getEmail();
+			String subject = MailTemplate.regTitle;
+			String msgBody = MailTemplate.regBody;
+			emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
 			return "redirect:regsuccess";
 		}
 	}

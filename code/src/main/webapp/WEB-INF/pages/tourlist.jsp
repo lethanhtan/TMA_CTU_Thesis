@@ -71,7 +71,7 @@
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
 									<td>&nbsp;&nbsp;&nbsp;${tour.ticketAvailability}&nbsp;&nbsp;&nbsp;</td>
-									<td><a href="<c:url value='viewtour/${tour.idTour}'/>">
+									<td><a href="<c:url value='viewdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-success">
 												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>

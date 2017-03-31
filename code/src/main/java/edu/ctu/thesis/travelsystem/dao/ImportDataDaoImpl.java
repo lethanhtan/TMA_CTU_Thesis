@@ -24,7 +24,7 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
 	@Override
-	public void importExcel(MultipartFile excelfile) {
+	public void importExcel(MultipartFile excelfile){
 		Session session = getCurrentSession();
 		try {
 			ImportController.status = 0;
@@ -64,7 +64,7 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 			}			
 			workbook.close();
 		} catch (Exception e) {
-			logger.info("Happen error!");
+			logger.info("Format file error!");
 			ImportController.status = 1;
 		}
 	}

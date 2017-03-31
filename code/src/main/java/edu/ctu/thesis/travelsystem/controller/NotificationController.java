@@ -26,6 +26,11 @@ public class NotificationController {
 		return "booksuccess";
 	}
 	
+	@RequestMapping(value = "/cancelsuccess", method = RequestMethod.GET)
+	public String successCancel() {
+		return "cancelsuccess";
+	}
+	
 	@RequestMapping(value = "/cancelbook/{idBT}", method = RequestMethod.GET)
 	public String CancelBook(@PathVariable("idBT") int idBT) {
 		return "cancelbook";
@@ -38,7 +43,7 @@ public class NotificationController {
 		if (confirmCode.equals(bookTourService.searchById(idBT).getConfirmCode())) {
 			bookTourService.cancelBookTour(idBT);
 			// send cancel success email
-			return "redirect:/home";
+			return "redirect:/cancelsuccess";
 		} else {
 			model.addAttribute("failed", "Vui lòng nhập chính xác mã xác nhân!");
 			return "cancelbook";

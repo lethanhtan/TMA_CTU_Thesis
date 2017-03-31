@@ -7,13 +7,10 @@
 <title>Đăng ký tài khoản thành công</title>
 </head>
 <body>
-	<h3 style="color: red" align="center">Bạn đẵ đăng ký tài khoản
-		thành công!</h3>
-	<h6 style="color: blue" align="center">Một thư điện tử đã được gửi
-		đến hộp thử của bạn, vui lòng kiểm tra và xác thực lại thông tin đăng
-		ký!</h6>
+	<h3 style="color: red" align="center">Bạn đẵ hủy đặt vé thành công!</h3>
+	<h6 style="color: blue" align="center">Cám ơn bạn đã sử dụng dịch vụ của chúng tôi!</h6>
 	<h4 align="center">
-		<a href="/TravelSystem/login">Nhấn vào đây để đăng nhập.</a>
+		<a href="/TravelSystem/login">Nhấn vào đây để trở về trang chủ.</a>
 	</h4>
 </body>
 </html>
