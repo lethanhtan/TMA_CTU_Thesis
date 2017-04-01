@@ -223,8 +223,7 @@
 										type="button">Hủy Bỏ</button></a>
 							</div>
 						</div>
-					</s:form>
-				</div>
+				</s:form>
 				<!-- End Create Tour Box -->
 			</div>
 		</div>

@@ -2,7 +2,6 @@ package edu.ctu.thesis.travelsystem.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,13 +45,7 @@ public class ImportController {
 		objImp.setOwner(session.getAttribute("userName").toString());
 		importDataService.saveImport(objImp);
 		importDataService.importExcel(excelfile);
-		if (status != 1) {
-			return "redirect:/managetour";
-		} else {
-			model.addAttribute("error", "Vui lòng kiểm tra định dạnh file import!");
-			return "import";
-		}
-		
+		return "redirect:/managetour";
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)

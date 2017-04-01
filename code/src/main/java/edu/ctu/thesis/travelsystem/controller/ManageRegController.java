@@ -292,10 +292,22 @@ public class ManageRegController {
 	// Test errors
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid Tour tour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") int idTour) {
-		tourService.updateTour(tour);
-		logger.info("Saved registration form into DB successfully");
-		return "redirect:/manageregister";
+			HttpSession session, @PathVariable("idTour") int idTour, @RequestParam("other") String other,
+			@RequestParam("type") String type) {
+		if (other != null && type != null) {
+			regInfoService.dropFieldOption(other);
+		}
+		// Checking at least one field of registration is true
+		if ((tour.getFieldAddress() || tour.getFieldEmail() || tour.getFieldIdCard() || tour.getFieldName()
+				|| tour.getFieldPhone() || tour.getFieldSex()) == true) {
+			// Have at least 1 field is true
+			tourService.updateTour(tour);
+			logger.info("Saved registration form into DB successfully");
+			return "redirect:/manageregister";
+		} else {
+			// Haven't field is true
+			return "designform";
+		}
 	}
 
 	// Delete customer after cancel registration

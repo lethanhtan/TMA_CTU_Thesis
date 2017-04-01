@@ -30,13 +30,10 @@ import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
 public class BookTourController {
-	
 	@Autowired
 	private TourService tourService;
-	
 	@Autowired
 	private BookTourService bookTourService;
-	
 	@Autowired
 	private EMailSender emailSenderService;
 
@@ -116,8 +113,8 @@ public class BookTourController {
 		try {
 			model.addAttribute("searchedValue", valueSearch);
 			if (valueSearch != null) {
-				logger.info("Search active!");			
-				model.addAttribute("bookTour", new BookTour());				
+				logger.info("Search active!");
+				model.addAttribute("bookTour", new BookTour());
 				model.addAttribute("tour", tourService.findTourById(idTour));
 				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
 				return "booktour";
@@ -159,13 +156,12 @@ public class BookTourController {
 		}
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
-		String fromAddress =  MailTemplate.hostMail;
+		String fromAddress = MailTemplate.hostMail;
 		String toAddress = bookTour.getCusEmail();
 		String subject = MailTemplate.bookSuccessTitle;
 		String msgBody = MailTemplate.bookSuccessBody;
 		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
 		return "redirect:/booksuccess";
-		// }
 	}
 
 	// Forward to Tour detail page
@@ -233,6 +229,7 @@ public class BookTourController {
 	// Customer cancel registration tour
 	@RequestMapping(value = "cancelbooktour/{idBT}")
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
+		bookTourService.cancelBookTour(idBT);
 		String fromAddress = MailTemplate.hostMail;
 		String toAddress = bookTourService.searchById(idBT).getCusEmail();
 		String subject = MailTemplate.confirmCancelTitle;

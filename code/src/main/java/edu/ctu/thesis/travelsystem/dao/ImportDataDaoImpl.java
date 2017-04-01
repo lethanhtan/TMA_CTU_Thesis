@@ -27,7 +27,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	public void importExcel(MultipartFile excelfile){
 		Session session = getCurrentSession();
 		try {
-			ImportController.status = 0;
 			DataFormatter formatter = new DataFormatter();
 			
 			List<Tour> listTours = new ArrayList<>();

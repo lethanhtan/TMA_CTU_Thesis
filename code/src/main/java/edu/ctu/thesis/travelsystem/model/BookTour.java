@@ -269,13 +269,13 @@ public class BookTour {
 	public void setCusYearOfBirth3(String cusYearOfBirth3) {
 		this.cusYearOfBirth3 = cusYearOfBirth3;
 	}
-	
+
 	// CONFIRM_CODE column
 	@Column(name = "CONFIRM_CODE", nullable = false, length = 40)
 	public String getConfirmCode() {
 		return this.confirmCode;
 	}
-	
+
 	public void setConfirmCode(String confirmCode) {
 		this.confirmCode = confirmCode;
 	}
