@@ -66,7 +66,7 @@
 											class="fa fa-building-o"></i>
 										</span>
 										<s:input class="form-control margin-bottom-20"
-											path="cusNumOfTicket" disabled="true" />
+											path="ticketCancel" disabled="true" />
 									</div>
 								</div>
 							</c:if>
@@ -104,8 +104,8 @@
 						<div class="row">
 							<div class="col-lg-4 text-left">
 								<a
-									href="<c:url value='/editbooktour/${cusData.idBT}/${idTour}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
+									href="<c:url value='/undocancel/${cusData.idBT}/${cusData.tour.idTour}'/>"><button
+										class="btn btn-primary" type="button">Phục Hồi</button></a>
 							</div>
 							<div class="col-lg-4 text-center">
 								<a href="<c:url value='/deletebooktour/${cusData.idBT}'/>"><button

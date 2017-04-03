@@ -79,7 +79,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR := idTour AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
+		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");

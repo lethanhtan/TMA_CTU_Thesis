@@ -101,7 +101,8 @@ public class ManageUserController {
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(userService.userList().size(), page, numOnPage));
+						model.addAttribute("y",
+								tourService.paginationY(userService.userList().size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
@@ -134,7 +135,8 @@ public class ManageUserController {
 
 	// Handle required request from client
 	@RequestMapping(value = "edituser/{idUser}", method = RequestMethod.GET)
-	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser) throws ParseException {
+	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser, HttpSession session)
+			throws ParseException {
 		logger.info("Handle edit form when administrator request!");
 		logger.info("Display edit user form when administrator request!");
 		User user = userService.searchUserById(idUser);
@@ -143,6 +145,7 @@ public class ManageUserController {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
+			// model.addAttribute("idRole", userService.getRoleUser(user));
 		} else {
 			logger.info("Null Object!");
 		}
@@ -160,7 +163,11 @@ public class ManageUserController {
 		} else {
 			logger.info("Update user if haven't error!");
 			Role role = new Role();
-			role.setId(1);
+			if (user.getIdRole().equals("Khách hàng")) {
+				role.setId(1);
+			} else {
+				role.setId(2);
+			}
 			user.setRole(role);
 			userService.editUser(user);
 			return "redirect:/manageuser";

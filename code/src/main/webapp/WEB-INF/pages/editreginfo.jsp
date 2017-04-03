@@ -19,6 +19,7 @@
 								Hàng Đặt Vé</h2>
 							</br>
 						</div>
+						<s:input path="confirmCode" hidden="true"/>
 						<div class="row">
 							<c:if test="${tour.fieldName == true}">
 								<div class="col-sm-8">
