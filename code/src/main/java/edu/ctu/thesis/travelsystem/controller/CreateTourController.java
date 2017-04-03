@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.ctu.thesis.travelsystem.extra.UploadFile;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
@@ -54,11 +52,6 @@ public class CreateTourController {
 	@RequestMapping(value = "/createtour", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			HttpSession session, @RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
-		/*
-		UploadFile uf = new UploadFile(file, name, tour);
-		uf.run();
-		*/
-		
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
@@ -82,11 +75,12 @@ public class CreateTourController {
 				tour.setImage(name);
 
 			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
+				model.addAttribute("failedUpload", "You failed to upload!");
+				return "createtour";
 			}
 		} else {
-			return "You failed to upload " + name
-					+ " because the file was empty.";
+			model.addAttribute("failedEmpty", "You not upload image for tour!");
+			return "createtour";
 		}
 		
 		TourValidator tourValidator = new TourValidator();

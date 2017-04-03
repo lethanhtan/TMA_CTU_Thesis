@@ -35,6 +35,10 @@
 						<div class="row">
 						<div class="col-lg-12 col-sm-12">
 							<label>Hình ảnh</label>
+							<!-- Show error -->
+								<small style="color:red">${failedUpload}</small>
+								<small style="color:red">${failedEmpty}</small>
+								<!-- End Show Error -->
 							<div class="input-group">
 								<label class="input-group-btn"> <span
 									class="btn btn-primary"> Tập tin&hellip; <input

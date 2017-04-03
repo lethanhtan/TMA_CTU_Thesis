@@ -159,6 +159,21 @@ public class ManageTourController {
 	public String updateTour(ModelMap model, @PathVariable("idTour") int idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session,
 			@RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
+		if (tour != null) {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String departureDate = sdf.format(tour.getDepartureDate());
+			String returnDate = sdf.format(tour.getReturnDate());
+			String dateAllowReg = sdf.format(tour.getDateAllowReg());
+			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
+			model.addAttribute("date1", departureDate);
+			model.addAttribute("date2", returnDate);
+			model.addAttribute("date3", dateAllowReg);
+			model.addAttribute("date4", dateAllowCancel);
+			model.addAttribute("tourData", tour);
+			model.addAttribute("idTour", idTour);
+		} else {
+			logger.info("Null Object!");
+		}
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
@@ -179,15 +194,15 @@ public class ManageTourController {
 
 				logger.info("Server File Location="
 						+ serverFile.getAbsolutePath());
-				logger.info(serverFile.getAbsoluteFile());
 				tour.setImage(name);
 
 			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
+				model.addAttribute("failedUpload", "You failed to upload!");
+				return "updatetour";
 			}
 		} else {
-			return "You failed to upload " + name
-					+ " because the file was empty.";
+			model.addAttribute("failedEmpty", "You not upload image for tour!");
+			return "updatetour";
 		}
 		
 		TourValidator tourValidator = new TourValidator();
