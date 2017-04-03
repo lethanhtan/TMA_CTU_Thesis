@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20 animate fadeInRight" style="text-align: center;">Danh
 					Sách Tour Du Lịch</h2>
 				<a href="createtour"><button
 						class="btn btn-primary fa-plus-square">Tạo Mới</button></a>

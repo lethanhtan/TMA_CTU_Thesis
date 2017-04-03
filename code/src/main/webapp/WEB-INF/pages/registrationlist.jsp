@@ -29,10 +29,10 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20 animate fadeInUp" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
 						<a
-							href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
+							href="${pageContext.request.contextPath}/booktour/${idTour}"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -164,7 +164,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20 animate fadeInLeft" style="text-align: center;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -183,7 +183,7 @@
 								<form role="form" class="form-inline" action="registrationlist"
 									method="get">
 									<label for="selectTour"
-										style="text-align: left; margin-left: 2%">Số người
+										style="text-align: left; margin-left: 2%">Số người hủy 
 										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
 										name="numOn">
 										<option>5</option>

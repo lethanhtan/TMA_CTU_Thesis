@@ -57,6 +57,12 @@
 								</div>
 							</div>
 						</div>
+						<label>Phân quyền</label>
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon"><i class="fa fa-minus-circle"></i>
+							</span>
+							<s:input class="form-control margin-bottom-20" path="idRole" disabled="true"/>
+						</div>
 						<label>Email</label>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-envelope"></i>

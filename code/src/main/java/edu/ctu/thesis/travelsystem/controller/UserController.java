@@ -1,13 +1,19 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -22,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
@@ -31,7 +38,7 @@ import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
 @Controller
-public class UserController {
+public class UserController extends HttpServlet {
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -40,11 +47,14 @@ public class UserController {
 	private TourService tourService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
+	private static final long serialVersionUID = -6506682026701304964L;
 
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model, HttpServletRequest request) throws IOException {
 		logger.info("Handle register request when client send!");
+		// get reCAPTCHA request param
+		// request.setAttribute("g-recaptcha-response", null);
 		model.put("userData", new User());// put userData as a User
 		return "register";
 	}
@@ -52,13 +62,21 @@ public class UserController {
 	// Processing for form register when submit
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
-			HttpSession session) {
+			HttpSession session, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		logger.info("Handle register form action when user submit!");
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
-		if (br.hasErrors()) { // form input have error
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		// String gRecaptchaResponse = (String)
+		// session.getAttribute("g-recaptcha-response");
+		System.out.println(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		System.out.println("::Captcha Verify" + verify);
+		if (br.hasErrors() /* || verify == false */) { // form input have error
 			return "register";
 		} else { // form input is ok
+			user.setDate(Calendar.getInstance().getTime());
 			userService.saveUser(user);
 			return "redirect:regsuccess";
 		}
@@ -105,13 +123,14 @@ public class UserController {
 		}
 	}
 
-	// Handel for logout request
+	// Handle for logout request
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user"); // remove user object from session
 		session.removeValue("userName"); // remove userName value
 		session.removeValue("roleId"); // remove roleId value
+		session.removeValue("idUser");
 		return "redirect:login";
 	}
 
@@ -134,6 +153,7 @@ public class UserController {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
+			model.addAttribute("idRole", user.getIdRole());
 		} else {
 			logger.info("Null Object!");
 		}
@@ -302,7 +322,8 @@ public class UserController {
 					model.addAttribute("pageNum3", pageNum3);
 					model.addAttribute("pageE3", new ArrayList<Integer>());
 					model.addAttribute("x3", tourService.paginationX(page3, 5));
-					model.addAttribute("y3", tourService.paginationY(userService.myBookTourList(idUser).size(), page3, 5));
+					model.addAttribute("y3",
+							tourService.paginationY(userService.myBookTourList(idUser).size(), page3, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
