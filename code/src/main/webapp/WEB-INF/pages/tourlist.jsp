@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20 animate flip" style="text-align: center;">Danh
 					Sách Tour Du Lịch</h2>
 				<div class="row margin-bottom-30">
 					<div class="col-md-4 animate fadeInRight"></div>
