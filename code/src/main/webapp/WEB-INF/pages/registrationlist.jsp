@@ -183,7 +183,7 @@
 								<form role="form" class="form-inline" action="registrationlist"
 									method="get">
 									<label for="selectTour"
-										style="text-align: left; margin-left: 2%">Số người
+										style="text-align: left; margin-left: 2%">Số người hủy 
 										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
 										name="numOn">
 										<option>5</option>
