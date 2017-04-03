@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -59,6 +60,7 @@ public class UserController {
 		if (br.hasErrors()) { // form input have error
 			return "register";
 		} else { // form input is ok
+			user.setDate(Calendar.getInstance().getTime());
 			userService.saveUser(user);
 			return "redirect:regsuccess";
 		}
@@ -105,13 +107,14 @@ public class UserController {
 		}
 	}
 
-	// Handel for logout request
+	// Handle for logout request
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user"); // remove user object from session
 		session.removeValue("userName"); // remove userName value
 		session.removeValue("roleId"); // remove roleId value
+		session.removeValue("idUser");
 		return "redirect:login";
 	}
 
