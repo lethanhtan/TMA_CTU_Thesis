@@ -10,16 +10,16 @@
 			<div class="row margin-vert-30">
 				<!-- Update Tour Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" commandName="tourData"
+					<s:form class="signup-page" commandName="tourData" enctype="multipart/form-data"
 						action="${pageContext.request.contextPath }/updatetour/${tourData.idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2>Cập nhật Thông Tin Tour</h2>
-							</br>
 						</div>
 						<div class="row">
-							<div class="col-sm-8">
+							<div class="col-sm-12">
 								<label>Tên tour</label>
+								<br />
 								<!-- Show error -->
 								<small><s:errors path="name" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
@@ -30,17 +30,31 @@
 										class="form-control margin-bottom-20" type="text" path="name" />
 								</div>
 							</div>
-							<div class="col-lg-4 text-left">
-								<label>Tải ảnh lên</label>
-								<button class="btn btn-primary" type="button">Chọn tập
-									tin</button>
+						</div>
+						
+						<div class="row">
+						<div class="col-lg-12 col-sm-12">
+							<label>Hình ảnh</label>
+							<!-- Show error -->
+								<small style="color:red">${failedUpload}</small>
+								<small style="color:red">${failedEmpty}</small>
+								<!-- End Show Error -->
+							<div class="input-group">
+								<label class="input-group-btn"> <span
+									class="btn btn-primary"> Tập tin&hellip; <input
+										type="file" name="file" style="display: none;" multiple>
+								</span>
+								</label> <input type="text" name="nameFile" class="form-control" readonly>
 							</div>
 						</div>
+						</div>
+						<br />
+						
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Ngày đi</label>
 								<!-- Show error -->
-								</br> <small><s:errors path="departureDate"
+								<small><s:errors path="departureDate"
 										cssStyle="color:red;" /></small>
 								<!-- End Show Error -->
 								<div class="input-group margin-bottom-20">

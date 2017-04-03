@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -152,11 +151,11 @@ public class PDFBuilder extends AbstractITextPdfView {
 			FontFactory.register(FONT2);
 			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			Paragraph title = new Paragraph("Danh sách người đăng ký", font);
-			title.setIndentationLeft(180.0f);
+			//title.setIndentationLeft(180.0f);
 			doc.add(title);
 			if (!listBookTours.isEmpty()) {
 				Paragraph nameTour = new Paragraph(listBookTours.get(0).getTour().getName(), font);
-				nameTour.setIndentationLeft(200.0f);
+				//nameTour.setIndentationLeft(200.0f);
 				doc.add(nameTour);
 			}
 			doc.addTitle("NYTravel List BookTour");

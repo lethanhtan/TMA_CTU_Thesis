@@ -12,12 +12,13 @@
 						enctype="multipart/form-data" method="POST">
 						<div class="signup-header">
 							<div class="text-center">
-								<h2>Quản lý Import</h2></br>
+								<h2>Quản lý Import</h2>
 							</div>
 						</div>
 						<div class="row">
 						<div class="col-lg-12 col-sm-12">
 							<small style="color:red">${error}</small>
+							<small style="color:red">${failedSize}</small>
 							<br />
 							<label>Chọn tệp</label>
 							<div class="input-group">
@@ -69,15 +70,12 @@
 							</div>
 							<hr class="margin-bottom-20">
 							<div class="row">
-								<div class="col-lg-4 text-left">
+								<div class="col-lg-6 text-center">
 									<button class="btn btn-primary" type="submit">Xác Nhận</button>
 								</div>
-								<div class="col-lg-4 text-center">
+								<div class="col-lg-6 text-center">
 									<a href="managetour"><button class="btn btn-primary"
 											type="button">Hủy Bỏ</button></a>
-								</div>
-								<div class="col-lg-4 text-right">
-									<input class="btn btn-primary" type="reset" value="Nhập Lại">
 								</div>
 							</div>
 					</s:form>

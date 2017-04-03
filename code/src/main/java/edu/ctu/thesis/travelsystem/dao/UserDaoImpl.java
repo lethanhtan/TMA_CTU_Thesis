@@ -1,6 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -38,6 +39,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 				user.setRole(role); // set default role for register account
 				user.setPassword(ep.enCoded(user.getPassword()));
 				// Encoded password user
+				Date date = new Date();
+				user.setDate(date);
+				user.setTime(date);
 				session.save(user);
 				session.flush();
 			} catch (Exception e) {
