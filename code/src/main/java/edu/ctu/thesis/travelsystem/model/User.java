@@ -1,6 +1,6 @@
 /***********************************************************************
  * Module:  Customer.java
- * Author:  Le Nhu Y
+ * Author:  Le Nhu Y
  * Purpose: Defines the Class Customer
  ***********************************************************************/
 package edu.ctu.thesis.travelsystem.model;
@@ -36,6 +36,7 @@ public class User {
 	private String phone;
 	private String sex;
 	private Role role;
+	private String idRole;
 	
 	//contructor
 	public User() {}
@@ -182,6 +183,15 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	@Column(name = "ROLE", nullable = true)
+	public String getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(String idRole) {
+		this.idRole = idRole;
 	}
 
 	@Override

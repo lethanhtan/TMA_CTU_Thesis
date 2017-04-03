@@ -11,7 +11,7 @@
 				<!-- Edit User Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="userData"
-						action="${pageContext.request.contextPath}/edituser/${userData.idUser}"
+						action="${pageContext.request.contextPath}/edituser/${userData.idUser}/${idRole}"
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
@@ -68,6 +68,15 @@
 										path="phone" />
 								</div>
 							</div>
+						</div>
+						<label>Phân quyền</label>
+						<div class="input-group margin-bottom-20">
+							<span class="input-group-addon"><i class="fa fa-minus-circle"></i>
+							</span>
+							<s:select class="form-control margin-bottom-20" path="idRole">
+								<option>Khách hàng</option>
+								<option>Quản trị viên</option>
+							</s:select>
 						</div>
 						<label>Email</label>
 						<!-- Show error -->
