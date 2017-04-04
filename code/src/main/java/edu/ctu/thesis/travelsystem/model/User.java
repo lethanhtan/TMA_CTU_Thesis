@@ -36,7 +36,7 @@ public class User {
 	private String phone;
 	private String sex;
 	private Role role;
-	private String idRole;
+	private String idRole = "Khách hàng";
 	
 	//contructor
 	public User() {}
