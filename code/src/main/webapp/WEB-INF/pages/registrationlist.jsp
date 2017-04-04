@@ -29,7 +29,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate fadeInUp" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
 						<a
 							href="${pageContext.request.contextPath}/booktour/${idTour}"><button
@@ -164,7 +164,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate fadeInLeft" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>

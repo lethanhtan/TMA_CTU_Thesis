@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.EMailSender;
 import edu.ctu.thesis.travelsystem.extra.MailTemplate;
+import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
@@ -46,7 +47,6 @@ public class UserController extends HttpServlet {
 	private BookTourService bookTourService;
 	@Autowired
 	private TourService tourService;
-	
 	@Autowired
 	private EMailSender emailSenderService;
 
@@ -55,10 +55,8 @@ public class UserController extends HttpServlet {
 
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String showForm(ModelMap model, HttpServletRequest request) throws IOException {
+	public String showForm(ModelMap model) {
 		logger.info("Handle register request when client send!");
-		// get reCAPTCHA request param
-		// request.setAttribute("g-recaptcha-response", null);
 		model.put("userData", new User());// put userData as a User
 		return "register";
 	}
@@ -72,12 +70,15 @@ public class UserController extends HttpServlet {
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		// String gRecaptchaResponse = (String)
-		// session.getAttribute("g-recaptcha-response");
-		System.out.println(gRecaptchaResponse);
-		//boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		//System.out.println("::Captcha Verify" + verify);
-		if (br.hasErrors() /* || verify == false */) { // form input have error
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
+		if (br.hasErrors()) {
+			return "register";  // form input have error
+		} 
+		if(verify == false) {
+			String errorString = "Bạn phải chọn reCaptcha!";
+			model.addAttribute("errorString", errorString);
 			return "register";
 		} else { // form input is ok
 			user.setDate(Calendar.getInstance().getTime());
@@ -162,7 +163,7 @@ public class UserController extends HttpServlet {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
-			model.addAttribute("idRole", user.getIdRole());
+			model.addAttribute("idRole", user.getDescRole());
 		} else {
 			logger.info("Null Object!");
 		}

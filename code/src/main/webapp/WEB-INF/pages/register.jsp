@@ -119,6 +119,7 @@
 								class="form-control margin-bottom-20" type="text" path="address" />
 						</div>
 						<!-- reCAPTCHA -->
+						<p style="color:red;">${errorString}</p>
 						<div style="margin-left: 37px;" class="g-recaptcha"
 							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
 						<!-- End reCAPTCHA -->

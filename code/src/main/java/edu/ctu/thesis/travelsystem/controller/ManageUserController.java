@@ -163,7 +163,7 @@ public class ManageUserController {
 		} else {
 			logger.info("Update user if haven't error!");
 			Role role = new Role();
-			if (user.getIdRole().equals("Kh·ch h‡ng")) {
+			if (user.getDescRole().equals("Kh√°ch h√†ng")) {
 				role.setId(1);
 			} else {
 				role.setId(2);

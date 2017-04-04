@@ -36,7 +36,7 @@ public class User {
 	private String phone;
 	private String sex;
 	private Role role;
-	private String idRole;
+	private String descRole = "Khách hàng";
 	
 	//contructor
 	public User() {}
@@ -186,12 +186,12 @@ public class User {
 	}
 	
 	@Column(name = "ROLE", nullable = true)
-	public String getIdRole() {
-		return idRole;
+	public String getDescRole() {
+		return descRole;
 	}
 
-	public void setIdRole(String idRole) {
-		this.idRole = idRole;
+	public void setDescRole(String descRole) {
+		this.descRole = descRole;
 	}
 
 	@Override
