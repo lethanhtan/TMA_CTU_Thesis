@@ -9,17 +9,22 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.ctu.thesis.travelsystem.controller.ImportController;
 import edu.ctu.thesis.travelsystem.model.Import;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
 public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
 	@Override
-	public void importExcel(MultipartFile excelfile) {
+	public void importExcel(MultipartFile excelfile){
 		Session session = getCurrentSession();
 		try {
 			DataFormatter formatter = new DataFormatter();
@@ -58,7 +63,8 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 			}			
 			workbook.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info("Format file error!");
+			ImportController.status = 1;
 		}
 	}
 

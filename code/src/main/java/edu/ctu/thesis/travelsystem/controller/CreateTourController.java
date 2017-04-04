@@ -1,5 +1,9 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -45,7 +51,38 @@ public class CreateTourController {
 	// Processing for form create tour
 	@RequestMapping(value = "/createtour", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
-			HttpSession session) {
+			HttpSession session, @RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "tmpFiles");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				logger.info("Server File Location="
+						+ serverFile.getAbsolutePath());
+				tour.setImage(name);
+
+			} catch (Exception e) {
+				model.addAttribute("failedUpload", "You failed to upload!");
+				return "createtour";
+			}
+		} else {
+			model.addAttribute("failedEmpty", "You not upload image for tour!");
+			return "createtour";
+		}
+		
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
@@ -53,7 +90,7 @@ public class CreateTourController {
 		} else {
 			logger.info("Create tour! In here second!");
 			tourService.saveTour(tour);
-			return "redirect:managetour";
+			return "redirect:/managetour";
 		}
 	}
 }

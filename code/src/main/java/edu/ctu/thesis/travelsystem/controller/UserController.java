@@ -28,7 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
+import edu.ctu.thesis.travelsystem.extra.EMailSender;
+import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
@@ -45,6 +46,9 @@ public class UserController extends HttpServlet {
 	private BookTourService bookTourService;
 	@Autowired
 	private TourService tourService;
+	
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
@@ -71,13 +75,18 @@ public class UserController extends HttpServlet {
 		// String gRecaptchaResponse = (String)
 		// session.getAttribute("g-recaptcha-response");
 		System.out.println(gRecaptchaResponse);
-		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		System.out.println("::Captcha Verify" + verify);
+		//boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		//System.out.println("::Captcha Verify" + verify);
 		if (br.hasErrors() /* || verify == false */) { // form input have error
 			return "register";
 		} else { // form input is ok
 			user.setDate(Calendar.getInstance().getTime());
 			userService.saveUser(user);
+			String fromAddress = MailTemplate.hostMail;
+			String toAddress = user.getEmail();
+			String subject = MailTemplate.regTitle;
+			String msgBody = MailTemplate.regBody;
+			emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
 			return "redirect:regsuccess";
 		}
 	}

@@ -62,11 +62,6 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
-<script type="text/javascript">
-	var date = $('#datepicker').datepicker2({
-		dateFormat : 'yy-mm-dd'
-	}).val();
-</script>
 </head>
 <body>
 	<div id="body-bg">

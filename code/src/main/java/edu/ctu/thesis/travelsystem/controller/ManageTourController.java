@@ -1,5 +1,8 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
@@ -153,7 +157,54 @@ public class ManageTourController {
 	// handle form action update tour
 	@RequestMapping(value = "/updatetour/{idTour}", method = RequestMethod.POST)
 	public String updateTour(ModelMap model, @PathVariable("idTour") int idTour,
-			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session) {
+			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session,
+			@RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
+		if (tour != null) {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String departureDate = sdf.format(tour.getDepartureDate());
+			String returnDate = sdf.format(tour.getReturnDate());
+			String dateAllowReg = sdf.format(tour.getDateAllowReg());
+			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
+			model.addAttribute("date1", departureDate);
+			model.addAttribute("date2", returnDate);
+			model.addAttribute("date3", dateAllowReg);
+			model.addAttribute("date4", dateAllowCancel);
+			model.addAttribute("tourData", tour);
+			model.addAttribute("idTour", idTour);
+		} else {
+			logger.info("Null Object!");
+		}
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "tmpFiles");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				logger.info("Server File Location="
+						+ serverFile.getAbsolutePath());
+				tour.setImage(name);
+
+			} catch (Exception e) {
+				model.addAttribute("failedUpload", "You failed to upload!");
+				return "updatetour";
+			}
+		} else {
+			model.addAttribute("failedEmpty", "You not upload image for tour!");
+			return "updatetour";
+		}
+		
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
