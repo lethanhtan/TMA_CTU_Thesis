@@ -33,7 +33,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate lightSpeedIn" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -150,7 +150,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate rotateIn" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -274,7 +274,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate slideInDown" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Tour Đã Đi</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
