@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.ctu.thesis.travelsystem.extra.EMailSender;
+//import edu.ctu.thesis.travelsystem.extra.EMailSender;
 import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.model.BookTour;
@@ -47,8 +47,8 @@ public class UserController extends HttpServlet {
 	private BookTourService bookTourService;
 	@Autowired
 	private TourService tourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	// @Autowired
+	// private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
@@ -87,8 +87,8 @@ public class UserController extends HttpServlet {
 			String toAddress = user.getEmail();
 			String subject = MailTemplate.regTitle;
 			String msgBody = MailTemplate.regBody;
-			 emailSenderService.SendEmail(toAddress, fromAddress, subject,
-			 msgBody);
+			// emailSenderService.SendEmail(toAddress, fromAddress, subject,
+			// msgBody);
 			return "redirect:regsuccess";
 		}
 	}
@@ -164,7 +164,7 @@ public class UserController extends HttpServlet {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
-			model.addAttribute("idRole", user.getIdRole());
+			model.addAttribute("idRole", user.getDescRole());
 		} else {
 			logger.info("Null Object!");
 		}
