@@ -67,7 +67,7 @@
 								<!-- use subList render list user to display -->
 								<tr>
 									<c:if test="${user.idUser != id}">
-										<td>${userList.indexOf(user) + 1}</td>
+										<td>${userList.indexOf(user)}</td>
 										<td>${user.fullName}</td>
 										<td>&nbsp;&nbsp;&nbsp; ${user.sex}</td>
 										<td>&nbsp;&nbsp;&nbsp; ${user.birthday}</td>
