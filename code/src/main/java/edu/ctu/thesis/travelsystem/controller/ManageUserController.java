@@ -35,7 +35,7 @@ public class ManageUserController {
 	@Autowired
 	private TourService tourService;
 
-	private static int numOnPage = 5;
+	private static int numOnPage = 6;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
 
@@ -49,7 +49,7 @@ public class ManageUserController {
 		String result;
 		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; // numOn
+				numOnPage = numOn + 1; // numOn
 			}
 		} catch (Exception e) {
 			logger.info("None select number of account on page!");

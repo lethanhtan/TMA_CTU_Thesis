@@ -19,6 +19,8 @@
 						</div>
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
+						<s:input path="dateRes" hidden="true"/>
+						<s:input path="timeRes" hidden="true"/>
 						<div class="row">
 							<div class="col-sm-8">
 								<label>Họ tên</label>
@@ -73,7 +75,7 @@
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-minus-circle"></i>
 							</span>
-							<s:select class="form-control margin-bottom-20" path="idRole">
+							<s:select class="form-control margin-bottom-20" path="descRole">
 								<option>Khách hàng</option>
 								<option>Quản trị viên</option>
 							</s:select>

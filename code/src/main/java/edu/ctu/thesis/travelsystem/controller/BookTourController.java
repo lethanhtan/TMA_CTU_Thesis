@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -34,8 +35,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	@Autowired
-	private EMailSender emailSenderService;
+	 @Autowired
+	 private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 
@@ -156,12 +157,14 @@ public class BookTourController {
 		}
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
+		model.put("idBT", bookTour.getIdBT());
 		String fromAddress = MailTemplate.hostMail;
 		String toAddress = bookTour.getCusEmail();
 		String subject = MailTemplate.bookSuccessTitle;
 		String msgBody = MailTemplate.bookSuccessBody;
-		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
-		return "redirect:/booksuccess";
+		// emailSenderService.SendEmail(toAddress, fromAddress, subject,
+		// msgBody);
+		return "redirect:/booksuccess/{idBT}/{idTour}";
 	}
 
 	// Forward to Tour detail page
@@ -236,5 +239,19 @@ public class BookTourController {
 		String msgBody = MailTemplate.confirmCancelBody + bookTourService.searchById(idBT).getConfirmCode();
 		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
 		return "redirect:/cancelbook/{idBT}";
+	}
+
+	// Forward to Book tour detail page
+	@RequestMapping(value = "booksuccess/{idBT}/{idTour}", method = RequestMethod.GET)
+	public String showBTDetail(ModelMap model, @PathVariable("idTour") int idTour, @PathVariable("idBT") int idBT,
+			@Valid Tour tour, @Valid BookTour bookTour) {
+		logger.info("Show book tour detail!");
+		model.put("tourData", tourService.findTourById(idTour));
+		model.put("cusData", bookTourService.searchById(idBT));
+		String pr = tourService.findTourById(idTour).getPrice().replaceAll(",", "");
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		model.put("price",
+				formatter.format(Integer.parseInt(pr) * bookTourService.searchById(idBT).getCusNumOfTicket()));
+		return "booksuccess";
 	}
 }
