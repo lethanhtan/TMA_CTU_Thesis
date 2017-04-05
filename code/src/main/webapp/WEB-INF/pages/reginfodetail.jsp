@@ -66,7 +66,7 @@
 											class="fa fa-building-o"></i>
 										</span>
 										<s:input class="form-control margin-bottom-20"
-											path="ticketCancel" disabled="true" />
+											path="numOfTicket" disabled="true" />
 									</div>
 								</div>
 							</c:if>
