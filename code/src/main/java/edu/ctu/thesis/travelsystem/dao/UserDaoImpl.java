@@ -159,10 +159,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public void deleteUser(int idUser) {
 		Session session = getCurrentSession();
 		User user = (User) session.load(User.class, new Integer(idUser));
-		String hql = "DELETE FROM User WHERE ID_USER = :idUser";
-		Query query = session.createQuery(hql);
-		query.setParameter("idUser", idUser);
 		if (user != null) {
+			Query query = session.createQuery("UPDATE User SET ID_ROLE = null WHERE ID_USER = :idUser");
+			query.setParameter("idUser", user.getIdUser());
+			query.executeUpdate();
 			session.delete(user);
 			session.flush();
 			logger.info("Delete user successfully!");
