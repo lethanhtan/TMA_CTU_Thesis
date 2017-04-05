@@ -26,7 +26,7 @@
 				<h3 class="margin-bottom-10">NY Travel Company</h3>
 				<ul class="menu">
 					<li><a class="fa-book"
-						href="${pageContext.request.contextPath}/booktour">Đặt Vé</a></li>
+						href="${pageContext.request.contextPath}/tourlist">Đặt Vé</a></li>
 					<li><a class="fa-tasks"
 						href="${pageContext.request.contextPath}/blog">Blog</a></li>
 					<li><a class="fa-coffee"
