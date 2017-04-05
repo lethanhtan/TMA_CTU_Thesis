@@ -66,7 +66,7 @@
 											class="fa fa-building-o"></i>
 										</span>
 										<s:input class="form-control margin-bottom-20"
-											path="numOfTicket" disabled="true" />
+											path="cusNumOfTicket" disabled="true" />
 									</div>
 								</div>
 							</c:if>
