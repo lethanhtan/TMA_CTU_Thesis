@@ -211,15 +211,14 @@ public class BookTourController {
 		logger.info("Handle edit information customer form when admin submit!");
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
+		tour = tourService.findTourById(idTour);
 		if (br.hasErrors()) {
-			tour = tourService.findTourById(idTour);
 			logger.info("Tour info: " + tour);
 			if (tour != null) {
 				model.addAttribute("tour", tour);
 			}
 			return "editbooktour	";
 		} else {
-			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
