@@ -176,7 +176,7 @@ public class User {
 	}
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_ROLE", nullable = false)
+	@JoinColumn(name = "ID_ROLE", nullable = true)
 	public Role getRole() {
 		return role;
 	}

@@ -80,11 +80,29 @@
 										</a><a href="<c:url value='edituser/${user.idUser}'/>"><button
 													class="btn btn-sm btn-success">
 													<i class="fa fa-pencil">&nbsp;Sửa</i>
-												</button></a> <a
-											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>"><button
+												</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
 													class="btn btn-sm btn-danger">
 													<i class="fa fa-trash-o">&nbsp;Xóa</i>
-												</button></a></td>
+												</button></a> <!-- Popup Cofirm -->
+											<div id="deleteConfirm" class="modal fade">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Bạn muốn xóa tài khoản đã
+																chọn?</h4>
+															</br> <a
+																href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
+																<button type="button" class="btn btn-danger">
+																	Có</button>
+															</a>
+															<button type="button" class="btn btn-primary"
+																data-dismiss="modal">Không</button>
+														</div>
+													</div>
+												</div>
+											</div> <!-- End Popup Cofirm --></td>
 									</c:if>
 								</tr>
 							</c:forEach>

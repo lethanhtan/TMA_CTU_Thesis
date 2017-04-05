@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
@@ -83,6 +84,14 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		String hql = "DELETE FROM Tour WHERE ID_TOUR = :idTour";
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
+		String hql2 = "FROM BookTour WHERE ID_TOUR = :idTour";
+		Query query2 = session.createQuery(hql2);
+		query2.setParameter("idTour", idTour);
+		List<BookTour> bookTourList = query2.list();
+		for (BookTour bookTour : bookTourList) {
+			session.delete(bookTour);
+			logger.info("Delete book tour successfully!");
+		}
 		if (tour != null) {
 			session.delete(tour);
 			session.flush();
