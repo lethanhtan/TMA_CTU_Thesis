@@ -75,11 +75,11 @@ public class CreateTourController {
 				tour.setImage(name);
 
 			} catch (Exception e) {
-				model.addAttribute("failedUpload", "You failed to upload!");
+				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");
 				return "createtour";
 			}
 		} else {
-			model.addAttribute("failedEmpty", "You not upload image for tour!");
+			model.addAttribute("failedEmpty", "Bạn phải chọn tập tin hình ảnh cho tour!");
 			return "createtour";
 		}
 		
