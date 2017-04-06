@@ -29,10 +29,9 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate fadeInUp" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
-						<a
-							href="${pageContext.request.contextPath}/booktour/${idTour}"><button
+						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -100,11 +99,29 @@
 												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
 														class="btn btn-sm btn-aqua">
 														<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-													</button></a> <a
-												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>"><button
+													</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a></td>
+													</button></a> <!-- Popup Cofirm -->
+												<div id="deleteConfirm" class="modal fade">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">&times;</button>
+																<h4 class="modal-title">Bạn muốn xóa người đăng ký
+																	đã chọn?</h4>
+																</br> <a
+																	href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
+																	<button type="button" class="btn btn-danger">
+																		Có</button>
+																</a>
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal">Không</button>
+															</div>
+														</div>
+													</div>
+												</div> <!-- End Popup Cofirm --></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -164,7 +181,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20 animate fadeInLeft" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -183,7 +200,7 @@
 								<form role="form" class="form-inline" action="registrationlist"
 									method="get">
 									<label for="selectTour"
-										style="text-align: left; margin-left: 2%">Số người hủy 
+										style="text-align: left; margin-left: 2%">Số người hủy
 										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
 										name="numOn">
 										<option>5</option>
@@ -227,11 +244,29 @@
 												href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
 														class="btn btn-sm btn-success">
 														<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-													</button></a> <a
-												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
+													</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a></td>
+													</button></a> <!-- Popup Cofirm -->
+												<div id="deleteConfirm" class="modal fade">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">&times;</button>
+																<h4 class="modal-title">Bạn muốn xóa người hủy đăng
+																	ký đã chọn?</h4>
+																</br> <a
+																	href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
+																	<button type="button" class="btn btn-danger">
+																		Có</button>
+																</a>
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal">Không</button>
+															</div>
+														</div>
+													</div>
+												</div> <!-- End Popup Cofirm --></td>
 										</tr>
 									</c:forEach>
 								</tbody>

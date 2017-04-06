@@ -22,8 +22,7 @@
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
-									</br>
-									<small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i class="fa fa-font"></i>
 										</span>
@@ -100,6 +99,29 @@
 								<s:input class="form-control" path="cusIdCard" disabled="true" />
 							</div>
 						</c:if>
+						<c:if test="${cusData.cusNumOfTicket > 1}">
+							<c:forEach var="i" begin="1" end="${cusData.cusNumOfTicket - 1}">
+								<div class="row">
+									<div class="col-sm-8">
+										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span>
+											<s:input class="form-control" path="cusName${i}" disabled="true" />
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label>Năm sinh</label>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input class="form-control" path="cusYearOfBirth${i}" disabled="true" />
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
@@ -108,8 +130,8 @@
 										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 							</div>
 							<div class="col-lg-6 text-center">
-								<button onclick="goBack()"
-										class="btn btn-primary" type="button">Trở Về</button>
+								<button onclick="goBack()" class="btn btn-primary" type="button">Trở
+									Về</button>
 							</div>
 						</div>
 					</s:form>

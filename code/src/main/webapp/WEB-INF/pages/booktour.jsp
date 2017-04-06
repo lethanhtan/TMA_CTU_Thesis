@@ -41,14 +41,38 @@
 								<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
 								<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
 								<td><a
-									href="<c:url value='/booktourdetail/${bookTour.idBT}/${tour.idTour}'/>"
-									title="Xem"><i class="fa fa-eye">&nbsp;</i> </a><a
-									href="<c:url value='/editbooktour/${bookTour.idBT}/${tour.idTour }'/>"
-									title="Sửa"><i class="fa fa-pencil">&nbsp;</i> </a> <c:if
-										test="${tour.cancelOrNot}">
-										<a data-toggle="modal"
-											href="<c:url value='/cancelbooktour/${bookTour.idBT}'/>"
-											title="Hủy đăng ký"><i class="fa fa-ban"></i></a>
+									href="<c:url value='/booktourdetail/${bookTour.idBT}/${tour.idTour}'/>"><button
+											class="btn btn-sm btn-violet">
+											<i class="fa fa-eye">&nbsp;Xem</i>
+										</button></a> <a
+									href="<c:url value='/editbooktour/${bookTour.idBT}/${tour.idTour }'/>"><button
+											class="btn btn-sm btn-success">
+											<i class="fa fa-pencil">&nbsp;Sửa</i>
+										</button></a> <c:if test="${tour.cancelOrNot}">
+										<a href="#deleteConfirm" data-toggle="modal"><button
+												class="btn btn-sm btn-danger">
+												<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+											</button></a>
+										<!-- Popup Cofirm -->
+										<div id="deleteConfirm" class="modal fade">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">&times;</button>
+														<h4 class="modal-title">Quý khách muốn hủy đăng ký
+															tour đã chọn?</h4>
+														</br> <a
+															href="<c:url value='/cancelbooktour/${bookTour.idBT}'/>">
+															<button type="button" class="btn btn-danger">Có</button>
+														</a>
+														<button type="button" class="btn btn-primary"
+															data-dismiss="modal">Không</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- End Popup Cofirm -->
 									</c:if></td>
 							</tr>
 						</c:forEach>
@@ -129,31 +153,31 @@
 							</c:if>
 						</div>
 						<div id="2" class="group">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ 2</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName1" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth1" />
-										</div>
+							<div class="row">
+								<div class="col-sm-8">
+									<label>Họ tên người thứ 2</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i class="fa fa-font"></i>
+										</span>
+										<s:input placeholder="Nhập họ tên" class="form-control"
+											type="text" path="cusName1" />
 									</div>
 								</div>
+								<div class="col-sm-4">
+									<label>Năm sinh</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-calendar"></i>
+										</span>
+										<s:input placeholder="Nhập năm sinh" class="form-control"
+											type="text" path="cusYearOfBirth1" />
+									</div>
+								</div>
+							</div>
 						</div>
 						<div id="3" class="group">
 							<c:forEach var="i" begin="1" end="2">

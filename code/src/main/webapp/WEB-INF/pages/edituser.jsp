@@ -73,7 +73,7 @@
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-minus-circle"></i>
 							</span>
-							<s:select class="form-control margin-bottom-20" path="idRole">
+							<s:select class="form-control margin-bottom-20" path="descRole">
 								<option>Khách hàng</option>
 								<option>Quản trị viên</option>
 							</s:select>

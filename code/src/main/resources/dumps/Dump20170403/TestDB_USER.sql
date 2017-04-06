@@ -37,6 +37,7 @@ CREATE TABLE `USER` (
   `TIME_RES` time DEFAULT NULL,
   `USER_NAME` varchar(40) NOT NULL,
   `ID_ROLE` int(11) NOT NULL,
+  `ROLE` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`ID_USER`),
   KEY `FK_od2qnwuhcdnrylt692ty17f5k` (`ID_ROLE`),
   CONSTRAINT `FK_od2qnwuhcdnrylt692ty17f5k` FOREIGN KEY (`ID_ROLE`) REFERENCES `ROLE` (`ID_ROLE`)
@@ -49,7 +50,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES (1,'Can Tho','1995-02-14','2017-03-14','administrator1@email.com','Administrator','MTIzNA==','092817212','Nam','08:21:12','admin',2),(2,'Can Tho','1995-02-14','2017-03-14','user1@email.com','UserNameA','MTIzNDU2Nzg=','092817212','Nam','08:21:12','usernamea',1),(3,'190/2 Đường 30/4, Hưng Lợi, Ninh Kiều, Cần Thơ','1990-03-08','2017-03-31','ribostrush@gmail.com','Lê Thành Nhân','MTIzNDU2Nzg=','01203267006','Nam','13:30:09','ltn09244',1),(4,'190/2, 30/4, Xuan Khanh, Ninh Kieu, Can Tho','1995-03-10','2017-03-31','pc.nt95@gmail.com','Lê Như Ý','MTIzNDU2Nzg=','01203267006','Nam','14:21:23','lny09244',1),(5,'190/2, 30/4, Xuan Khanh, Ninh Kieu, Can Tho','1995-03-10','2017-03-31','pc.nt95@gmail.com','Lê Như Ý','MTIzNDU2Nzg=','01203267006','Nam','14:23:13','lny09244',1),(6,'190/2 Đường 30/4, Hưng Lợi, Ninh Kiều, Cần Thơ','2017-03-14','2017-03-31','ribostrush@gmail.com','Lê Như Ý','MTIzNDU2Nzg=','01203267006','Nam','15:19:45','nly09244',1),(7,'190/2 Đường 30/4, Hưng Lợi, Ninh Kiều, Cần Thơ','1994-04-11','2017-04-03','pc.nt95@gmail.com','Trần Anh Tú','MTIzNDU2Nzg=','09273723611','Nam','21:46:45','tat09244',1);
+INSERT INTO `USER` VALUES (1,'Can Tho','1995-02-14','2017-03-14','administrator1@email.com','Administrator','MTIzNA==','092817212','Nam','08:21:12','admin',2,'Quản trị viên'),(2,'Can Tho','1995-02-14','2017-03-14','user1@email.com','UserNameA','MTIzNDU2Nzg=','092817212','Nam','08:21:12','usernamea',1,'Khách hàng'),(3,'190/2 Ä�Æ°á»�ng 30/4, HÆ°ng Lá»£i, Ninh Kiá»�u, Cáº§n ThÆ¡','1990-03-08','2017-03-31','ribostrush@gmail.com','LÃª ThÃ nh NhÃ¢n','MTIzNDU2Nzg=','01203267006','Nam','13:30:09','ltn09244',1,'Khách hàng'),(4,'190/2, 30/4, Xuan Khanh, Ninh Kieu, Can Tho','1995-03-10','2017-03-31','pc.nt95@gmail.com','LÃª NhÆ° Ã�','MTIzNDU2Nzg=','01203267006','Nam','14:21:23','lny09244',1,'Khách hàng'),(5,'190/2, 30/4, Xuan Khanh, Ninh Kieu, Can Tho','1995-03-10','2017-03-31','pc.nt95@gmail.com','LÃª NhÆ° Ã�','MTIzNDU2Nzg=','01203267006','Nam','14:23:13','lny09244',1,'Khách hàng'),(6,'190/2 Ä�Æ°á»�ng 30/4, HÆ°ng Lá»£i, Ninh Kiá»�u, Cáº§n ThÆ¡','2017-03-14','2017-03-31','ribostrush@gmail.com','LÃª NhÆ° Ã�','MTIzNDU2Nzg=','01203267006','Nam','15:19:45','nly09244',1,'Khách hàng'),(7,'190/2 Ä�Æ°á»�ng 30/4, HÆ°ng Lá»£i, Ninh Kiá»�u, Cáº§n ThÆ¡','1994-04-11','2017-04-03','pc.nt95@gmail.com','Tráº§n Anh TÃº','MTIzNDU2Nzg=','09273723611','Nam','21:46:45','tat09244',1,'Khách hàng');
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
