@@ -144,8 +144,11 @@
 										</span>
 										<s:select class="form-control margin-bottom-20"
 											name="cus_offered" id="main-select" path="cusNumOfTicket">
+											<option value="${cusData.cusNumOfTicket}">${cusData.cusNumOfTicket }</option>
 											<c:forEach var="j" begin="1" end="4">
-												<option value="${j}">${j}</option>
+												<c:if test="${not (j == cusData.cusNumOfTicket )}">
+													<option value="${j}">${j}</option>
+												</c:if>
 											</c:forEach>
 										</s:select>
 									</div>
