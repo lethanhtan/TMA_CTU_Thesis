@@ -1,4 +1,5 @@
 <!-- === BEGIN HEADER === -->
+<%@page import="edu.ctu.thesis.travelsystem.model.Tour"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="userheader.jsp"%>
@@ -113,127 +114,36 @@
 	</div>
 	<div class="container background-gray-lighter">
 		<div class="row padding-vert-20">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<!-- Portfolio -->
-				<ul class="portfolio-group">
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInLeft">
-								<img alt="SaDecFlowerVillage"
-									src="resources/img/frontpage/SaDecFlowerVillage.jpg">
-								<figcaption>
-									<h3>Làng hoa Sa Đéc - Đồng Tháp</h3>
-									<span style="color: white;">Đến Sa Đéc, du khách sẽ có
-										cảm giác như lạc vào thế giới của màu sắc và hương thơm quyến
-										rũ từ hàng ngàn loài hoa: cúc, hồng, lan, cát tường, cau bình
-										rượu, mai chiếu thủy, tùng Nhật, vạn thọ Pháp,…</span> <a href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm > </a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInRight">
-								<img alt="UMinhHaForest"
-									src="resources/img/frontpage/UMinhHaForest.jpg">
-								<figcaption>
-									<h3>Rừng U Minh Hạ - Cà Mau</h3>
-									<span style="color: white;">Rừng U Minh Hạ có hàng chục
-										loại chim, thú quý hiếm được ghi vào Sách đỏ của Tổ chức Bảo
-										tồn thiên nhiên Quốc tế và cũng là nơi trú ngụ của nhiều loài
-										cá nước ngọt như cá lóc, cá rô, cá trê, thác lác,…</span> <a href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm ></a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInLeft">
-								<img alt="ValleyOfLove"
-									src="resources/img/frontpage/ValleyOfLove.jpg">
-								<figcaption>
-									<h3>Thung lũng tình yêu - Đà Lạt</h3>
-									<span style="color: white;">Nơi đây có hồ Đa Thiện vắt
-										ngang thung lũng; có đồi Uyên Ương Hồ Điệp thoai thoải uốn
-										mình quanh co như tấm thảm cổ tích rực rỡ, Vườn Thượng Uyển,
-										Phố Hoa, Mê cung cây, Vườn hoa hồng Panorama,… thầm thì lời kể
-										trong vắt của thiên nhiên bất tận.</span> <a href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm ></a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInRight">
-								<img alt="VanLinhPagoda"
-									src="resources/img/frontpage/VanLinhPagoda.jpg">
-								<figcaption>
-									<h3>Chùa Vạn Linh - An Giang</h3>
-									<span style="color: white;">Ngôi chùa Vạn Linh tựa lưng
-										vào trên sườn đồi Bồ Hong, mặt hướng về hồ Thủy Liêm, khuôn
-										viên trồng nhiều hoa, cây cảnh. Trước sân chùa có nhiều bảo
-										tháp: Hòa thượng Thích Thiện Quang khai sơn, tháp chuông thờ
-										đức Phật A Di Đà, tháp Bồ tát Quan Thế Âm,…</span> <a href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm ></a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInLeft">
-								<img alt="NhaTrangBeach"
-									src="resources/img/frontpage/NhaTrangBeach.jpg">
-								<figcaption>
-									<h3>Biển Nha Trang - Khánh Hòa</h3>
-									<span style="color: white;">Biển Nha Trang như một bức
-										tranh thủy mặc đầy sống động, kỳ ảo và thơ mộng mà tạo hóa đã
-										kỳ công tạo ra với bãi cát trắng mịn trải dài, uốn cong như
-										đang ôm ấp, vỗ về vịnh biển xanh trong. Chạy quanh bờ biển là
-										những rặng dừa và hàng dương xanh mát,...</span> <a href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm ></a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-					<!-- Portfolio Item -->
-					<li class="portfolio-item col-sm-6 col-xs-6 padding-20"><a
-						href="#">
-							<figure class="animate fadeInRight">
-								<img alt="CaiRangFloatingMarket"
-									src="resources/img/frontpage/CaiRangFloatingMarket.jpg">
-								<figcaption>
-									<h3>Chợ nổi Cái Răng - Cần Thơ</h3>
-									<span style="color: white;">Chợ nổi Cái Răng buôn bán
-										các loại trái cây, đặc sản của đồng bằng sông Cửu Long. Chợ
-										hoạt động tấp nập từ tờ mờ sáng với nhiều loại thuyền bè lớn
-										nhỏ. Các ghe thuyền thường không có bảng hiệu, bán sản vật gì
-										người ta treo sản vật đó lên cây sào hoặc trên mũi thuyền. </span> <a
-										href="#"
-										style="color: hotpink; text-decoration: underline; font-weight: bold;">
-										Xem thêm ></a>
-								</figcaption>
-							</figure>
-					</a></li>
-					<!-- //Portfolio Item// -->
-				</ul>
-				<!-- End Portfolio -->
-			</div>
-			<div class="col-md-1"></div>
+			<c:if test="${!empty tourList}">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<c:forEach items="${tourList}" var="tour">
+						<div class="col-md-4 col-sm-4">
+							<!-- Portfolio -->
+							<ul class="portfolio-group">
+
+								<!-- Portfolio Item -->
+								<li class="portfolio-item padding-10"><a href="#">
+										<figure class="animate fadeInLeft">
+											<img alt="${tour.image}"
+												src="${pageContext.request.contextPath}/image/${tour.image}">
+											<figcaption>
+												<h3>${tour.name}</h3>
+												<br />
+												<span style="color: white;">${tour.getDetail()}</span> <a
+													href="#"
+													style="color: hotpink; text-decoration: underline; font-weight: bold;">
+													Xem thêm > </a>
+											</figcaption>
+										</figure>
+								</a></li>
+								<!-- //Portfolio Item// -->
+							</ul>
+
+							<!-- End Portfolio -->
+						</div>
+					</c:forEach>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="container background-white">

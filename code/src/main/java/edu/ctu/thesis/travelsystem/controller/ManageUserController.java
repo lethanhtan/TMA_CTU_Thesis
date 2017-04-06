@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -163,7 +164,7 @@ public class ManageUserController {
 		} else {
 			logger.info("Update user if haven't error!");
 			Role role = new Role();
-			if (user.getIdRole().equals("Kh·ch h‡ng")) {
+			if (user.getIdRole().equals("Kh√°ch h√†ng")) {
 				role.setId(1);
 			} else {
 				role.setId(2);

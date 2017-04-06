@@ -4,10 +4,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +41,7 @@ public class Tour {
 	private boolean fieldAddress = true;
 	private boolean fieldIdCard = false;
 	private boolean fieldNumOfTicket = true;
+	private Promotion promotion;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -268,6 +272,15 @@ public class Tour {
 
 	public void setFieldNumOfTicket(boolean fieldNumOfTicket) {
 		this.fieldNumOfTicket = fieldNumOfTicket;
+	}
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "TOUR", cascade = CascadeType.ALL)
+	public Promotion getPromotion() {
+		return this.promotion;
+	} 
+	
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 
 	@Override
