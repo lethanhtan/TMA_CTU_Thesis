@@ -51,33 +51,6 @@ public class BookTourValidator implements Validator {
 				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 9)) {
 			errors.rejectValue("cusIdCard", "Size.cusData.cusIdCard");
 		}
-		// In Customer nam 1 field
-		if (bookTour.getCusName1() != null
-				&& (bookTour.getCusName1().length() > 40 || bookTour.getCusName1().length() < 8)) {
-			errors.rejectValue("cusName1", "Size.cusData.cusName1");
-		}
-		// In Customer nam 2 field
-		if (bookTour.getCusName2() != null
-				&& (bookTour.getCusName2().length() > 40 || bookTour.getCusName2().length() < 8)) {
-			errors.rejectValue("cusName2", "Size.cusData.cusName2");
-		}
-		// In Customer nam 3 field
-		if (bookTour.getCusName3() != null
-				&& (bookTour.getCusName3().length() > 40 || bookTour.getCusName3().length() < 8)) {
-			errors.rejectValue("cusName3", "Size.cusData.cusName3");
-		}
-		// In Customer year of birth 1 field
-		if (bookTour.getCusYearOfBirth1() != null && (bookTour.getCusYearOfBirth1().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth1", "Size.cusData.cusYearOfBirth1");
-		}
-		// In Customer year of birth 2 field
-		if (bookTour.getCusYearOfBirth2() != null && (bookTour.getCusYearOfBirth2().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth2", "Size.cusData.cusYearOfBirth2");
-		}
-		// In Customer year of birth 3 field
-		if (bookTour.getCusYearOfBirth3() != null && (bookTour.getCusYearOfBirth1().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth3", "Size.cusData.cusYearOfBirth3");
-		}
 
 		// Catch characters errors
 		// In Customer phone field
