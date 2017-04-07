@@ -21,24 +21,20 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <!-- Template CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nexus.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/nexus.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/responsive.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/table.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/table.css">
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -95,8 +91,10 @@
 								class="fa-home">Trang Chủ</a></li>
 							<li><span class="fa-question">Giới Thiệu</span>
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/aboutus">Về Chúng Tôi</a></li>
-									<li><a href="${pageContext.request.contextPath}/faq">Câu Hỏi Thường Gặp</a></li>
+									<li><a href="${pageContext.request.contextPath}/aboutus">Về
+											Chúng Tôi</a></li>
+									<li><a href="${pageContext.request.contextPath}/faq">Câu
+											Hỏi Thường Gặp</a></li>
 								</ul></li>
 							<li><a href="${pageContext.request.contextPath}/tourlist"
 								class="fa-book">Đặt Vé</a></li>
