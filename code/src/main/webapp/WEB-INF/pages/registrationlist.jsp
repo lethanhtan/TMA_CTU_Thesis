@@ -45,13 +45,47 @@
 								gia tour này!</h1>
 						</c:if>
 						<c:if test="${!empty registrationList}">
-							<!-- Choose Number For Display -->
 							<div class="row">
+								<!-- Filter Buttons -->
+								<div class="portfolio-filter-container margin-top-20">
+									<ul class="portfolio-filter">
+										<li class="portfolio-filter-label label label-warning"
+											style="margin-left: 3%;"><i class="fa fa-filter">
+												Lọc theo:</i></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterSex" class="form-control" name="filterSex"
+													onchange="this.form.submit()">
+													<option value="">Giới tính</option>
+													<option value="Nam">Nam</option>
+													<option value="Nữ">Nữ</option>
+												</select>
+											</form></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterTicket" class="form-control"
+													name="filterTicket" onchange="this.form.submit()">
+													<option>Số vé</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+												</select>
+											</form></li>
+									</ul>
+								</div>
+								</br>
+								<!-- End Filter Buttons -->
+								<!-- Choose Number For Display -->
 								<form role="form" class="form-inline"
 									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 									method="get">
 									<label for="selectBookTour"
-										style="text-align: left; margin-left: 2%">Số người
+										style="text-align: left; margin-left: 70%">Số người
 										đăng ký/ trang:</label> <select id="selectBookTour"
 										class="form-control" name="numOn">
 										<option>5</option>
@@ -60,41 +94,9 @@
 									</select>
 									<button class="btn btn-aqua">Chọn</button>
 								</form>
+								<!-- End Choose Number For Display -->
 							</div>
 							</br>
-							<!-- End Choose Number For Display -->
-							<!-- Filter Buttons -->
-							<div class="portfolio-filter-container margin-top-20">
-								<ul class="portfolio-filter">
-									<li><button class="btn btn-primary" type="button">
-											<i class="fa fa-filter"> Lọc theo:</i>
-										</button></li>
-									<li><form role="form" class="form-inline"
-											action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-											method="GET">
-											<select id="filterSex" class="form-control" name="filterSex"
-												onchange="this.form.submit()">
-												<option value="">Giới tính</option>
-												<option value="Nam">Nam</option>
-												<option value="Nữ">Nữ</option>
-											</select>
-										</form></li>
-									<li><form role="form" class="form-inline"
-											action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-											method="GET">
-											<select id="filterTicket" class="form-control"
-												name="filterTicket" onchange="this.form.submit()">
-												<option>Số vé</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-											</select>
-										</form></li>
-								</ul>
-							</div>
-							</br>
-							<!-- End Filter Buttons -->
 							<table>
 								<thead>
 									<tr>
@@ -232,12 +234,46 @@
 						<c:if test="${!empty cancelList}">
 							<!-- Choose Number For Display -->
 							<div class="row">
+								<!-- Filter Buttons -->
+								<div class="portfolio-filter-container margin-top-20">
+									<ul class="portfolio-filter">
+										<li class="portfolio-filter-label label label-warning"
+											style="margin-left: 3%;"><i class="fa fa-filter">
+												Lọc theo:</i></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterSex2" class="form-control"
+													name="filterSex2" onchange="this.form.submit()">
+													<option value="">Giới tính</option>
+													<option value="Nam">Nam</option>
+													<option value="Nữ">Nữ</option>
+												</select>
+											</form></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterTicket2" class="form-control"
+													name="filterTicket2" onchange="this.form.submit()">
+													<option>Số vé</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+												</select>
+											</form></li>
+									</ul>
+								</div>
+								</br>
+								<!-- End Filter Buttons -->
 								<form role="form" class="form-inline"
 									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 									method="get">
 									<label for="selectCancelReg"
-										style="text-align: left; margin-left: 2%">Số người hủy
-										đăng ký/ trang:</label> <select id="selectCancelReg"
+										style="text-align: left; margin-left: 70%">Số người
+										hủy đăng ký/ trang:</label> <select id="selectCancelReg"
 										class="form-control" name="numOn2">
 										<option>5</option>
 										<option>10</option>
@@ -248,38 +284,6 @@
 							</div>
 							</br>
 							<!-- End Choose Number For Display -->
-							<!-- Filter Buttons -->
-							<div class="portfolio-filter-container margin-top-20">
-								<ul class="portfolio-filter">
-									<li><button class="btn btn-primary" type="button">
-											<i class="fa fa-filter"> Lọc theo:</i>
-										</button></li>
-									<li><form role="form" class="form-inline"
-											action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-											method="GET">
-											<select id="filterSex2" class="form-control"
-												name="filterSex2" onchange="this.form.submit()">
-												<option value="">Giới tính</option>
-												<option value="Nam">Nam</option>
-												<option value="Nữ">Nữ</option>
-											</select>
-										</form></li>
-									<li><form role="form" class="form-inline"
-											action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-											method="GET">
-											<select id="filterTicket2" class="form-control"
-												name="filterTicket2" onchange="this.form.submit()">
-												<option>Số vé</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-											</select>
-										</form></li>
-								</ul>
-							</div>
-							</br>
-							<!-- End Filter Buttons -->
 							<table>
 								<thead>
 									<tr>
