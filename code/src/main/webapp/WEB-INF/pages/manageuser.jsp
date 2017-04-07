@@ -38,9 +38,9 @@
 					<div class="row">
 						<form role="form" class="form-inline" action="manageuser"
 							method="get">
-							<label for="selectUser" style="text-align: left; margin-left: 2%">Số
-								tài khoản/ trang:</label> <select id="selectUser" class="form-control"
-								name="numOn">
+							<label for="selectUser"
+								style="text-align: left; margin-left: 72%">Số tài khoản/
+								trang:</label> <select id="selectUser" class="form-control" name="numOn">
 								<option>5</option>
 								<option>10</option>
 								<option>15</option>

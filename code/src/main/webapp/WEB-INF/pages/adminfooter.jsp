@@ -28,22 +28,18 @@
 <!-- JS -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/input.js"></script>
-
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
-
 <!-- Isotope - Portfolio Sorting -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"
-	type="text/javascript"></script>
+	src="${pageContext.request.contextPath}/resources/js/jquery.isotope.js"></script>
 <!-- Mobile Menu - Slicknav -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"
-	type="text/javascript"></script>
+	src="${pageContext.request.contextPath}/resources/js/jquery.slicknav.js"></script>
 <!-- Animate on Scroll-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery.visible.js"
@@ -65,8 +61,6 @@
 	src="${pageContext.request.contextPath}/resources/js/backtotop.js"
 	type="text/javascript"></script>
 <!-- Calendar -->
-<link rel="stylesheet"
-	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript"
@@ -83,6 +77,10 @@
 <!-- Add commas when typing price -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/addcommas.js"
+	type="text/javascript"></script>
+<!-- Show/ hidden fields -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/showhidefields.js"
 	type="text/javascript"></script>
 <!-- End JS -->
 </body>
