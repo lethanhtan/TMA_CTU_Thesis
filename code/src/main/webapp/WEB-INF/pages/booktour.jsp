@@ -278,6 +278,12 @@
 									type="text" path="cusIdCard" />
 							</div>
 						</c:if>
+						<!-- reCAPTCHA -->
+						<p style="color: red;">${errorString}</p>
+						<div style="margin-left: 37px;" class="g-recaptcha"
+							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+						</br>
+						<!-- End reCAPTCHA -->
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
