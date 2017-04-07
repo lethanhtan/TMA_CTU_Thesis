@@ -36,7 +36,7 @@
 				<c:if test="${!empty tourList}">
 					<!-- Choose Number For Display -->
 					<div class="row">
-						<form role="form" class="form-inline" action="tourlist"
+						<form role="form" class="form-inline" action="manageregister"
 							method="get">
 							<label for="selectTour" style="text-align: left; margin-left: 2%">Số
 								tour/ trang:</label> <select id="selectTour" class="form-control"
