@@ -82,12 +82,12 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a href="#deleteConfirm" data-toggle="modal"><button
+													<a href="#cancelConfirm" data-toggle="modal"><button
 															class="btn btn-sm btn-danger">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
 													<!-- Popup Cofirm -->
-													<div id="deleteConfirm" class="modal fade">
+													<div id="cancelConfirm" class="modal fade">
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
@@ -223,12 +223,12 @@
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
-													<a href="#deleteConfirm2" data-toggle="modal"><button
+													<a href="#undoConfirm" data-toggle="modal"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
 													<!-- Popup Cofirm -->
-													<div id="deleteConfirm2" class="modal fade">
+													<div id="undoConfirm" class="modal fade">
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
