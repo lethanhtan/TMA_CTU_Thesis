@@ -102,4 +102,10 @@ public class TourServiceImpl implements TourService {
 	public List<Tour> listTourByYear(int year) {
 		return this.tourDao.listTourByYear(year);
 	}
+
+	@Override
+	@Transactional
+	public void addView(Tour tour) {
+		this.tourDao.addView(tour);
+	}
 }

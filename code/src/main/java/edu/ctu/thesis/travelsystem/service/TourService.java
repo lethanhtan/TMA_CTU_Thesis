@@ -34,4 +34,6 @@ public interface TourService {
 	public List<Tour> tourListByValue(String value);
 	
 	public List<Tour> listTourByYear(int year);
+	
+	public void addView(Tour tour);
 }

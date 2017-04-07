@@ -117,20 +117,36 @@
 			<c:if test="${!empty tourList}">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<c:forEach items="${tourList}" var="tour">
-						<div class="col-md-4 col-sm-4">
+						<div class="col-md-6 col-sm-6">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
 
 								<!-- Portfolio Item -->
-								<li class="portfolio-item padding-10"><a href="#">
+								<li class="portfolio-item padding-10"><a
+									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
 												src="${pageContext.request.contextPath}/image/${tour.image}">
 											<figcaption>
 												<h3>${tour.name}</h3>
-												<br />
-												<span style="color: white;">${tour.getDetail()}</span> <a
-													href="#"
+												<p class="fa fa-eye" style="color: red">${tour.view}</p>
+												<p class="fa fa-calendar" style="color: red">
+													<fmt:formatDate value="${tour.departureDate}"
+														pattern="dd-MM-yyyy" />
+													->
+													 <fmt:formatDate value="${tour.returnDate}"
+														pattern="dd-MM-yyyy" />
+												</p>
+												<c:if test="${tour.getDepartureDate().after(current)}">
+													<img alt="new" src="resources/img/new.png" width="20"
+													height="20">
+												</c:if>
+												<img alt="new"
+													src="resources/img/sale.png" width="20" height="20">
+												</div>
+												<br /> <span style="color: white;">${tour.getDetail().substring(0,350)}</span>
+												<a
+													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"
 													style="color: hotpink; text-decoration: underline; font-weight: bold;">
 													Xem thêm > </a>
 											</figcaption>

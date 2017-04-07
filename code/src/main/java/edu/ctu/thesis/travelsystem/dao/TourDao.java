@@ -35,4 +35,6 @@ public interface TourDao {
 	public int getNumTourList();
 	
 	public List<Tour> tourListByValue(String value);
+	
+	public void addView(Tour tour);
 }

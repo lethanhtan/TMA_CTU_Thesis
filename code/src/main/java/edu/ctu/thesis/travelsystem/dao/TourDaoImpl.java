@@ -232,7 +232,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 
 	@Override
 	public List<Tour> listTourByYear(int year) {
-		System.out.println(year);
 		Session session = getCurrentSession();
 		String hql = "from Tour as t where t.year = ?";
 		Query query = session.createQuery(hql);
@@ -243,5 +242,14 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			logger.info("Tour List:" + tour);
 		}
 		return tourList;
+	}
+
+	@Override
+	public void addView(Tour tour) {
+		Session session = getCurrentSession();
+		tour.setView(tour.getView() + 1);
+		logger.info("Update tour view!");
+		updateTour(tour);
+		session.flush();
 	}
 }

@@ -25,8 +25,8 @@ public class ViewDetailController {
 		model.addAttribute("id", idTour);
 		model.addAttribute("name", tourService.findTourById(idTour).getName());
 		model.addAttribute("detail", tourService.findTourById(idTour).getDetail());
-		
+		model.addAttribute("tour", tourService.findTourById(idTour));
+		tourService.addView(tourService.findTourById(idTour));
 		return "viewdetail";
 	}
-	
 }
