@@ -162,8 +162,7 @@ public class BookTourController {
 		String toAddress = bookTour.getCusEmail();
 		String subject = MailTemplate.bookSuccessTitle;
 		String msgBody = MailTemplate.bookSuccessBody;
-		// emailSenderService.SendEmail(toAddress, fromAddress, subject,
-		// msgBody);
+		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
 		return "redirect:/booksuccess/{idBT}/{idTour}";
 	}
 
