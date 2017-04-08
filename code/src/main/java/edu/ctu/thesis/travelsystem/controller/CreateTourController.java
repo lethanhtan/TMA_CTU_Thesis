@@ -3,6 +3,8 @@ package edu.ctu.thesis.travelsystem.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -52,6 +54,20 @@ public class CreateTourController {
 	@RequestMapping(value = "/createtour", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			HttpSession session, @RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
+		if (tour != null) {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String departureDate = sdf.format(tour.getDepartureDate());
+			String returnDate = sdf.format(tour.getReturnDate());
+			String dateAllowReg = sdf.format(tour.getDateAllowReg());
+			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
+			model.addAttribute("date1", departureDate);
+			model.addAttribute("date2", returnDate);
+			model.addAttribute("date3", dateAllowReg);
+			model.addAttribute("date4", dateAllowCancel);
+			model.addAttribute("tourData", tour);
+		} else {
+			logger.info("Null Object!");
+		}
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();

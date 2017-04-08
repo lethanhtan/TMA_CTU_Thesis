@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,6 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ctu.thesis.travelsystem.controller.ManageUserController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
@@ -24,7 +24,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 	EncoderPassword ep = new EncoderPassword();
 
-	private static final Logger logger = Logger.getLogger(ManageUserController.class);
+	private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
 	// Using for register
 	@Override
