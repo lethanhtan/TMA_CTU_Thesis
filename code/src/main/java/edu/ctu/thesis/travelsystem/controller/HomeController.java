@@ -11,14 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
-
-import org.springframework.ui.ModelMap;
 
 @Controller
 public class HomeController {
@@ -52,47 +51,48 @@ public class HomeController {
 		try {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
+					List<Tour> tourList = tourService.listTourByValue(valueSearch);
 					Integer num = 0;
-					if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
-						num = tourService.getNumTourByValue(valueSearch) / numOnPage;
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
-						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+						model.addAttribute("tourList", tourList);
+						model.addAttribute("numTour", tourList.size());
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y",
-								tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "home";
 					} else {
 						result = "home";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((tourService.getNumTour() % numOnPage) == 0) {
-						num = tourService.getNumTour() / numOnPage;
+					List<Tour> tourList = tourService.listTour();
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTour() / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTour()); // create
-						model.addAttribute("numTour", tourService.getNumTour()); // create
+						model.addAttribute("tourList", tourList); // create
+						model.addAttribute("numTour", tourList.size()); // create
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "home";
 					} else {
 						result = "home";

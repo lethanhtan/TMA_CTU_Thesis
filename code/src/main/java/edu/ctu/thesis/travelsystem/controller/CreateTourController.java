@@ -68,7 +68,7 @@ public class CreateTourController {
 		} else {
 			logger.info("Null Object!");
 		}
-		if (!file.isEmpty()) {
+		if (file != null && !file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
 
@@ -79,23 +79,23 @@ public class CreateTourController {
 					dir.mkdirs();
 
 				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-
-				logger.info("Server File Location="
-						+ serverFile.getAbsolutePath());
-				tour.setImage(name);
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
+//				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				try(BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+					stream.write(bytes);
+					logger.info("Server File Location=" + serverFile.getAbsolutePath());
+					tour.setImage(name);
+				} catch (Exception e){
+					logger.error("exception when writting to file", e);
+					throw e;
+				} 
 
 			} catch (Exception e) {
-				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");
+				model.addAttribute("failedUpload", "Táº£i lÃªn táº­p tin hÃ¬nh áº£nh tháº¥t báº¡i!");
 				return "createtour";
 			}
 		} else {
-			model.addAttribute("failedEmpty", "Bạn phải chọn tập tin hình ảnh cho tour!");
+			model.addAttribute("failedEmpty", "Báº¡n pháº£i chá»�n táº­p tin hÃ¬nh áº£nh cho tour!");
 			return "createtour";
 		}
 		

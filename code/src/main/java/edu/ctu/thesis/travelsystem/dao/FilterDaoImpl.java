@@ -14,6 +14,7 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 	private static final Logger logger = Logger.getLogger(FilterDaoImpl.class);
 
 	// Display registration list when filter by sex
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> regListByFilterSex(String filterSex, int idTour) {
 		Session session = getCurrentSession();
@@ -21,9 +22,7 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
 		query.setParameter("filterSex", filterSex);
-		@SuppressWarnings("unchecked")
-		List<BookTour> regListByFilterSex = query.list();
-		return regListByFilterSex;
+		return query.list();
 	}
 
 	// Get number of register when filter by sex

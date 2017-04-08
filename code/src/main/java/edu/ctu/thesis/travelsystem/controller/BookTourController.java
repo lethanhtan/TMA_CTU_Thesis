@@ -96,16 +96,17 @@ public class BookTourController {
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", tourService.showTourList());
+				List<Tour> allTourList = tourService.showTourList();
+				model.addAttribute("showTourList", allTourList);
 				// Display tour list
-				model.addAttribute("numTour", tourService.getNumTourList());
+				model.addAttribute("numTour", allTourList.size());
 				// Get number of tour list
 				model.addAttribute("pageNum", pageNum); // Create number of page
 				model.addAttribute("numOnPage", numOnPage);
 				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, numOnPage));
-				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, numOnPage));
+				model.addAttribute("y", tourService.paginationY(allTourList.size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";
@@ -174,12 +175,8 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
 		model.put("idBT", bookTour.getIdBT());
-		 String fromAddress = MailTemplate.hostMail;
-		 String toAddress = bookTour.getCusEmail();
-		 String subject = MailTemplate.bookSuccessTitle;
-		 String msgBody = MailTemplate.bookSuccessBody;
-		 emailSenderService.SendEmail(toAddress, fromAddress, subject,
-		 msgBody);
+		emailSenderService.SendEmail(bookTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+				 MailTemplate.bookSuccessBody);
 		return "redirect:/booksuccess/{idBT}/{idTour}";
 	}
 
@@ -257,13 +254,9 @@ public class BookTourController {
 	@RequestMapping(value = "cancelbooktour/{idBT}")
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
-		 String fromAddress = MailTemplate.hostMail;
-		 String toAddress = bookTourService.searchById(idBT).getCusEmail();
-		 String subject = MailTemplate.confirmCancelTitle;
-		 String msgBody = MailTemplate.confirmCancelBody +
-		 bookTourService.searchById(idBT).getConfirmCode();
-		 emailSenderService.SendEmail(toAddress, fromAddress, subject,
-		 msgBody);
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+				 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 
@@ -272,12 +265,13 @@ public class BookTourController {
 	public String showBTDetail(ModelMap model, @PathVariable("idTour") int idTour, @PathVariable("idBT") int idBT,
 			@Valid Tour tour, @Valid BookTour bookTour) {
 		logger.info("Show book tour detail!");
-		model.put("tourData", tourService.findTourById(idTour));
-		model.put("cusData", bookTourService.searchById(idBT));
-		String pr = tourService.findTourById(idTour).getPrice().replaceAll(",", "");
+		Tour tourFromDB = tourService.findTourById(idTour);
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		model.put("tourData", tourFromDB);
+		model.put("cusData", bookedTour);
+		String pr = tourFromDB.getPrice().replaceAll(",", "");
 		DecimalFormat formatter = new DecimalFormat("#,###");
-		model.put("price",
-				formatter.format(Integer.parseInt(pr) * bookTourService.searchById(idBT).getCusNumOfTicket()));
+		model.put("price", formatter.format(Integer.parseInt(pr) * bookedTour.getCusNumOfTicket()));
 		return "booksuccess";
 	}
 }

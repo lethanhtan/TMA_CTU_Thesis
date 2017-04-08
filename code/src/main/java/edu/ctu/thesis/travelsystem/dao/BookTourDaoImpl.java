@@ -74,6 +74,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
@@ -81,9 +82,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		Query query = session.createQuery(hql);
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
-		@SuppressWarnings("unchecked")
-		List<BookTour> registrationList = query.list();
-		return registrationList;
+		return query.list();
 	}
 
 	@Override

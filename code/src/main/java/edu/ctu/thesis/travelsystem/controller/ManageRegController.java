@@ -67,47 +67,47 @@ public class ManageRegController {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
-						num = tourService.getNumTourByValue(valueSearch) / numOnPage;
+					List<Tour> tourList = tourService.listTourByValue(valueSearch);
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
-						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+						model.addAttribute("tourList", tourList);
+						model.addAttribute("numTour", tourList.size());
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourService.listTourByValue(valueSearch).size(),
-								page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((tourService.getNumTour() % numOnPage) == 0) {
-						num = tourService.getNumTour() / numOnPage;
+					List<Tour> tourList = tourService.listTour();
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTour() / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTour()); // create
-						model.addAttribute("numTour", tourService.getNumTour()); // create
+						model.addAttribute("tourList", tourList); // create
+						model.addAttribute("numTour", tourList.size()); // create
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y",
-								tourService.paginationY(tourService.listTour().size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
@@ -155,26 +155,25 @@ public class ManageRegController {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((bookTourService.getNumBTBySearch(valueSearch, idTour) % numOnPage) == 0) {
-						num = bookTourService.getNumBTBySearch(valueSearch, idTour) / numOnPage;
+					List<BookTour> registrationList = bookTourService.registrationListByValue(valueSearch, idTour);
+					if ((registrationList.size() % numOnPage) == 0) {
+						num = registrationList.size() / numOnPage;
 					} else {
-						num = (bookTourService.getNumBTBySearch(valueSearch, idTour) / numOnPage) + 1;
+						num = (registrationList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("registrationList",
-								bookTourService.registrationListByValue(valueSearch, idTour));
-						model.addAttribute("numBookTour", bookTourService.getNumBTBySearch(valueSearch, idTour));
+						model.addAttribute("registrationList", registrationList);
+						model.addAttribute("numBookTour", registrationList.size());
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(
-								bookTourService.registrationListByValue(valueSearch, idTour).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(registrationList.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -184,24 +183,24 @@ public class ManageRegController {
 				// Search none active ! Update registration list
 				if (valueSearch == null && filterSex == null && filterTicket == 0) {
 					Integer num = 0;
-					if ((regInfoService.getNumBookTour(idTour) % numOnPage) == 0) {
-						num = regInfoService.getNumBookTour(idTour) / numOnPage;
+					List<BookTour> registrationList = regInfoService.registrationList(idTour);
+					if ((registrationList.size() % numOnPage) == 0) {
+						num = registrationList.size() / numOnPage;
 					} else {
-						num = (regInfoService.getNumBookTour(idTour) / numOnPage) + 1;
+						num = (registrationList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("registrationList", regInfoService.registrationList(idTour));
-						model.addAttribute("numBookTour", regInfoService.getNumBookTour(idTour));
+						model.addAttribute("registrationList", registrationList);
+						model.addAttribute("numBookTour", registrationList.size());
 						model.addAttribute("pageNum", pageNum);
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(regInfoService.registrationList(idTour).size(),
-								page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(registrationList.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -211,8 +210,9 @@ public class ManageRegController {
 				// Filter registration list by sex
 				if (filterSex != null) {
 					Integer num = 0;
-					if ((filterService.getNumRegFilterSex(filterSex, idTour) % numOnPage) == 0) {
-						num = filterService.getNumRegFilterSex(filterSex, idTour) / numOnPage;
+					List<BookTour> regListBySex = filterService.regListByFilterSex(filterSex, idTour);
+					if ((regListBySex.size() % numOnPage) == 0) {
+						num = regListBySex.size() / numOnPage;
 					} else {
 						num = (filterService.getNumRegFilterSex(filterSex, idTour) / numOnPage) + 1;
 					}
@@ -220,15 +220,14 @@ public class ManageRegController {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("registrationList", filterService.regListByFilterSex(filterSex, idTour));
-						model.addAttribute("numBookTour", filterService.getNumRegFilterSex(filterSex, idTour));
+						model.addAttribute("registrationList", regListBySex);
+						model.addAttribute("numBookTour", regListBySex.size());
 						model.addAttribute("pageNum", pageNum);
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(
-								filterService.regListByFilterSex(filterSex, idTour).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(regListBySex.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -238,26 +237,24 @@ public class ManageRegController {
 				// Filter registration list by number of ticket
 				if (filterTicket != 0) {
 					Integer num = 0;
-					if ((filterService.getNumRegFilterTicket(filterTicket, idTour) % numOnPage) == 0) {
-						num = filterService.getNumRegFilterTicket(filterTicket, idTour) / numOnPage;
+					List<BookTour> regListByTicket = filterService.regListByFilterTicket(filterTicket, idTour);
+					if ((regListByTicket.size() % numOnPage) == 0) {
+						num = regListByTicket.size() / numOnPage;
 					} else {
-						num = (filterService.getNumRegFilterTicket(filterTicket, idTour) / numOnPage) + 1;
+						num = (regListByTicket.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("registrationList",
-								filterService.regListByFilterTicket(filterTicket, idTour));
-						model.addAttribute("numBookTour",
-								filterService.getNumRegFilterTicket(filterTicket, idTour));
+						model.addAttribute("registrationList", regListByTicket);
+						model.addAttribute("numBookTour", regListByTicket.size());
 						model.addAttribute("pageNum", pageNum);
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
 						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(
-								filterService.regListByFilterTicket(filterTicket, idTour).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(regListByTicket.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -268,24 +265,24 @@ public class ManageRegController {
 				model.addAttribute("searchedValue2", valueSearch2);
 				if (valueSearch2 != null) {
 					Integer num2 = 0;
-					if ((regInfoService.getNumCancelBySearch(valueSearch2, idTour) % numOnPage2) == 0) {
-						num2 = regInfoService.getNumCancelBySearch(valueSearch2, idTour) / numOnPage2;
+					List<BookTour> cancelListByKeyword = regInfoService.cancelListByValue(valueSearch2, idTour);
+					if ((cancelListByKeyword.size() % numOnPage2) == 0) {
+						num2 = cancelListByKeyword.size() / numOnPage2;
 					} else {
-						num2 = (regInfoService.getNumCancelBySearch(valueSearch2, idTour) / numOnPage2) + 1;
+						num2 = (cancelListByKeyword.size() / numOnPage2) + 1;
 					}
 					if (page2 <= num2) {
 						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("cancelReg", new BookTour());
-						model.addAttribute("cancelList", regInfoService.cancelListByValue(valueSearch2, idTour));
-						model.addAttribute("numCancelReg", regInfoService.getNumCancelBySearch(valueSearch2, idTour));
+						model.addAttribute("cancelList", cancelListByKeyword);
+						model.addAttribute("numCancelReg", cancelListByKeyword.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
-						model.addAttribute("y2", tourService.paginationY(
-								regInfoService.cancelListByValue(valueSearch2, idTour).size(), page2, numOnPage2));
+						model.addAttribute("y2", tourService.paginationY(cancelListByKeyword.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -295,24 +292,24 @@ public class ManageRegController {
 				// Search none active ! Update cancel registration list
 				if (valueSearch2 == null && filterSex2 == null && filterTicket2 == 0) {
 					Integer num2 = 0;
-					if ((regInfoService.getNumCancelReg(idTour) % numOnPage2) == 0) {
-						num2 = regInfoService.getNumCancelReg(idTour) / numOnPage2;
+					List<BookTour> cancelList = regInfoService.cancelList(idTour);
+					if ((cancelList.size() % numOnPage2) == 0) {
+						num2 = cancelList.size() / numOnPage2;
 					} else {
-						num2 = (regInfoService.getNumCancelReg(idTour) / numOnPage2) + 1;
+						num2 = (cancelList.size() / numOnPage2) + 1;
 					}
 					if (page2 <= num2) {
 						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
 						model.addAttribute("cancelReg", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("cancelList", regInfoService.cancelList(idTour));
-						model.addAttribute("numCancelReg", regInfoService.getNumCancelReg(idTour));
+						model.addAttribute("cancelList", cancelList);
+						model.addAttribute("numCancelReg", cancelList.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
-						model.addAttribute("y2",
-								tourService.paginationY(regInfoService.cancelList(idTour).size(), page2, numOnPage2));
+						model.addAttribute("y2",tourService.paginationY(cancelList.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -322,24 +319,24 @@ public class ManageRegController {
 				// Filter cancel registration list by sex
 				if (filterSex2 != null) {
 					Integer num2 = 0;
-					if ((filterService.getNumCancelFilterSex(filterSex2, idTour) % numOnPage2) == 0) {
-						num2 = filterService.getNumCancelFilterSex(filterSex2, idTour) / numOnPage2;
+					List<BookTour> cancelListBySex = filterService.cancelListByFilterSex(filterSex2, idTour);
+					if ((cancelListBySex.size() % numOnPage2) == 0) {
+						num2 = cancelListBySex.size() / numOnPage2;
 					} else {
-						num2 = (filterService.getNumCancelFilterSex(filterSex2, idTour) / numOnPage2) + 1;
+						num2 = (cancelListBySex.size() / numOnPage2) + 1;
 					}
 					if (page2 <= num2) {
 						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("cancelList", filterService.cancelListByFilterSex(filterSex2, idTour));
-						model.addAttribute("numCancelReg", filterService.getNumCancelFilterSex(filterSex2, idTour));
+						model.addAttribute("cancelList", cancelListBySex);
+						model.addAttribute("numCancelReg", cancelListBySex.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", tourService.paginationX(page2, 5));
-						model.addAttribute("y2", tourService.paginationY(
-								filterService.regListByFilterSex(filterSex2, idTour).size(), page2, numOnPage2));
+						model.addAttribute("y2", tourService.paginationY(cancelListBySex.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -349,25 +346,24 @@ public class ManageRegController {
 				// Filter registration list by number of ticket
 				if (filterTicket2 != 0) {
 					Integer num2 = 0;
-					if ((filterService.getNumCancelFilterTicket(filterTicket2, idTour) % numOnPage2) == 0) {
-						num2 = filterService.getNumCancelFilterTicket(filterTicket2, idTour) / numOnPage2;
+					List<BookTour> cancelListByTicket = filterService.cancelListByFilterTicket(filterTicket2, idTour);
+					if ((cancelListByTicket.size() % numOnPage2) == 0) {
+						num2 = cancelListByTicket.size() / numOnPage2;
 					} else {
-						num2 = (filterService.getNumCancelFilterTicket(filterTicket2, idTour) / numOnPage2) + 1;
+						num2 = (cancelListByTicket.size() / numOnPage2) + 1;
 					}
 					if (page2 <= num2) {
 						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
-						model.addAttribute("cancelList", filterService.regListByFilterTicket(filterTicket2, idTour));
-						model.addAttribute("numCancelReg",
-								filterService.getNumCancelFilterTicket(filterTicket2, idTour));
+						model.addAttribute("cancelList", cancelListByTicket);
+						model.addAttribute("numCancelReg", cancelListByTicket.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", tourService.paginationX(page2, 5));
-						model.addAttribute("y2", tourService.paginationY(
-								filterService.regListByFilterTicket(filterTicket2, idTour).size(), page2, numOnPage2));
+						model.addAttribute("y2", tourService.paginationY(cancelListByTicket.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -423,7 +419,7 @@ public class ManageRegController {
 		}
 		// Checking at least one field of registration is true
 		if ((tour.getFieldAddress() || tour.getFieldEmail() || tour.getFieldIdCard() || tour.getFieldName()
-				|| tour.getFieldPhone() || tour.getFieldSex()) == true) {
+				|| tour.getFieldPhone() || tour.getFieldSex())) {
 			// Have at least 1 field is true
 			tourService.updateTour(tour);
 			logger.info("Saved registration form into DB successfully");
@@ -467,7 +463,8 @@ public class ManageRegController {
 	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
 			@Valid Tour tour) {
 		logger.info("Display edit form when admin request!");
-		model.put("cusData", bookTourService.searchById(idBT));
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		model.put("cusData", bookedTour);
 		tour = tourService.findTourById(idTour);
 		logger.info("Tour Info: " + tour);
 		if (tour != null) {
@@ -484,15 +481,14 @@ public class ManageRegController {
 		logger.info("Handle edit information customer form when admin submit!");
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
+		tour = tourService.findTourById(idTour);
 		if (br.hasErrors()) {
-			tour = tourService.findTourById(idTour);
 			logger.info("Tour info: " + tour);
 			if (tour != null) {
 				model.addAttribute("tour", tour);
 			}
 			return "editreginfo";
 		} else {
-			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
