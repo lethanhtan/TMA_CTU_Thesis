@@ -40,12 +40,6 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public Integer getNumBTBySearch(String value, int idTour) {
-		return this.bookTourDao.getNumBTBySearch(value, idTour);
-	}
-
-	@Override
-	@Transactional
 	public List<BookTour> bookTourList() {
 		return this.bookTourDao.bookTourList();
 	}

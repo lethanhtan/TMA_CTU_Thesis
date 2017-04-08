@@ -54,20 +54,8 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public int getNumTour() {
-		return this.tourDao.getNumTour();
-	}
-
-	@Override
-	@Transactional
 	public List<Tour> listTourByValue(String value) {
 		return this.tourDao.listTourByValue(value);
-	}
-
-	@Override
-	@Transactional
-	public int getNumTourByValue(String value) {
-		return this.tourDao.getNumTourByValue(value);
 	}
 
 	@Override
@@ -84,12 +72,6 @@ public class TourServiceImpl implements TourService {
 	@Transactional
 	public List<Tour> showTourList() {
 		return this.tourDao.showTourList();
-	}
-
-	@Override
-	@Transactional
-	public int getNumTourList() {
-		return this.tourDao.getNumTourList();
 	}
 
 	@Override

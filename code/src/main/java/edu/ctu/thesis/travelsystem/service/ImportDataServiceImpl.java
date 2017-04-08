@@ -25,12 +25,4 @@ public class ImportDataServiceImpl implements ImportDataService {
 	public void saveImport(Import object) {
 		this.importDao.saveImport(object);
 	}
-
-	@Override
-	@Transactional
-	public Integer getNumImport() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
