@@ -91,11 +91,11 @@ public class CreateTourController {
 				} 
 
 			} catch (Exception e) {
-				model.addAttribute("failedUpload", "Táº£i lÃªn táº­p tin hÃ¬nh áº£nh tháº¥t báº¡i!");
+				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");
 				return "createtour";
 			}
 		} else {
-			model.addAttribute("failedEmpty", "Báº¡n pháº£i chá»�n táº­p tin hÃ¬nh áº£nh cho tour!");
+			model.addAttribute("failedEmpty", "Bạn phải chọn tập tin hình ảnh cho tour!");
 			return "createtour";
 		}
 		
