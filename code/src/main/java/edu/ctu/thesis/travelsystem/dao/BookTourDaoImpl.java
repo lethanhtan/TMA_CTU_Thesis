@@ -10,21 +10,17 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.ConfirmCode;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
-import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Service
 public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	// Fill the fields automatically
 	private static final Logger logger = Logger.getLogger(BookTourDaoImpl.class);
 	private TourDao tourDao;
-	@Autowired
-	private BookTourService bookTourService;
 
 	// Save book tour form when have id tour
 	@Override
@@ -85,13 +81,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		return query.list();
 	}
 
-	@Override
-	public Integer getNumBTBySearch(String value, int idTour) {
-		Integer numBookTour = registrationListByValue(value, idTour).size();
-		logger.info("Number of registration are: " + numBookTour);
-		return numBookTour;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> bookTourList() {
@@ -104,7 +93,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			} else {
 				bookTour.setGoneOrNot(false);
 			}
-			bookTourService.editBookTour(bookTour);
+			//bookTourService.editBookTour(bookTour);
 			logger.info("Tour List:" + bookTour);
 		}
 		return bookTourList;
@@ -136,8 +125,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		int numTicketBooked = getNumTicketBooked(idTour);
 		logger.info("Number of ticket are booked: " + numTicketBooked);
 		Tour tour = tourDao.findTourById(idTour);
-		int numTicketAvailability = tour.getQuantum();
 		int quantum = tour.getQuantum();
+		int numTicketAvailability = quantum;
 		logger.info("Total Ticket: " + quantum);
 		for (int i = 0; i <= quantum; i++) {
 			numTicketAvailability = quantum - numTicketBooked;
@@ -213,7 +202,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+	@Override	
 	public List<BookTour> listBookTourById(int idTour) {
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour WHERE ID_TOUR = :idTour";

@@ -145,20 +145,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	}
 
 	@Override
-	public int getNumTour() {
-		Integer numTour = listTour().size();
-		logger.info("Number of tour is: " + numTour);
-		return numTour;
-	}
-
-	@Override
-	public int getNumTourByValue(String value) {
-		int numTour = listTourByValue(value).size();
-		logger.info("Number of tour is: " + numTour);
-		return numTour;
-	}
-
-	@Override
 	public Integer paginationX(Integer currentPage, Integer page) {
 		return currentPage * page - page;
 	}
@@ -209,13 +195,6 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			logger.info("Tour List:" + tour);
 		}
 		return showTourList;
-	}
-
-	@Override
-	public int getNumTourList() {
-		Integer numTourList = showTourList().size();
-		logger.info("Number of tour is: " + numTourList);
-		return numTourList;
 	}
 
 	@Override

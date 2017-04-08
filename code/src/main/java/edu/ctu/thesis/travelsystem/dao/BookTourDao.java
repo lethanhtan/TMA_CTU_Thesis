@@ -17,8 +17,6 @@ public interface BookTourDao {
 
 	public List<BookTour> registrationListByValue(String value, int idTour);
 
-	public Integer getNumBTBySearch(String value, int idTour);
-
 	public int getNumTicketBooked(int idTour);
 
 	public int getNumTicketAvailability(int idTour);

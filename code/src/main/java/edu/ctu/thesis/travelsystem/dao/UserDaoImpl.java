@@ -113,13 +113,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return userList;
 	}
 
-	@Override
-	public int getNumUserByValue(String value) {
-		int numUser = userListByValue(value).size();
-		logger.info("Total user: " + numUser);
-		return numUser;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> userList() {
@@ -130,13 +123,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.info("User List:" + user);
 		}
 		return userList;
-	}
-
-	@Override
-	public int getNumUser() {
-		Integer numUser = userList().size();
-		logger.info("Total user: " + numUser);
-		return numUser;
 	}
 
 	@Override
@@ -195,13 +181,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return registrationList;
 	}
 
-	@Override
-	public Integer getMyNumBTBySearch(String value, int idUser) {
-		Integer myNumBT = myRegListByValue(value, idUser).size();
-		logger.info("Number of my registration are: " + myNumBT);
-		return myNumBT;
-	}
-
 	// Display registration list by Id user
 	@SuppressWarnings("unchecked")
 	@Override
@@ -224,13 +203,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public Integer getMyNumBT(int idUser) {
-		Integer myNumBT = myRegList(idUser).size();
-		logger.info("Number of my registration are: " + myNumBT);
-		return myNumBT;
-	}
-
-	@Override
 	public List<BookTour> myCancelListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
@@ -240,13 +212,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		@SuppressWarnings("unchecked")
 		List<BookTour> cancelList = query.list();
 		return cancelList;
-	}
-
-	@Override
-	public Integer getMyNumCancelBySearch(String value, int idUser) {
-		Integer myNumCancel = myCancelListByValue(value, idUser).size();
-		logger.info("Number of my registration are: " + myNumCancel);
-		return myNumCancel;
 	}
 
 	// Display registration list by Id user
@@ -262,13 +227,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.info("My cancel registration list:" + bookTour);
 		}
 		return myCancelList;
-	}
-
-	@Override
-	public Integer getMyNumCancelReg(int idUser) {
-		Integer myNumCancelReg = myCancelList(idUser).size();
-		logger.info("Number of my registration are: " + myNumCancelReg);
-		return myNumCancelReg;
 	}
 
 	@Override
@@ -299,13 +257,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return myBookTourList;
 	}
 
-	@Override
-	public Integer getMyNumBookTourBySearch(String value, int idUser) {
-		Integer myNumBookTour = myBookTourListByValue(value, idUser).size();
-		logger.info("Number of my tour gone are: " + myNumBookTour);
-		return myNumBookTour;
-	}
-
 	// Display registration list by Id user
 	@SuppressWarnings("unchecked")
 	@Override
@@ -319,12 +270,5 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.info("My registration List:" + bookTour);
 		}
 		return myBookTourList;
-	}
-
-	@Override
-	public Integer getMyNumBookTour(int idUser) {
-		Integer myNumBookTour = myBookTourList(idUser).size();
-		logger.info("Number of my tour gone are: " + myNumBookTour);
-		return myNumBookTour;
 	}
 }
