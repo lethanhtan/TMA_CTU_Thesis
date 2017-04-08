@@ -36,7 +36,6 @@ public class HomeController {
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle home request!");
 		model.addAttribute("tour", new Tour() );
-		//model.addAttribute("tourList", tourService.listTour());
 		model.addAttribute("current", new Date());
 		
 		logger.info("Handle when managetour request from admin!");

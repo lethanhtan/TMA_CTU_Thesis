@@ -6,6 +6,6 @@ import edu.ctu.thesis.travelsystem.model.Import;
 
 public interface ImportDataService {
 	public void importExcel(MultipartFile excelfile);
+
 	public void saveImport(Import object);
-	public Integer getNumImport();
 }

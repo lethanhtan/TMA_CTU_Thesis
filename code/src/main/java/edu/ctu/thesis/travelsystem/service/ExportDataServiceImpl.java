@@ -18,11 +18,4 @@ public class ExportDataServiceImpl implements ExportDataService {
 	public void saveExport(Export objExport) {
 		this.exportDataDao.saveExport(objExport);
 	}
-
-	@Override
-	@Transactional
-	public Integer getNumExport() {
-		return this.exportDataDao.getNumExport();
-	}
-
 }

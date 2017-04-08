@@ -41,13 +41,6 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public Integer getNumBookTour(int idTour) {
-		Integer numBookTour = registrationList(idTour).size();
-		logger.info("Number of registration are: " + numBookTour);
-		return numBookTour;
-	}
-
-	@Override
 	public void deleteBookTour(int idBT, int idTour) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
@@ -86,20 +79,6 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		@SuppressWarnings("unchecked")
 		List<BookTour> cancelList = query.list();
 		return cancelList;
-	}
-
-	@Override
-	public Integer getNumCancelReg(int idTour) {
-		Integer numCancelReg = cancelList(idTour).size();
-		logger.info("Number of registration are: " + numCancelReg);
-		return numCancelReg;
-	}
-
-	@Override
-	public Integer getNumCancelBySearch(String value, int idTour) {
-		Integer numCancel = cancelListByValue(value, idTour).size();
-		logger.info("Number of registration are: " + numCancel);
-		return numCancel;
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package edu.ctu.thesis.travelsystem.dao;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 
 @Service
 public class FilterDaoImpl extends AbstractDao implements FilterDao {
-	private static final Logger logger = Logger.getLogger(FilterDaoImpl.class);
 
 	// Display registration list when filter by sex
 	@SuppressWarnings("unchecked")
@@ -23,14 +21,6 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		query.setParameter("idTour", idTour);
 		query.setParameter("filterSex", filterSex);
 		return query.list();
-	}
-
-	// Get number of register when filter by sex
-	@Override
-	public Integer getNumRegFilterSex(String filterSex, int idTour) {
-		Integer numRegFilterSex = regListByFilterSex(filterSex, idTour).size();
-		logger.info("Number of registration are: " + numRegFilterSex);
-		return numRegFilterSex;
 	}
 
 	// Display registration list when filter by number of ticket
@@ -46,14 +36,6 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		return regListByFilterTicket;
 	}
 
-	// Get number of register when filter by number of ticket
-	@Override
-	public Integer getNumRegFilterTicket(int filterTicket, int idTour) {
-		Integer numRegFilterTicket = regListByFilterTicket(filterTicket, idTour).size();
-		logger.info("Number of registration are: " + numRegFilterTicket);
-		return numRegFilterTicket;
-	}
-	
 	// Display cancel list when filter by sex
 	@Override
 	public List<BookTour> cancelListByFilterSex(String filterSex, int idTour) {
@@ -67,14 +49,6 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		return cancelListByFilterSex;
 	}
 
-	// Get number of cancel register when filter by sex
-	@Override
-	public Integer getNumCancelFilterSex(String filterSex, int idTour) {
-		Integer numCancelFilterSex = cancelListByFilterSex(filterSex, idTour).size();
-		logger.info("Number of registration are: " + numCancelFilterSex);
-		return numCancelFilterSex;
-	}
-
 	// Display cancel list when filter by number of ticket
 	@Override
 	public List<BookTour> cancelListByFilterTicket(int filterTicket, int idTour) {
@@ -86,13 +60,5 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		@SuppressWarnings("unchecked")
 		List<BookTour> cancelListByFilterTicket = query.list();
 		return cancelListByFilterTicket;
-	}
-
-	// Get number of cancel register when filter by number of ticket
-	@Override
-	public Integer getNumCancelFilterTicket(int filterTicket, int idTour) {
-		Integer numCancelFilterTicket = cancelListByFilterTicket(filterTicket, idTour).size();
-		logger.info("Number of registration are: " + numCancelFilterTicket);
-		return numCancelFilterTicket;
 	}
 }

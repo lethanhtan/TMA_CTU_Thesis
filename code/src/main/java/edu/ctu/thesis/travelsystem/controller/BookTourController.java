@@ -40,8 +40,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 
@@ -63,24 +63,24 @@ public class BookTourController {
 		}
 		if (valueSearch != null) {
 			Integer num = 0;
-			if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
-				num = tourService.getNumTourByValue(valueSearch) / numOnPage;
+			List<Tour> tourList = tourService.tourListByValue(valueSearch);
+			if (tourList.size() == 0) {
+				num = tourList.size() / numOnPage;
 			} else {
-				num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
+				num = (tourList.size() / numOnPage) + 1;
 			}
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				logger.info("Search active!");
 				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", tourService.tourListByValue(valueSearch));
-				model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+				model.addAttribute("showTourList", tourList);
+				model.addAttribute("numTour", tourList.size());
 				model.addAttribute("pageNum", pageNum); // Create number of page
 				model.addAttribute("numOnPage", numOnPage);
 				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, numOnPage));
-				model.addAttribute("y",
-						tourService.paginationY(tourService.tourListByValue(valueSearch).size(), page, numOnPage));
+				model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";
@@ -88,15 +88,15 @@ public class BookTourController {
 		} else { // Search none active ! Update list tour
 			logger.info("Handel book tour list when search none active!");
 			Integer num = 0;
-			if ((tourService.getNumTour() % numOnPage) == 0) {
-				num = tourService.getNumTourList() / numOnPage;
+			List<Tour> allTourList = tourService.showTourList();
+			if ((allTourList.size() % numOnPage) == 0) {
+				num = allTourList.size() / numOnPage;
 			} else {
-				num = (tourService.getNumTourList() / numOnPage) + 1;
+				num = (allTourList.size() / numOnPage) + 1;
 			}
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
-				List<Tour> allTourList = tourService.showTourList();
 				model.addAttribute("showTourList", allTourList);
 				// Display tour list
 				model.addAttribute("numTour", allTourList.size());
@@ -122,15 +122,15 @@ public class BookTourController {
 		// Put Customer data into table Book Tour;
 		try {
 			model.addAttribute("searchedValue", valueSearch);
+			tour = tourService.findTourById(idTour);
 			if (valueSearch != null) {
 				logger.info("Search active!");
 				model.addAttribute("bookTour", new BookTour());
-				model.addAttribute("tour", tourService.findTourById(idTour));
+				model.addAttribute("tour", tour);
 				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
 				return "booktour";
 			} else {
 				model.put("cusData", new BookTour());
-				tour = tourService.findTourById(idTour);
 				model.addAttribute("tour", tour);
 				bookTour.setTour(tour);
 				return "booktour";
@@ -176,7 +176,7 @@ public class BookTourController {
 		bookTourService.saveBookTour(bookTour, idTour);
 		model.put("idBT", bookTour.getIdBT());
 		emailSenderService.SendEmail(bookTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-				 MailTemplate.bookSuccessBody);
+				MailTemplate.bookSuccessBody);
 		return "redirect:/booksuccess/{idBT}/{idTour}";
 	}
 
@@ -193,11 +193,10 @@ public class BookTourController {
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
 			@Valid Tour tour) {
 		logger.info("Show information of customer when book tour");
-		model.put("cusData", bookTourService.searchById(idBT));
-		tour = tourService.findTourById(idTour);
-		logger.info("Tour Info: " + tour);
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		model.put("cusData", bookedTour);
 		if (tour != null) {
-			model.addAttribute("tour", tour);
+			model.addAttribute("tour", bookedTour.getTour());
 		}
 		return "booktourdetail";
 	}
@@ -207,11 +206,10 @@ public class BookTourController {
 	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
 			@Valid Tour tour) {
 		logger.info("Display edit form when admin request!");
-		model.put("cusData", bookTourService.searchById(idBT));
-		tour = tourService.findTourById(idTour);
-		logger.info("Tour Info: " + tour);
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		model.put("cusData", bookedTour);
 		if (tour != null) {
-			model.addAttribute("tour", tour);
+			model.addAttribute("tour", bookedTour.getTour());
 		}
 		return "editbooktour";
 	}
@@ -256,7 +254,7 @@ public class BookTourController {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
 		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-				 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 

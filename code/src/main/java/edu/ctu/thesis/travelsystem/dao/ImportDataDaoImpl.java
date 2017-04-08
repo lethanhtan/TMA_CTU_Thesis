@@ -77,11 +77,4 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 		session.save(object);
 		session.flush();
 	}
-
-	@Override
-	public Integer getNumImport() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

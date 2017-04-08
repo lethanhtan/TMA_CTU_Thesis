@@ -19,18 +19,8 @@ public class FilterServiceImpl implements FilterService {
 	}
 	
 	@Override
-	public Integer getNumRegFilterSex(String filterSex, int idTour) {
-		return this.filterDao.getNumRegFilterSex(filterSex, idTour);
-	}
-	
-	@Override
 	public List<BookTour> regListByFilterTicket(int filterTicket, int idTour) {
 		return this.filterDao.regListByFilterTicket(filterTicket, idTour);
-	}
-	
-	@Override
-	public Integer getNumRegFilterTicket(int filterTicket, int idTour) {
-		return this.filterDao.getNumRegFilterTicket(filterTicket, idTour);
 	}
 	
 	@Override
@@ -39,17 +29,7 @@ public class FilterServiceImpl implements FilterService {
 	}
 	
 	@Override
-	public Integer getNumCancelFilterSex(String filterSex, int idTour) {
-		return this.filterDao.getNumCancelFilterSex(filterSex, idTour);
-	}
-	
-	@Override
 	public List<BookTour> cancelListByFilterTicket(int filterTicket, int idTour) {
 		return this.filterDao.cancelListByFilterTicket(filterTicket, idTour);
-	}
-	
-	@Override
-	public Integer getNumCancelFilterTicket(int filterTicket, int idTour) {
-		return this.filterDao.getNumCancelFilterTicket(filterTicket, idTour);
 	}
 }
