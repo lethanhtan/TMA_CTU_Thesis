@@ -449,11 +449,10 @@ public class ManageRegController {
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
 			@Valid Tour tour) {
 		logger.info("Show information of customer when book tour");
-		model.put("cusData", bookTourService.searchById(idBT));
-		tour = tourService.findTourById(idTour);
-		logger.info("Tour Info: " + tour);
+		BookTour bookedTour = bookTourService.searchById(idBT);
+		model.put("cusData", bookedTour);
 		if (tour != null) {
-			model.addAttribute("tour", tour);
+			model.addAttribute("tour", bookedTour.getTour());
 		}
 		return "reginfodetail";
 	}
@@ -465,10 +464,8 @@ public class ManageRegController {
 		logger.info("Display edit form when admin request!");
 		BookTour bookedTour = bookTourService.searchById(idBT);
 		model.put("cusData", bookedTour);
-		tour = tourService.findTourById(idTour);
-		logger.info("Tour Info: " + tour);
 		if (tour != null) {
-			model.addAttribute("tour", tour);
+			model.addAttribute("tour", bookedTour.getTour());
 		}
 		return "editreginfo";
 	}

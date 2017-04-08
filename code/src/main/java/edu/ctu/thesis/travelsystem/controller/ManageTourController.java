@@ -59,7 +59,7 @@ public class ManageTourController {
 		String result; // view page mapping
 		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; // numOn 
+				numOnPage = numOn; // numOn
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
@@ -69,46 +69,47 @@ public class ManageTourController {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((tourService.getNumTourByValue(valueSearch) % numOnPage) == 0) {
-						num = tourService.getNumTourByValue(valueSearch) / numOnPage;
+					List<Tour> tourList = tourService.listTourByValue(valueSearch);
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTourByValue(valueSearch) / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTourByValue(valueSearch));
-						model.addAttribute("numTour", tourService.getNumTourByValue(valueSearch));
+						model.addAttribute("tourList", tourList);
+						model.addAttribute("numTour", tourList.size());
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y",
-								tourService.paginationY(tourService.listTourByValue(valueSearch).size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "managetour";
 					} else {
 						result = "managetour";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((tourService.getNumTour() % numOnPage) == 0) {
-						num = tourService.getNumTour() / numOnPage;
+					List<Tour> tourList = tourService.listTour();
+					if ((tourList.size() % numOnPage) == 0) {
+						num = tourList.size() / numOnPage;
 					} else {
-						num = (tourService.getNumTour() / numOnPage) + 1;
+						num = (tourList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourService.listTour()); // create
-						model.addAttribute("numTour", tourService.getNumTour()); // create
+						model.addAttribute("tourList", tourList); // create
+						model.addAttribute("numTour", tourList.size()); // create
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourService.listTour().size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
 						result = "managetour";
 					} else {
 						result = "managetour";
@@ -185,15 +186,12 @@ public class ManageTourController {
 					dir.mkdirs();
 
 				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
 
-				logger.info("Server File Location="
-						+ serverFile.getAbsolutePath());
+				logger.info("Server File Location=" + serverFile.getAbsolutePath());
 				tour.setImage(name);
 
 			} catch (Exception e) {
@@ -204,7 +202,7 @@ public class ManageTourController {
 			model.addAttribute("failedEmpty", "You not upload image for tour!");
 			return "updatetour";
 		}
-		
+
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
@@ -241,18 +239,19 @@ public class ManageTourController {
 		int numReg = 0;
 		int numCan = 0;
 		List<BookTour> list = bookTourService.listBookTourById(idTour);
+		Tour tour = tourService.findTourById(idTour);
 		for (BookTour bt : list) {
 			numReg += bt.getCusNumOfTicket();
 			numCan += bt.getTicketCancel();
 		}
 		model.addAttribute("numReg", numReg);
 		model.addAttribute("numCan", numCan);
-		model.addAttribute("tourName", tourService.findTourById(idTour).getName());
-		model.addAttribute("departure", tourService.findTourById(idTour).getDepartureDate());
-		model.addAttribute("departureDate", sdf.format(tourService.findTourById(idTour).getDepartureDate()));
-		model.addAttribute("returnDate", sdf.format(tourService.findTourById(idTour).getReturnDate()));
+		model.addAttribute("tourName", tour.getName());
+		model.addAttribute("departure", tour.getDepartureDate());
+		model.addAttribute("departureDate", sdf.format(tour.getDepartureDate()));
+		model.addAttribute("returnDate", sdf.format(tour.getReturnDate()));
 		model.addAttribute("now", d);
-		if (tourService.findTourById(idTour).getDepartureDate().after(d)) {
+		if (tour.getDepartureDate().after(d)) {
 			model.addAttribute("status", 1);
 		} else {
 			model.addAttribute("status", 0);

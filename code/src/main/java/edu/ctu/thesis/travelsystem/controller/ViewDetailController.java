@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Controller
@@ -21,12 +22,13 @@ public class ViewDetailController {
 	@RequestMapping(value = "/viewdetail/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable(value = "idTour") int idTour) {
 		logger.info("Show tour detail!");
-		model.addAttribute("img", tourService.findTourById(idTour).getImage());
+		Tour tour = tourService.findTourById(idTour);
+		model.addAttribute("img", tour.getImage());
 		model.addAttribute("id", idTour);
-		model.addAttribute("name", tourService.findTourById(idTour).getName());
-		model.addAttribute("detail", tourService.findTourById(idTour).getDetail());
-		model.addAttribute("tour", tourService.findTourById(idTour));
-		tourService.addView(tourService.findTourById(idTour));
+		model.addAttribute("name", tour.getName());
+		model.addAttribute("detail", tour.getDetail());
+		model.addAttribute("tour", tour);
+		tourService.addView(tour);
 		return "viewdetail";
 	}
 }

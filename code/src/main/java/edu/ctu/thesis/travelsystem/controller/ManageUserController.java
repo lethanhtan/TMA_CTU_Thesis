@@ -1,6 +1,5 @@
 package edu.ctu.thesis.travelsystem.controller;
 
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,49 +60,49 @@ public class ManageUserController {
 				model.addAttribute("searchedValue", valueSearch);
 				if (valueSearch != null) {
 					Integer num = 0;
-					if ((userService.getNumUserByValue(valueSearch) % numOnPage) == 0) {
-						num = userService.getNumUserByValue(valueSearch) / numOnPage;
+					List<User> userList = userService.userListByValue(valueSearch);
+					if ((userList.size() % numOnPage) == 0) {
+						num = userList.size() / numOnPage;
 					} else {
-						num = (userService.getNumUserByValue(valueSearch) / numOnPage) + 1;
+						num = (userList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						logger.info("Search active!");
 						model.addAttribute("user", new User());
 						model.addAttribute("id", id);
-						model.addAttribute("userList", userService.userListByValue(valueSearch));
-						model.addAttribute("numUser", userService.getNumUserByValue(valueSearch));
+						model.addAttribute("userList", userList);
+						model.addAttribute("numUser", userList.size());
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(userService.userListByValue(valueSearch).size(),
-								page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(userList.size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
 					}
 				} else { // search none active ! Update list tour
 					Integer num = 0;
-					if ((userService.getNumUser() % numOnPage) == 0) {
-						num = userService.getNumUser() / numOnPage;
+					List<User> userList = userService.userList();
+					if ((userList.size() % numOnPage) == 0) {
+						num = userList.size() / numOnPage;
 					} else {
-						num = (userService.getNumUser() / numOnPage) + 1;
+						num = (userList.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 						model.addAttribute("user", new User());
 						model.addAttribute("id", id);
-						model.addAttribute("userList", userService.userList()); // create
-						model.addAttribute("numUser", userService.getNumUser()); // create
+						model.addAttribute("userList", userList); // create
+						model.addAttribute("numUser", userList.size()); // create
 						model.addAttribute("pageNum", pageNum); // create number
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y",
-								tourService.paginationY(userService.userList().size(), page, numOnPage));
+						model.addAttribute("y", tourService.paginationY(userList.size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
@@ -146,7 +145,6 @@ public class ManageUserController {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
-			// model.addAttribute("idRole", userService.getRoleUser(user));
 		} else {
 			logger.info("Null Object!");
 		}
