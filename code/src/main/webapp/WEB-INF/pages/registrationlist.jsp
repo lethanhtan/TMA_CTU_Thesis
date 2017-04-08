@@ -45,23 +45,58 @@
 								gia tour này!</h1>
 						</c:if>
 						<c:if test="${!empty registrationList}">
-							<!-- Choose Number For Display -->
 							<div class="row">
-								<form role="form" class="form-inline" action="tourlist"
+								<!-- Filter Buttons -->
+								<div class="portfolio-filter-container margin-top-20">
+									<ul class="portfolio-filter">
+										<li class="portfolio-filter-label label label-warning"
+											style="margin-left: 3%;"><i class="fa fa-filter">
+												Lọc theo:</i></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterSex" class="form-control" name="filterSex"
+													onchange="this.form.submit()">
+													<option value="">Giới tính</option>
+													<option value="Nam">Nam</option>
+													<option value="Nữ">Nữ</option>
+												</select>
+											</form></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterTicket" class="form-control"
+													name="filterTicket" onchange="this.form.submit()">
+													<option>Số vé</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+												</select>
+											</form></li>
+									</ul>
+								</div>
+								</br>
+								<!-- End Filter Buttons -->
+								<!-- Choose Number For Display -->
+								<form role="form" class="form-inline"
+									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 									method="get">
-									<label for="selectTour"
-										style="text-align: left; margin-left: 2%">Số người
-										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
-										name="numOn">
+									<label for="selectBookTour"
+										style="text-align: left; margin-left: 70%">Số người
+										đăng ký/ trang:</label> <select id="selectBookTour"
+										class="form-control" name="numOn">
 										<option>5</option>
 										<option>10</option>
 										<option>15</option>
 									</select>
 									<button class="btn btn-aqua">Chọn</button>
 								</form>
+								<!-- End Choose Number For Display -->
 							</div>
 							</br>
-							<!-- End Choose Number For Display -->
 							<table>
 								<thead>
 									<tr>
@@ -95,11 +130,13 @@
 												href="<c:url value='/editreginfo/${bookTour.idBT}/${tour.idTour}'/>"><button
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
-													</button></a> <a
-												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-														class="btn btn-sm btn-aqua">
-														<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-													</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
+													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
+													<a
+														href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+															class="btn btn-sm btn-aqua">
+															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+														</button></a>
+												</c:if> <a href="#deleteConfirm" data-toggle="modal"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
 													</button></a> <!-- Popup Cofirm -->
@@ -197,12 +234,47 @@
 						<c:if test="${!empty cancelList}">
 							<!-- Choose Number For Display -->
 							<div class="row">
-								<form role="form" class="form-inline" action="registrationlist"
+								<!-- Filter Buttons -->
+								<div class="portfolio-filter-container margin-top-20">
+									<ul class="portfolio-filter">
+										<li class="portfolio-filter-label label label-warning"
+											style="margin-left: 3%;"><i class="fa fa-filter">
+												Lọc theo:</i></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterSex2" class="form-control"
+													name="filterSex2" onchange="this.form.submit()">
+													<option value="">Giới tính</option>
+													<option value="Nam">Nam</option>
+													<option value="Nữ">Nữ</option>
+												</select>
+											</form></li>
+										<li style="margin-left: 1%"><form role="form"
+												class="form-inline"
+												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+												method="GET">
+												<select id="filterTicket2" class="form-control"
+													name="filterTicket2" onchange="this.form.submit()">
+													<option>Số vé</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+												</select>
+											</form></li>
+									</ul>
+								</div>
+								</br>
+								<!-- End Filter Buttons -->
+								<form role="form" class="form-inline"
+									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 									method="get">
-									<label for="selectTour"
-										style="text-align: left; margin-left: 2%">Số người hủy
-										đăng ký/ trang:</label> <select id="selectTour" class="form-control"
-										name="numOn">
+									<label for="selectCancelReg"
+										style="text-align: left; margin-left: 70%">Số người
+										hủy đăng ký/ trang:</label> <select id="selectCancelReg"
+										class="form-control" name="numOn2">
 										<option>5</option>
 										<option>10</option>
 										<option>15</option>
@@ -240,15 +312,17 @@
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
-											</a><a
-												href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
-														class="btn btn-sm btn-success">
-														<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-													</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
+											</a> <c:if test="${cancelReg.tour.regOrNot}">
+													<a
+														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
+															class="btn btn-sm btn-success">
+															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+														</button></a>
+												</c:if> <a href="#deleteConfirm2" data-toggle="modal"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
 													</button></a> <!-- Popup Cofirm -->
-												<div id="deleteConfirm" class="modal fade">
+												<div id="deleteConfirm2" class="modal fade">
 													<div class="modal-dialog">
 														<div class="modal-content">
 															<div class="modal-header">

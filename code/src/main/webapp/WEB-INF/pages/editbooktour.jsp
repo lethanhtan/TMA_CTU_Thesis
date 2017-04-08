@@ -20,7 +20,6 @@
 							</br>
 						</div>
 						<s:input path="confirmCode" hidden="true" />
-						<s:input path="idUser" />
 						<div class="row">
 							<c:if test="${tour.fieldName == true}">
 								<div class="col-sm-8">
@@ -71,14 +70,102 @@
 										<span class="input-group-addon"><i
 											class="fa fa-building-o"></i> </span>
 										<s:select class="form-control margin-bottom-20"
-											name="cus_offered" id="selectMe" path="cusNumOfTicket">
+											name="cus_offered" id="main-select" path="cusNumOfTicket">
+											<option value="${cusData.cusNumOfTicket}">${cusData.cusNumOfTicket }</option>
 											<c:forEach var="j" begin="1" end="4">
-												<option value="${j}">${j}</option>
+												<c:if test="${not (j == cusData.cusNumOfTicket )}">
+													<option value="${j}">${j}</option>
+												</c:if>
 											</c:forEach>
 										</s:select>
 									</div>
 								</div>
 							</c:if>
+						</div>
+						<div class="number-option" id="number1"></div>
+						<div class="number-option" id="number2">
+							<div class="row">
+								<div class="col-sm-8">
+									<label>Họ tên người thứ 2</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusName1" cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i class="fa fa-font"></i>
+										</span>
+										<s:input placeholder="Nhập họ tên" class="form-control"
+											type="text" path="cusName1" />
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label>Năm sinh</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusYearOfBirth1"
+											cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-calendar"></i>
+										</span>
+										<s:input placeholder="Nhập năm sinh" class="form-control"
+											type="text" path="cusYearOfBirth1" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="number-option" id="number3">
+							<div class="row">
+								<div class="col-sm-8">
+									<label>Họ tên người thứ 3</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusName2" cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i class="fa fa-font"></i>
+										</span>
+										<s:input placeholder="Nhập họ tên" class="form-control"
+											type="text" path="cusName2" />
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label>Năm sinh</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusYearOfBirth2"
+											cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-calendar"></i>
+										</span>
+										<s:input placeholder="Nhập năm sinh" class="form-control"
+											type="text" path="cusYearOfBirth2" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="number-option" id="number4">
+							<div class="row">
+								<div class="col-sm-8">
+									<label>Họ tên người thứ 4</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusName3" cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i class="fa fa-font"></i>
+										</span>
+										<s:input placeholder="Nhập họ tên" class="form-control"
+											type="text" path="cusName3" />
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label>Năm sinh</label>
+									<!-- Show error -->
+									</br> <small><s:errors path="cusYearOfBirth3"
+											cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-calendar"></i>
+										</span>
+										<s:input placeholder="Nhập năm sinh" class="form-control"
+											type="text" path="cusYearOfBirth3" />
+									</div>
+								</div>
+							</div>
 						</div>
 						<c:if test="${tour.fieldEmail}">
 							<label>Email</label>
@@ -110,91 +197,11 @@
 									class="form-control" type="text" path="cusIdCard" />
 							</div>
 						</c:if>
-						<div id="2" class="group">
-							<div class="row">
-								<div class="col-sm-8">
-									<label>Họ tên người thứ 2</label>
-									<!-- Show error -->
-									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i class="fa fa-font"></i>
-										</span>
-										<s:input placeholder="Nhập họ tên" class="form-control"
-											type="text" path="cusName1" />
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<label>Năm sinh</label>
-									<!-- Show error -->
-									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-calendar"></i>
-										</span>
-										<s:input placeholder="Nhập năm sinh" class="form-control"
-											type="text" path="cusYearOfBirth1" />
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="3" class="group">
-							<c:forEach var="i" begin="1" end="2">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName${i}" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth${i}" />
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<div id="4" class="group">
-							<c:forEach var="i" begin="1" end="3">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input placeholder="Nhập họ tên" class="form-control"
-												type="text" path="cusName${i}" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<!-- Show error -->
-										</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="cusYearOfBirth${i}" />
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
+						<!-- reCAPTCHA -->
+						<p style="color: red;">${errorString}</p>
+						<div style="margin-left: 37px;" class="g-recaptcha"
+							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+						</br>
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">

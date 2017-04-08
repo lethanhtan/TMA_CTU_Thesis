@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.FilterService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
@@ -38,6 +39,8 @@ public class ManageRegController {
 	private TourService tourService;
 	@Autowired
 	private RegInfoService regInfoService;
+	@Autowired
+	private FilterService filterService;
 
 	private static int numOnPage = 5;
 	private static int numOnPage2 = 5;
@@ -129,9 +132,13 @@ public class ManageRegController {
 			@RequestParam(required = false, value = "numOn") Integer numOn,
 			@RequestParam(required = false, value = "valueSearch2") String valueSearch2,
 			@RequestParam(required = true, defaultValue = "1", value = "page2") Integer page2,
-			@RequestParam(required = false, value = "numOn2") Integer numOn2) {
+			@RequestParam(required = false, value = "numOn2") Integer numOn2,
+			@RequestParam(required = false, value = "filterSex") String filterSex,
+			@RequestParam(required = false, defaultValue = "0", value = "filterTicket") int filterTicket,
+			@RequestParam(required = false, value = "filterSex2") String filterSex2,
+			@RequestParam(required = false, defaultValue = "0", value = "filterTicket2") int filterTicket2) {
 		logger.info("Handle when manage register request from admin!");
-		String result;
+		String result = null;
 		try {
 			if (!numOn.equals(null)) {
 				numOnPage = numOn;
@@ -168,12 +175,14 @@ public class ManageRegController {
 						model.addAttribute("x", tourService.paginationX(page, numOnPage));
 						model.addAttribute("y", tourService.paginationY(
 								bookTourService.registrationListByValue(valueSearch, idTour).size(), page, numOnPage));
-
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
 					}
-				} else { // search none active ! Update list tour
+				}
+				
+				// Search none active ! Update registration list
+				if (valueSearch == null && filterSex == null && filterTicket == 0) {
 					Integer num = 0;
 					if ((regInfoService.getNumBookTour(idTour) % numOnPage) == 0) {
 						num = regInfoService.getNumBookTour(idTour) / numOnPage;
@@ -198,6 +207,63 @@ public class ManageRegController {
 						result = "registrationlist";
 					}
 				}
+
+				// Filter registration list by sex
+				if (filterSex != null) {
+					Integer num = 0;
+					if ((filterService.getNumRegFilterSex(filterSex, idTour) % numOnPage) == 0) {
+						num = filterService.getNumRegFilterSex(filterSex, idTour) / numOnPage;
+					} else {
+						num = (filterService.getNumRegFilterSex(filterSex, idTour) / numOnPage) + 1;
+					}
+					if (page <= num) {
+						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+						model.addAttribute("bookTour", new BookTour());
+						model.addAttribute("tour", tourService.findTourById(idTour));
+						model.addAttribute("registrationList", filterService.regListByFilterSex(filterSex, idTour));
+						model.addAttribute("numBookTour", filterService.getNumRegFilterSex(filterSex, idTour));
+						model.addAttribute("pageNum", pageNum);
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
+						model.addAttribute("pageE", new ArrayList<Integer>());
+						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("y", tourService.paginationY(
+								filterService.regListByFilterSex(filterSex, idTour).size(), page, numOnPage));
+						result = "registrationlist";
+					} else {
+						result = "registrationlist";
+					}
+				}
+
+				// Filter registration list by number of ticket
+				if (filterTicket != 0) {
+					Integer num = 0;
+					if ((filterService.getNumRegFilterTicket(filterTicket, idTour) % numOnPage) == 0) {
+						num = filterService.getNumRegFilterTicket(filterTicket, idTour) / numOnPage;
+					} else {
+						num = (filterService.getNumRegFilterTicket(filterTicket, idTour) / numOnPage) + 1;
+					}
+					if (page <= num) {
+						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+						model.addAttribute("bookTour", new BookTour());
+						model.addAttribute("tour", tourService.findTourById(idTour));
+						model.addAttribute("registrationList",
+								filterService.regListByFilterTicket(filterTicket, idTour));
+						model.addAttribute("numBookTour",
+								filterService.getNumRegFilterTicket(filterTicket, idTour));
+						model.addAttribute("pageNum", pageNum);
+						model.addAttribute("numOnPage", numOnPage);
+						model.addAttribute("page", page);
+						model.addAttribute("pageE", new ArrayList<Integer>());
+						model.addAttribute("x", tourService.paginationX(page, 5));
+						model.addAttribute("y", tourService.paginationY(
+								filterService.regListByFilterTicket(filterTicket, idTour).size(), page, numOnPage));
+						result = "registrationlist";
+					} else {
+						result = "registrationlist";
+					}
+				}
+
 				// Display cancel registration list
 				model.addAttribute("searchedValue2", valueSearch2);
 				if (valueSearch2 != null) {
@@ -224,7 +290,10 @@ public class ManageRegController {
 					} else {
 						result = "registrationlist";
 					}
-				} else { // search none active ! Update list tour
+				}
+
+				// Search none active ! Update cancel registration list
+				if (valueSearch2 == null && filterSex2 == null && filterTicket2 == 0) {
 					Integer num2 = 0;
 					if ((regInfoService.getNumCancelReg(idTour) % numOnPage2) == 0) {
 						num2 = regInfoService.getNumCancelReg(idTour) / numOnPage2;
@@ -244,6 +313,61 @@ public class ManageRegController {
 						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
 						model.addAttribute("y2",
 								tourService.paginationY(regInfoService.cancelList(idTour).size(), page2, numOnPage2));
+						result = "registrationlist";
+					} else {
+						result = "registrationlist";
+					}
+				}
+
+				// Filter cancel registration list by sex
+				if (filterSex2 != null) {
+					Integer num2 = 0;
+					if ((filterService.getNumCancelFilterSex(filterSex2, idTour) % numOnPage2) == 0) {
+						num2 = filterService.getNumCancelFilterSex(filterSex2, idTour) / numOnPage2;
+					} else {
+						num2 = (filterService.getNumCancelFilterSex(filterSex2, idTour) / numOnPage2) + 1;
+					}
+					if (page2 <= num2) {
+						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
+						model.addAttribute("bookTour", new BookTour());
+						model.addAttribute("tour", tourService.findTourById(idTour));
+						model.addAttribute("cancelList", filterService.cancelListByFilterSex(filterSex2, idTour));
+						model.addAttribute("numCancelReg", filterService.getNumCancelFilterSex(filterSex2, idTour));
+						model.addAttribute("pageNum2", pageNum2);
+						model.addAttribute("numOnPage2", numOnPage2);
+						model.addAttribute("page2", page2);
+						model.addAttribute("pageE2", new ArrayList<Integer>());
+						model.addAttribute("x2", tourService.paginationX(page2, 5));
+						model.addAttribute("y2", tourService.paginationY(
+								filterService.regListByFilterSex(filterSex2, idTour).size(), page2, numOnPage2));
+						result = "registrationlist";
+					} else {
+						result = "registrationlist";
+					}
+				}
+
+				// Filter registration list by number of ticket
+				if (filterTicket2 != 0) {
+					Integer num2 = 0;
+					if ((filterService.getNumCancelFilterTicket(filterTicket2, idTour) % numOnPage2) == 0) {
+						num2 = filterService.getNumCancelFilterTicket(filterTicket2, idTour) / numOnPage2;
+					} else {
+						num2 = (filterService.getNumCancelFilterTicket(filterTicket2, idTour) / numOnPage2) + 1;
+					}
+					if (page2 <= num2) {
+						List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
+						model.addAttribute("bookTour", new BookTour());
+						model.addAttribute("tour", tourService.findTourById(idTour));
+						model.addAttribute("cancelList", filterService.regListByFilterTicket(filterTicket2, idTour));
+						model.addAttribute("numCancelReg",
+								filterService.getNumCancelFilterTicket(filterTicket2, idTour));
+						model.addAttribute("pageNum2", pageNum2);
+						model.addAttribute("numOnPage2", numOnPage2);
+						model.addAttribute("page2", page2);
+						model.addAttribute("pageE2", new ArrayList<Integer>());
+						model.addAttribute("x2", tourService.paginationX(page2, 5));
+						model.addAttribute("y2", tourService.paginationY(
+								filterService.regListByFilterTicket(filterTicket2, idTour).size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";

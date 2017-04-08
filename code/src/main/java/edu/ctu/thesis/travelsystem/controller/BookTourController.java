@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,6 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.extra.EMailSender;
 import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
@@ -135,18 +140,26 @@ public class BookTourController {
 	// Test errors
 	@RequestMapping(value = "/booktour/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") int idTour, @Valid Tour tour) {
+			HttpSession session, @PathVariable("idTour") int idTour, @Valid Tour tour, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
+		tour = tourService.findTourById(idTour);
 		if (br.hasErrors()) {
-			tour = tourService.findTourById(idTour);
 			logger.info("Tour Info: " + tour);
-			if (tour != null) {
-				model.addAttribute("tour", tour);
-			}
+			model.addAttribute("tour", tour);
+			return "booktour";
+		}
+		if (verify == false) {
+			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
+			model.addAttribute("errorString", errorString);
+			model.addAttribute("tour", tour);
 			return "booktour";
 		} else {
-			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			bookTour.setDateBook(Calendar.getInstance().getTime());
 			if (session.getAttribute("idUser") != null) {
@@ -158,12 +171,12 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
 		model.put("idBT", bookTour.getIdBT());
-		String fromAddress = MailTemplate.hostMail;
-		String toAddress = bookTour.getCusEmail();
-		String subject = MailTemplate.bookSuccessTitle;
-		String msgBody = MailTemplate.bookSuccessBody;
-		// emailSenderService.SendEmail(toAddress, fromAddress, subject,
-		// msgBody);
+		 String fromAddress = MailTemplate.hostMail;
+		 String toAddress = bookTour.getCusEmail();
+		 String subject = MailTemplate.bookSuccessTitle;
+		 String msgBody = MailTemplate.bookSuccessBody;
+		 emailSenderService.SendEmail(toAddress, fromAddress, subject,
+		 msgBody);
 		return "redirect:/booksuccess/{idBT}/{idTour}";
 	}
 
@@ -207,17 +220,26 @@ public class BookTourController {
 	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
 	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
 			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			@Valid Tour tour) {
+			@Valid Tour tour, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		logger.info("Handle edit information customer form when admin submit!");
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
 		tour = tourService.findTourById(idTour);
 		if (br.hasErrors()) {
 			logger.info("Tour info: " + tour);
-			if (tour != null) {
-				model.addAttribute("tour", tour);
-			}
+			model.addAttribute("tour", tour);
 			return "editbooktour	";
+		}
+		if (verify == false) {
+			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
+			model.addAttribute("errorString", errorString);
+			model.addAttribute("tour", tour);
+			return "editbooktour";
 		} else {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
@@ -232,11 +254,13 @@ public class BookTourController {
 	@RequestMapping(value = "cancelbooktour/{idBT}")
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
-		String fromAddress = MailTemplate.hostMail;
-		String toAddress = bookTourService.searchById(idBT).getCusEmail();
-		String subject = MailTemplate.confirmCancelTitle;
-		String msgBody = MailTemplate.confirmCancelBody + bookTourService.searchById(idBT).getConfirmCode();
-		emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
+		 String fromAddress = MailTemplate.hostMail;
+		 String toAddress = bookTourService.searchById(idBT).getCusEmail();
+		 String subject = MailTemplate.confirmCancelTitle;
+		 String msgBody = MailTemplate.confirmCancelBody +
+		 bookTourService.searchById(idBT).getConfirmCode();
+		 emailSenderService.SendEmail(toAddress, fromAddress, subject,
+		 msgBody);
 		return "redirect:/cancelbook/{idBT}";
 	}
 

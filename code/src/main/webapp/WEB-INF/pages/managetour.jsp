@@ -38,7 +38,7 @@
 					<div class="row">
 						<form role="form" class="form-inline" action="managetour"
 							method="get">
-							<label for="selectTour" style="text-align: left; margin-left: 2%">Số
+							<label for="selectTour" style="text-align: left; margin-left: 75%">Số
 								tour/ trang:</label> <select id="selectTour" class="form-control"
 								name="numOn">
 								<option>5</option>

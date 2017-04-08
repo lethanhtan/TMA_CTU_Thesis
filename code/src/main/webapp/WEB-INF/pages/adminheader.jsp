@@ -36,24 +36,20 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/input.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <!-- Template CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nexus.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/nexus.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/responsive.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/table.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/resources/css/table.css">
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"

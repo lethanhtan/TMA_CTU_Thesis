@@ -70,6 +70,31 @@
 								</div>
 							</c:if>
 						</div>
+						<c:if test="${cusData.cusNumOfTicket > 1}">
+							<c:forEach var="i" begin="1" end="${cusData.cusNumOfTicket - 1}">
+								<div class="row">
+									<div class="col-sm-8">
+										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i class="fa fa-font"></i>
+											</span>
+											<s:input class="form-control" path="cusName${i}"
+												disabled="true" />
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label>Năm sinh</label>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input class="form-control" path="cusYearOfBirth${i}"
+												disabled="true" />
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
 						<c:if test="${tour.fieldEmail}">
 							<label>Email</label>
 							<!-- Show error -->
@@ -98,29 +123,6 @@
 								</span>
 								<s:input class="form-control" path="cusIdCard" disabled="true" />
 							</div>
-						</c:if>
-						<c:if test="${cusData.cusNumOfTicket > 1}">
-							<c:forEach var="i" begin="1" end="${cusData.cusNumOfTicket - 1}">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input class="form-control" path="cusName${i}" disabled="true" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input class="form-control" path="cusYearOfBirth${i}" disabled="true" />
-										</div>
-									</div>
-								</div>
-							</c:forEach>
 						</c:if>
 						<hr>
 						<div class="row">
