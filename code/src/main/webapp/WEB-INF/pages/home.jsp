@@ -143,10 +143,9 @@
 												</c:if>
 												<img alt="new"
 													src="resources/img/sale.png" width="20" height="20">
-												</div>
-												<br /> <span style="color: white;">${tour.getDetail().substring(0,350)}</span>
-												<a
-													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"
+												<br /> 
+												<span style="color: white;">${tour.getDetail().substring(0,350)}</span>
+												<a href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"
 													style="color: hotpink; text-decoration: underline; font-weight: bold;">
 													Xem thêm > </a>
 											</figcaption>
