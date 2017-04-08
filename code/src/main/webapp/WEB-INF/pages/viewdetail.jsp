@@ -19,7 +19,7 @@
 									<p class="fa fa-eye" style="color:red">${tour.view}</p>
 									<p class="fa fa-calendar" style="color:red"><fmt:formatDate value="${tour.departureDate}" pattern="dd-MM-yyyy" /></p>
 									<span style="color: white;">${detail}</span> 
-									<span><a href="/TravelSystem/booktour/${id}"><input class="btn btn-danger text-center" type="submit" value="Đăng ký"></span></a>
+									<span><a href="/TravelSystem/booktour/${id}"><input class="btn btn-danger text-center" type="submit" value="Đăng ký"></a></span>
 								</figcaption>
 					</a></li>
 				</ul>

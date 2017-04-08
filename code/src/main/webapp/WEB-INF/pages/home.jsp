@@ -116,7 +116,7 @@
 		<div class="row padding-vert-20">
 			<c:if test="${!empty tourList}">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<c:forEach items="${tourList}" var="tour">
+					<c:forEach items="${tourList.subList(x,y)}" var="tour">
 						<div class="col-md-6 col-sm-6">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
@@ -145,9 +145,8 @@
 													src="resources/img/sale.png" width="20" height="20">
 												<br /> 
 												<span style="color: white;">${tour.getDetail().substring(0,350)}</span>
-												<a href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"
-													style="color: hotpink; text-decoration: underline; font-weight: bold;">
-													Xem thêm > </a>
+												<span><a href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input class="btn btn-success text-center" type="submit" value="Chi tiết"></a></span>
+												<span><a href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><input class="btn btn-danger text-center" type="submit" value="Đăng ký"></a></span>
 											</figcaption>
 										</figure>
 								</a></li>
@@ -160,6 +159,43 @@
 				</div>
 			</c:if>
 		</div>
+		<div class="text-center">
+					<!-- Pagination -->
+					<c:if test="${numTour > numOnPage}">
+						<!-- Paging when number of element > number of tour -->
+						<!-- set active pagination when numTour >= 5 -->
+						<ul class="pagination">
+							<c:if test="${param.page != null}">
+								<c:if test="${param.page == 1}">
+									<li class="disabled"></li>
+								</c:if>
+								<c:if test="${param.page > 1 }">
+									<li><a
+										href="${pageContext.request.contextPath }/home?page=${param.page -1}">&laquo;</a>
+									</li>
+								</c:if>
+							</c:if>
+							<c:forEach items="${pageNum}" var="pageE">
+								<c:if test="${pageE == page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
+								</c:if>
+								<c:if test="${pageE != page}">
+									<li><a
+										href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${numTour/numOnPage - param.page == 0}">
+								<li class="disabled"></li>
+							</c:if>
+							<c:if test="${numTour/numOnPage - param.page > 0}">
+								<li><a
+									href="${pageContext.request.contextPath }/home?page=${page + 1}">&raquo;</a></li>
+							</c:if>
+						</ul>
+					</c:if>
+				</div>
+				<!-- End Pagination -->
 	</div>
 	<div class="container background-white">
 		<div class="row padding-vert-40">
