@@ -52,24 +52,6 @@
 
 		<!-- setting maximum upload size -->
 		<property name="maxUploadSize" value="5000000" /><!-- ~4980kb -->
-
 	</bean>
 	
-		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="nytravelsystem@gmail.com" />
-		<property name="password" value="29032017" />
- 
-		<!-- The name of the property, following JavaBean naming conventions -->
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean>
-
 </beans>

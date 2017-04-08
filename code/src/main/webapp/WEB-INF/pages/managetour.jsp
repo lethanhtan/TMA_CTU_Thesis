@@ -48,7 +48,7 @@
 							<button class="btn btn-aqua">Chọn</button>
 						</form>
 					</div>
-					</br>
+					<br />
 					<!-- End Choose Number For Display -->
 					<table>
 						<thead>
@@ -91,7 +91,7 @@
 														<button type="button" class="close" data-dismiss="modal"
 															aria-hidden="true">&times;</button>
 														<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
-														</br> <a
+														<a
 															href="<c:url value='managetour/delete/${tour.idTour}'/>">
 															<button type="button" class="btn btn-danger">
 																Có</button>
@@ -113,10 +113,10 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					</br>
 				</c:if>
+				<br />
 				<!-- End Table -->
-				<hr class="margin-bottom-20">
+				<hr class="margin-bottom-40">
 				<div class="text-center">
 					<!-- Pagination -->
 					<c:if test="${numTour > numOnPage}">
