@@ -61,7 +61,7 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker"
+								<s:input placeholder="mm/dd/yyyy" id="datepicker" value="${date1}"
 									class="form-control margin-bottom-20" path="departureDate" />
 							</div>
 						</div>
@@ -90,7 +90,7 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+								<s:input placeholder="mm/dd/yyyy" id="datepicker2" value="${date2}"
 									class="form-control margin-bottom-20" path="returnDate" />
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+								<s:input placeholder="mm/dd/yyyy" id="datepicker3"  value="${date3}"
 									class="form-control margin-bottom-20" path="dateAllowReg" />
 							</div>
 						</div>
@@ -154,8 +154,24 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+								<s:input placeholder="mm/dd/yyyy" id="datepicker4"  value="${date4}"
 									class="form-control margin-bottom-20" path="dateAllowCancel" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<label>Tên tỉnh</label>
+							<!-- Show Error -->
+							<small><s:errors cssStyle="color:red;" /></small>
+							<!--  End Show Error -->
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon"> <i
+									class="fa fa-map-marker"></i>
+								</span>
+								<input placeholder="Nhập tên tỉnh"
+									class="form-control margin-bottom-20" type="text" />
 							</div>
 						</div>
 					</div>

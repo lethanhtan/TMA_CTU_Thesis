@@ -4,10 +4,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +41,8 @@ public class Tour {
 	private boolean fieldAddress = true;
 	private boolean fieldIdCard = false;
 	private boolean fieldNumOfTicket = true;
+	private int view;
+	private Schedule schedule;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -51,7 +56,7 @@ public class Tour {
 	}
 
 	// Create column Tour name
-	@Column(name = "NAME", nullable = false, length = 50)
+	@Column(name = "NAME", nullable = false, length = 200)
 	public String getName() {
 		return name;
 	}
@@ -127,7 +132,7 @@ public class Tour {
 	public String getDetail() {
 		return detail;
 	}
-
+	
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
@@ -269,7 +274,25 @@ public class Tour {
 	public void setFieldNumOfTicket(boolean fieldNumOfTicket) {
 		this.fieldNumOfTicket = fieldNumOfTicket;
 	}
-
+	
+	@Column(name = "VIEW", nullable = false)
+	public int getView() {
+		return this.view;
+	}
+	
+	public void setView(int view) {
+		this.view = view;
+	}
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
+	public Schedule getSchedule() {
+		return this.schedule;
+	}
+	
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+	
 	@Override
 	public int hashCode() {
 		return idTour;

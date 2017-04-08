@@ -38,7 +38,7 @@ public class TourValidator implements Validator {
 
 		// Catch length character errors
 		// In Tour name field
-		if (tour.getName().length() > 50 || tour.getName().length() < 6) {
+		if (tour.getName().length() > 200 || tour.getName().length() < 6) {
 			errors.rejectValue("name", "Size.tourData.name");
 		}
 		// In Tour detail field

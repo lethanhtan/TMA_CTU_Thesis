@@ -9,7 +9,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/TestDB?characterEncoding=utf8"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="admin"></property> <!-- should be reupdate !-->
+		<property name="password" value="091616"></property> <!-- should be reupdate !-->
 	</bean>
 	
 	<!-- Define bean for hibernate -->
@@ -29,9 +29,25 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>classpath:init.sql</value>
+            </list>
+        </property>
+        <property name="continueOnError" value="true"/>
+    </bean>
+     
+    <bean id="startupScripts" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+        <property name="databasePopulator"><ref bean="dbInit"/></property>
+    </bean>
+	
 	<!-- Define bean for transaction -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
 </beans>
