@@ -214,7 +214,7 @@ public class ManageRegController {
 					if ((regListBySex.size() % numOnPage) == 0) {
 						num = regListBySex.size() / numOnPage;
 					} else {
-						num = (filterService.getNumRegFilterSex(filterSex, idTour) / numOnPage) + 1;
+						num = (regListBySex.size() / numOnPage) + 1;
 					}
 					if (page <= num) {
 						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());

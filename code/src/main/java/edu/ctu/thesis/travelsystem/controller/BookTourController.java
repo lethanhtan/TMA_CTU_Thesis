@@ -88,15 +88,15 @@ public class BookTourController {
 		} else { // Search none active ! Update list tour
 			logger.info("Handel book tour list when search none active!");
 			Integer num = 0;
-			if ((tourService.getNumTour() % numOnPage) == 0) {
-				num = tourService.getNumTourList() / numOnPage;
+			List<Tour> allTourList = tourService.showTourList();
+			if ((allTourList.size() % numOnPage) == 0) {
+				num = allTourList.size() / numOnPage;
 			} else {
-				num = (tourService.getNumTourList() / numOnPage) + 1;
+				num = (allTourList.size() / numOnPage) + 1;
 			}
 			if (page <= num) {
 				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 				model.addAttribute("tour", new Tour());
-				List<Tour> allTourList = tourService.showTourList();
 				model.addAttribute("showTourList", allTourList);
 				// Display tour list
 				model.addAttribute("numTour", allTourList.size());
