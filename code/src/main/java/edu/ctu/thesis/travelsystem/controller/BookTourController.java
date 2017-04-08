@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
-import edu.ctu.thesis.travelsystem.extra.EMailSender;
-import edu.ctu.thesis.travelsystem.extra.MailTemplate;
+import edu.ctu.thesis.travelsystem.mail.EMailSender;
+import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
@@ -86,6 +86,7 @@ public class BookTourController {
 				return "tourlist";
 			}
 		} else { // Search none active ! Update list tour
+			logger.info("Handel book tour list when search none active!");
 			Integer num = 0;
 			if ((tourService.getNumTour() % numOnPage) == 0) {
 				num = tourService.getNumTourList() / numOnPage;
@@ -100,6 +101,8 @@ public class BookTourController {
 				model.addAttribute("numTour", tourService.getNumTourList());
 				// Get number of tour list
 				model.addAttribute("pageNum", pageNum); // Create number of page
+				model.addAttribute("numOnPage", numOnPage);
+				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
 				model.addAttribute("x", tourService.paginationX(page, numOnPage));
 				model.addAttribute("y", tourService.paginationY(tourService.showTourList().size(), page, numOnPage));

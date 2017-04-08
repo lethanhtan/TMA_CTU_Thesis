@@ -1,4 +1,4 @@
-package edu.ctu.thesis.travelsystem.extra;
+package edu.ctu.thesis.travelsystem.mail;
 
 public class MailTemplate {
 	
