@@ -144,7 +144,7 @@
 												<img alt="new"
 													src="resources/img/sale.png" width="20" height="20">
 												<br /> 
-												<span style="color: white;">${tour.getDetail().substring(0,350)}</span>
+												<span style="color: white;">${tour.getDetail().substring(0,250)}</span>
 												<span><a href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input class="btn btn-success text-center" type="submit" value="Chi tiết"></a></span>
 												<span><a href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><input class="btn btn-danger text-center" type="submit" value="Đăng ký"></a></span>
 											</figcaption>

@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp"%>
+<%@ include file="adminheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -26,27 +26,27 @@
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
+				<!-- Choose Number For Display -->
+				<div class="row">
+					<form role="form" class="form-inline" action="tourlist"
+						method="get">
+						<label for="selectTour" style="text-align: left; margin-left: 75%">Số
+							tour/ trang:</label> <select id="selectTour" class="form-control"
+							name="numOn">
+							<option>5</option>
+							<option>10</option>
+							<option>15</option>
+						</select>
+						<button class="btn btn-aqua">Chọn</button>
+					</form>
+				</div>
+				<br />
+				<!-- End Choose Number For Display -->				
 				<!-- Table -->
 				<c:if test="${empty showTourList}">
 					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
-					<!-- Choose Number For Display -->
-					<div class="row">
-						<form role="form" class="form-inline" action="tourlist"
-							method="get">
-							<label for="selectTour" style="text-align: left; margin-left: 75%">Số
-								tour/ trang: </label> <select id="selectTour" class="form-control"
-								name="numOn">
-								<option>5</option>
-								<option>10</option>
-								<option>15</option>
-							</select>
-							<button class="btn btn-aqua">Chọn</button>
-						</form>
-					</div>
-					</br>
-					<!-- End Choose Number For Display -->
 					<table>
 						<thead>
 							<tr>

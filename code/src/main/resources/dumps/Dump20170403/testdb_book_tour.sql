@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `TestDB` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `TestDB`;
--- MySQL dump 10.13  Distrib 5.5.54, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
--- Host: localhost    Database: TestDB
+-- Host: localhost    Database: testdb
 -- ------------------------------------------------------
--- Server version	5.5.54-0+deb8u1
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,13 +16,13 @@ USE `TestDB`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `BOOK_TOUR`
+-- Table structure for table `book_tour`
 --
 
-DROP TABLE IF EXISTS `BOOK_TOUR`;
+DROP TABLE IF EXISTS `book_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `BOOK_TOUR` (
+CREATE TABLE `book_tour` (
   `ID_BT` int(11) NOT NULL AUTO_INCREMENT,
   `CONFIRM_CODE` varchar(40) NOT NULL,
   `CUS_ADDRESS` varchar(100) DEFAULT NULL,
@@ -48,18 +46,17 @@ CREATE TABLE `BOOK_TOUR` (
   `ID_TOUR` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_BT`),
   KEY `FK_e2d1sxkh4yisuwjf5dckfr1bc` (`ID_TOUR`),
-  CONSTRAINT `FK_e2d1sxkh4yisuwjf5dckfr1bc` FOREIGN KEY (`ID_TOUR`) REFERENCES `TOUR` (`ID_TOUR`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_e2d1sxkh4yisuwjf5dckfr1bc` FOREIGN KEY (`ID_TOUR`) REFERENCES `tour` (`ID_TOUR`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `BOOK_TOUR`
+-- Dumping data for table `book_tour`
 --
 
-LOCK TABLES `BOOK_TOUR` WRITE;
-/*!40000 ALTER TABLE `BOOK_TOUR` DISABLE KEYS */;
-INSERT INTO `BOOK_TOUR` VALUES (1,'VOP3XSDVYJ9F','190/2 Đường 30/4, Phường Hưng Lợi, Quận Ninh Kiều, TP Cần Thơ','','ribostrush@gmail.com',NULL,'Lê Như Ý',',,',',','',0,'01203267006','Nam',',,',',','','2017-03-31','\0',1,0,2),(2,'52H2APN6J9BY','190/2 Đường 30/4, Phường Hưng Lợi, Quận Ninh Kiều, TP Cần Thơ','\0','pc.nt95@gmail.com',NULL,'Nguyễn Trung Hiếu',',,',',','',1,'0192837121','Nam',',,',',','','2017-04-03','\0',1,0,1),(3,'1H5Y01U12L3J','190/2 Đường 30/4, Phường Hưng Lợi, Quận Ninh Kiều, TP Cần Thơ','\0','pc.nt95@gmail.com',NULL,'Trần Quang Đăng',',,',',','',1,'01203268009','Nam',',,',',','','2017-04-03','\0',1,0,3),(4,'IQEBUPW7TH1R','190/2 Đường 30/4, Phường Hưng Lợi, Quận Ninh Kiều, TP Cần Thơ','\0','ribostrush@gmail.com',NULL,'Lê Văn Minh',',,',',','',1,'01928373111','Nam',',,',',','','2017-04-03','\0',1,0,2);
-/*!40000 ALTER TABLE `BOOK_TOUR` ENABLE KEYS */;
+LOCK TABLES `book_tour` WRITE;
+/*!40000 ALTER TABLE `book_tour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `book_tour` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -71,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-03 22:01:19
+-- Dump completed on 2017-04-08  9:21:56

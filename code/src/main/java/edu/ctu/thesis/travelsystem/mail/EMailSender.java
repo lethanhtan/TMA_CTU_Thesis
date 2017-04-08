@@ -1,4 +1,4 @@
-package edu.ctu.thesis.travelsystem.extra;
+package edu.ctu.thesis.travelsystem.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;

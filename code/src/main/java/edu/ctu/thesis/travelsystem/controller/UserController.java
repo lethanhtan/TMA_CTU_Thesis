@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.ctu.thesis.travelsystem.extra.EMailSender;
-import edu.ctu.thesis.travelsystem.extra.MailTemplate;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
+import edu.ctu.thesis.travelsystem.mail.EMailSender;
+import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
