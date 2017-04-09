@@ -22,10 +22,6 @@ public interface TourDao {
 	
 	public List<Tour> listTourByYear(int year);
 	
-	public Integer paginationX(Integer currentPage, Integer page);
-	
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
-	
 	public List<Tour> showTourList();
 	
 	public List<Tour> tourListByValue(String value);

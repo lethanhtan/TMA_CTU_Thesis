@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -79,8 +80,8 @@ public class BookTourController {
 				model.addAttribute("numOnPage", numOnPage);
 				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", tourService.paginationX(page, numOnPage));
-				model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+				model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+				model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";
@@ -105,8 +106,8 @@ public class BookTourController {
 				model.addAttribute("numOnPage", numOnPage);
 				model.addAttribute("page", page);
 				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", tourService.paginationX(page, numOnPage));
-				model.addAttribute("y", tourService.paginationY(allTourList.size(), page, numOnPage));
+				model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+				model.addAttribute("y", Pagination.paginationY(allTourList.size(), page, numOnPage));
 				return "tourlist";
 			} else {
 				return "tourlist";

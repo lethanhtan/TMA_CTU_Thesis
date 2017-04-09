@@ -59,16 +59,6 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public Integer paginationX(Integer currentPage, Integer page) {
-		return this.tourDao.paginationX(currentPage, page);
-	}
-
-	@Override
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page) {
-		return this.tourDao.paginationY(numOfPage, currentPage, page);
-	}
-
-	@Override
 	@Transactional
 	public List<Tour> showTourList() {
 		return this.tourDao.showTourList();

@@ -16,17 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private TourService tourService;
 	
 	private static final Logger logger = Logger.getLogger(HomeController.class);
-	
-	@Autowired
-	TourService tourService;
-	
 	private static int numOnPage = 5;
 	
 	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
@@ -67,8 +66,8 @@ public class HomeController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "home";
 					} else {
 						result = "home";
@@ -90,8 +89,8 @@ public class HomeController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "home";
 					} else {
 						result = "home";

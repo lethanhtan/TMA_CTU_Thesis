@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
@@ -83,8 +84,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
@@ -106,8 +107,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "manageregister";
 					} else {
 						result = "manageregister";
@@ -172,14 +173,14 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(registrationList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(registrationList.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
 					}
 				}
-				
+
 				// Search none active ! Update registration list
 				if (valueSearch == null && filterSex == null && filterTicket == 0) {
 					Integer num = 0;
@@ -199,8 +200,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
-						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(registrationList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, 5));
+						model.addAttribute("y", Pagination.paginationY(registrationList.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -226,8 +227,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
-						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(regListBySex.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, 5));
+						model.addAttribute("y", Pagination.paginationY(regListBySex.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -253,8 +254,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>());
-						model.addAttribute("x", tourService.paginationX(page, 5));
-						model.addAttribute("y", tourService.paginationY(regListByTicket.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, 5));
+						model.addAttribute("y", Pagination.paginationY(regListByTicket.size(), page, numOnPage));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -281,8 +282,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
-						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
-						model.addAttribute("y2", tourService.paginationY(cancelListByKeyword.size(), page2, numOnPage2));
+						model.addAttribute("x2", Pagination.paginationX(page2, numOnPage2));
+						model.addAttribute("y2", Pagination.paginationY(cancelListByKeyword.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -308,8 +309,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
-						model.addAttribute("x2", tourService.paginationX(page2, numOnPage2));
-						model.addAttribute("y2",tourService.paginationY(cancelList.size(), page2, numOnPage2));
+						model.addAttribute("x2", Pagination.paginationX(page2, numOnPage2));
+						model.addAttribute("y2", Pagination.paginationY(cancelList.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -335,8 +336,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
-						model.addAttribute("x2", tourService.paginationX(page2, 5));
-						model.addAttribute("y2", tourService.paginationY(cancelListBySex.size(), page2, numOnPage2));
+						model.addAttribute("x2", Pagination.paginationX(page2, 5));
+						model.addAttribute("y2", Pagination.paginationY(cancelListBySex.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -362,8 +363,8 @@ public class ManageRegController {
 						model.addAttribute("numOnPage2", numOnPage2);
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
-						model.addAttribute("x2", tourService.paginationX(page2, 5));
-						model.addAttribute("y2", tourService.paginationY(cancelListByTicket.size(), page2, numOnPage2));
+						model.addAttribute("x2", Pagination.paginationX(page2, 5));
+						model.addAttribute("y2", Pagination	.paginationY(cancelListByTicket.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -489,7 +490,7 @@ public class ManageRegController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			bookTourService.editBookTour(bookTour);
+			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}

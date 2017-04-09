@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
@@ -44,7 +45,7 @@ public class ManageTourController {
 	@Autowired
 	private BookTourService bookTourService;
 	@Autowired
-	ExportDataService exportDataService;
+	private ExportDataService exportDataService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 	private static int numOnPage = 5;
@@ -85,8 +86,8 @@ public class ManageTourController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "managetour";
 					} else {
 						result = "managetour";
@@ -108,8 +109,8 @@ public class ManageTourController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(tourList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
 						result = "managetour";
 					} else {
 						result = "managetour";
