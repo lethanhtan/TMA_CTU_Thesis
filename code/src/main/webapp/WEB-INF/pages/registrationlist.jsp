@@ -58,7 +58,8 @@
 												method="GET">
 												<select id="filterSex" class="form-control" name="filterSex"
 													onchange="this.form.submit()">
-													<option value="">Giới tính</option>
+													<option>Giới tính</option>
+													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
 												</select>
@@ -70,6 +71,7 @@
 												<select id="filterTicket" class="form-control"
 													name="filterTicket" onchange="this.form.submit()">
 													<option>Số vé</option>
+													<option value="">Tất cả</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
@@ -246,7 +248,8 @@
 												method="GET">
 												<select id="filterSex2" class="form-control"
 													name="filterSex2" onchange="this.form.submit()">
-													<option value="">Giới tính</option>
+													<option>Giới tính</option>
+													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
 												</select>
@@ -258,6 +261,7 @@
 												<select id="filterTicket2" class="form-control"
 													name="filterTicket2" onchange="this.form.submit()">
 													<option>Số vé</option>
+													<option value="">Tất cả</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>

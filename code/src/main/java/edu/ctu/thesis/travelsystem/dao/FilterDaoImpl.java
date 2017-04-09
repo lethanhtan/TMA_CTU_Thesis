@@ -16,10 +16,17 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 	@Override
 	public List<BookTour> regListByFilterSex(String filterSex, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND CUS_SEX = :filterSex";
-		Query query = session.createQuery(hql);
-		query.setParameter("idTour", idTour);
+		String hql = null;
+		Query query = 	null;
+		if (filterSex.equals("Nam") || filterSex.equals("Nữ")) {
+		hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND CUS_SEX = :filterSex";
+		query = session.createQuery(hql);
 		query.setParameter("filterSex", filterSex);
+		} else {
+			hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false";
+			query = session.createQuery(hql);
+		}
+		query.setParameter("idTour", idTour);
 		return query.list();
 	}
 
