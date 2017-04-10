@@ -31,12 +31,6 @@ public class BookTour {
 	private int ticketCancel = 0;
 	private int idUser = 0;
 	private boolean goneOrNot = false;
-	private String cusName1;
-	private String cusYearOfBirth1;
-	private String cusName2;
-	private String cusYearOfBirth2;
-	private String cusName3;
-	private String cusYearOfBirth3;
 	private String confirmCode;
 
 	private Tour tour;
@@ -208,66 +202,6 @@ public class BookTour {
 
 	public void setGoneOrNot(boolean goneOrNot) {
 		this.goneOrNot = goneOrNot;
-	}
-
-	// Create column customer name
-	@Column(name = "CUS_NAME1", nullable = true, length = 40)
-	public String getCusName1() {
-		return this.cusName1;
-	}
-
-	public void setCusName1(String cusName1) {
-		this.cusName1 = cusName1;
-	}
-
-	// Create column customer name
-	@Column(name = "CUS_NAME2", nullable = true, length = 40)
-	public String getCusName2() {
-		return this.cusName2;
-	}
-
-	public void setCusName2(String cusName2) {
-		this.cusName2 = cusName2;
-	}
-
-	// Create column customer name
-	@Column(name = "CUS_NAME3", nullable = true, length = 40)
-	public String getCusName3() {
-		return this.cusName3;
-	}
-
-	public void setCusName3(String cusName3) {
-		this.cusName3 = cusName3;
-	}
-
-	// Create column customer year of birth
-	@Column(name = "CUS_YEAROFBIRTH1", nullable = true, length = 40)
-	public String getCusYearOfBirth1() {
-		return this.cusYearOfBirth1;
-	}
-
-	public void setCusYearOfBirth1(String cusYearOfBirth1) {
-		this.cusYearOfBirth1 = cusYearOfBirth1;
-	}
-
-	// Create column customer year of birth
-	@Column(name = "CUS_YEAROFBIRTH2", nullable = true, length = 40)
-	public String getCusYearOfBirth2() {
-		return this.cusYearOfBirth2;
-	}
-
-	public void setCusYearOfBirth2(String cusYearOfBirth2) {
-		this.cusYearOfBirth2 = cusYearOfBirth2;
-	}
-
-	// Create column customer year of birth
-	@Column(name = "CUS_YEAROFBIRTH3", nullable = true, length = 40)
-	public String getCusYearOfBirth3() {
-		return this.cusYearOfBirth3;
-	}
-
-	public void setCusYearOfBirth3(String cusYearOfBirth3) {
-		this.cusYearOfBirth3 = cusYearOfBirth3;
 	}
 
 	// CONFIRM_CODE column
