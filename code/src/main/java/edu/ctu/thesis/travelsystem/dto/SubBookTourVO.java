@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
-public class BookTourNextVO {
+public class SubBookTourVO {
 	private List<BookTourInfoVO> info;
 	private BookTour bookTour;
 	

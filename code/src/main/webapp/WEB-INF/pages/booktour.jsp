@@ -22,6 +22,7 @@
 				<table>
 					<thead>
 						<tr>
+							<th>Tên tour</th>
 							<th>Họ tên</th>
 							<th>Giới tính</th>
 							<th>Số điện thoại</th>
@@ -35,6 +36,7 @@
 						<c:forEach items="${registrationList}" var="bookTour">
 							<!-- use subList render list tour to display -->
 							<tr>
+							<td>${bookTour.tour.name}</td>
 								<td>${bookTour.cusName}</td>
 								<td>${bookTour.cusSex}</td>
 								<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
