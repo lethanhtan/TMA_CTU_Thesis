@@ -3,6 +3,7 @@ package edu.ctu.thesis.travelsystem.dao;
 import java.util.List;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.BookTourNext;
 
 public interface BookTourDao {
 	public void saveBookTour(BookTour bookTour, int idTour);
@@ -28,4 +29,6 @@ public interface BookTourDao {
 	public List<BookTour> listTourByYear(int year);
 
 	public int listBookTourByMonth(int month, List<BookTour> list);
+	
+	public void saveBookTourNext(List<BookTourNext> bookTourNext, int idBT);
 }
