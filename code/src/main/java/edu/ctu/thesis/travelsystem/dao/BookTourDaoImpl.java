@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.ConfirmCode;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.BookTourNext;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
@@ -93,7 +94,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			} else {
 				bookTour.setGoneOrNot(false);
 			}
-			//bookTourService.editBookTour(bookTour);
+			// bookTourService.editBookTour(bookTour);
 			logger.info("Tour List:" + bookTour);
 		}
 		return bookTourList;
@@ -202,7 +203,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override	
+	@Override
 	public List<BookTour> listBookTourById(int idTour) {
 		Session session = getCurrentSession();
 		String hql = "FROM BookTour WHERE ID_TOUR = :idTour";
@@ -213,5 +214,21 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			logger.info("Book tour List:" + bookTour);
 		}
 		return bookTourList;
+	}
+
+	@Override
+	public void saveBookTourNext(List<BookTourNext> bookTourNext, int idBT) {
+		Session session = getCurrentSession();
+		if (bookTourNext != null) {
+			try {
+				for (BookTourNext bookTour : bookTourNext) {
+					logger.info("Save book tour be called!");
+					session.saveOrUpdate(bookTour);
+					session.flush();
+				}
+			} catch (Exception e) {
+				logger.error("Occured ex", e);
+			}
+		}
 	}
 }
