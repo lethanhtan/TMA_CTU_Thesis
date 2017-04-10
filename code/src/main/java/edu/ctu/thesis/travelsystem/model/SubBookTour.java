@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BOOK_TOUR_NEXT")
-public class BookTourNext {
+@Table(name = "SUB_BOOK_TOUR")
+public class SubBookTour {
 	private int idNext;
 	private String cusName;
 	private String cusSex;
@@ -22,17 +22,17 @@ public class BookTourNext {
 
 	private BookTour bookTour;
 
-	public BookTourNext() {
+	public SubBookTour() {
 	}
 
-	public BookTourNext(String cusName, String cusSex, String cusYearOfBirth, String relationship) {
+	public SubBookTour(String cusName, String cusSex, String cusYearOfBirth, String relationship) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusYearOfBirth = cusYearOfBirth;
 		this.relationship = relationship;
 	}
 
-	public BookTourNext(String cusName, String cusSex, String cusYearOfBirth, String relationship, BookTour bookTour) {
+	public SubBookTour(String cusName, String cusSex, String cusYearOfBirth, String relationship, BookTour bookTour) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusYearOfBirth = cusYearOfBirth;
