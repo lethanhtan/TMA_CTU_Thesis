@@ -24,58 +24,58 @@
 								<th></th>
 							</tr>
 							<tr>
-								<td style="text-align: left;">Tên tour:</td>
-								<td style="text-align: left;">${tourData.name}</td>
+								<td>Tên tour:</td>
+								<td>${tourData.name}</td>
 								<c:if test="${tourData.fieldName == true}">
-									<td style="text-align: left;">Họ tên:</td>
-									<td style="text-align: left;">${cusData.cusName}</td>
+									<td>Họ tên:</td>
+									<td>${cusData.cusName}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<td style="text-align: left;">Ngày đi:</td>
-								<td style="text-align: left;">${tourData.departureDate}</td>
+								<td>Ngày đi:</td>
+								<td>${tourData.departureDate}</td>
 								<c:if test="${tourData.fieldSex == true}">
-									<td style="text-align: left;">Giới tính:</td>
-									<td style="text-align: left;">${cusData.cusSex}</td>
+									<td>Giới tính:</td>
+									<td>${cusData.cusSex}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<td style="text-align: left;">Giờ đi:</td>
-								<td style="text-align: left;">${tourData.departureTime}</td>
+								<td>Giờ đi:</td>
+								<td>${tourData.departureTime}</td>
 								<c:if test="${tourData.fieldPhone == true}">
-									<td style="text-align: left;">Số điện thoại:</td>
-									<td style="text-align: left;">${cusData.cusPhone}</td>
+									<td>Số điện thoại:</td>
+									<td>${cusData.cusPhone}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<td style="text-align: left;">Ngày về:</td>
-								<td style="text-align: left;">${tourData.returnDate}</td>
+								<td>Ngày về:</td>
+								<td>${tourData.returnDate}</td>
 								<c:if test="${tourData.fieldEmail == true}">
-									<td style="text-align: left;">Email:</td>
-									<td style="text-align: left;">${cusData.cusEmail}</td>
+									<td>Email:</td>
+									<td>${cusData.cusEmail}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<td style="text-align: left;">Giờ về:</td>
-								<td style="text-align: left;">${tourData.returnTime}</td>
+								<td>Giờ về:</td>
+								<td>${tourData.returnTime}</td>
 								<c:if test="${tourData.fieldAddress == true}">
-									<td style="text-align: left;">Địa chỉ:</td>
-									<td style="text-align: left;">${cusData.cusAddress}</td>
+									<td>Địa chỉ:</td>
+									<td>${cusData.cusAddress}</td>
 								</c:if>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
 								<c:if test="${tourData.fieldNumOfTicket == true}">
-									<td style="text-align: left;">Số lượng:</td>
-									<td style="text-align: left;">${cusData.cusNumOfTicket}</td>
+									<td>Số lượng:</td>
+									<td>${cusData.cusNumOfTicket}</td>
 								</c:if>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
-								<td style="text-align: left;">Tổng tiền:</td>
-								<td style="text-align: left;">${price}<c:out value=" đ" /></td>
+								<td>Tổng tiền:</td>
+								<td>${price}<c:out value=" đ" /></td>
 							</tr>
 						</thead>
 						<tbody>

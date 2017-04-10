@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
-import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
@@ -32,12 +32,9 @@ import edu.ctu.thesis.travelsystem.validator.UserValidator;
 public class ManageUserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private TourService tourService;
-
-	private static int numOnPage = 6;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
+	private static int numOnPage = 6;
 
 	// Handle for manage user request from admin
 	@RequestMapping(value = "manageuser", method = RequestMethod.GET)
@@ -77,8 +74,8 @@ public class ManageUserController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(userList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(userList.size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";
@@ -101,8 +98,8 @@ public class ManageUserController {
 						model.addAttribute("numOnPage", numOnPage);
 						model.addAttribute("page", page);
 						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", tourService.paginationX(page, numOnPage));
-						model.addAttribute("y", tourService.paginationY(userList.size(), page, numOnPage));
+						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+						model.addAttribute("y", Pagination.paginationY(userList.size(), page, numOnPage));
 						result = "manageuser";
 					} else {
 						result = "manageuser";

@@ -18,10 +18,6 @@ public interface TourService {
 	public List<Tour> listTour();
 
 	public List<Tour> listTourByValue(String value);
-
-	public Integer paginationX(Integer currentPage, Integer page);
-
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
 	
 	public List<Tour> showTourList();
 	

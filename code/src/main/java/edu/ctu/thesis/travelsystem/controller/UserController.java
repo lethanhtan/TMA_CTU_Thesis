@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -35,7 +36,6 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
-import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
@@ -45,8 +45,6 @@ public class UserController extends HttpServlet {
 	private UserService userService;
 	@Autowired
 	private BookTourService bookTourService;
-	@Autowired
-	private TourService tourService;
 	@Autowired
 	private EMailSender emailSenderService;
 
@@ -215,8 +213,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumBT", myRegList.size());
 					model.addAttribute("pageNum", pageNum); // create number
 					model.addAttribute("pageE", new ArrayList<Integer>()); // create
-					model.addAttribute("x", tourService.paginationX(page, 5));
-					model.addAttribute("y", tourService.paginationY(myRegList.size(), page, 5));
+					model.addAttribute("x", Pagination.paginationX(page, 5));
+					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -237,8 +235,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumBT", myRegList.size());
 					model.addAttribute("pageNum", pageNum);
 					model.addAttribute("pageE", new ArrayList<Integer>());
-					model.addAttribute("x", tourService.paginationX(page, 5));
-					model.addAttribute("y", tourService.paginationY(myRegList.size(), page, 5));
+					model.addAttribute("x", Pagination.paginationX(page, 5));
+					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -262,8 +260,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumCancelReg", myCancelList.size());
 					model.addAttribute("pageNum2", pageNum2);
 					model.addAttribute("pageE2", new ArrayList<Integer>());
-					model.addAttribute("x2", tourService.paginationX(page2, 5));
-					model.addAttribute("y2", tourService.paginationY(myCancelList.size(), page2, 5));
+					model.addAttribute("x2", Pagination.paginationX(page2, 5));
+					model.addAttribute("y2", Pagination.paginationY(myCancelList.size(), page2, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -283,8 +281,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumCancelReg", myCancelList.size());
 					model.addAttribute("pageNum2", pageNum2);
 					model.addAttribute("pageE2", new ArrayList<Integer>());
-					model.addAttribute("x2", tourService.paginationX(page2, 5));
-					model.addAttribute("y2", tourService.paginationY(myCancelList.size(), page2, 5));
+					model.addAttribute("x2", Pagination.paginationX(page2, 5));
+					model.addAttribute("y2", Pagination.paginationY(myCancelList.size(), page2, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -309,8 +307,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumBookTour", myBookTourList.size());
 					model.addAttribute("pageNum3", pageNum3); // create number
 					model.addAttribute("pageE3", new ArrayList<Integer>()); // create
-					model.addAttribute("x3", tourService.paginationX(page3, 5));
-					model.addAttribute("y3", tourService.paginationY(myBookTourList.size(), page3, 5));
+					model.addAttribute("x3", Pagination.paginationX(page3, 5));
+					model.addAttribute("y3", Pagination.paginationY(myBookTourList.size(), page3, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -330,8 +328,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myNumBookTour", myBookTourList.size());
 					model.addAttribute("pageNum3", pageNum3);
 					model.addAttribute("pageE3", new ArrayList<Integer>());
-					model.addAttribute("x3", tourService.paginationX(page3, 5));
-					model.addAttribute("y3", tourService.paginationY(myBookTourList.size(), page3, 5));
+					model.addAttribute("x3", Pagination.paginationX(page3, 5));
+					model.addAttribute("y3", Pagination.paginationY(myBookTourList.size(), page3, 5));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
