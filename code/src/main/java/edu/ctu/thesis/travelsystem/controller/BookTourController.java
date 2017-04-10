@@ -26,17 +26,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
-import edu.ctu.thesis.travelsystem.dto.BookTourNextVO;
+import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.BookTourNext;
+import edu.ctu.thesis.travelsystem.model.SubBookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.TourService;
-import edu.ctu.thesis.travelsystem.validator.BookTourNextValidator;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
@@ -45,8 +44,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 
@@ -180,9 +179,9 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		bookTourService.saveBookTour(bookTour, idTour);
 		model.put("idBT", bookTour.getIdBT());
-//		 emailSenderService.SendEmail(bookTour.getCusEmail(),
-//		 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-//		 MailTemplate.bookSuccessBody);
+		// emailSenderService.SendEmail(bookTour.getCusEmail(),
+		// MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+		// MailTemplate.bookSuccessBody);
 		if (bookTour.getCusNumOfTicket() == 1) {
 			return "redirect:/booksuccess/{idBT}/{idTour}";
 		} else {
@@ -268,9 +267,8 @@ public class BookTourController {
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
-		 emailSenderService.SendEmail(bookedTour.getCusEmail(),
-		 MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-		 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 
@@ -292,12 +290,12 @@ public class BookTourController {
 	// Forward to Book tour page, display book tour form
 	@RequestMapping(value = "/booktour/next/{idBT}", method = RequestMethod.GET)
 	public String showNextForm(ModelMap model, HttpSession session, @PathVariable("idBT") int idBT,
-			@Valid BookTour bookTour, @Valid BookTourNext bookTourNext) {
+			@Valid BookTour bookTour, @Valid SubBookTour subBookTour) {
 		// Put Customer data into table Book Tour;
 		try {
 			bookTour = bookTourService.searchById(idBT);
 			int numTicket = bookTour.getCusNumOfTicket() - 1;
-			BookTourNextVO cusNextData = new BookTourNextVO();
+			SubBookTourVO cusNextData = new SubBookTourVO();
 			List<BookTourInfoVO> infos = new ArrayList<>(numTicket);
 			for (int i = 0; i < numTicket; i++) {
 				infos.add(new BookTourInfoVO());
@@ -306,31 +304,31 @@ public class BookTourController {
 			cusNextData.setBookTour(bookTour);
 			model.addAttribute("cusNextData", cusNextData);
 			model.addAttribute("bookTour", bookTour);
-			bookTourNext.setBookTour(bookTour);
+			subBookTour.setBookTour(bookTour);
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
-		return "booktournext";
+		return "subbooktour";
 	}
 
 	// Test errors
 	@RequestMapping(value = "/booktour/next/{idBT}", method = RequestMethod.POST)
-	public String saveNextForm(ModelMap model, @ModelAttribute("cusNextData") BookTourNextVO bookTourNextVO,
+	public String saveNextForm(ModelMap model, @ModelAttribute("cusNextData") SubBookTourVO subBookTourVO,
 			BindingResult br, HttpSession session, @PathVariable("idBT") int idBT, @Valid BookTour bookTour) {
 		bookTour = bookTourService.searchById(idBT);
-		model.addAttribute("bookTourNext", bookTourNextVO);
+		model.addAttribute("bookTourNext", subBookTourVO);
 		logger.info("Handle for save booktour!");
-		List<BookTourInfoVO> bookTourInfo = bookTourNextVO.getInfo();
-		List<BookTourNext> bookTourNexts = new ArrayList<>(bookTourInfo.size());
+		List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
+		List<SubBookTour> subBookTours = new ArrayList<>(bookTourInfo.size());
 		for (BookTourInfoVO info : bookTourInfo) {
-			BookTourNext bookTourNext = new BookTourNext();
-			bookTourNext.setBookTour(bookTour);
-			bookTourNext.setCusName(info.getCusName());
-			bookTourNext.setCusSex(info.getCusSex());
-			bookTourNext.setCusYearOfBirth(info.getCusYearOfBirth());
-			bookTourNext.setRelationship(info.getRelationship());
-			bookTourNexts.add(bookTourNext);
-			bookTourService.saveBookTourNext(bookTourNexts, idBT);
+			SubBookTour subBookTour = new SubBookTour();
+			subBookTour.setBookTour(bookTour);
+			subBookTour.setCusName(info.getCusName());
+			subBookTour.setCusSex(info.getCusSex());
+			subBookTour.setCusYearOfBirth(info.getCusYearOfBirth());
+			subBookTour.setRelationship(info.getRelationship());
+			subBookTours.add(subBookTour);
+			bookTourService.saveSubBookTour(subBookTours, idBT);
 		}
 		model.put("idBT", bookTour.getIdBT());
 		model.put("idTour", bookTour.getTour().getIdTour());

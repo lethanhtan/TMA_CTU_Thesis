@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.BookTourDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.BookTourNext;
+import edu.ctu.thesis.travelsystem.model.SubBookTour;
 
 @Service
 public class BookTourServiceImpl implements BookTourService {
@@ -84,7 +84,7 @@ public class BookTourServiceImpl implements BookTourService {
 	
 	@Override
 	@Transactional
-	public void saveBookTourNext(List<BookTourNext> bookTourNext, int idBT) {
-		this.bookTourDao.saveBookTourNext(bookTourNext, idBT);
+	public void saveSubBookTour(List<SubBookTour> subBookTour, int idBT) {
+		this.bookTourDao.saveSubBookTour(subBookTour, idBT);
 	}
 }
