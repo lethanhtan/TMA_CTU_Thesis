@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.ConfirmCode;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.BookTourNext;
+import edu.ctu.thesis.travelsystem.model.SubBookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
@@ -217,11 +217,11 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void saveBookTourNext(List<BookTourNext> bookTourNext, int idBT) {
+	public void saveSubBookTour(List<SubBookTour> subBookTour, int idBT) {
 		Session session = getCurrentSession();
-		if (bookTourNext != null) {
+		if (subBookTour != null) {
 			try {
-				for (BookTourNext bookTour : bookTourNext) {
+				for (SubBookTour bookTour : subBookTour) {
 					logger.info("Save book tour be called!");
 					session.saveOrUpdate(bookTour);
 					session.flush();

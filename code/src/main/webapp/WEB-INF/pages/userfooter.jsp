@@ -123,10 +123,6 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/historyback.js"
 	type="text/javascript"></script>
-<!-- Show/ hidden fields -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/showhidefields.js"
-	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>
