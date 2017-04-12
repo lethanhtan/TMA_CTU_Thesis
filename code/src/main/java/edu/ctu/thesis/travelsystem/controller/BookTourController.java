@@ -29,14 +29,12 @@ import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
 import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
-//import edu.ctu.thesis.travelsystem.mail.EMailSender;
+import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.SubBookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.TourService;
-import edu.ctu.thesis.travelsystem.validator.BookTourNextValidator;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
 @Controller
@@ -45,8 +43,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	// @Autowired
-	// private EMailSender emailSenderService;
+	 @Autowired
+	 private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -196,6 +194,10 @@ public class BookTourController {
 				bookedTour.setCusName(info.getCusName());
 				bookedTour.setCusSex(info.getCusSex());
 				bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
+				bookedTour.setCusPhone(info.getCusPhone());
+				bookedTour.setCusIdCard(info.getCusIdCard());
+				bookedTour.setCusEmail(info.getCusEmail());
+				bookedTour.setCusAddress(info.getCusAddress());
 				bookedTour.setDateBook(Calendar.getInstance().getTime());
 				bookedTour.setRelationship(maxValue);
 				if (session.getAttribute("idUser") != null) {
@@ -210,9 +212,9 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		model.put("idTour", idTour);
 		model.put("relationship", maxValue);
-		// emailSenderService.SendEmail(bookTour.getCusEmail(),
-		// MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-		// MailTemplate.bookSuccessBody);
+		 emailSenderService.SendEmail(bookTour.getCusEmail(),
+		 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+		 MailTemplate.bookSuccessBody);
 		return "redirect:/booksuccess/{relationship}/{idTour}";
 	}
 

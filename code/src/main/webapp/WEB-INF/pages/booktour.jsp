@@ -116,8 +116,7 @@
 					<s:form class="signup-page" commandName="cusData"
 						action="${pageContext.request.contextPath}/booktour/${idTour}"
 						method="POST">
-						<c:forEach var="info" items="${cusData.info}"
-							varStatus="status">
+						<c:forEach var="info" items="${cusData.info}" varStatus="status">
 							<label>Thông tin người thứ <c:out
 									value="${status.index + 1}: " /></label>
 							<div class="row">
@@ -177,19 +176,6 @@
 									</div>
 								</c:if>
 							</div>
-							<c:if test="${tour.fieldEmail}">
-								<label>Email</label>
-								<!-- Show error -->
-								</br>
-								<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-envelope"></i>
-									</span>
-									<s:input placeholder="Nhập email" class="form-control"
-										type="text" path="cusEmail" />
-								</div>
-							</c:if>
 							<c:if test="${tour.fieldIdCard}">
 								<label>Số chứng minh nhân dân</label>
 								<!-- Show error -->
@@ -200,7 +186,21 @@
 										class="fa fa-credit-card"></i>
 									</span>
 									<s:input placeholder="Nhập địa chỉ" class="form-control"
-										type="text" path="cusIdCard" />
+										type="text" path="info[${status.index}].cusIdCard" />
+								</div>
+							</c:if>
+							<c:if test="${tour.fieldEmail}">
+								<label>Email</label>
+								<!-- Show error -->
+								</br>
+								<small><s:errors path="info[${status.index}].cusEmail"
+										cssStyle="color:red;" /></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i
+										class="fa fa-envelope"></i>
+									</span>
+									<s:input placeholder="Nhập email" class="form-control"
+										type="text" path="info[${status.index}].cusEmail" />
 								</div>
 							</c:if>
 							<hr>
@@ -209,13 +209,13 @@
 									<label>Địa chỉ</label>
 									<!-- Show error -->
 									</br>
-									<small><s:errors path="cusAddress"
-											cssStyle="color:red;" /></small>
+									<small><s:errors
+											path="info[${status.index}].cusAddress" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-home"></i>
 										</span>
 										<s:input placeholder="Nhập địa chỉ" class="form-control"
-											type="text" path="cusAddress" />
+											type="text" path="info[${status.index}].cusAddress" />
 									</div>
 								</c:if>
 								<!-- reCAPTCHA -->
@@ -230,8 +230,7 @@
 										<button class="btn btn-primary" type="submit">Đăng Ký</button>
 									</div>
 									<div class="col-lg-6 text-center">
-										<a
-											href="${pageContext.request.contextPath}/tourlist"><button
+										<a href="${pageContext.request.contextPath}/tourlist"><button
 												class="btn btn-primary" type="button">Trở về</button></a>
 									</div>
 								</div>
