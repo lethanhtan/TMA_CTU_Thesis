@@ -3,10 +3,9 @@ package edu.ctu.thesis.travelsystem.service;
 import java.util.List;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.SubBookTour;
 
 public interface BookTourService {
-	public void saveBookTour(BookTour bookTour, int idTour);
+	public void saveBookTour(List<BookTour> bookTours, int idTour);
 
 	public List<BookTour> bookTourList();
 	
@@ -30,5 +29,7 @@ public interface BookTourService {
 
 	public int listBookTourByMonth(int month, List<BookTour> list);
 	
-	public void saveSubBookTour(List<SubBookTour> subBookTour, int idBT);
+	public int getMaxValue();
+	
+	public List<BookTour> bookTourListByRelationship(int relationship);
 }
