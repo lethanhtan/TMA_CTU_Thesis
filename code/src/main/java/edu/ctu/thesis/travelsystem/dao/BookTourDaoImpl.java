@@ -25,14 +25,20 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 
 	// Save book tour form when have id tour
 	@Override
-	public void saveBookTour(BookTour bookTour, int idTour) {
+	public void saveBookTour(List<BookTour> bookTours, int idTour) {
 		Session session = getCurrentSession();
-		if (bookTour != null) {
+		if (bookTours != null) {
 			try {
+				for (BookTour bookTour : bookTours) {
+					logger.info("Save book tour be called!");
+					bookTour.setConfirmCode(ConfirmCode.generateCode(12));
+					session.saveOrUpdate(bookTour);
+					session.flush();
+				}
 				logger.info("Save book tour be called!");
-				bookTour.setConfirmCode(ConfirmCode.generateCode(12));
-				session.saveOrUpdate(bookTour);
-				session.flush();
+
+				// session.saveOrUpdate(bookTour);
+				// session.flush();
 			} catch (Exception e) {
 				logger.error("Occured ex", e);
 			}
@@ -217,18 +223,26 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void saveSubBookTour(List<SubBookTour> subBookTour, int idBT) {
+	public int getMaxValue() {
 		Session session = getCurrentSession();
-		if (subBookTour != null) {
-			try {
-				for (SubBookTour bookTour : subBookTour) {
-					logger.info("Save book tour be called!");
-					session.saveOrUpdate(bookTour);
-					session.flush();
-				}
-			} catch (Exception e) {
-				logger.error("Occured ex", e);
-			}
+		String hql = "SELECT MAX(relationship) FROM BookTour";
+		Query query = session.createQuery(hql);
+		int max = (int) query.uniqueResult() + 1;
+		logger.info("Max value: " + max);
+		return max;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BookTour> bookTourListByRelationship(int relationship) {
+		Session session = getCurrentSession();
+		String hql = "FROM BookTour WHERE relationship = :relationship";
+		Query query = session.createQuery(hql);
+		query.setParameter("relationship", relationship);
+		List<BookTour> bookTourList = query.list();
+		for (BookTour bookTour : bookTourList) {
+			logger.info("Book tour list:" + bookTour);
 		}
+		return bookTourList;
 	}
 }
