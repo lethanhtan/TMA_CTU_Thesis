@@ -16,69 +16,108 @@
 					method="POST">
 					<!-- Table -->
 					<table>
-						<thead>
+					<thead>
 							<tr>
-								<th>Thông tin tour</th>
-								<th></th>
-								<th>Thông tin đặt vé</th>
-								<th></th>
+								<td>Thông tin tour</td>
+								<td></td>
+								<td></td>
+								<td></td>
 							</tr>
+						</thead>
+						<tbody>
 							<tr>
 								<td>Tên tour:</td>
 								<td>${tourData.name}</td>
-								<c:if test="${tourData.fieldName == true}">
-									<td>Họ tên:</td>
-									<td>${cusData.cusName}</td>
-								</c:if>
+								<td></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>Ngày đi:</td>
 								<td>${tourData.departureDate}</td>
-								<c:if test="${tourData.fieldSex == true}">
-									<td>Giới tính:</td>
-									<td>${cusData.cusSex}</td>
-								</c:if>
-							</tr>
-							<tr>
 								<td>Giờ đi:</td>
 								<td>${tourData.departureTime}</td>
-								<c:if test="${tourData.fieldPhone == true}">
-									<td>Số điện thoại:</td>
-									<td>${cusData.cusPhone}</td>
-								</c:if>
 							</tr>
 							<tr>
 								<td>Ngày về:</td>
 								<td>${tourData.returnDate}</td>
-								<c:if test="${tourData.fieldEmail == true}">
-									<td>Email:</td>
-									<td>${cusData.cusEmail}</td>
-								</c:if>
-							</tr>
-							<tr>
 								<td>Giờ về:</td>
 								<td>${tourData.returnTime}</td>
-								<c:if test="${tourData.fieldAddress == true}">
-									<td>Địa chỉ:</td>
-									<td>${cusData.cusAddress}</td>
-								</c:if>
 							</tr>
+						</tbody>
+					</table>
+					</br>
+					<table>
+						<thead>
 							<tr>
+								<td>Thông tin đặt vé</td>
 								<td></td>
 								<td></td>
-								<c:if test="${tourData.fieldNumOfTicket == true}">
-									<td>Số lượng:</td>
-									<td>${cusData.cusNumOfTicket}</td>
-								</c:if>
-							</tr>
-							<tr>
 								<td></td>
-								<td></td>
-								<td>Tổng tiền:</td>
-								<td>${price}<c:out value=" đ" /></td>
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach items="${bookTourList}" var="bookTour">
+							<tr>
+							<td style="color: #ef5b92;">Thông tin người thứ <c:out value="${bookTourList.indexOf(bookTour) + 1}" /></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							</tr>
+								<tr>
+									<c:if test="${tourData.fieldName == true}">
+										<td>Họ tên:</td>
+										<td>${bookTour.cusName}</td>
+									</c:if>
+									<c:if test="${tourData.fieldSex == true}">
+										<td>Giới tính:</td>
+										<td>${bookTour.cusSex}</td>
+									</c:if>
+								</tr>
+								<tr>
+									<c:if test="${tourData.fieldYearOfBirth == true}">
+										<td>Năm sinh:</td>
+										<td>${bookTour.cusYearOfBirth}</td>
+									</c:if>
+									<c:if test="${tourData.fieldPhone == true}">
+										<td>Số điện thoại:</td>
+										<td>${bookTour.cusPhone}</td>
+									</c:if>
+								</tr>
+								<tr>
+									<c:if test="${tourData.fieldIdCard == true}">
+										<td>Số chứng minh nhân dân:</td>
+										<td>${bookTour.cusIdCard}</td>
+									</c:if>
+									<c:if test="${tourData.fieldEmail == true}">
+										<td>Địa chỉ email:</td>
+										<td>${bookTour.cusEmail}</td>
+									</c:if>
+								</tr>
+								<tr>
+									<c:if test="${tourData.fieldEmail == true}">
+										<td>Địa chỉ:</td>
+										<td>${bookTour.cusAddress}</td>
+										<td></td>
+										<td></td>
+									</c:if>
+								</tr>
+								<tr>
+									<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
+										<td></td>
+										<td></td>
+										<td>Số lượng:</td>
+										<td>${total}</td>
+									</c:if>
+								</tr>
+								<tr>
+									<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
+										<td></td>
+										<td></td>
+										<td>Tổng tiền:</td>
+										<td>${price}<c:out value=" đ" /></td>
+									</c:if>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					</br>
@@ -89,9 +128,7 @@
 					</h2>
 				</s:form>
 			</div>
-
 		</div>
-
 	</div>
 </div>
 <!-- === END CONTENT === -->

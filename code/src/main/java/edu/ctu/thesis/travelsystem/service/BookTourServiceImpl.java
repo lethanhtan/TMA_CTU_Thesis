@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.BookTourDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.SubBookTour;
 
 @Service
 public class BookTourServiceImpl implements BookTourService {

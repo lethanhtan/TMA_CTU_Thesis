@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.ConfirmCode;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.SubBookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
