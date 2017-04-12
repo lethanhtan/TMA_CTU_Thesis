@@ -41,6 +41,7 @@ public class Tour {
 	private boolean fieldAddress = true;
 	private boolean fieldIdCard = false;
 	private boolean fieldNumOfTicket = true;
+	private boolean fieldYearOfBirth = true;
 	private int view;
 	private Schedule schedule;
 
@@ -273,6 +274,14 @@ public class Tour {
 
 	public void setFieldNumOfTicket(boolean fieldNumOfTicket) {
 		this.fieldNumOfTicket = fieldNumOfTicket;
+	}
+	
+	public boolean getFieldYearOfBirth() {
+		return fieldYearOfBirth;
+	}
+
+	public void setFieldYearOfBirth(boolean fieldYearOfBirth) {
+		this.fieldYearOfBirth = fieldYearOfBirth;
 	}
 	
 	@Column(name = "VIEW", nullable = false)

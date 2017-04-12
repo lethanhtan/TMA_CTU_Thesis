@@ -364,7 +364,7 @@ public class ManageRegController {
 						model.addAttribute("page2", page2);
 						model.addAttribute("pageE2", new ArrayList<Integer>());
 						model.addAttribute("x2", Pagination.paginationX(page2, 5));
-						model.addAttribute("y2", Pagination	.paginationY(cancelListByTicket.size(), page2, numOnPage2));
+						model.addAttribute("y2", Pagination.paginationY(cancelListByTicket.size(), page2, numOnPage2));
 						result = "registrationlist";
 					} else {
 						result = "registrationlist";
@@ -415,12 +415,9 @@ public class ManageRegController {
 	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid Tour tour, BindingResult br,
 			HttpSession session, @PathVariable("idTour") int idTour, @RequestParam("other") String other,
 			@RequestParam("type") String type) {
-		if (other != null && type != null) {
-			regInfoService.dropFieldOption(other);
-		}
 		// Checking at least one field of registration is true
 		if ((tour.getFieldAddress() || tour.getFieldEmail() || tour.getFieldIdCard() || tour.getFieldName()
-				|| tour.getFieldPhone() || tour.getFieldSex())) {
+				|| tour.getFieldPhone() || tour.getFieldSex()) || tour.getFieldYearOfBirth()) {
 			// Have at least 1 field is true
 			tourService.updateTour(tour);
 			logger.info("Saved registration form into DB successfully");
@@ -490,7 +487,7 @@ public class ManageRegController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			bookTourService.saveBookTour(bookTour, idTour);
+//			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}
