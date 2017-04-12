@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +23,8 @@ public class ViewDetailController {
 	@RequestMapping(value = "/viewdetail/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable(value = "idTour") int idTour) {
 		logger.info("Show tour detail!");
-		model.addAttribute("img", tourService.findTourById(idTour).getImage());
-		model.addAttribute("id", idTour);
-		model.addAttribute("name", tourService.findTourById(idTour).getName());
-		model.addAttribute("detail", tourService.findTourById(idTour).getDetail());
 		model.addAttribute("tour", tourService.findTourById(idTour));
-		tourService.addView(tourService.findTourById(idTour));
+		model.addAttribute("current", new Date());
 		return "viewdetail";
 	}
 }
