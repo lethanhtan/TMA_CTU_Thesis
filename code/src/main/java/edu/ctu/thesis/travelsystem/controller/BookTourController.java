@@ -212,9 +212,9 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		model.put("idTour", idTour);
 		model.put("relationship", maxValue);
-		 emailSenderService.SendEmail(bookTour.getCusEmail(),
-		 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-		 MailTemplate.bookSuccessBody);
+		// emailSenderService.SendEmail(bookTour.getCusEmail(),
+		// MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+		// MailTemplate.bookSuccessBody);
 		return "redirect:/booksuccess/{relationship}/{idTour}";
 	}
 
@@ -227,16 +227,30 @@ public class BookTourController {
 	}
 
 	// Forward to Customer detail page
-	@RequestMapping(value = "/booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
-		logger.info("Show information of customer when book tour");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
-		}
+	@RequestMapping(value = "booktourdetail/{relationship}/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour,
+			@PathVariable("relationship") int relationship, @Valid Tour tour, @Valid BookTour bookTour) {
+		logger.info("Show book tour detail!");
+		Tour tourFromDB = tourService.findTourById(idTour);
+		List<BookTour> bookTourList = bookTourService.bookTourListByRelationship(relationship);
+		int total = bookTourList.size();
+		model.put("tourData", tourFromDB);
+		model.put("bookTourList", bookTourList);
+		model.put("total", total); // Get sum of ticket in one time book tour
+		String pr = tourFromDB.getPrice().replaceAll(",", "");
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "booktourdetail";
+	}
+	
+	public String showDetail(ModelMap model, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour) {
+		logger.info("Show information of customer when book tour");
+		List<BookTour> bookedTourList = bookTourService.bookTourListByRelationship(relationship);
+		model.addAttribute("bookTour", new BookTour());
+		model.addAttribute("bookedTourList", bookedTourList);
+		model.addAttribute("totalTicket", bookedTourList.size());
+		return "booktoursuccess";
 	}
 
 	// Forward to Edit information of customer booked tour

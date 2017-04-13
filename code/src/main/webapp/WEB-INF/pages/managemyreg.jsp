@@ -71,7 +71,7 @@
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.cusEmail}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${bookTour.relationship}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
@@ -214,7 +214,7 @@
 											<td>${myCancelReg.cusSex}</td>
 											<td>${myCancelReg.cusPhone}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${myCancelReg.relationship}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>

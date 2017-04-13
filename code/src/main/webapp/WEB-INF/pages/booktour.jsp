@@ -188,8 +188,9 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-credit-card"></i>
 									</span>
-									<s:input placeholder="Nhập số chứng minh nhân dân" class="form-control"
-										type="text" path="info[${status.index}].cusIdCard" />
+									<s:input placeholder="Nhập số chứng minh nhân dân"
+										class="form-control" type="text"
+										path="info[${status.index}].cusIdCard" />
 								</div>
 							</c:if>
 							<c:if test="${status.index == 0}">
@@ -222,24 +223,22 @@
 								</c:if>
 							</c:if>
 							<hr>
-							<c:if test="${status.index == numOfTicket - 1}">
-								<!-- reCAPTCHA -->
-								<p style="color: red;">${errorString}</p>
-								<div style="margin-left: 37px;" class="g-recaptcha"
-									data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
-								</br>
-								<!-- End reCAPTCHA -->
-								<div class="row">
-									<div class="col-lg-6 text-center">
-										<button class="btn btn-primary" type="submit">Đăng Ký</button>
-									</div>
-									<div class="col-lg-6 text-center">
-										<a href="${pageContext.request.contextPath}/tourlist"><button
-												class="btn btn-primary" type="button">Trở về</button></a>
-									</div>
-								</div>
-							</c:if>
 						</c:forEach>
+						<!-- reCAPTCHA -->
+						<p style="color: red;">${errorString}</p>
+						<div style="margin-left: 37px;" class="g-recaptcha"
+							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+						</br>
+						<!-- End reCAPTCHA -->
+						<div class="row">
+							<div class="col-lg-6 text-center">
+								<button class="btn btn-primary" type="submit">Đăng Ký</button>
+							</div>
+							<div class="col-lg-6 text-center">
+								<a href="${pageContext.request.contextPath}/tourlist"><button
+										class="btn btn-primary" type="button">Trở về</button></a>
+							</div>
+						</div>
 					</s:form>
 				</div>
 			</c:if>
