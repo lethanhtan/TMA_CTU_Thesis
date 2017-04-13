@@ -146,20 +146,20 @@
 								</div>
 							</div>
 							<div class="row">
-							<c:if test="${tour.fieldYearOfBirth == true}">
-								<div class="col-sm-5">
-									<label>Năm sinh</label>
-									<!-- Show error -->
-									</br><small><s:errors path="info[${status.index}].cusName"
-											cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-calendar"></i>
-										</span>
-										<s:input placeholder="Nhập năm sinh" class="form-control"
-											type="text" path="info[${status.index}].cusYearOfBirth" />
+								<c:if test="${tour.fieldYearOfBirth == true}">
+									<div class="col-sm-5">
+										<label>Năm sinh</label>
+										<!-- Show error -->
+										</br> <small><s:errors path="info[${status.index}].cusName"
+												cssStyle="color:red;" /></small>
+										<div class="input-group margin-bottom-20">
+											<span class="input-group-addon"> <i
+												class="fa fa-calendar"></i>
+											</span>
+											<s:input placeholder="Nhập năm sinh" class="form-control"
+												type="text" path="info[${status.index}].cusYearOfBirth" />
+										</div>
 									</div>
-								</div>
 								</c:if>
 								<c:if test="${tour.fieldPhone == true}">
 									<div class="col-sm-7">
@@ -182,31 +182,31 @@
 								<label>Số chứng minh nhân dân</label>
 								<!-- Show error -->
 								</br>
-								<small><s:errors path="cusIdCard" cssStyle="color:red;" /></small>
+								<small><s:errors path="info[${status.index}].cusIdCard"
+										cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-credit-card"></i>
 									</span>
-									<s:input placeholder="Nhập địa chỉ" class="form-control"
+									<s:input placeholder="Nhập số chứng minh nhân dân" class="form-control"
 										type="text" path="info[${status.index}].cusIdCard" />
 								</div>
 							</c:if>
-							<c:if test="${tour.fieldEmail}">
-								<label>Email</label>
-								<!-- Show error -->
-								</br>
-								<small><s:errors path="info[${status.index}].cusEmail"
-										cssStyle="color:red;" /></small>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-envelope"></i>
-									</span>
-									<s:input placeholder="Nhập email" class="form-control"
-										type="text" path="info[${status.index}].cusEmail" />
-								</div>
-							</c:if>
-							<hr>
-							<c:if test="${status.index == numOfTicket - 1}">
+							<c:if test="${status.index == 0}">
+								<c:if test="${tour.fieldEmail}">
+									<label>Email</label>
+									<!-- Show error -->
+									</br>
+									<small><s:errors path="info[${status.index}].cusEmail"
+											cssStyle="color:red;" /></small>
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i
+											class="fa fa-envelope"></i>
+										</span>
+										<s:input placeholder="Nhập email" class="form-control"
+											type="text" path="info[${status.index}].cusEmail" />
+									</div>
+								</c:if>
 								<c:if test="${tour.fieldAddress}">
 									<label>Địa chỉ</label>
 									<!-- Show error -->
@@ -220,11 +220,13 @@
 											type="text" path="info[${status.index}].cusAddress" />
 									</div>
 								</c:if>
+							</c:if>
+							<hr>
+							<c:if test="${status.index == numOfTicket - 1}">
 								<!-- reCAPTCHA -->
 								<p style="color: red;">${errorString}</p>
 								<div style="margin-left: 37px;" class="g-recaptcha"
 									data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
-								</br>
 								</br>
 								<!-- End reCAPTCHA -->
 								<div class="row">

@@ -16,7 +16,7 @@
 					method="POST">
 					<!-- Table -->
 					<table>
-					<thead>
+						<thead>
 							<tr>
 								<td>Thông tin tour</td>
 								<td></td>
@@ -57,12 +57,13 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${bookTourList}" var="bookTour">
-							<tr>
-							<td style="color: #ef5b92;">Thông tin người thứ <c:out value="${bookTourList.indexOf(bookTour) + 1}" /></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							</tr>
+								<tr>
+									<td style="color: #ef5b92;">Thông tin người thứ <c:out
+											value="${bookTourList.indexOf(bookTour) + 1}" /></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
 								<tr>
 									<c:if test="${tourData.fieldName == true}">
 										<td>Họ tên:</td>
@@ -89,32 +90,40 @@
 										<td>${bookTour.cusIdCard}</td>
 									</c:if>
 									<c:if test="${tourData.fieldEmail == true}">
-										<td>Địa chỉ email:</td>
-										<td>${bookTour.cusEmail}</td>
+										<c:if test="${bookTourList.indexOf(bookTour) == 0}">
+											<td>Địa chỉ email:</td>
+											<td>${bookTour.cusEmail}</td>
+										</c:if>
+									</c:if>
+									<c:if test="${bookTourList.indexOf(bookTour) != 0}">
+										<td></td>
+										<td></td>
 									</c:if>
 								</tr>
 								<tr>
 									<c:if test="${tourData.fieldEmail == true}">
-										<td>Địa chỉ:</td>
-										<td>${bookTour.cusAddress}</td>
-										<td></td>
-										<td></td>
+										<c:if test="${bookTourList.indexOf(bookTour) == 0}">
+											<td>Địa chỉ:</td>
+											<td>${bookTour.cusAddress}</td>
+											<td></td>
+											<td></td>
+										</c:if>
 									</c:if>
 								</tr>
 								<tr>
 									<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
 										<td></td>
 										<td></td>
-										<td>Số lượng:</td>
-										<td>${total}</td>
+										<td style="color: #ef5b92;">Số lượng:</td>
+										<td style="color: #ef5b92;">${total}</td>
 									</c:if>
 								</tr>
 								<tr>
 									<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
 										<td></td>
 										<td></td>
-										<td>Tổng tiền:</td>
-										<td>${price}<c:out value=" đ" /></td>
+										<td style="color: #ef5b92;">Tổng tiền:</td>
+										<td style="color: #ef5b92;">${price}<c:out value=" đ" /></td>
 									</c:if>
 								</tr>
 							</c:forEach>
