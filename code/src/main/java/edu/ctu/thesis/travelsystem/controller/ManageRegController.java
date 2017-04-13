@@ -437,10 +437,9 @@ public class ManageRegController {
 	}
 
 	// Administration undo customer cancel registration
-	@RequestMapping(value = "undocancel/{idBT}/{relationship}/{idTour}")
-	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("relationship") int relationship,
-			@PathVariable("idTour") int idTour) {
-		regInfoService.undoCancel(idBT, relationship);
+	@RequestMapping(value = "undocancel/{idBT}/{idTour}")
+	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour) {
+		regInfoService.undoCancel(idBT);
 		return "redirect:/registrationlist/{idTour}";
 	}
 

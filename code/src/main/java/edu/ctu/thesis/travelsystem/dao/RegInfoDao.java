@@ -13,7 +13,7 @@ public interface RegInfoDao {
 	
 	public List<BookTour> cancelListByValue(String value, int idTour);
 	
-	public void undoCancel(int idBT, int relationship);
+	public void undoCancel(int idBT);
 	
 	public void addFieldOption(String name, String type);
 

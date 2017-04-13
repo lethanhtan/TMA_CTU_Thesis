@@ -80,7 +80,7 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a href="<c:url value='/cancel/${bookTour.relationship}'/>"><button
+													<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
 															class="btn btn-sm btn-danger">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>

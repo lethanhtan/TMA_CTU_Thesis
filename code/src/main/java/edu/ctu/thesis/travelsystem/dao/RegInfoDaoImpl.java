@@ -25,8 +25,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> registrationList(int idTour) {
 		Session session = getCurrentSession();
-		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour "
-				+ "AND CUS_CANCEL = false GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false");
 		query.setParameter("idTour", idTour);
 		List<BookTour> registrationList = query.list();
 		for (BookTour bookTour : registrationList) {
@@ -59,8 +58,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelList(int idTour) {
 		Session session = getCurrentSession();
-		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true "
-				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true");
 		query.setParameter("idTour", idTour);
 		List<BookTour> cancelList = query.list();
 		for (BookTour bookTour : cancelList) {
@@ -73,8 +71,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
 		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true "
-				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value) "
-				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -83,13 +80,13 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public void undoCancel(int idBT, int relationship) {
+	public void undoCancel(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
-					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE Relationship = :relationship");
-			query.setParameter("relationship", relationship);
+					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE id_BT = :idBT");
+			query.setParameter("idBT", idBT);
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);

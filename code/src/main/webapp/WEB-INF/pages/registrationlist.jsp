@@ -294,7 +294,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -308,7 +307,6 @@
 											<td>${cancelReg.cusSex}</td>
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.cusEmail}</td>
-											<td>${cancelReg.ticketCancel}</td>
 											<td><a
 												href="<c:url value='/reginfodetail/${cancelReg.relationship}/${tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -316,7 +314,7 @@
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<a
-														href="<c:url value='/undocancel/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour}'/>"><button
+														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
