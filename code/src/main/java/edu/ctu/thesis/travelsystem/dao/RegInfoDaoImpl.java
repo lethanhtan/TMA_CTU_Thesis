@@ -25,8 +25,8 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> registrationList(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour "
+				+ "AND CUS_CANCEL = false GROUP BY relationship HAVING id_bt = MIN(id_bt)");
 		query.setParameter("idTour", idTour);
 		List<BookTour> registrationList = query.list();
 		for (BookTour bookTour : registrationList) {
@@ -59,8 +59,8 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelList(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true "
+				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
 		query.setParameter("idTour", idTour);
 		List<BookTour> cancelList = query.list();
 		for (BookTour bookTour : cancelList) {
@@ -72,8 +72,9 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value) "
+				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")

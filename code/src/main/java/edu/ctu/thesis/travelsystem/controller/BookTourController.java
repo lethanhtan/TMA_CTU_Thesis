@@ -242,27 +242,39 @@ public class BookTourController {
 		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "booktourdetail";
 	}
-	
-	public String showDetail(ModelMap model, @PathVariable("relationship") int relationship,
-			@PathVariable("idTour") int idTour) {
-		logger.info("Show information of customer when book tour");
-		List<BookTour> bookedTourList = bookTourService.bookTourListByRelationship(relationship);
-		model.addAttribute("bookTour", new BookTour());
-		model.addAttribute("bookedTourList", bookedTourList);
-		model.addAttribute("totalTicket", bookedTourList.size());
-		return "booktoursuccess";
-	}
 
 	// Forward to Edit information of customer booked tour
-	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
+	@RequestMapping(value = "editbooktour/{relationship}/{idTour}", method = RequestMethod.GET)
+	public String showForm(ModelMap model, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour, @Valid Tour tour,
+			@RequestParam(required = false, value = "numTicket") Integer numTicket) {
 		logger.info("Display edit form when admin request!");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
+		// BookTour bookedTour = bookTourService.searchById(idBT);
+		// model.put("cusData", bookedTour);
+		// if (tour != null) {
+		// model.addAttribute("tour", bookedTour.getTour());
+		// }
+		try {
+			// Set default value for number of ticket
+			if (!numTicket.equals(null)) {
+				numOfTicket = numTicket; // numOn
+			}
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
 		}
+		tour = tourService.findTourById(idTour);
+		SubBookTourVO cusData = new SubBookTourVO();
+		// List<BookTour> bookedTour =
+		// bookTourService.bookTourListByRelationship(relationship);
+		List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
+		for (int i = 0; i < numOfTicket; i++) {
+			infos.add(new BookTourInfoVO());
+		}
+		cusData.setInfo(infos);
+		model.addAttribute("cusData", cusData);
+		model.addAttribute("numOfTicket", numOfTicket);
+		// model.addAttribute("cusData", bookedTour);
+		model.addAttribute("tour", tour);
 		return "editbooktour";
 	}
 
