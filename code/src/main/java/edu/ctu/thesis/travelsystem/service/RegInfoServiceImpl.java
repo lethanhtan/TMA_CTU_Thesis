@@ -40,8 +40,8 @@ public class RegInfoServiceImpl implements RegInfoService {
 	
 	@Override
 	@Transactional
-	public void undoCancel(int idBT, int idTour) {
-		this.regInfoDao.undoCancel(idBT, idTour);
+	public void undoCancel(int idBT, int relationship) {
+		this.regInfoDao.undoCancel(idBT, relationship);
 	}
 	
 	@Override

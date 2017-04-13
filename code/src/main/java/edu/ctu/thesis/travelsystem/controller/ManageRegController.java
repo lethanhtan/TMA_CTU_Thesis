@@ -437,9 +437,10 @@ public class ManageRegController {
 	}
 
 	// Administration undo customer cancel registration
-	@RequestMapping(value = "undocancel/{idBT}/{idTour}")
-	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
-		regInfoService.undoCancel(idBT, idTour);
+	@RequestMapping(value = "undocancel/{idBT}/{relationship}/{idTour}")
+	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour) {
+		regInfoService.undoCancel(idBT, relationship);
 		return "redirect:/registrationlist/{idTour}";
 	}
 
@@ -492,14 +493,15 @@ public class ManageRegController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-//			bookTourService.saveBookTour(bookTour, idTour); Error
+			// bookTourService.saveBookTour(bookTour, idTour); Error
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}
 
 	// Customer cancel registration tour
 	@RequestMapping(value = "cancelreg/{relationship}/{idTour}")
-	public String cancelBookTour(@PathVariable("relationship") int relationship, @PathVariable("idTour") Integer idTour) {
+	public String cancelBookTour(@PathVariable("relationship") int relationship,
+			@PathVariable("idTour") Integer idTour) {
 		bookTourService.cancelBookTour(relationship);
 		return "redirect:/registrationlist/{idTour}";
 	}

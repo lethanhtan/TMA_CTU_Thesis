@@ -239,7 +239,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
 					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE Relationship = :relationship");
-			query.setParameter("relationship", bookTour.getRelationship());
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);

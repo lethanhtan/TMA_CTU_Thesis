@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
-import edu.ctu.thesis.travelsystem.mail.EMailSender;
+//import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
@@ -45,8 +45,8 @@ public class UserController extends HttpServlet {
 	private UserService userService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+//	@Autowired
+//	private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
@@ -81,9 +81,8 @@ public class UserController extends HttpServlet {
 		} else { // form input is ok
 			user.setDate(Calendar.getInstance().getTime());
 			userService.saveUser(user);
-			 emailSenderService.SendEmail(user.getEmail(),
-			 MailTemplate.hostMail, MailTemplate.regTitle,
-			 MailTemplate.regBody);
+//			emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
+//					MailTemplate.regBody);
 			return "redirect:regsuccess";
 		}
 	}
@@ -353,7 +352,8 @@ public class UserController extends HttpServlet {
 
 	// User undo cancel registration
 	@RequestMapping(value = "undo/{idBT}/{relationship}")
-	public String undoCancel(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship, HttpSession session, ModelMap model) {
+	public String undoCancel(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
+			HttpSession session, ModelMap model) {
 		userService.undoCancel(idBT, relationship);
 		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
 		return "redirect:/managemyreg/{idUser}";

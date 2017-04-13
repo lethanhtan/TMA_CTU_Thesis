@@ -76,35 +76,14 @@
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
-												href="<c:url value='/editbooktour/${bookTour.idBT}/${bookTour.tour.idTour}'/>"><button
+												href="<c:url value='/editbooktour/${bookTour.relationship}/${bookTour.tour.idTour}'/>"><button
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a href="#cancelConfirm" data-toggle="modal"><button
+													<a href="<c:url value='/cancel/${bookTour.relationship}'/>"><button
 															class="btn btn-sm btn-danger">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
-													<!-- Popup Cofirm -->
-													<div id="cancelConfirm" class="modal fade">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<button type="button" class="close"
-																		data-dismiss="modal" aria-hidden="true">&times;</button>
-																	<h4 class="modal-title">Quý khách muốn hủy đăng ký
-																		tour đã chọn?</h4>
-																	</br> <a
-																		href="<c:url value='/cancel/${bookTour.relationship}'/>">
-																		<button type="button" class="btn btn-danger">
-																			Có</button>
-																	</a>
-																	<button type="button" class="btn btn-primary"
-																		data-dismiss="modal">Không</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- End Popup Cofirm -->
 												</c:if></td>
 										</tr>
 									</c:forEach>
@@ -219,31 +198,11 @@
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
-													<a href="#undoConfirm" data-toggle="modal"><button
+													<a
+														href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.relationship}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
-													<!-- Popup Cofirm -->
-													<div id="undoConfirm" class="modal fade">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<button type="button" class="close"
-																		data-dismiss="modal" aria-hidden="true">&times;</button>
-																	<h4 class="modal-title">Quý khách muốn khôi phục
-																		tour đã hủy đăng ký?</h4>
-																	</br> <a
-																		href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.relationship}'/>">
-																		<button type="button" class="btn btn-danger">
-																			Có</button>
-																	</a>
-																	<button type="button" class="btn btn-primary"
-																		data-dismiss="modal">Không</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- End Popup Cofirm -->
 												</c:if></td>
 										</tr>
 									</c:forEach>

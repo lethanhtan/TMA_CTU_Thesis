@@ -83,13 +83,13 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public void undoCancel(int idBT, int idTour) {
+	public void undoCancel(int idBT, int relationship) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
-					+ "CUS_CANCEL = false," + "TICKET_CANCEL = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", bookTour.getIdBT());
+					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE Relationship = :relationship");
+			query.setParameter("relationship", relationship);
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
