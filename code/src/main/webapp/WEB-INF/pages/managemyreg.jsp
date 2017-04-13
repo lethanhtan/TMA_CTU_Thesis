@@ -68,8 +68,8 @@
 											<td>${bookTour.tour.name}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
+											<td>${bookTour.cusPhone}</td>
+											<td>${bookTour.cusEmail}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -93,7 +93,8 @@
 																		data-dismiss="modal" aria-hidden="true">&times;</button>
 																	<h4 class="modal-title">Quý khách muốn hủy đăng ký
 																		tour đã chọn?</h4>
-																	</br> <a href="<c:url value='/cancel/${bookTour.idBT}'/>">
+																	</br> <a
+																		href="<c:url value='/cancel/${bookTour.relationship}'/>">
 																		<button type="button" class="btn btn-danger">
 																			Có</button>
 																	</a>
@@ -198,7 +199,6 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -212,9 +212,7 @@
 											<td>${myCancelReg.tour.name}</td>
 											<td>${myCancelReg.cusName}</td>
 											<td>${myCancelReg.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myCancelReg.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp;
-												${myCancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
+											<td>${myCancelReg.cusPhone}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -235,7 +233,7 @@
 																	<h4 class="modal-title">Quý khách muốn khôi phục
 																		tour đã hủy đăng ký?</h4>
 																	</br> <a
-																		href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.tour.idTour }'/>">
+																		href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.relationship}'/>">
 																		<button type="button" class="btn btn-danger">
 																			Có</button>
 																	</a>
@@ -333,7 +331,6 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -347,9 +344,7 @@
 											<td>${myBookTour.tour.name}</td>
 											<td>${myBookTour.cusName}</td>
 											<td>${myBookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myBookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp;
-												${myBookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+											<td>${myBookTour.cusPhone}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myBookTour.idBT}/${myBookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
