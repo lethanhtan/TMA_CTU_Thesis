@@ -56,7 +56,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -71,7 +70,6 @@
 											<td>${bookTour.cusSex}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
 											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
