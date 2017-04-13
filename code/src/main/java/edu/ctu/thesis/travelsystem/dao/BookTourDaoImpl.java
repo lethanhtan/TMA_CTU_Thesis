@@ -35,9 +35,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 					session.flush();
 				}
 				logger.info("Save book tour be called!");
-
-				// session.saveOrUpdate(bookTour);
-				// session.flush();
 			} catch (Exception e) {
 				logger.error("Occured ex", e);
 			}
@@ -50,9 +47,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		Session session = getCurrentSession();
 		BookTour bookTour = new BookTour();
 		logger.info("Information of customer have ID: " + idBT);
-		String hql = "FROM BookTour WHERE idBT = ?";
 		try {
-			Query query = session.createQuery(hql);
+			Query query = session.createQuery("FROM BookTour WHERE idBT = ?");
 			query.setParameter(0, idBT);
 			bookTour = (BookTour) query.uniqueResult();
 		} catch (Exception e) {
@@ -80,8 +76,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		return query.list();
@@ -91,8 +87,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public List<BookTour> bookTourList() {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour";
-		List<BookTour> bookTourList = session.createQuery(hql).list();
+		List<BookTour> bookTourList = session.createQuery("FROM BookTour").list();
 		for (BookTour bookTour : bookTourList) {
 			if (bookTour.getTour().getDepartureDate().before(Calendar.getInstance().getTime())) {
 				bookTour.setGoneOrNot(true);
@@ -109,9 +104,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	public int getNumTicketBooked(int idTour) {
 		int numTicketBooked = 0;
 		Session session = getCurrentSession();
-		String hql = "SELECT SUM(o.cusNumOfTicket) FROM BookTour o WHERE o.tour.id = :idTour";
-		logger.info(session);
-		Query query = session.createQuery(hql);
+		Query query = session
+				.createQuery("SELECT SUM(o.cusNumOfTicket) FROM BookTour o " + "WHERE o.tour.id = :idTour");
 		query.setParameter("idTour", idTour);
 		Object obj = query.uniqueResult();
 		try {
@@ -122,7 +116,6 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
-		logger.info("Number of Ticket are booked: " + numTicketBooked);
 		return numTicketBooked;
 	}
 
@@ -143,8 +136,8 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public List<BookTour> registrationInfoByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false AND (CUS_EMAIL = :value OR CUS_PHONE = :value OR CUS_IDCARD = :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false "
+				+ "AND (CUS_EMAIL = :value OR CUS_PHONE = :value OR CUS_IDCARD = :value)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", value);
 		@SuppressWarnings("unchecked")
@@ -153,13 +146,13 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void cancelBookTour(int idBT) {
+	public void cancelBookTour(int relationship) {
 		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(relationship));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
-					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", idBT);
+					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE Relationship = :relationship");
+			query.setParameter("relationship", relationship);
 			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
@@ -211,8 +204,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public List<BookTour> listBookTourById(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour");
 		query.setParameter("idTour", idTour);
 		List<BookTour> bookTourList = query.list();
 		for (BookTour bookTour : bookTourList) {
@@ -224,19 +216,17 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public int getMaxValue() {
 		Session session = getCurrentSession();
-		String hql = "SELECT MAX(relationship) FROM BookTour";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("SELECT MAX(relationship) FROM BookTour");
 		int max = (int) query.uniqueResult() + 1;
 		logger.info("Max value: " + max);
 		return max;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> bookTourListByRelationship(int relationship) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE relationship = :relationship";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE relationship = :relationship");
 		query.setParameter("relationship", relationship);
 		List<BookTour> bookTourList = query.list();
 		for (BookTour bookTour : bookTourList) {

@@ -107,7 +107,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -120,11 +119,10 @@
 											<td>${registrationList.indexOf(bookTour) + 1}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+											<td>${bookTour.cusPhone}</td>
+											<td>${bookTour.cusEmail}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${bookTour.idBT}/${tour.idTour}'/>">
+												href="<c:url value='/reginfodetail/${bookTour.relationship}/${tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
@@ -134,7 +132,7 @@
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<a
-														href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+														href="<c:url value='/cancelreg/${bookTour.relationship}/${tour.idTour}'/>"><button
 															class="btn btn-sm btn-aqua">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
@@ -296,7 +294,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -308,17 +305,16 @@
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${cancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
+											<td>${cancelReg.cusPhone}</td>
+											<td>${cancelReg.cusEmail}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${cancelReg.idBT}/${tour.idTour}'/>">
+												href="<c:url value='/reginfodetail/${cancelReg.relationship}/${tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<a
-														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
+														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>

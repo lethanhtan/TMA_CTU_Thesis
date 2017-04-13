@@ -56,7 +56,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -69,43 +68,22 @@
 											<td>${bookTour.tour.name}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+											<td>${bookTour.cusPhone}</td>
+											<td>${bookTour.cusEmail}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${bookTour.relationship}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
-												href="<c:url value='/editbooktour/${bookTour.idBT}/${bookTour.tour.idTour}'/>"><button
+												href="<c:url value='/editbooktour/${bookTour.relationship}/${bookTour.tour.idTour}'/>"><button
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a href="#cancelConfirm" data-toggle="modal"><button
+													<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
 															class="btn btn-sm btn-danger">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
-													<!-- Popup Cofirm -->
-													<div id="cancelConfirm" class="modal fade">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<button type="button" class="close"
-																		data-dismiss="modal" aria-hidden="true">&times;</button>
-																	<h4 class="modal-title">Quý khách muốn hủy đăng ký
-																		tour đã chọn?</h4>
-																	</br> <a href="<c:url value='/cancel/${bookTour.idBT}'/>">
-																		<button type="button" class="btn btn-danger">
-																			Có</button>
-																	</a>
-																	<button type="button" class="btn btn-primary"
-																		data-dismiss="modal">Không</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- End Popup Cofirm -->
 												</c:if></td>
 										</tr>
 									</c:forEach>
@@ -200,7 +178,6 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -214,40 +191,18 @@
 											<td>${myCancelReg.tour.name}</td>
 											<td>${myCancelReg.cusName}</td>
 											<td>${myCancelReg.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myCancelReg.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp;
-												${myCancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
+											<td>${myCancelReg.cusPhone}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${myCancelReg.relationship}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
-													<a href="#undoConfirm" data-toggle="modal"><button
+													<a
+														href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.relationship}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
-													<!-- Popup Cofirm -->
-													<div id="undoConfirm" class="modal fade">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<button type="button" class="close"
-																		data-dismiss="modal" aria-hidden="true">&times;</button>
-																	<h4 class="modal-title">Quý khách muốn khôi phục
-																		tour đã hủy đăng ký?</h4>
-																	</br> <a
-																		href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.tour.idTour }'/>">
-																		<button type="button" class="btn btn-danger">
-																			Có</button>
-																	</a>
-																	<button type="button" class="btn btn-primary"
-																		data-dismiss="modal">Không</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- End Popup Cofirm -->
 												</c:if></td>
 										</tr>
 									</c:forEach>
@@ -335,7 +290,6 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -349,9 +303,7 @@
 											<td>${myBookTour.tour.name}</td>
 											<td>${myBookTour.cusName}</td>
 											<td>${myBookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${myBookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp;
-												${myBookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+											<td>${myBookTour.cusPhone}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myBookTour.idBT}/${myBookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">

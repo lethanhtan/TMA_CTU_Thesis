@@ -62,8 +62,8 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public void cancelBookTour(int idBT) {
-		this.bookTourDao.cancelBookTour(idBT);
+	public void cancelBookTour(int relationship) {
+		this.bookTourDao.cancelBookTour(relationship);
 	}
 
 	@Override

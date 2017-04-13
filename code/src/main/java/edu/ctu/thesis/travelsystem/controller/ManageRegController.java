@@ -1,6 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -437,21 +438,25 @@ public class ManageRegController {
 
 	// Administration undo customer cancel registration
 	@RequestMapping(value = "undocancel/{idBT}/{idTour}")
-	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
-		regInfoService.undoCancel(idBT, idTour);
+	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour) {
+		regInfoService.undoCancel(idBT);
 		return "redirect:/registrationlist/{idTour}";
 	}
 
 	// Forward to Customer detail page
-	@RequestMapping(value = "/reginfodetail/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
-		logger.info("Show information of customer when book tour");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
-		}
+	@RequestMapping(value = "reginfodetail/{relationship}/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour,
+			@PathVariable("relationship") int relationship, @Valid Tour tour, @Valid BookTour bookTour) {
+		logger.info("Show registration infomation!");
+		Tour tourFromDB = tourService.findTourById(idTour);
+		List<BookTour> bookTourList = bookTourService.bookTourListByRelationship(relationship);
+		int total = bookTourList.size();
+		model.put("tourData", tourFromDB);
+		model.put("bookTourList", bookTourList);
+		model.put("total", total); // Get sum of ticket in one time book tour
+		String pr = tourFromDB.getPrice().replaceAll(",", "");
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "reginfodetail";
 	}
 
@@ -487,15 +492,16 @@ public class ManageRegController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-//			bookTourService.saveBookTour(bookTour, idTour);
+			// bookTourService.saveBookTour(bookTour, idTour); Error
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}
 
 	// Customer cancel registration tour
-	@RequestMapping(value = "cancelreg/{idBT}/{idTour}")
-	public String cancelBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
-		bookTourService.cancelBookTour(idBT);
+	@RequestMapping(value = "cancelreg/{relationship}/{idTour}")
+	public String cancelBookTour(@PathVariable("relationship") int relationship,
+			@PathVariable("idTour") Integer idTour) {
+		bookTourService.cancelBookTour(relationship);
 		return "redirect:/registrationlist/{idTour}";
 	}
 }

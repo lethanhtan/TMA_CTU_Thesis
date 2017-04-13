@@ -212,9 +212,9 @@ public class BookTourController {
 		logger.info("Handle for save booktour!");
 		model.put("idTour", idTour);
 		model.put("relationship", maxValue);
-		 emailSenderService.SendEmail(bookTour.getCusEmail(),
-		 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-		 MailTemplate.bookSuccessBody);
+		// emailSenderService.SendEmail(bookTour.getCusEmail(),
+		// MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+		// MailTemplate.bookSuccessBody);
 		return "redirect:/booksuccess/{relationship}/{idTour}";
 	}
 
@@ -227,28 +227,54 @@ public class BookTourController {
 	}
 
 	// Forward to Customer detail page
-	@RequestMapping(value = "/booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
-		logger.info("Show information of customer when book tour");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
-		}
+	@RequestMapping(value = "booktourdetail/{relationship}/{idTour}", method = RequestMethod.GET)
+	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour,
+			@PathVariable("relationship") int relationship, @Valid Tour tour, @Valid BookTour bookTour) {
+		logger.info("Show book tour detail!");
+		Tour tourFromDB = tourService.findTourById(idTour);
+		List<BookTour> bookTourList = bookTourService.bookTourListByRelationship(relationship);
+		int total = bookTourList.size();
+		model.put("tourData", tourFromDB);
+		model.put("bookTourList", bookTourList);
+		model.put("total", total); // Get sum of ticket in one time book tour
+		String pr = tourFromDB.getPrice().replaceAll(",", "");
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "booktourdetail";
 	}
 
 	// Forward to Edit information of customer booked tour
-	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
+	@RequestMapping(value = "editbooktour/{relationship}/{idTour}", method = RequestMethod.GET)
+	public String showForm(ModelMap model, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour, @Valid Tour tour,
+			@RequestParam(required = false, value = "numTicket") Integer numTicket) {
 		logger.info("Display edit form when admin request!");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
+		// BookTour bookedTour = bookTourService.searchById(idBT);
+		// model.put("cusData", bookedTour);
+		// if (tour != null) {
+		// model.addAttribute("tour", bookedTour.getTour());
+		// }
+		try {
+			// Set default value for number of ticket
+			if (!numTicket.equals(null)) {
+				numOfTicket = numTicket; // numOn
+			}
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
 		}
+		tour = tourService.findTourById(idTour);
+		SubBookTourVO cusData = new SubBookTourVO();
+		// List<BookTour> bookedTour =
+		// bookTourService.bookTourListByRelationship(relationship);
+		List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
+		for (int i = 0; i < numOfTicket; i++) {
+			infos.add(new BookTourInfoVO());
+		}
+		cusData.setInfo(infos);
+		model.addAttribute("cusData", cusData);
+		model.addAttribute("numOfTicket", numOfTicket);
+		// model.addAttribute("cusData", bookedTour);
+		model.addAttribute("tour", tour);
 		return "editbooktour";
 	}
 

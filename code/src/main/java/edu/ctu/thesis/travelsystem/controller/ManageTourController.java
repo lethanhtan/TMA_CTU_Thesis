@@ -31,10 +31,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
-import edu.ctu.thesis.travelsystem.model.Export;
+//import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
-import edu.ctu.thesis.travelsystem.service.ExportDataService;
+//import edu.ctu.thesis.travelsystem.service.ExportDataService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
@@ -44,8 +44,8 @@ public class ManageTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	@Autowired
-	private ExportDataService exportDataService;
+//	@Autowired
+//	private ExportDataService exportDataService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 	private static int numOnPage = 5;
@@ -268,13 +268,13 @@ public class ManageTourController {
 	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
 	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		Export objExport = new Export();
+//		Export objExport = new Export();
 		model.addObject("exportList", "Tour");
 		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
-		objExport.setOwner(session.getAttribute("userName").toString());
-		objExport.setFileType("Pdf");
-		objExport.setExportType("Registration list");
-		exportDataService.saveExport(objExport);
+//		objExport.setOwner(session.getAttribute("userName").toString());
+//		objExport.setFileType("Pdf");
+//		objExport.setExportType("Registration list");
+//		exportDataService.saveExport(objExport);
 		model.setViewName("pdfView");
 		return model;
 	}

@@ -95,8 +95,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public void undoCancel(int idBT, int idTour) {
-		this.userDao.undoCancel(idBT, idTour);
+	public void undoCancel(int idBT, int relationship) {
+		this.userDao.undoCancel(idBT, relationship);
 	}
 	
 	@Override
