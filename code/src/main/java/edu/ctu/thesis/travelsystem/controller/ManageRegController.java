@@ -492,15 +492,15 @@ public class ManageRegController {
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			bookTourService.saveBookTour(bookTour, idTour);
+//			bookTourService.saveBookTour(bookTour, idTour); Error
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}
 
 	// Customer cancel registration tour
-	@RequestMapping(value = "cancelreg/{idBT}/{idTour}")
-	public String cancelBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
-		bookTourService.cancelBookTour(idBT);
+	@RequestMapping(value = "cancelreg/{relationship}/{idTour}")
+	public String cancelBookTour(@PathVariable("relationship") int relationship, @PathVariable("idTour") Integer idTour) {
+		bookTourService.cancelBookTour(relationship);
 		return "redirect:/registrationlist/{idTour}";
 	}
 }

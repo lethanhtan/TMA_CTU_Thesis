@@ -131,11 +131,30 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a
-														href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+													<a href="#cancelConfirm" data-toggle="modal"><button
 															class="btn btn-sm btn-aqua">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
+													<!-- Popup Cofirm -->
+													<div id="cancelConfirm" class="modal fade">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-hidden="true">&times;</button>
+																	<h4 class="modal-title">Bạn muốn hủy đăng ký
+																		tour đã chọn?</h4>
+																	</br> <a href="<c:url value='/cancelreg/${bookTour.relationship}/${tour.idTour}'/>">
+																		<button type="button" class="btn btn-danger">
+																			Có</button>
+																	</a>
+																	<button type="button" class="btn btn-primary"
+																		data-dismiss="modal">Không</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- End Popup Cofirm -->
 												</c:if> <a href="#deleteConfirm" data-toggle="modal"><button
 														class="btn btn-sm btn-danger">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
