@@ -23,7 +23,7 @@ public interface BookTourDao {
 
 	public List<BookTour> registrationInfoByValue(String value, int idTour);
 
-	public void cancelBookTour(int idBT);
+	public void cancelBookTour(int relationship);
 
 	public List<BookTour> listTourByYear(int year);
 

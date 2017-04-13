@@ -153,13 +153,13 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void cancelBookTour(int idBT) {
+	public void cancelBookTour(int relationship) {
 		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(relationship));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
-					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", idBT);
+					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE Relationship = :relationship");
+			query.setParameter("relationship", relationship);
 			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
