@@ -452,14 +452,9 @@ public class ManageRegController {
 
 	// Forward to Edit information of customer booked tour
 	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour) {
+	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		logger.info("Display edit form when admin request!");
-		BookTour bookedTour = bookTourService.searchById(idBT);
-		model.put("cusData", bookedTour);
-		if (tour != null) {
-			model.addAttribute("tour", bookedTour.getTour());
-		}
+		model.put("cusData", bookTourService.searchById(idBT));
 		return "editreginfo";
 	}
 
@@ -480,9 +475,9 @@ public class ManageRegController {
 			return "editreginfo";
 		} else {
 			bookTour.setTour(tour);
-			logger.info("Edit success!");
+			logger.info("Edit registration infomation success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
-			 bookTourService.saveBookTour(bookTour, idTour); 
+			bookTourService.saveBookTour(bookTour, idTour);
 			return "redirect:/registrationlist/{idTour}";
 		}
 	}
