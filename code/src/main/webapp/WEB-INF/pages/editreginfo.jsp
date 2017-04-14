@@ -58,7 +58,7 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
 											class="fa fa-envelope"></i> </span>
-										<s:input placeholder="Nhập số điện thoại" class="form-control"
+										<s:input placeholder="Nhập năm sinh" class="form-control"
 											type="text" path="cusYearOfBirth" />
 									</div>
 								</div>

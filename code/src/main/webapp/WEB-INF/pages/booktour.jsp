@@ -22,11 +22,11 @@
 				<table>
 					<thead>
 						<tr>
+							<th>Tên tour</th>
 							<th>Họ tên</th>
 							<th>Giới tính</th>
 							<th>Số điện thoại</th>
 							<th>Email</th>
-							<th>Số vé</th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -35,11 +35,11 @@
 						<c:forEach items="${registrationList}" var="bookTour">
 							<!-- use subList render list tour to display -->
 							<tr>
+								<td>${bookTour.tour.name}</td>
 								<td>${bookTour.cusName}</td>
 								<td>${bookTour.cusSex}</td>
-								<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-								<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
-								<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+								<td>${bookTour.cusPhone}</td>
+								<td>${bookTour.cusEmail}</td>
 								<td><a
 									href="<c:url value='/booktourdetail/${bookTour.idBT}/${tour.idTour}'/>"><button
 											class="btn btn-sm btn-violet">

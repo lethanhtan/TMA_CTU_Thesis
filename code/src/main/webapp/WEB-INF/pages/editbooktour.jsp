@@ -57,7 +57,7 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
 											class="fa fa-envelope"></i> </span>
-										<s:input placeholder="Nhập số điện thoại" class="form-control"
+										<s:input placeholder="Nhập năm sinh" class="form-control"
 											type="text" path="cusYearOfBirth" />
 									</div>
 								</div>
@@ -113,8 +113,8 @@
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/registrationlist/${idTour}'/>"><button
-										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
+								<button onclick="goBack()" class="btn btn-primary" type="button">Hủy
+									Bỏ</button>
 							</div>
 						</div>
 					</s:form>
