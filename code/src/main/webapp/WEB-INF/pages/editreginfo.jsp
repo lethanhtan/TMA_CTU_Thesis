@@ -12,7 +12,7 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
 						id="createTourForm"
-						action="${pageContext.request.contextPath }/editreginfo/${cusData.idBT}/${idTour}"
+						action="${pageContext.request.contextPath }/editreginfo/${cusData.idBT}/${cusData.tour.idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Cập nhật Thông Tin Khách
@@ -21,7 +21,7 @@
 						</div>
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
-							<c:if test="${tour.fieldName == true}">
+							<c:if test="${cusData.tour.fieldName == true}">
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
@@ -34,7 +34,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${tour.fieldSex == true}">
+							<c:if test="${cusData.tour.fieldSex == true}">
 								<div class="col-sm-4">
 									<label>Giới tính</label>
 									<div class="input-group margin-bottom-20">
@@ -49,7 +49,7 @@
 							</c:if>
 						</div>
 						<div class="row">
-							<c:if test="${tour.fieldYearOfBirth == true}">
+							<c:if test="${cusData.tour.fieldYearOfBirth == true}">
 								<div class="col-sm-5">
 									<label>Năm sinh</label>
 									<!-- Show error -->
@@ -63,7 +63,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${tour.fieldPhone == true}">
+							<c:if test="${cusData.tour.fieldPhone == true}">
 								<div class="col-sm-7">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
@@ -77,7 +77,7 @@
 								</div>
 							</c:if>
 						</div>
-						<c:if test="${tour.fieldIdCard == true}">
+						<c:if test="${cusData.tour.fieldIdCard == true}">
 							<label>Số chứng minh nhân dân</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"><i
@@ -86,7 +86,7 @@
 									class="form-control" type="text" path="cusIdCard" />
 							</div>
 						</c:if>
-						<c:if test="${tour.fieldEmail}">
+						<c:if test="${cusData.tour.fieldEmail}">
 							<label>Email</label>
 							<!-- Show error -->
 							</br>
@@ -98,7 +98,7 @@
 									type="text" path="cusEmail" />
 							</div>
 						</c:if>
-						<c:if test="${tour.fieldAddress == true}">
+						<c:if test="${cusData.tour.fieldAddress == true}">
 							<label>Địa chỉ</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"> <i class="fa fa-home"></i>
