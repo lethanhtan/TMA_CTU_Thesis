@@ -12,24 +12,24 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 public class FilterServiceImpl implements FilterService {
 	@Autowired
 	private FilterDao filterDao;
-	
+
 	@Override
 	public List<BookTour> regListByFilterSex(String filterSex, int idTour) {
 		return this.filterDao.regListByFilterSex(filterSex, idTour);
 	}
-	
-	@Override
-	public List<BookTour> regListByFilterTicket(int filterTicket, int idTour) {
-		return this.filterDao.regListByFilterTicket(filterTicket, idTour);
-	}
-	
+
 	@Override
 	public List<BookTour> cancelListByFilterSex(String filterSex, int idTour) {
 		return this.filterDao.cancelListByFilterSex(filterSex, idTour);
 	}
-	
+
 	@Override
-	public List<BookTour> cancelListByFilterTicket(int filterTicket, int idTour) {
-		return this.filterDao.cancelListByFilterTicket(filterTicket, idTour);
+	public List<BookTour> regListByFilterAge(String filterAge, int idTour) {
+		return this.filterDao.regListByFilterAge(filterAge, idTour);
+	}
+
+	@Override
+	public List<BookTour> cancelListByFilterAge(String filterAge, int idTour) {
+		return this.filterDao.cancelListByFilterAge(filterAge, idTour);
 	}
 }

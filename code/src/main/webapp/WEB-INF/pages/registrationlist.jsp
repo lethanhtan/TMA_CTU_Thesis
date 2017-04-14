@@ -58,7 +58,7 @@
 												method="GET">
 												<select id="filterSex" class="form-control" name="filterSex"
 													onchange="this.form.submit()">
-													<option>Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -68,14 +68,14 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterTicket" class="form-control"
-													name="filterTicket" onchange="this.form.submit()">
-													<option>Số vé</option>
-													<option value="">Tất cả</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
+												<select id="filterAge" class="form-control"
+													name="filterAge" onchange="this.form.submit()">
+													<option selected="selected" disabled="disabled">Tuổi</option>
+													<option value="All">Tất cả</option>
+													<option value="18">Dưới 18</option>
+													<option value="40">Từ 18 - 40</option>
+													<option value="60">Từ 41 - 60</option>
+													<option value="100">Trên 60</option>
 												</select>
 											</form></li>
 									</ul>
@@ -248,7 +248,7 @@
 												method="GET">
 												<select id="filterSex2" class="form-control"
 													name="filterSex2" onchange="this.form.submit()">
-													<option>Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -258,14 +258,14 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterTicket2" class="form-control"
-													name="filterTicket2" onchange="this.form.submit()">
-													<option>Số vé</option>
-													<option value="">Tất cả</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
+												<select id="filterAge2" class="form-control"
+													name="filterAge2" onchange="this.form.submit()">
+													<option selected="selected" disabled="disabled">Tuổi</option>
+													<option value="All">Tất cả</option>
+													<option value="18">Dưới 18</option>
+													<option value="40">Từ 18 - 40</option>
+													<option value="60">Từ 41 - 60</option>
+													<option value="100">Trên 60</option>
 												</select>
 											</form></li>
 									</ul>
