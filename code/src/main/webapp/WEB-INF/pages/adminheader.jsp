@@ -38,6 +38,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 <!-- Template CSS -->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/img/hot-air-balloon.png">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link rel="stylesheet"
