@@ -135,9 +135,9 @@ public class ManageRegController {
 			@RequestParam(required = true, defaultValue = "1", value = "page2") Integer page2,
 			@RequestParam(required = false, value = "numOn2") Integer numOn2,
 			@RequestParam(required = false, value = "filterSex") String filterSex,
-			@RequestParam(required = false, defaultValue = "0", value = "filterTicket") int filterTicket,
+			@RequestParam(required = false, value = "filterAge") String filterAge,
 			@RequestParam(required = false, value = "filterSex2") String filterSex2,
-			@RequestParam(required = false, defaultValue = "0", value = "filterTicket2") int filterTicket2) {
+			@RequestParam(required = false, value = "filterAge2") String filterAge2) {
 		logger.info("Handle when manage register request from admin!");
 		String result = null;
 		try {
@@ -182,7 +182,7 @@ public class ManageRegController {
 				}
 
 				// Search none active ! Update registration list
-				if (valueSearch == null && filterSex == null && filterTicket == 0) {
+				if (valueSearch == null && filterSex == null && filterAge == null) {
 					Integer num = 0;
 					List<BookTour> registrationList = regInfoService.registrationList(idTour);
 					if ((registrationList.size() % numOnPage) == 0) {
@@ -236,9 +236,9 @@ public class ManageRegController {
 				}
 
 				// Filter registration list by number of ticket
-				if (filterTicket != 0) {
+				if (filterAge != null) {
 					Integer num = 0;
-					List<BookTour> regListByTicket = filterService.regListByFilterTicket(filterTicket, idTour);
+					List<BookTour> regListByTicket = filterService.regListByFilterAge(filterAge, idTour);
 					if ((regListByTicket.size() % numOnPage) == 0) {
 						num = regListByTicket.size() / numOnPage;
 					} else {
@@ -291,7 +291,7 @@ public class ManageRegController {
 				}
 
 				// Search none active ! Update cancel registration list
-				if (valueSearch2 == null && filterSex2 == null && filterTicket2 == 0) {
+				if (valueSearch2 == null && filterSex2 == null && filterAge2 == null) {
 					Integer num2 = 0;
 					List<BookTour> cancelList = regInfoService.cancelList(idTour);
 					if ((cancelList.size() % numOnPage2) == 0) {
@@ -345,9 +345,9 @@ public class ManageRegController {
 				}
 
 				// Filter registration list by number of ticket
-				if (filterTicket2 != 0) {
+				if (filterAge2 != null) {
 					Integer num2 = 0;
-					List<BookTour> cancelListByTicket = filterService.cancelListByFilterTicket(filterTicket2, idTour);
+					List<BookTour> cancelListByTicket = filterService.cancelListByFilterAge(filterAge2, idTour);
 					if ((cancelListByTicket.size() % numOnPage2) == 0) {
 						num2 = cancelListByTicket.size() / numOnPage2;
 					} else {

@@ -157,5 +157,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="userfooter.jsp"%>
+<%@ include file="adminfooter.jsp"%>
 <!-- === END FOOTER === -->
