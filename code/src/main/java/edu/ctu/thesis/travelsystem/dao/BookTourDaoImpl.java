@@ -24,7 +24,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 
 	// Save book tour form when have id tour
 	@Override
-	public void saveBookTour(List<BookTour> bookTours, int idTour) {
+	public void saveBookTours(List<BookTour> bookTours, int idTour) {
 		Session session = getCurrentSession();
 		if (bookTours != null) {
 			try {
@@ -34,7 +34,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 					session.saveOrUpdate(bookTour);
 					session.flush();
 				}
-				logger.info("Save book tour be called!");
+				logger.info("Save book tours be called!");
 			} catch (Exception e) {
 				logger.error("Occured ex", e);
 			}
@@ -146,13 +146,13 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	}
 
 	@Override
-	public void cancelBookTour(int relationship) {
+	public void cancelBookTour(int idBT) {
 		Session session = getCurrentSession();
-		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(relationship));
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
-					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE Relationship = :relationship");
-			query.setParameter("relationship", relationship);
+					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE idBT = :idBT");
+			query.setParameter("idBT", idBT);
 			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
@@ -233,5 +233,21 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 			logger.info("Book tour list:" + bookTour);
 		}
 		return bookTourList;
+	}
+
+	// Save book tour form when have id tour
+	@Override
+	public void saveBookTour(BookTour bookTour, int idTour) {
+		Session session = getCurrentSession();
+		if (bookTour != null) {
+			try {
+				logger.info("Save book tour be called!");
+				bookTour.setConfirmCode(ConfirmCode.generateCode(12));
+				session.saveOrUpdate(bookTour);
+				session.flush();
+			} catch (Exception e) {
+				logger.error("Occured ex", e);
+			}
+		}
 	}
 }

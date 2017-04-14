@@ -5,7 +5,7 @@ import java.util.List;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
 public interface BookTourService {
-	public void saveBookTour(List<BookTour> bookTours, int idTour);
+	public void saveBookTours(List<BookTour> bookTours, int idTour);
 
 	public List<BookTour> bookTourList();
 	
@@ -23,7 +23,7 @@ public interface BookTourService {
 
 	public List<BookTour> registrationInfoByValue(String value, int idTour);
 
-	public void cancelBookTour(int relationship);
+	public void cancelBookTour(int idBT);
 
 	public List<BookTour> listTourByYear(int year);
 
@@ -32,4 +32,6 @@ public interface BookTourService {
 	public int getMaxValue();
 	
 	public List<BookTour> bookTourListByRelationship(int relationship);
+	
+	public void saveBookTour(BookTour bookTour, int idTour);
 }

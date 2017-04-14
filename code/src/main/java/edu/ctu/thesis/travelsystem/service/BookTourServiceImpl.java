@@ -16,8 +16,8 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public void saveBookTour(List<BookTour> bookTours, int idTour) {
-		this.bookTourDao.saveBookTour(bookTours, idTour);
+	public void saveBookTours(List<BookTour> bookTours, int idTour) {
+		this.bookTourDao.saveBookTours(bookTours, idTour);
 	}
 
 	@Override
@@ -62,8 +62,8 @@ public class BookTourServiceImpl implements BookTourService {
 
 	@Override
 	@Transactional
-	public void cancelBookTour(int relationship) {
-		this.bookTourDao.cancelBookTour(relationship);
+	public void cancelBookTour(int idBT) {
+		this.bookTourDao.cancelBookTour(idBT);
 	}
 
 	@Override
@@ -80,16 +80,22 @@ public class BookTourServiceImpl implements BookTourService {
 	public List<BookTour> listBookTourById(int idTour) {
 		return this.bookTourDao.listBookTourById(idTour);
 	}
-	
+
 	@Override
 	@Transactional
 	public int getMaxValue() {
 		return this.bookTourDao.getMaxValue();
 	}
-	
+
 	@Override
 	@Transactional
 	public List<BookTour> bookTourListByRelationship(int relationship) {
 		return this.bookTourDao.bookTourListByRelationship(relationship);
+	}
+
+	@Override
+	@Transactional
+	public void saveBookTour(BookTour bookTour, int idTour) {
+		this.bookTourDao.saveBookTour(bookTour, idTour);
 	}
 }
