@@ -233,12 +233,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public void undoCancel(int idBT, int relationship) {
+	public void undoCancel(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
-					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE Relationship = :relationship");
+					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE idBT = :idBT");
+			query.setParameter("idBT", idBT);
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);

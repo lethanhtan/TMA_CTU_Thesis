@@ -92,13 +92,13 @@ public class UserServiceImpl implements UserService {
 	public List<BookTour> myCancelList(int idUser) {
 		return this.userDao.myCancelList(idUser);
 	}
-	
+
 	@Override
 	@Transactional
-	public void undoCancel(int idBT, int relationship) {
-		this.userDao.undoCancel(idBT, relationship);
+	public void undoCancel(int idBT) {
+		this.userDao.undoCancel(idBT);
 	}
-	
+
 	@Override
 	@Transactional
 	public List<BookTour> myBookTourListByValue(String value, int idUser) {

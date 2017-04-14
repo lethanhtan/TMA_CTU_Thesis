@@ -35,7 +35,7 @@ public interface UserDao {
 
 	public List<BookTour> myCancelList(int idUser);
 
-	public void undoCancel(int idBT, int relationship);
+	public void undoCancel(int idBT);
 
 	public List<BookTour> myBookTourListByValue(String value, int idUser);
 
