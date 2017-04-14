@@ -77,6 +77,15 @@
 								</div>
 							</c:if>
 						</div>
+						<c:if test="${tour.fieldIdCard == true}">
+							<label>Số chứng minh nhân dân</label>
+							<div class="input-group margin-bottom-20">
+								<span class="input-group-addon"><i
+									class="fa fa-credit-card"></i> </span>
+								<s:input placeholder="Nhập chứng minh nhân dân"
+									class="form-control" type="text" path="cusIdCard" />
+							</div>
+						</c:if>
 						<c:if test="${tour.fieldEmail}">
 							<label>Email</label>
 							<!-- Show error -->
@@ -98,15 +107,6 @@
 									type="text" path="cusAddress" />
 							</div>
 						</c:if>
-						<c:if test="${tour.fieldIdCard == true}">
-							<label>Số chứng minh nhân dân</label>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"><i
-									class="fa fa-credit-card"></i> </span>
-								<s:input placeholder="Nhập chứng minh nhân dân"
-									class="form-control" type="text" path="cusIdCard" />
-							</div>
-						</c:if>
 						<s:input path="idUser" hidden="true" />
 						<hr>
 						<div class="row">
@@ -124,7 +124,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- === END CONTENT === -->
-	<!-- === BEGIN FOOTER === -->
-	<%@ include file="adminfooter.jsp"%>
-	<!-- === END FOOTER === -->
+</div>
+<!-- === END CONTENT === -->
+<!-- === BEGIN FOOTER === -->
+<%@ include file="adminfooter.jsp"%>
+<!-- === END FOOTER === -->

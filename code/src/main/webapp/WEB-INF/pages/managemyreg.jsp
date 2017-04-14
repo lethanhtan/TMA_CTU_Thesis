@@ -71,12 +71,12 @@
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.cusEmail}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${bookTour.relationship}/${bookTour.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
-												href="<c:url value='/editbooktour/${bookTour.relationship}/${bookTour.tour.idTour}'/>"><button
+												href="<c:url value='/editbooktour/${bookTour.idBT}/${bookTour.tour.idTour}'/>"><button
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
@@ -193,13 +193,13 @@
 											<td>${myCancelReg.cusSex}</td>
 											<td>${myCancelReg.cusPhone}</td>
 											<td><a
-												href="<c:url value='/booktourdetail/${myCancelReg.relationship}/${myCancelReg.tour.idTour}'/>">
+												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
 													<a
-														href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.relationship}'/>"><button
+														href="<c:url value='/undo/${myCancelReg.idBT}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>

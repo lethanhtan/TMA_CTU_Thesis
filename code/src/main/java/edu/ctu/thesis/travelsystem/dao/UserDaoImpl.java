@@ -171,10 +171,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myRegListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
-		Query query = session.createQuery(
-				"FROM BookTour " + "WHERE Id_User = :idUser AND Cus_Cancel = false AND Gone_Or_Not = false "
-						+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)"
-						+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+		Query query = session.createQuery("FROM BookTour "
+				+ "WHERE Id_User = :idUser AND Cus_Cancel = false AND Gone_Or_Not = false "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -188,8 +187,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public List<BookTour> myRegList(int idUser) {
 		Session session = getCurrentSession();
 		Query query = session
-				.createQuery("FROM BookTour WHERE id_user = :idUser AND cus_cancel = false AND gone_or_not = false "
-						+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+				.createQuery("FROM BookTour WHERE id_user = :idUser AND cus_cancel = false AND gone_or_not = false");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myRegList = query.list();
 		for (BookTour bookTour : myRegList) {
@@ -208,8 +206,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public List<BookTour> myCancelListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
 		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true "
-				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)"
-				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -222,8 +219,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myCancelList(int idUser) {
 		Session session = getCurrentSession();
-		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true "
-				+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myCancelList = query.list();
 		for (BookTour bookTour : myCancelList) {
@@ -253,8 +249,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		Session session = getCurrentSession();
 		Query query = session
 				.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true "
-						+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)"
-						+ "GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+						+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -267,8 +262,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myBookTourList(int idUser) {
 		Session session = getCurrentSession();
-		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false "
-				+ "AND GONE_OR_NOT = true GROUP BY relationship HAVING id_bt = MIN(id_bt)");
+		Query query = session
+				.createQuery("FROM BookTour WHERE Id_User = :idUser AND Cus_Cancel = false AND Gone_Or_Not = true");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myBookTourList = query.list();
 		for (BookTour bookTour : myBookTourList) {

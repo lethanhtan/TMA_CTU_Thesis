@@ -310,7 +310,7 @@
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.cusEmail}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${cancelReg.relationship}/${tour.idTour}'/>">
+												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>

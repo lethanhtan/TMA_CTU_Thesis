@@ -45,8 +45,8 @@ public class UserController extends HttpServlet {
 	private UserService userService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
@@ -81,9 +81,8 @@ public class UserController extends HttpServlet {
 		} else { // form input is ok
 			user.setDate(Calendar.getInstance().getTime());
 			userService.saveUser(user);
-			 emailSenderService.SendEmail(user.getEmail(),
-			 MailTemplate.hostMail, MailTemplate.regTitle,
-			 MailTemplate.regBody);
+			emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
+					MailTemplate.regBody);
 			return "redirect:regsuccess";
 		}
 	}
