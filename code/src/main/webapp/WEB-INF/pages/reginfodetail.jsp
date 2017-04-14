@@ -8,96 +8,70 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<!-- Table -->
-				<table>
-					<thead>
-						<tr>
-							<td>Thông tin khách hàng đặt vé</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${bookTourList}" var="bookTour">
+				<form action="" class="signup-page">
+					<!-- Table -->
+					<table>
+						<thead>
 							<tr>
-								<td style="color: #ef5b92;">Thông tin người thứ <c:out
-										value="${bookTourList.indexOf(bookTour) + 1}" /></td>
-								<td></td>
-								<td></td>
+								<td>Thông tin khách hàng đặt vé</td>
 								<td></td>
 							</tr>
+						</thead>
+						<tbody>
 							<tr>
-								<c:if test="${tourData.fieldName == true}">
+								<c:if test="${cusData.tour.fieldName == true}">
 									<td>Họ tên:</td>
-									<td>${bookTour.cusName}</td>
+									<td>${cusData.cusName}</td>
 								</c:if>
-								<c:if test="${tourData.fieldSex == true}">
+							</tr>
+							<tr>
+								<c:if test="${cusData.tour.fieldSex == true}">
 									<td>Giới tính:</td>
-									<td>${bookTour.cusSex}</td>
+									<td>${cusData.cusSex}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${tourData.fieldYearOfBirth == true}">
+								<c:if test="${cusData.tour.fieldYearOfBirth == true}">
 									<td>Năm sinh:</td>
-									<td>${bookTour.cusYearOfBirth}</td>
+									<td>${cusData.cusYearOfBirth}</td>
 								</c:if>
-								<c:if test="${tourData.fieldPhone == true}">
+							</tr>
+							<tr>
+								<c:if test="${cusData.tour.fieldPhone == true}">
 									<td>Số điện thoại:</td>
-									<td>${bookTour.cusPhone}</td>
+									<td>${cusData.cusPhone}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${tourData.fieldIdCard == true}">
+								<c:if test="${cusData.tour.fieldIdCard == true}">
 									<td>Số chứng minh nhân dân:</td>
-									<td>${bookTour.cusIdCard}</td>
-								</c:if>
-								<c:if test="${tourData.fieldEmail == true}">
-									<c:if test="${bookTourList.indexOf(bookTour) == 0}">
-										<td>Địa chỉ email:</td>
-										<td>${bookTour.cusEmail}</td>
-									</c:if>
-								</c:if>
-								<c:if test="${bookTourList.indexOf(bookTour) != 0}">
-									<td></td>
-									<td></td>
+									<td>${cusData.cusIdCard}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${tourData.fieldEmail == true}">
-									<c:if test="${bookTourList.indexOf(bookTour) == 0}">
-										<td>Địa chỉ:</td>
-										<td>${bookTour.cusAddress}</td>
-										<td></td>
-										<td></td>
-									</c:if>
+								<c:if test="${cusData.tour.fieldEmail == true}">
+									<td>Địa chỉ email:</td>
+									<td>${cusData.cusEmail}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
+								<c:if test="${cusData.tour.fieldEmail == true}">
+									<td>Địa chỉ:</td>
+									<td>${cusData.cusAddress}</td>
 									<td></td>
 									<td></td>
-									<td style="color: #ef5b92;">Số lượng:</td>
-									<td style="color: #ef5b92;">${total}</td>
 								</c:if>
 							</tr>
-							<tr>
-								<c:if test="${bookTourList.indexOf(bookTour) + 1 == total}">
-									<td></td>
-									<td></td>
-									<td style="color: #ef5b92;">Tổng tiền:</td>
-									<td style="color: #ef5b92;">${price}<c:out value=" đ" /></td>
-								</c:if>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</form>
 				</br>
 				<!-- End Table -->
 				</br>
 				<div class="row">
 					<div class="col-lg-6 text-center">
-						<a href="<c:url value='/editreginfo/${cusData.relationship}/${idTour}'/>"><button
+						<a
+							href="<c:url value='/editreginfo/${cusData.idBT}/${cusData.tour.idTour}'/>"><button
 								class="btn btn-primary">Chỉnh Sửa</button></a>
 					</div>
 					<div class="col-lg-6 text-center">
