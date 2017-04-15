@@ -95,9 +95,11 @@
 						<div class="row">
 							<c:if test="${tour.fieldName == true}">
 								<div class="col-sm-8">
+									<small style="color:red;">${failedConnect}</small>
+									<br />
 									<label>Họ tên</label>
 									<!-- Show error -->
-									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<br /> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>

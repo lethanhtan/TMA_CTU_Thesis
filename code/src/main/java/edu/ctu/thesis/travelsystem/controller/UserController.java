@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.CheckConnections;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -69,10 +70,17 @@ public class UserController extends HttpServlet {
 		logger.info("Handle register form action when user submit!");
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
-		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		logger.info(gRecaptchaResponse);
-		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		logger.info("Captcha Verify: " + verify);
+		boolean verify = false;
+		if (CheckConnections.checkConnect("https://www.google.com")) {
+			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+			logger.info(gRecaptchaResponse);
+			verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			logger.info("Captcha Verify: " + verify);
+		}
+		else {
+			model.addAttribute("failedConnect", "Không có kết nối internet!");
+			return "register";
+		}
 		if (br.hasErrors()) {
 			return "register";  // form input have error
 		} 
@@ -81,14 +89,21 @@ public class UserController extends HttpServlet {
 			model.addAttribute("errorString", errorString);
 			return "register";
 		} else { // form input is ok
-			user.setDate(Calendar.getInstance().getTime());
-			userService.saveUser(user);
-			String fromAddress = MailTemplate.hostMail;
-			String toAddress = user.getEmail();
-			String subject = MailTemplate.regTitle;
-			String msgBody = MailTemplate.regBody;
-			emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
-			return "redirect:regsuccess";
+			if (CheckConnections.checkConnect("https://www.google.com")) {
+				user.setDate(Calendar.getInstance().getTime());
+				userService.saveUser(user);
+				String fromAddress = MailTemplate.hostMail;
+				String toAddress = user.getEmail();
+				String subject = MailTemplate.regTitle;
+				String msgBody = MailTemplate.regBody;
+				emailSenderService.SendEmail(toAddress, fromAddress, subject, msgBody);
+				
+				return "redirect:regsuccess";
+			}
+			else {
+				model.addAttribute("failedConnect", "Không có kết nối internet!");
+				return "register";
+			}
 		}
 	}
 

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ctu.thesis.travelsystem.extra.CheckConnections;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -147,10 +148,18 @@ public class BookTourController {
 			HttpServletResponse response) throws ServletException, IOException {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
-		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		logger.info(gRecaptchaResponse);
-		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		logger.info("Captcha Verify: " + verify);
+		boolean verify = false;
+		if (CheckConnections.checkConnect("https://www.google.com")) {
+			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+			logger.info(gRecaptchaResponse);
+			verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			logger.info("Captcha Verify: " + verify);
+		}
+		else {
+			logger.info("Internet connect problem!");
+			model.addAttribute("failedConnect", "Không có kết nối internet!");
+			return "booktour";
+		}
 		tour = tourService.findTourById(idTour);
 		if (br.hasErrors()) {
 			logger.info("Tour Info: " + tour);
@@ -171,16 +180,24 @@ public class BookTourController {
 				bookTour.setIdUser(0);
 			}
 		}
-		logger.info("Handle for save booktour!");
-		bookTourService.saveBookTour(bookTour, idTour);
-		model.put("idBT", bookTour.getIdBT());
-		 String fromAddress = MailTemplate.hostMail;
-		 String toAddress = bookTour.getCusEmail();
-		 String subject = MailTemplate.bookSuccessTitle;
-		 String msgBody = MailTemplate.bookSuccessBody;
-		 emailSenderService.SendEmail(toAddress, fromAddress, subject,
-		 msgBody);
-		return "redirect:/booksuccess/{idBT}/{idTour}";
+		if (CheckConnections.checkConnect("https://www.google.com")) {
+			logger.info("Handle for save booktour!");
+			bookTourService.saveBookTour(bookTour, idTour);
+			model.put("idBT", bookTour.getIdBT());
+			 String fromAddress = MailTemplate.hostMail;
+			 String toAddress = bookTour.getCusEmail();
+			 String subject = MailTemplate.bookSuccessTitle;
+			 String msgBody = MailTemplate.bookSuccessBody;
+			 emailSenderService.SendEmail(toAddress, fromAddress, subject,
+			 msgBody);
+			return "redirect:/booksuccess/{idBT}/{idTour}";
+		}
+		else {
+			logger.info("Internet connect problem!");
+			model.addAttribute("failedConnect", "Không có kết nối internet!");
+			return "booktour";
+		}
+		
 	}
 
 	// Forward to Tour detail page
