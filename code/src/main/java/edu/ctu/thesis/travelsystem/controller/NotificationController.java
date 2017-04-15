@@ -45,7 +45,7 @@ public class NotificationController {
 			// send cancel success email
 			return "redirect:/cancelsuccess";
 		} else {
-			model.addAttribute("failed", "Vui lòng nhập chính xác mã xác nhân!");
+			model.addAttribute("failed", "Vui lòng nhập chính xác mã xác nhận!");
 			return "cancelbook";
 		}
 	}

@@ -19,12 +19,6 @@ public class RegInfoServiceImpl implements RegInfoService {
 	public List<BookTour> registrationList(int idTour) {
 		return this.regInfoDao.registrationList(idTour);
 	}
-	
-	@Override
-	@Transactional
-	public Integer getNumBookTour(int idTour) {
-		return this.regInfoDao.getNumBookTour(idTour);
-	}
 
 	@Override
 	@Transactional
@@ -43,23 +37,11 @@ public class RegInfoServiceImpl implements RegInfoService {
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		return this.regInfoDao.cancelListByValue(value, idTour);
 	}
-
-	@Override
-	@Transactional
-	public Integer getNumCancelReg(int idTour) {
-		return this.regInfoDao.getNumCancelReg(idTour);
-	}
 	
 	@Override
 	@Transactional
-	public Integer getNumCancelBySearch(String value, int idTour) {
-		return this.regInfoDao.getNumCancelBySearch(value, idTour);
-	}
-	
-	@Override
-	@Transactional
-	public void undoCancel(int idBT, int idTour) {
-		this.regInfoDao.undoCancel(idBT, idTour);
+	public void undoCancel(int idBT) {
+		this.regInfoDao.undoCancel(idBT);
 	}
 	
 	@Override

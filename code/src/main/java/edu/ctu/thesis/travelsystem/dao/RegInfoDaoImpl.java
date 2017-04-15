@@ -25,8 +25,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> registrationList(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false");
 		query.setParameter("idTour", idTour);
 		List<BookTour> registrationList = query.list();
 		for (BookTour bookTour : registrationList) {
@@ -38,13 +37,6 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			bookTourService.editBookTour(bookTour);
 		}
 		return registrationList;
-	}
-
-	@Override
-	public Integer getNumBookTour(int idTour) {
-		Integer numBookTour = registrationList(idTour).size();
-		logger.info("Number of registration are: " + numBookTour);
-		return numBookTour;
 	}
 
 	@Override
@@ -66,8 +58,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelList(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true");
 		query.setParameter("idTour", idTour);
 		List<BookTour> cancelList = query.list();
 		for (BookTour bookTour : cancelList) {
@@ -79,8 +70,8 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	@Override
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = true "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -89,27 +80,13 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	}
 
 	@Override
-	public Integer getNumCancelReg(int idTour) {
-		Integer numCancelReg = cancelList(idTour).size();
-		logger.info("Number of registration are: " + numCancelReg);
-		return numCancelReg;
-	}
-
-	@Override
-	public Integer getNumCancelBySearch(String value, int idTour) {
-		Integer numCancel = cancelListByValue(value, idTour).size();
-		logger.info("Number of registration are: " + numCancel);
-		return numCancel;
-	}
-
-	@Override
-	public void undoCancel(int idBT, int idTour) {
+	public void undoCancel(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
-					+ "CUS_CANCEL = false," + "TICKET_CANCEL = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", bookTour.getIdBT());
+					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE id_BT = :idBT");
+			query.setParameter("idBT", idBT);
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);

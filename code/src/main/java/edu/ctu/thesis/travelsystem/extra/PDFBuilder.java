@@ -189,9 +189,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
-				table.addCell(getNormalCell(
-						bookTour.getCusName1() + ", " + bookTour.getCusName2() + ", " + bookTour.getCusName3(), SIZE1,
-						font));
 			}
 
 			doc.add(table);

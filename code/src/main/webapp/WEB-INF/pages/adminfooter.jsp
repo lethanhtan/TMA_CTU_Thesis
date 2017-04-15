@@ -14,8 +14,8 @@
 					<li><a
 						href="${pageContext.request.contextPath}/manageregister"
 						target="_blank">Quản lý đăng ký</a></li>
-					<li><a href="${pageContext.request.contextPath}/survey"
-						target="_blank">Khảo sát ý kiến</a></li>
+					<li><a href="${pageContext.request.contextPath}/manageuser"
+						target="_blank">Quản lý tài khoản</a></li>
 				</ul>
 			</div>
 			<div id="copyright" class="col-md-4">
@@ -77,10 +77,6 @@
 <!-- Add commas when typing price -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/addcommas.js"
-	type="text/javascript"></script>
-<!-- Show/ hidden fields -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/showhidefields.js"
 	type="text/javascript"></script>
 <!-- End JS -->
 </body>

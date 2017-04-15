@@ -51,36 +51,6 @@ public class BookTourValidator implements Validator {
 				&& (bookTour.getCusIdCard().length() > 12 || bookTour.getCusIdCard().length() < 9)) {
 			errors.rejectValue("cusIdCard", "Size.cusData.cusIdCard");
 		}
-		// In Customer nam 1 field
-		if (bookTour.getCusNumOfTicket() == 2 && bookTour.getCusName1() != null
-				&& (bookTour.getCusName1().length() > 40 || bookTour.getCusName1().length() < 8)) {
-			errors.rejectValue("cusName1", "Size.cusData.cusName1");
-		}
-		// In Customer nam 2 field
-		if (bookTour.getCusNumOfTicket() == 3 && bookTour.getCusName2() != null
-				&& (bookTour.getCusName2().length() > 40 || bookTour.getCusName2().length() < 8)) {
-			errors.rejectValue("cusName2", "Size.cusData.cusName2");
-		}
-		// In Customer nam 3 field
-		if (bookTour.getCusNumOfTicket() == 4 && bookTour.getCusName3() != null
-				&& (bookTour.getCusName3().length() > 40 || bookTour.getCusName3().length() < 8)) {
-			errors.rejectValue("cusName3", "Size.cusData.cusName3");
-		}
-		// In Customer year of birth 1 field
-		if (bookTour.getCusNumOfTicket() == 2 && bookTour.getCusYearOfBirth1() != null
-				&& (bookTour.getCusYearOfBirth1().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth1", "Size.cusData.cusYearOfBirth1");
-		}
-		// In Customer year of birth 2 field
-		if (bookTour.getCusNumOfTicket() == 3 && bookTour.getCusYearOfBirth2() != null
-				&& (bookTour.getCusYearOfBirth2().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth2", "Size.cusData.cusYearOfBirth2");
-		}
-		// In Customer year of birth 3 field
-		if (bookTour.getCusNumOfTicket() == 4 && bookTour.getCusYearOfBirth3() != null
-				&& (bookTour.getCusYearOfBirth1().length() != 4)) {
-			errors.rejectValue("cusYearOfBirth3", "Size.cusData.cusYearOfBirth3");
-		}
 
 		// Catch characters errors
 		// In Customer phone field
@@ -91,35 +61,11 @@ public class BookTourValidator implements Validator {
 		if (bookTour.getCusIdCard() != null && (validUtil.findAlphabet(bookTour.getCusIdCard()))) {
 			errors.rejectValue("cusIdCard", "Invalid.cusData.cusIdCard");
 		}
-		// In Customer year of birth 1 field
-		if (bookTour.getCusYearOfBirth1() != null && (validUtil.findAlphabet(bookTour.getCusYearOfBirth1()))) {
-			errors.rejectValue("cusYearOfBirth1", "Invalid.cusData.cusYearOfBirth1");
-		}
-		// In Customer year of birth 2 field
-		if (bookTour.getCusYearOfBirth2() != null && (validUtil.findAlphabet(bookTour.getCusYearOfBirth2()))) {
-			errors.rejectValue("cusYearOfBirth2", "Invalid.cusData.cusYearOfBirth2");
-		}
-		// In Customer year of birth 3 field
-		if (bookTour.getCusYearOfBirth3() != null && (validUtil.findAlphabet(bookTour.getCusYearOfBirth3()))) {
-			errors.rejectValue("cusYearOfBirth3", "Invalid.cusData.cusYearOfBirth3");
-		}
 
 		// Catch digit errors
 		// In Customer name field
 		if (bookTour.getCusName() != null && (validUtil.findDigit(bookTour.getCusName()))) {
 			errors.rejectValue("cusName", "Invalid.cusData.cusName");
-		}
-		// In Customer name 1 field
-		if (bookTour.getCusName1() != null && (validUtil.findDigit(bookTour.getCusName1()))) {
-			errors.rejectValue("cusName1", "Invalid.cusData.cusName1");
-		}
-		// In Customer name 2 field
-		if (bookTour.getCusName2() != null && (validUtil.findDigit(bookTour.getCusName2()))) {
-			errors.rejectValue("cusName2", "Invalid.cusData.cusName2");
-		}
-		// In Customer name 3 field
-		if (bookTour.getCusName3() != null && (validUtil.findDigit(bookTour.getCusName3()))) {
-			errors.rejectValue("cusName3", "Invalid.cusData.cusName3");
 		}
 	}
 }

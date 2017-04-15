@@ -54,22 +54,28 @@
 						</div>
 						<div class="row">
 							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox
+										path="fieldYearOfBirth" />Năm sinh</label>
+							</div>
+							<div class="col-lg-6">
+								<label class="checkbox"><s:checkbox path="fieldIdCard" />Số
+									chứng minh nhân dân </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
 								<label class="checkbox"><s:checkbox path="fieldEmail" />Địa
 									chỉ email</label>
 							</div>
 							<div class="col-lg-6">
 								<label class="checkbox"><s:checkbox path="fieldAddress" />Địa
-									chỉ </label>
+									chỉ</label>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-lg-6">
-								<label class="checkbox"><s:checkbox path="fieldIdCard" />Số
-									chứng minh nhân dân </label>
-							</div>
 							<div class="col-lg-8">
 								<label class="checkbox"><input type="checkbox"
-									name="select-all" id="select-all">Chọn tất cả </label>
+									name="select-all" id="select-all">Chọn tất cả</label>
 							</div>
 						</div>
 						<div class="row">

@@ -58,7 +58,8 @@
 												method="GET">
 												<select id="filterSex" class="form-control" name="filterSex"
 													onchange="this.form.submit()">
-													<option value="">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
 												</select>
@@ -67,13 +68,14 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterTicket" class="form-control"
-													name="filterTicket" onchange="this.form.submit()">
-													<option>Số vé</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
+												<select id="filterAge" class="form-control"
+													name="filterAge" onchange="this.form.submit()">
+													<option selected="selected" disabled="disabled">Tuổi</option>
+													<option value="All">Tất cả</option>
+													<option value="18">Dưới 18</option>
+													<option value="40">Từ 18 - 40</option>
+													<option value="60">Từ 41 - 60</option>
+													<option value="100">Trên 60</option>
 												</select>
 											</form></li>
 									</ul>
@@ -87,12 +89,12 @@
 									<label for="selectBookTour"
 										style="text-align: left; margin-left: 70%">Số người
 										đăng ký/ trang:</label> <select id="selectBookTour"
-										class="form-control" name="numOn">
+										class="form-control" name="numOn"
+										onchange="this.form.submit()">
 										<option>5</option>
 										<option>10</option>
 										<option>15</option>
 									</select>
-									<button class="btn btn-aqua">Chọn</button>
 								</form>
 								<!-- End Choose Number For Display -->
 							</div>
@@ -103,9 +105,9 @@
 										<th>STT</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -118,11 +120,11 @@
 											<td>${registrationList.indexOf(bookTour) + 1}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${bookTour.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${bookTour.cusNumOfTicket}&nbsp;&nbsp;&nbsp;</td>
+											<td>${bookTour.cusYearOfBirth}</td>
+											<td>${bookTour.cusPhone}</td>
+											<td>${bookTour.cusEmail}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${bookTour.idBT}/${tour.idTour}'/>">
+												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
@@ -246,7 +248,8 @@
 												method="GET">
 												<select id="filterSex2" class="form-control"
 													name="filterSex2" onchange="this.form.submit()">
-													<option value="">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
 												</select>
@@ -255,13 +258,14 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterTicket2" class="form-control"
-													name="filterTicket2" onchange="this.form.submit()">
-													<option>Số vé</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
+												<select id="filterAge2" class="form-control"
+													name="filterAge2" onchange="this.form.submit()">
+													<option selected="selected" disabled="disabled">Tuổi</option>
+													<option value="All">Tất cả</option>
+													<option value="18">Dưới 18</option>
+													<option value="40">Từ 18 - 40</option>
+													<option value="60">Từ 41 - 60</option>
+													<option value="100">Trên 60</option>
 												</select>
 											</form></li>
 									</ul>
@@ -274,12 +278,12 @@
 									<label for="selectCancelReg"
 										style="text-align: left; margin-left: 70%">Số người
 										hủy đăng ký/ trang:</label> <select id="selectCancelReg"
-										class="form-control" name="numOn2">
+										class="form-control" name="numOn2"
+										onchange="this.form.submit()">
 										<option>5</option>
 										<option>10</option>
 										<option>15</option>
 									</select>
-									<button class="btn btn-aqua">Chọn</button>
 								</form>
 							</div>
 							</br>
@@ -292,7 +296,6 @@
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
 										<th>Email</th>
-										<th>Số vé</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -304,17 +307,16 @@
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusPhone}</td>
-											<td>&nbsp;&nbsp;&nbsp; ${cancelReg.cusEmail}</td>
-											<td>&nbsp;&nbsp;&nbsp;${cancelReg.ticketCancel}&nbsp;&nbsp;&nbsp;</td>
+											<td>${cancelReg.cusPhone}</td>
+											<td>${cancelReg.cusEmail}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${cancelReg.idBT}/${tour.idTour}'/>">
+												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<a
-														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour }'/>"><button
+														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
@@ -359,18 +361,18 @@
 										</c:if>
 										<c:if test="${param.page2 > 1 }">
 											<li><a
-												href="${pageContext.request.contextPath }/cancellist/${tour.idTour}?page=${param.page2 -1}">&laquo;</a>
+												href="${pageContext.request.contextPath }/registrationlist/${tour.idTour}?page=${param.page2 -1}">&laquo;</a>
 											</li>
 										</c:if>
 									</c:if>
 									<c:forEach items="${pageNum2}" var="pageE2">
 										<c:if test="${pageE2 == page2}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/cancellist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
 										</c:if>
 										<c:if test="${pageE2 != page2}">
 											<li><a
-												href="${pageContext.request.contextPath}/cancellist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/registrationlist/${tour.idTour}?page=${pageE2}">${pageE2}</a></li>
 										</c:if>
 									</c:forEach>
 									<c:if test="${numCancelReg/numOnPage2 - param.page2 == 0}">
@@ -378,57 +380,18 @@
 									</c:if>
 									<c:if test="${numCancelReg/numOnPage2 - param.page2 > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/cancellist/${tour.idTour}?page=${page2 + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath }/registrationlist/${tour.idTour}?page=${page2 + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
 							</c:if>
 						</div>
 						<!-- End Pagination -->
-						<!-- Pagination -->
-						<c:if test="${numCancelReg >= 5}">
-							<!-- set active pagination when numTour >= 5 -->
-							<ul class="pagination">
-								<c:if test="${param.page2 != null}">
-									<c:if
-										test="${numCancelReg/5 - param.page2 == numCancelReg/5 - 1}">
-										<li class="disabled"><a href="#">&laquo;</a></li>
-									</c:if>
-									<c:if
-										test="${numCancelReg/5 - param.page2 != numCancelReg/5 - 1}">
-										<li><a
-											href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 -1}">&laquo;</a>
-										</li>
-									</c:if>
-								</c:if>
-								<c:forEach items="${pageNum2}" var="pageE">
-									<c:if test="${pageE2 == param.page2}">
-										<li class="active"><a
-											href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
-									</c:if>
-									<c:if test="${pageE2 != param.page2}">
-										<li><a
-											href="${pageContext.request.contextPath}/cancellist/${tour.idTour }?page=${pageE2}">${pageE2}</a></li>
-									</c:if>
-								</c:forEach>
-								<c:if test="${numCancelReg/5 - param.page2 == 0}">
-									<li class="disabled"><a
-										href="${pageContext.request.contextPath }/canellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
-									</li>
-								</c:if>
-								<c:if test="${numCancelReg/5 - param.page2 > 0}">
-									<li><a
-										href="${pageContext.request.contextPath }/cancellist/${tour.idTour }?page=${param.page2 + 1}">&raquo;</a>
-									</li>
-								</c:if>
-							</ul>
-						</c:if>
 					</div>
-					<!-- End Pagination -->
 				</div>
 			</div>
+			<!-- End Tab v2 -->
 		</div>
-		<!-- End Tab v2 -->
 	</div>
 </div>
 <!-- === END CONTENT === -->

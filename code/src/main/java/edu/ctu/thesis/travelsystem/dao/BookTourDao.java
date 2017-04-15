@@ -5,7 +5,7 @@ import java.util.List;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
 public interface BookTourDao {
-	public void saveBookTour(BookTour bookTour, int idTour);
+	public void saveBookTours(List<BookTour> bookTours, int idTour);
 
 	public List<BookTour> bookTourList();
 
@@ -16,8 +16,6 @@ public interface BookTourDao {
 	public void editBookTour(BookTour bookTour);
 
 	public List<BookTour> registrationListByValue(String value, int idTour);
-
-	public Integer getNumBTBySearch(String value, int idTour);
 
 	public int getNumTicketBooked(int idTour);
 
@@ -30,4 +28,10 @@ public interface BookTourDao {
 	public List<BookTour> listTourByYear(int year);
 
 	public int listBookTourByMonth(int month, List<BookTour> list);
+	
+	public int getMaxValue();
+	
+	public List<BookTour> bookTourListByRelationship(int relationship);
+	
+	public void saveBookTour(BookTour bookTour, int idTour);
 }

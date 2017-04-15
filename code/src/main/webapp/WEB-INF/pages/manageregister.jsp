@@ -38,14 +38,14 @@
 					<div class="row">
 						<form role="form" class="form-inline" action="manageregister"
 							method="get">
-							<label for="selectTour" style="text-align: left; margin-left: 75%">Số
-								tour/ trang:</label> <select id="selectTour" class="form-control"
-								name="numOn">
+							<label for="selectTour"
+								style="text-align: left; margin-left: 80%">Số tour/
+								trang:</label> <select id="selectTour" class="form-control" name="numOn"
+								onchange="this.form.submit()">
 								<option>5</option>
 								<option>10</option>
 								<option>15</option>
 							</select>
-							<button class="btn btn-aqua">Chọn</button>
 						</form>
 					</div>
 					</br>

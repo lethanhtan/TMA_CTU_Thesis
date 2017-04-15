@@ -41,6 +41,7 @@ public class Tour {
 	private boolean fieldAddress = true;
 	private boolean fieldIdCard = false;
 	private boolean fieldNumOfTicket = true;
+	private boolean fieldYearOfBirth = true;
 	private int view;
 	private Schedule schedule;
 
@@ -132,7 +133,7 @@ public class Tour {
 	public String getDetail() {
 		return detail;
 	}
-	
+
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
@@ -274,25 +275,35 @@ public class Tour {
 	public void setFieldNumOfTicket(boolean fieldNumOfTicket) {
 		this.fieldNumOfTicket = fieldNumOfTicket;
 	}
-	
+
+	// Create column Field year of birth
+	@Column(name = "FIELD_YEAROFBIRTH", nullable = false)
+	public boolean getFieldYearOfBirth() {
+		return fieldYearOfBirth;
+	}
+
+	public void setFieldYearOfBirth(boolean fieldYearOfBirth) {
+		this.fieldYearOfBirth = fieldYearOfBirth;
+	}
+
 	@Column(name = "VIEW", nullable = false)
 	public int getView() {
 		return this.view;
 	}
-	
+
 	public void setView(int view) {
 		this.view = view;
 	}
-	
+
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
 	public Schedule getSchedule() {
 		return this.schedule;
 	}
-	
+
 	public void setSchedule(Schedule schedule) {
 		this.schedule = schedule;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return idTour;

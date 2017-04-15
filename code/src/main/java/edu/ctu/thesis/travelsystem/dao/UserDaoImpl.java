@@ -1,6 +1,5 @@
 package edu.ctu.thesis.travelsystem.dao;
 
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -113,13 +112,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return userList;
 	}
 
-	@Override
-	public int getNumUserByValue(String value) {
-		int numUser = userListByValue(value).size();
-		logger.info("Total user: " + numUser);
-		return numUser;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> userList() {
@@ -130,13 +122,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.info("User List:" + user);
 		}
 		return userList;
-	}
-
-	@Override
-	public int getNumUser() {
-		Integer numUser = userList().size();
-		logger.info("Total user: " + numUser);
-		return numUser;
 	}
 
 	@Override
@@ -186,8 +171,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myRegListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = false AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour "
+				+ "WHERE Id_User = :idUser AND Cus_Cancel = false AND Gone_Or_Not = false "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -195,20 +181,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return registrationList;
 	}
 
-	@Override
-	public Integer getMyNumBTBySearch(String value, int idUser) {
-		Integer myNumBT = myRegListByValue(value, idUser).size();
-		logger.info("Number of my registration are: " + myNumBT);
-		return myNumBT;
-	}
-
 	// Display registration list by Id user
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> myRegList(int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = false";
-		Query query = session.createQuery(hql);
+		Query query = session
+				.createQuery("FROM BookTour WHERE id_user = :idUser AND cus_cancel = false AND gone_or_not = false");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myRegList = query.list();
 		for (BookTour bookTour : myRegList) {
@@ -224,17 +203,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public Integer getMyNumBT(int idUser) {
-		Integer myNumBT = myRegList(idUser).size();
-		logger.info("Number of my registration are: " + myNumBT);
-		return myNumBT;
-	}
-
-	@Override
 	public List<BookTour> myCancelListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true "
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -242,20 +214,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return cancelList;
 	}
 
-	@Override
-	public Integer getMyNumCancelBySearch(String value, int idUser) {
-		Integer myNumCancel = myCancelListByValue(value, idUser).size();
-		logger.info("Number of my registration are: " + myNumCancel);
-		return myNumCancel;
-	}
-
 	// Display registration list by Id user
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> myCancelList(int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = true");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myCancelList = query.list();
 		for (BookTour bookTour : myCancelList) {
@@ -265,20 +229,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public Integer getMyNumCancelReg(int idUser) {
-		Integer myNumCancelReg = myCancelList(idUser).size();
-		logger.info("Number of my registration are: " + myNumCancelReg);
-		return myNumCancelReg;
-	}
-
-	@Override
-	public void undoCancel(int idBT, int idTour) {
+	public void undoCancel(int idBT) {
 		Session session = getCurrentSession();
 		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
 		if (bookTour != null) {
 			Query query = session.createQuery("UPDATE BookTour SET " + "CUS_NUMOFTICKET = :cusNumOfTicket,"
-					+ "CUS_CANCEL = false," + "TICKET_CANCEL = 0" + "WHERE ID_BT = :idBT");
-			query.setParameter("idBT", bookTour.getIdBT());
+					+ "CUS_CANCEL = false, TICKET_CANCEL = 0 WHERE idBT = :idBT");
+			query.setParameter("idBT", idBT);
 			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
@@ -290,8 +247,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public List<BookTour> myBookTourListByValue(String value, int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)";
-		Query query = session.createQuery(hql);
+		Query query = session
+				.createQuery("FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true "
+						+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idUser", idUser);
 		query.setParameter("value", "%" + value + "%");
 		@SuppressWarnings("unchecked")
@@ -299,32 +257,18 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return myBookTourList;
 	}
 
-	@Override
-	public Integer getMyNumBookTourBySearch(String value, int idUser) {
-		Integer myNumBookTour = myBookTourListByValue(value, idUser).size();
-		logger.info("Number of my tour gone are: " + myNumBookTour);
-		return myNumBookTour;
-	}
-
 	// Display registration list by Id user
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> myBookTourList(int idUser) {
 		Session session = getCurrentSession();
-		String hql = "FROM BookTour WHERE ID_USER = :idUser AND CUS_CANCEL = false AND GONE_OR_NOT = true";
-		Query query = session.createQuery(hql);
+		Query query = session
+				.createQuery("FROM BookTour WHERE Id_User = :idUser AND Cus_Cancel = false AND Gone_Or_Not = true");
 		query.setParameter("idUser", idUser);
 		List<BookTour> myBookTourList = query.list();
 		for (BookTour bookTour : myBookTourList) {
 			logger.info("My registration List:" + bookTour);
 		}
 		return myBookTourList;
-	}
-
-	@Override
-	public Integer getMyNumBookTour(int idUser) {
-		Integer myNumBookTour = myBookTourList(idUser).size();
-		logger.info("Number of my tour gone are: " + myNumBookTour);
-		return myNumBookTour;
 	}
 }

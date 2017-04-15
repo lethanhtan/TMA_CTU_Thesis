@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Controller
 public class ViewDetailController {
 	
-	private static final Logger logger = Logger.getLogger(CreateTourController.class);
+	private static final Logger logger = Logger.getLogger(ViewDetailController.class);
 	
 	@Autowired
 	private TourService tourService;
@@ -23,8 +24,14 @@ public class ViewDetailController {
 	@RequestMapping(value = "/viewdetail/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable(value = "idTour") int idTour) {
 		logger.info("Show tour detail!");
-		model.addAttribute("tour", tourService.findTourById(idTour));
+		Tour tour = tourService.findTourById(idTour);
 		model.addAttribute("current", new Date());
+		model.addAttribute("img", tour.getImage());
+		model.addAttribute("id", idTour);
+		model.addAttribute("name", tour.getName());
+		model.addAttribute("detail", tour.getDetail());
+		model.addAttribute("tour", tour);
+		tourService.addView(tour);
 		return "viewdetail";
 	}
 }

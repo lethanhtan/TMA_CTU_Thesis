@@ -1,7 +1,7 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="adminheader.jsp"%>
+<%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -30,18 +30,17 @@
 				<div class="row">
 					<form role="form" class="form-inline" action="tourlist"
 						method="get">
-						<label for="selectTour" style="text-align: left; margin-left: 75%">Số
+						<label for="selectTour" style="text-align: left; margin-left: 80%">Số
 							tour/ trang:</label> <select id="selectTour" class="form-control"
-							name="numOn">
+							name="numOn" onchange="this.form.submit()">
 							<option>5</option>
 							<option>10</option>
 							<option>15</option>
 						</select>
-						<button class="btn btn-aqua">Chọn</button>
 					</form>
 				</div>
 				<br />
-				<!-- End Choose Number For Display -->				
+				<!-- End Choose Number For Display -->
 				<!-- Table -->
 				<c:if test="${empty showTourList}">
 					<h1 style="text-align: center;">Không có tour nào!</h1>

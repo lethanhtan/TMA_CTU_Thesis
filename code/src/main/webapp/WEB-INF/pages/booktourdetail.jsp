@@ -8,137 +8,109 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<!-- Book Tour Detail Box -->
-				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" commandName="cusData"
-						action="${pageContext.request.contextPath }/booktourdetail/${cusData.idBT}/${idTour}"
-						method="POST">
-						<div class="signup-header">
-							<h2 style="text-align: center;">Thông Tin Khách Hàng Đặt Vé</h2>
-							</br>
-						</div>
-						<div class="row">
-							<c:if test="${tour.fieldName == true}">
-								<div class="col-sm-8">
-									<label>Họ tên</label>
-									<!-- Show error -->
-									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"><i class="fa fa-font"></i>
-										</span>
-										<s:input class="form-control" path="cusName" disabled="true" />
-									</div>
-								</div>
-							</c:if>
-							<c:if test="${tour.fieldSex == true}">
-								<div class="col-sm-4">
-									<label>Giới tính</label>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i class="fa fa-male"></i>
-										</span>
-										<s:input class="form-control margin-bottom-20" path="cusSex"
-											disabled="true" />
-									</div>
-								</div>
-							</c:if>
-						</div>
-						<div class="row">
-							<c:if test="${tour.fieldPhone == true}">
-								<div class="col-sm-7">
-									<label>Số điện thoại</label>
-									<!-- Show error -->
-									</br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-tablet"></i>
-										</span>
-										<s:input class="form-control" path="cusPhone" disabled="true" />
-									</div>
-								</div>
-							</c:if>
-							<c:if test="${tour.fieldNumOfTicket == true}">
-								<div class="col-sm-5">
-									<label>Số lượng</label>
-									<!-- Show error -->
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-building-o"></i>
-										</span>
-										<s:input class="form-control margin-bottom-20"
-											path="cusNumOfTicket" disabled="true" />
-									</div>
-								</div>
-							</c:if>
-						</div>
-						<c:if test="${cusData.cusNumOfTicket > 1}">
-							<c:forEach var="i" begin="1" end="${cusData.cusNumOfTicket - 1}">
-								<div class="row">
-									<div class="col-sm-8">
-										<label>Họ tên người thứ <c:out value="${i + 1}" /></label>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i class="fa fa-font"></i>
-											</span>
-											<s:input class="form-control" path="cusName${i}"
-												disabled="true" />
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label>Năm sinh</label>
-										<div class="input-group margin-bottom-20">
-											<span class="input-group-addon"> <i
-												class="fa fa-calendar"></i>
-											</span>
-											<s:input class="form-control" path="cusYearOfBirth${i}"
-												disabled="true" />
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</c:if>
-						<c:if test="${tour.fieldEmail}">
-							<label>Email</label>
-							<!-- Show error -->
-							</br>
-							<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-envelope"></i>
-								</span>
-								<s:input class="form-control" path="cusEmail" disabled="true" />
-							</div>
-						</c:if>
-						<c:if test="${tour.fieldAddress == true}">
-							<label>Địa chỉ</label>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i class="fa fa-home"></i>
-								</span>
-								<s:input class="form-control" path="cusAddress" disabled="true" />
-							</div>
-						</c:if>
-						<c:if test="${tour.fieldIdCard == true}">
-							<label>Số chứng minh nhân dân</label>
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-credit-card"></i>
-								</span>
-								<s:input class="form-control" path="cusIdCard" disabled="true" />
-							</div>
-						</c:if>
-						<hr>
-						<div class="row">
-							<div class="col-lg-6 text-center">
-								<a
-									href="<c:url value='/editbooktour/${cusData.idBT}/${idTour}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
-							</div>
-							<div class="col-lg-6 text-center">
-								<button onclick="goBack()" class="btn btn-primary" type="button">Trở
-									Về</button>
-							</div>
-						</div>
-					</s:form>
+				<form class="signup-page">
+					<!-- Table -->
+					<table>
+						<thead>
+							<tr>
+								<td>Thông tin tour</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tên tour:</td>
+								<td>${cusData.tour.name}</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Ngày đi:</td>
+								<td>${cusData.tour.departureDate}</td>
+								<td>Giờ đi:</td>
+								<td>${cusData.tour.departureTime}</td>
+							</tr>
+							<tr>
+								<td>Ngày về:</td>
+								<td>${cusData.tour.returnDate}</td>
+								<td>Giờ về:</td>
+								<td>${cusData.tour.returnTime}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="color: #ef5b92;">Giá vé:</td>
+								<td style="color: #ef5b92;">${price}<c:out value=" đ" /></td>
+							</tr>
+						</tbody>
+					</table>
+					</br>
+					<table>
+						<thead>
+							<tr>
+								<td>Thông tin đặt vé</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<c:if test="${cusData.tour.fieldName == true}">
+									<td>Họ tên:</td>
+									<td>${cusData.cusName}</td>
+								</c:if>
+								<c:if test="${cusData.tour.fieldSex == true}">
+									<td>Giới tính:</td>
+									<td>${cusData.cusSex}</td>
+								</c:if>
+							</tr>
+							<tr>
+								<c:if test="${cusData.tour.fieldYearOfBirth == true}">
+									<td>Năm sinh:</td>
+									<td>${cusData.cusYearOfBirth}</td>
+								</c:if>
+								<c:if test="${cusData.tour.fieldPhone == true}">
+									<td>Số điện thoại:</td>
+									<td>${cusData.cusPhone}</td>
+								</c:if>
+							</tr>
+							<tr>
+								<c:if test="${cusData.tour.fieldIdCard == true}">
+									<td>Số chứng minh nhân dân:</td>
+									<td>${cusData.cusIdCard}</td>
+								</c:if>
+								<c:if test="${cusData.tour.fieldEmail == true}">
+									<td>Địa chỉ email:</td>
+									<td>${cusData.cusEmail}</td>
+								</c:if>
+							</tr>
+							<tr>
+								<c:if test="${cusData.tour.fieldEmail == true}">
+									<td>Địa chỉ:</td>
+									<td>${cusData.cusAddress}</td>
+									<td></td>
+									<td></td>
+								</c:if>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				</br>
+				<!-- End Table -->
+				</br>
+				<div class="row">
+					<div class="col-lg-6 text-center">
+						<a href="<c:url value='/editbooktour/${cusData.idBT}/${idTour}'/>"><button
+								class="btn btn-primary">Chỉnh Sửa</button></a>
+					</div>
+					<div class="col-lg-6 text-center">
+						<button onclick="goBack()" class="btn btn-primary" type="button">Trở
+							Về</button>
+					</div>
 				</div>
-				<!-- End Book Tour Detail Box -->
 			</div>
 		</div>
 	</div>

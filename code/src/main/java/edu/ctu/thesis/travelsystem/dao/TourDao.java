@@ -18,21 +18,11 @@ public interface TourDao {
 	
 	public List<Tour> listTour();
 	
-	public int getNumTour();
-	
-	public int getNumTourByValue(String value);
-
 	public List<Tour> listTourByValue(String value);
 	
 	public List<Tour> listTourByYear(int year);
 	
-	public Integer paginationX(Integer currentPage, Integer page);
-	
-	public Integer paginationY(Integer numOfPage, Integer currentPage, Integer page);
-	
 	public List<Tour> showTourList();
-	
-	public int getNumTourList();
 	
 	public List<Tour> tourListByValue(String value);
 	

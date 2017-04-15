@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Search Form -->
-			<div class="error-404-page text-center" style="margin-left: 650px;">
+			<div class="error-404-page text-center" style="margin-left: 60%;">
 				<form class="form-search search-404">
 					<div class="input-append">
 						<input type="text" class="span2 search-query"
@@ -31,7 +31,7 @@
 				<hr class="margin-vert-20">
 				<!-- Table -->
 				<c:if test="${empty userList}">
-					<h1 style="text-align: center;">Không có tour nào!</h1>
+					<h1 style="text-align: center;">Không có tài khoản nào!</h1>
 				</c:if>
 				<c:if test="${!empty userList}">
 					<!-- Choose Number For Display -->
@@ -39,13 +39,13 @@
 						<form role="form" class="form-inline" action="manageuser"
 							method="get">
 							<label for="selectUser"
-								style="text-align: left; margin-left: 72%">Số tài khoản/
-								trang:</label> <select id="selectUser" class="form-control" name="numOn">
+								style="text-align: left; margin-left: 78%">Số tài khoản/
+								trang:</label> <select id="selectUser" class="form-control" name="numOn"
+								onchange="this.form.submit()">
 								<option>5</option>
 								<option>10</option>
 								<option>15</option>
 							</select>
-							<button class="btn btn-aqua">Chọn</button>
 						</form>
 					</div>
 					</br>
@@ -157,5 +157,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="userfooter.jsp"%>
+<%@ include file="adminfooter.jsp"%>
 <!-- === END FOOTER === -->

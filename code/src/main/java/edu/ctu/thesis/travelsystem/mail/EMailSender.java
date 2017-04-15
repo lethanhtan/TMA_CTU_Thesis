@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.mail;
 
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,8 +14,6 @@ public class EMailSender {
 	@Autowired
 	private MailSender mailSender; // MailSender interface defines a strategy
 										// for sending simple mails
-	@Autowired
-	private JavaMailSenderImpl senderImpl;
  
 	public void SendEmail(String toAddress, String fromAddress, String subject, String msgBody) {
  
@@ -25,11 +25,21 @@ public class EMailSender {
 		mailSender.send(msg);
 	}
 	
-	public void setMailSender(String sender) {
-		senderImpl.setHost(sender);
-	}
-	
-	public void setMailPassword(String password) {
-		senderImpl.setPassword(password);
+	public void manualConfig(String email, String password) {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        
+        //Using gmail
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername(email);
+        mailSender.setPassword(password);
+         
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.starttls.enable", "true");
+        javaMailProperties.put("mail.smtp.auth", "true");
+        javaMailProperties.put("mail.transport.protocol", "smtp");
+        javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
+        
+        mailSender.setJavaMailProperties(javaMailProperties);
 	}
 }
