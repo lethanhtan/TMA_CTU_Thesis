@@ -216,8 +216,14 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	@Override
 	public int getMaxValue() {
 		Session session = getCurrentSession();
+		int max = 1;
 		Query query = session.createQuery("SELECT MAX(relationship) FROM BookTour");
-		int max = (int) query.uniqueResult() + 1;
+		boolean exists = query.setMaxResults(1).uniqueResult() != null;
+		if (exists == false) {
+			max = 1;
+		} else {
+			max = (int) query.uniqueResult() + 1;
+		}
 		logger.info("Max value: " + max);
 		return max;
 	}
