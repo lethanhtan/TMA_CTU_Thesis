@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ import edu.ctu.thesis.travelsystem.service.TourService;
 @Controller
 public class ViewDetailController {
 	
-	private static final Logger logger = Logger.getLogger(CreateTourController.class);
+	private static final Logger logger = Logger.getLogger(ViewDetailController.class);
 	
 	@Autowired
 	private TourService tourService;
@@ -23,6 +25,7 @@ public class ViewDetailController {
 	public String showForm(ModelMap model, @PathVariable(value = "idTour") int idTour) {
 		logger.info("Show tour detail!");
 		Tour tour = tourService.findTourById(idTour);
+		model.addAttribute("current", new Date());
 		model.addAttribute("img", tour.getImage());
 		model.addAttribute("id", idTour);
 		model.addAttribute("name", tour.getName());
