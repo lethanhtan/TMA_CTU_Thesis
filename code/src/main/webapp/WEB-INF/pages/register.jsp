@@ -20,6 +20,8 @@
 									nhập</a>
 							</p>
 						</div>
+						<small style = "color:red;">${failedConnect}</small>
+						<br />
 						<label>Tên tài khoản</label>
 						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
@@ -123,7 +125,7 @@
 						<div style="margin-left: 37px;" class="g-recaptcha"
 							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
 						<!-- End reCAPTCHA -->
-						</br>
+						<br />
 						<hr>
 						<div class="row">
 							<div class="col-lg-8">

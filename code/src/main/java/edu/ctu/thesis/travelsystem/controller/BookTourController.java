@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import edu.ctu.thesis.travelsystem.extra.CheckConnections;
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
 import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
@@ -43,8 +43,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -168,10 +168,17 @@ public class BookTourController {
 			throws ServletException, IOException {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
-		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		logger.info(gRecaptchaResponse);
-		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		logger.info("Captcha Verify: " + verify);
+		boolean verify = false;
+		if (CheckConnections.checkConnect("https://www.google.com")) {
+			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+			logger.info(gRecaptchaResponse);
+			verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			logger.info("Captcha Verify: " + verify);
+		} else {
+			logger.info("Internet connect problem!");
+			model.addAttribute("failedConnect", "Không có kết nối internet!");
+			return "booktour";
+		}
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
 		if (br.hasErrors()) {
@@ -209,13 +216,20 @@ public class BookTourController {
 			}
 			bookTourService.saveBookTours(bookTours, idTour);
 		}
-		logger.info("Handle for save booktour!");
-		model.put("idTour", idTour);
-		model.put("relationship", maxValue);
-		// emailSenderService.SendEmail(bookTour.getCusEmail(),
-		// MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-		// MailTemplate.bookSuccessBody);
-		return "redirect:/booksuccess/{relationship}/{idTour}";
+		if (CheckConnections.checkConnect("https://www.google.com")) {
+			logger.info("Handle for save booktour!");
+			bookTourService.saveBookTour(bookTour, idTour);
+			model.put("idBT", bookTour.getIdBT());
+			//emailSenderService.SendEmail(bookTour.getCusEmail(), "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle, MailTemplate.bookSuccessBody);
+			model.put("idTour", idTour);
+			model.put("relationship", maxValue);
+			// return "redirect:/booksuccess/{idBT}/{idTour}";
+			return "redirect:/booksuccess/{relationship}/{idTour}";
+		} else {
+			logger.info("Internet connect problem!");
+			model.addAttribute("failedConnect", "Không có kết nối internet!");
+			return "booktour";
+		}
 	}
 
 	// Forward to Tour detail page
@@ -277,9 +291,8 @@ public class BookTourController {
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
-		 emailSenderService.SendEmail(bookedTour.getCusEmail(),
-		 MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-		 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 
