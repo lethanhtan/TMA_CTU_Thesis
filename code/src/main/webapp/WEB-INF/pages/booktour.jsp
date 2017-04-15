@@ -121,8 +121,7 @@
 									value="${status.index + 1}: " /></label>
 							<div class="row">
 								<div class="col-sm-8">
-									<small style="color:red;">${failedConnect}</small>
-									<br />
+									<small style="color: red;">${failedConnect}</small> </br>
 									<label>Họ tên</label>
 									<!-- Show error -->
 									</br> <small><s:errors path="info[${status.index}].cusName"
