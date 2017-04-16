@@ -20,10 +20,9 @@
 									nhập</a>
 							</p>
 						</div>
-						<small style = "color:red;">${failedConnect}</small>
-						<br />
+						<small style="color: red;">${failedConnect}</small>
 						<label>Tên tài khoản</label>
-						<br />
+						</br>
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
@@ -45,13 +44,12 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<label>Xác nhận mật khẩu</label>
-								<small Style="color:red">${failedPass}</small>
+								<label>Xác nhận mật khẩu</label> <small Style="color: red">${failedPass}</small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-repeat"></i>
-									</span>
-									<input placeholder="Nhập lại mật khẩu"
-										class="form-control margin-bottom-20" type="password"  name="passwordConfirm" />
+									</span> <input placeholder="Nhập lại mật khẩu"
+										class="form-control margin-bottom-20" type="password"
+										name="passwordConfirm" />
 								</div>
 							</div>
 						</div>
@@ -81,8 +79,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<label>Ngày sinh</label> <br />
-								<small Style="color:red">${failedBirthday}</small>
+								<label>Ngày sinh</label> <br /> <small Style="color: red">${failedBirthday}</small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i
 										class="fa fa-calendar"></i>
@@ -121,11 +118,11 @@
 								class="form-control margin-bottom-20" type="text" path="address" />
 						</div>
 						<!-- reCAPTCHA -->
-						<p style="color:red;">${errorString}</p>
+						<p style="color: red;">${errorString}</p>
 						<div style="margin-left: 37px;" class="g-recaptcha"
 							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
 						<!-- End reCAPTCHA -->
-						<br />
+						</br>
 						<hr>
 						<div class="row">
 							<div class="col-lg-8">

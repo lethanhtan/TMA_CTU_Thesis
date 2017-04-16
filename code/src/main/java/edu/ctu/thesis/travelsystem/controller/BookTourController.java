@@ -193,42 +193,41 @@ public class BookTourController {
 			return "booktour";
 		} else {
 			logger.info("Handle for save booktour!");
-			List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
-			List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
-			for (BookTourInfoVO info : bookTourInfo) {
-				BookTour bookedTour = new BookTour();
-				bookedTour.setTour(tour);
-				bookedTour.setCusName(info.getCusName());
-				bookedTour.setCusSex(info.getCusSex());
-				bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
-				bookedTour.setCusPhone(info.getCusPhone());
-				bookedTour.setCusIdCard(info.getCusIdCard());
-				bookedTour.setCusEmail(info.getCusEmail());
-				bookedTour.setCusAddress(info.getCusAddress());
-				bookedTour.setDateBook(Calendar.getInstance().getTime());
-				bookedTour.setRelationship(maxValue);
-				if (session.getAttribute("idUser") != null) {
-					bookedTour.setIdUser((int) session.getAttribute("idUser"));
-				} else {
-					bookedTour.setIdUser(0);
+			if (CheckConnections.checkConnect("https://www.google.com")) {
+				List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
+				List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
+				for (BookTourInfoVO info : bookTourInfo) {
+					BookTour bookedTour = new BookTour();
+					bookedTour.setTour(tour);
+					bookedTour.setCusName(info.getCusName());
+					bookedTour.setCusSex(info.getCusSex());
+					bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
+					bookedTour.setCusPhone(info.getCusPhone());
+					bookedTour.setCusIdCard(info.getCusIdCard());
+					bookedTour.setCusEmail(info.getCusEmail());
+					bookedTour.setCusAddress(info.getCusAddress());
+					bookedTour.setDateBook(Calendar.getInstance().getTime());
+					bookedTour.setRelationship(maxValue);
+					if (session.getAttribute("idUser") != null) {
+						bookedTour.setIdUser((int) session.getAttribute("idUser"));
+					} else {
+						bookedTour.setIdUser(0);
+					}
+					bookTours.add(bookedTour);
 				}
-				bookTours.add(bookedTour);
+				bookTourService.saveBookTours(bookTours, idTour);
+				logger.info("Handle for save booktour!");
+				model.put("idBT", bookTour.getIdBT());
+				emailSenderService.SendEmail(bookTour.getCusEmail(), "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle,
+						MailTemplate.bookSuccessBody);
+				model.put("idTour", idTour);
+				model.put("relationship", maxValue);
+				return "redirect:/booksuccess/{relationship}/{idTour}";
+			} else {
+				logger.info("Internet connect problem!");
+				model.addAttribute("failedConnect", "Không có kết nối internet!");
+				return "booktour";
 			}
-			bookTourService.saveBookTours(bookTours, idTour);
-		}
-		if (CheckConnections.checkConnect("https://www.google.com")) {
-			logger.info("Handle for save booktour!");
-			bookTourService.saveBookTour(bookTour, idTour);
-			model.put("idBT", bookTour.getIdBT());
-			//emailSenderService.SendEmail(bookTour.getCusEmail(), "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle, MailTemplate.bookSuccessBody);
-			model.put("idTour", idTour);
-			model.put("relationship", maxValue);
-			// return "redirect:/booksuccess/{idBT}/{idTour}";
-			return "redirect:/booksuccess/{relationship}/{idTour}";
-		} else {
-			logger.info("Internet connect problem!");
-			model.addAttribute("failedConnect", "Không có kết nối internet!");
-			return "booktour";
 		}
 	}
 
