@@ -33,6 +33,7 @@ public class EMailSender {
         mailSender.setPort(587);
         mailSender.setUsername(email);
         mailSender.setPassword(password);
+        mailSender.setDefaultEncoding("UTF-8");
          
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");

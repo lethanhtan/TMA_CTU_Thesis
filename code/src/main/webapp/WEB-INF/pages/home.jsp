@@ -117,7 +117,7 @@
 			<c:if test="${!empty tourList}">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
-						<div class="col-md-6 col-sm-6">
+						<div class="col-md-4 col-sm-4 col-xs-6">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
 
@@ -125,29 +125,37 @@
 								<li class="portfolio-item padding-10"><a
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
+
 											<img alt="${tour.image}"
 												src="${pageContext.request.contextPath}/image/${tour.image}">
-											<figcaption>
-												<h3>${tour.name}</h3>
-												<p class="fa fa-eye" style="color: red">${tour.view}</p>
-												<p class="fa fa-calendar" style="color: red">
-													<fmt:formatDate value="${tour.departureDate}"
-														pattern="dd-MM-yyyy" />
-													->
-													 <fmt:formatDate value="${tour.returnDate}"
-														pattern="dd-MM-yyyy" />
-												</p>
+												<!-- 
+											<div class="row">
 												<c:if test="${tour.getDepartureDate().after(current)}">
 													<img alt="new" src="resources/img/new.png" width="20"
-													height="20">
+														height="20">
 												</c:if>
-												<img alt="new"
-													src="resources/img/sale.png" width="20" height="20">
-												<h4 style="color:green;">Giá: ${tour.price}đ</h4>
-												<br /> 
-												<span style="color: white;">${tour.getDetail().substring(0,250)}</span>
-												<span><a href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input class="btn btn-success text-center" type="submit" value="Chi tiết"></a></span>
-												<span><a href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><input class="btn btn-danger text-center" type="submit" value="Đăng ký"></a></span>
+												<img alt="new" src="resources/img/sale.png" width="20"
+													height="20">
+											</div>
+												 -->
+											<figcaption>
+												<h6 style="color:white;">${tour.name}</h6>
+												<p class="fa fa-eye" style="color: blue">${tour.view}</p>
+												<p class="fa fa-calendar" style="color: blue">
+													${tour.departureDate.getDate()} - 
+													<fmt:formatDate value="${tour.returnDate}"
+														pattern="dd/MM/yyyy" />
+												</p>
+												<h5 style="color: blue;">Giá: ${tour.price}đ</h5>
+												<div class="text-center">
+												<span><a
+													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input
+														class="btn btn-success text-center" type="submit"
+														value="Chi tiết"></a></span> <span><a
+													href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><input
+														class="btn btn-danger text-center" type="submit"
+														value="Đăng ký"></a></span>
+												</div>
 											</figcaption>
 										</figure>
 								</a></li>
@@ -161,42 +169,42 @@
 			</c:if>
 		</div>
 		<div class="text-center">
-					<!-- Pagination -->
-					<c:if test="${numTour > numOnPage}">
-						<!-- Paging when number of element > number of tour -->
-						<!-- set active pagination when numTour >= 5 -->
-						<ul class="pagination">
-							<c:if test="${param.page != null}">
-								<c:if test="${param.page == 1}">
-									<li class="disabled"></li>
-								</c:if>
-								<c:if test="${param.page > 1 }">
-									<li><a
-										href="${pageContext.request.contextPath }/home?page=${param.page -1}">&laquo;</a>
-									</li>
-								</c:if>
-							</c:if>
-							<c:forEach items="${pageNum}" var="pageE">
-								<c:if test="${pageE == page}">
-									<li class="active"><a
-										href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
-								</c:if>
-								<c:if test="${pageE != page}">
-									<li><a
-										href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
-								</c:if>
-							</c:forEach>
-							<c:if test="${numTour/numOnPage - param.page == 0}">
-								<li class="disabled"></li>
-							</c:if>
-							<c:if test="${numTour/numOnPage - param.page > 0}">
-								<li><a
-									href="${pageContext.request.contextPath }/home?page=${page + 1}">&raquo;</a></li>
-							</c:if>
-						</ul>
+			<!-- Pagination -->
+			<c:if test="${numTour > numOnPage}">
+				<!-- Paging when number of element > number of tour -->
+				<!-- set active pagination when numTour >= 5 -->
+				<ul class="pagination">
+					<c:if test="${param.page != null}">
+						<c:if test="${param.page == 1}">
+							<li class="disabled"></li>
+						</c:if>
+						<c:if test="${param.page > 1 }">
+							<li><a
+								href="${pageContext.request.contextPath }/home?page=${param.page -1}">&laquo;</a>
+							</li>
+						</c:if>
 					</c:if>
-				</div>
-				<!-- End Pagination -->
+					<c:forEach items="${pageNum}" var="pageE">
+						<c:if test="${pageE == page}">
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
+						</c:if>
+						<c:if test="${pageE != page}">
+							<li><a
+								href="${pageContext.request.contextPath}/home?page=${pageE}">${pageE}</a></li>
+						</c:if>
+					</c:forEach>
+					<c:if test="${numTour/numOnPage - param.page == 0}">
+						<li class="disabled"></li>
+					</c:if>
+					<c:if test="${numTour/numOnPage - param.page > 0}">
+						<li><a
+							href="${pageContext.request.contextPath }/home?page=${page + 1}">&raquo;</a></li>
+					</c:if>
+				</ul>
+			</c:if>
+		</div>
+		<!-- End Pagination -->
 	</div>
 	<div class="container background-white">
 		<div class="row padding-vert-40">
