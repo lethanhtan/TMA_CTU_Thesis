@@ -127,6 +127,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/duplicatefield.js"
 	type="text/javascript"></script>
+<!-- Keep selected tab on page refresh -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/tabcurrent.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>
