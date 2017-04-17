@@ -447,6 +447,8 @@ public class ManageRegController {
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT) {
 		logger.info("Show registration infomation!");
 		model.put("cusData", bookTourService.searchById(idBT));
+		int re = bookTourService.searchById(idBT).getRelationship();
+		model.put("register", regInfoService.getFirstElement(re));
 		return "reginfodetail";
 	}
 

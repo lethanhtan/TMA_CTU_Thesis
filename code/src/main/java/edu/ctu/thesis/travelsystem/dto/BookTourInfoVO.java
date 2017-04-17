@@ -19,6 +19,8 @@ public class BookTourInfoVO {
 	private boolean goneOrNot;
 	private String confirmCode;
 	private int relationship;
+	private String relation;
+	private String whoIsRegistered;
 
 	public int getIdBT() {
 		return idBT;
@@ -139,12 +141,28 @@ public class BookTourInfoVO {
 	public void setConfirmCode(String confirmCode) {
 		this.confirmCode = confirmCode;
 	}
-	
+
 	public int getRelationship() {
 		return relationship;
 	}
 
 	public void setRelationship(int relationship) {
 		this.relationship = relationship;
+	}
+
+	public String getRelation() {
+		return relation;
+	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
+	public String getWhoIsRegistered() {
+		return this.whoIsRegistered;
+	}
+
+	public void setWhoIsRegistered(String whoIsRegistered) {
+		this.whoIsRegistered = whoIsRegistered;
 	}
 }

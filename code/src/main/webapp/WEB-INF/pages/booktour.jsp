@@ -121,16 +121,17 @@
 									value="${status.index + 1}: " /></label>
 							<div class="row">
 								<div class="col-sm-8">
-									<small style="color: red;">${failedConnect}</small> </br>
-									<label>Họ tên</label>
+									<small style="color: red;">${failedConnect}</small> <label>Họ
+										tên</label>
 									<!-- Show error -->
 									</br> <small><s:errors path="info[${status.index}].cusName"
 											cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
-										<s:input placeholder="Nhập họ tên" class="form-control"
-											type="text" path="info[${status.index}].cusName" />
+										<s:input id="singleStakesBox" placeholder="Nhập họ tên"
+											class="form-control" type="text"
+											path="info[${status.index}].cusName" />
 									</div>
 								</div>
 								<div class="col-sm-4">
@@ -147,8 +148,8 @@
 								</div>
 							</div>
 							<div class="row">
-								<c:if test="${tour.fieldYearOfBirth == true}">
-									<div class="col-sm-5">
+								<c:if test="${tour.fieldYearOfBirth}">
+									<div class="col-sm-6">
 										<label>Năm sinh</label>
 										<!-- Show error -->
 										</br> <small><s:errors path="info[${status.index}].cusName"
@@ -162,8 +163,8 @@
 										</div>
 									</div>
 								</c:if>
-								<c:if test="${tour.fieldPhone == true}">
-									<div class="col-sm-7">
+								<c:if test="${status.index == 0}">
+									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
 										</br> <small><s:errors
@@ -177,75 +178,114 @@
 												path="info[${status.index}].cusPhone" />
 										</div>
 									</div>
-								</c:if>
 							</div>
-							<c:if test="${tour.fieldIdCard}">
-								<label>Số chứng minh nhân dân</label>
-								<!-- Show error -->
-								</br>
-								<small><s:errors path="info[${status.index}].cusIdCard"
-										cssStyle="color:red;" /></small>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-credit-card"></i>
-									</span>
-									<s:input placeholder="Nhập số chứng minh nhân dân"
-										class="form-control" type="text"
-										path="info[${status.index}].cusIdCard" />
-								</div>
-							</c:if>
-							<c:if test="${status.index == 0}">
-								<c:if test="${tour.fieldEmail}">
-									<label>Email</label>
-									<!-- Show error -->
-									</br>
-									<small><s:errors path="info[${status.index}].cusEmail"
-											cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-envelope"></i>
-										</span>
-										<s:input placeholder="Nhập email" class="form-control"
-											type="text" path="info[${status.index}].cusEmail" />
-									</div>
-								</c:if>
-								<c:if test="${tour.fieldAddress}">
-									<label>Địa chỉ</label>
-									<!-- Show error -->
-									</br>
-									<small><s:errors
-											path="info[${status.index}].cusAddress" cssStyle="color:red;" /></small>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i class="fa fa-home"></i>
-										</span>
-										<s:input placeholder="Nhập địa chỉ" class="form-control"
-											type="text" path="info[${status.index}].cusAddress" />
-									</div>
-								</c:if>
-							</c:if>
-							<hr>
-						</c:forEach>
-						<!-- reCAPTCHA -->
-						<p style="color: red;">${errorString}</p>
-						<div style="margin-left: 37px;" class="g-recaptcha"
-							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
-						</br>
-						<!-- End reCAPTCHA -->
-						<div class="row">
-							<div class="col-lg-6 text-center">
-								<button class="btn btn-primary" type="submit">Đăng Ký</button>
-							</div>
-							<div class="col-lg-6 text-center">
-								<a href="${pageContext.request.contextPath}/tourlist"><button
-										class="btn btn-primary" type="button">Trở về</button></a>
-							</div>
-						</div>
-					</s:form>
+			</c:if>
+			<s:input class="stakebox" id="stakebox" data-stake="stakebox"
+				path="info[${status.index}].whoIsRegistered" hidden="true" />
+			<c:if test="${status.index != 0}">
+				<div class="col-sm-6">
+					<label>Mối quan hệ</label>
+					<!-- Show error -->
+					</br> <small><s:errors path="info[${status.index}].relation"
+							cssStyle="color:red;" /></small>
+					<div class="input-group margin-bottom-20">
+						<span class="input-group-addon"> <i class="fa fa-mobile"></i>
+						</span>
+						<s:select class="form-control margin-bottom-20"
+							path="info[${status.index}].relation">
+							<option>Cha</option>
+							<option>Mẹ</option>
+							<option>Vợ</option>
+							<option>Chồng</option>
+							<option>Ông</option>
+							<option>Bà</option>
+							<option>Anh</option>
+							<option>Chị</option>
+							<option>Em</option>
+							<option>Khác</option>
+						</s:select>
+					</div>
+				</div>
+		</div>
+		<c:if test="${tour.fieldPhone}">
+			<label>Số điện thoại</label>
+			<!-- Show error -->
+			</br>
+			<small><s:errors path="info[${status.index}].cusPhone"
+					cssStyle="color:red;" /></small>
+			<div class="input-group margin-bottom-20">
+				<span class="input-group-addon"> <i class="fa fa-mobile"></i>
+				</span>
+				<s:input placeholder="Nhập số điện thoại" class="form-control"
+					type="text" path="info[${status.index}].cusPhone" />
+			</div>
+		</c:if>
+		</c:if>
+		<c:if test="${tour.fieldIdCard}">
+			<label>Số chứng minh nhân dân</label>
+			<!-- Show error -->
+			</br>
+			<small><s:errors path="info[${status.index}].cusIdCard"
+					cssStyle="color:red;" /></small>
+			<div class="input-group margin-bottom-20">
+				<span class="input-group-addon"> <i class="fa fa-credit-card"></i>
+				</span>
+				<s:input placeholder="Nhập số chứng minh nhân dân"
+					class="form-control" type="text"
+					path="info[${status.index}].cusIdCard" />
+			</div>
+		</c:if>
+		<c:if test="${status.index == 0}">
+			<c:if test="${tour.fieldEmail}">
+				<label>Email</label>
+				<!-- Show error -->
+				</br>
+				<small><s:errors path="info[${status.index}].cusEmail"
+						cssStyle="color:red;" /></small>
+				<div class="input-group margin-bottom-20">
+					<span class="input-group-addon"> <i class="fa fa-envelope"></i>
+					</span>
+					<s:input placeholder="Nhập email" class="form-control" type="text"
+						path="info[${status.index}].cusEmail" />
 				</div>
 			</c:if>
-			<!-- End Book Tour Box -->
+			<c:if test="${tour.fieldAddress}">
+				<label>Địa chỉ</label>
+				<!-- Show error -->
+				</br>
+				<small><s:errors path="info[${status.index}].cusAddress"
+						cssStyle="color:red;" /></small>
+				<div class="input-group margin-bottom-20">
+					<span class="input-group-addon"> <i class="fa fa-home"></i>
+					</span>
+					<s:input placeholder="Nhập địa chỉ" class="form-control"
+						type="text" path="info[${status.index}].cusAddress" />
+				</div>
+			</c:if>
+		</c:if>
+		<hr>
+		</c:forEach>
+		<!-- reCAPTCHA -->
+		<p style="color: red;">${errorString}</p>
+		<div style="margin-left: 37px;" class="g-recaptcha"
+			data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+		</br>
+		<!-- End reCAPTCHA -->
+		<div class="row">
+			<div class="col-lg-6 text-center">
+				<button class="btn btn-primary" type="submit">Đăng Ký</button>
+			</div>
+			<div class="col-lg-6 text-center">
+				<a href="${pageContext.request.contextPath}/tourlist"><button
+						class="btn btn-primary" type="button">Trở về</button></a>
+			</div>
 		</div>
+		</s:form>
 	</div>
+	</c:if>
+	<!-- End Book Tour Box -->
+</div>
+</div>
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->

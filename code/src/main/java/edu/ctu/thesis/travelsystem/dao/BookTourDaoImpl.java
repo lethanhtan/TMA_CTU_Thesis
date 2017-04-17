@@ -77,10 +77,11 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	public List<BookTour> registrationListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
 		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false "
-				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value");
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", "%" + value + "%");
-		return query.list();
+		List<BookTour> regList = query.list();
+		return regList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -137,7 +138,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 	public List<BookTour> registrationInfoByValue(String value, int idTour) {
 		Session session = getCurrentSession();
 		Query query = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour AND CUS_CANCEL = false "
-				+ "AND (CUS_EMAIL = :value OR CUS_PHONE = :value OR CUS_IDCARD = :value)");
+				+ "AND (cusName LIKE :value OR cusEmail LIKE :value OR cusPhone LIKE :value OR cusIdCard LIKE :value)");
 		query.setParameter("idTour", idTour);
 		query.setParameter("value", value);
 		@SuppressWarnings("unchecked")

@@ -9,7 +9,7 @@
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
 			<div class="tabs alternative">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
 					<li><a href="#cancellist" data-toggle="tab">Danh Sách Hủy</a></li>
@@ -108,7 +108,7 @@
 										<th>Giới tính</th>
 										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
-										<th>Đi cùng</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -123,14 +123,7 @@
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
 											<td>${bookTour.cusPhone}</td>
-											<c:if
-												test="${registrationList[loop.index].relationship == registrationList[loop.index - 1].relationship}">
-												<td>${registrationList[loop.index - 1].cusName}</td>
-											</c:if>
-											<c:if
-												test="${registrationList[loop.index].relationship != registrationList[loop.index - 1].relationship}">
-												<td></td>
-											</c:if>
+											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -304,27 +297,21 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Đi cùng</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${cancelList.subList(x2,y2)}" var="cancelReg">
+									<c:forEach items="${cancelList.subList(x2,y2)}" var="cancelReg"
+										varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
 											<td>${cancelReg.cusPhone}</td>
-											<c:if
-												test="${cancelList[loop.index].relationship == cancelList[loop.index - 1].relationship}">
-												<td>${cancelList[loop.index - 1].cusName}</td>
-											</c:if>
-											<c:if
-												test="${cancelList[loop.index].relationship != cancelList[loop.index - 1].relationship}">
-												<td></td>
-											</c:if>
+											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">

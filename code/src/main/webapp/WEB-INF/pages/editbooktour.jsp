@@ -20,7 +20,7 @@
 						</div>
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
-							<c:if test="${cusData.tour.fieldName == true}">
+							<c:if test="${cusData.tour.fieldName}">
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
@@ -33,7 +33,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${cusData.tour.fieldSex == true}">
+							<c:if test="${cusData.tour.fieldSex}">
 								<div class="col-sm-4">
 									<label>Giới tính</label>
 									<div class="input-group margin-bottom-20">
@@ -48,7 +48,7 @@
 							</c:if>
 						</div>
 						<div class="row">
-							<c:if test="${cusData.tour.fieldYearOfBirth == true}">
+							<c:if test="${cusData.tour.fieldYearOfBirth}">
 								<div class="col-sm-5">
 									<label>Năm sinh</label>
 									<!-- Show error -->
@@ -62,7 +62,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${cusData.tour.fieldPhone == true}">
+							<c:if test="${cusData.tour.fieldPhone}">
 								<div class="col-sm-7">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
@@ -76,7 +76,7 @@
 								</div>
 							</c:if>
 						</div>
-						<c:if test="${cusData.tour.fieldIdCard == true}">
+						<c:if test="${cusData.tour.fieldIdCard}">
 							<label>Số chứng minh nhân dân</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"><i
@@ -85,7 +85,7 @@
 									class="form-control" type="text" path="cusIdCard" />
 							</div>
 						</c:if>
-						<c:if test="${cusData.tour.fieldEmail}">
+						<c:if test="${!empty cusData.cusEmail}">
 							<label>Email</label>
 							<!-- Show error -->
 							</br>
@@ -97,7 +97,7 @@
 									type="text" path="cusEmail" />
 							</div>
 						</c:if>
-						<c:if test="${cusData.tour.fieldAddress == true}">
+						<c:if test="${!empty cusData.cusAddress}">
 							<label>Địa chỉ</label>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"> <i class="fa fa-home"></i>
@@ -107,6 +107,7 @@
 							</div>
 						</c:if>
 						<s:input path="idUser" hidden="true" />
+						<s:input path="whoIsRegistered" hidden="true" />
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
