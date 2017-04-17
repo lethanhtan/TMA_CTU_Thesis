@@ -43,8 +43,8 @@ public class ManageRegController {
 	@Autowired
 	private FilterService filterService;
 
-	private static int numOnPage = 5;
-	private static int numOnPage2 = 5;
+	private static int numOnPage = 10;
+	private static int numOnPage2 = 10;
 
 	private static final Logger logger = Logger.getLogger(ManageRegController.class);
 

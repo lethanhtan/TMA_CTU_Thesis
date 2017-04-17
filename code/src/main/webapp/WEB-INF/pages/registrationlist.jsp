@@ -58,7 +58,8 @@
 												method="GET">
 												<select id="filterSex" class="form-control" name="filterSex"
 													onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới
+														tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -68,8 +69,8 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterAge" class="form-control"
-													name="filterAge" onchange="this.form.submit()">
+												<select id="filterAge" class="form-control" name="filterAge"
+													onchange="this.form.submit()">
 													<option selected="selected" disabled="disabled">Tuổi</option>
 													<option value="All">Tất cả</option>
 													<option value="18">Dưới 18</option>
@@ -107,14 +108,14 @@
 										<th>Giới tính</th>
 										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
+										<th>Đi cùng</th>
 										<th></th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${registrationList.subList(x,y)}"
-										var="bookTour">
+										var="bookTour" varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
 											<td>${registrationList.indexOf(bookTour) + 1}</td>
@@ -122,7 +123,14 @@
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
 											<td>${bookTour.cusPhone}</td>
-											<td>${bookTour.cusEmail}</td>
+											<c:if
+												test="${registrationList[loop.index].relationship == registrationList[loop.index - 1].relationship}">
+												<td>${registrationList[loop.index - 1].cusName}</td>
+											</c:if>
+											<c:if
+												test="${registrationList[loop.index].relationship != registrationList[loop.index - 1].relationship}">
+												<td></td>
+											</c:if>
 											<td><a
 												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -248,7 +256,8 @@
 												method="GET">
 												<select id="filterSex2" class="form-control"
 													name="filterSex2" onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới
+														tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -295,7 +304,7 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
+										<th>Đi cùng</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -308,7 +317,14 @@
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
 											<td>${cancelReg.cusPhone}</td>
-											<td>${cancelReg.cusEmail}</td>
+											<c:if
+												test="${cancelList[loop.index].relationship == cancelList[loop.index - 1].relationship}">
+												<td>${cancelList[loop.index - 1].cusName}</td>
+											</c:if>
+											<c:if
+												test="${cancelList[loop.index].relationship != cancelList[loop.index - 1].relationship}">
+												<td></td>
+											</c:if>
 											<td><a
 												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
