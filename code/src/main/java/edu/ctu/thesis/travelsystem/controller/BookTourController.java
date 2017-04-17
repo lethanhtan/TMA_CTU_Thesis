@@ -284,6 +284,7 @@ public class BookTourController {
 			if (session.getAttribute("idUser") != null) {
 				bookTour.setIdUser((int) session.getAttribute("idUser"));
 				bookTourService.editBookTour(bookTour);
+				model.addAttribute("idUser", bookTour.getIdUser());
 				return "redirect:/managemyreg/{idUser}";
 			} else {
 				bookTour.setIdUser(0);
