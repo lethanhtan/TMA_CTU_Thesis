@@ -51,16 +51,26 @@
 							<tr>
 								<c:if test="${cusData.tour.fieldEmail == true}">
 									<td>Địa chỉ email:</td>
-									<td>${cusData.cusEmail}</td>
+									<td>${register.cusEmail}</td>
 								</c:if>
 							</tr>
 							<tr>
 								<c:if test="${cusData.tour.fieldEmail == true}">
 									<td>Địa chỉ:</td>
-									<td>${cusData.cusAddress}</td>
-									<td></td>
-									<td></td>
+									<td>${register.cusAddress}</td>
 								</c:if>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Được đăng ký bởi:</td>
+								<td>${cusData.whoIsRegistered}</td>
+							</tr>
+							<tr>
+								<td>Mối quan hệ với người đăng ký:</td>
+								<td>${cusData.relation}</td>
 							</tr>
 						</tbody>
 					</table>

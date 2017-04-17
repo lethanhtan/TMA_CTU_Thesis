@@ -18,4 +18,6 @@ public interface RegInfoDao {
 	public void addFieldOption(String name, String type);
 
 	public void dropFieldOption(String name);
+	
+	public BookTour getFirstElement(int relationship);
 }

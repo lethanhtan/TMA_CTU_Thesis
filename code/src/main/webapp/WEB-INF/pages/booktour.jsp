@@ -234,7 +234,7 @@
 										<span class="input-group-addon"> <i
 											class="fa fa-envelope"></i>
 										</span>
-										<s:input id="singleInputEmail" placeholder="Nhập email"
+										<s:input placeholder="Nhập email"
 											class="form-control" type="text"
 											path="info[${status.index}].cusEmail" />
 									</div>
@@ -248,21 +248,9 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-home"></i>
 										</span>
-										<s:input id="singleStakesBox" placeholder="Nhập địa chỉ"
-											class="form-control" type="text"
-											path="info[${status.index}].cusAddress" />
+										<s:input placeholder="Nhập địa chỉ" class="form-control"
+											type="text" path="info[${status.index}].cusAddress" />
 									</div>
-								</c:if>
-							</c:if>
-							<c:if test="${status.index > 0}">
-								<c:if test="${tour.fieldEmail}">
-									<s:input class="stakebox" id="stakebox"
-										data-stake="stakebox" path="info[${status.index}].cusEmail" />
-								</c:if>
-								<c:if test="${tour.fieldAddress}">
-									<s:input class="stakebox" id="stakebox"
-										data-stake="stakebox"
-										path="info[${status.index}].cusAddress" />
 								</c:if>
 							</c:if>
 							<hr>
