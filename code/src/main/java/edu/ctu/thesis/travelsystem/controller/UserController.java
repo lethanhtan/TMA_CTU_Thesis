@@ -46,11 +46,14 @@ public class UserController extends HttpServlet {
 	private UserService userService;
 	@Autowired
 	private BookTourService bookTourService;
-	@Autowired
-	private EMailSender emailSenderService;
+	 @Autowired
+	 private EMailSender emailSenderService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
+	private static int numOnPage = 10;
+	private static int numOnPage2 = 10;
+	private static int numOnPage3 = 10;
 
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -74,8 +77,7 @@ public class UserController extends HttpServlet {
 			logger.info(gRecaptchaResponse);
 			verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 			logger.info("Captcha Verify: " + verify);
-		}
-		else {
+		} else {
 			model.addAttribute("failedConnect", "Không có kết nối internet!");
 			return "register";
 		}
@@ -88,13 +90,13 @@ public class UserController extends HttpServlet {
 			return "register";
 		} else { // form input is ok
 			if (CheckConnections.checkConnect("https://www.google.com")) {
-				emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
-						MailTemplate.regBody);
+				 emailSenderService.SendEmail(user.getEmail(),
+				 MailTemplate.hostMail, MailTemplate.regTitle,
+				 MailTemplate.regBody);
 				user.setDate(Calendar.getInstance().getTime());
 				userService.saveUser(user);
 				return "redirect:regsuccess";
-			}
-			else {
+			} else {
 				model.addAttribute("failedConnect", "Không có kết nối internet!");
 				return "register";
 			}
@@ -202,22 +204,32 @@ public class UserController extends HttpServlet {
 	public String myRegList(ModelMap model, HttpSession session, @PathVariable("idUser") int idUser,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
+			@RequestParam(required = false, value = "numOn") Integer numOn,
 			@RequestParam(required = false, value = "valueSearch2") String valueSearch2,
 			@RequestParam(required = true, defaultValue = "1", value = "page2") Integer page2,
+			@RequestParam(required = false, value = "numOn2") Integer numOn2,
 			@RequestParam(required = false, value = "valueSearch3") String valueSearch3,
-			@RequestParam(required = true, defaultValue = "1", value = "page3") Integer page3) {
+			@RequestParam(required = true, defaultValue = "1", value = "page3") Integer page3,
+			@RequestParam(required = false, value = "numOn3") Integer numOn3) {
 		logger.info("Handle when manage register request from admin!");
 		String result;
 		try {
 			// Display registration list
 			model.addAttribute("searchedValue", valueSearch);
+			try {
+				if (!numOn.equals(null)) {
+					numOnPage = numOn; // numOn
+				}
+			} catch (Exception e) {
+				logger.info("None select number of tour on page!");
+			}
 			if (valueSearch != null) {
 				Integer num = 0;
 				List<BookTour> myRegList = userService.myRegListByValue(valueSearch, idUser);
-				if ((myRegList.size() % 5) == 0) {
-					num = myRegList.size() / 5;
+				if (myRegList.size() == 0) {
+					num = myRegList.size() / numOnPage;
 				} else {
-					num = (myRegList.size() / 5) + 1;
+					num = (myRegList.size() / numOnPage) + 1;
 				}
 				if (page <= num) {
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
@@ -226,9 +238,11 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myRegList", myRegList);
 					model.addAttribute("myNumBT", myRegList.size());
 					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
 					model.addAttribute("pageE", new ArrayList<Integer>()); // create
-					model.addAttribute("x", Pagination.paginationX(page, 5));
-					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, 5));
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, numOnPage));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -236,21 +250,22 @@ public class UserController extends HttpServlet {
 			} else { // search none active ! Update list tour
 				Integer num = 0;
 				List<BookTour> myRegList = userService.myRegList(idUser);
-				if ((myRegList.size() % 5) == 0) {
-					num = myRegList.size() / 5;
+				if ((myRegList.size() % numOnPage) == 0) {
+					num = myRegList.size() / numOnPage;
 				} else {
-					num = (myRegList.size() / 5) + 1;
+					num = (myRegList.size() / numOnPage) + 1;
 				}
-
 				if (page <= num) {
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("bookTour", new BookTour());
 					model.addAttribute("myRegList", myRegList);
 					model.addAttribute("myNumBT", myRegList.size());
 					model.addAttribute("pageNum", pageNum);
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
 					model.addAttribute("pageE", new ArrayList<Integer>());
-					model.addAttribute("x", Pagination.paginationX(page, 5));
-					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, 5));
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(myRegList.size(), page, numOnPage));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -261,10 +276,10 @@ public class UserController extends HttpServlet {
 			if (valueSearch2 != null) {
 				Integer num2 = 0;
 				List<BookTour> myCancelList = userService.myCancelListByValue(valueSearch2, idUser);
-				if ((myCancelList.size() % 5) == 0) {
-					num2 = myCancelList.size() / 5;
+				if (myCancelList.size() == 0) {
+					num2 = myCancelList.size() / numOnPage2;
 				} else {
-					num2 = (myCancelList.size() / 5) + 1;
+					num2 = (myCancelList.size() / numOnPage2) + 1;
 				}
 				if (page2 <= num2) {
 					List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
@@ -273,9 +288,11 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myCancelList", myCancelList);
 					model.addAttribute("myNumCancelReg", myCancelList.size());
 					model.addAttribute("pageNum2", pageNum2);
+					model.addAttribute("numOnPage2", numOnPage2);
+					model.addAttribute("page2", page2);
 					model.addAttribute("pageE2", new ArrayList<Integer>());
-					model.addAttribute("x2", Pagination.paginationX(page2, 5));
-					model.addAttribute("y2", Pagination.paginationY(myCancelList.size(), page2, 5));
+					model.addAttribute("x2", Pagination.paginationX(page2, numOnPage2));
+					model.addAttribute("y2", Pagination.paginationY(myCancelList.size(), page2, numOnPage2));
 					result = "managemyreg";
 				} else {
 					result = "managemyreg";
@@ -283,10 +300,10 @@ public class UserController extends HttpServlet {
 			} else { // search none active ! Update list tour
 				Integer num2 = 0;
 				List<BookTour> myCancelList = userService.myCancelList(idUser);
-				if ((myCancelList.size() % 5) == 0) {
-					num2 = myCancelList.size() / 5;
+				if (myCancelList.size() == 0) {
+					num2 = myCancelList.size() / numOnPage2;
 				} else {
-					num2 = (myCancelList.size() / 5) + 1;
+					num2 = (myCancelList.size() / numOnPage2) + 1;
 				}
 				if (page2 <= num2) {
 					List<Integer> pageNum2 = IntStream.rangeClosed(1, num2).boxed().collect(Collectors.toList());
@@ -294,6 +311,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myCancelList", myCancelList);
 					model.addAttribute("myNumCancelReg", myCancelList.size());
 					model.addAttribute("pageNum2", pageNum2);
+					model.addAttribute("numOnPage2", numOnPage2);
+					model.addAttribute("page2", page2);
 					model.addAttribute("pageE2", new ArrayList<Integer>());
 					model.addAttribute("x2", Pagination.paginationX(page2, 5));
 					model.addAttribute("y2", Pagination.paginationY(myCancelList.size(), page2, 5));
@@ -308,10 +327,10 @@ public class UserController extends HttpServlet {
 			if (valueSearch3 != null) {
 				Integer num3 = 0;
 				List<BookTour> myBookTourList = userService.myBookTourListByValue(valueSearch3, idUser);
-				if ((myBookTourList.size() % 5) == 0) {
-					num3 = myBookTourList.size() / 5;
+				if (myBookTourList.size() == 0) {
+					num3 = myBookTourList.size() / numOnPage3;
 				} else {
-					num3 = (myBookTourList.size() / 5) + 1;
+					num3 = (myBookTourList.size() / numOnPage3) + 1;
 				}
 				if (page3 <= num3) {
 					List<Integer> pageNum3 = IntStream.rangeClosed(1, num3).boxed().collect(Collectors.toList());
@@ -320,6 +339,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myBookTourList", myBookTourList);
 					model.addAttribute("myNumBookTour", myBookTourList.size());
 					model.addAttribute("pageNum3", pageNum3); // create number
+					model.addAttribute("numOnPage3", numOnPage3);
+					model.addAttribute("page3", page3);
 					model.addAttribute("pageE3", new ArrayList<Integer>()); // create
 					model.addAttribute("x3", Pagination.paginationX(page3, 5));
 					model.addAttribute("y3", Pagination.paginationY(myBookTourList.size(), page3, 5));
@@ -330,10 +351,10 @@ public class UserController extends HttpServlet {
 			} else { // search none active ! Update list tour
 				Integer num3 = 0;
 				List<BookTour> myBookTourList = userService.myBookTourList(idUser);
-				if ((myBookTourList.size() % 5) == 0) {
-					num3 = myBookTourList.size() / 5;
+				if (myBookTourList.size() == 0) {
+					num3 = myBookTourList.size() / numOnPage3;
 				} else {
-					num3 = (myBookTourList.size() / 5) + 1;
+					num3 = (myBookTourList.size() / numOnPage3) + 1;
 				}
 				if (page3 <= num3) {
 					List<Integer> pageNum3 = IntStream.rangeClosed(1, num3).boxed().collect(Collectors.toList());
@@ -341,6 +362,8 @@ public class UserController extends HttpServlet {
 					model.addAttribute("myBookTourList", myBookTourList);
 					model.addAttribute("myNumBookTour", myBookTourList.size());
 					model.addAttribute("pageNum3", pageNum3);
+					model.addAttribute("numOnPage3", numOnPage3);
+					model.addAttribute("page3", page3);
 					model.addAttribute("pageE3", new ArrayList<Integer>());
 					model.addAttribute("x3", Pagination.paginationX(page3, 5));
 					model.addAttribute("y3", Pagination.paginationY(myBookTourList.size(), page3, 5));

@@ -43,8 +43,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	@Autowired
-	private EMailSender emailSenderService;
+	 @Autowired
+	 private EMailSender emailSenderService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -208,6 +208,8 @@ public class BookTourController {
 					bookedTour.setCusAddress(info.getCusAddress());
 					bookedTour.setDateBook(Calendar.getInstance().getTime());
 					bookedTour.setRelationship(maxValue);
+					bookedTour.setRelation(info.getRelation());
+					bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
 					if (session.getAttribute("idUser") != null) {
 						bookedTour.setIdUser((int) session.getAttribute("idUser"));
 					} else {
@@ -218,8 +220,9 @@ public class BookTourController {
 				bookTourService.saveBookTours(bookTours, idTour);
 				logger.info("Handle for save booktour!");
 				model.put("idBT", bookTour.getIdBT());
-				emailSenderService.SendEmail(bookTour.getCusEmail(), "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle,
-						MailTemplate.bookSuccessBody);
+				 emailSenderService.SendEmail(bookTour.getCusEmail(),
+				 "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle,
+				 MailTemplate.bookSuccessBody);
 				model.put("idTour", idTour);
 				model.put("relationship", maxValue);
 				return "redirect:/booksuccess/{relationship}/{idTour}";
@@ -290,8 +293,9 @@ public class BookTourController {
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
-		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+		 emailSenderService.SendEmail(bookedTour.getCusEmail(),
+		 MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+		 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 

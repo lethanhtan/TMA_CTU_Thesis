@@ -123,6 +123,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/historyback.js"
 	type="text/javascript"></script>
+<!-- Duplicate field when typing -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/duplicatefield.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>
