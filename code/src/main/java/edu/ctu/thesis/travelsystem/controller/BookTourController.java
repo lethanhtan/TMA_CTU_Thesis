@@ -34,6 +34,7 @@ import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
@@ -45,6 +46,8 @@ public class BookTourController {
 	private BookTourService bookTourService;
 	 @Autowired
 	 private EMailSender emailSenderService;
+	@Autowired
+	private RegInfoService regInfoService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -250,6 +253,8 @@ public class BookTourController {
 		logger.info("Show information of customer when book tour");
 		model.put("cusData", bookTour);
 		model.put("price", bookTour.getTour().getPrice());
+		int register = bookTourService.searchById(idBT).getRelationship();
+		model.put("register", regInfoService.getFirstElement(register));
 		return "booktourdetail";
 	}
 

@@ -46,7 +46,7 @@
 							action="${pageContext.request.contextPath}/managemyreg/${idUser}"
 							method="get">
 							<label for="selectBookTour"
-								style="text-align: left; margin-left: 80%">Số người đăng
+								style="text-align: left; margin-left: 80%">Số đăng
 								ký/ trang:</label> <select id="selectBookTour" name="numOn"
 								onchange="this.form.submit()">
 								<option>5</option>
@@ -70,7 +70,7 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Đi cùng</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -85,7 +85,7 @@
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusPhone}</td>
-											<td>${bookTour.relationship}</td>
+											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -207,7 +207,7 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Đi cùng</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -221,6 +221,7 @@
 											<td>${myCancelReg.cusName}</td>
 											<td>${myCancelReg.cusSex}</td>
 											<td>${myCancelReg.cusPhone}</td>
+											<td>${myCancelReg.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -314,7 +315,7 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Đi cùng</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -328,6 +329,7 @@
 											<td>${myBookTour.cusName}</td>
 											<td>${myBookTour.cusSex}</td>
 											<td>${myBookTour.cusPhone}</td>
+											<td>${myBookTour.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myBookTour.idBT}/${myBookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">

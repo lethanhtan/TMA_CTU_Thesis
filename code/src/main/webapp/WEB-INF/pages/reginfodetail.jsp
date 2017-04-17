@@ -19,43 +19,43 @@
 						</thead>
 						<tbody>
 							<tr>
-								<c:if test="${cusData.tour.fieldName == true}">
+								<c:if test="${cusData.tour.fieldName}">
 									<td>Họ tên:</td>
 									<td>${cusData.cusName}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldSex == true}">
+								<c:if test="${cusData.tour.fieldSex}">
 									<td>Giới tính:</td>
 									<td>${cusData.cusSex}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldYearOfBirth == true}">
+								<c:if test="${cusData.tour.fieldYearOfBirth}">
 									<td>Năm sinh:</td>
 									<td>${cusData.cusYearOfBirth}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldPhone == true}">
+								<c:if test="${cusData.tour.fieldPhone}">
 									<td>Số điện thoại:</td>
 									<td>${cusData.cusPhone}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldIdCard == true}">
+								<c:if test="${cusData.tour.fieldIdCard}">
 									<td>Số chứng minh nhân dân:</td>
 									<td>${cusData.cusIdCard}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldEmail == true}">
+								<c:if test="${cusData.tour.fieldEmail}">
 									<td>Địa chỉ email:</td>
 									<td>${register.cusEmail}</td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${cusData.tour.fieldEmail == true}">
+								<c:if test="${cusData.tour.fieldEmail}">
 									<td>Địa chỉ:</td>
 									<td>${register.cusAddress}</td>
 								</c:if>
@@ -68,10 +68,12 @@
 								<td>Được đăng ký bởi:</td>
 								<td>${cusData.whoIsRegistered}</td>
 							</tr>
+							<c:if test="${!empty cusData.relation}">
 							<tr>
 								<td>Mối quan hệ với người đăng ký:</td>
 								<td>${cusData.relation}</td>
 							</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</form>
