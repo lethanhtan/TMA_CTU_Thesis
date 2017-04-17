@@ -9,7 +9,7 @@
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
 			<div class="tabs alternative">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
 					<li><a href="#cancellist" data-toggle="tab">Danh Sách Hủy</a></li>
