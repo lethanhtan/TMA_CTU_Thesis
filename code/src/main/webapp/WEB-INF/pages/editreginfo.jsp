@@ -108,6 +108,7 @@
 							</div>
 						</c:if>
 						<s:input path="idUser" hidden="true" />
+						<s:input path="relationship" hidden="true" />
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
