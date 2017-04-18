@@ -131,6 +131,11 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/tabcurrent.js"
 	type="text/javascript"></script>
+<!-- Confirm popup cancel all -->
+<script src="http://t4t5.github.io/sweetalert/dist/sweetalert-dev.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/confirmcancelall.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>

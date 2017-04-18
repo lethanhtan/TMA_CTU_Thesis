@@ -37,6 +37,7 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
@@ -48,12 +49,14 @@ public class UserController extends HttpServlet {
 	private BookTourService bookTourService;
 	 @Autowired
 	 private EMailSender emailSenderService;
+	@Autowired
+	private RegInfoService regInfoService;
 
 	private static final Logger logger = Logger.getLogger(UserController.class);
 	private static final long serialVersionUID = -6506682026701304964L;
-	private static int numOnPage = 10;
-	private static int numOnPage2 = 10;
-	private static int numOnPage3 = 10;
+	private static int numOnPage = 5;
+	private static int numOnPage2 = 5;
+	private static int numOnPage3 = 5;
 
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -391,6 +394,15 @@ public class UserController extends HttpServlet {
 	@RequestMapping(value = "undo/{idBT}")
 	public String undoCancel(@PathVariable("idBT") Integer idBT, HttpSession session, ModelMap model) {
 		userService.undoCancel(idBT);
+		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
+		return "redirect:/managemyreg/{idUser}";
+	}
+
+	// Customer cancel registration tour
+	@RequestMapping(value = "cancelall/{idBT}/{relationship}")
+	public String cancelAllBookTour(@PathVariable("idBT") Integer idBT,
+			@PathVariable("relationship") Integer relationship, HttpSession session, ModelMap model) {
+		regInfoService.cancelAllBookTour(idBT, relationship);
 		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
 		return "redirect:/managemyreg/{idUser}";
 	}
