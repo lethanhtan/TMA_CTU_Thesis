@@ -148,6 +148,7 @@
 												</p>
 												<h5 style="color: blue;">Giá: ${tour.price}đ</h5>
 												<div class="text-center">
+												<span style="color: white;">${tour.getDetail()}</span>
 												<span><a
 													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input
 														class="btn btn-success text-center" type="submit"

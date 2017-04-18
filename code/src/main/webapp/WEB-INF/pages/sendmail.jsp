@@ -7,9 +7,7 @@
 <div id="content">
 	<div class="container background-white">
 		<div class="row margin-vert-30">
-			<!-- Main Column -->
-			<div class="col-md-9">
-				<!-- Main Content -->
+			<!-- Main Content -->
 				<div class="headline">
 					<h2>Gửi mail</h2>
 				</div>
@@ -68,47 +66,7 @@
 						<button type="submit" class="btn btn-primary">Gửi</button>
 					</p>
 				</form>
-				<!-- End Contact Form -->
 				<!-- End Main Content -->
-			</div>
-			<!-- End Main Column -->
-			<!-- Side Column -->
-			<div class="col-md-3">
-				<!-- Recent Posts -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Tài khoản đăng nhập</h3>
-					</div>
-					<div class="panel-body">
-						<ul class="list-unstyled">
-							<li><i class="fa-phone color-primary"></i>(0710) 3838 474</li>
-							<li><i class="fa-envelope color-primary"> <a
-									href="mailto:iNYtravel@gmail.com"></i>NYtravel@gmail.com</a></li>
-							<li><i class="fa-home color-primary"> <a
-									href="http://www.NYtravel.com"></i>www.NYtravel.com</a></li>
-						</ul>
-						<ul class="list-unstyled">
-							<li><strong class="color-primary">Số giờ online
-									việc:</strong> 24/7</li>
-						</ul>
-					</div>
-				</div>
-				<!-- End recent Posts -->
-				<!-- About -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Thống kê mail</h3>
-					</div>
-					<div class="panel-body">
-					<p>- Số mail đã gửi: 
-						- Số mail đăng ký đã gủi:
-						- Số mail thông báo đã gủi: 
-					</p>
-					</div>
-				</div>
-				<!-- End About -->
-			</div>
-			<!-- End Side Column -->
 		</div>
 	</div>
 </div>

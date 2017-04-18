@@ -218,7 +218,7 @@ public class BookTourController {
 				bookTourService.saveBookTours(bookTours, idTour);
 				logger.info("Handle for save booktour!");
 				model.put("idBT", bookTour.getIdBT());
-				emailSenderService.SendEmail(bookTour.getCusEmail(), "pc.nt95@gmail.com", MailTemplate.bookSuccessTitle,
+				emailSenderService.SendEmail("pc.nt95@gmail.com", MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
 						MailTemplate.bookSuccessBody);
 				model.put("idTour", idTour);
 				model.put("relationship", maxValue);
