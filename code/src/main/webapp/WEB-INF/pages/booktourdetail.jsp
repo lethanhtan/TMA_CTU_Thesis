@@ -129,6 +129,7 @@
 								href="<c:url value='/editbooktour/${cusData.idBT}/${idTour}'/>"><button
 									class="btn btn-primary">Chỉnh Sửa</button></a>
 						</div>
+						<c:if test="${cusData.tour.cancelOrNot}">
 						<div class="col-lg-4 text-center">
 							<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
 								<button class="btn btn-primary cancel"
@@ -139,6 +140,7 @@
 										class="btn btn-primary">Hủy Đăng Ký</button></a>
 							</c:if>
 						</div>
+						</c:if>
 						<div class="col-lg-4 text-center">
 							<button onclick="goBack()" class="btn btn-primary" type="button">Trở
 								Về</button>
