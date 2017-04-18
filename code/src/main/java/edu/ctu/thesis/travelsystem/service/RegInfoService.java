@@ -20,4 +20,6 @@ public interface RegInfoService {
 	public void dropFieldOption(String name);
 	
 	public BookTour getFirstElement(int relationship);
+	
+	public void cancelAllBookTour(int idBT, int relationship);
 }

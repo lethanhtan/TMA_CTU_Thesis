@@ -46,8 +46,8 @@
 							action="${pageContext.request.contextPath}/managemyreg/${idUser}"
 							method="get">
 							<label for="selectBookTour"
-								style="text-align: left; margin-left: 80%">Số đăng
-								ký/ trang:</label> <select id="selectBookTour" name="numOn"
+								style="text-align: left; margin-left: 80%">Số đăng ký/
+								trang:</label> <select id="selectBookTour" name="numOn"
 								onchange="this.form.submit()">
 								<option>5</option>
 								<option>10</option>
@@ -86,7 +86,14 @@
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.whoIsRegistered}</td>
-											<td><a
+											<td><a href="<c:url value='/cancel/${bookTour.idBT}'/>">
+													<button type="button" id="regcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/cancelall/${bookTour.idBT}/${bookTour.relationship}'/>">
+													<button type="button" id="allcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
 												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
@@ -96,10 +103,20 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
-															class="btn btn-sm btn-danger">
+													<c:if
+														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+														<button class="btn btn-sm btn-danger cancel"
+															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-														</button></a>
+														</button>
+													</c:if>
+													<c:if
+														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+														<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
+																class="btn btn-sm btn-danger">
+																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+															</button></a>
+													</c:if>
 												</c:if></td>
 										</tr>
 									</c:forEach>

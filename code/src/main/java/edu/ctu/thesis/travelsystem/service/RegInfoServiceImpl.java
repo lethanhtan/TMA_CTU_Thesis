@@ -60,4 +60,10 @@ public class RegInfoServiceImpl implements RegInfoService {
 	public BookTour getFirstElement(int relationship) {
 		return this.regInfoDao.getFirstElement(relationship);
 	}
+	
+	@Override
+	@Transactional
+	public void cancelAllBookTour(int idBT, int relationship) {
+		this.regInfoDao.cancelAllBookTour(idBT, relationship);
+	}
 }

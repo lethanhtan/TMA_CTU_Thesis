@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -248,13 +249,18 @@ public class BookTourController {
 	// Forward to Customer detail page
 	@RequestMapping(value = "booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour, @Valid BookTour bookTour) {
+			@Valid Tour tour, @Valid BookTour bookTour, HttpSession session) {
 		bookTour = bookTourService.searchById(idBT);
 		logger.info("Show information of customer when book tour");
 		model.put("cusData", bookTour);
 		model.put("price", bookTour.getTour().getPrice());
 		int register = bookTourService.searchById(idBT).getRelationship();
 		model.put("register", regInfoService.getFirstElement(register));
+		if (session.getAttribute("idUser") != null) {
+			model.put("idUser", true);
+		} else {
+			model.put("idUser", false);
+		}
 		return "booktourdetail";
 	}
 
