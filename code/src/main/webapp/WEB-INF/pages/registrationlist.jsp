@@ -110,7 +110,6 @@
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
 										<th></th>
-										<th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -128,10 +127,15 @@
 												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
 													<button type="button" id="button${bookTour.idBT}"
 														hidden="true"></button>
-											</a></td>
-
-											<td><a
-												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
+											</a> <a
+												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>">
+													<button type="button" id="regcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/cancelallreg/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour}'/>">
+													<button type="button" id="allcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
@@ -140,11 +144,21 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a
-														href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-															class="btn btn-sm btn-aqua">
+													<c:if
+														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+														<button class="btn btn-sm btn-aqua cancel"
+															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-														</button></a>
+														</button>
+													</c:if>
+													<c:if
+														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+														<a
+															href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+																class="btn btn-sm btn-aqua">
+																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+															</button></a>
+													</c:if>
 												</c:if>
 												<button class="btn btn-sm btn-danger delete"
 													id="${bookTour.idBT }">
@@ -317,7 +331,8 @@
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
 												</c:if>
-												<button class="btn btn-sm btn-danger delete" id="${cancelReg.idBT}">
+												<button class="btn btn-sm btn-danger delete"
+													id="${cancelReg.idBT}">
 													<i class="fa fa-trash-o">&nbsp;Xóa</i>
 												</button></td>
 										</tr>
