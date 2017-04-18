@@ -52,6 +52,8 @@
 	href="${pageContext.request.contextPath}/resources/css/table.css">
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="http://t4t5.github.io/sweetalert/dist/sweetalert.css">
 <!-- Google Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
@@ -60,6 +62,11 @@
 	type="text/css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
 	rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	click = function() {
+		alert("asaxas");
+	}
+</script>
 </head>
 <body>
 	<div id="body-bg">
