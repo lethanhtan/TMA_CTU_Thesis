@@ -130,16 +130,24 @@
 									class="btn btn-primary">Chỉnh Sửa</button></a>
 						</div>
 						<c:if test="${cusData.tour.cancelOrNot}">
-						<div class="col-lg-4 text-center">
-							<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
-								<button class="btn btn-primary cancel"
-									id="cancel${cusData.idBT}">Hủy Đăng Ký</button>
+							<c:if test="${not idUser}">
+								<div class="col-lg-4 text-center">
+									<a href="<c:url value='/cancelbooktour/${bookTour.idBT}'/>"><button
+											class="btn btn-primary">Hủy Đăng Ký</button></a>
+								</div>
 							</c:if>
-							<c:if test="${cusData.cusName ne cusData.whoIsRegistered}">
-								<a href="<c:url value='/cancel/${cusData.idBT}'/>"><button
-										class="btn btn-primary">Hủy Đăng Ký</button></a>
+							<c:if test="${idUser}">
+								<div class="col-lg-4 text-center">
+									<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
+										<button class="btn btn-primary cancel"
+											id="cancel${cusData.idBT}">Hủy Đăng Ký</button>
+									</c:if>
+									<c:if test="${cusData.cusName ne cusData.whoIsRegistered}">
+										<a href="<c:url value='/cancel/${cusData.idBT}'/>"><button
+												class="btn btn-primary">Hủy Đăng Ký</button></a>
+									</c:if>
+								</div>
 							</c:if>
-						</div>
 						</c:if>
 						<div class="col-lg-4 text-center">
 							<button onclick="goBack()" class="btn btn-primary" type="button">Trở
