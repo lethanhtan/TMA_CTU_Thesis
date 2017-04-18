@@ -125,6 +125,12 @@
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
+												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
+													<button type="button" id="button${bookTour.idBT}"
+														hidden="true"></button>
+											</a></td>
+
+											<td><a
 												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
@@ -139,29 +145,11 @@
 															class="btn btn-sm btn-aqua">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button></a>
-												</c:if> <a href="#deleteConfirm" data-toggle="modal"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a> <!-- Popup Cofirm -->
-												<div id="deleteConfirm" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-hidden="true">&times;</button>
-																<h4 class="modal-title">Bạn muốn xóa người đăng ký
-																	đã chọn?</h4>
-																</br> <a
-																	href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
-																	<button type="button" class="btn btn-danger">
-																		Có</button>
-																</a>
-																<button type="button" class="btn btn-primary"
-																	data-dismiss="modal">Không</button>
-															</div>
-														</div>
-													</div>
-												</div> <!-- End Popup Cofirm --></td>
+												</c:if>
+												<button class="btn btn-sm btn-danger delete"
+													id="${bookTour.idBT }">
+													<i class="fa fa-trash-o">&nbsp;Xóa</i>
+												</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -313,6 +301,11 @@
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
+												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
+													<button type="button" id="button${cancelReg.idBT}"
+														hidden="true"></button>
+											</a></td>
+											<td><a
 												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
@@ -323,29 +316,10 @@
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
-												</c:if> <a href="#deleteConfirm2" data-toggle="modal"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a> <!-- Popup Cofirm -->
-												<div id="deleteConfirm2" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-hidden="true">&times;</button>
-																<h4 class="modal-title">Bạn muốn xóa người hủy đăng
-																	ký đã chọn?</h4>
-																</br> <a
-																	href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
-																	<button type="button" class="btn btn-danger">
-																		Có</button>
-																</a>
-																<button type="button" class="btn btn-primary"
-																	data-dismiss="modal">Không</button>
-															</div>
-														</div>
-													</div>
-												</div> <!-- End Popup Cofirm --></td>
+												</c:if>
+												<button class="btn btn-sm btn-danger delete" id="${cancelReg.idBT}">
+													<i class="fa fa-trash-o">&nbsp;Xóa</i>
+												</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

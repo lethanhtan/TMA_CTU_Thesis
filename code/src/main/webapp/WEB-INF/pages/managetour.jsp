@@ -60,6 +60,7 @@
 								<th>Ngày về</th>
 								<th>Giờ về</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,11 +69,14 @@
 								<tr>
 									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
-										&nbsp;&nbsp;&nbsp;</td>
+									<td>${tour.departureDate}</td>
+									<td>${tour.departureTime}</td>
+									<td>${tour.returnDate}</td>
+									<td>${tour.returnTime}</td>
+									<td><a
+										href="<c:url value='managetour/delete/${tour.idTour}'/>">
+											<button type="button" id="button${user.idUser}" hidden="true"></button>
+									</a></td>
 									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-violet">
 												<i class="fa fa-eye">&nbsp;Xem</i>
@@ -80,28 +84,11 @@
 									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-success">
 												<i class="fa fa-pencil">&nbsp;Sửa</i>
-											</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
-												class="btn btn-sm btn-danger">
-												<i class="fa fa-trash-o">&nbsp;Xóa</i>
-											</button></a> <!-- Popup Cofirm -->
-										<div id="deleteConfirm" class="modal fade">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">&times;</button>
-														<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
-														<a
-															href="<c:url value='managetour/delete/${tour.idTour}'/>">
-															<button type="button" class="btn btn-danger">Có</button>
-														</a>
-														<button type="button" class="btn btn-primary"
-															data-dismiss="modal">Không</button>
-													</div>
-												</div>
-											</div>
-										</div> <!-- End Popup Cofirm --> <a
-										href="<c:url value='tourreg/${tour.idTour}'/>"><button
+											</button></a>
+										<button class="btn btn-sm btn-danger delete"
+											id="${tour.idTour}">
+											<i class="fa fa-trash-o">&nbsp;Xóa</i>
+										</button> <a href="<c:url value='tourreg/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-blue">
 												<i class="fa fa-signal">&nbsp;Biểu đồ</i>
 											</button></a> <a href="<c:url value='export/${tour.idTour}'/>"><button
