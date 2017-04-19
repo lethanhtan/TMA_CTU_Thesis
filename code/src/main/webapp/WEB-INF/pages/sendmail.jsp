@@ -21,11 +21,10 @@
 							<div>
 								<div class="row margin-bottom-20">
 									<div class="col-md-12 col-md-offset-3">
-										<div class="col-sm-6 col-md-6" >
-											<small style="color:green;">${status}</small>
-											<br />
-											<label>Tài khoản email</label> <input class="form-control"
-												type="text" name="email">
+										<div class="col-sm-6 col-md-6">
+											<small style="color: green;">${status}</small> <br /> <label>Tài
+												khoản email</label> <input class="form-control" type="text"
+												name="email">
 										</div>
 									</div>
 								</div>
@@ -33,13 +32,12 @@
 									<div
 										class="row col-md-12 col-sm-6 col-md-offset-3 col-sm-offset-3">
 										<div class="col-md-3 col-sm-3">
-											<label>Mật khẩu </label>
-											<input class="form-control"
+											<label>Mật khẩu </label> <input class="form-control"
 												type="password" name="password">
 										</div>
 										<div class="col-md-3 col-sm-3">
-											<label>Encoding</label> 
-											<select class="form-control" name="encoding">
+											<label>Encoding</label> <select class="form-control"
+												name="encoding">
 												<option>UTF-8</option>
 												<option>UTF-16</option>
 											</select>
@@ -50,15 +48,14 @@
 									<div
 										class="row col-md-12 col-sm-12 col-sm-offset-3 col-md-offset-3">
 										<div class="col-md-3">
-											<label>Mail server </label>
-												<select class="form-control" name="host">
-													<option>Gmail</option>
-													<option>Outlook</option>
-												</select>
+											<label>Mail server </label> <select class="form-control"
+												name="host">
+												<option>Gmail</option>
+												<option>Outlook</option>
+											</select>
 										</div>
 										<div class="col-md-3">
-											<label>Cổng</label>
-											<select class="form-control" name="port">
+											<label>Cổng</label> <select class="form-control" name="port">
 												<option>587</option>
 												<option>588</option>
 											</select>
@@ -66,7 +63,8 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm-12 col-md-12 col-md-offset-4 col-sm-offset-4">
+									<div
+										class="col-sm-12 col-md-12 col-md-offset-4 col-sm-offset-4">
 										<div class="col-sm-3 col-md-3">
 											<button type="submit" class="btn btn-primary">Xác
 												nhận</button>
@@ -83,47 +81,88 @@
 					<!-- Start Send Mail Tab -->
 					<div class="tab-pane fade in" id="sendmail">
 						<!-- Mail Form -->
-						<div>
-							<form>
-								<small style="color: green;">${sendSuccess}</small> <small
-									style="color: red;">${failedConnect}</small> <br /> 
-								<label>Người nhận <span class="color-red">*</span>
-								</label>
-								<div class="row margin-bottom-20">
-									<div class="col-md-6 col-md-offset-0">
-										<input class="form-control" type="text" name="to">
+						<div class="row">
+							<div class="col-md-8">
+								<form>
+									<small style="color: green;">${sendSuccess}</small> <small
+										style="color: red;">${failedConnect}</small> <br /> <label>Người
+										nhận <span class="color-red">*</span>
+									</label>
+									<div class="row margin-bottom-20">
+										<div class="col-md-6 col-md-offset-0">
+											<input class="form-control" type="text" name="to">
+										</div>
+									</div>
+									<label>Cc <span class="color-red"></span>
+									</label>
+									<div class="row margin-bottom-20">
+										<div class="col-md-6 col-md-offset-0">
+											<input class="form-control" type="text">
+										</div>
+									</div>
+									<label>Chủ đề <span class="color-red">*</span>
+									</label>
+									<div class="row margin-bottom-20">
+										<div class="col-md-6 col-md-offset-0">
+											<input class="form-control" type="text" name="subject">
+										</div>
+									</div>
+									<label>Nội Dung <span class="color-red">*</span></label>
+									<div class="row margin-bottom-20">
+										<div class="col-md-8 col-md-offset-0">
+											<textarea rows="7" class="form-control" name="message"></textarea>
+										</div>
+									</div>
+									<label style="color: red; font-style: italic;">(*) Nội
+										dung bắt buộc phải điền </label>
+									<p>
+										<button type="submit" class="btn btn-primary">Gửi</button>
+									</p>
+								</form>
+							</div>
+							<!-- End Main Content -->
+							<!-- End Send Mail Tab -->
+							<!-- Side Column -->
+							<div class="col-md-4">
+								<!-- Recent Posts -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Tài khoản đăng nhập</h3>
+									</div>
+									<div class="panel-body">
+										<ul class="list-unstyled">
+											<li><i class="fa-phone color-primary"></i>(0710) 3838
+												474</li>
+											<li><i class="fa-envelope color-primary"> <a
+													href="mailto:${emailConfig}"></i>${emailConfig}</a></li>
+											<li><i class="fa-home color-primary"> <a
+													href="#"></i>Quản trị viên</a></li>
+										</ul>
+										<ul class="list-unstyled">
+											<li><strong class="color-primary">Thời gian làm
+													việc:</strong> 24/7</li>
+										</ul>
 									</div>
 								</div>
-								<label>Cc <span class="color-red"></span>
-								</label>
-								<div class="row margin-bottom-20">
-									<div class="col-md-6 col-md-offset-0">
-										<input class="form-control" type="text">
+								<!-- End recent Posts -->
+								<!-- About -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Thống kê</h3>
+									</div>
+									<div class="panel-body">
+										<ul class="list-unstyled">
+											<li><i>Tổng số mail đã gửi: </i></li>
+											<li><i>Số mail gửi thành công:</i></li>
+											<li><i>Số mail gửi thất bại:</i></li>
+										</ul>
 									</div>
 								</div>
-								<label>Chủ đề <span class="color-red">*</span>
-								</label>
-								<div class="row margin-bottom-20">
-									<div class="col-md-6 col-md-offset-0">
-										<input class="form-control" type="text" name="subject">
-									</div>
-								</div>
-								<label>Nội Dung <span class="color-red">*</span></label>
-								<div class="row margin-bottom-20">
-									<div class="col-md-8 col-md-offset-0">
-										<textarea rows="7" class="form-control" name="message"></textarea>
-									</div>
-								</div>
-								<label style="color: red; font-style: italic;">(*) Nội
-									dung bắt buộc phải điền </label>
-								<p>
-									<button type="submit" class="btn btn-primary">Gửi</button>
-								</p>
-							</form>
+								<!-- End About -->
+							</div>
+							<!-- End Side Column -->
 						</div>
-						<!-- End Main Content -->
 					</div>
-					<!-- End Send Mail Tab -->
 				</div>
 				<!-- End Tab Content -->
 			</div>

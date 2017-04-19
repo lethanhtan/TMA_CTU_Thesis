@@ -128,7 +128,7 @@ public class User {
 		this.address = address;
 	}
 	
-	@Column(name = "PHONE", nullable = true)
+	@Column(name = "PHONE", nullable = true, length = 13)
 	public String getPhone() {
 		return phone;
 	}
@@ -146,7 +146,7 @@ public class User {
 		this.email = email;
 	}
 
-	@Column(name = "SEX", nullable = true)
+	@Column(name = "SEX", nullable = true, length = 5)
 	public String getSex() {
 		return sex;
 	}
