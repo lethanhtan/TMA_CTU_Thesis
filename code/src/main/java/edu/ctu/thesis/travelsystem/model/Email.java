@@ -78,9 +78,9 @@ public class Email {
 		this.date = date;
 	}
 	
-	@Column(name = "TIME", nullable = true)
+	@Column(name = "TIME", nullable = false)
 	@Temporal(TemporalType.TIME)
-	public Date getTimne() {
+	public Date getTime() {
 		return this.time;
 	}
 	
