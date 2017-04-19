@@ -9,7 +9,7 @@
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
 			<div class="tabs alternative">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
 					<li><a href="#cancellist" data-toggle="tab">Danh Sách Hủy</a></li>
@@ -58,7 +58,8 @@
 												method="GET">
 												<select id="filterSex" class="form-control" name="filterSex"
 													onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới
+														tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -68,8 +69,8 @@
 												class="form-inline"
 												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 												method="GET">
-												<select id="filterAge" class="form-control"
-													name="filterAge" onchange="this.form.submit()">
+												<select id="filterAge" class="form-control" name="filterAge"
+													onchange="this.form.submit()">
 													<option selected="selected" disabled="disabled">Tuổi</option>
 													<option value="All">Tất cả</option>
 													<option value="18">Dưới 18</option>
@@ -107,14 +108,13 @@
 										<th>Giới tính</th>
 										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
-										<th></th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${registrationList.subList(x,y)}"
-										var="bookTour">
+										var="bookTour" varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
 											<td>${registrationList.indexOf(bookTour) + 1}</td>
@@ -122,9 +122,20 @@
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
 											<td>${bookTour.cusPhone}</td>
-											<td>${bookTour.cusEmail}</td>
+											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
-												href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
+												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
+													<button type="button" id="button${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>">
+													<button type="button" id="regcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/cancelallreg/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour}'/>">
+													<button type="button" id="allcancel${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
@@ -133,34 +144,26 @@
 														class="btn btn-sm btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
-													<a
-														href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-															class="btn btn-sm btn-aqua">
+													<c:if
+														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+														<button class="btn btn-sm btn-aqua cancel"
+															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-														</button></a>
-												</c:if> <a href="#deleteConfirm" data-toggle="modal"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a> <!-- Popup Cofirm -->
-												<div id="deleteConfirm" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-hidden="true">&times;</button>
-																<h4 class="modal-title">Bạn muốn xóa người đăng ký
-																	đã chọn?</h4>
-																</br> <a
-																	href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
-																	<button type="button" class="btn btn-danger">
-																		Có</button>
-																</a>
-																<button type="button" class="btn btn-primary"
-																	data-dismiss="modal">Không</button>
-															</div>
-														</div>
-													</div>
-												</div> <!-- End Popup Cofirm --></td>
+														</button>
+													</c:if>
+													<c:if
+														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+														<a
+															href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
+																class="btn btn-sm btn-aqua">
+																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+															</button></a>
+													</c:if>
+												</c:if>
+												<button class="btn btn-sm btn-danger delete"
+													id="${bookTour.idBT }">
+													<i class="fa fa-trash-o">&nbsp;Xóa</i>
+												</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -248,7 +251,8 @@
 												method="GET">
 												<select id="filterSex2" class="form-control"
 													name="filterSex2" onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới tính</option>
+													<option selected="selected" disabled="disabled">Giới
+														tính</option>
 													<option value="All">Tất cả</option>
 													<option value="Nam">Nam</option>
 													<option value="Nữ">Nữ</option>
@@ -295,20 +299,26 @@
 										<th>Họ tên</th>
 										<th>Giới tính</th>
 										<th>Số điện thoại</th>
-										<th>Email</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${cancelList.subList(x2,y2)}" var="cancelReg">
+									<c:forEach items="${cancelList.subList(x2,y2)}" var="cancelReg"
+										varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
 											<td>${cancelReg.cusPhone}</td>
-											<td>${cancelReg.cusEmail}</td>
+											<td>${cancelReg.whoIsRegistered}</td>
+											<td><a
+												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
+													<button type="button" id="button${cancelReg.idBT}"
+														hidden="true"></button>
+											</a></td>
 											<td><a
 												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-sm btn-violet">
@@ -320,29 +330,11 @@
 															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
-												</c:if> <a href="#deleteConfirm2" data-toggle="modal"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-trash-o">&nbsp;Xóa</i>
-													</button></a> <!-- Popup Cofirm -->
-												<div id="deleteConfirm2" class="modal fade">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-hidden="true">&times;</button>
-																<h4 class="modal-title">Bạn muốn xóa người hủy đăng
-																	ký đã chọn?</h4>
-																</br> <a
-																	href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
-																	<button type="button" class="btn btn-danger">
-																		Có</button>
-																</a>
-																<button type="button" class="btn btn-primary"
-																	data-dismiss="modal">Không</button>
-															</div>
-														</div>
-													</div>
-												</div> <!-- End Popup Cofirm --></td>
+												</c:if>
+												<button class="btn btn-sm btn-danger delete"
+													id="${cancelReg.idBT}">
+													<i class="fa fa-trash-o">&nbsp;Xóa</i>
+												</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

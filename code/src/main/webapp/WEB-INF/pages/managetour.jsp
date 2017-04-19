@@ -60,6 +60,7 @@
 								<th>Ngày về</th>
 								<th>Giờ về</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -79,30 +80,12 @@
 											</button>
 									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
 												class="btn btn-xs btn-success">
-												<i class="fa fa-pencil">&nbsp;Sửa</i>
-											</button></a> <a href="#deleteConfirm" data-toggle="modal"><button
-												class="btn btn-xs btn-danger">
-												<i class="fa fa-trash-o">&nbsp;Xóa</i>
-											</button></a> <!-- Popup Cofirm -->
-										<div id="deleteConfirm" class="modal fade">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">&times;</button>
-														<h4 class="modal-title">Bạn muốn xóa tour đã chọn?</h4>
-														<a
-															href="<c:url value='managetour/delete/${tour.idTour}'/>">
-															<button type="button" class="btn btn-danger">Có</button>
-														</a>
-														<button type="button" class="btn btn-primary"
-															data-dismiss="modal">Không</button>
-													</div>
-												</div>
-											</div>
-										</div> <!-- End Popup Cofirm --> <a
-										href="<c:url value='tourreg/${tour.idTour}'/>"><button
-												class="btn btn-xs btn-blue">
+												<i class="fa fa-pencil">&nbsp;Sửa</i></button></a>
+										<button class="btn btn-sm btn-danger delete"
+											id="${tour.idTour}">
+											<i class="fa fa-trash-o">&nbsp;Xóa</i>
+										</button> <a href="<c:url value='tourreg/${tour.idTour}'/>"><button
+												class="btn btn-sm btn-blue">
 												<i class="fa fa-signal">&nbsp;Biểu đồ</i>
 											</button></a> </td>
 								</tr>

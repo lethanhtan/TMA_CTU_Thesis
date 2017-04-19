@@ -116,4 +116,30 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		session.createSQLQuery(sql2).addEntity(Tour.class).executeUpdate();
 		session.flush();
 	}
+
+	@Override
+	public BookTour getFirstElement(int relationship) {
+		Session session = getCurrentSession();
+		Query query = session.createQuery(
+				"FROM BookTour WHERE Relationship = :relationship GROUP BY Relationship HAVING id_bt = MIN(id_bt)");
+		query.setParameter("relationship", relationship);
+		BookTour bookTour = (BookTour) query.uniqueResult();
+		return bookTour;
+	}
+
+	@Override
+	public void cancelAllBookTour(int idBT, int relationship) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		if (bookTour != null) {
+			Query query = session.createQuery("UPDATE BookTour SET " + "TICKET_CANCEL = :ticketCancel,"
+					+ "CUS_CANCEL = true," + "CUS_NUMOFTICKET = 0" + "WHERE Relationship = :relationship");
+			query.setParameter("relationship", relationship);
+			query.setParameter("ticketCancel", bookTour.getCusNumOfTicket());
+			query.executeUpdate();
+			session.saveOrUpdate(bookTour);
+			session.flush();
+			logger.info("Delete customer success!");
+		}
+	}
 }

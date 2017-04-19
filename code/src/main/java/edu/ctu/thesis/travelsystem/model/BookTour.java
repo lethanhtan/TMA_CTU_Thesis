@@ -34,6 +34,8 @@ public class BookTour {
 	private boolean goneOrNot = false;
 	private String confirmCode;
 	private int relationship = 0;
+	private String relation;
+	private String whoIsRegistered;
 
 	private Tour tour;
 
@@ -42,7 +44,7 @@ public class BookTour {
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
 			int cusNumOfTicket, String cusIdCard, String cusYearOfBirth, Date dateBook, boolean cusCancel, int idUser,
-			boolean goneOrNot, int relationship) {
+			boolean goneOrNot, int relationship, String relation, String whoIsRegistered) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
@@ -56,11 +58,13 @@ public class BookTour {
 		this.idUser = idUser;
 		this.goneOrNot = goneOrNot;
 		this.relationship = relationship;
+		this.relation = relation;
+		this.whoIsRegistered = whoIsRegistered;
 	}
 
 	public BookTour(String cusName, String cusSex, String cusEmail, String cusPhone, String cusAddress,
 			int cusNumOfTicket, String cusIdCard, String cusYearOfBirth, Date dateBook, boolean cusCancel, int idUser,
-			boolean goneOrNot, int relationship, Tour tour) {
+			boolean goneOrNot, int relationship, String relation, String whoIsRegistered, Tour tour) {
 		this.cusName = cusName;
 		this.cusSex = cusSex;
 		this.cusEmail = cusEmail;
@@ -75,6 +79,8 @@ public class BookTour {
 		this.goneOrNot = goneOrNot;
 		this.relationship = relationship;
 		this.tour = tour;
+		this.relation = relation;
+		this.whoIsRegistered = whoIsRegistered;
 	}
 
 	@Id
@@ -237,6 +243,26 @@ public class BookTour {
 
 	public void setRelationship(int relationship) {
 		this.relationship = relationship;
+	}
+
+	// Create column relation between customers
+	@Column(name = "CUS_RELATION", nullable = true, length = 40)
+	public String getRelation() {
+		return this.relation;
+	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
+	// Create column who is registered
+	@Column(name = "WHO_IS_REGISTERED", nullable = true, length = 40)
+	public String getWhoIsRegistered() {
+		return this.whoIsRegistered;
+	}
+
+	public void setWhoIsRegistered(String whoIsRegistered) {
+		this.whoIsRegistered = whoIsRegistered;
 	}
 
 	// Join table Tour by column ID tour

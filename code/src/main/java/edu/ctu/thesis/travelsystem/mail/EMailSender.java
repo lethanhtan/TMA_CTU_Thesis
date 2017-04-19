@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  
 @Service("Email")
 public class EMailSender {
- 
+	
 	@Autowired
 	private MailSender mailSender; // MailSender interface defines a strategy
 										// for sending simple mails
@@ -25,15 +25,24 @@ public class EMailSender {
 		mailSender.send(msg);
 	}
 	
-	public void manualConfig(String email, String password) {
+	public void SendEmail(String toAddress, String subject, String msgBody) {
+		 
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(toAddress);
+		msg.setSubject(subject);
+		msg.setText(msgBody);
+		mailSender.send(msg);
+	}
+	
+	public void manualConfig(String userName, String password, String host, int port, String encoding) {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         
         //Using gmail
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername(email);
+        mailSender.setHost(host);
+        mailSender.setPort(port);
+        mailSender.setUsername(userName);
         mailSender.setPassword(password);
-        mailSender.setDefaultEncoding("UTF-8");
+        mailSender.setDefaultEncoding(encoding);
          
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");

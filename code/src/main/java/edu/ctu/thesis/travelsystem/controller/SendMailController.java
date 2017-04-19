@@ -20,16 +20,26 @@ public class SendMailController {
 	EMailSender emailSender;
 	
 	@RequestMapping(value = "/sendmail", method = RequestMethod.GET)
-	public String showForm(ModelMap model,  @RequestParam(value = "from", required = false) String from,
-			@RequestParam(value = "to", required = false) String to, 
+	public String showForm(ModelMap model,
+			@RequestParam(value = "email", required = false) String email, 
+			@RequestParam(value = "to", required = false) String to,
 			@RequestParam(value = "subject", required = false) String subject, 
 			@RequestParam(value = "message", required = false) String message,
-			@RequestParam(value = "password", required = false) String password) {
+			@RequestParam(value = "password", required = false) String password,
+			@RequestParam(value = "host", required = false) String host,
+			@RequestParam(value = "port", required = false) Integer port,
+			@RequestParam(value = "encoding", required = false) String encoding) {
 		if (CheckConnections.checkConnect("https://www.google.com")) {
-			if (from != null && to != null && password != null) {
+			if (host != null && encoding != null && email != null && password != null) {
+				if (host.equals("Gmail")) {
+					host = "smtp.gmail.com";
+				}
+				emailSender.manualConfig(email, password, host, port, encoding);
+				model.addAttribute("status", "Cấu hình email thành công!");
+			}
+			if (to != null) {
 				logger.info("Handle manual send mail!");
-				emailSender.manualConfig(from, password);
-				emailSender.SendEmail(to, from, subject, message);
+				emailSender.SendEmail(to, subject, message);
 				model.addAttribute("sendSuccess", "Email đã được gửi đi");
 			}
 			else {

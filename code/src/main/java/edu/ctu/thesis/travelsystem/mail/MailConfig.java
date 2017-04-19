@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 public class MailConfig {
-
+	
 	private static final Logger logger = Logger.getLogger(MailConfig.class);
 	
 	 @Bean

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +33,7 @@ import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
 
@@ -43,8 +43,10 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
+	 @Autowired
+	 private EMailSender emailSenderService;
 	@Autowired
-	private EMailSender emailSenderService;
+	private RegInfoService regInfoService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -208,6 +210,8 @@ public class BookTourController {
 					bookedTour.setCusAddress(info.getCusAddress());
 					bookedTour.setDateBook(Calendar.getInstance().getTime());
 					bookedTour.setRelationship(maxValue);
+					bookedTour.setRelation(info.getRelation());
+					bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
 					if (session.getAttribute("idUser") != null) {
 						bookedTour.setIdUser((int) session.getAttribute("idUser"));
 					} else {
@@ -242,11 +246,18 @@ public class BookTourController {
 	// Forward to Customer detail page
 	@RequestMapping(value = "booktourdetail/{idBT}/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour,
-			@Valid Tour tour, @Valid BookTour bookTour) {
+			@Valid Tour tour, @Valid BookTour bookTour, HttpSession session) {
 		bookTour = bookTourService.searchById(idBT);
 		logger.info("Show information of customer when book tour");
 		model.put("cusData", bookTour);
 		model.put("price", bookTour.getTour().getPrice());
+		int register = bookTourService.searchById(idBT).getRelationship();
+		model.put("register", regInfoService.getFirstElement(register));
+		if (session.getAttribute("idUser") != null) {
+			model.put("idUser", true);
+		} else {
+			model.put("idUser", false);
+		}
 		return "booktourdetail";
 	}
 
@@ -276,6 +287,7 @@ public class BookTourController {
 			if (session.getAttribute("idUser") != null) {
 				bookTour.setIdUser((int) session.getAttribute("idUser"));
 				bookTourService.editBookTour(bookTour);
+				model.addAttribute("idUser", bookTour.getIdUser());
 				return "redirect:/managemyreg/{idUser}";
 			} else {
 				bookTour.setIdUser(0);
@@ -290,8 +302,9 @@ public class BookTourController {
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
-		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+		 emailSenderService.SendEmail(bookedTour.getCusEmail(),
+		 MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+		 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 

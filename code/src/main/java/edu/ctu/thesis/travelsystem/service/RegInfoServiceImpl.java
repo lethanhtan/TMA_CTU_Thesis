@@ -54,4 +54,16 @@ public class RegInfoServiceImpl implements RegInfoService {
 	public void dropFieldOption(String name) {
 		this.regInfoDao.dropFieldOption(name);
 	}
+	
+	@Override
+	@Transactional
+	public BookTour getFirstElement(int relationship) {
+		return this.regInfoDao.getFirstElement(relationship);
+	}
+	
+	@Override
+	@Transactional
+	public void cancelAllBookTour(int idBT, int relationship) {
+		this.regInfoDao.cancelAllBookTour(idBT, relationship);
+	}
 }

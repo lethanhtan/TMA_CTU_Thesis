@@ -447,6 +447,8 @@ public class ManageRegController {
 	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT) {
 		logger.info("Show registration infomation!");
 		model.put("cusData", bookTourService.searchById(idBT));
+		int register = bookTourService.searchById(idBT).getRelationship();
+		model.put("register", regInfoService.getFirstElement(register));
 		return "reginfodetail";
 	}
 
@@ -486,6 +488,14 @@ public class ManageRegController {
 	@RequestMapping(value = "cancelreg/{idBT}/{idTour}")
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") Integer idTour) {
 		bookTourService.cancelBookTour(idBT);
+		return "redirect:/registrationlist/{idTour}";
+	}
+
+	// Customer cancel registration tour
+	@RequestMapping(value = "cancelallreg/{idBT}/{relationship}/{idTour}")
+	public String cancelAllBookTour(@PathVariable("idBT") int idBT,
+			@PathVariable("relationship") int relationship, @PathVariable("idTour") int idTour) {
+		regInfoService.cancelAllBookTour(idBT, relationship);
 		return "redirect:/registrationlist/{idTour}";
 	}
 }
