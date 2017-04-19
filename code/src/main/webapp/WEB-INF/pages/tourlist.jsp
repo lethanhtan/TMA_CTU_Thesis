@@ -30,8 +30,8 @@
 				<div class="row">
 					<form role="form" class="form-inline" action="tourlist"
 						method="get">
-						<label for="selectTour" style="text-align: left; margin-left: 80%">Số
-							tour/ trang:</label> <select id="selectTour" class="form-control"
+						<label for="selectTour" style="text-align: left; margin-left: 83%">Số
+							tour/ trang:</label> <select id="selectTour" 
 							name="numOn" onchange="this.form.submit()">
 							<option>5</option>
 							<option>10</option>

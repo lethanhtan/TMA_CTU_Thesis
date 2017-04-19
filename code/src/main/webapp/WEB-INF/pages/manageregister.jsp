@@ -48,6 +48,7 @@
 							</select>
 						</form>
 					</div>
+					</br>
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>
@@ -67,11 +68,12 @@
 								<tr>
 									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.departureDate}" pattern="dd/MM/yyyy" /> </td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
-									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.returnDate}" pattern="dd/MM/yyyy" /> </td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
-										&nbsp;&nbsp;&nbsp;</td>
+									<td><fmt:formatDate value="${tour.departureDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>${tour.departureTime}</td>
+									<td><fmt:formatDate value="${tour.returnDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>${tour.returnTime}</td>
 									<td><a
 										href="<c:url value='registrationlist/${tour.idTour}'/>">
 											<button class="btn btn-xs btn-success">
@@ -81,13 +83,10 @@
 											<button class="btn btn-xs btn-danger">
 												<i class="fa fa-check-square-o">&nbsp;Thiết Kế Form</i>
 											</button>
-									</a>
-									<a href="<c:url value='export/${tour.idTour}'/>"><button
+									</a><a href="<c:url value='export/${tour.idTour}'/>"><button
 												class="btn btn-xs btn-warning">
 												<i class="fa fa-print">&nbsp;Export</i>
-											</button>
-									</a>
-									</td>
+											</button></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
