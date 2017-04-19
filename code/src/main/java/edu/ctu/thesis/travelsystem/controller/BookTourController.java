@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -222,8 +224,9 @@ public class BookTourController {
 				bookTourService.saveBookTours(bookTours, idTour);
 				logger.info("Handle for save booktour!");
 				model.put("idBT", bookTour.getIdBT());
-				emailSenderService.SendEmail("pc.nt95@gmail.com", MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-						MailTemplate.bookSuccessBody);
+				 emailSenderService.SendEmail("pc.nt95@gmail.com",
+				 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+				 MailTemplate.bookSuccessBody);
 				model.put("idTour", idTour);
 				model.put("relationship", maxValue);
 				return "redirect:/booksuccess/{relationship}/{idTour}";

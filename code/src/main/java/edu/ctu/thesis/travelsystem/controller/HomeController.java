@@ -24,78 +24,77 @@ import edu.ctu.thesis.travelsystem.service.TourService;
 public class HomeController {
 	@Autowired
 	private TourService tourService;
-	
+
 	private static final Logger logger = Logger.getLogger(HomeController.class);
 	private static int numOnPage = 5;
-	
-	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
-	public String redirectController(ModelMap model,  HttpSession session,
+
+	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
+	public String redirectController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
 			@RequestParam(required = false, value = "numOn") Integer numOn) {
 		logger.info("Handle home request!");
-		model.addAttribute("tour", new Tour() );
+		model.addAttribute("tour", new Tour());
 		model.addAttribute("current", new Date());
-		
 		logger.info("Handle when managetour request from admin!");
 		String result; // view page mapping
 		try {
 			if (!numOn.equals(null)) {
-				numOnPage = numOn; // numOn 
+				numOnPage = numOn; // numOn
 			}
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
 		}
 		try {
-				model.addAttribute("searchedValue", valueSearch);
-				if (valueSearch != null) {
-					List<Tour> tourList = tourService.listTourByValue(valueSearch);
-					Integer num = 0;
-					if ((tourList.size() % numOnPage) == 0) {
-						num = tourList.size() / numOnPage;
-					} else {
-						num = (tourList.size() / numOnPage) + 1;
-					}
-					if (page <= num) {
-						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-						logger.info("Search active!");
-						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourList);
-						model.addAttribute("numTour", tourList.size());
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("numOnPage", numOnPage);
-						model.addAttribute("page", page);
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-						result = "home";
-					} else {
-						result = "home";
-					}
-				} else { // search none active ! Update list tour
-					Integer num = 0;
-					List<Tour> tourList = tourService.listTour();
-					if ((tourList.size() % numOnPage) == 0) {
-						num = tourList.size() / numOnPage;
-					} else {
-						num = (tourList.size() / numOnPage) + 1;
-					}
-					if (page <= num) {
-						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourList); // create
-						model.addAttribute("numTour", tourList.size()); // create
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("numOnPage", numOnPage);
-						model.addAttribute("page", page);
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-						result = "home";
-					} else {
-						result = "home";
-					}
+			model.addAttribute("searchedValue", valueSearch);
+			if (valueSearch != null) {
+				List<Tour> tourList = tourService.listTourByValue(valueSearch);
+				Integer num = 0;
+				if ((tourList.size() % numOnPage) == 0) {
+					num = tourList.size() / numOnPage;
+				} else {
+					num = (tourList.size() / numOnPage) + 1;
 				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourList);
+					model.addAttribute("numTour", tourList.size());
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
+					result = "home";
+				} else {
+					result = "home";
+				}
+			} else { // search none active ! Update list tour
+				Integer num = 0;
+				List<Tour> tourList = tourService.showTourList();
+				if ((tourList.size() % numOnPage) == 0) {
+					num = tourList.size() / numOnPage;
+				} else {
+					num = (tourList.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourList); // create
+					model.addAttribute("numTour", tourList.size()); // create
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
+					result = "home";
+				} else {
+					result = "home";
+				}
+			}
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 			result = "forbidden";

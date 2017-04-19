@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ctu.thesis.travelsystem.extra.DaysBetween;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
@@ -17,6 +18,7 @@ import edu.ctu.thesis.travelsystem.model.Tour;
 public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Autowired
 	private BookTourDao bookTourDao;
+	DaysBetween daysBetween = new DaysBetween();
 	// Fill the fields automatically
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 
@@ -31,6 +33,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 					tour.setTicketAvailability(tour.getQuantum());
 				}
 				tour.setFullOrNot(false);
+				tour.setHowLong(daysBetween.daysBetween(tour.getReturnDate(), tour.getDepartureDate()));
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -148,7 +151,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> showTourList() {
 		Session session = getCurrentSession();
-		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true ORDER BY ID_TOUR DESC";
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true ORDER BY view DESC";
 		List<Tour> showTourList = session.createQuery(hql).list();
 		for (Tour tour : showTourList) {
 			// Sync noTicketAvailability

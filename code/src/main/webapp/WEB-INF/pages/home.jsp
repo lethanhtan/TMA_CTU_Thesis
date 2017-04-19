@@ -124,20 +124,30 @@
 											<img alt="${tour.image}"
 												src="${pageContext.request.contextPath}/image/${tour.image}">
 											<figcaption>
-												<h3 style="color: white;">${tour.name}</h3>
-												<p class="fa fa-eye" style="color: blue">${tour.view}</p>
-												<p class="fa fa-calendar" style="color: blue">
-													${tour.departureDate.date} -
-													<fmt:formatDate value="${tour.returnDate}"
-														pattern="dd/MM/yyyy" />
-												</p>
-												<h5 style="color: blue;">Giá: ${tour.price} đ</h5>
+												<h3 style="color: yellow;">${tour.name}</h3>
+												<h5 style="color: white;">
+													<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
+												</h5>
+												<h5 style="color: white;">
+													<i class="fa fa-calendar"> Ngày khởi hành: <fmt:formatDate
+															value="${tour.departureDate}" pattern="dd/MM/yyyy" />
+													</i>
+												</h5>
+												<h5 style="color: white;">
+													<i class="fa fa-clock-o"> Giờ khởi hành:
+														${tour.departureTime} </i>
+												</h5>
+												<h5 style="color: white;">
+													<i class="fa fa-car"> Thời gian: ${tour.howLong}
+														ngày </i>
+												</h5>
+												<h5 style="color: white;">
+													<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
+												</h5>
 												<div class="text-center">
-													<span style="color: white; text-align: left;">${tour.detail}</span></br></br>
-													<a
+													</br> <a
 														href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
-															class="btn btn-success" style="margin-left: 55%;">Chi
-															Tiết</button></a> <a
+															class="btn btn-success">Chi Tiết</button></a> <a
 														href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
 															class="btn btn-danger">Đăng Ký</button></a>
 												</div>
