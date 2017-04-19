@@ -11,6 +11,16 @@ import org.springframework.stereotype.Service;
 @Service("Email")
 public class EMailSender {
 	
+	private static String host = "smtp.gmail.com";
+	
+	private static String userName = "nytravelsystem@gmail.com";
+	
+	private static int port = 587;
+	
+	private static String encoding = "UTF-8";
+	
+	private static String password = "29032017";
+	
 	@Autowired
 	private MailSender mailSender; // MailSender interface defines a strategy
 										// for sending simple mails
@@ -35,14 +45,18 @@ public class EMailSender {
 	}
 	
 	public void manualConfig(String userName, String password, String host, int port, String encoding) {
-		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        
+		//JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        EMailSender.host = host;
+        EMailSender.userName = userName;
+        EMailSender.port = port;
+        EMailSender.encoding = encoding;
+        EMailSender.password = password;
         //Using gmail
-        mailSender.setHost(host);
-        mailSender.setPort(port);
-        mailSender.setUsername(userName);
-        mailSender.setPassword(password);
-        mailSender.setDefaultEncoding(encoding);
+        ((JavaMailSenderImpl) mailSender).setHost(EMailSender.host);
+        ((JavaMailSenderImpl) mailSender).setPort(EMailSender.port);
+        ((JavaMailSenderImpl) mailSender).setUsername(EMailSender.userName);
+        ((JavaMailSenderImpl) mailSender).setPassword(EMailSender.password);
+        ((JavaMailSenderImpl) mailSender).setDefaultEncoding(EMailSender.encoding);
          
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
@@ -50,6 +64,14 @@ public class EMailSender {
         javaMailProperties.put("mail.transport.protocol", "smtp");
         javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
         
-        mailSender.setJavaMailProperties(javaMailProperties);
+        ((JavaMailSenderImpl) mailSender).setJavaMailProperties(javaMailProperties);
+	}
+	
+	public String getHost() {
+		return EMailSender.host;
+	}
+	
+	public String getUserName() {
+		return EMailSender.userName;
 	}
 }
