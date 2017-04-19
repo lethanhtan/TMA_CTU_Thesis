@@ -48,9 +48,8 @@
 							</select>
 						</form>
 					</div>
-					</br>
 					<!-- End Choose Number For Display -->
-					<table>
+					<table style="font-size: 13px">
 						<thead>
 							<tr>
 								<th>STT</th>
@@ -68,21 +67,27 @@
 								<tr>
 									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.departureDate}" pattern="dd/MM/yyyy" /> </td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.returnDate}" pattern="dd/MM/yyyy" /> </td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
 										&nbsp;&nbsp;&nbsp;</td>
 									<td><a
 										href="<c:url value='registrationlist/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-success">
+											<button class="btn btn-xs btn-success">
 												<i class="fa fa-list-ol">&nbsp;Quản Lý Danh Sách</i>
 											</button>
 									</a><a href="<c:url value='designform/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-danger">
+											<button class="btn btn-xs btn-danger">
 												<i class="fa fa-check-square-o">&nbsp;Thiết Kế Form</i>
 											</button>
-									</a></td>
+									</a>
+									<a href="<c:url value='export/${tour.idTour}'/>"><button
+												class="btn btn-xs btn-warning">
+												<i class="fa fa-print">&nbsp;Export</i>
+											</button>
+									</a>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

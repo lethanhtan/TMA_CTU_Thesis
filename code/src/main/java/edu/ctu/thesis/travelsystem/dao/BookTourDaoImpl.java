@@ -228,7 +228,7 @@ public class BookTourDaoImpl extends AbstractDao implements BookTourDao {
 		logger.info("Max value: " + max);
 		return max;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BookTour> bookTourListByRelationship(int relationship) {
