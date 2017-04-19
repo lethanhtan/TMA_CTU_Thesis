@@ -5,7 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "EMAIL")
@@ -15,9 +20,15 @@ public class Email {
 	
 	private boolean status;
 	
-	private String email;
+	private String subject;
 	
-	private String password;
+	private String content;
+	
+	private Date date;
+	
+	private Date time;
+	
+	private int idUser;
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -30,21 +41,50 @@ public class Email {
 		this.id = id;
 	}
 	
-	@Column(name = "EMAIL", nullable = false, length = 200)
-	public String getEmail() {
-		return this.email;
+	@Column(name = "STATUS", nullable = false)
+	public boolean getStatus() {
+		return this.status;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
-	@Column(name = "PASSWORD", nullable = false, length = 40)
-	public String getPassword() {
-		return this.password;
+	@Column(name = "SUBJECT", nullable = true, length = 100)
+	public String getSubject() {
+		return this.subject;
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	@Column(name = "CONTENT", nullable = false, length = 500)
+	public String getContent() {
+		return this.content;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	@Column(name = "DATE", nullable = true)
+	@Temporal(TemporalType.DATE)
+	public Date getDate() {
+		return this.date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	@Column(name = "TIME", nullable = true)
+	@Temporal(TemporalType.TIME)
+	public Date getTimne() {
+		return this.time;
+	}
+	
+	public void setTime(Date time) {
+		this.time = time;
 	}
 }
