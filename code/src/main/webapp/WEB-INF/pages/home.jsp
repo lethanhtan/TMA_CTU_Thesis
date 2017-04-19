@@ -88,9 +88,6 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Main Text -->
-
-			<!-- <a href="https://clipartfest.com/download/da18029c316ae36c9425aaa72a5aa426a775ec30" title="Image from clipartfest.com"><img src="https://img.clipartfest.com/5a339d163cfa7e605f091a2946457fbb_red-bus-coach-clip-art-clipart-coach-bus_1052-744.svg" width="1052" alt="clipart coach bus" /></a> -->
-
 			<div class="col-md-12">
 				<h2 class="text-center">Chào mừng đến với công ty NY Travel</h2>
 				<p class="text-center">Chính thức thành lập vào tháng 12 năm
@@ -117,52 +114,38 @@
 			<c:if test="${!empty tourList}">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
-						<div class="col-md-4 col-sm-4 col-xs-6">
+						<div class="col-md-6 col-sm-6 col-xs-6">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
-
 								<!-- Portfolio Item -->
 								<li class="portfolio-item padding-10"><a
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
-
 											<img alt="${tour.image}"
 												src="${pageContext.request.contextPath}/image/${tour.image}">
-												<!-- 
-											<div class="row">
-												<c:if test="${tour.getDepartureDate().after(current)}">
-													<img alt="new" src="resources/img/new.png" width="20"
-														height="20">
-												</c:if>
-												<img alt="new" src="resources/img/sale.png" width="20"
-													height="20">
-											</div>
-												 -->
 											<figcaption>
-												<h6 style="color:white;">${tour.name}</h6>
+												<h3 style="color: white;">${tour.name}</h3>
 												<p class="fa fa-eye" style="color: blue">${tour.view}</p>
 												<p class="fa fa-calendar" style="color: blue">
-													${tour.departureDate.getDate()} - 
+													${tour.departureDate.date} -
 													<fmt:formatDate value="${tour.returnDate}"
 														pattern="dd/MM/yyyy" />
 												</p>
-												<h5 style="color: blue;">Giá: ${tour.price}đ</h5>
+												<h5 style="color: blue;">Giá: ${tour.price} đ</h5>
 												<div class="text-center">
-												<span style="color: white;">${tour.getDetail()}</span>
-												<span><a
-													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><input
-														class="btn btn-success text-center" type="submit"
-														value="Chi tiết"></a></span> <span><a
-													href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><input
-														class="btn btn-danger text-center" type="submit"
-														value="Đăng ký"></a></span>
+													<span style="color: white; text-align: left;">${tour.detail}</span></br></br>
+													<a
+														href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
+															class="btn btn-success" style="margin-left: 55%;">Chi
+															Tiết</button></a> <a
+														href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
+															class="btn btn-danger">Đăng Ký</button></a>
 												</div>
 											</figcaption>
 										</figure>
 								</a></li>
 								<!-- //Portfolio Item// -->
 							</ul>
-
 							<!-- End Portfolio -->
 						</div>
 					</c:forEach>
@@ -213,7 +196,7 @@
 				<h2 class="animate fadeIn text-center">Cơ hội việc làm</h2>
 				<p class="animate fadeIn text-center">Nếu bạn muốn làm việc với
 					đội ngũ sáng tạo trong một môi trường năng động và thân thiện thì
-					gọi chúng tôi ngay bây giờ!.</p>
+					gọi chúng tôi ngay bây giờ!</p>
 				<p class="animate fadeInUp text-center">
 					<button class="btn btn-primary btn-lg" type="button">Xem
 						chi tiết</button>
