@@ -50,7 +50,7 @@
 					</div>
 					</br>
 					<!-- End Choose Number For Display -->
-					<table>
+					<table style="font-size: 13px;">
 						<thead>
 							<tr>
 								<th>STT</th>
@@ -70,24 +70,24 @@
 									<c:if test="${user.idUser != id}">
 										<td>${userList.indexOf(user)}</td>
 										<td>${user.fullName}</td>
-										<td>&nbsp;&nbsp;&nbsp; ${user.sex}</td>
-										<td>&nbsp;&nbsp;&nbsp; ${user.birthday}</td>
-										<td>&nbsp;&nbsp;&nbsp; ${user.email}</td>
-										<td>&nbsp;&nbsp;&nbsp; ${user.phone}&nbsp;&nbsp;&nbsp;</td>
+										<td>${user.sex}</td>
+										<td>${user.birthday}</td>
+										<td>${user.email}</td>
+										<td>${user.phone}</td>
 										<td><a
 											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
 												<button type="button" id="button${user.idUser}"
 													hidden="true"></button>
 										</a></td>
 										<td><a href="<c:url value='userdetail/${user.idUser}'/>">
-												<button class="btn btn-sm btn-violet">
+												<button class="btn btn-xs btn-violet">
 													<i class="fa fa-eye">&nbsp;Xem</i>
 												</button>
 										</a><a href="<c:url value='edituser/${user.idUser}'/>"><button
-													class="btn btn-sm btn-success">
+													class="btn btn-xs btn-success">
 													<i class="fa fa-pencil">&nbsp;Sửa</i>
 												</button></a>
-										<button class="btn btn-sm btn-danger delete" id="${user.idUser}">
+										<button class="btn btn-xs btn-danger delete" id="${user.idUser}">
 												<i class="fa fa-trash-o">&nbsp;Xóa</i>
 											</button></td>
 									</c:if>
