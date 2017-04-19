@@ -13,6 +13,8 @@ public class Email {
 
 	private int id;
 	
+	private boolean status;
+	
 	private String email;
 	
 	private String password;
