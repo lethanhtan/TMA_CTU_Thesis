@@ -43,6 +43,7 @@ public class Tour {
 	private boolean fieldNumOfTicket = true;
 	private boolean fieldYearOfBirth = true;
 	private int view;
+	private int howLong;
 	private Schedule schedule;
 
 	@Id
@@ -293,6 +294,16 @@ public class Tour {
 
 	public void setView(int view) {
 		this.view = view;
+	}
+
+	// Create column How long
+	@Column(name = "HOW_LONG", nullable = true)
+	public int getHowLong() {
+		return howLong;
+	}
+
+	public void setHowLong(int howLong) {
+		this.howLong = howLong;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
