@@ -151,7 +151,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public List<Tour> showTourList() {
 		Session session = getCurrentSession();
-		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true ORDER BY ID_TOUR DESC";
+		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true ORDER BY view DESC";
 		List<Tour> showTourList = session.createQuery(hql).list();
 		for (Tour tour : showTourList) {
 			// Sync noTicketAvailability
