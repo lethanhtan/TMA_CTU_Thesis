@@ -100,7 +100,7 @@
 								<!-- End Choose Number For Display -->
 							</div>
 							</br>
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
@@ -136,17 +136,17 @@
 													<button type="button" id="allcancel${bookTour.idBT}"
 														hidden="true"></button>
 											</a> <a href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
-													<button class="btn btn-sm btn-violet">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
 												href="<c:url value='/editreginfo/${bookTour.idBT}/${tour.idTour}'/>"><button
-														class="btn btn-sm btn-success">
+														class="btn btn-xs btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
 														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
-														<button class="btn btn-sm btn-aqua cancel"
+														<button class="btn btn-xs btn-aqua cancel"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
@@ -155,12 +155,12 @@
 														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
 														<a
 															href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-																class="btn btn-sm btn-aqua">
+																class="btn btn-xs btn-aqua">
 																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 															</button></a>
 													</c:if>
 												</c:if>
-												<button class="btn btn-sm btn-danger delete"
+												<button class="btn btn-xs btn-danger delete"
 													id="${bookTour.idBT }">
 													<i class="fa fa-trash-o">&nbsp;Xóa</i>
 												</button></td>
