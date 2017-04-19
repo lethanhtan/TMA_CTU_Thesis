@@ -50,7 +50,7 @@
 					</div>
 					<br />
 					<!-- End Choose Number For Display -->
-					<table>
+					<table style="font-size: 13px">
 						<thead>
 							<tr>
 								<th>STT</th>
@@ -69,32 +69,25 @@
 								<tr>
 									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td>${tour.departureDate}</td>
-									<td>${tour.departureTime}</td>
-									<td>${tour.returnDate}</td>
-									<td>${tour.returnTime}</td>
-									<td><a
-										href="<c:url value='managetour/delete/${tour.idTour}'/>">
-											<button type="button" id="button${user.idUser}" hidden="true"></button>
-									</a></td>
+									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.departureDate}" pattern="dd-MM/yyyy" /> </td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime} </td>
+									<td>&nbsp;&nbsp;&nbsp; <fmt:formatDate value="${tour.returnDate}" pattern="dd-MM/yyyy" /> </td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}
+										&nbsp;&nbsp;&nbsp;</td>
 									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-violet">
+											<button class="btn btn-xs btn-violet">
 												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>
 									</a><a href="<c:url value='updatetour/${tour.idTour}'/>"><button
-												class="btn btn-sm btn-success">
-												<i class="fa fa-pencil">&nbsp;Sửa</i>
-											</button></a>
+												class="btn btn-xs btn-success">
+												<i class="fa fa-pencil">&nbsp;Sửa</i></button></a>
 										<button class="btn btn-sm btn-danger delete"
 											id="${tour.idTour}">
 											<i class="fa fa-trash-o">&nbsp;Xóa</i>
 										</button> <a href="<c:url value='tourreg/${tour.idTour}'/>"><button
 												class="btn btn-sm btn-blue">
 												<i class="fa fa-signal">&nbsp;Biểu đồ</i>
-											</button></a> <a href="<c:url value='export/${tour.idTour}'/>"><button
-												class="btn btn-sm btn-warning">
-												<i class="fa fa-print">&nbsp;Export</i>
-											</button></a></td>
+											</button></a> </td>
 								</tr>
 							</c:forEach>
 						</tbody>

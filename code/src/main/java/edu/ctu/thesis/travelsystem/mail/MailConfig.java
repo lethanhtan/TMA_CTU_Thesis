@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 public class MailConfig {
-
+	
 	private static final Logger logger = Logger.getLogger(MailConfig.class);
 	
 	 @Bean
@@ -22,6 +22,7 @@ public class MailConfig {
 	        mailSender.setPort(587);
 	        mailSender.setUsername("nytravelsystem@gmail.com");
 	        mailSender.setPassword("29032017");
+	        mailSender.setDefaultEncoding("UTF-8");
 	         
 	        Properties javaMailProperties = new Properties();
 	        javaMailProperties.put("mail.smtp.starttls.enable", "true");
