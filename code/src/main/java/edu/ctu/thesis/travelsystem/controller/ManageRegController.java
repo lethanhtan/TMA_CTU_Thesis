@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -514,15 +513,23 @@ public class ManageRegController {
 		return "relationship";
 	}
 
-	ValidUtil validUtil = new ValidUtil();
-
 	// Insert relationship
 	@RequestMapping(value = "relationship", method = RequestMethod.POST)
 	public String insertRelationship(ModelMap model, HttpSession session,
 			@ModelAttribute("relationshipData") @Valid Relationship relationship) {
+		ValidUtil validUtil = new ValidUtil();
+		if (validUtil.findDigit(relationship.getName())) {
+			model.put("error", "Mối quan hệ không được chứa chữ số");
+			List<Relationship> relationshipList = regInfoService.relationshipList();
+			model.put("relationship", new Relationship());
+			model.put("relationshipList", relationshipList);
+			model.put("relationshipData", new Relationship());
+			return "relationship";
+		} else {
 			logger.info("Create relationship successful!");
 			regInfoService.saveRelationship(relationship);
 			return "redirect:/relationship";
+		}
 	}
 
 	// Delete relationship
