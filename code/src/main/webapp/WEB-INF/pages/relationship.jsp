@@ -15,40 +15,6 @@
 					</div>
 					<br>
 					<hr>
-					<c:if test="${empty relationshipList}">
-						<h2 style="text-align: center; color: red;">Chưa có mối quan
-							hệ nào!</h2>
-					</c:if>
-					<c:if test="${!empty relationshipList}">
-						<table>
-							<thead>
-								<tr>
-									<th style="text-align: left;">STT</th>
-									<th style="text-align: left;">Tên mối quan hệ</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${relationshipList}" var="relationship">
-									<tr>
-										<td>${relationshipList.indexOf(relationship) + 1}</td>
-										<td>${relationship.name}</td>
-										<td><a
-											href="<c:url value='relationship/delete/${relationship.id}'/>">
-												<button type="button" id="button${relationship.id}"
-													hidden="true"></button>
-										</a>
-										<button class="btn btn-xs btn-danger delete"
-												id="${relationship.id}">
-												<i class="fa fa-trash-o">&nbsp;Xóa</i>
-											</button></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</c:if>
-					<br>
-					<hr>
 					<div id="accordion" class="panel-group">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -79,6 +45,40 @@
 							</div>
 						</div>
 					</div>
+					<c:if test="${empty relationshipList}">
+						<h2 style="text-align: center; color: red;">Chưa có mối quan
+							hệ nào!</h2>
+					</c:if>
+					<c:if test="${!empty relationshipList}">
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align: left;">STT</th>
+									<th style="text-align: left;">Tên mối quan hệ</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${relationshipList}" var="relationship">
+									<tr>
+										<td>${relationshipList.indexOf(relationship) + 1}</td>
+										<td>${relationship.name}</td>
+										<td><a
+											href="<c:url value='relationship/delete/${relationship.id}'/>">
+												<button type="button" id="button${relationship.id}"
+													hidden="true"></button>
+										</a>
+											<button class="btn btn-xs btn-danger delete"
+												id="${relationship.id}">
+												<i class="fa fa-trash-o">&nbsp;Xóa</i>
+											</button></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:if>
+					<br>
+					<hr>
 					<a href="${pageContext.request.contextPath}/manageregister"><button
 							class="btn btn-primary" style="margin-left: 80%;">
 							<i class="fa fa-arrow-left">&nbsp;Trở Về</i>
