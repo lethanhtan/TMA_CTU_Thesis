@@ -103,7 +103,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 	public BookTour getFirstElement(int relationship) {
 		Session session = getCurrentSession();
 		Query query = session.createQuery(
-				"FROM BookTour WHERE Relationship = :relationship GROUP BY Relationship HAVING id_bt = MIN(id_bt)");
+				"FROM BookTour o WHERE o.relationship = :relationship GROUP BY o.relationship HAVING o.idBT = MIN(o.idBT)");
 		query.setParameter("relationship", relationship);
 		BookTour bookTour = (BookTour) query.uniqueResult();
 		return bookTour;
