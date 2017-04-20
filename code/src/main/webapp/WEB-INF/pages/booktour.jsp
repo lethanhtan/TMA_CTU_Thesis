@@ -173,16 +173,9 @@
 						</span>
 						<s:select class="form-control margin-bottom-20"
 							path="info[${status.index}].relation">
-							<option>Cha</option>
-							<option>Mẹ</option>
-							<option>Vợ</option>
-							<option>Chồng</option>
-							<option>Ông</option>
-							<option>Bà</option>
-							<option>Anh</option>
-							<option>Chị</option>
-							<option>Em</option>
-							<option>Khác</option>
+							<c:forEach items="${relationshipList}" var="relationship">
+								<option>${relationship.name}</option>
+							</c:forEach>
 						</s:select>
 					</div>
 				</div>

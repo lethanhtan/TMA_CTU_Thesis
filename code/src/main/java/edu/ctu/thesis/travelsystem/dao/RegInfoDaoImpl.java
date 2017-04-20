@@ -39,6 +39,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return registrationList;
 	}
 
+	// Delete booked tour
 	@Override
 	public void deleteBookTour(int idBT, int idTour) {
 		Session session = getCurrentSession();
@@ -67,6 +68,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return cancelList;
 	}
 
+	// Display cancel registration list match with keyword administrator typed
 	@Override
 	public List<BookTour> cancelListByValue(String value, int idTour) {
 		Session session = getCurrentSession();
@@ -79,6 +81,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return cancelList;
 	}
 
+	// Undo registration information was canceled
 	@Override
 	public void undoCancel(int idBT) {
 		Session session = getCurrentSession();
@@ -95,6 +98,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		}
 	}
 
+	// Get the first element in group by relationship
 	@Override
 	public BookTour getFirstElement(int relationship) {
 		Session session = getCurrentSession();
@@ -105,6 +109,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return bookTour;
 	}
 
+	// Cancel all booked tour when have the same relationship
 	@Override
 	public void cancelAllBookTour(int idBT, int relationship) {
 		Session session = getCurrentSession();
@@ -131,6 +136,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return relationshipList;
 	}
 
+	// Save relationship
 	@Override
 	public void saveRelationship(Relationship relationship) {
 		Session session = getCurrentSession();
@@ -141,6 +147,20 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			} catch (Exception e) {
 				logger.error("Occured ex", e);
 			}
+		}
+	}
+
+	// Delete relationship
+	@Override
+	public void deleteRelationship(int id) {
+		Session session = getCurrentSession();
+		Relationship relationship = (Relationship) session.load(Relationship.class, new Integer(id));
+		if (relationship != null) {
+			Query query = session.createQuery("FROM Relationship WHERE Id = :id");
+			query.setParameter("id", relationship.getId());
+			session.delete(relationship);
+			session.flush();
+			logger.info("Delete customer success!");
 		}
 	}
 }
