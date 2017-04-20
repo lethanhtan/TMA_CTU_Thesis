@@ -2,6 +2,11 @@ package edu.ctu.thesis.travelsystem.mail;
 
 import java.util.Properties;
 
+import javax.mail.AuthenticationFailedException;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -41,12 +46,12 @@ public class EMailSender{
 		msg.setTo(toAddress);
 		msg.setSubject(subject);
 		msg.setText(msgBody);
-		mailSender.send(msg);
-	}
+		mailSender.send(msg);	}
 	
-	public void manualConfig(String userName, String password, String host, int port, String encoding) {
+	public boolean manualConfig(String userName, String password, String host, int port, String encoding) {
 		//JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        EMailSender.host = host;
+		
+		EMailSender.host = host;
         EMailSender.userName = userName;
         EMailSender.port = port;
         EMailSender.encoding = encoding;
@@ -65,6 +70,21 @@ public class EMailSender{
         javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
         
         ((JavaMailSenderImpl) mailSender).setJavaMailProperties(javaMailProperties);
+        return checkAuthentication(javaMailProperties);
+	}
+	
+	public static boolean checkAuthentication(Properties props) {
+		try {
+			Session session = Session.getInstance(props, null);
+			Transport transport = session.getTransport("smtp");
+			transport.connect(EMailSender.host, EMailSender.port, EMailSender.userName, EMailSender.password);
+			transport.close();
+			return true;
+		} catch (AuthenticationFailedException e) {
+			return false;
+		} catch (MessagingException e) {
+			return false;
+		}
 	}
 	
 	public String getUserName() {

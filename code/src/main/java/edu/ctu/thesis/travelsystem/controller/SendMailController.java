@@ -56,8 +56,12 @@ public class SendMailController {
 				if (host.equals("Gmail")) {
 					host = "smtp.gmail.com";
 				}
-				emailSender.manualConfig(from, password, host, port, encoding);
-				model.addAttribute("status", "Cấu hình email thành công!");
+				if (emailSender.manualConfig(from, password, host, port, encoding)) {
+					model.addAttribute("status", "Cấu hình email thành công!");
+				}
+				else {
+					model.addAttribute("status", "Cấu hình email thất bại!");
+				}
 			}
 			if (from == null) {
 				model.addAttribute("emailConfig", emailSender.getUserName());
