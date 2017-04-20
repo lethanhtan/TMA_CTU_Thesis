@@ -67,6 +67,10 @@ public class EMailSender {
         ((JavaMailSenderImpl) mailSender).setJavaMailProperties(javaMailProperties);
 	}
 	
+	public void TestSendMail() {
+		
+	}
+	
 	public String getHost() {
 		return EMailSender.host;
 	}

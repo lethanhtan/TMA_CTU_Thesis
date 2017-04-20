@@ -22,9 +22,10 @@
 								<div class="row margin-bottom-20">
 									<div class="col-md-12 col-md-offset-3">
 										<div class="col-sm-6 col-md-6">
-											<small style="color: green;">${status}</small> <br /> <label>Tài
+											<small style="color: green;">${status}</small> <br /> <small
+												style="color: red;">${failedConnect}</small> <br /> <label>Tài
 												khoản email</label> <input class="form-control" type="text"
-												name="email">
+												name="from">
 										</div>
 									</div>
 								</div>
@@ -135,8 +136,8 @@
 												474</li>
 											<li><i class="fa-envelope color-primary"> <a
 													href="mailto:${emailConfig}"></i>${emailConfig}</a></li>
-											<li><i class="fa-home color-primary"> <a
-													href="#"></i>Quản trị viên</a></li>
+											<li><i class="fa-home color-primary"> <a href="#"></i>Quản
+												trị viên</a></li>
 										</ul>
 										<ul class="list-unstyled">
 											<li><strong class="color-primary">Thời gian làm

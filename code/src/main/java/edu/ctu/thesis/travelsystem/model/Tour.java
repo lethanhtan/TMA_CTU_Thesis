@@ -130,7 +130,7 @@ public class Tour {
 	}
 
 	// Create column Tour detail
-	@Column(name = "DETAIL", nullable = false, length = 2000)
+	@Column(name = "DETAIL", nullable = false, length = 5000)
 	public String getDetail() {
 		return detail;
 	}

@@ -18,6 +18,10 @@ public class Email {
 
 	private int id;
 	
+	private String reciever;
+	
+	private String sender;
+	
 	private boolean status;
 	
 	private String subject;
@@ -39,6 +43,24 @@ public class Email {
 	
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@Column(name = "RECIEVER", nullable = true, length = 200)
+	public String getReciever() {
+		return this.reciever;
+	}
+	
+	public void setReciever(String reciever) {
+		this.reciever = reciever;
+	}
+	
+	@Column(name = "SENDER", nullable = true, length = 200)
+	public String getSender() {
+		return this.sender;
+	}
+	
+	public void setSender(String sender) {
+		this.sender = sender;
 	}
 	
 	@Column(name = "STATUS", nullable = false)
