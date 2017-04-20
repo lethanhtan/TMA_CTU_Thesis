@@ -17,7 +17,7 @@
 								<br>
 								<hr>
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="col-md-4 col-sm-4 col-xs-4">
 										<h4 style="color: white;">
 											<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
 										</h4>
@@ -32,7 +32,7 @@
 												${tour.departureTime} </i>
 										</h4>
 									</div>
-									<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="col-md-4 col-sm-4 col-xs-4">
 										<h4 style="color: white;">
 											<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
 										</h4>
@@ -43,6 +43,14 @@
 											<i class="fa fa-smile-o"> Số chỗ còn nhận:
 												${tour.ticketAvailability}</i>
 										</h4>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-4">
+										<img
+											src="http://cungcaphatgiong.com/asset/editor/ResponsiveFilemanager-master/source/Salepage/nhan-uom-ma.gif">
+										<br> <a
+											href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
+												class="btn btn-danger" style="margin-left: 5%;">Đăng
+												Ký Ngay</button></a>
 									</div>
 								</div>
 								<c:if test="${tour.getDepartureDate().after(current)}">
@@ -83,10 +91,13 @@
 										<h4 style="color: white;">Xe đưa đón</h4>
 									</div>
 								</div>
-								<a
+								<img style="margin-left: 75%;"
+									src="http://cungcaphatgiong.com/asset/editor/ResponsiveFilemanager-master/source/Salepage/nhan-uom-ma.gif">
+								<br>
+								<br> <a
 									href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
-										class="btn btn-danger" style="margin-left: 80%;">Đăng
-										Ký</button></a> <a href="${pageContext.request.contextPath}"><button
+										class="btn btn-danger" style="margin-left: 75%;">Đăng
+										Ký Ngay</button></a> <a href="${pageContext.request.contextPath}"><button
 										class="btn btn-success">Trở Về</button></a><br>
 							</figcaption>
 					</a></li>

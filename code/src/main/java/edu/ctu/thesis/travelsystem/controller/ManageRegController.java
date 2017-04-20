@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
+import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
@@ -515,17 +516,23 @@ public class ManageRegController {
 	// Insert relationship
 	@RequestMapping(value = "relationship", method = RequestMethod.POST)
 	public String insertRelationship(ModelMap model, HttpSession session,
-			@ModelAttribute("relationshipData") @Valid Relationship relationship, BindingResult br) {
-		if (br.hasErrors()) {
+			@ModelAttribute("relationshipData") @Valid Relationship relationship) {
+		ValidUtil validUtil = new ValidUtil();
+		if (validUtil.findDigit(relationship.getName())) {
+			model.put("error", "Mối quan hệ không được chứa chữ số");
+			List<Relationship> relationshipList = regInfoService.relationshipList();
+			model.put("relationship", new Relationship());
+			model.put("relationshipList", relationshipList);
+			model.put("relationshipData", new Relationship());
 			return "relationship";
 		} else {
-			logger.info("Create tour! In here second!");
+			logger.info("Create relationship successful!");
 			regInfoService.saveRelationship(relationship);
 			return "redirect:/relationship";
 		}
 	}
 
-	// Delete customer booked tour
+	// Delete relationship
 	@RequestMapping(value = "relationship/delete/{id}")
 	public String deleteRelationship(@PathVariable("id") int id) {
 		regInfoService.deleteRelationship(id);

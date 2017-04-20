@@ -15,6 +15,7 @@
 					</div>
 					<br>
 					<hr>
+					<p style="color: red; text-align: center;">${error}</p>
 					<div id="accordion" class="panel-group">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -33,8 +34,8 @@
 											<span class="input-group-addon"> <i
 												class="fa fa-group"></i>
 											</span>
-											<s:input placeholder="Nhập mối quan hệ" class="form-control"
-												type="text" path="name" />
+											<s:input placeholder="Nhập mối quan hệ"
+												class="form-control" type="text" path="name" />
 										</div>
 										<div class="row" style="text-align: center;">
 											<button class="btn btn-primary" type="submit">Xác
