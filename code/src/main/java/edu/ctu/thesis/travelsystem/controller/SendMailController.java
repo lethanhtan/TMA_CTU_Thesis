@@ -24,6 +24,8 @@ public class SendMailController {
 	
 	private static final Logger logger = Logger.getLogger(SendMailController.class);
 	
+	private static boolean flag = true;
+	
 	@Autowired
 	EMailSender emailSender;
 	
@@ -46,7 +48,6 @@ public class SendMailController {
 			HttpSession session) {
 		Email emailObj = new Email();
 		String sender = null;
-		boolean flag = true;
 		List<Email> totalList = emailService.listMail();
 		List<Email> successList = emailService.listMailByStaus(true);
 		model.addAttribute("totalMail", totalList.size());
