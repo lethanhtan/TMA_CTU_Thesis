@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.FilterService;
@@ -493,9 +494,32 @@ public class ManageRegController {
 
 	// Customer cancel registration tour
 	@RequestMapping(value = "cancelallreg/{idBT}/{relationship}/{idTour}")
-	public String cancelAllBookTour(@PathVariable("idBT") int idBT,
-			@PathVariable("relationship") int relationship, @PathVariable("idTour") int idTour) {
+	public String cancelAllBookTour(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour) {
 		regInfoService.cancelAllBookTour(idBT, relationship);
 		return "redirect:/registrationlist/{idTour}";
+	}
+
+	// Display relationship list
+	@RequestMapping(value = "relationship", method = RequestMethod.GET)
+	public String showRelationship(ModelMap model, HttpSession session) {
+		List<Relationship> relationshipList = regInfoService.relationshipList();
+		model.put("relationship", new Relationship());
+		model.put("relationshipList", relationshipList);
+		model.put("relationshipData", new Relationship());
+		return "relationship";
+	}
+
+	// Insert relationship
+	@RequestMapping(value = "relationship", method = RequestMethod.POST)
+	public String insertRelationship(ModelMap model, HttpSession session,
+			@ModelAttribute("relationshipData") @Valid Relationship relationship, BindingResult br) {
+		if (br.hasErrors()) {
+			return "relationship";
+		} else {
+			logger.info("Create tour! In here second!");
+			regInfoService.saveRelationship(relationship);
+			return "redirect:/relationship";
+		}
 	}
 }

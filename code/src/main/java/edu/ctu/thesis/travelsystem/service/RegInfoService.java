@@ -3,6 +3,7 @@ package edu.ctu.thesis.travelsystem.service;
 import java.util.List;
 
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Relationship;
 
 public interface RegInfoService {
 	public List<BookTour> registrationList(int idTour);
@@ -15,11 +16,11 @@ public interface RegInfoService {
 
 	public void undoCancel(int idBT);
 	
-	public void addFieldOption(String name, String type);
-
-	public void dropFieldOption(String name);
-	
 	public BookTour getFirstElement(int relationship);
 	
 	public void cancelAllBookTour(int idBT, int relationship);
+	
+	public List<Relationship> relationshipList();
+	
+	public void saveRelationship(Relationship relationship);
 }
