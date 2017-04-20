@@ -46,7 +46,7 @@
 							</tr>
 						</tbody>
 					</table>
-					</br>
+					<br>
 					<table>
 						<thead>
 							<tr>
@@ -114,14 +114,14 @@
 						</tbody>
 					</table>
 				</form>
-				</br>
+				<br>
 				<!-- End Table -->
 				<a href="<c:url value='/cancel/${cusData.idBT}'/>">
 					<button type="button" id="regcancel${cusData.idBT}" hidden="true"></button>
 				</a> <a
 					href="<c:url value='/cancelall/${cusData.idBT}/${cusData.relationship}'/>">
 					<button type="button" id="allcancel${cusData.idBT}" hidden="true"></button>
-				</a> </br>
+				</a> <br>
 				<div class="row">
 					<c:if test="${not cusData.cusCancel}">
 						<div class="col-lg-4 text-center">

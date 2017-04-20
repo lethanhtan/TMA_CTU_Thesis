@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.RegInfoDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Relationship;
 
 @Service
 public class RegInfoServiceImpl implements RegInfoService {
@@ -46,17 +47,6 @@ public class RegInfoServiceImpl implements RegInfoService {
 	
 	@Override
 	@Transactional
-	public void addFieldOption(String name, String type) {
-		this.regInfoDao.addFieldOption(name, type);
-	}
-
-	@Override
-	public void dropFieldOption(String name) {
-		this.regInfoDao.dropFieldOption(name);
-	}
-	
-	@Override
-	@Transactional
 	public BookTour getFirstElement(int relationship) {
 		return this.regInfoDao.getFirstElement(relationship);
 	}
@@ -65,5 +55,17 @@ public class RegInfoServiceImpl implements RegInfoService {
 	@Transactional
 	public void cancelAllBookTour(int idBT, int relationship) {
 		this.regInfoDao.cancelAllBookTour(idBT, relationship);
+	}
+	
+	@Override
+	@Transactional
+	public List<Relationship> relationshipList() {
+		return this.regInfoDao.relationshipList();
+	}
+	
+	@Override
+	@Transactional
+	public void saveRelationship(Relationship relationship) {
+		this.regInfoDao.saveRelationship(relationship);
 	}
 }

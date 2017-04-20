@@ -54,7 +54,7 @@
 								<option>15</option>
 							</select>
 						</form>
-						</br>
+						<br>
 						<!-- End Choose Number For Display -->
 						<!-- Table -->
 						<c:if test="${empty myRegList}">
@@ -200,7 +200,7 @@
 								<option>15</option>
 							</select>
 						</form>
-						</br>
+						<br>
 						<!-- End Choose Number For Display -->
 						<!-- Table -->
 						<c:if test="${empty myCancelList}">

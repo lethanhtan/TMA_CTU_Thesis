@@ -81,7 +81,7 @@
 											</form></li>
 									</ul>
 								</div>
-								</br>
+								<br>
 								<!-- End Filter Buttons -->
 								<!-- Choose Number For Display -->
 								<form role="form" class="form-inline"
@@ -99,7 +99,7 @@
 								</form>
 								<!-- End Choose Number For Display -->
 							</div>
-							</br>
+							<br>
 							<table style="font-size: 13px;">
 								<thead>
 									<tr>
@@ -274,7 +274,7 @@
 											</form></li>
 									</ul>
 								</div>
-								</br>
+								<br>
 								<!-- End Filter Buttons -->
 								<form role="form" class="form-inline"
 									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
@@ -290,7 +290,7 @@
 									</select>
 								</form>
 							</div>
-							</br>
+							<br>
 							<!-- End Choose Number For Display -->
 							<table>
 								<thead>
@@ -372,7 +372,7 @@
 									</c:if>
 									<c:if test="${numCancelReg/numOnPage2 - param.page2 > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/registrationlist/${tour.idTour}?page=${page2 + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath}/registrationlist/${tour.idTour}?page=${page2 + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
