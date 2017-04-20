@@ -37,9 +37,15 @@ public class SendMailController {
 				emailSender.manualConfig(email, password, host, port, encoding);
 				model.addAttribute("status", "Cấu hình email thành công!");
 			}
+			if (email == null) {
+				model.addAttribute("emailConfig", emailSender.getUserName());
+			}
+			else {
+				model.addAttribute("emailConfig", email);
+			}
 			if (to != null) {
 				logger.info("Handle manual send mail!");
-				emailSender.SendEmail(to, subject, message);
+				emailSender.SendEmail(to, email, subject, message);
 				model.addAttribute("sendSuccess", "Email đã được gửi đi");
 			}
 			else {
