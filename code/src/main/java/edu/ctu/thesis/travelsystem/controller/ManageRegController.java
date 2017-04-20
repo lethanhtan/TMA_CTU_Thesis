@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
+import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
@@ -512,20 +514,18 @@ public class ManageRegController {
 		return "relationship";
 	}
 
+	ValidUtil validUtil = new ValidUtil();
+
 	// Insert relationship
 	@RequestMapping(value = "relationship", method = RequestMethod.POST)
 	public String insertRelationship(ModelMap model, HttpSession session,
-			@ModelAttribute("relationshipData") @Valid Relationship relationship, BindingResult br) {
-		if (br.hasErrors()) {
-			return "relationship";
-		} else {
-			logger.info("Create tour! In here second!");
+			@ModelAttribute("relationshipData") @Valid Relationship relationship) {
+			logger.info("Create relationship successful!");
 			regInfoService.saveRelationship(relationship);
 			return "redirect:/relationship";
-		}
 	}
 
-	// Delete customer booked tour
+	// Delete relationship
 	@RequestMapping(value = "relationship/delete/{id}")
 	public String deleteRelationship(@PathVariable("id") int id) {
 		regInfoService.deleteRelationship(id);
