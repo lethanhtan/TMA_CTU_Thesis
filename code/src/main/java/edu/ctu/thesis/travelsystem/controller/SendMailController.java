@@ -46,6 +46,7 @@ public class SendMailController {
 			HttpSession session) {
 		Email emailObj = new Email();
 		String sender = null;
+		boolean flag = true;
 		List<Email> totalList = emailService.listMail();
 		List<Email> successList = emailService.listMailByStaus(true);
 		model.addAttribute("totalMail", totalList.size());
@@ -58,9 +59,11 @@ public class SendMailController {
 				}
 				if (emailSender.manualConfig(from, password, host, port, encoding)) {
 					model.addAttribute("status", "Cấu hình email thành công!");
+					flag = true;
 				}
 				else {
 					model.addAttribute("status", "Cấu hình email thất bại!");
+					flag = false;
 				}
 			}
 			if (from == null) {
@@ -80,7 +83,7 @@ public class SendMailController {
 				emailObj.setDate(new Date());
 				emailObj.setTime(new Date());
 				emailObj.setContent(message);
-				emailObj.setStatus(false);
+				emailObj.setStatus(flag);
 				emailObj.setSubject(subject);
 				emailObj.setUser(userService.findUserByUserName(((String)session.getAttribute("userName"))));
 				emailService.saveEmail(emailObj);
