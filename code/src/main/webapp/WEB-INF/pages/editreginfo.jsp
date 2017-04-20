@@ -25,7 +25,8 @@
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
-									<br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<br> <small><s:errors path="cusName"
+											cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i class="fa fa-font"></i>
 										</span>
@@ -72,17 +73,9 @@
 											class="fa fa-envelope"></i> </span>
 										<s:select class="form-control margin-bottom-20"
 											path="relation">
-											<option>${cusData.relation}</option>
-											<option>Cha</option>
-											<option>Mẹ</option>
-											<option>Vợ</option>
-											<option>Chồng</option>
-											<option>Ông</option>
-											<option>Bà</option>
-											<option>Anh</option>
-											<option>Chị</option>
-											<option>Em</option>
-											<option>Khác</option>
+											<c:forEach items="${relationshipList}" var="relationship">
+												<option>${relationship.name}</option>
+											</c:forEach>
 										</s:select>
 									</div>
 								</div>
@@ -105,7 +98,8 @@
 								<div class="col-sm-6">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
-									<br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
+									<br> <small><s:errors path="cusPhone"
+											cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
 											class="fa fa-envelope"></i> </span>

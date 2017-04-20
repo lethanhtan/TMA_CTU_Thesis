@@ -458,6 +458,8 @@ public class ManageRegController {
 	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
+		model.put("relationship", new Relationship());
+		model.put("relationshipList", regInfoService.relationshipList());
 		return "editreginfo";
 	}
 
