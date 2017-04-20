@@ -15,27 +15,38 @@
 					</div>
 					<br>
 					<hr>
-					<table>
-						<thead>
-							<tr>
-								<th style="text-align: left;">STT</th>
-								<th style="text-align: left;">Tên mối quan hệ</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${relationshipList}" var="relationship">
+					<c:if test="${empty relationshipList}">
+						<h2 style="text-align: center; color: red;">Chưa có mối quan
+							hệ nào!</h2>
+					</c:if>
+					<c:if test="${!empty relationshipList}">
+						<table>
+							<thead>
 								<tr>
-									<td>${relationshipList.indexOf(relationship) + 1}</td>
-									<td>${relationship.name}</td>
-									<td><button class="btn btn-xs btn-danger delete"
-											id="${relationship.id}">
-											<i class="fa fa-trash-o">&nbsp;Xóa</i>
-										</button></td>
+									<th style="text-align: left;">STT</th>
+									<th style="text-align: left;">Tên mối quan hệ</th>
+									<th></th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<c:forEach items="${relationshipList}" var="relationship">
+									<tr>
+										<td>${relationshipList.indexOf(relationship) + 1}</td>
+										<td>${relationship.name}</td>
+										<td><a
+											href="<c:url value='relationship/delete/${relationship.id}'/>">
+												<button type="button" id="button${relationship.id}"
+													hidden="true"></button>
+										</a>
+										<button class="btn btn-xs btn-danger delete"
+												id="${relationship.id}">
+												<i class="fa fa-trash-o">&nbsp;Xóa</i>
+											</button></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:if>
 					<br>
 					<hr>
 					<div id="accordion" class="panel-group">
@@ -60,8 +71,8 @@
 												type="text" path="name" />
 										</div>
 										<div class="row" style="text-align: center;">
-												<button class="btn btn-primary" type="submit">Xác
-													Nhận</button>
+											<button class="btn btn-primary" type="submit">Xác
+												Nhận</button>
 										</div>
 									</s:form>
 								</div>
@@ -69,8 +80,9 @@
 						</div>
 					</div>
 					<a href="${pageContext.request.contextPath}/manageregister"><button
-							class="btn btn-primary" style="margin-left: 80%;"><i class="fa fa-arrow-left">&nbsp;Trở Về</i></button></a>
-					<br>
+							class="btn btn-primary" style="margin-left: 80%;">
+							<i class="fa fa-arrow-left">&nbsp;Trở Về</i>
+						</button></a> <br>
 				</div>
 				<!-- End Design Form -->
 			</div>

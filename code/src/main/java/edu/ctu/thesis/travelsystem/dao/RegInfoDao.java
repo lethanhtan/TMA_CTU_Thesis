@@ -23,4 +23,6 @@ public interface RegInfoDao {
 	public List<Relationship> relationshipList();
 	
 	public void saveRelationship(Relationship relationship);
+	
+	public void deleteRelationship(int id);
 }

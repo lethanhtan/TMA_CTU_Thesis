@@ -524,4 +524,11 @@ public class ManageRegController {
 			return "redirect:/relationship";
 		}
 	}
+
+	// Delete customer booked tour
+	@RequestMapping(value = "relationship/delete/{id}")
+	public String deleteRelationship(@PathVariable("id") int id) {
+		regInfoService.deleteRelationship(id);
+		return "redirect:/relationship";
+	}
 }
