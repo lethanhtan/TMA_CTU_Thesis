@@ -145,7 +145,7 @@
 													<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
 												</h5>
 												<div class="text-center">
-													</br> <a
+													<br> <a
 														href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
 															class="btn btn-success">Chi Tiết</button></a> <a
 														href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button

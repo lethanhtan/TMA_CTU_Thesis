@@ -17,7 +17,7 @@
 						<div class="signup-header">
 							<h2 style="text-align: center;">Cập nhật Thông Tin Khách
 								Hàng Đặt Vé</h2>
-							</br>
+							<br>
 						</div>
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
@@ -25,7 +25,7 @@
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
-									</br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
+									<br> <small><s:errors path="cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i class="fa fa-font"></i>
 										</span>
@@ -54,7 +54,7 @@
 								<div class="col-sm-6">
 									<label>Năm sinh</label>
 									<!-- Show error -->
-									</br> <small><s:errors path="cusYearOfBirth"
+									<br> <small><s:errors path="cusYearOfBirth"
 											cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
@@ -90,7 +90,7 @@
 						<c:if test="${cusData.tour.fieldPhone}">
 							<label>Số điện thoại</label>
 							<!-- Show error -->
-							</br>
+							<br>
 							<small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"><i class="fa fa-envelope"></i>
@@ -105,7 +105,7 @@
 								<div class="col-sm-6">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
-									</br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
+									<br> <small><s:errors path="cusPhone" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"><i
 											class="fa fa-envelope"></i> </span>
@@ -128,7 +128,7 @@
 				<c:if test="${!empty cusData.cusEmail}">
 					<label>Email</label>
 					<!-- Show error -->
-					</br>
+					<br>
 					<small><s:errors path="cusEmail" cssStyle="color:red;" /></small>
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i class="fa fa-envelope"></i>

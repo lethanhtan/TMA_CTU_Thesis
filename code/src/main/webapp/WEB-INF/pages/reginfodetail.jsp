@@ -77,7 +77,7 @@
 						</tbody>
 					</table>
 				</form>
-				</br>
+				<br>
 				<!-- End Table -->
 				<a
 					href="<c:url value='/cancelreg/${cusData.idBT}/${cusData.tour.idTour}'/>">
@@ -85,7 +85,7 @@
 				</a> <a
 					href="<c:url value='/cancelallreg/${cusData.idBT}/${cusData.relationship}/${cusData.tour.idTour}'/>">
 					<button type="button" id="allcancel${cusData.idBT}" hidden="true"></button>
-				</a> </br>
+				</a> <br>
 				<div class="row">
 					<c:if test="${not cusData.cusCancel}">
 						<div class="col-lg-4 text-center">

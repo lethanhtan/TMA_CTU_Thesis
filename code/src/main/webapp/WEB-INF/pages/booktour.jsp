@@ -63,13 +63,13 @@
 				<!-- Book Tour Box -->
 				<div class="signup-header">
 					<h2 style="text-align: center;">Thông Tin Đặt Vé</h2>
-					</br>
+					<br>
 				</div>
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<img alt="Web Counter" border="0"
 						src="http://pumpernickelpixie.com/wp-content/uploads/2015/06/31.gif"
 						width="500px" height="250px"
-						style="display: block; margin-right: auto; margin-left: auto; text-align: center" /></br>
+						style="display: block; margin-right: auto; margin-left: auto; text-align: center" /><br>
 					<form role="form" class="signup-page"
 						action="${pageContext.request.contextPath}/booktour/${idTour}"
 						method="get">
@@ -166,8 +166,8 @@
 				<div class="col-sm-6">
 					<label>Mối quan hệ</label>
 					<!-- Show error -->
-					</br> <small><s:errors path="info[${status.index}].relation"
-							cssStyle="color:red;" /></small>
+					<br> <small><s:errors
+							path="info[${status.index}].relation" cssStyle="color:red;" /></small>
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"> <i class="fa fa-mobile"></i>
 						</span>
@@ -190,7 +190,7 @@
 		<c:if test="${tour.fieldPhone}">
 			<label>Số điện thoại</label>
 			<!-- Show error -->
-			</br>
+			<br>
 			<small><s:errors path="info[${status.index}].cusPhone"
 					cssStyle="color:red;" /></small>
 			<div class="input-group margin-bottom-20">
@@ -204,7 +204,7 @@
 		<c:if test="${tour.fieldIdCard}">
 			<label>Số chứng minh nhân dân</label>
 			<!-- Show error -->
-			</br>
+			<br>
 			<small><s:errors path="info[${status.index}].cusIdCard"
 					cssStyle="color:red;" /></small>
 			<div class="input-group margin-bottom-20">
@@ -219,7 +219,7 @@
 			<c:if test="${tour.fieldEmail}">
 				<label>Email</label>
 				<!-- Show error -->
-				</br>
+				<br>
 				<small><s:errors path="info[${status.index}].cusEmail"
 						cssStyle="color:red;" /></small>
 				<div class="input-group margin-bottom-20">
@@ -232,7 +232,7 @@
 			<c:if test="${tour.fieldAddress}">
 				<label>Địa chỉ</label>
 				<!-- Show error -->
-				</br>
+				<br>
 				<small><s:errors path="info[${status.index}].cusAddress"
 						cssStyle="color:red;" /></small>
 				<div class="input-group margin-bottom-20">
@@ -249,7 +249,7 @@
 		<p style="color: red;">${errorString}</p>
 		<div style="margin-left: 37px;" class="g-recaptcha"
 			data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
-		</br>
+		<br>
 		<!-- End reCAPTCHA -->
 		<div class="row">
 			<div class="col-lg-6 text-center">
