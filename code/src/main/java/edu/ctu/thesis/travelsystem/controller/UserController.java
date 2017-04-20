@@ -155,6 +155,8 @@ public class UserController extends HttpServlet {
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user"); // remove user object from session
 		session.removeValue("userName"); // remove userName value
+		session.removeValue("fullName");
+		session.removeValue("phone");
 		session.removeValue("roleId"); // remove roleId value
 		session.removeValue("idUser");
 		return "redirect:login";
