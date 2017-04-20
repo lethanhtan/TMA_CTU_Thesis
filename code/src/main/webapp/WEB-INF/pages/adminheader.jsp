@@ -102,7 +102,7 @@
 		</div>
 		<!-- End Back To Top -->
 		<!-- Top Menu -->
-		<div id="hornav" class="container no-padding" id="top">
+		<div id="hornav" class="container no-padding">
 			<div class="row nav">
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">

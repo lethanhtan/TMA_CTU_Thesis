@@ -136,6 +136,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/confirmcancelall.js"
 	type="text/javascript"></script>
+<!-- Hide menu on scroll down, show on scroll up -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/showhidemenu.js"
+	type="text/javascript"></script>
 <!-- End JS -->
 </body>
 </html>
