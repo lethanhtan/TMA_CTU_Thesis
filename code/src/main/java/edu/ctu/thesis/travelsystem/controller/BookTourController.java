@@ -32,6 +32,7 @@ import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
@@ -139,6 +140,8 @@ public class BookTourController {
 		try {
 			model.addAttribute("searchedValue", valueSearch);
 			model.addAttribute("numOfTicket", numOfTicket);
+			model.addAttribute("relationship", new Relationship());
+			model.addAttribute("relationshipList", regInfoService.relationshipList());
 			tour = tourService.findTourById(idTour);
 			if (valueSearch != null) {
 				logger.info("Search active!");
@@ -171,17 +174,10 @@ public class BookTourController {
 			throws ServletException, IOException {
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
-		boolean verify = false;
-		if (CheckConnections.checkConnect("https://www.google.com")) {
-			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-			logger.info(gRecaptchaResponse);
-			verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-			logger.info("Captcha Verify: " + verify);
-		} else {
-			logger.info("Internet connect problem!");
-			model.addAttribute("failedConnect", "Không có kết nối internet!");
-			return "booktour";
-		}
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
 		if (br.hasErrors()) {
@@ -196,44 +192,38 @@ public class BookTourController {
 			return "booktour";
 		} else {
 			logger.info("Handle for save booktour!");
-			if (CheckConnections.checkConnect("https://www.google.com")) {
-				List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
-				List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
-				for (BookTourInfoVO info : bookTourInfo) {
-					BookTour bookedTour = new BookTour();
-					bookedTour.setTour(tour);
-					bookedTour.setCusName(info.getCusName());
-					bookedTour.setCusSex(info.getCusSex());
-					bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
-					bookedTour.setCusPhone(info.getCusPhone());
-					bookedTour.setCusIdCard(info.getCusIdCard());
-					bookedTour.setCusEmail(info.getCusEmail());
-					bookedTour.setCusAddress(info.getCusAddress());
-					bookedTour.setDateBook(Calendar.getInstance().getTime());
-					bookedTour.setRelationship(maxValue);
-					bookedTour.setRelation(info.getRelation());
-					bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
-					if (session.getAttribute("idUser") != null) {
-						bookedTour.setIdUser((int) session.getAttribute("idUser"));
-					} else {
-						bookedTour.setIdUser(0);
-					}
-					bookTours.add(bookedTour);
+			List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
+			List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
+			for (BookTourInfoVO info : bookTourInfo) {
+				BookTour bookedTour = new BookTour();
+				bookedTour.setTour(tour);
+				bookedTour.setCusName(info.getCusName());
+				bookedTour.setCusSex(info.getCusSex());
+				bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
+				bookedTour.setCusPhone(info.getCusPhone());
+				bookedTour.setCusIdCard(info.getCusIdCard());
+				bookedTour.setCusEmail(info.getCusEmail());
+				bookedTour.setCusAddress(info.getCusAddress());
+				bookedTour.setDateBook(Calendar.getInstance().getTime());
+				bookedTour.setRelationship(maxValue);
+				bookedTour.setRelation(info.getRelation());
+				bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
+				if (session.getAttribute("idUser") != null) {
+					bookedTour.setIdUser((int) session.getAttribute("idUser"));
+				} else {
+					bookedTour.setIdUser(0);
 				}
-				bookTourService.saveBookTours(bookTours, idTour);
-				logger.info("Handle for save booktour!");
-				model.put("idBT", bookTour.getIdBT());
-				 emailSenderService.SendEmail("pc.nt95@gmail.com",
-				 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-				 MailTemplate.bookSuccessBody);
-				model.put("idTour", idTour);
-				model.put("relationship", maxValue);
-				return "redirect:/booksuccess/{relationship}/{idTour}";
-			} else {
-				logger.info("Internet connect problem!");
-				model.addAttribute("failedConnect", "Không có kết nối internet!");
-				return "booktour";
+				bookTours.add(bookedTour);
 			}
+			bookTourService.saveBookTours(bookTours, idTour);
+			logger.info("Handle for save booktour!");
+			model.put("idBT", bookTour.getIdBT());
+			 emailSenderService.SendEmail("pc.nt95@gmail.com",
+			 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+			 MailTemplate.bookSuccessBody);
+			model.put("idTour", idTour);
+			model.put("relationship", maxValue);
+			return "redirect:/booksuccess/{relationship}/{idTour}";
 		}
 	}
 
