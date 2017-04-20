@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.List;
+
 import edu.ctu.thesis.travelsystem.model.Email;
 
 public interface EmailDao {
@@ -10,4 +12,7 @@ public interface EmailDao {
 	
 	public boolean getEmailStatus(int id);
 	
+	public List<Email> listMail();
+	
+	public List<Email> listMailByStaus(boolean status);
 }

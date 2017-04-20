@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
  
 @Service("Email")
-public class EMailSender {
+public class EMailSender{
 	
 	private static String host = "smtp.gmail.com";
 	
@@ -65,14 +65,6 @@ public class EMailSender {
         javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
         
         ((JavaMailSenderImpl) mailSender).setJavaMailProperties(javaMailProperties);
-	}
-	
-	public void TestSendMail() {
-		
-	}
-	
-	public String getHost() {
-		return EMailSender.host;
 	}
 	
 	public String getUserName() {

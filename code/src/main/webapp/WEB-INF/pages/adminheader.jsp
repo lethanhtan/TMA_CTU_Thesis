@@ -126,7 +126,7 @@
 													tour</a></li>
 										</ul></li>
 								</ul></li>
-							<li><span class="fa-user"> ${userName}</span>
+							<li><span class="fa-user"> ${fullName}</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>

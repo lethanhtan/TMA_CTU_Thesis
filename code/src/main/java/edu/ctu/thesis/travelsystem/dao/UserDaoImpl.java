@@ -86,18 +86,18 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public String findFullName(String userName) {
-		String result = "";
+	public User findUserByUserName(String userName) {
+		User user = new User();
 		Session session = getCurrentSession();
-		String hql = "select u.fullName edu.ctu.thesis.travelsystem.model.User as u where u.userName = ?";
+		String hql = "from edu.ctu.thesis.travelsystem.model.User as u where u.userName = ?";
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, userName);
-			result = (String) query.uniqueResult();
+			user =  (User) query.uniqueResult();
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
-		return result;
+		return user;
 	}
 
 	@Override
@@ -270,5 +270,15 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 			logger.info("My registration List:" + bookTour);
 		}
 		return myBookTourList;
+	}
+
+	@Override
+	public int findIdByUserName(String userName) {
+		Session session = getCurrentSession();
+		String hql = "select u.ID_USER from USER as u where USER_NAME = :userName";
+		Query query = session.createQuery(hql);
+		query.setParameter("userName", userName);
+		
+		return (int) query.uniqueResult();
 	}
 }

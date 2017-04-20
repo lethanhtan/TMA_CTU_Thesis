@@ -35,8 +35,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String findFullName(String userName) {
-		return this.userDao.findFullName(userName);
+	@Transactional
+	public User findUserByUserName(String userName) {
+		return this.userDao.findUserByUserName(userName);
 	}
 
 	@Override
@@ -109,5 +110,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<BookTour> myBookTourList(int idUser) {
 		return this.userDao.myBookTourList(idUser);
+	}
+
+	@Override
+	@Transactional
+	public int findIdByUserName(String userName) {
+		return this.userDao.findIdByUserName(userName);
 	}
 }

@@ -132,8 +132,7 @@
 									</div>
 									<div class="panel-body">
 										<ul class="list-unstyled">
-											<li><i class="fa-phone color-primary"></i>(0710) 3838
-												474</li>
+											<li><i class="fa-phone color-primary"></i>${phoneUser}</li>
 											<li><i class="fa-envelope color-primary"> <a
 													href="mailto:${emailConfig}"></i>${emailConfig}</a></li>
 											<li><i class="fa-home color-primary"> <a href="#"></i>Quản
@@ -153,9 +152,9 @@
 									</div>
 									<div class="panel-body">
 										<ul class="list-unstyled">
-											<li><i>Tổng số mail đã gửi: </i></li>
-											<li><i>Số mail gửi thành công:</i></li>
-											<li><i>Số mail gửi thất bại:</i></li>
+											<li><i>Tổng số mail đã gửi: ${totalMail}</i></li>
+											<li><i>Số mail gửi thành công: ${numSuccess}</i></li>
+											<li><i>Số mail gửi thất bại:  ${totalMail - numSuccess}</i></li>
 										</ul>
 									</div>
 								</div>

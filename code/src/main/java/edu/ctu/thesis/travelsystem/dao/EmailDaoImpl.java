@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jboss.logging.Logger;
@@ -48,6 +50,25 @@ public class EmailDaoImpl extends AbstractDao implements EmailDao {
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		return (boolean)query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Email> listMail() {
+		Session session = getCurrentSession();
+		String hql = "FROM Email";
+		Query query = session.createQuery(hql);
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Email> listMailByStaus(boolean status) {
+		Session session = getCurrentSession();
+		String hql = "FROM Email as e where e.status = :status";
+		Query query = session.createQuery(hql);
+		query.setParameter("status", status);
+		return query.list();
 	}
 
 }

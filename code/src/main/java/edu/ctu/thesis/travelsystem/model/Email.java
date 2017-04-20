@@ -1,9 +1,13 @@
 package edu.ctu.thesis.travelsystem.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +36,7 @@ public class Email {
 	
 	private Date time;
 	
-	private int idUser;
+	private User user;
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -108,5 +112,15 @@ public class Email {
 	
 	public void setTime(Date time) {
 		this.time = time;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public User getUser() {
+		return this.user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
