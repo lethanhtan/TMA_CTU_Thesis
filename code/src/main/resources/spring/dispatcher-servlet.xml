@@ -15,7 +15,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
-	<mvc:resources mapping="/image/**" location="file:///C:/apache-tomcat-9.0.0.M17/tmpFiles/"></mvc:resources>
+	<mvc:resources mapping="/image/**" location="file:///D:/installations/apache-tomcat-7.0.41/tmpFiles/"></mvc:resources>
 
 	<!-- Set package to scan using annotation -->
 	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />
