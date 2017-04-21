@@ -9,7 +9,7 @@
 		<div class="container">
 			<div class="row margin-vert-30">
 				<!-- Create Tour Box -->
-				<s:form class="signup-page" commandName="tourData"
+				<s:form class="signup-page" modelAttribute="tourData"
 					action="${pageContext.request.contextPath}/createtour"
 					enctype="multipart/form-data" method="POST">
 					<div class="signup-header">
@@ -61,8 +61,9 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker" value="${date1}"
-									class="form-control margin-bottom-20" path="departureDate" />
+								<s:input placeholder="mm/dd/yyyy" id="datepicker"
+									value="${date1}" class="form-control margin-bottom-20"
+									path="departureDate" />
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -90,8 +91,9 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker2" value="${date2}"
-									class="form-control margin-bottom-20" path="returnDate" />
+								<s:input placeholder="mm/dd/yyyy" id="datepicker2"
+									value="${date2}" class="form-control margin-bottom-20"
+									path="returnDate" />
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -144,8 +146,9 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker3"  value="${date3}"
-									class="form-control margin-bottom-20" path="dateAllowReg" />
+								<s:input placeholder="mm/dd/yyyy" id="datepicker3"
+									value="${date3}" class="form-control margin-bottom-20"
+									path="dateAllowReg" />
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -154,28 +157,13 @@
 								<span class="input-group-addon"> <i
 									class="fa fa-calendar"></i>
 								</span>
-								<s:input placeholder="mm/dd/yyyy" id="datepicker4"  value="${date4}"
-									class="form-control margin-bottom-20" path="dateAllowCancel" />
+								<s:input placeholder="mm/dd/yyyy" id="datepicker4"
+									value="${date4}" class="form-control margin-bottom-20"
+									path="dateAllowCancel" />
 							</div>
 						</div>
 					</div>
-					
-					<div class="row">
-						<div class="col-sm-12">
-							<label>Tên tỉnh</label>
-							<!-- Show Error -->
-							<small><s:errors cssStyle="color:red;" /></small>
-							<!--  End Show Error -->
-							<div class="input-group margin-bottom-20">
-								<span class="input-group-addon"> <i
-									class="fa fa-map-marker"></i>
-								</span>
-								<input placeholder="Nhập tên tỉnh"
-									class="form-control margin-bottom-20" type="text" />
-							</div>
-						</div>
-					</div>
-
+					<hr>
 					<p style="text-align: center; color: #ef5b92;">Hãy chọn những
 						thông tin bắt buộc khách hàng phải điền khi đăng ký tham gia tour
 						du lịch!</p>
@@ -229,7 +217,7 @@
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 						class="form-control margin-bottom-20" type="text" rows="10"
 						path="detail" />
-					</br>
+					<br />
 					<hr>
 					<div class="row">
 						<div class="col-lg-6 text-center">

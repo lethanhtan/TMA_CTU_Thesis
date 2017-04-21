@@ -46,7 +46,7 @@ public class EmailDaoImpl extends AbstractDao implements EmailDao {
 	@Override
 	public boolean getEmailStatus(int id) {
 		Session session = getCurrentSession();
-		String hql = "select e.STATUS from EMAIL as e where ID_EMAIL = :id";
+		String hql = "select e.status from Email as e where id = :id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		return (boolean)query.uniqueResult();

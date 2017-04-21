@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "SCHEDULE")
@@ -19,8 +21,6 @@ public class Schedule {
 	private String detail;
 	
 	private String sumary;
-	
-	private int idTour;
 	
 	private Tour tour;
 	
@@ -53,17 +53,8 @@ public class Schedule {
 		this.sumary = sumary;
 	}
 	
-	@Column(name = "ID_TOUR", nullable = false)
-	public int getIdTour() {
-		return this.idTour;
-	}
-	
-	public void setIdTour(int idTour) {
-		this.idTour = idTour;
-	}
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "ID_TOUR", nullable = true)
 	public Tour getTour() {
 		return this.tour;
 	}
@@ -71,4 +62,5 @@ public class Schedule {
 	public void setTour(Tour tour) {
 		this.tour = tour;
 	}
+	
 }

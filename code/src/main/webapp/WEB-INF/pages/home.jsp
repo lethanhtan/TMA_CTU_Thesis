@@ -112,9 +112,9 @@
 	<div class="container background-gray-lighter">
 		<div class="row padding-vert-20">
 			<c:if test="${!empty tourList}">
-				<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
-						<div class="col-md-6 col-sm-6 col-xs-6">
+						<div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
 								<!-- Portfolio Item -->

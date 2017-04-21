@@ -58,8 +58,11 @@ public class SendMailController {
 				if (host.equals("Gmail")) {
 					host = "smtp.gmail.com";
 				}
+				else if (host.equals("Outlook")) {
+					host = "smtp-mail.outlook.com";
+				}
 				if (emailSender.manualConfig(from, password, host, port, encoding)) {
-					model.addAttribute("status", "Cấu hình email thành công!");
+					model.addAttribute("status", "Cấu hình email thành công! " + host);
 					flag = true;
 				}
 				else {
@@ -78,7 +81,8 @@ public class SendMailController {
 			if (to != null) {
 				logger.info("Handle manual send mail!");
 				logger.info("Process: " + sender + "->" + to);
-				emailSender.SendEmail(to, subject, message);
+				emailSender.SendEmail(to, "ribostrush@outlook.com",  subject, message);
+				logger.info("Config: " + from);
 				emailObj.setReciever(to);
 				emailObj.setSender(sender); 
 				emailObj.setDate(new Date());

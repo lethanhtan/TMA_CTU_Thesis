@@ -41,6 +41,7 @@
 												name="encoding">
 												<option>UTF-8</option>
 												<option>UTF-16</option>
+												<option>ISO-8859-2</option>
 											</select>
 										</div>
 									</div>
