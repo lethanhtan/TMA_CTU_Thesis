@@ -9,7 +9,7 @@ public class ValidUtil {
 	public static String pattern2 = "[0-9]";
 	public static Pattern p2 = Pattern.compile(pattern2);
 
-	public final boolean findAlphabet(String str) {
+	public static boolean findAlphabet(String str) {
 		// create matcher object
 		Matcher m = p.matcher(str);
 		if (m.find()) {
@@ -19,7 +19,7 @@ public class ValidUtil {
 		}
 	}
 
-	public final boolean findDigit(String str) {
+	public static boolean findDigit(String str) {
 		// create matcher object
 		Matcher m = p2.matcher(str);
 		if (m.find()) {

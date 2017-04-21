@@ -1,12 +1,19 @@
 package edu.ctu.thesis.travelsystem.validator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
+import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 
 @Component
@@ -67,5 +74,68 @@ public class BookTourValidator implements Validator {
 		if (bookTour.getCusName() != null && (validUtil.findDigit(bookTour.getCusName()))) {
 			errors.rejectValue("cusName", "Invalid.cusData.cusName");
 		}
+	}
+
+	public boolean validateRegister(ModelMap model, Tour tour, List<BookTourInfoVO> bookTourInfos, int numOfTicket) {
+		List<String> invalidInfos = new ArrayList<String>();
+		SubBookTourVO cusData = new SubBookTourVO();
+		List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
+		for (BookTourInfoVO info : bookTourInfos) {
+			// Catch error for customer name if field customer name not null 
+			if (tour.getFieldName()) {
+				if (ValidUtil.findDigit(info.getCusName()) || info.getCusName() == null
+						|| info.getCusName().length() > 40 || info.getCusName().length() < 8) {
+					info.setValidCusName(false);
+				}
+			}
+			
+			// Catch error for customer year of birth if field customer year of birth not null
+			if (tour.getFieldYearOfBirth()) {
+				if (ValidUtil.findAlphabet(info.getCusYearOfBirth()) || info.getCusYearOfBirth() == null
+						|| info.getCusYearOfBirth().length() != 4) {
+					info.setValidCusYearOfBirth(false);
+				}
+			}
+			
+			// Catch error for customer phone if field customer phone not null
+			if (tour.getFieldPhone()) {
+				if (ValidUtil.findAlphabet(info.getCusPhone()) || info.getCusPhone() == null
+						|| info.getCusPhone().length() > 15 || info.getCusPhone().length() < 10) {
+					info.setValidCusPhone(false);
+				}
+			}
+			
+			// Catch error for customer email if field customer email not null
+			if (tour.getFieldEmail()) {
+				if (info.getCusEmail() == null || info.getCusEmail().length() > 40 || info.getCusEmail().length() < 10) {
+					info.setValidCusEmail(false);
+				}
+			}
+
+			
+			// Catch error for customer address if field customer address not null
+			if (tour.getFieldAddress()) {
+				if (info.getCusAddress() == null | info.getCusAddress().length() > 100 || info.getCusAddress().length() < 6) {
+					info.setValidCusAddress(false);
+				}
+			}
+
+			// Catch error for customer id card if field customer id card not null
+			if (tour.getFieldIdCard()) {
+				if (ValidUtil.findAlphabet(info.getCusIdCard()) || info.getCusIdCard() == null
+						|| info.getCusIdCard().length() > 12 || info.getCusIdCard().length() < 9) {
+					info.setValidCusIdCard(false);
+				}
+			}
+
+			if (!info.isValidCusName() || !info.isValidCusAddress() || !info.isValidCusPhone()
+					|| !info.isValidCusYearOfBirth() || !info.isValidCusIdCard() || !info.isValidCusEmail()) {
+				invalidInfos.add(info.getCusName());
+			}
+			infos.add(info);
+			cusData.setInfo(infos);
+			model.addAttribute("cusData", cusData);
+		}
+		return invalidInfos.isEmpty();
 	}
 }

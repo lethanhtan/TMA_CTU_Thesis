@@ -24,10 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import edu.ctu.thesis.travelsystem.extra.CheckConnections;
+
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
 import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
+import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -45,8 +46,8 @@ public class BookTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 	@Autowired
 	private RegInfoService regInfoService;
 
@@ -172,28 +173,37 @@ public class BookTourController {
 			@Valid BookTour bookTour, BindingResult br, HttpSession session, @PathVariable("idTour") int idTour,
 			@Valid Tour tour, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BookTourValidator bookTourValidator = new BookTourValidator();
-		bookTourValidator.validate(bookTour, br);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 		logger.info(gRecaptchaResponse);
 		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 		logger.info("Captcha Verify: " + verify);
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
-		if (br.hasErrors()) {
-			logger.info("Tour Info: " + tour);
-			model.addAttribute("tour", tour);
-			return "booktour";
-		}
 		if (verify == false) {
 			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
 			model.addAttribute("errorString", errorString);
 			model.addAttribute("tour", tour);
+			model.addAttribute("numOfTicket", numOfTicket);
+			model.addAttribute("relationship", new Relationship());
+			model.addAttribute("relationshipList", regInfoService.relationshipList());
+			SubBookTourVO cusData = new SubBookTourVO();
+			List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
+			for (int i = 0; i < numOfTicket; i++) {
+				infos.add(new BookTourInfoVO());
+			}
+			cusData.setInfo(infos);
+			model.addAttribute("cusData", cusData);
 			return "booktour";
 		} else {
 			logger.info("Handle for save booktour!");
 			List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
 			List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
+			model.addAttribute("numOfTicket", numOfTicket);
+			model.addAttribute("relationshipList", regInfoService.relationshipList());
+			BookTourValidator bookTourValidator = new BookTourValidator();
+			if (!bookTourValidator.validateRegister(model, tour, bookTourInfo, numOfTicket)) {
+				return "booktour";
+			}
 			for (BookTourInfoVO info : bookTourInfo) {
 				BookTour bookedTour = new BookTour();
 				bookedTour.setTour(tour);
@@ -218,14 +228,14 @@ public class BookTourController {
 			bookTourService.saveBookTours(bookTours, idTour);
 			logger.info("Handle for save booktour!");
 			model.put("idBT", bookTour.getIdBT());
-			 emailSenderService.SendEmail("pc.nt95@gmail.com",
-			 MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-			 MailTemplate.bookSuccessBody);
+			emailSenderService.SendEmail("pc.nt95@gmail.com", MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+					MailTemplate.bookSuccessBody);
 			model.put("idTour", idTour);
 			model.put("relationship", maxValue);
 			return "redirect:/booksuccess/{relationship}/{idTour}";
 		}
 	}
+
 
 	// Forward to Tour detail page
 	@RequestMapping(value = "/viewtour/{idTour}", method = RequestMethod.GET)
@@ -243,7 +253,7 @@ public class BookTourController {
 		logger.info("Show information of customer when book tour");
 		model.put("cusData", bookTour);
 		model.put("price", bookTour.getTour().getPrice());
-		int register = bookTourService.searchById(idBT).getRelationship();
+		int register = bookTour.getRelationship();
 		model.put("register", regInfoService.getFirstElement(register));
 		if (session.getAttribute("idUser") != null) {
 			model.put("idUser", true);
@@ -296,9 +306,8 @@ public class BookTourController {
 	public String cancelBookTour(@PathVariable("idBT") Integer idBT) {
 		bookTourService.cancelBookTour(idBT);
 		BookTour bookedTour = bookTourService.searchById(idBT);
-		 emailSenderService.SendEmail(bookedTour.getCusEmail(),
-		 MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
-		 MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
+		emailSenderService.SendEmail(bookedTour.getCusEmail(), MailTemplate.hostMail, MailTemplate.confirmCancelTitle,
+				MailTemplate.confirmCancelBody + bookedTour.getConfirmCode());
 		return "redirect:/cancelbook/{idBT}";
 	}
 
