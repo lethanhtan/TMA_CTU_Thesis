@@ -101,12 +101,14 @@
 									value="${status.index + 1}: " /></label>
 							<div class="row">
 								<div class="col-sm-8">
-									<small style="color: red;">${failedConnect}</small> <label>Họ
-										tên</label>
+									<label>Họ tên</label>
 									<!-- Show error -->
+									<c:if test="${not info.validCusName}">
+										<p style="color: red;">Họ tên không được chứa chữ số!</p>
+									</c:if>
 									<p style="color: red;">${error}</p>
-									<br> <small><s:errors path="info[${status.index}].cusName"
-											cssStyle="color:red;" /></small>
+									<br> <small><s:errors
+											path="info[${status.index}].cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
@@ -130,12 +132,12 @@
 							</div>
 							<div class="row">
 								<c:if test="${tour.fieldYearOfBirth}">
-								<p style="color: red;">${error2}</p>
 									<div class="col-sm-6">
 										<label>Năm sinh</label>
 										<!-- Show error -->
-										<br> <small><s:errors path="info[${status.index}].cusName"
-												cssStyle="color:red;" /></small>
+										<c:if test="${not info.validCusYearOfBirth}">
+											<p style="color: red;">Năm sinh không được chứa ký tự!</p>
+										</c:if>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
@@ -146,12 +148,14 @@
 									</div>
 								</c:if>
 								<c:if test="${status.index == 0}">
-								<p style="color: red;">${error3}</p>
+									<p style="color: red;">${error3}</p>
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
-										<br> <small><s:errors
-												path="info[${status.index}].cusPhone" cssStyle="color:red;" /></small>
+										<c:if test="${not info.validCusPhone}">
+											<p style="color: red;">Số điện thoại không được chứa ký
+												tự!</p>
+										</c:if>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-mobile"></i>
@@ -186,9 +190,9 @@
 		<c:if test="${tour.fieldPhone}">
 			<label>Số điện thoại</label>
 			<!-- Show error -->
-			<br>
-			<small><s:errors path="info[${status.index}].cusPhone"
-					cssStyle="color:red;" /></small>
+			<c:if test="${not info.validCusPhone}">
+				<p style="color: red;">Số điện thoại không được chứa ký tự!</p>
+			</c:if>
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"> <i class="fa fa-mobile"></i>
 				</span>
@@ -201,8 +205,10 @@
 			<label>Số chứng minh nhân dân</label>
 			<!-- Show error -->
 			<br>
-			<small><s:errors path="info[${status.index}].cusIdCard"
-					cssStyle="color:red;" /></small>
+			<c:if test="${not info.validCusIdCard}">
+				<p style="color: red;">Số chứng minh nhân dân không được chứa ký
+					tự!</p>
+			</c:if>
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"> <i class="fa fa-credit-card"></i>
 				</span>
@@ -216,8 +222,10 @@
 				<label>Email</label>
 				<!-- Show error -->
 				<br>
-				<small><s:errors path="info[${status.index}].cusEmail"
-						cssStyle="color:red;" /></small>
+				<c:if test="${not info.validCusEmail}">
+					<p style="color: red;">Email phải ít nhất 10 ký tự và không
+						vượt quá 40 ký tự</p>
+				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-envelope"></i>
 					</span>
@@ -228,9 +236,10 @@
 			<c:if test="${tour.fieldAddress}">
 				<label>Địa chỉ</label>
 				<!-- Show error -->
-				<br>
-				<small><s:errors path="info[${status.index}].cusAddress"
-						cssStyle="color:red;" /></small>
+				<c:if test="${not info.validCusAddress}">
+					<p style="color: red;">Địa chỉ email phải ít nhất 6 ký tự và không
+						vượt quá 100 ký tự</p>
+				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-home"></i>
 					</span>
