@@ -11,7 +11,7 @@
 					<form class="signup-page">
 						<div class="signup-header">
 							<div class="text-center">
-								<h2>Quản lý Export</h2></br>
+								<h2>Quản lý Export</h2><br>
 							</div>
 						</div>
 						<div class="row">

@@ -86,7 +86,7 @@
 				style="border: 0; display: block; margin-right: auto; margin-left: auto; text-align: center;"
 				src="https://www.google.com/maps/embed/v1/place?q=Can%20Tho%20University&key=AIzaSyCIBw6iN2PD-z9GUqFdLJeeKJuhzodUhe8"
 				allowfullscreen></iframe>
-			</br>
+			<br>
 			<!-- End Map -->
 		</div>
 	</div>

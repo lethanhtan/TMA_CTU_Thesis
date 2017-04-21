@@ -104,13 +104,14 @@
 									<small style="color: red;">${failedConnect}</small> <label>Họ
 										tên</label>
 									<!-- Show error -->
-									</br> <small><s:errors path="info[${status.index}].cusName"
+									<p style="color: red;">${error}</p>
+									<br> <small><s:errors path="info[${status.index}].cusName"
 											cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
-										<s:input id="singleStakesBox" placeholder="Nhập họ tên"
-											class="form-control" type="text"
+										<s:input name="name" id="singleStakesBox"
+											placeholder="Nhập họ tên" class="form-control" type="text"
 											path="info[${status.index}].cusName" />
 									</div>
 								</div>
@@ -129,10 +130,11 @@
 							</div>
 							<div class="row">
 								<c:if test="${tour.fieldYearOfBirth}">
+								<p style="color: red;">${error2}</p>
 									<div class="col-sm-6">
 										<label>Năm sinh</label>
 										<!-- Show error -->
-										</br> <small><s:errors path="info[${status.index}].cusName"
+										<br> <small><s:errors path="info[${status.index}].cusName"
 												cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
@@ -144,10 +146,11 @@
 									</div>
 								</c:if>
 								<c:if test="${status.index == 0}">
+								<p style="color: red;">${error3}</p>
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
-										</br> <small><s:errors
+										<br> <small><s:errors
 												path="info[${status.index}].cusPhone" cssStyle="color:red;" /></small>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
