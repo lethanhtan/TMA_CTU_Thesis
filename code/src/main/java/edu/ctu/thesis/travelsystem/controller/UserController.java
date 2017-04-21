@@ -47,8 +47,8 @@ public class UserController extends HttpServlet {
 	private UserService userService;
 	@Autowired
 	private BookTourService bookTourService;
-	 @Autowired
-	 private EMailSender emailSenderService;
+	@Autowired
+	private EMailSender emailSenderService;
 	@Autowired
 	private RegInfoService regInfoService;
 
@@ -93,9 +93,8 @@ public class UserController extends HttpServlet {
 			return "register";
 		} else { // form input is ok
 			if (CheckConnections.checkConnect("https://www.google.com")) {
-				 emailSenderService.SendEmail(user.getEmail(),
-				 MailTemplate.hostMail, MailTemplate.regTitle,
-				 MailTemplate.regBody);
+				emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
+						MailTemplate.regBody);
 				user.setDate(Calendar.getInstance().getTime());
 				userService.saveUser(user);
 				return "redirect:regsuccess";
@@ -135,7 +134,8 @@ public class UserController extends HttpServlet {
 					return "redirect:managetour";
 				} else {
 					session.setAttribute("user", user);
-					session.setAttribute("userName", user.getFullName());
+					session.setAttribute("fullName", user.getFullName());
+					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("idUser", user.getIdUser());
 					return "redirect:login";
 				}
