@@ -110,8 +110,8 @@
 							<li><a href="${pageContext.request.contextPath}/contact"
 								class="fa-phone">Liên Hệ</a></li>
 							<!-- Test Account -->
-							<c:if test="${userName != null}">
-								<li><span class="fa-user"> ${userName}</span>
+							<c:if test="${fullName != null}">
+								<li><span class="fa-user"> ${fullName}</span>
 									<ul>
 										<c:if test="${roleId == 2}">
 											<li><a href="<c:url value="/managetour" />">Quản lý
@@ -126,7 +126,7 @@
 										<li><a href="<c:url value="/logout" />">Đăng Xuất</a></li>
 									</ul>
 							</c:if>
-							<c:if test="${userName == null}">
+							<c:if test="${fullName == null}">
 								<li><span class="fa-user">Tài khoản</span>
 									<ul>
 										<li><a href="${pageContext.request.contextPath}/login">Đăng

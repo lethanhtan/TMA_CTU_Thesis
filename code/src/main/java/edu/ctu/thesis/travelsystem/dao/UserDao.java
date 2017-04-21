@@ -15,7 +15,7 @@ public interface UserDao {
 
 	public int getRoleUser(User user);
 
-	public String findFullName(String userName);
+	public User findUserByUserName(String userName);
 
 	public List<User> userListByValue(String value);
 
@@ -40,4 +40,6 @@ public interface UserDao {
 	public List<BookTour> myBookTourListByValue(String value, int idUser);
 
 	public List<BookTour> myBookTourList(int idUser);
+	
+	public int findIdByUserName(String userName);
 }
