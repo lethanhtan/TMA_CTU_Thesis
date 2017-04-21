@@ -5,6 +5,7 @@ import java.util.List;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 
 public interface BookTourService {
+	
 	public void saveBookTours(List<BookTour> bookTours, int idTour);
 
 	public List<BookTour> bookTourList();

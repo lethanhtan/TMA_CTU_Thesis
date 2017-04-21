@@ -127,9 +127,11 @@ public class UserController extends HttpServlet {
 			if (user != null) {
 				if (userService.getRoleUser(user) == 2) {
 					session.setAttribute("user", user);
-					session.setAttribute("userName", user.getFullName());
+					session.setAttribute("fullName", user.getFullName());
+					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("roleId", user.getRole().getId());
 					session.setAttribute("idUser", user.getIdUser());
+					session.setAttribute("phone", user.getPhone());
 					return "redirect:managetour";
 				} else {
 					session.setAttribute("user", user);
@@ -153,6 +155,8 @@ public class UserController extends HttpServlet {
 	public String logOut(ModelMap model, HttpSession session) {
 		session.removeAttribute("user"); // remove user object from session
 		session.removeValue("userName"); // remove userName value
+		session.removeValue("fullName");
+		session.removeValue("phone");
 		session.removeValue("roleId"); // remove roleId value
 		session.removeValue("idUser");
 		return "redirect:login";

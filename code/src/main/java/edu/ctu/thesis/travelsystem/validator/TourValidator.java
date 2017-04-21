@@ -42,7 +42,7 @@ public class TourValidator implements Validator {
 			errors.rejectValue("name", "Size.tourData.name");
 		}
 		// In Tour detail field
-		if (tour.getDetail().length() > 2000 || tour.getDetail().length() < 10) {
+		if (tour.getDetail().length() > 5000 || tour.getDetail().length() < 10) {
 			errors.rejectValue("detail", "Size.tourData.detail");
 		}
 
