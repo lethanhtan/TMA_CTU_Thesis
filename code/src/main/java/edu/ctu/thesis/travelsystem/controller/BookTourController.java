@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
 import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
-import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;

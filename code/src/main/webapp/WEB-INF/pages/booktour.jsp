@@ -103,8 +103,15 @@
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
-									<c:if test="${not info.validCusName}">
+									<c:if test="${info.validCusName == 1}">
 										<p style="color: red;">Họ tên không được chứa chữ số!</p>
+									</c:if>
+									<c:if test="${info.validCusName == 2}">
+										<p style="color: red;">Bạn phải nhập họ tên!</p>
+									</c:if>
+									<c:if test="${info.validCusName == 3}">
+										<p style="color: red;">Họ tên phải ít nhất 8 ký tự và
+											không vượt quá 40 ký tự!</p>
 									</c:if>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
@@ -132,8 +139,14 @@
 									<div class="col-sm-6">
 										<label>Năm sinh</label>
 										<!-- Show error -->
-										<c:if test="${not info.validCusYearOfBirth}">
+										<c:if test="${info.validCusYearOfBirth == 1}">
 											<p style="color: red;">Năm sinh không được chứa ký tự!</p>
+										</c:if>
+										<c:if test="${info.validCusYearOfBirth == 2}">
+											<p style="color: red;">Bạn phải nhập năm sinh!</p>
+										</c:if>
+										<c:if test="${info.validCusYearOfBirth == 3}">
+											<p style="color: red;">Năm sinh phải có 4 ký tự!</p>
 										</c:if>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
@@ -149,9 +162,16 @@
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
-										<c:if test="${not info.validCusPhone}">
+										<c:if test="${info.validCusPhone == 1}">
 											<p style="color: red;">Số điện thoại không được chứa ký
 												tự!</p>
+										</c:if>
+										<c:if test="${info.validCusPhone == 2}">
+											<p style="color: red;">Bạn phải nhập số điện thoại!</p>
+										</c:if>
+										<c:if test="${info.validCusPhone == 3}">
+											<p style="color: red;">Số điện thoại phải ít nhất 10 ký
+												tự và không vượt quá 15 ký tự!</p>
 										</c:if>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
@@ -187,8 +207,15 @@
 		<c:if test="${tour.fieldPhone}">
 			<label>Số điện thoại</label>
 			<!-- Show error -->
-			<c:if test="${not info.validCusPhone}">
+			<c:if test="${info.validCusPhone == 1}">
 				<p style="color: red;">Số điện thoại không được chứa ký tự!</p>
+			</c:if>
+			<c:if test="${info.validCusPhone == 2}">
+				<p style="color: red;">Bạn phải nhập số điện thoại!</p>
+			</c:if>
+			<c:if test="${info.validCusPhone == 3}">
+				<p style="color: red;">Số điện thoại phải ít nhất 10 ký tự và
+					không vượt quá 15 ký tự!</p>
 			</c:if>
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"> <i class="fa fa-mobile"></i>
@@ -202,9 +229,16 @@
 			<label>Số chứng minh nhân dân</label>
 			<!-- Show error -->
 			<br>
-			<c:if test="${not info.validCusIdCard}">
+			<c:if test="${info.validCusIdCard == 1}">
 				<p style="color: red;">Số chứng minh nhân dân không được chứa ký
 					tự!</p>
+			</c:if>
+			<c:if test="${info.validCusIdCard == 2}">
+				<p style="color: red;">Bạn phải nhập số chứng minh nhân dân!</p>
+			</c:if>
+			<c:if test="${info.validCusIdCard == 3}">
+				<p style="color: red;">Số chứng minh nhân dân phải ít nhất 9 ký
+					tự và không vượt quá 12 ký tự!</p>
 			</c:if>
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"> <i class="fa fa-credit-card"></i>
@@ -219,9 +253,12 @@
 				<label>Email</label>
 				<!-- Show error -->
 				<br>
-				<c:if test="${not info.validCusEmail}">
+				<c:if test="${info.validCusEmail == 1}">
+					<p style="color: red;">Bạn phải nhập email!</p>
+				</c:if>
+				<c:if test="${info.validCusEmail == 2}">
 					<p style="color: red;">Email phải ít nhất 10 ký tự và không
-						vượt quá 40 ký tự</p>
+						vượt quá 40 ký tự!</p>
 				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-envelope"></i>
@@ -233,9 +270,12 @@
 			<c:if test="${tour.fieldAddress}">
 				<label>Địa chỉ</label>
 				<!-- Show error -->
-				<c:if test="${not info.validCusAddress}">
-					<p style="color: red;">Địa chỉ email phải ít nhất 6 ký tự và
-						không vượt quá 100 ký tự</p>
+				<c:if test="${info.validCusAddress == 2}">
+					<p style="color: red;">Bạn phải nhập địa chỉ!</p>
+				</c:if>
+				<c:if test="${info.validCusAddress == 3}">
+					<p style="color: red;">Địa chỉ phải ít nhất 6 ký tự và
+						không vượt quá 100 ký tự!</p>
 				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-home"></i>
