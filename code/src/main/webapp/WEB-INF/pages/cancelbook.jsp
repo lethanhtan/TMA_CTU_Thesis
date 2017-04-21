@@ -8,13 +8,13 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<title>Xác nhận hủy đặt vé</title>
+				<h2>Xác nhận hủy đặt vé</h2>
 				<h2 style="color: blue" align="center">Một email đã được gửi
 					đến hộp thư của bạn</h2>
-				</br>
+				<br>
 				<h2 style="color: red" align="center">Quý khách vui lòng nhập
 					mã xác nhận để thực hiện hủy đăng ký</h2>
-				</br>
+				<br>
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page">
 						<small style="color: red">${failed}</small>
@@ -26,16 +26,16 @@
 							</div>
 						</center>
 						<div class="row">
-							<center>
-								<button class="btn btn-primary" type="submit">Xác nhận</button>
-							</center>
+							<button class="btn btn-primary" type="submit"
+								style="text-align: center;">Xác nhận</button>
 						</div>
 					</s:form>
-					</br><h2 align="center">
+					<br>
+					<h2 align="center">
 						<a href="/TravelSystem">Nhấn vào đây để trở về</a>
 					</h2>
 				</div>
-				</br>
+				<br>
 			</div>
 		</div>
 	</div>

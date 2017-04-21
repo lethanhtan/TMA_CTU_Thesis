@@ -200,7 +200,7 @@
 					<small><s:errors path="detail" cssStyle="color:red;" /></small>
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 						class="form-control margin-bottom-20" type="text" rows="10"
-						path="detail" /></br>
+						path="detail" /><br>
 					<hr>
 					<div class="row">
 						<div class="col-lg-6 text-center">

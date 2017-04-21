@@ -103,7 +103,7 @@
 		<!-- End Back To Top -->
 		<!-- Top Menu -->
 		<div id="hornav" class="container no-padding">
-			<div class="row">
+			<div class="row nav">
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
@@ -126,7 +126,7 @@
 													tour</a></li>
 										</ul></li>
 								</ul></li>
-							<li><span class="fa-user"> ${fullName}</span>
+							<li style="margin-left: 70%;"><span class="fa-user">Xin chào ${fullName}!</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>

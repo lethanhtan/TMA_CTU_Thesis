@@ -15,7 +15,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
-							</br>
+							<br>
 						</div>
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
@@ -23,7 +23,7 @@
 							<div class="col-sm-8">
 								<label>Họ tên</label>
 								<!-- Show error -->
-								</br> <small><s:errors path="fullName" cssStyle="color:red;" /></small>
+								<br> <small><s:errors path="fullName" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-font"></i>
 									</span>
@@ -48,7 +48,7 @@
 							<div class="col-sm-6">
 								<label>Ngày sinh</label>
 								<!-- Show error -->
-								</br> <small><s:errors path="birthday" cssStyle="color:red;" /></small>
+								<br> <small><s:errors path="birthday" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
 										class="fa fa-calendar"></i></span>
@@ -60,7 +60,7 @@
 							<div class="col-sm-6">
 								<label>Số điện thoại</label>
 								<!-- Show error -->
-								</br> <small><s:errors path="phone" cssStyle="color:red;" /></small>
+								<br> <small><s:errors path="phone" cssStyle="color:red;" /></small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i class="fa fa-tablet"></i>
 									</span>
@@ -80,7 +80,7 @@
 						</div>
 						<label>Email</label>
 						<!-- Show error -->
-						</br>
+						<br>
 						<small><s:errors path="email" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"><i class="fa fa-envelope"></i>
@@ -90,7 +90,7 @@
 						</div>
 						<label>Địa chỉ</label>
 						<!-- Show error -->
-						</br>
+						<br>
 						<small><s:errors path="address" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-home"></i>

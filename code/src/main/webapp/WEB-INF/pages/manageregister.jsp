@@ -48,7 +48,7 @@
 							</select>
 						</form>
 					</div>
-					</br>
+					<br>
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>
@@ -91,7 +91,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					</br>
+					<br>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">

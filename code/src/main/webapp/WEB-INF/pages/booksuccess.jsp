@@ -10,7 +10,7 @@
 			<div class="row margin-vert-30">
 				<h2 style="color: red" align="center">Quý khách đã đặt vé thành
 					công!</h2>
-				</br>
+				<br>
 				<!-- Table -->
 				<table>
 					<thead>
@@ -42,7 +42,7 @@
 						</tr>
 					</tbody>
 				</table>
-				</br>
+				<br>
 				<table>
 					<thead>
 						<tr>
@@ -126,9 +126,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				</br>
+				<br>
 				<!-- End Table -->
-				</br>
+				<br>
 				<h2 align="center">
 					<a href="/TravelSystem">Nhấn vào đây để trở về.</a>
 				</h2>

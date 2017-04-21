@@ -15,7 +15,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
-							</br>
+							<br>
 						</div>
 						<div class="row">
 							<div class="col-sm-8">

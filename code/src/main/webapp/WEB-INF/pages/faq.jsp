@@ -94,9 +94,9 @@
 										</div>
 										<div id="faq-sub-3" class="panel-collapse collapse">
 											<div class="panel-body">
-												Bạn hãy thực hiện các bước sau: </br>- Kiểm tra virus và phần mềm
-												độc hại. </br>- Cập nhật tùy chọn phục hồi tài khoản của bạn. </br>-
-												Thường xuyên cập nhật trình duyệt và hệ điều hành. </br>- Sử dụng
+												Bạn hãy thực hiện các bước sau: <br>- Kiểm tra virus và phần mềm
+												độc hại. <br>- Cập nhật tùy chọn phục hồi tài khoản của bạn. <br>-
+												Thường xuyên cập nhật trình duyệt và hệ điều hành. <br>- Sử dụng
 												mật khẩu mạnh, khó nhớ, khó đoán.
 											</div>
 										</div>
@@ -116,11 +116,11 @@
 										</div>
 										<div id="faq-sub-6" class="panel-collapse collapse">
 											<div class="panel-body">
-												Dưới đây là một số mẹo giúp bạn tạo mật khẩu mạnh: </br>- Đảm bảo
-												mật khẩu của bạn dài ít nhất 8 ký tự. </br>- Kết hợp số và chữ
-												cái nhưng không bao gồm các từ thường được sử dụng. </br>- Chọn
+												Dưới đây là một số mẹo giúp bạn tạo mật khẩu mạnh: <br>- Đảm bảo
+												mật khẩu của bạn dài ít nhất 8 ký tự. <br>- Kết hợp số và chữ
+												cái nhưng không bao gồm các từ thường được sử dụng. <br>- Chọn
 												một từ hoặc từ viết tắt và chèn số vào giữa một số chữ cái.
-												</br>- Bao gồm dấu chấm câu. </br>- Kết hợp chữ in hoa và chữ thường.
+												<br>- Bao gồm dấu chấm câu. <br>- Kết hợp chữ in hoa và chữ thường.
 											</div>
 										</div>
 									</div>
