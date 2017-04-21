@@ -415,8 +415,7 @@ public class ManageRegController {
 	// Test errors
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid Tour tour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") int idTour, @RequestParam("other") String other,
-			@RequestParam("type") String type) {
+			HttpSession session, @PathVariable("idTour") int idTour) {
 		// Checking at least one field of registration is true
 		if ((tour.getFieldAddress() || tour.getFieldEmail() || tour.getFieldIdCard() || tour.getFieldName()
 				|| tour.getFieldPhone() || tour.getFieldSex()) || tour.getFieldYearOfBirth()) {

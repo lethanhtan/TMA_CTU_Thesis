@@ -10,14 +10,16 @@
 			<div class="row margin-vert-30">
 				<!-- Design Form -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+					<div class="signup-header">
+						<h2 style="text-align: center;">Thiết Kế Thông Tin Đăng Ký</h2>
+					</div>
+					<br>
+					<hr>
+					<a href="${pageContext.request.contextPath}/relationship"><button
+							class="btn btn-aqua"><i class="fa fa-plus">&nbsp;Thêm Mối Quan Hệ</i></button></a> <br> <br>
 					<s:form class="signup-page" commandName="designForm"
 						action="${pageContext.request.contextPath}/designform/${idTour}"
 						method="POST" id="checkboxV">
-						<div class="signup-header">
-							<h2 style="text-align: center;">Thiết Kế Thông Tin Đăng Ký</h2>
-						</div>
-						<br>
-						<hr>
 						<s:input value="${date4}" path="dateAllowCancel" hidden="true" />
 						<s:input value="${date3}" path="dateAllowReg" hidden="true" />
 						<s:input path="returnTime" hidden="true" />
@@ -78,10 +80,7 @@
 								<label class="checkbox"><input type="checkbox"
 									name="select-all" id="select-all">Chọn tất cả</label>
 							</div>
-							<div class="col-lg-6">
-								<a href="${pageContext.request.contextPath}/relationship"><button
-										class="btn btn-sm btn-aqua">Mối quan hệ</button></a>
-							</div>
+
 						</div>
 						<hr>
 						<div class="row">
