@@ -106,9 +106,6 @@
 									<c:if test="${not info.validCusName}">
 										<p style="color: red;">Họ tên không được chứa chữ số!</p>
 									</c:if>
-									<p style="color: red;">${error}</p>
-									<br> <small><s:errors
-											path="info[${status.index}].cusName" cssStyle="color:red;" /></small>
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-font"></i>
 										</span>
@@ -237,8 +234,8 @@
 				<label>Địa chỉ</label>
 				<!-- Show error -->
 				<c:if test="${not info.validCusAddress}">
-					<p style="color: red;">Địa chỉ email phải ít nhất 6 ký tự và không
-						vượt quá 100 ký tự</p>
+					<p style="color: red;">Địa chỉ email phải ít nhất 6 ký tự và
+						không vượt quá 100 ký tự</p>
 				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-home"></i>
