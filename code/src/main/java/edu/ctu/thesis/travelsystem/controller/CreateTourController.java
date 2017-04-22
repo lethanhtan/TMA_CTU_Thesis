@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.ctu.thesis.travelsystem.model.Promotion;
+import edu.ctu.thesis.travelsystem.model.Schedule;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.PromotionService;
+import edu.ctu.thesis.travelsystem.service.ScheduleService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.TourValidator;
 
@@ -28,32 +32,41 @@ import edu.ctu.thesis.travelsystem.validator.TourValidator;
 public class CreateTourController {
 	@Autowired
 	private TourService tourService;
+	
+	@Autowired
+	private ScheduleService scheduleService;
+	
+	@Autowired
+	private PromotionService promotionService;
 
 	private static final Logger logger = Logger.getLogger(CreateTourController.class);
-	
+
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
-	//Decentralization user and admin
-		public String createtourController(ModelMap model, HttpSession session) {
-			String result;
-			try {
-				if ((int) session.getAttribute("roleId") == 2) {
-					logger.info("Create tour! In here first!");
-					model.put("tourData", new Tour());
-					result = "createtour";
-				} else {
-					result = "forbidden";
-				}
-			} catch (Exception e) {
+	// Decentralization user and admin
+	public String createtourController(ModelMap model, HttpSession session) {
+		String result;
+		try {
+			if ((int) session.getAttribute("roleId") == 2) {
+				logger.info("Create tour! In here first!");
+				model.put("tourData", new Tour());
+				model.put("scheduleData", new Schedule());
+				model.put("saleData", new Promotion());
+				result = "createtour";
+			} else {
 				result = "forbidden";
 			}
-			return result;
+		} catch (Exception e) {
+			result = "forbidden";
 		}
-	
+		return result;
+	}
+
 	// Processing for form create tour
 	@RequestMapping(value = "/createtour", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
-			HttpSession session, @RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
+			@ModelAttribute("scheduleData") @Valid Schedule schedule, @ModelAttribute("saleData") @Valid Promotion sale, HttpSession session,
+			@RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
 		if (tour != null) {
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String departureDate = sdf.format(tour.getDepartureDate());
@@ -80,15 +93,16 @@ public class CreateTourController {
 
 				// Create the file on server
 				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
-//				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				try(BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+				// BufferedOutputStream stream = new BufferedOutputStream(new
+				// FileOutputStream(serverFile));
+				try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
 					stream.write(bytes);
 					logger.info("Server File Location=" + serverFile.getAbsolutePath());
 					tour.setImage(name);
-				} catch (Exception e){
+				} catch (Exception e) {
 					logger.error("exception when writting to file", e);
 					throw e;
-				} 
+				}
 
 			} catch (Exception e) {
 				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");
@@ -98,7 +112,7 @@ public class CreateTourController {
 			model.addAttribute("failedEmpty", "Bạn phải chọn tập tin hình ảnh cho tour!");
 			return "createtour";
 		}
-		
+
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
@@ -106,8 +120,12 @@ public class CreateTourController {
 		} else {
 			logger.info("Create tour! In here second!");
 			tourService.saveTour(tour);
+			schedule.setTour(tour);
+			sale.setTour(tour);
+			scheduleService.saveSchedule(schedule);
+			promotionService.savePromotion(sale);
+			
 			return "redirect:/managetour";
 		}
 	}
 }
-

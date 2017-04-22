@@ -2,10 +2,14 @@ package edu.ctu.thesis.travelsystem.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,22 +20,29 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "PROMOTION")
 public class Promotion {
 	
-	private int pro_id;
+	private int id;
+	
 	private int percent;
+	
 	private Date fromDate;
+	
 	private Date toDate;
+	
 	private Date createDate;
+	
 	private Date createTime;
+	
+	private Tour tour;
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "PRO_ID", nullable = false, length = 3)
 	public int getId() {
-		return this.pro_id;
+		return this.id;
 	}
 	
 	public void setId(int id) {
-		this.pro_id = id;
+		this.id = id;
 	}
 	
 	@Column(name = "PERCENT", nullable = false)
@@ -83,4 +94,13 @@ public class Promotion {
 		this.createTime = createTime;
 	}
 	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public Tour getTour() {
+		return this.tour;
+	}
+	
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
 }

@@ -44,7 +44,6 @@ public class Tour {
 	private boolean fieldYearOfBirth = true;
 	private int view;
 	private int howLong;
-	private Schedule schedule;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -304,15 +303,6 @@ public class Tour {
 
 	public void setHowLong(int howLong) {
 		this.howLong = howLong;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
-	public Schedule getSchedule() {
-		return this.schedule;
-	}
-
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
 	}
 
 	@Override
