@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
@@ -32,11 +33,19 @@ public class BookTourValidator implements Validator {
 		BookTour bookTour = (BookTour) target;
 		ValidUtil validUtil = new ValidUtil();
 
+		// Catch empty errors
+		ValidationUtils.rejectIfEmpty(errors, "cusName", "NotEmpty.cusData.cusName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cusYearOfBirth", "NotEmpty.cusData.cusYearOfBirth");
+
 		// Catch length character errors
 		// In Customer name field
 		if (bookTour.getCusName() != null
 				&& (bookTour.getCusName().length() > 40 || bookTour.getCusName().length() < 8)) {
 			errors.rejectValue("cusName", "Size.cusData.cusName");
+		}
+		// In Customer year of birth field
+		if (bookTour.getCusYearOfBirth() != null && bookTour.getCusYearOfBirth().length() != 4) {
+			errors.rejectValue("cusYearOfBirth", "Size.cusData.cusYearOfBirth");
 		}
 		// In Customer email field
 		if (bookTour.getCusEmail() != null
@@ -60,6 +69,10 @@ public class BookTourValidator implements Validator {
 		}
 
 		// Catch characters errors
+		// In Customer year of birth field
+		if (bookTour.getCusYearOfBirth() != null && (validUtil.findAlphabet(bookTour.getCusYearOfBirth()))) {
+			errors.rejectValue("cusYearOfBirth", "Invalid.cusData.cusYearOfBirth");
+		}
 		// In Customer phone field
 		if (bookTour.getCusPhone() != null && (validUtil.findAlphabet(bookTour.getCusPhone()))) {
 			errors.rejectValue("cusPhone", "Invalid.cusData.cusPhone");
