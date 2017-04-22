@@ -12,7 +12,7 @@
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="signup-page" commandName="cusData"
 						id="createTourForm"
-						action="${pageContext.request.contextPath }/editreginfo/${cusData.idBT}/${cusData.tour.idTour}"
+						action="${pageContext.request.contextPath }/editreginfo/${cusData.idBT}/${tour.idTour}"
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Cập nhật Thông Tin Khách
@@ -21,7 +21,7 @@
 						</div>
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
-							<c:if test="${cusData.tour.fieldName}">
+							<c:if test="${!empty cusData.cusName}">
 								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
@@ -35,7 +35,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${cusData.tour.fieldSex}">
+							<c:if test="${!empty cusData.cusSex}">
 								<div class="col-sm-4">
 									<label>Giới tính</label>
 									<div class="input-group margin-bottom-20">
@@ -51,7 +51,7 @@
 							</c:if>
 						</div>
 						<div class="row">
-							<c:if test="${cusData.tour.fieldYearOfBirth}">
+							<c:if test="${!empty cusData.cusYearOfBirth}">
 								<div class="col-sm-6">
 									<label>Năm sinh</label>
 									<!-- Show error -->
@@ -65,7 +65,7 @@
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${not empty cusData.relation}">
+							<c:if test="${!empty cusData.relation}">
 								<div class="col-sm-6">
 									<label>Mối quan hệ</label>
 									<div class="input-group margin-bottom-20">
@@ -80,7 +80,7 @@
 									</div>
 								</div>
 						</div>
-						<c:if test="${cusData.tour.fieldPhone}">
+						<c:if test="${!empty cusData.cusPhone}">
 							<label>Số điện thoại</label>
 							<!-- Show error -->
 							<br>
@@ -94,7 +94,7 @@
 						</c:if>
 						</c:if>
 						<c:if test="${empty cusData.relation}">
-							<c:if test="${cusData.tour.fieldPhone}">
+							<c:if test="${!empty cusData.cusPhone}">
 								<div class="col-sm-6">
 									<label>Số điện thoại</label>
 									<!-- Show error -->
@@ -110,7 +110,7 @@
 				</div>
 				</c:if>
 				</c:if>
-				<c:if test="${cusData.tour.fieldIdCard}">
+				<c:if test="${!empty cusData.cusIdCard}">
 					<label>Số chứng minh nhân dân</label>
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i

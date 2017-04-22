@@ -23,12 +23,12 @@ public class BookTourInfoVO {
 	private String whoIsRegistered;
 	
 	// New attributes for validating - findDigit()
-	private boolean validCusName = true;
-	private boolean validCusEmail = true;
-	private boolean validCusPhone = true;
-	private boolean validCusAddress = true;
-	private boolean validCusIdCard = true;
-	private boolean validCusYearOfBirth= true;
+	private int validCusName = 0;
+	private int validCusEmail = 0;
+	private int validCusPhone = 0;
+	private int validCusAddress = 0;
+	private int validCusIdCard = 0;
+	private int validCusYearOfBirth = 0;
 
 	public int getIdBT() {
 		return idBT;
@@ -174,52 +174,51 @@ public class BookTourInfoVO {
 		this.whoIsRegistered = whoIsRegistered;
 	}
 
-	public boolean isValidCusName() {
+	public int getValidCusName() {
 		return validCusName;
 	}
 
-	public void setValidCusName(boolean validCusName) {
+	public void setValidCusName(int validCusName) {
 		this.validCusName = validCusName;
 	}
 
-	public boolean isValidCusEmail() {
+	public int getValidCusEmail() {
 		return validCusEmail;
 	}
 
-	public void setValidCusEmail(boolean validCusEmail) {
+	public void setValidCusEmail(int validCusEmail) {
 		this.validCusEmail = validCusEmail;
 	}
 
-	public boolean isValidCusPhone() {
+	public int getValidCusPhone() {
 		return validCusPhone;
 	}
 
-	public void setValidCusPhone(boolean validCusEmail) {
-		this.validCusPhone = validCusEmail;
+	public void setValidCusPhone(int validCusPhone) {
+		this.validCusPhone = validCusPhone;
 	}
 
-	public boolean isValidCusAddress() {
+	public int getValidCusAddress() {
 		return validCusAddress;
 	}
 
-	public void setValidCusAddress(boolean validCusAddress) {
+	public void setValidCusAddress(int validCusAddress) {
 		this.validCusAddress = validCusAddress;
 	}
 
-	public boolean isValidCusIdCard() {
+	public int getValidCusIdCard() {
 		return validCusIdCard;
 	}
 
-	public void setValidCusIdCard(boolean validCusIdCard) {
+	public void setValidCusIdCard(int validCusIdCard) {
 		this.validCusIdCard = validCusIdCard;
 	}
 
-	public boolean isValidCusYearOfBirth() {
+	public int getValidCusYearOfBirth() {
 		return validCusYearOfBirth;
 	}
 
-	public void setValidCusYearOfBirth(boolean validCusYearOfBirth) {
+	public void setValidCusYearOfBirth(int validCusYearOfBirth) {
 		this.validCusYearOfBirth = validCusYearOfBirth;
 	}
-	
 }

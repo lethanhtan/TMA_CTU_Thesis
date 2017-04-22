@@ -8,84 +8,61 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<!-- User Detail Box -->
-				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-					<s:form class="signup-page" commandName="userData"
-						action="${pageContext.request.contextPath}/userdetail/${userData.idUser}"
-						method="POST">
-						<div class="signup-header">
-							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
-							<br>
-						</div>
-						<div class="row">
-							<div class="col-sm-8">
-								<label>Họ tên</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-font"></i>
-									</span>
-									<s:input class="form-control margin-bottom-20" path="fullName"
-										disabled="true" />
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<label>Giới tính</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"><i class="fa fa-male"></i>
-									</span>
-									<s:input class="form-control margin-bottom-20" path="sex"
-										disabled="true" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<label>Ngày sinh</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"><i
-										class="fa fa-calendar"></i> </span>
-									<s:input class="form-control margin-bottom-20" path="birthday"
-										disabled="true" />
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<label>Số điện thoại</label>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"><i class="fa fa-tablet"></i>
-									</span>
-									<s:input class="form-control margin-bottom-20" path="phone"
-										disabled="true" />
-								</div>
-							</div>
-						</div>
-						<label>Email</label>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"><i class="fa fa-envelope"></i>
-							</span>
-							<s:input class="form-control margin-bottom-20" path="email"
-								disabled="true" />
-						</div>
-						<label>Địa chỉ</label>
-						<div class="input-group margin-bottom-20">
-							<span class="input-group-addon"> <i class="fa fa-home"></i>
-							</span>
-							<s:input class="form-control margin-bottom-20" path="address"
-								disabled="true" />
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/editmyacc/${userData.idUser}'/>"><button
-										class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
-							</div>
-							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/home'/>"><button
-										class="btn btn-primary" type="button">Trở Về</button></a>
-							</div>
-						</div>
-					</s:form>
+				<form action="" class="signup-page">
+					<!-- User Detail Box -->
+					<table>
+						<thead>
+							<tr>
+								<td>Thông Tin Tài Khoản</td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Họ tên:</td>
+								<td>${userData.fullName}</td>
+							</tr>
+							<tr>
+								<td>Giới tính:</td>
+								<td>${userData.sex}</td>
+							</tr>
+							<tr>
+								<td>Ngày sinh:</td>
+								<td><fmt:formatDate value="${userData.birthday}"
+										pattern="dd/MM/yyyy" /></td>
+							</tr>
+							<tr>
+								<td>Số điện thoại:</td>
+								<td>${userData.phone}</td>
+							</tr>
+							<tr>
+								<td>Địa chỉ email:</td>
+								<td>${userData.email}</td>
+							</tr>
+							<tr>
+								<td>Địa chỉ:</td>
+								<td>${userData.address}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<br>
+				<div class="row">
+					<div class="col-lg-6 text-center">
+						<a href="<c:url value='/editmyacc/${userData.idUser}'/>"><button
+								class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
+					</div>
+					<div class="col-lg-6 text-center">
+						<a href="<c:url value='/home'/>"><button
+								class="btn btn-primary" type="button">Trở Về</button></a>
+					</div>
 				</div>
-				<!-- End User Detail Box -->
 			</div>
+			<!-- End User Detail Box -->
 		</div>
 	</div>
 </div>

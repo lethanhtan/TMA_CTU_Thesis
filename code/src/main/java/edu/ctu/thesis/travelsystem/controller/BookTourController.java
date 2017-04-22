@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.ctu.thesis.travelsystem.dto.BookTourInfoVO;
 import edu.ctu.thesis.travelsystem.dto.SubBookTourVO;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
-import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.mail.MailTemplate;
@@ -130,8 +129,8 @@ public class BookTourController {
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = false, value = "numTicket") Integer numTicket) {
 		// Put Customer data into table Book Tour;
+		// Set default value for number of ticket
 		try {
-			// Set default value for number of ticket
 			if (!numTicket.equals(null)) {
 				numOfTicket = numTicket; // numOn
 			}
@@ -236,7 +235,6 @@ public class BookTourController {
 		}
 	}
 
-
 	// Forward to Tour detail page
 	@RequestMapping(value = "/viewtour/{idTour}", method = RequestMethod.GET)
 	public String showDetail(ModelMap model, @PathVariable("idTour") int idTour) {
@@ -268,23 +266,41 @@ public class BookTourController {
 	public String showForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		logger.info("Display edit form when customer request!");
 		model.put("cusData", bookTourService.searchById(idBT));
+		model.put("tour", tourService.findTourById(idTour));
 		model.put("relationship", new Relationship());
 		model.put("relationshipList", regInfoService.relationshipList());
 		return "editbooktour";
 	}
 
 	// Test errors
-	@RequestMapping(value = "editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
+	@RequestMapping(value = "/editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
 	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
 			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			@Valid Tour tour) {
+			@Valid Tour tour, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		logger.info("Handle edit information customer form when admin submit!");
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
 		tour = tourService.findTourById(idTour);
+		if (verify == false) {
+			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
+			model.addAttribute("errorString", errorString);
+			if (tour != null) {
+				model.addAttribute("tour", tour);
+			}
+			return "editbooktour";
+		}
 		if (br.hasErrors()) {
-			return "editbooktour	";
+			if (tour != null) {
+				model.addAttribute("tour", tour);
+			}
+			return "editbooktour";
 		} else {
+			tour = tourService.findTourById(idTour);
 			bookTour.setTour(tour);
 			logger.info("Edit success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
