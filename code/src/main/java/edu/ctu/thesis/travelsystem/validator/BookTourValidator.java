@@ -158,9 +158,9 @@ public class BookTourValidator implements Validator {
 				}
 			}
 
-			if (info.getValidCusName() == 0 || info.getValidCusAddress() == 0 || info.getValidCusPhone() == 0
-					|| info.getValidCusYearOfBirth() == 0 || info.getValidCusIdCard() == 0
-					|| info.getValidCusEmail() == 0) {
+			if (info.getValidCusName() != 0 || info.getValidCusAddress() != 0 || info.getValidCusPhone() != 0
+					|| info.getValidCusYearOfBirth() != 0 || info.getValidCusIdCard() != 0
+					|| info.getValidCusEmail() != 0) {
 				invalidInfos.add(info.getCusName());
 			}
 			infos.add(info);
