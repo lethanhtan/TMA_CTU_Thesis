@@ -143,6 +143,12 @@
 				<s:input path="relationship" hidden="true" />
 				<s:input path="whoIsRegistered" hidden="true" />
 				<hr>
+				<!-- reCAPTCHA -->
+				<p style="color: red;">${errorString}</p>
+				<div style="margin-left: 37px;" class="g-recaptcha"
+					data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+				<br>
+				<!-- End reCAPTCHA -->
 				<div class="row">
 					<div class="col-lg-6 text-center">
 						<button class="btn btn-primary" type="submit">Xác Nhận</button>

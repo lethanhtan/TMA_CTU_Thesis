@@ -276,10 +276,24 @@ public class BookTourController {
 	@RequestMapping(value = "/editbooktour/{idBT}/{idTour}", method = RequestMethod.POST)
 	public String editBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, ModelMap model,
 			HttpSession session, @ModelAttribute("cusData") @Valid BookTour bookTour, BindingResult br,
-			@Valid Tour tour) {
+			@Valid Tour tour, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		logger.info("Handle edit information customer form when admin submit!");
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		logger.info(gRecaptchaResponse);
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		logger.info("Captcha Verify: " + verify);
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		bookTourValidator.validate(bookTour, br);
+		tour = tourService.findTourById(idTour);
+		if (verify == false) {
+			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
+			model.addAttribute("errorString", errorString);
+			if (tour != null) {
+				model.addAttribute("tour", tour);
+			}
+			return "editbooktour";
+		}
 		if (br.hasErrors()) {
 			if (tour != null) {
 				model.addAttribute("tour", tour);
