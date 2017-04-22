@@ -123,9 +123,6 @@ public class BookTourValidator implements Validator {
 
 			// Catch error for customer email if field customer email not null
 			if (tour.getFieldEmail()) {
-				if (info.getCusEmail() == null) {
-					info.setValidCusEmail(2);
-				}
 				if (info.getCusEmail() != null
 						&& (info.getCusEmail().length() > 40 || info.getCusEmail().length() < 10)) {
 					info.setValidCusEmail(3);
@@ -135,9 +132,6 @@ public class BookTourValidator implements Validator {
 			// Catch error for customer address if field customer address not
 			// null
 			if (tour.getFieldAddress()) {
-				if (info.getCusAddress() == null) {
-					info.setValidCusAddress(2);
-				}
 				if (info.getCusAddress() != null
 						&& (info.getCusAddress().length() > 100 || info.getCusAddress().length() < 6)) {
 					info.setValidCusAddress(3);
