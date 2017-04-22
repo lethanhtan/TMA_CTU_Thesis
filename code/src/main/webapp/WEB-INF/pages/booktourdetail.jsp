@@ -28,19 +28,21 @@
 							</tr>
 							<tr>
 								<td>Ngày đi:</td>
-								<td>${cusData.tour.departureDate}</td>
+								<td><fmt:formatDate value="${cusData.tour.departureDate}"
+										pattern="dd/MM/yyyy" /></td>
 								<td>Giờ đi:</td>
 								<td>${cusData.tour.departureTime}</td>
 							</tr>
 							<tr>
 								<td>Ngày về:</td>
-								<td>${cusData.tour.returnDate}</td>
+								<td><fmt:formatDate value="${cusData.tour.returnDate}"
+										pattern="dd/MM/yyyy" /></td>
 								<td>Giờ về:</td>
 								<td>${cusData.tour.returnTime}</td>
 							</tr>
 							<tr>
-								<td></td>
-								<td></td>
+								<td>Thời gian:</td>
+								<td>${cusData.tour.howLong} ngày</td>
 								<td style="color: #ef5b92;">Giá vé:</td>
 								<td style="color: #ef5b92;">${price}<c:out value=" đ" /></td>
 							</tr>
