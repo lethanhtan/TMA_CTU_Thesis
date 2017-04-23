@@ -15,4 +15,5 @@ public interface ScheduleService {
 	public Schedule findSchedule(int idTour);
 
 	public List<Schedule> listSchedule();
+
 }

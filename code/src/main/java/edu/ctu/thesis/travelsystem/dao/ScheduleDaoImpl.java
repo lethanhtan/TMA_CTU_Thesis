@@ -42,7 +42,7 @@ public class ScheduleDaoImpl extends AbstractDao implements ScheduleDao {
 		Session session = getCurrentSession();
 		try {
 			session.update(schedule);
-			session.flush();
+			//session.flush();
 		} catch (NullPointerException e) {
 			logger.info("Null schedule object for update schedule!");
 		}
@@ -51,10 +51,13 @@ public class ScheduleDaoImpl extends AbstractDao implements ScheduleDao {
 	@Override
 	public Schedule findSchedule(int idTour) {
 		Session session = getCurrentSession();
-		String hql = "from Schedule as s where s.id = :idTour";
+		logger.info("Query schedule: ");
+		String hql = "from Schedule s where s.tour.idTour = :idTour";
 		Query query = session.createQuery(hql);
-		query.setParameter("idTour", idTour);
-		return (Schedule) query.uniqueResult();
+		query.setParameter("idTour", 1);
+		Schedule schedule = (Schedule) query.uniqueResult();
+
+		return schedule;
 	}
 
 }

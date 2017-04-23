@@ -3,6 +3,7 @@ package edu.ctu.thesis.travelsystem.dao;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,25 @@ public class PromotionDaoImpl extends AbstractDao implements PromotionDao {
 	public List<Promotion> listPromotion() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Promotion findPromotion(int idTour) {
+		Session session = getCurrentSession();
+		Query query = session.createQuery("from Promotion as p where p.tour.idTour = :idTour");
+		query.setParameter("idTour", idTour);
+		return (Promotion) query.uniqueResult();
+	}
+
+	@Override
+	public void updatePromotion(Promotion promotion) {
+		Session session = getCurrentSession();
+		try {
+			session.update(promotion);
+			session.flush();
+		} catch (NullPointerException e) {
+			logger.info("Null promotion object for update Promotion!");
+		}
 	}
 
 }

@@ -11,39 +11,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.ctu.thesis.travelsystem.model.Schedule;
-import edu.ctu.thesis.travelsystem.service.ScheduleService;
+import edu.ctu.thesis.travelsystem.model.Promotion;
+import edu.ctu.thesis.travelsystem.service.PromotionService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Controller
-public class ScheduleController {
+public class PromotionController {
 	
-	private static final Logger logger = Logger.getLogger(ScheduleController.class);
+	private static final Logger logger = Logger.getLogger(PromotionController.class);
 
 	@Autowired
-	ScheduleService scheduleService;
+	PromotionService promotionService;
 	
 	@Autowired
 	TourService tourService;
 	
-	@RequestMapping(value = "/updateschedule/{idTour}", method = RequestMethod.GET)
+	@RequestMapping(value = "/update_promotion/{idTour}", method = RequestMethod.GET)
 	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) {
-		logger.info("Reparing data for update schedule form!");
+		logger.info("Reparing data for update promotion form!");
 		model.addAttribute("idTour", idTour);
-		model.put("scheduleData", scheduleService.findSchedule(idTour));
+		model.put("promotionData", promotionService.findPromotion(idTour));
 		model.put("tour", tourService.findTourById(idTour));
-		return "schedules";
+		return "promotion";
 	}
 	
-	@RequestMapping(value = "/updateschedule/{idTour}", method = RequestMethod.POST)
-	public String processForm(@ModelAttribute(value = "scheduleData") @Valid Schedule schedule,
+	@RequestMapping(value = "/update_promotion/{idTour}", method = RequestMethod.POST)
+	public String processForm(@ModelAttribute(value = "promotionData") @Valid Promotion promotion,
 			@PathVariable("idTour") int idTour) {
 		try {
-			logger.info("Updating schedule with id tour: " + idTour);
-			logger.info("Id schedule: " + schedule.getTour().getIdTour());
-			scheduleService.updateSchedule(schedule);
+			logger.info("Updating promotion with id tour: " + idTour);
+			logger.info("Id promotion: " + promotion.getTour().getIdTour());
+			promotionService.updatePromotion(promotion);
 		} catch (NullPointerException e) {
-			logger.info("Not found schedule for update!");
+			logger.info("Not found promotion for update!");
 		}
 		
 		return "managetour";

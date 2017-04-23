@@ -1,27 +1,25 @@
 package edu.ctu.thesis.travelsystem.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 @Entity
 @Table(name = "PROMOTION")
-public class Promotion {
+public class Promotion implements Serializable{
 	
-	private int id;
-	
+	private static final long serialVersionUID = 1L;
+
 	private int percent;
 	
 	private Date fromDate;
@@ -34,16 +32,6 @@ public class Promotion {
 	
 	private Tour tour;
 	
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "PRO_ID", nullable = false, length = 3)
-	public int getId() {
-		return this.id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	@Column(name = "PERCENT", nullable = false)
 	public int getPercent() {
@@ -88,14 +76,16 @@ public class Promotion {
 	@Temporal(TemporalType.TIME)
 	public Date getCreateTime() {
 		return this.createTime;
+		
 	}
 	
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	
+	@Id
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "ID_TOUR", nullable = false)
 	public Tour getTour() {
 		return this.tour;
 	}
