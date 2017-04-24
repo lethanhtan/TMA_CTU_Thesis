@@ -62,16 +62,16 @@
 								tour nào!</h1>
 						</c:if>
 						<c:if test="${!empty myRegList}">
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
-										<th></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -84,6 +84,7 @@
 											<td>${bookTour.tour.name}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
+											<td>${bookTour.cusYearOfBirth}</td>
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.whoIsRegistered}</td>
 											<td><a href="<c:url value='/cancel/${bookTour.idBT}'/>">
@@ -95,17 +96,17 @@
 														hidden="true"></button>
 											</a> <a
 												href="<c:url value='/booktourdetail/${bookTour.idBT}/${bookTour.tour.idTour}'/>">
-													<button class="btn btn-sm btn-violet">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
 												href="<c:url value='/editbooktour/${bookTour.idBT}/${bookTour.tour.idTour}'/>"><button
-														class="btn btn-sm btn-success">
+														class="btn btn-xs btn-success">
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
 														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
-														<button class="btn btn-sm btn-danger cancel"
+														<button class="btn btn-xs btn-danger cancel"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
@@ -113,7 +114,7 @@
 													<c:if
 														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
 														<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
-																class="btn btn-sm btn-danger">
+																class="btn btn-xs btn-danger">
 																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 															</button></a>
 													</c:if>
@@ -216,13 +217,14 @@
 							</c:choose>
 						</c:if>
 						<c:if test="${!empty myCancelList}">
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
 										<th></th>
@@ -237,16 +239,17 @@
 											<td>${myCancelReg.tour.name}</td>
 											<td>${myCancelReg.cusName}</td>
 											<td>${myCancelReg.cusSex}</td>
+											<td>${myCancelReg.cusYearOfBirth}</td>
 											<td>${myCancelReg.cusPhone}</td>
 											<td>${myCancelReg.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
-													<button class="btn btn-sm btn-violet">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
 													<a href="<c:url value='/undo/${myCancelReg.idBT}'/>"><button
-															class="btn btn-sm btn-success">
+															class="btn btn-xs btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
 												</c:if></td>
@@ -324,13 +327,14 @@
 							<h1 style="text-align: center;">Bạn chưa đi tour nào cả!</h1>
 						</c:if>
 						<c:if test="${!empty myBookTourList}">
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Tên tour</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
 										<th></th>
@@ -345,11 +349,12 @@
 											<td>${myBookTour.tour.name}</td>
 											<td>${myBookTour.cusName}</td>
 											<td>${myBookTour.cusSex}</td>
+											<td>${myBookTour.cusYearOfBirth}</td>
 											<td>${myBookTour.cusPhone}</td>
 											<td>${myBookTour.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/booktourdetail/${myBookTour.idBT}/${myBookTour.tour.idTour}'/>">
-													<button class="btn btn-sm btn-violet">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a></td>
