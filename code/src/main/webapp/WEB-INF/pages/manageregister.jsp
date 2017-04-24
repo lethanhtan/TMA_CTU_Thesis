@@ -48,10 +48,6 @@
 							</select>
 						</form>
 					</div>
-<<<<<<< HEAD
-=======
-					<br>
->>>>>>> tma_thesis/master
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>

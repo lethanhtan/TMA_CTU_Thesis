@@ -126,11 +126,7 @@
 													tour</a></li>
 										</ul></li>
 								</ul></li>
-<<<<<<< HEAD
-							<li><span class="fa-user" style="font-size: 13px"> ${fullName}</span>
-=======
-							<li style="margin-left: 70%;"><span class="fa-user">Xin chào ${fullName}!</span>
->>>>>>> tma_thesis/master
+							<li style="font-size: 13px;"><span class="fa-user">${fullName}!</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
