@@ -412,7 +412,7 @@ public class UserController extends HttpServlet {
 	}
 
 	// Customer change your password
-	@RequestMapping(value = "changemypass/{idUser}", method = RequestMethod.GET)
+	@RequestMapping(value = "changepassword/{idUser}", method = RequestMethod.GET)
 	public String showChangePassword(ModelMap model, @PathVariable("idUser") int idUser) {
 		logger.info("Display change password form when user request!");
 		User user = userService.searchUserById(idUser);
@@ -421,12 +421,12 @@ public class UserController extends HttpServlet {
 		} else {
 			logger.info("Null Object!");
 		}
-		return "changemypass";
+		return "changepassword";
 	}
 
 	// Handle change my password form
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "changemypass/{idUser}", method = RequestMethod.POST)
+	@RequestMapping(value = "changepassword/{idUser}", method = RequestMethod.POST)
 	public String confirmChangePassword(ModelMap model, @PathVariable("idUser") int idUser,
 			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session,
 			@RequestParam String currentPass, @RequestParam String newPass, @RequestParam String comPass) {
@@ -435,29 +435,32 @@ public class UserController extends HttpServlet {
 		if (currentPass.equals(ep.deCoded(user1.getPassword()))) {
 			if (newPass.length() > 20 || newPass.length() < 8) {
 				model.put("error", "Mật khẩu phải có ít nhất 8 ký tự và không quá 20 ký tự");
-				return "changemypass";
+				return "changepassword";
 			}
 			if (newPass.equals(comPass)) {
 				user1.setPassword(ep.enCoded(newPass));
 				userService.editUser(user1);
 				logger.info("Change password successfully!");
-				session.removeAttribute("user"); // remove user object from
-													// session
-				session.removeValue("userName"); // remove userName value
-				session.removeValue("fullName");
-				session.removeValue("phone");
-				session.removeValue("roleId"); // remove roleId value
-				session.removeValue("idUser");
-				return "redirect:/changepasssucess";
+				if (session.getAttribute("roleId") != null) {
+					return "redirect:/manageuser";
+				} else {
+					session.removeAttribute("user");
+					session.removeValue("userName"); // Remove username value
+					session.removeValue("fullName"); // Remove full name value
+					session.removeValue("phone"); // Remove phone value
+					session.removeValue("roleId"); // Remove roleId value
+					session.removeValue("idUser"); // Remove idUser
+					return "redirect:/changepasssucess";
+				}
 			} else {
 				logger.info("The new password and confirm password is incorrect");
 				model.put("confirmPass", "Nhập lại mật khẩu không đúng");
-				return "changemypass";
+				return "changepassword";
 			}
 		} else {
 			logger.info("The password is incorrect");
 			model.put("wrongPass", "Mật khẩu không đúng");
-			return "changemypass";
+			return "changepassword";
 		}
 	}
 
