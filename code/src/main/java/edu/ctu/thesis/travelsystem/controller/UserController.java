@@ -135,7 +135,8 @@ public class UserController extends HttpServlet {
 					return "redirect:managetour";
 				} else {
 					session.setAttribute("user", user);
-					session.setAttribute("userName", user.getFullName());
+					session.setAttribute("fullName", user.getFullName());
+					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("idUser", user.getIdUser());
 					return "redirect:login";
 				}

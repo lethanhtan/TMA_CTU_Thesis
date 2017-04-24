@@ -1,5 +1,7 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.model.Promotion;
+import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.PromotionService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 
@@ -32,20 +36,21 @@ public class PromotionController {
 		model.addAttribute("idTour", idTour);
 		model.put("promotionData", promotionService.findPromotion(idTour));
 		model.put("tour", tourService.findTourById(idTour));
-		return "promotion";
+		return "promotions";
 	}
 	
 	@RequestMapping(value = "/update_promotion/{idTour}", method = RequestMethod.POST)
-	public String processForm(@ModelAttribute(value = "promotionData") @Valid Promotion promotion,
+	public String processForm(@RequestParam(value="fromDate") Date fromDate,
+			@RequestParam(value="toDate") Date toDate,
+			@RequestParam(value="percent") int percent,
 			@PathVariable("idTour") int idTour) {
-		try {
 			logger.info("Updating promotion with id tour: " + idTour);
-			logger.info("Id promotion: " + promotion.getTour().getIdTour());
-			promotionService.updatePromotion(promotion);
-		} catch (NullPointerException e) {
-			logger.info("Not found promotion for update!");
-		}
-		
+			Tour tour = tourService.findTourById(idTour);
+			tour.getPromotion().setPercent(percent);
+			tour.getPromotion().setFromDate(fromDate);
+			tour.getPromotion().setToDate(toDate);
+			tourService.updateTour(tour);
+			
 		return "managetour";
 	}
 }
