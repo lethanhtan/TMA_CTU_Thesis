@@ -126,8 +126,10 @@
 													tour</a></li>
 										</ul></li>
 								</ul></li>
-							<li style="margin-left: 70%;"><span class="fa-user">Xin chào ${fullName}!</span>
+							<li style="margin-left: 70%;"><span class="fa-user">Xin
+									chào ${fullName}!</span>
 								<ul>
+									<li><a href="<c:url value="/home" />">Về trang chủ</a>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>
