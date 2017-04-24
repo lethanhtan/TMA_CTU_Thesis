@@ -425,6 +425,7 @@ public class UserController extends HttpServlet {
 	}
 
 	// Handle change my password form
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "changemypass/{idUser}", method = RequestMethod.POST)
 	public String confirmChangePassword(ModelMap model, @PathVariable("idUser") int idUser,
 			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session,
@@ -440,8 +441,14 @@ public class UserController extends HttpServlet {
 				user1.setPassword(ep.enCoded(newPass));
 				userService.editUser(user1);
 				logger.info("Change password successfully!");
-				model.put("success", "Quý khách đã thay đổi mật khẩu thành công, vui lòng đăng nhập lại!");
-				return "redirect:/logout";
+				session.removeAttribute("user"); // remove user object from
+													// session
+				session.removeValue("userName"); // remove userName value
+				session.removeValue("fullName");
+				session.removeValue("phone");
+				session.removeValue("roleId"); // remove roleId value
+				session.removeValue("idUser");
+				return "redirect:/changepasssucess";
 			} else {
 				logger.info("The new password and confirm password is incorrect");
 				model.put("confirmPass", "Nhập lại mật khẩu không đúng");
@@ -452,5 +459,11 @@ public class UserController extends HttpServlet {
 			model.put("wrongPass", "Mật khẩu không đúng");
 			return "changemypass";
 		}
+	}
+
+	// Forward to page change password success
+	@RequestMapping(value = "changepasssucess", method = RequestMethod.GET)
+	public String changePassSuccess() {
+		return "changepasssucess";
 	}
 }
