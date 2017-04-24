@@ -31,8 +31,8 @@
 					<form role="form" class="form-inline" action="tourlist"
 						method="get">
 						<label for="selectTour" style="text-align: left; margin-left: 83%">Số
-							tour/ trang:</label> <select id="selectTour" 
-							name="numOn" onchange="this.form.submit()">
+							tour/ trang:</label> <select id="selectTour" name="numOn"
+							onchange="this.form.submit()">
 							<option>5</option>
 							<option>10</option>
 							<option>15</option>
@@ -65,11 +65,13 @@
 								<tr>
 									<td>${showTourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
-									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
-									<td>&nbsp;&nbsp;&nbsp;${tour.ticketAvailability}&nbsp;&nbsp;&nbsp;</td>
+									<td><fmt:formatDate value="${tour.departureDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>${tour.departureTime}</td>
+									<td><fmt:formatDate value="${tour.returnDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>${tour.returnTime}</td>
+									<td>${tour.ticketAvailability}</td>
 									<td><a href="<c:url value='viewdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-success">
 												<i class="fa fa-eye">&nbsp;Xem</i>
