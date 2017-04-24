@@ -415,8 +415,7 @@ public class ManageRegController {
 	// Test errors
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("designForm") @Valid Tour tour, BindingResult br,
-			HttpSession session, @PathVariable("idTour") int idTour, @RequestParam("other") String other,
-			@RequestParam("type") String type) {
+			HttpSession session, @PathVariable("idTour") int idTour) {
 		// Checking at least one field of registration is true
 		if ((tour.getFieldAddress() || tour.getFieldEmail() || tour.getFieldIdCard() || tour.getFieldName()
 				|| tour.getFieldPhone() || tour.getFieldSex()) || tour.getFieldYearOfBirth()) {
@@ -459,6 +458,7 @@ public class ManageRegController {
 	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
+		model.put("tour", tourService.findTourById(idTour));
 		model.put("relationship", new Relationship());
 		model.put("relationshipList", regInfoService.relationshipList());
 		return "editreginfo";
@@ -477,7 +477,7 @@ public class ManageRegController {
 			logger.info("Tour info: " + tour);
 			if (tour != null) {
 				model.addAttribute("tour", tour);
-			}
+			}	
 			return "editreginfo";
 		} else {
 			bookTour.setTour(tour);

@@ -87,7 +87,7 @@
 								</tr>
 							</c:forEach>
 						</tbody>
-					</table></br>
+					</table><br>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">

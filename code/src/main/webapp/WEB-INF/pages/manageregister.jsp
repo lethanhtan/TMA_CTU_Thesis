@@ -48,6 +48,10 @@
 							</select>
 						</form>
 					</div>
+<<<<<<< HEAD
+=======
+					<br>
+>>>>>>> tma_thesis/master
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>
@@ -90,7 +94,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					</br>
+					<br>
 				</c:if>
 				<!-- End Table -->
 				<hr class="margin-bottom-20">

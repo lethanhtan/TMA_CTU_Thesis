@@ -133,11 +133,11 @@
 									</div>
 									<div class="panel-body">
 										<ul class="list-unstyled">
-											<li><i class="fa-phone color-primary"></i>${phoneUser}</li>
-											<li><i class="fa-envelope color-primary"> <a
-													href="mailto:${emailConfig}"></i>${emailConfig}</a></li>
-											<li><i class="fa-home color-primary"> <a href="#"></i>Quản
-												trị viên</a></li>
+											<li><i class="fa-phone color-primary">${phoneUser}</i></li>
+											<li><a href="mailto:${emailConfig}"><i
+													class="fa-envelope color-primary">${emailConfig}</i></a></li>
+											<li><a href="#"><i class="fa-home color-primary">Quản
+												trị viên</i></a></li>
 										</ul>
 										<ul class="list-unstyled">
 											<li><strong class="color-primary">Thời gian làm
@@ -155,7 +155,7 @@
 										<ul class="list-unstyled">
 											<li><i>Tổng số mail đã gửi: ${totalMail}</i></li>
 											<li><i>Số mail gửi thành công: ${numSuccess}</i></li>
-											<li><i>Số mail gửi thất bại:  ${totalMail - numSuccess}</i></li>
+											<li><i>Số mail gửi thất bại: ${totalMail - numSuccess}</i></li>
 										</ul>
 									</div>
 								</div>

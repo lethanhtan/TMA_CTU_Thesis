@@ -15,7 +15,7 @@
 						method="POST">
 						<div class="signup-header">
 							<h2 style="text-align: center;">Thông Tin Tour Du Lịch</h2>
-							</br>
+							<br>
 						</div>
 						<label>Tên tour</label>
 						<div class="input-group margin-bottom-20">
@@ -182,7 +182,7 @@
 						<label>Chi tiết tour</label>
 						<s:input class="form-control margin-bottom-20" path="detail"
 							disabled="true" />
-						</br>
+						<br>
 						<hr>
 						<div class="row">
 							<div class="col-lg-4 text-left">

@@ -42,7 +42,7 @@
 												khách hàng nữ khởi hành từ Cần Thơ, đến hầu hết các điểm đến
 												trong khu vực đồng bằng sông Cửu Long.</span> <a href="#"
 												style="color: hotpink; text-decoration: underline; font-weight: bold;">
-												Xem thêm ></a></br> <span class="date"> <i
+												Xem thêm ></a><br> <span class="date"> <i
 												class="fa fa-clock-o color-gray-light"></i>&nbsp;05/03/2017
 											</span>
 										</div>
@@ -69,7 +69,7 @@
 												khách, bởi tính cạnh tranh cao về giá và chất lượng dịch vụ
 												đẳng cấp. </span> <a href="#"
 												style="color: hotpink; text-decoration: underline; font-weight: bold;">
-												Xem thêm ></a></br> <span class="date"> <i
+												Xem thêm ></a><br> <span class="date"> <i
 												class="fa fa-clock-o color-gray-light"></i>&nbsp;12/02/2017
 											</span>
 										</div>
@@ -93,7 +93,7 @@
 												Cửu Long Cần Thơ. Giá rẻ, chất lượng không đổi, đặt vé và
 												chuẩn bị hành trang ngay đi nào.</span> <a href="#"
 												style="color: hotpink; text-decoration: underline; font-weight: bold;">
-												Xem thêm ></a></br> <span class="date"> <i
+												Xem thêm ></a><br> <span class="date"> <i
 												class="fa fa-clock-o color-gray-light"></i>&nbsp;01/01/2017
 											</span>
 										</div>

@@ -21,6 +21,14 @@ public class BookTourInfoVO {
 	private int relationship;
 	private String relation;
 	private String whoIsRegistered;
+	
+	// New attributes for validating - findDigit()
+	private int validCusName = 0;
+	private int validCusEmail = 0;
+	private int validCusPhone = 0;
+	private int validCusAddress = 0;
+	private int validCusIdCard = 0;
+	private int validCusYearOfBirth = 0;
 
 	public int getIdBT() {
 		return idBT;
@@ -164,5 +172,53 @@ public class BookTourInfoVO {
 
 	public void setWhoIsRegistered(String whoIsRegistered) {
 		this.whoIsRegistered = whoIsRegistered;
+	}
+
+	public int getValidCusName() {
+		return validCusName;
+	}
+
+	public void setValidCusName(int validCusName) {
+		this.validCusName = validCusName;
+	}
+
+	public int getValidCusEmail() {
+		return validCusEmail;
+	}
+
+	public void setValidCusEmail(int validCusEmail) {
+		this.validCusEmail = validCusEmail;
+	}
+
+	public int getValidCusPhone() {
+		return validCusPhone;
+	}
+
+	public void setValidCusPhone(int validCusPhone) {
+		this.validCusPhone = validCusPhone;
+	}
+
+	public int getValidCusAddress() {
+		return validCusAddress;
+	}
+
+	public void setValidCusAddress(int validCusAddress) {
+		this.validCusAddress = validCusAddress;
+	}
+
+	public int getValidCusIdCard() {
+		return validCusIdCard;
+	}
+
+	public void setValidCusIdCard(int validCusIdCard) {
+		this.validCusIdCard = validCusIdCard;
+	}
+
+	public int getValidCusYearOfBirth() {
+		return validCusYearOfBirth;
+	}
+
+	public void setValidCusYearOfBirth(int validCusYearOfBirth) {
+		this.validCusYearOfBirth = validCusYearOfBirth;
 	}
 }

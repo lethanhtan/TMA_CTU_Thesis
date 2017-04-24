@@ -13,15 +13,15 @@
 					<div class="col-md-4 animate fadeInRight">
 						<p>
 							<a style="color: #2882c6;">SLOGAN "MỘT HÀNH TRÌNH - VẠN NIỀM
-								VUI"</a></br> Đem lại niềm vui, tiếng cười cho du khách sau mỗi chuyến đi
+								VUI"</a><br> Đem lại niềm vui, tiếng cười cho du khách sau mỗi chuyến đi
 							du lịch là sự thành công và là mục tiêu làm việc của NY Travel
 							Co.
 						</p>
 						<p class="margin-bottom-30">
-							<a style="color: #2882c6;">TẦM NHÌN</a></br> NY Travel Co. hướng đến
+							<a style="color: #2882c6;">TẦM NHÌN</a><br> NY Travel Co. hướng đến
 							trở thành một trong mười công ty lữ hành hàng đầu khu vực Đông
 							Nam Á vào năm 2020. Đến năm 2025, phấn đấu trở thành một trong
-							mười công ty du lịch hàng đầu châu Á. </br> Đây là tầm nhìn chiến lược
+							mười công ty du lịch hàng đầu châu Á. <br> Đây là tầm nhìn chiến lược
 							và đầy thử thách nhưng với một mục tiêu chung, NY Travel Company
 							đã và đang hiện thực hoá những mục tiêu chiến lược của mình.
 						</p>
@@ -60,7 +60,7 @@
 								<img src="resources/img/theteam/image2.jpg" alt="image2">
 								<figcaption>
 									<h3 class="margin-bottom-10">
-										Lê Như Ý <small></br> Lập Trình Viên</small>
+										Lê Như Ý <small><br> Lập Trình Viên</small>
 									</h3>
 									<span></span>
 								</figcaption>
@@ -82,7 +82,7 @@
 
 					<div class="col-md-12 animate fadeInRight">
 						<p class="margin-bottom-30">
-							<a style="color: #2882c6;">SỨ MỆNH</a></br> Mang lại cảm xúc thăng hoa
+							<a style="color: #2882c6;">SỨ MỆNH</a><br> Mang lại cảm xúc thăng hoa
 							cho du khách trong mỗi hành trình - Đây là mục tiêu và là sứ mệnh
 							NY Travel Co. cam kết và nỗ lực mang lại cho du khách, trở thành
 							người bạn đồng hành cùng du khách trong mọi hành trình du lịch và
@@ -94,14 +94,14 @@
 							mỗi chuyến đi.
 						</p>
 						<p class="margin-bottom-30">
-							<a style="color: #2882c6;">TRIẾT LÝ KINH DOANH</a></br> <a
+							<a style="color: #2882c6;">TRIẾT LÝ KINH DOANH</a><br> <a
 								style="color: #ef5b92;">Khách hàng là trung tâm: </a>NY Travel
 							Co. luôn khẳng định khách hàng là trung tâm của mọi hoạt động
 							kinh doanh mà NY Travel Co. hướng đến, vì khách hàng là người góp
-							phần to lớn xây dựng nên thương hiệu. </br> <a style="color: #ef5b92;">Chuyên
+							phần to lớn xây dựng nên thương hiệu. <br> <a style="color: #ef5b92;">Chuyên
 								nghiệp là thước đo: </a>Khẳng định uy tín thương hiệu, với mục tiêu
 							không ngừng phát triển hoàn thiện để đạt đến những tầm cao mới
-							trong định hướng chiến lược vươn ra thế giới. </br> <a
+							trong định hướng chiến lược vươn ra thế giới. <br> <a
 								style="color: #ef5b92;">Chất lượng là danh dự: </a>NY Travel Co.
 							cam kết chất lượng dịch vụ cung cấp đến khách hàng là tốt nhất,
 							điều đó tạo nên sự khác biệt so với thị trường, NY Travel Co. xem
