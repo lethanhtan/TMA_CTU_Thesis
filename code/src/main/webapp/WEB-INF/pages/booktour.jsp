@@ -158,7 +158,6 @@
 									</div>
 								</c:if>
 								<c:if test="${status.index == 0}">
-									<p style="color: red;">${error3}</p>
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
