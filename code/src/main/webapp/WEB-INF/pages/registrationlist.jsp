@@ -292,15 +292,15 @@
 							</div>
 							<br>
 							<!-- End Choose Number For Display -->
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
-										<th></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -312,26 +312,25 @@
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
+											<td>${cancelReg.cusYearOfBirth}</td>
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
 												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
 													<button type="button" id="button${cancelReg.idBT}"
 														hidden="true"></button>
-											</a></td>
-											<td><a
-												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
-													<button class="btn btn-sm btn-violet">
+											</a> <a href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<a
 														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
-															class="btn btn-sm btn-success">
+															class="btn btn-xs btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button></a>
 												</c:if>
-												<button class="btn btn-sm btn-danger delete"
+												<button class="btn btn-xs btn-danger delete"
 													id="${cancelReg.idBT}">
 													<i class="fa fa-trash-o">&nbsp;Xóa</i>
 												</button></td>
