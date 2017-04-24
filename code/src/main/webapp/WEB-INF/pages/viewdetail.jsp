@@ -61,7 +61,11 @@
 								<img alt="new"
 									src="${pageContext.request.contextPath}/resources/img/sale.png"
 									width="20" height="20">
-								<h4 style="color: white;">${tour.detail}</h4>
+								<h3 style="color: blue;">Thông tin:</h3>
+								<h6 style="color: white;">${tour.detail}</h6>
+								<hr>
+								<h3 style="color: blue;">Chi tiết lịch trình:</h3>
+								<h6 style="color: white;">${tour.getSchedule().getDetailSchedule()}</h6>
 								<br>
 								<hr>
 								<h4 style="color: white;">Dịch vụ đi kèm:</h4>

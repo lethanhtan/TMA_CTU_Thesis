@@ -112,52 +112,58 @@
 	<div class="container background-gray-lighter">
 		<div class="row padding-vert-20">
 			<c:if test="${!empty tourList}">
-				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+				<div class="row col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
-						<div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
-							<!-- Portfolio -->
-							<ul class="portfolio-group">
-								<!-- Portfolio Item -->
-								<li class="portfolio-item padding-10"><a
-									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
-										<figure class="animate fadeInLeft">
-											<img alt="${tour.image}"
-												src="${pageContext.request.contextPath}/image/${tour.image}">
-											<figcaption>
-												<h3 style="color: yellow;">${tour.name}</h3>
-												<h5 style="color: white;">
-													<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
-												</h5>
-												<h5 style="color: white;">
-													<i class="fa fa-calendar"> Ngày khởi hành: <fmt:formatDate
-															value="${tour.departureDate}" pattern="dd/MM/yyyy" />
-													</i>
-												</h5>
-												<h5 style="color: white;">
-													<i class="fa fa-clock-o"> Giờ khởi hành:
-														${tour.departureTime} </i>
-												</h5>
-												<h5 style="color: white;">
-													<i class="fa fa-car"> Thời gian: ${tour.howLong}
-														ngày </i>
-												</h5>
-												<h5 style="color: white;">
-													<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
-												</h5>
-												<div class="text-center">
-													<br> <a
-														href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
-															class="btn btn-success">Chi Tiết</button></a> <a
-														href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
-															class="btn btn-danger">Đăng Ký</button></a>
-												</div>
-											</figcaption>
-										</figure>
-								</a></li>
-								<!-- //Portfolio Item// -->
-							</ul>
-							<!-- End Portfolio -->
-						</div>
+						<!-- Portfolio -->
+						<ul class="portfolio-group">
+							<!-- Portfolio Item -->
+							<li class="portfolio-item padding-10 col-md-6 col-sm-6 col-xs-6 col-lg-6"><a
+								href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
+									<figure class="animate fadeInLeft">
+										<img alt="${tour.image}"
+											src="${pageContext.request.contextPath}/image/${tour.image}">
+										<figcaption>
+											<h3 style="color: yellow;">${tour.name}</h3>
+											<h5 style="color: white;">
+												<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
+											</h5>
+											<h5 style="color: white;">
+												<i class="fa fa-calendar"> Ngày khởi hành: <fmt:formatDate
+														value="${tour.departureDate}" pattern="dd/MM/yyyy" />
+												</i>
+											</h5>
+											<h5 style="color: white;">
+												<i class="fa fa-clock-o"> Giờ khởi hành:
+													${tour.departureTime} </i>
+											</h5>
+											<h5 style="color: white;">
+												<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
+											</h5>
+											<h5 style="color: white;">
+												<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
+											</h5>
+											<c:if test="${tour.getDepartureDate().after(current)}">
+												<img alt="new"
+													src="${pageContext.request.contextPath}/resources/img/new.png"
+													width="20" height="20">
+											</c:if>
+											<img alt="new"
+												src="${pageContext.request.contextPath}/resources/img/sale.png"
+												width="20" height="20">
+											<h5 style="color: white;">${tour.getSchedule().getSumary()}</h5>
+											<div class="text-center">
+												<br> <a
+													href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
+														class="btn btn-success">Chi Tiết</button></a> <a
+													href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
+														class="btn btn-danger">Đăng Ký</button></a>
+											</div>
+										</figcaption>
+									</figure>
+							</a></li>
+							<!-- //Portfolio Item// -->
+						</ul>
+						<!-- End Portfolio -->
 					</c:forEach>
 				</div>
 			</c:if>

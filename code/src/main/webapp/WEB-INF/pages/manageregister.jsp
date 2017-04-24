@@ -48,7 +48,6 @@
 							</select>
 						</form>
 					</div>
-					</br>
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>

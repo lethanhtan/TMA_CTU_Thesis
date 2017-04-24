@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -18,6 +19,9 @@ public class PromotionDaoImpl extends AbstractDao implements PromotionDao {
 	public void savePromotion(Promotion promotion) {
 		Session session = getCurrentSession();
 		try {
+			Date date = new Date();
+			promotion.setCreateDate(date);
+			promotion.setCreateTime(date);
 			session.save(promotion);
 			session.flush();
 		} catch (NullPointerException e) {

@@ -33,4 +33,14 @@ public class PromotionServiceImpl implements PromotionService {
 		return null;
 	}
 
+	@Override
+	public Promotion findPromotion(int idTour) {
+		return this.promotionDao.findPromotion(idTour);
+	}
+
+	@Override
+	public void updatePromotion(Promotion promotion) {
+		this.promotionDao.updatePromotion(promotion);
+	}
+
 }
