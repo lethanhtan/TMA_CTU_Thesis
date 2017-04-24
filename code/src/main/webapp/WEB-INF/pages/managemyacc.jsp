@@ -52,11 +52,15 @@
 				</form>
 				<br>
 				<div class="row">
-					<div class="col-lg-6 text-center">
+					<div class="col-lg-4 text-center">
 						<a href="<c:url value='/editmyacc/${userData.idUser}'/>"><button
 								class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 					</div>
-					<div class="col-lg-6 text-center">
+					<div class="col-lg-4 text-center">
+						<a href="<c:url value='/changemypass/${userData.idUser}'/>"><button
+								class="btn btn-primary" type="button">Đổi Mật Khẩu</button></a>
+					</div>
+					<div class="col-lg-4 text-center">
 						<a href="<c:url value='/home'/>"><button
 								class="btn btn-primary" type="button">Trở Về</button></a>
 					</div>

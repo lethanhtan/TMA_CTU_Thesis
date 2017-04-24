@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ctu.thesis.travelsystem.extra.CheckConnections;
+import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.VerifyRecaptcha;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
@@ -173,7 +174,6 @@ public class UserController extends HttpServlet {
 	// Handle required request from client
 	@RequestMapping(value = "editmyacc/{idUser}", method = RequestMethod.GET)
 	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser) throws ParseException {
-		logger.info("Handle edit form when administrator request!");
 		logger.info("Display edit user form when administrator request!");
 		User user = userService.searchUserById(idUser);
 		if (user != null) {
@@ -409,5 +409,48 @@ public class UserController extends HttpServlet {
 		regInfoService.cancelAllBookTour(idBT, relationship);
 		model.addAttribute("idUser", (int) session.getAttribute("idUser"));
 		return "redirect:/managemyreg/{idUser}";
+	}
+
+	// Customer change your password
+	@RequestMapping(value = "changemypass/{idUser}", method = RequestMethod.GET)
+	public String showChangePassword(ModelMap model, @PathVariable("idUser") int idUser) {
+		logger.info("Display change password form when user request!");
+		User user = userService.searchUserById(idUser);
+		if (user != null) {
+			model.addAttribute("userData", user);
+		} else {
+			logger.info("Null Object!");
+		}
+		return "changemypass";
+	}
+
+	// Handle change my password form
+	@RequestMapping(value = "changemypass/{idUser}", method = RequestMethod.POST)
+	public String confirmChangePassword(ModelMap model, @PathVariable("idUser") int idUser,
+			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session,
+			@RequestParam String currentPass, @RequestParam String newPass, @RequestParam String comPass) {
+		User user1 = userService.searchUserById(idUser);
+		EncoderPassword ep = new EncoderPassword();
+		if (currentPass.equals(ep.deCoded(user1.getPassword()))) {
+			if (newPass.length() > 20 || newPass.length() < 8) {
+				model.put("error", "Mật khẩu phải có ít nhất 8 ký tự và không quá 20 ký tự");
+				return "changemypass";
+			}
+			if (newPass.equals(comPass)) {
+				user1.setPassword(ep.enCoded(newPass));
+				userService.editUser(user1);
+				logger.info("Change password successfully!");
+				model.put("success", "Quý khách đã thay đổi mật khẩu thành công, vui lòng đăng nhập lại!");
+				return "redirect:/logout";
+			} else {
+				logger.info("The new password and confirm password is incorrect");
+				model.put("confirmPass", "Nhập lại mật khẩu không đúng");
+				return "changemypass";
+			}
+		} else {
+			logger.info("The password is incorrect");
+			model.put("wrongPass", "Mật khẩu không đúng");
+			return "changemypass";
+		}
 	}
 }
