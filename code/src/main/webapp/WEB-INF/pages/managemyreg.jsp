@@ -655,15 +655,33 @@
 											<td>${myCancelReg.cusPhone}</td>
 											<td>${myCancelReg.whoIsRegistered}</td>
 											<td><a
+												href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
+													<button type="button" id="onlyundo${myCancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/undoallcancel/${myCancelReg.idBT}/${myCancelReg.relationship}/${myCancelReg.tour.idTour}'/>">
+													<button type="button" id="allundo${myCancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
 												href="<c:url value='/booktourdetail/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
 													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
-													<a href="<c:url value='/undo/${myCancelReg.idBT}'/>"><button
-															class="btn btn-xs btn-success">
+													<c:if
+														test="${myCancelReg.cusName eq myCancelReg.whoIsRegistered}">
+														<button class="btn btn-xs btn-success undo"
+															id="undo${myCancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-														</button></a>
+														</button>
+													</c:if>
+													<c:if
+														test="${myCancelReg.cusName ne myCancelReg.whoIsRegistered}">
+														<a href="<c:url value='/undo/${myCancelReg.idBT}'/>"><button
+																class="btn btn-xs btn-success">
+																<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+															</button></a>
+													</c:if>
 												</c:if></td>
 										</tr>
 									</c:forEach>

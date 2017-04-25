@@ -32,12 +32,12 @@ $(function() {
 													if (isConfirm) {
 														document.getElementById("reg" + cid).click();
 														$(".file").addClass("isDeleted");
-														swal("Đã xóa!", "Dữ liệu đã được xóa khỏi hệ thống.", "success");
+														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
 													} else {
 														document.getElementById("all" + cid).click();
 														$(".file").addClass(
 														"isDeleted");
-														swal("Đã xóa!", "Dữ liệu đã được xóa khỏi hệ thống.", "success");
+														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
 													}
 												})
 									}

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.ValidUtil;
@@ -478,7 +477,7 @@ public class ManageRegController {
 			logger.info("Tour info: " + tour);
 			if (tour != null) {
 				model.addAttribute("tour", tour);
-			}	
+			}
 			return "editreginfo";
 		} else {
 			bookTour.setTour(tour);
@@ -518,8 +517,7 @@ public class ManageRegController {
 	@RequestMapping(value = "relationship", method = RequestMethod.POST)
 	public String insertRelationship(ModelMap model, HttpSession session,
 			@ModelAttribute("relationshipData") @Valid Relationship relationship) {
-		ValidUtil validUtil = new ValidUtil();
-		if (validUtil.findDigit(relationship.getName())) {
+		if (ValidUtil.findDigit(relationship.getName())) {
 			model.put("error", "Mối quan hệ không được chứa chữ số");
 			List<Relationship> relationshipList = regInfoService.relationshipList();
 			model.put("relationship", new Relationship());
@@ -539,18 +537,20 @@ public class ManageRegController {
 		regInfoService.deleteRelationship(id);
 		return "redirect:/relationship";
 	}
-	
-	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
-	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
-		ModelAndView model = new ModelAndView();
-//		Export objExport = new Export();
-		model.addObject("exportList", "Tour");
-		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
-//		objExport.setOwner(session.getAttribute("userName").toString());
-//		objExport.setFileType("Pdf");
-//		objExport.setExportType("Registration list");
-//		exportDataService.saveExport(objExport);
-		model.setViewName("pdfView");
-		return model;
+
+	// Undo all cancel registration tour
+	@RequestMapping(value = "undoallcancel/{idBT}/{relationship}/{idTour}")
+	public String undoAllCancel(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour, ModelMap model, HttpSession session) {
+		regInfoService.undoAllCancel(idBT, relationship);
+		if (session.getAttribute("roleId") != null) {
+			// Forward for administrator after undo cancel
+			return "redirect:/registrationlist/{idTour}";
+		} else {
+			// Forward for user after undo cancel
+			int idUser = (int) session.getAttribute("idUser");
+			model.put("idUser", idUser);
+			return "redirect:/managemyreg/{idUser}";
+		}
 	}
 }
