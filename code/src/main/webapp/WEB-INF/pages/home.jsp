@@ -112,16 +112,57 @@
 	<div class="container background-gray-lighter">
 		<div class="padding-vert-20">
 			<c:if test="${!empty tourList}">
+				<!-- Filter Buttons -->
+				<div class="portfolio-filter-container margin-top-20">
+					<ul class="portfolio-filter">
+						<li class="portfolio-filter-label label label-warning"
+							style="margin-left: 3%;"><i class="fa fa-filter"> Lọc
+								theo:</i></li>
+						<li style="margin-left: 1%"><form role="form"
+								class="form-inline"
+								action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+								method="GET">
+								<select id="filterPrice" class="form-control" name="filterPrice"
+									onchange="this.form.submit()">
+									<option selected="selected" disabled="disabled">Giá Vé</option>
+									<option value="All">Tất cả</option>
+									<option value="5">Dưới 500 ngàn</option>
+									<option value="10">Từ 500 - 1 triệu</option>
+									<option value="20">Từ 1 triệu - 2 triệu</option>
+									<option value="30">Trên 2 triệu</option>
+								</select>
+							</form></li>
+						<li style="margin-left: 1%"><form role="form"
+								class="form-inline"
+								action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+								method="GET">
+								<select id="filterSale" class="form-control" name="filterSale"
+									onchange="this.form.submit()">
+									<option selected="selected" disabled="disabled">Giảm
+										Giá</option>
+									<option value="All">Tất cả</option>
+									<option value="10">10%</option>
+									<option value="20">20%</option>
+									<option value="30">30%</option>
+									<option value="50">50%</option>
+								</select>
+							</form></li>
+					</ul>
+				</div>
+				<br>
+				<!-- End Filter Buttons -->
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
 						<!-- Portfolio -->
 						<ul class="portfolio-group ">
 							<!-- Portfolio Item -->
-							<li class="padding-10 col-md-6 col-sm-6 col-xs-6" style="list-style-type: none;"><a
+							<li class="padding-10 col-md-6 col-sm-6 col-xs-6"
+								style="list-style-type: none;"><a
 								href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 									<figure class="animate fadeInLeft">
 										<img alt="${tour.image}"
-											src="${pageContext.request.contextPath}/image/${tour.image}" width="462 px" height="200 px">
+											src="${pageContext.request.contextPath}/image/${tour.image}"
+											width="462 px" height="200 px">
 										<figcaption>
 											<h3 style="color: yellow;">${tour.name}</h3>
 											<h5 style="color: white;">

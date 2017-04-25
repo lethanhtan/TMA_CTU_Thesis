@@ -131,16 +131,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/tabcurrent.js"
 	type="text/javascript"></script>
-<!-- Confirm popup cancel -->
+<!-- Confirm popup -->
 <script src="http://t4t5.github.io/sweetalert/dist/sweetalert-dev.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/confirmpopup.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/confirmcancelall.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/confirmundoall.js"
 	type="text/javascript"></script>
 <!-- Hide menu on scroll down, show on scroll up -->
 <script
