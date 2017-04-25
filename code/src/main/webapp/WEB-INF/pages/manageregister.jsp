@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 					Sách Tour Du Lịch</h2>
 				<a href="createtour"><button
 						class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
@@ -48,7 +48,7 @@
 							</select>
 						</form>
 					</div>
-					<br>
+					<br />
 					<!-- End Choose Number For Display -->
 					<table style="font-size: 13px">
 						<thead>
@@ -66,7 +66,7 @@
 							<c:forEach items="${tourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${tourList.indexOf(tour) + 1}</td>
+									<td class="text-center">${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
 									<td><fmt:formatDate value="${tour.departureDate}"
 											pattern="dd/MM/yyyy" /></td>
@@ -83,10 +83,7 @@
 											<button class="btn btn-xs btn-danger">
 												<i class="fa fa-check-square-o">&nbsp;Thiết Kế Form</i>
 											</button>
-									</a><a href="<c:url value='export/${tour.idTour}'/>"><button
-												class="btn btn-xs btn-warning">
-												<i class="fa fa-print">&nbsp;Export</i>
-											</button></a></td>
+									</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

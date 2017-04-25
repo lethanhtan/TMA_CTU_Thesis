@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 					Sách Tour Du Lịch</h2>
 				<div class="row margin-bottom-30">
 					<div class="col-md-4 animate fadeInRight"></div>
@@ -31,8 +31,8 @@
 					<form role="form" class="form-inline" action="tourlist"
 						method="get">
 						<label for="selectTour" style="text-align: left; margin-left: 83%">Số
-							tour/ trang:</label> <select id="selectTour" name="numOn"
-							onchange="this.form.submit()">
+							tour/ trang:</label> <select id="selectTour" 
+							name="numOn" onchange="this.form.submit()">
 							<option>5</option>
 							<option>10</option>
 							<option>15</option>
@@ -46,7 +46,7 @@
 					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
-					<table>
+					<table style="font-size: 13px">
 						<thead>
 							<tr>
 								<th>STT</th>
@@ -63,15 +63,13 @@
 							<c:forEach items="${showTourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${showTourList.indexOf(tour) + 1}</td>
+									<td class="text-center">${showTourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
-									<td><fmt:formatDate value="${tour.departureDate}"
-											pattern="dd/MM/yyyy" /></td>
-									<td>${tour.departureTime}</td>
-									<td><fmt:formatDate value="${tour.returnDate}"
-											pattern="dd/MM/yyyy" /></td>
-									<td>${tour.returnTime}</td>
-									<td>${tour.ticketAvailability}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnDate}</td>
+									<td>&nbsp;&nbsp;&nbsp; ${tour.returnTime}</td>
+									<td>&nbsp;&nbsp;&nbsp;${tour.ticketAvailability}&nbsp;&nbsp;&nbsp;</td>
 									<td><a href="<c:url value='viewdetail/${tour.idTour}'/>">
 											<button class="btn btn-sm btn-success">
 												<i class="fa fa-eye">&nbsp;Xem</i>
@@ -134,4 +132,3 @@
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp"%>
-<!-- === END FOOTER === -->

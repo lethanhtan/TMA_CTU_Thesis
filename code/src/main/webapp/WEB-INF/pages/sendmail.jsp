@@ -14,34 +14,48 @@
 							hình Mail Server</a></li>
 					<li><a href="#sendmail" data-toggle="tab">Gửi Email</a></li>
 				</ul>
-				<div class="tab-content">
+				<div class="tab-content col-md-12">
 					<!-- Start Mail Config Tab -->
 					<div class="tab-pane fade in active" id="mailconfig">
 						<form>
 							<div>
 								<div class="row margin-bottom-20">
-									<div class="col-md-12 col-md-offset-3">
-										<div class="col-sm-6 col-md-6">
+									<div
+										class="col-md-12 col-sm-12 col-md-offset-3 col-sm-offset-3">
+										<div class="col-md-12">
 											<small style="color: green;">${status}</small> <br /> <small
 												style="color: red;">${failedConnect}</small> <br /> <label>Tài
-												khoản email</label> <input class="form-control" type="text"
-												name="from">
+												khoản email</label>
+											<div class="input-group col-sm-6 col-md-6">
+												<span class="input-group-addon"> <i
+													class="fa fa-envelope"></i>
+												</span> <input class="form-control" type="text" name="from">
+											</div>
 										</div>
 									</div>
 								</div>
 								<div class="row margin-bottom-20">
 									<div
-										class="row col-md-12 col-sm-6 col-md-offset-3 col-sm-offset-3">
-										<div class="col-md-3 col-sm-3">
-											<label>Mật khẩu </label> <input class="form-control"
-												type="password" name="password">
+										class="col-md-12 col-sm-12 col-md-offset-3 col-sm-offset-3">
+										<div class="col-md-3">
+											<label>Mật khẩu </label>
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="fa fa-lock"></i>
+												</span> <input class="form-control" type="password" name="password">
+											</div>
 										</div>
-										<div class="col-md-3 col-sm-3">
-											<label>Encoding</label> <select class="form-control"
-												name="encoding">
-												<option>UTF-8</option>
-												<option>UTF-16</option>
-											</select>
+										<div class="col-md-3">
+											<label>Encoding</label>
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="fa fa-file-code-o"></i></span> <select class="form-control"
+													name="encoding">
+													<option>UTF-8</option>
+													<option>UTF-16</option>
+													<option>ISO-8859-2</option>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -49,20 +63,29 @@
 									<div
 										class="row col-md-12 col-sm-12 col-sm-offset-3 col-md-offset-3">
 										<div class="col-md-3">
-											<label>Mail server </label> <select class="form-control"
-												name="host">
-												<option>Gmail</option>
-												<option>Outlook</option>
-											</select>
+											<label>Mail server </label>
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="fa fa-database"></i>
+												</span> <select class="form-control" name="host">
+													<option>Gmail</option>
+													<option>Outlook</option>
+												</select>
+											</div>
 										</div>
 										<div class="col-md-3">
-											<label>Cổng</label> <select class="form-control" name="port">
-												<option>587</option>
-												<option>588</option>
-											</select>
+											<label>Cổng</label>
+											<div class="input-group">
+												<span class="input-group-addon"> <i class="fa fa-cog"></i>
+												</span> <select class="form-control" name="port">
+													<option>587</option>
+													<option>25</option>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
+								<hr>
 								<div class="row">
 									<div
 										class="col-sm-12 col-md-12 col-md-offset-4 col-sm-offset-4">
@@ -133,10 +156,11 @@
 									<div class="panel-body">
 										<ul class="list-unstyled">
 											<li><i class="fa-phone color-primary">${phoneUser}</i></li>
+											<li><i class="fa-phone color-primary">${phoneUser}</i></li>
 											<li><a href="mailto:${emailConfig}"><i
 													class="fa-envelope color-primary">${emailConfig}</i></a></li>
 											<li><a href="#"><i class="fa-home color-primary">Quản
-												trị viên</i></a></li>
+														trị viên</i></a></li>
 										</ul>
 										<ul class="list-unstyled">
 											<li><strong class="color-primary">Thời gian làm

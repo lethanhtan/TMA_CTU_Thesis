@@ -22,14 +22,16 @@
 						</div>
 						<small style="color: red;">${failedConnect}</small>
 						<label>Tên tài khoản</label>
-						<br>
+						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
+						<br />
+						<small Style="color: red">${invalidUserName}</small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
 							</span>
 							<s:input placeholder="Nhập tên tài khoản"
 								class="form-control margin-bottom-20" type="text"
-								path="userName" />
+								path="userName"/>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
@@ -44,7 +46,9 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<label>Xác nhận mật khẩu</label> <small Style="color: red">${failedPass}</small>
+								<label>Xác nhận mật khẩu</label>
+								<br />
+								<small Style="color: red">${failedPasswordConfirm}</small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-repeat"></i>
 									</span> <input placeholder="Nhập lại mật khẩu"
@@ -118,9 +122,11 @@
 								class="form-control margin-bottom-20" type="text" path="address" />
 						</div>
 						<!-- reCAPTCHA -->
+						<!-- 
 						<p style="color: red;">${errorString}</p>
 						<div style="margin-left: 37px;" class="g-recaptcha"
 							data-sitekey="6Le28hQUAAAAAFKa2w76sfgp5ULrd4iIYJLwtxOd"></div>
+							 -->
 						<!-- End reCAPTCHA -->
 						<br>
 						<hr>

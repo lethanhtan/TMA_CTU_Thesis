@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -24,6 +26,8 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 public class PDFBuilder extends AbstractITextPdfView {
+	
+	private static final Logger logger = Logger.getLogger(PDFBuilder.class);
 
 	public static final String FONT = "/fonts/unicode/arial.ttf";
 	public static final String FONT1 = "/fonts/unicode/times.ttf";
@@ -34,6 +38,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (model.get("exportList").equals("Danh sách tour")) {
+			logger.info("-----------Export list of tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<Tour> listTours = (List<Tour>) model.get("listTours");
@@ -98,6 +103,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 		}
 		if (model.get("exportList").equals("Danh sách đăng ký")) {
+			logger.info("-----------Export list of register for all tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
@@ -143,6 +149,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 		}
 		if (model.get("exportList").equals("Tour")) {
+			logger.info("-----------Export list of register for each tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
@@ -161,9 +168,10 @@ public class PDFBuilder extends AbstractITextPdfView {
 			doc.addTitle("NYTravel List BookTour");
 			doc.addSubject("Danh sách người đăng ký");
 
-			PdfPTable table = new PdfPTable(7);
+			PdfPTable table = new PdfPTable(4);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 0.5f, 1.5f, 1.5f, 2.0f, 1.0f, 0.5f, 3.0f });
+			//table.setWidths(new float[] { 0.5f, 1.5f, 1.5f, 2.0f, 1.0f, 0.5f, 3.0f });
+			table.setWidths(new float[] { 1.0f, 4.0f, 3.0f, 2.0f });
 			table.setSpacingBefore(10);
 
 			// write table header
@@ -171,22 +179,22 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			table.addCell(getNormalCell("Người đăng ký", SIZE1, font));
 
-			table.addCell(getNormalCell("Email", SIZE1, font));
+			//table.addCell(getNormalCell("Email", SIZE1, font));
 
-			table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
+			//table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
 
 			table.addCell(getNormalCell("Điện thoại", SIZE1, font));
 
 			table.addCell(getNormalCell("Giới tính", SIZE1, font));
 
-			table.addCell(getNormalCell("Người đi cùng", SIZE1, font));
+			//table.addCell(getNormalCell("Người đi cùng", SIZE1, font));
 
 			// write table row data
 			for (BookTour bookTour : listBookTours) {
 				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
+				//table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
+				//table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
 			}

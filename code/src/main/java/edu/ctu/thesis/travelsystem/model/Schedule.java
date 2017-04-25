@@ -3,45 +3,34 @@ package edu.ctu.thesis.travelsystem.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "SCHEDULE")
-public class Schedule {
+public class Schedule implements Serializable{
 	
-	private int id;
-	
-	private String detail;
+	private static final long serialVersionUID = 1L;
+
+	private String detailSchedule;
 	
 	private String sumary;
 	
-	private int idTour;
-	
 	private Tour tour;
 	
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "ID_SCHEDULE", nullable = false)
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	@Column(name = "DETAIL", nullable = true, length = 5000)
-	public String getDetail() {
-		return this.detail;
+	public String getDetailSchedule() {
+		return this.detailSchedule;
 	}
 	
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setDetailSchedule(String detailSchedule) {
+		this.detailSchedule = detailSchedule;
 	}
 	
 	@Column(name = "SUMARY", nullable = true, length = 500)
@@ -53,17 +42,9 @@ public class Schedule {
 		this.sumary = sumary;
 	}
 	
-	@Column(name = "ID_TOUR", nullable = false)
-	public int getIdTour() {
-		return this.idTour;
-	}
-	
-	public void setIdTour(int idTour) {
-		this.idTour = idTour;
-	}
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@Id
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "ID_TOUR", nullable = true)
 	public Tour getTour() {
 		return this.tour;
 	}
@@ -71,4 +52,5 @@ public class Schedule {
 	public void setTour(Tour tour) {
 		this.tour = tour;
 	}
+	
 }

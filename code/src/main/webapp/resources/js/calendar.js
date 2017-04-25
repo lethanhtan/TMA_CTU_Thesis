@@ -11,6 +11,13 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$("#datepicker4").datepicker();
 });
+$(document).ready(function() {
+	$("#datepicker5").datepicker();
+});
+$(document).ready(function() {
+	$("#datepicker6").datepicker();
+});
+
 /* End Calendar */
 
 /* Popup */

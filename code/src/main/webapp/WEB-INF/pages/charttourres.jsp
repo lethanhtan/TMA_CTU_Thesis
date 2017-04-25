@@ -140,7 +140,7 @@
 			<div class="container background-white">
 				<h1 align="center">Biểu đồ tình hình bán tour</h1>
 				<a href="${pageContext.request.contextPath}/managetour"><button
-						class="btn btn-primary fa-plus-square">Quay về</button></a>
+						class="btn btn-primary fa-backward">Quay về</button></a>
 				<h3 style="color: red" align="center">${tourName}</h3>
 				<h6 style="color: green" align="center">Đi từ ngày:
 					${departureDate} đến ${returnDate}</h6>

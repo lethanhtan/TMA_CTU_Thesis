@@ -108,15 +108,16 @@
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
 							<li><a href="${pageContext.request.contextPath}/managetour"
-								class="fa-cogs">Quản Lý Tour</a></li>
+								class="fa-cogs" style="font-size: 13px">Quản Lý Tour</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/manageregister"
-								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
+								class="fa-list-ul" style="font-size: 13px">Quản Lý Đăng Ký</a></li>
 							<li><a href="${pageContext.request.contextPath}/manageuser"
-								class="fa-users">Quản Lý Tài Khoản</a></li>
+								class="fa-users" style="font-size: 13px">Quản Lý Tài Khoản</a></li>
 							<li><a href="${pageContext.request.contextPath}/sendmail"
-								class="fa-envelope">Email</a></li>
-							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
+								class="fa-envelope" style="font-size: 13px">Email</a></li>
+							<li><a class="fa-bar-chart-o" style="font-size: 13px">Quản
+									Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
@@ -126,10 +127,9 @@
 													tour</a></li>
 										</ul></li>
 								</ul></li>
-							<li style="margin-left: 70%;"><span class="fa-user">Xin
-									chào ${fullName}!</span>
+							<li><span class="fa-user" style="font-size: 13px">
+									${fullName}</span>
 								<ul>
-									<li><a href="<c:url value="/home" />">Về trang chủ</a>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>

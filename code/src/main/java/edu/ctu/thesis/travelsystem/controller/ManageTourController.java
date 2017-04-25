@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
@@ -263,19 +262,5 @@ public class ManageTourController {
 	@RequestMapping(value = "tourreg/{idTour}", method = RequestMethod.POST)
 	public String creatChart(ModelMap model, @PathVariable("idTour") int idTour) {
 		return "redirect:/charttourres";
-	}
-
-	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
-	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
-		ModelAndView model = new ModelAndView();
-//		Export objExport = new Export();
-		model.addObject("exportList", "Tour");
-		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
-//		objExport.setOwner(session.getAttribute("userName").toString());
-//		objExport.setFileType("Pdf");
-//		objExport.setExportType("Registration list");
-//		exportDataService.saveExport(objExport);
-		model.setViewName("pdfView");
-		return model;
 	}
 }

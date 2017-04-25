@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
-			<div class="tabs alternative">
+			<div class="tabs alternative margin-vert-30">
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
@@ -29,10 +29,12 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 							Sách Đăng Ký</h2>
 						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
+						<a href="${pageContext.request.contextPath}/export/${idTour}"><button
+								class="btn btn-danger fa-file-pdf-o">Export</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
 							<div class="col-md-8 animate fadeIn"></div>
@@ -117,7 +119,7 @@
 										var="bookTour" varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
-											<td>${registrationList.indexOf(bookTour) + 1}</td>
+											<td class="text-center">${registrationList.indexOf(bookTour) + 1}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
@@ -223,7 +225,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -292,15 +294,15 @@
 							</div>
 							<br>
 							<!-- End Choose Number For Display -->
-							<table style="font-size: 13px;">
+							<table>
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
-										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
+										<th></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -312,43 +314,26 @@
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
-											<td>${cancelReg.cusYearOfBirth}</td>
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
-												href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>">
-													<button type="button" id="onlyundo${cancelReg.idBT}"
-														hidden="true"></button>
-											</a> <a
-												href="<c:url value='/undoallcancel/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour}'/>">
-													<button type="button" id="allundo${cancelReg.idBT}"
-														hidden="true"></button>
-											</a> <a
 												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
 													<button type="button" id="button${cancelReg.idBT}"
 														hidden="true"></button>
-											</a> <a href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
-													<button class="btn btn-xs btn-violet">
+											</a></td>
+											<td><a
+												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
+													<button class="btn btn-sm btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
-													<c:if
-														test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
-														<button class="btn btn-xs btn-success undo"
-															id="undo${cancelReg.idBT}">
+													<a
+														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
+															class="btn btn-sm btn-success">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-														</button>
-													</c:if>
-													<c:if
-														test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
-														<a
-															href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
-																class="btn btn-xs btn-success">
-																<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-															</button></a>
-													</c:if>
+														</button></a>
 												</c:if>
-												<button class="btn btn-xs btn-danger delete"
+												<button class="btn btn-sm btn-danger delete"
 													id="${cancelReg.idBT}">
 													<i class="fa fa-trash-o">&nbsp;Xóa</i>
 												</button></td>

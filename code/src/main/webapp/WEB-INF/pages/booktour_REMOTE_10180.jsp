@@ -6,7 +6,7 @@
 <!-- === BEGIN CONTENT === -->
 <div id="content">
 	<div class="container background-white">
-		<div class="row margin-vert-50">
+		<div class="row margin-vert-30">
 			<!-- Search Form -->
 			<div class="error-404-page text-center" style="margin-left: 650px;">
 				<form class="form-search search-404">
@@ -158,7 +158,6 @@
 									</div>
 								</c:if>
 								<c:if test="${status.index == 0}">
-									<p style="color: red;">${error3}</p>
 									<div class="col-sm-6">
 										<label>Số điện thoại</label>
 										<!-- Show error -->
@@ -274,8 +273,8 @@
 					<p style="color: red;">Bạn phải nhập địa chỉ!</p>
 				</c:if>
 				<c:if test="${info.validCusAddress == 3}">
-					<p style="color: red;">Địa chỉ phải ít nhất 6 ký tự và không
-						vượt quá 100 ký tự!</p>
+					<p style="color: red;">Địa chỉ phải ít nhất 6 ký tự và
+						không vượt quá 100 ký tự!</p>
 				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-home"></i>

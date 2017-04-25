@@ -3,7 +3,6 @@ package edu.ctu.thesis.travelsystem.model;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,8 +43,10 @@ public class Tour {
 	private boolean fieldYearOfBirth = true;
 	private int view;
 	private int howLong;
+	
 	private Schedule schedule;
-
+	private Promotion promotion;
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID_TOUR", nullable = false)
@@ -305,15 +306,8 @@ public class Tour {
 	public void setHowLong(int howLong) {
 		this.howLong = howLong;
 	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tour", cascade = CascadeType.ALL)
-	public Schedule getSchedule() {
-		return this.schedule;
-	}
-
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
-	}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -332,5 +326,23 @@ public class Tour {
 		} else {
 			return this.idTour == ((Tour) tour).getIdTour();
 		}
+	}
+
+	@OneToOne(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Schedule getSchedule() {
+		return this.schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+	
+	@OneToOne(mappedBy = "tour",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Promotion getPromotion() {
+		return this.promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 }
