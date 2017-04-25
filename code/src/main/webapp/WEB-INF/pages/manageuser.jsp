@@ -54,10 +54,10 @@
 						<thead>
 							<tr>
 								<th>STT</th>
-								<th>Họ tên</th>
+								<th class="col-md-3 col-sm-3">Họ tên</th>
 								<th>Giới tính</th>
 								<th>Ngày sinh</th>
-								<th>Email</th>
+								<th class="col-md-2 col-sm-2">Email</th>
 								<th>Số điện thoại</th>
 								<th></th>
 								<th></th>
@@ -69,10 +69,10 @@
 								<tr>
 									<c:if test="${user.idUser != id}">
 										<td class="text-center">${userList.indexOf(user)}</td>
-										<td class="text-center">${user.fullName}</td>
+										<td class="col-md-3 col-sm-3 text-center">${user.fullName}</td>
 										<td class="text-center">${user.sex}</td>
 										<td class="text-center"><fmt:formatDate value="${user.birthday}" pattern="dd/MM/yyyy"/></td>
-										<td class="text-center">${user.email}</td>
+										<td class="col-md-2 col-sm-2 text-center">${user.email}</td>
 										<td class="text-center">${user.phone}</td>
 										<td><a
 											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">

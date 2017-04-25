@@ -43,6 +43,6 @@ public class ScheduleController {
 			tour.getSchedule().setSumary(sumary);
 			tourService.updateTour(tour);
 		
-		return "managetour";
+		return "redirect:/managetour";
 	}
 }

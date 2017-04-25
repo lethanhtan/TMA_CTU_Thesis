@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -24,6 +26,8 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Tour;
 
 public class PDFBuilder extends AbstractITextPdfView {
+	
+	private static final Logger logger = Logger.getLogger(PDFBuilder.class);
 
 	public static final String FONT = "/fonts/unicode/arial.ttf";
 	public static final String FONT1 = "/fonts/unicode/times.ttf";
@@ -34,6 +38,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (model.get("exportList").equals("Danh sách tour")) {
+			logger.info("-----------Export list of tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<Tour> listTours = (List<Tour>) model.get("listTours");
@@ -98,6 +103,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 		}
 		if (model.get("exportList").equals("Danh sách đăng ký")) {
+			logger.info("-----------Export list of register for all tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
@@ -143,6 +149,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 		}
 		if (model.get("exportList").equals("Tour")) {
+			logger.info("-----------Export list of register for each tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");

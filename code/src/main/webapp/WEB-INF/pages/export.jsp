@@ -73,19 +73,19 @@
 								</div>
 							</div>
 						</div>
-						<c:if test="${!empty exportList}">
+						<c:if test="${!empty param.exportList}">
 						<div class="row">
 							<div class="col-sm-12 col-md-12">
 								<label>Chọn tour cần export</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
 									</span> <select class="form-control margin-bottom-20" name="exportList" >
-										<c:if test="${!empty listTours}">
+										<c:if test="${listTours != null}">
 											<c:forEach items="${listTours}" var="tour" >
 												<option>${tour.getName()}</option>
 											</c:forEach>
 										</c:if>
-										<c:if test="${empty listTours}">
+										<c:if test="${listTours == null}">
 											<option>Danh sách tour rỗng</option>
 										</c:if>
 									</select>

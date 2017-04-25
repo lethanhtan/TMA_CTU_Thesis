@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ import edu.ctu.thesis.travelsystem.service.TourService;
 
 @Controller
 public class ExportController {
+	
+	private static final Logger logger = Logger.getLogger(ExportController.class);
+	
 	@Autowired
 	TourService tourService;
 	
@@ -43,11 +47,12 @@ public class ExportController {
 		List<Tour> listTours = tourService.listTour();
 		model.addObject("listTours", listTours);
 		List<BookTour> listBookTours = bookTourService.bookTourList();
-		String failedName = "Bạn phải nhập tên file!";
+		String failedName = "Bạn phải nhập tên export!";
 		String failedDate = "Bạn phải nhập ngày hợp lệ!";
 		if (exportType != null) {
 			if (exportType.equals("Pdf")) {
 				if (nameFile.length() != 0 && Date1 != null && Date2 != null) {//1
+					logger.info("Export data from: " + Date1 + " to " + Date2);
 					if (Date1.after(Date2)) {
 						model.addObject("failedDate", failedDate);
 						model.setViewName("export");
@@ -63,14 +68,17 @@ public class ExportController {
 						model.setViewName("pdfView");
 					}
 				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {//2
-					model.addObject("listTours", listTours);
-					model.addObject("listBookTours", listBookTours);
-					model.addObject("exportList", exportList);
+					logger.info("Export all list!");
+					model.addObject("listTours", listTours); //List object for export list tour
+					model.addObject("listBookTours", listBookTours); //List object for export list book tour
+					model.addObject("exportList", exportList); // Name list export
 					objExport.setOwner(session.getAttribute("userName").toString());
 					objExport.setFileType(exportType);
 					objExport.setExportType(exportList);
 					exportDataService.saveExport(objExport);
 					model.setViewName("pdfView");
+					
+					return model;
 				} else if (nameFile.length() != 0 && (Date1 == null || Date2 == null)) {//3
 					model.addObject("failedDate", failedDate);
 					model.setViewName("export");
