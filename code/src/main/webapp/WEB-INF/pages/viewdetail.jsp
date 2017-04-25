@@ -97,8 +97,7 @@
 								</div>
 								<img style="margin-left: 75%;"
 									src="http://cungcaphatgiong.com/asset/editor/ResponsiveFilemanager-master/source/Salepage/nhan-uom-ma.gif">
-								<br>
-								<br> <a
+								<br> <br> <a
 									href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
 										class="btn btn-danger" style="margin-left: 75%;">Đăng
 										Ký Ngay</button></a> <a href="${pageContext.request.contextPath}"><button
