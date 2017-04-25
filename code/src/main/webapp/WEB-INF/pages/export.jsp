@@ -54,9 +54,11 @@
 								<label>Loại Export</label> <br />
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportList" >
+									</span> <select class="form-control margin-bottom-20" name="exportList" 
+									onchange="this.form.submit()">
 										<option>Danh sách tour</option>
 										<option>Danh sách đăng ký</option>
+										<option>Danh sách người dùng</option>
 									</select>
 								</div>
 							</div>
@@ -71,6 +73,26 @@
 								</div>
 							</div>
 						</div>
+						<c:if test="${!empty exportList}">
+						<div class="row">
+							<div class="col-sm-12 col-md-12">
+								<label>Chọn tour cần export</label> <br />
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
+									</span> <select class="form-control margin-bottom-20" name="exportList" >
+										<c:if test="${!empty listTours}">
+											<c:forEach items="${listTours}" var="tour" >
+												<option>${tour.getName()}</option>
+											</c:forEach>
+										</c:if>
+										<c:if test="${empty listTours}">
+											<option>Danh sách tour rỗng</option>
+										</c:if>
+									</select>
+								</div>
+							</div>
+						</div>
+						</c:if>
 						<hr class="margin-bottom-20">
 						<div class="row">
 								<div class="col-lg-4 text-left">

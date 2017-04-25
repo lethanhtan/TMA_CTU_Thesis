@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
-			<div class="tabs alternative">
+			<div class="tabs alternative margin-vert-30">
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
@@ -29,10 +29,12 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 							Sách Đăng Ký</h2>
 						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
+						<a href="${pageContext.request.contextPath}/export/${idTour}"><button
+								class="btn btn-danger fa-file-pdf-o">Export</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
 							<div class="col-md-8 animate fadeIn"></div>
@@ -117,7 +119,7 @@
 										var="bookTour" varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
-											<td>${registrationList.indexOf(bookTour) + 1}</td>
+											<td class="text-center">${registrationList.indexOf(bookTour) + 1}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
@@ -223,7 +225,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center;">Danh
+						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>

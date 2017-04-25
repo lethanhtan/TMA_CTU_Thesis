@@ -41,6 +41,7 @@ public class ExportController {
 		ModelAndView model = new ModelAndView();
 		Export objExport = new Export();
 		List<Tour> listTours = tourService.listTour();
+		model.addObject("listTours", listTours);
 		List<BookTour> listBookTours = bookTourService.bookTourList();
 		String failedName = "Bạn phải nhập tên file!";
 		String failedDate = "Bạn phải nhập ngày hợp lệ!";

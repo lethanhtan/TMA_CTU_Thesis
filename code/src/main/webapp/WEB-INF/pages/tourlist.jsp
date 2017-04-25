@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 					Sách Tour Du Lịch</h2>
 				<div class="row margin-bottom-30">
 					<div class="col-md-4 animate fadeInRight"></div>
@@ -46,7 +46,7 @@
 					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
-					<table>
+					<table style="font-size: 13px">
 						<thead>
 							<tr>
 								<th>STT</th>
@@ -63,7 +63,7 @@
 							<c:forEach items="${showTourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td>${showTourList.indexOf(tour) + 1}</td>
+									<td class="text-center">${showTourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureDate}</td>
 									<td>&nbsp;&nbsp;&nbsp; ${tour.departureTime}</td>
@@ -132,4 +132,3 @@
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
 <%@ include file="userfooter.jsp"%>
-<!-- === END FOOTER === -->

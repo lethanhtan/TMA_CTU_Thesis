@@ -69,12 +69,27 @@ public class UserController extends HttpServlet {
 	// Processing for form register when submit
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String saveForm(ModelMap model, @ModelAttribute("userData") @Valid User user, BindingResult br,
-			HttpSession session, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "password") String password,
+			@RequestParam(value = "passwordConfirm") String passwordConfirm,
+			@RequestParam(value = "userName") String userName) throws ServletException, IOException {
 		logger.info("Handle register form action when user submit!");
+		try {
+			if (!userService.findUserByUserName(userName).equals(null)) {
+				model.addAttribute("invalidUserName", "Tên người dùng đã tồn tại!");
+			}
+		} catch (NullPointerException e) {
+
+		}
+		if (passwordConfirm.equals(null)) {
+			model.addAttribute("failedPasswordConfirm", "Xin vui lòng nhập lại mật khẩu!");
+		} else if (!password.equals(passwordConfirm)) {
+			logger.info(passwordConfirm);
+			model.addAttribute("failedPasswordConfirm", "Vui lòng nhập lại chính xác mật khẩu!");
+		}
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
-		boolean verify = false;
+		boolean verify = true;
 		if (CheckConnections.checkConnect("https://www.google.com")) {
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 			logger.info(gRecaptchaResponse);
@@ -103,6 +118,7 @@ public class UserController extends HttpServlet {
 				return "register";
 			}
 		}
+
 	}
 
 	// Processing for login when required request

@@ -217,11 +217,7 @@
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 						class="form-control margin-bottom-20" type="text" rows="10"
 						path="detail" />
-<<<<<<< HEAD
 					<br />
-=======
-					<br>
->>>>>>> tma_thesis/master
 					<hr>
 					<div class="row">
 						<div class="col-lg-6 text-center">

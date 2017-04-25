@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.extra.ValidUtil;
@@ -537,5 +538,19 @@ public class ManageRegController {
 	public String deleteRelationship(@PathVariable("id") int id) {
 		regInfoService.deleteRelationship(id);
 		return "redirect:/relationship";
+	}
+	
+	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
+	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
+		ModelAndView model = new ModelAndView();
+//		Export objExport = new Export();
+		model.addObject("exportList", "Tour");
+		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
+//		objExport.setOwner(session.getAttribute("userName").toString());
+//		objExport.setFileType("Pdf");
+//		objExport.setExportType("Registration list");
+//		exportDataService.saveExport(objExport);
+		model.setViewName("pdfView");
+		return model;
 	}
 }

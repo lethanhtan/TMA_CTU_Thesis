@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
 					Sách Tài Khoản</h2>
 				<a href="register"><button
 						class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
@@ -68,12 +68,12 @@
 								<!-- use subList render list user to display -->
 								<tr>
 									<c:if test="${user.idUser != id}">
-										<td>${userList.indexOf(user)}</td>
-										<td>${user.fullName}</td>
-										<td>${user.sex}</td>
-										<td>${user.birthday}</td>
-										<td>${user.email}</td>
-										<td>${user.phone}</td>
+										<td class="text-center">${userList.indexOf(user)}</td>
+										<td class="text-center">${user.fullName}</td>
+										<td class="text-center">${user.sex}</td>
+										<td class="text-center"><fmt:formatDate value="${user.birthday}" pattern="dd/MM/yyyy"/></td>
+										<td class="text-center">${user.email}</td>
+										<td class="text-center">${user.phone}</td>
 										<td><a
 											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
 												<button type="button" id="button${user.idUser}"

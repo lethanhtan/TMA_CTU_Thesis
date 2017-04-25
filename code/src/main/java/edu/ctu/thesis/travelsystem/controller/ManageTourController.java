@@ -264,18 +264,4 @@ public class ManageTourController {
 	public String creatChart(ModelMap model, @PathVariable("idTour") int idTour) {
 		return "redirect:/charttourres";
 	}
-
-	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
-	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
-		ModelAndView model = new ModelAndView();
-//		Export objExport = new Export();
-		model.addObject("exportList", "Tour");
-		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
-//		objExport.setOwner(session.getAttribute("userName").toString());
-//		objExport.setFileType("Pdf");
-//		objExport.setExportType("Registration list");
-//		exportDataService.saveExport(objExport);
-		model.setViewName("pdfView");
-		return model;
-	}
 }

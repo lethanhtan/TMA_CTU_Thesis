@@ -173,7 +173,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			table.addCell(getNormalCell("Email", SIZE1, font));
 
-			table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
+			//table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
 
 			table.addCell(getNormalCell("Điện thoại", SIZE1, font));
 
@@ -185,7 +185,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 			for (BookTour bookTour : listBookTours) {
 				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
+				//table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));

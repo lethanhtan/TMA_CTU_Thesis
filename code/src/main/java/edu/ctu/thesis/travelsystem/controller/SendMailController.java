@@ -1,8 +1,10 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriUtils;
 
 import edu.ctu.thesis.travelsystem.extra.CheckConnections;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
@@ -20,7 +23,7 @@ import edu.ctu.thesis.travelsystem.service.EmailService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 
 @Controller
-public class SendMailController {
+public class SendMailController extends UriUtils{
 	
 	private static final Logger logger = Logger.getLogger(SendMailController.class);
 	
@@ -45,7 +48,8 @@ public class SendMailController {
 			@RequestParam(value = "host", required = false) String host,
 			@RequestParam(value = "port", required = false) Integer port,
 			@RequestParam(value = "encoding", required = false) String encoding,
-			HttpSession session) {
+			HttpSession session,
+			HttpServletRequest request) {
 		Email emailObj = new Email();
 		String sender = null;
 		List<Email> totalList = emailService.listMail();
@@ -63,6 +67,7 @@ public class SendMailController {
 				}
 				if (emailSender.manualConfig(from, password, host, port, encoding)) {
 					model.addAttribute("status", "Cấu hình email thành công! " + host);
+					logger.info(request.getRequestURL().toString() + "?" + request.getQueryString());
 					flag = true;
 				}
 				else {
@@ -92,6 +97,7 @@ public class SendMailController {
 				emailObj.setSubject(subject);
 				emailObj.setUser(userService.findUserByUserName(((String)session.getAttribute("userName"))));
 				emailService.saveEmail(emailObj);
+				logger.info(request.getRequestURL().toString() + "?" + request.getQueryString());
 				model.addAttribute("sendSuccess", "Email đã được gửi đi");
 			}
 			else {

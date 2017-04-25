@@ -19,7 +19,7 @@
 			</div>
 			<!-- End Search Form -->
 			<div class="col-md-12 margin-vert-30">
-				<h2 class="margin-vert-20" style="text-align: center;">Danh
+				<h2 class="margin-vert-20" style="text-align: center; color: blue">Danh
 					Sách Tour Du Lịch</h2>
 				<a href="createtour"><button
 						class="btn btn-primary fa-plus-square">Tạo Mới</button></a>
@@ -56,9 +56,7 @@
 								<th>STT</th>
 								<th>Tên tour</th>
 								<th>Ngày đi</th>
-								<th>Giờ đi</th>
 								<th>Ngày về</th>
-								<th>Giờ về</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -67,14 +65,12 @@
 							<c:forEach items="${tourList.subList(x,y)}" var="tour">
 								<!-- use subList render list tour to display -->
 								<tr>
-									<td class="text-center">${tourList.indexOf(tour) + 1}</td>
-									<td class="col-sm-3 text-center">${tour.name}</td>
-									<td class="text-center"><fmt:formatDate value="${tour.departureDate}"
-											pattern="dd-MM/yyyy" /></td>
-									<td class="text-center">${tour.departureTime}</td>
-									<td class="text-center"><fmt:formatDate value="${tour.returnDate}"
-											pattern="dd-MM/yyyy" /></td>
-									<td class="text-center">${tour.returnTime}</td>
+									<td>${tourList.indexOf(tour) + 1}</td>
+									<td class="col-sm-4 text-left">${tour.name}</td>
+									<td class="text-left"><fmt:formatDate value="${tour.departureDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td class="text-left"><fmt:formatDate value="${tour.returnDate}"
+											pattern="dd/MM/yyyy" /></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 										href="<c:url value='managetour/delete/${tour.idTour}'/>">
 											<button type="button" id="button${user.idUser}" hidden="true"></button>
@@ -95,12 +91,12 @@
 												<i class="fa fa-signal">&nbsp;Biểu đồ</i>
 											</button></a>
 										<a href="<c:url value='update_schedule/${tour.idTour}'/>"><button
-												class="btn btn-xs btn-blue">
-												<i class="fa fa-signal">&nbsp;Lịch trình</i>
+												class="btn btn-xs btn-warning">
+												<i class="fa fa-suitcase">&nbsp;Lịch trình</i>
 											</button></a>
 										<a href="<c:url value='update_promotion/${tour.idTour}'/>"><button
-												class="btn btn-xs btn-blue">
-												<i class="fa fa-signal">&nbsp;Khuyến mãi</i>
+												class="btn btn-xs btn-aqua">
+												<i class="fa fa-paper-plane">&nbsp;Khuyến mãi</i>
 											</button></a>	
 										</td>
 										

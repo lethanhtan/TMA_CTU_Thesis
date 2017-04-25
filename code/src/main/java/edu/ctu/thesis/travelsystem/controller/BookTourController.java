@@ -143,13 +143,18 @@ public class BookTourController {
 			model.addAttribute("relationship", new Relationship());
 			model.addAttribute("relationshipList", regInfoService.relationshipList());
 			tour = tourService.findTourById(idTour);
-			if (valueSearch != null) {
+			List<BookTour> registrationInfoByValue = bookTourService.registrationInfoByValue(valueSearch, idTour);
+			if (valueSearch != null && !registrationInfoByValue.isEmpty()) {
 				logger.info("Search active!");
 				model.addAttribute("bookTour", new BookTour());
 				model.addAttribute("tour", tour);
-				model.addAttribute("registrationList", bookTourService.registrationInfoByValue(valueSearch, idTour));
+				model.addAttribute("registrationList", registrationInfoByValue);
 				return "booktour";
-			} else {
+			}
+			if (valueSearch != null && registrationInfoByValue.isEmpty()) {
+				return "redirect:/resultsearch/{idTour}";
+			}
+			if (valueSearch == null) {
 				SubBookTourVO cusData = new SubBookTourVO();
 				List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
 				for (int i = 0; i < numOfTicket; i++) {
@@ -342,5 +347,22 @@ public class BookTourController {
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "booksuccess";
+	}
+
+	@RequestMapping(value = "resultsearch/{idTour}", method = RequestMethod.GET)
+	public String showResultSearch(ModelMap model, HttpSession session, @PathVariable("idTour") int idTour,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
+		List<BookTour> registrationInfoByValue = bookTourService.registrationInfoByValue(valueSearch, idTour);
+		if (valueSearch != null && !registrationInfoByValue.isEmpty()) {
+			logger.info("Search active!");
+			model.addAttribute("searched", valueSearch);
+			model.addAttribute("bookTour", new BookTour());
+			model.addAttribute("tour", tourService.findTourById(idTour));
+			model.addAttribute("registrationList", registrationInfoByValue);
+			return "redirect:/booktour/{idTour}?valueSearch={searched}";
+		} else {
+			model.addAttribute("notFound", "Không tìm thấy kết quả trùng khớp với từ khóa");
+			return "resultsearch";
+		}
 	}
 }

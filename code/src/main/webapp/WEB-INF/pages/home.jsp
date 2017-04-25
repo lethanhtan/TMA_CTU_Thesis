@@ -110,18 +110,18 @@
 		</div>
 	</div>
 	<div class="container background-gray-lighter">
-		<div class="row padding-vert-20">
+		<div class="padding-vert-20">
 			<c:if test="${!empty tourList}">
-				<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
 						<!-- Portfolio -->
-						<ul class="portfolio-group">
+						<ul class="portfolio-group ">
 							<!-- Portfolio Item -->
-							<li class="portfolio-item padding-10 col-md-6 col-sm-6 col-xs-6"><a
+							<li class="padding-10 col-md-6 col-sm-6 col-xs-6" style="list-style-type: none;"><a
 								href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 									<figure class="animate fadeInLeft">
 										<img alt="${tour.image}"
-											src="${pageContext.request.contextPath}/image/${tour.image}">
+											src="${pageContext.request.contextPath}/image/${tour.image}" width="462 px" height="200 px">
 										<figcaption>
 											<h3 style="color: yellow;">${tour.name}</h3>
 											<h5 style="color: white;">

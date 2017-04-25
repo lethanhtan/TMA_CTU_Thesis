@@ -4,8 +4,11 @@
 <%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
+
 <div id="content">
+
 	<div class="container background-white">
+
 		<div class="container">
 			<div class="row margin-vert-30">
 				<form class="signup-page">
@@ -13,45 +16,55 @@
 						thành công!</h2>
 					<br>
 					<!-- Table -->
-					<table>
-						<thead>
-							<tr>
-								<td>Thông tin tour</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Tên tour:</td>
-								<td>${tourData.name}</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>Ngày đi:</td>
-								<td><fmt:formatDate value="${tourData.departureDate}"
-										pattern="dd/MM/yyyy" /></td>
-								<td>Giờ đi:</td>
-								<td>${tourData.departureTime}</td>
-							</tr>
-							<tr>
-								<td>Ngày về:</td>
-								<td><fmt:formatDate value="${tourData.returnDate}"
-										pattern="dd/MM/yyyy" /></td>
-								<td>Giờ về:</td>
-								<td>${tourData.returnTime}</td>
-							</tr>
-							<tr>
-								<td>Thời gian:</td>
-								<td>${tourData.howLong} ngày</td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
+					<!-- Tour Information Box -->
+					<div class="col-md-9">
+						<table>
+							<thead>
+								<tr>
+									<td>Thông tin tour</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Tên tour:</td>
+									<td>${tourData.name}</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Ngày đi:</td>
+									<td><fmt:formatDate value="${tourData.departureDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>Giờ đi:</td>
+									<td>${tourData.departureTime}</td>
+								</tr>
+								<tr>
+									<td>Ngày về:</td>
+									<td><fmt:formatDate value="${tourData.returnDate}"
+											pattern="dd/MM/yyyy" /></td>
+									<td>Giờ về:</td>
+									<td>${tourData.returnTime}</td>
+								</tr>
+								<tr>
+									<td>Thời gian:</td>
+									<td>${tourData.howLong} ngày</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+					</div>
+					<div class="col-md-3">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/v49wk.gif">
+					</div>
 					<br>
+					<!-- End Tour Information Box -->
+					<!-- Booked Tour Information Box -->
 					<table>
 						<thead>
 							<tr>
@@ -63,13 +76,15 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${bookTourList}" var="bookTour">
-								<tr>
-									<td style="color: #ef5b92;">Thông tin người thứ <c:out
-											value="${bookTourList.indexOf(bookTour) + 1}" /></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								<c:if test="${bookTourList.size() != 1}">
+									<tr>
+										<td style="color: #ef5b92;">Thông tin người thứ <c:out
+												value="${bookTourList.indexOf(bookTour) + 1}" /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:if>
 								<tr>
 									<c:if test="${tourData.fieldName == true}">
 										<td>Họ tên:</td>
@@ -135,8 +150,8 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<!-- End Booked Tour Information Box -->
 				</form>
-				<br>
 				<!-- End Table -->
 				<br>
 				<h2 align="center">
