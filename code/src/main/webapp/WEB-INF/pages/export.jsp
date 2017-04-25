@@ -56,7 +56,7 @@
 									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
 									</span> <select class="form-control margin-bottom-20" name="exportList" >
 										<option>Danh sách tour</option>
-										<option>Danh sách đăng ký cho từng tour</option>
+										<option>Danh sách người đăng ký</option>
 										<option>Danh sách người dùng</option>
 									</select>
 								</div>

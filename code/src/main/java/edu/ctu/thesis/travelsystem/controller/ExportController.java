@@ -42,21 +42,27 @@ public class ExportController {
 			@RequestParam(value = "Date1", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date Date1,
 			@RequestParam(value = "Date2", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date Date2,
 			@RequestParam(value = "exportType", required = false) String exportType, HttpSession session) {
+		
 		ModelAndView model = new ModelAndView();
 		Export objExport = new Export();
 		List<Tour> listTours = tourService.listTour();
 		model.addObject("listTours", listTours);
 		List<BookTour> listBookTours = bookTourService.bookTourList();
+		
 		String failedName = "Bạn phải nhập tên export!";
 		String failedDate = "Bạn phải nhập ngày hợp lệ!";
+		
 		if (exportType != null) {
 			if (exportType.equals("Pdf")) {
+				logger.info("Processing for export pdf file.");
 				if (nameFile.length() != 0 && Date1 != null && Date2 != null) {// 1
-					logger.info("Export data from: " + Date1 + " to " + Date2);
+					logger.info("Export pdf file with condition from date: " + Date1 + " to " + Date2);
 					if (Date1.after(Date2)) {
+						logger.info("Failed choose date.");
 						model.addObject("failedDate", failedDate);
 						model.setViewName("export");
 					} else {
+						logger.info("Processing for export and record action.");
 						model.addObject("fileName", nameFile);
 						model.addObject("listTours", listTours);
 						model.addObject("listBookTours", listBookTours);
@@ -68,22 +74,23 @@ public class ExportController {
 						model.setViewName("pdfView");
 					}
 				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {// 2
+					logger.info("Export pdf file with none condition.");
 					if (listTours.equals(null) || listBookTours.equals(null) || exportList.equals(null)) {
 						model.setViewName("export");
 						return model;
 					}
-					logger.info("------------------Export all list!----------------------");
+					logger.info("Processing for export pdf file and record data.");
 					model.addObject("listTours", listTours);
-					//model.addObject("listBookTours", listBookTours); 
+					model.addObject("listBookTours", listBookTours); 
 					model.addObject("exportList", exportList);
 					objExport.setOwner(session.getAttribute("fullName").toString());
 					objExport.setFileType(exportType);
 					objExport.setExportType(exportList);
 					exportDataService.saveExport(objExport);
 					model.setViewName("pdfView");
-					ModelAndView mv = new ModelAndView("pdfView", "listTours", listTours);
-					mv.addObject("exportList", exportList);
-					return mv;
+					//ModelAndView mv = new ModelAndView("pdfView", "listTours", listTours);
+					//mv.addObject("exportList", exportList);
+					return model;
 				} else if (nameFile.length() != 0 && (Date1 == null || Date2 == null)) {// 3
 					model.addObject("failedDate", failedDate);
 					model.setViewName("export");
