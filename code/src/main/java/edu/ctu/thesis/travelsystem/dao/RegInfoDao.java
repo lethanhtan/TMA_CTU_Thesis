@@ -27,4 +27,6 @@ public interface RegInfoDao {
 	public void deleteRelationship(int id);
 	
 	public void undoAllCancel(int idBT, int relationship);
+	
+	public void deleteAllBookTour(int idBT, int relationship);
 }

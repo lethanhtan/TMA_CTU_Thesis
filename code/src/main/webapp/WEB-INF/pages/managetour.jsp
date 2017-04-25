@@ -70,10 +70,10 @@
 									<td>${tourList.indexOf(tour) + 1}</td>
 									<td>${tour.name}</td>
 									<td><fmt:formatDate value="${tour.departureDate}"
-											pattern="dd-MM/yyyy" /></td>
+											pattern="dd/MM/yyyy" /></td>
 									<td>${tour.departureTime}</td>
 									<td><fmt:formatDate value="${tour.returnDate}"
-											pattern="dd-MM/yyyy" /></td>
+											pattern="dd/MM/yyyy" /></td>
 									<td>${tour.returnTime}</td>
 									<td><a
 										href="<c:url value='managetour/delete/${tour.idTour}'/>">

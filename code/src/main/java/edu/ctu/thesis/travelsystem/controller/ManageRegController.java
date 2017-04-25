@@ -382,7 +382,7 @@ public class ManageRegController {
 		return result;
 	}
 
-	// Delete customer booked tour
+	// Delete only one customer booked tour
 	@RequestMapping(value = "deletebooktour/{idBT}/{idTour}")
 	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
 		regInfoService.deleteBookTour(idBT, idTour);
@@ -427,13 +427,6 @@ public class ManageRegController {
 			// Haven't field is true
 			return "designform";
 		}
-	}
-
-	// Delete customer after cancel registration
-	@RequestMapping(value = "delcuscancel/{idBT}/{idTour}")
-	public String deleteCusCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
-		regInfoService.deleteBookTour(idBT, idTour);
-		return "redirect:/registrationlist/{idTour}";
 	}
 
 	// Administration undo customer cancel registration
@@ -552,5 +545,13 @@ public class ManageRegController {
 			model.put("idUser", idUser);
 			return "redirect:/managemyreg/{idUser}";
 		}
+	}
+
+	// Delete all customer after cancel registration
+	@RequestMapping(value = "delallbooktour/{idBT}/{relationship}/{idTour}")
+	public String deleteAllBookTour(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
+			@PathVariable("idBT") int idTour) {
+		regInfoService.deleteAllBookTour(idBT, relationship);
+		return "redirect:/registrationlist/{idTour}";
 	}
 }
