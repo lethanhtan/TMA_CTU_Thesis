@@ -37,40 +37,45 @@ public class PDFBuilder extends AbstractITextPdfView {
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		if (model.get("exportList").equals("Danh sách tour")) {
+		if (!model.get("listTours").equals(null)) {
 			logger.info("-----------Export list of tour!-----------------");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
 			List<Tour> listTours = (List<Tour>) model.get("listTours");
-			doc.add(new Paragraph("List Tour"));
+			// define font for table header row
+						FontFactory.register(FONT2);
+						Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			Paragraph para = new Paragraph("Danh sách tour du lịch", font);
+			para.setAlignment(Element.ALIGN_CENTER);
+			doc.add(para);
 			doc.addTitle("NYTravel List Tour");
 			doc.addSubject("List tour");
 
-			PdfPTable table = new PdfPTable(13);
+			PdfPTable table = new PdfPTable(8);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(
-					new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });
+			/*table.setWidths(
+					new float[] { 0.5f, 2.0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f });*/
+					table.setWidths(
+							new float[] { 1.0f, 3.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f });
 			table.setSpacingBefore(10);
-			// define font for table header row
-			FontFactory.register(FONT2);
-			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			
 			// write table header
-			table.addCell(getNormalCell("Id", SIZE1, font));
+			table.addCell(getNormalCell("Mã tour", SIZE1, font));
+			
+			table.addCell(getNormalCell("Tên tour", SIZE1, font));
 
-			table.addCell(getNormalCell("Name", SIZE1, font));
+			table.addCell(getNormalCell("Ngày đi", SIZE1, font));
 
-			table.addCell(getNormalCell("Departure Date", SIZE1, font));
+			table.addCell(getNormalCell("Giờ đi", SIZE1, font));
 
-			table.addCell(getNormalCell("Departure Time", SIZE1, font));
+			table.addCell(getNormalCell("Ngày về", SIZE1, font));
 
-			table.addCell(getNormalCell("Return Date", SIZE1, font));
+			table.addCell(getNormalCell("Giờ về", SIZE1, font));
+			
+			table.addCell(getNormalCell("Số lượng", SIZE1, font));
 
-			table.addCell(getNormalCell("Return Time", SIZE1, font));
-
-			table.addCell(getNormalCell("Quantum", SIZE1, font));
-
-			table.addCell(getNormalCell("Price", SIZE1, font));
-
+			table.addCell(getNormalCell("Giá vé", SIZE1, font));
+			/*
 			table.addCell(getNormalCell("Cancel or not", SIZE1, font));
 
 			table.addCell(getNormalCell("Date allow cancel", SIZE1, font));
@@ -80,7 +85,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.addCell(getNormalCell("Full or not", SIZE1, font));
 
 			table.addCell(getNormalCell("Ticket available", SIZE1, font));
-
+			*/
 			// write table row data
 			for (Tour tour : listTours) {
 				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), SIZE1, font));
@@ -91,12 +96,13 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell(getNormalCell(tour.getReturnTime(), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getQuantum()), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getPrice()), SIZE1, font));
+				/*
 				table.addCell(getNormalCell(String.valueOf(tour.getCancelOrNot()), SIZE1, font));
 				table.addCell(getNormalCell(tour.getDateAllowCancel().toString(), SIZE1, font));
 				table.addCell(getNormalCell(tour.getDateAllowReg().toString(), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getFullOrNot()), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getTicketAvailability()), SIZE1, font));
-
+				*/
 			}
 
 			doc.add(table);
@@ -111,9 +117,10 @@ public class PDFBuilder extends AbstractITextPdfView {
 			doc.addTitle("NYTravel List BookTour");
 			doc.addSubject("List booktour");
 
-			PdfPTable table = new PdfPTable(7);
+			PdfPTable table = new PdfPTable(1);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 1.0f, 1.0f, 1.0f });
+			//table.setWidths(new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 1.0f, 1.0f, 1.0f });
+			table.setWidths(new float[] { 10.0f });
 			table.setSpacingBefore(10);
 
 			// define font for table header row
@@ -121,7 +128,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			// write table header
 			table.addCell(getNormalCell("Id", SIZE1, font));
-
+			/*
 			table.addCell(getNormalCell("Name", SIZE1, font));
 
 			table.addCell(getNormalCell("Email", SIZE1, font));
@@ -133,16 +140,16 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.addCell(getNormalCell("Sex", SIZE1, font));
 
 			table.addCell(getNormalCell("Id Tour", SIZE1, font));
-
+			*/
 			// write table row data
 			for (BookTour bookTour : listBookTours) {
 				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
+				/*table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusEmail().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
 				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
-				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), SIZE1, font));
+				table.addCell(getNormalCell(String.valueOf(bookTour.getTour().getIdTour()), SIZE1, font));*/
 			}
 
 			doc.add(table);

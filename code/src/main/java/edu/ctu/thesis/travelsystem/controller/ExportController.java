@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,26 +68,22 @@ public class ExportController {
 						model.setViewName("pdfView");
 					}
 				} else if (nameFile.length() != 0 && Date1 == null && Date2 == null) {// 2
-					logger.info("Export all list!");
-					model.addObject("listTours", listTours); // List object for
-																// export list
-																// tour
-					model.addObject("listBookTours", listBookTours); // List
-																		// object
-																		// for
-																		// export
-																		// list
-																		// book
-																		// tour
-					model.addObject("exportList", exportList); // Name list
-																// export
-					objExport.setOwner(session.getAttribute("userName").toString());
+					if (listTours.equals(null) || listBookTours.equals(null) || exportList.equals(null)) {
+						model.setViewName("export");
+						return model;
+					}
+					logger.info("------------------Export all list!----------------------");
+					model.addObject("listTours", listTours);
+					//model.addObject("listBookTours", listBookTours); 
+					model.addObject("exportList", exportList);
+					objExport.setOwner(session.getAttribute("fullName").toString());
 					objExport.setFileType(exportType);
 					objExport.setExportType(exportList);
 					exportDataService.saveExport(objExport);
 					model.setViewName("pdfView");
-
-					return model;
+					ModelAndView mv = new ModelAndView("pdfView", "listTours", listTours);
+					mv.addObject("exportList", exportList);
+					return mv;
 				} else if (nameFile.length() != 0 && (Date1 == null || Date2 == null)) {// 3
 					model.addObject("failedDate", failedDate);
 					model.setViewName("export");
@@ -137,13 +132,13 @@ public class ExportController {
 	@RequestMapping(value = "export/{idTour}", method = RequestMethod.GET)
 	public ModelAndView exportData(@PathVariable("idTour") int idTour, HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		// Export objExport = new Export();
+		Export objExport = new Export();
 		model.addObject("exportList", "Tour");
 		model.addObject("listBookTours", bookTourService.listBookTourById(idTour));
-		// objExport.setOwner(session.getAttribute("userName").toString());
-		// objExport.setFileType("Pdf");
-		// objExport.setExportType("Registration list");
-		// exportDataService.saveExport(objExport);
+		objExport.setOwner(session.getAttribute("userName").toString());
+		objExport.setFileType("Pdf");
+		objExport.setExportType("Registration list");
+		exportDataService.saveExport(objExport);
 		model.setViewName("pdfView");
 		return model;
 	}
