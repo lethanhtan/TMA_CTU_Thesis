@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="row margin-vert-30">
 			<!-- Tab v2 -->
-			<div class="tabs alternative margin-vert-30">
+			<div class="tabs alternative">
 				<ul class="nav nav-tabs" id="myTab">
 					<li class="active"><a href="#registrationlist"
 						data-toggle="tab">Danh Sách Đăng Ký</a></li>
@@ -29,12 +29,10 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
 						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
 								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
-						<a href="${pageContext.request.contextPath}/export/${idTour}"><button
-								class="btn btn-danger fa-file-pdf-o">Export</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
 							<div class="col-md-8 animate fadeIn"></div>
@@ -119,17 +117,13 @@
 										var="bookTour" varStatus="loop">
 										<!-- use subList render list tour to display -->
 										<tr>
-											<td class="text-center">${registrationList.indexOf(bookTour) + 1}</td>
+											<td>${registrationList.indexOf(bookTour) + 1}</td>
 											<td>${bookTour.cusName}</td>
 											<td>${bookTour.cusSex}</td>
 											<td>${bookTour.cusYearOfBirth}</td>
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
-												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
-													<button type="button" id="button${bookTour.idBT}"
-														hidden="true"></button>
-											</a> <a
 												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>">
 													<button type="button" id="regcancel${bookTour.idBT}"
 														hidden="true"></button>
@@ -137,8 +131,16 @@
 												href="<c:url value='/cancelallreg/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour}'/>">
 													<button type="button" id="allcancel${bookTour.idBT}"
 														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour }'/>">
+													<button type="button" id="only${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/delallbooktour/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour }'/>">
+													<button type="button" id="all${bookTour.idBT}"
+														hidden="true"></button>
 											</a> <a href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
-													<button class="btn btn-xs btn-violet">
+													<button class="btn btn-xs btn-violet success">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
@@ -148,24 +150,31 @@
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
 														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
-														<button class="btn btn-xs btn-aqua cancel"
+														<button class="btn btn-xs btn-aqua cancelall"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 													<c:if
 														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
-														<a
-															href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-																class="btn btn-xs btn-aqua">
-																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-															</button></a>
+														<button class="btn btn-xs btn-aqua cancel"
+															id="cancel${bookTour.idBT}">
+															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+														</button>
 													</c:if>
-												</c:if>
-												<button class="btn btn-xs btn-danger delete"
-													id="${bookTour.idBT }">
-													<i class="fa fa-trash-o">&nbsp;Xóa</i>
-												</button></td>
+												</c:if> <c:if
+													test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger deleteall"
+														id="${bookTour.idBT }">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if> <c:if
+													test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger delete"
+														id="${bookTour.idBT }">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -225,7 +234,7 @@
 							</form>
 						</div>
 						<!-- End Search Form -->
-						<h2 class="margin-vert-20" style="text-align: center; color: blue;">Danh
+						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Hủy Đăng Ký</h2>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
@@ -294,15 +303,15 @@
 							</div>
 							<br>
 							<!-- End Choose Number For Display -->
-							<table>
+							<table style="font-size: 13px;">
 								<thead>
 									<tr>
 										<th>STT</th>
 										<th>Họ tên</th>
 										<th>Giới tính</th>
+										<th>Năm sinh</th>
 										<th>Số điện thoại</th>
 										<th>Đăng ký bởi</th>
-										<th></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -314,29 +323,57 @@
 											<td>${cancelList.indexOf(cancelReg) + 1}</td>
 											<td>${cancelReg.cusName}</td>
 											<td>${cancelReg.cusSex}</td>
+											<td>${cancelReg.cusYearOfBirth}</td>
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
-												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
-													<button type="button" id="button${cancelReg.idBT}"
+												href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>">
+													<button type="button" id="onlyundo${cancelReg.idBT}"
 														hidden="true"></button>
-											</a></td>
-											<td><a
-												href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
-													<button class="btn btn-sm btn-violet">
+											</a> <a
+												href="<c:url value='/undoallcancel/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour}'/>">
+													<button type="button" id="allundo${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/deletebooktour/${cancelReg.idBT}/${tour.idTour }'/>">
+													<button type="button" id="only${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/delallbooktour/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour }'/>">
+													<button type="button" id="all${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
+													<button class="btn btn-xs btn-violet">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
-													<a
-														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
-															class="btn btn-sm btn-success">
+													<c:if
+														test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+														<button class="btn btn-xs btn-success undoall"
+															id="undo${cancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-														</button></a>
-												</c:if>
-												<button class="btn btn-sm btn-danger delete"
-													id="${cancelReg.idBT}">
-													<i class="fa fa-trash-o">&nbsp;Xóa</i>
-												</button></td>
+														</button>
+													</c:if>
+													<c:if
+														test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+														<button class="btn btn-xs btn-success undo"
+															id="undo${cancelReg.idBT}">
+															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+														</button>
+													</c:if>
+												</c:if> <c:if
+													test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger deleteall"
+														id="${cancelReg.idBT}">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if> <c:if
+													test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger delete"
+														id="${cancelReg.idBT}">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if></td>
 										</tr>
 									</c:forEach>
 								</tbody>

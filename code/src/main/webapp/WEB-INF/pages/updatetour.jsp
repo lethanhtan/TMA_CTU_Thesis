@@ -47,8 +47,7 @@
 							</div>
 						</div>
 					</div>
-					<br />
-
+					<br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Ngày đi</label>
@@ -196,6 +195,7 @@
 						</div>
 					</div>
 					<s:input path="ticketAvailability" hidden="true" />
+					<s:input path="howLong" hidden="true" />
 					<label>Chi tiết tour</label>
 					<small><s:errors path="detail" cssStyle="color:red;" /></small>
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
