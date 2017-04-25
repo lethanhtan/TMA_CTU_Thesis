@@ -74,4 +74,10 @@ public class RegInfoServiceImpl implements RegInfoService {
 	public void deleteRelationship(int id) {
 		this.regInfoDao.deleteRelationship(id);
 	}
+	
+	@Override
+	@Transactional
+	public void undoAllCancel(int idBT, int relationship) {
+		this.regInfoDao.undoAllCancel(idBT, relationship);
+	}
 }

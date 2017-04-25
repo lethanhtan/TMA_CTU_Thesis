@@ -447,8 +447,6 @@ public class UserController extends HttpServlet {
 					session.removeAttribute("user");
 					session.removeValue("userName"); // Remove username value
 					session.removeValue("fullName"); // Remove full name value
-					session.removeValue("phone"); // Remove phone value
-					session.removeValue("roleId"); // Remove roleId value
 					session.removeValue("idUser"); // Remove idUser
 					return "redirect:/changepasssucess";
 				}

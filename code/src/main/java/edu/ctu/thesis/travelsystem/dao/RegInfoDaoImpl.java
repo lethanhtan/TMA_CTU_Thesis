@@ -122,7 +122,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			query.executeUpdate();
 			session.saveOrUpdate(bookTour);
 			session.flush();
-			logger.info("Delete customer success!");
+			logger.info("Cancel booked tour success!");
 		}
 	}
 
@@ -163,4 +163,22 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			logger.info("Delete customer success!");
 		}
 	}
+	
+	// Undo all cancel when have the same relationship
+		@Override
+		public void undoAllCancel(int idBT, int relationship) {
+			Session session = getCurrentSession();
+			BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+			if (bookTour != null) {
+				Query query = session.createQuery("UPDATE BookTour o SET " + "o.cusNumOfTicket = :cusNumOfTicket,"
+						+ "o.cusCancel = false, o.ticketCancel = 0 WHERE o.relationship = :relationship");
+				query.setParameter("relationship", relationship);
+				query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
+				query.executeUpdate();
+				session.saveOrUpdate(bookTour);
+				session.flush();
+				logger.info("Undo all cancel booked tour success!");
+			}
+		}
+
 }

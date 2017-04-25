@@ -1,25 +1,25 @@
-/* Confirm popup for cancel all*/
+/* Confirm popup for undo cancel */
 $(function() {
-	$(".cancel").click(
+	$(".undo").click(
 					function(e) {
 						e.preventDefault();
 						var cid = this.id;
 						swal(
 								{
-									title : "Bạn muốn hủy đăng ký?",
+									title : "Bạn muốn phục hồi đăng ký đã hủy?",
 									type : "warning",
 									showCloseButton : true,
 									showCancelButton : true,
 									cancelButtonText : "Không",
 									confirmButtonColor : "#DD6B55",
-									confirmButtonText : "Hủy đăng ký",
+									confirmButtonText : "Phục hồi",
 									closeOnConfirm : false,
 								},
 								function(isConfirmed) {
 									if (isConfirmed) {
 										swal(
 												{
-													title : "Nhấn 'Tất cả' để hủy những vé bạn đã đăng ký. Nhấn 'Chỉ mình tôi' để hủy vé của bạn",
+													title : "Nhấn 'Tất cả' để phục hồi những vé bạn đã đăng ký. Nhấn 'Chỉ mình tôi' để phục hồi vé của bạn",
 													type : "warning",
 													showCancelButton : true,
 													confirmButtonClass : 'btn-danger',
@@ -30,18 +30,18 @@ $(function() {
 												},
 												function(isConfirm) {
 													if (isConfirm) {
-														document.getElementById("reg" + cid).click();
+														document.getElementById("only" + cid).click();
 														$(".file").addClass("isDeleted");
-														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
+														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
 													} else {
 														document.getElementById("all" + cid).click();
 														$(".file").addClass(
 														"isDeleted");
-														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
+														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
 													}
 												})
 									}
 								});
 					});
 });
-/* End Confirm popup for cancel all */
+/* End Confirm popup for undo cancel */

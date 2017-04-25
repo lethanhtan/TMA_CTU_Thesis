@@ -316,6 +316,14 @@
 											<td>${cancelReg.cusPhone}</td>
 											<td>${cancelReg.whoIsRegistered}</td>
 											<td><a
+												href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>">
+													<button type="button" id="onlyundo${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/undoallcancel/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour}'/>">
+													<button type="button" id="allundo${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
 												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
 													<button type="button" id="button${cancelReg.idBT}"
 														hidden="true"></button>
@@ -324,11 +332,21 @@
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
-													<a
-														href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
-															class="btn btn-xs btn-success">
+													<c:if
+														test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+														<button class="btn btn-xs btn-success undo"
+															id="undo${cancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-														</button></a>
+														</button>
+													</c:if>
+													<c:if
+														test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+														<a
+															href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
+																class="btn btn-xs btn-success">
+																<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+															</button></a>
+													</c:if>
 												</c:if>
 												<button class="btn btn-xs btn-danger delete"
 													id="${cancelReg.idBT}">

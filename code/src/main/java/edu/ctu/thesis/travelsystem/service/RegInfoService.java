@@ -25,4 +25,6 @@ public interface RegInfoService {
 	public void saveRelationship(Relationship relationship);
 	
 	public void deleteRelationship(int id);
+	
+	public void undoAllCancel(int idBT, int relationship);
 }
