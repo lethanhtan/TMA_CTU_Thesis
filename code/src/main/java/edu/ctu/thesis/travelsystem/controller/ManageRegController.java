@@ -477,7 +477,7 @@ public class ManageRegController {
 			logger.info("Tour info: " + tour);
 			if (tour != null) {
 				model.addAttribute("tour", tour);
-			}	
+			}
 			return "editreginfo";
 		} else {
 			bookTour.setTour(tour);
@@ -517,8 +517,7 @@ public class ManageRegController {
 	@RequestMapping(value = "relationship", method = RequestMethod.POST)
 	public String insertRelationship(ModelMap model, HttpSession session,
 			@ModelAttribute("relationshipData") @Valid Relationship relationship) {
-		ValidUtil validUtil = new ValidUtil();
-		if (validUtil.findDigit(relationship.getName())) {
+		if (ValidUtil.findDigit(relationship.getName())) {
 			model.put("error", "Mối quan hệ không được chứa chữ số");
 			List<Relationship> relationshipList = regInfoService.relationshipList();
 			model.put("relationship", new Relationship());
@@ -537,5 +536,21 @@ public class ManageRegController {
 	public String deleteRelationship(@PathVariable("id") int id) {
 		regInfoService.deleteRelationship(id);
 		return "redirect:/relationship";
+	}
+
+	// Undo all cancel registration tour
+	@RequestMapping(value = "undoallcancel/{idBT}/{relationship}/{idTour}")
+	public String undoAllCancel(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
+			@PathVariable("idTour") int idTour, ModelMap model, HttpSession session) {
+		regInfoService.undoAllCancel(idBT, relationship);
+		if (session.getAttribute("roleId") != null) {
+			// Forward for administrator after undo cancel
+			return "redirect:/registrationlist/{idTour}";
+		} else {
+			// Forward for user after undo cancel
+			int idUser = (int) session.getAttribute("idUser");
+			model.put("idUser", idUser);
+			return "redirect:/managemyreg/{idUser}";
+		}
 	}
 }
