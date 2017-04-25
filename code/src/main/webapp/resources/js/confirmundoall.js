@@ -32,12 +32,12 @@ $(function() {
 													if (isConfirm) {
 														document.getElementById("only" + cid).click();
 														$(".file").addClass("isDeleted");
-														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi khỏi hệ thống.", "success");
+														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
 													} else {
 														document.getElementById("all" + cid).click();
 														$(".file").addClass(
 														"isDeleted");
-														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi khỏi hệ thống.", "success");
+														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
 													}
 												})
 									}
