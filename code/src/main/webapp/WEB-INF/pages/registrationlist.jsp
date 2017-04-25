@@ -124,10 +124,6 @@
 											<td>${bookTour.cusPhone}</td>
 											<td>${bookTour.whoIsRegistered}</td>
 											<td><a
-												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour}'/>">
-													<button type="button" id="button${bookTour.idBT}"
-														hidden="true"></button>
-											</a> <a
 												href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>">
 													<button type="button" id="regcancel${bookTour.idBT}"
 														hidden="true"></button>
@@ -135,8 +131,16 @@
 												href="<c:url value='/cancelallreg/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour}'/>">
 													<button type="button" id="allcancel${bookTour.idBT}"
 														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/deletebooktour/${bookTour.idBT}/${tour.idTour }'/>">
+													<button type="button" id="only${bookTour.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/delallbooktour/${bookTour.idBT}/${bookTour.relationship}/${tour.idTour }'/>">
+													<button type="button" id="all${bookTour.idBT}"
+														hidden="true"></button>
 											</a> <a href="<c:url value='/reginfodetail/${bookTour.idBT}'/>">
-													<button class="btn btn-xs btn-violet">
+													<button class="btn btn-xs btn-violet success">
 														<i class="fa fa-eye">&nbsp;Xem</i>
 													</button>
 											</a><a
@@ -146,24 +150,31 @@
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
 														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
-														<button class="btn btn-xs btn-aqua cancel"
+														<button class="btn btn-xs btn-aqua cancelall"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 													<c:if
 														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
-														<a
-															href="<c:url value='/cancelreg/${bookTour.idBT}/${tour.idTour}'/>"><button
-																class="btn btn-xs btn-aqua">
-																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-															</button></a>
+														<button class="btn btn-xs btn-aqua cancel"
+															id="cancel${bookTour.idBT}">
+															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+														</button>
 													</c:if>
-												</c:if>
-												<button class="btn btn-xs btn-danger delete"
-													id="${bookTour.idBT }">
-													<i class="fa fa-trash-o">&nbsp;Xóa</i>
-												</button></td>
+												</c:if> <c:if
+													test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger deleteall"
+														id="${bookTour.idBT }">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if> <c:if
+													test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger delete"
+														id="${bookTour.idBT }">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -324,8 +335,12 @@
 													<button type="button" id="allundo${cancelReg.idBT}"
 														hidden="true"></button>
 											</a> <a
-												href="<c:url value='/delcuscancel/${cancelReg.idBT}/${tour.idTour }'/>">
-													<button type="button" id="button${cancelReg.idBT}"
+												href="<c:url value='/deletebooktour/${cancelReg.idBT}/${tour.idTour }'/>">
+													<button type="button" id="only${cancelReg.idBT}"
+														hidden="true"></button>
+											</a> <a
+												href="<c:url value='/delallbooktour/${cancelReg.idBT}/${cancelReg.relationship}/${tour.idTour }'/>">
+													<button type="button" id="all${cancelReg.idBT}"
 														hidden="true"></button>
 											</a> <a href="<c:url value='/reginfodetail/${cancelReg.idBT}'/>">
 													<button class="btn btn-xs btn-violet">
@@ -334,24 +349,31 @@
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<c:if
 														test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
-														<button class="btn btn-xs btn-success undo"
+														<button class="btn btn-xs btn-success undoall"
 															id="undo${cancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button>
 													</c:if>
 													<c:if
 														test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
-														<a
-															href="<c:url value='/undocancel/${cancelReg.idBT}/${tour.idTour}'/>"><button
-																class="btn btn-xs btn-success">
-																<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-															</button></a>
+														<button class="btn btn-xs btn-success undo"
+															id="undo${cancelReg.idBT}">
+															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+														</button>
 													</c:if>
-												</c:if>
-												<button class="btn btn-xs btn-danger delete"
-													id="${cancelReg.idBT}">
-													<i class="fa fa-trash-o">&nbsp;Xóa</i>
-												</button></td>
+												</c:if> <c:if
+													test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger deleteall"
+														id="${cancelReg.idBT}">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if> <c:if
+													test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+													<button class="btn btn-xs btn-danger delete"
+														id="${cancelReg.idBT}">
+														<i class="fa fa-trash-o">&nbsp;Xóa</i>
+													</button>
+												</c:if></td>
 										</tr>
 									</c:forEach>
 								</tbody>

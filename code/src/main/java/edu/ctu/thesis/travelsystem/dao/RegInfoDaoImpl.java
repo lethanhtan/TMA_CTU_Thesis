@@ -39,7 +39,7 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 		return registrationList;
 	}
 
-	// Delete booked tour
+	// Delete only one booked tour
 	@Override
 	public void deleteBookTour(int idBT, int idTour) {
 		Session session = getCurrentSession();
@@ -163,22 +163,36 @@ public class RegInfoDaoImpl extends AbstractDao implements RegInfoDao {
 			logger.info("Delete customer success!");
 		}
 	}
-	
-	// Undo all cancel when have the same relationship
-		@Override
-		public void undoAllCancel(int idBT, int relationship) {
-			Session session = getCurrentSession();
-			BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
-			if (bookTour != null) {
-				Query query = session.createQuery("UPDATE BookTour o SET " + "o.cusNumOfTicket = :cusNumOfTicket,"
-						+ "o.cusCancel = false, o.ticketCancel = 0 WHERE o.relationship = :relationship");
-				query.setParameter("relationship", relationship);
-				query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
-				query.executeUpdate();
-				session.saveOrUpdate(bookTour);
-				session.flush();
-				logger.info("Undo all cancel booked tour success!");
-			}
-		}
 
+	// Undo all cancel when have the same relationship
+	@Override
+	public void undoAllCancel(int idBT, int relationship) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		if (bookTour != null) {
+			Query query = session.createQuery("UPDATE BookTour o SET " + "o.cusNumOfTicket = :cusNumOfTicket,"
+					+ "o.cusCancel = false, o.ticketCancel = 0 WHERE o.relationship = :relationship");
+			query.setParameter("relationship", relationship);
+			query.setParameter("cusNumOfTicket", bookTour.getTicketCancel());
+			query.executeUpdate();
+			session.saveOrUpdate(bookTour);
+			session.flush();
+			logger.info("Undo all cancel booked tour success!");
+		}
+	}
+
+	// Delete all booked tour
+	@Override
+	public void deleteAllBookTour(int idBT, int relationship) {
+		Session session = getCurrentSession();
+		BookTour bookTour = (BookTour) session.load(BookTour.class, new Integer(idBT));
+		if (bookTour != null) {
+			Query query = session.createQuery("UPDATE BookTour SET ID_TOUR = null WHERE RELATIONSHIP = :relationship");
+			query.setParameter("relationship", relationship);
+			query.executeUpdate();
+			session.delete(bookTour);
+			session.flush();
+			logger.info("Delete all booked tour success!");
+		}
+	}
 }
