@@ -10,13 +10,15 @@
 			<div class="row margin-vert-30">
 				<!-- Login Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+				<h3 style="color: #ef5b92; text-align: center;">${success}</h3><br>
 					<s:form class="login-page" commandName="userData"
 						action="${pageContext.request.contextPath }/login" method="POST">
 						<div class="login-header margin-bottom-30">
 							<h2>Đăng Nhập</h2>
 							<p>
-								Chưa có tài khoản? <a href="${pageContext.request.contextPath }/register" style="color: #ef5b92">Đăng
-									ký</a>
+								Chưa có tài khoản? <a
+									href="${pageContext.request.contextPath }/register"
+									style="color: #ef5b92">Đăng ký</a>
 							</p>
 						</div>
 						<small><font color="red">${failed}</font></small>
@@ -50,5 +52,5 @@
 </div>
 <!-- === END CONTENT === -->
 <!-- === BEGIN FOOTER === -->
-<%@ include file="userfooter.jsp" %>
+<%@ include file="userfooter.jsp"%>
 <!-- === END FOOTER === -->

@@ -11,7 +11,7 @@
 			<p style="text-align:center"><img alt="Congratulation" src="resources/img/congratulation.jpg"></p>
 			<h2 align="center">Xin chúc mừng!</h2>
 				<h2 style="color: red" align="center">
-					Quý khách đã đăng ký tài khoản thành công.
+					Quý khách đã đăng ký tài khoản thành công
 					</h2>
 					<h2 align="center">
 						<a href="/TravelSystem/login">Nhấn vào đây để đăng nhập</a>
