@@ -106,17 +106,17 @@
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
 														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
-														<button class="btn btn-xs btn-danger cancel"
+														<button class="btn btn-xs btn-danger cancelall"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 													<c:if
 														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
-														<a href="<c:url value='/cancel/${bookTour.idBT}'/>"><button
-																class="btn btn-xs btn-danger">
-																<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
-															</button></a>
+														<button class="btn btn-xs btn-danger cancel"
+															id="cancel${bookTour.idBT}">
+															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
+														</button>
 													</c:if>
 												</c:if></td>
 										</tr>
@@ -242,8 +242,7 @@
 											<td>${myCancelReg.cusYearOfBirth}</td>
 											<td>${myCancelReg.cusPhone}</td>
 											<td>${myCancelReg.whoIsRegistered}</td>
-											<td><a
-												href="<c:url value='/undo/${myCancelReg.idBT}/${myCancelReg.tour.idTour}'/>">
+											<td><a href="<c:url value='/undo/${myCancelReg.idBT}'/>">
 													<button type="button" id="onlyundo${myCancelReg.idBT}"
 														hidden="true"></button>
 											</a> <a
@@ -258,17 +257,17 @@
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
 													<c:if
 														test="${myCancelReg.cusName eq myCancelReg.whoIsRegistered}">
-														<button class="btn btn-xs btn-success undo"
+														<button class="btn btn-xs btn-success undoall"
 															id="undo${myCancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button>
 													</c:if>
 													<c:if
 														test="${myCancelReg.cusName ne myCancelReg.whoIsRegistered}">
-														<a href="<c:url value='/undo/${myCancelReg.idBT}'/>"><button
-																class="btn btn-xs btn-success">
-																<i class="fa fa-undo">&nbsp;Phục Hồi</i>
-															</button></a>
+														<button class="btn btn-xs btn-success undo"
+															id="undo${myCancelReg.idBT}">
+															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
+														</button>
 													</c:if>
 												</c:if></td>
 										</tr>
