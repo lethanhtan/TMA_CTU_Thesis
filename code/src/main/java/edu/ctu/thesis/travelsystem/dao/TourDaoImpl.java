@@ -80,15 +80,14 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
-		String hql = "DELETE FROM Tour WHERE ID_TOUR = :idTour";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("DELETE FROM Tour WHERE ID_TOUR = :idTour");
 		query.setParameter("idTour", idTour);
-		String hql2 = "FROM BookTour WHERE ID_TOUR = :idTour";
-		Query query2 = session.createQuery(hql2);
+		Query query2 = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour");
 		query2.setParameter("idTour", idTour);
 		List<BookTour> bookTourList = query2.list();
 		for (BookTour bookTour : bookTourList) {
