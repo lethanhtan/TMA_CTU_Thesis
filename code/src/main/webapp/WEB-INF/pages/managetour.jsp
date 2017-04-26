@@ -73,7 +73,7 @@
 											pattern="dd/MM/yyyy" /></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 										href="<c:url value='managetour/delete/${tour.idTour}'/>">
-											<button type="button" id="button${user.idUser}" hidden="true"></button>
+											<button type="button" id="only${tour.idTour}" hidden="true"></button>
 									</a></td>
 									<td><a href="<c:url value='tourdetail/${tour.idTour}'/>">
 											<button class="btn btn-xs btn-violet">
