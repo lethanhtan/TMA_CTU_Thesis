@@ -31,8 +31,6 @@
 						<!-- End Search Form -->
 						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
-						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
-								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 						<div class="row margin-bottom-30">
 							<div class="col-md-4 animate fadeInRight"></div>
 							<div class="col-md-8 animate fadeIn"></div>

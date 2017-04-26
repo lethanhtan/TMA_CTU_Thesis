@@ -99,7 +99,6 @@
 												<i class="fa fa-paper-plane">&nbsp;Khuyến mãi</i>
 											</button></a>	
 										</td>
-										
 								</tr>
 							</c:forEach>
 						</tbody>
