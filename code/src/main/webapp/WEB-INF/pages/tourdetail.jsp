@@ -13,8 +13,7 @@
 					<table>
 						<thead>
 							<tr>
-								<td>Thông Tin Tour Du Lịch</td>
-								<td></td>
+								<td colspan="2">Thông Tin Tour Du Lịch</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,8 +68,7 @@
 						</tbody>
 						<thead>
 							<tr>
-								<td>Các thông tin khách hàng phải điền khi đặt vé</td>
-								<td></td>
+								<td colspan="2">Các thông tin khách hàng phải điền khi đặt vé</td>
 							</tr>
 						</thead>
 						<tbody>
