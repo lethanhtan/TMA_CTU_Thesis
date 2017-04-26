@@ -33,7 +33,7 @@ public class Relationship {
 	}
 
 	// Create column relationship name
-	@Column(name = "NAME", nullable = true, length = 40)
+	@Column(name = "NAME", nullable = false, length = 40)
 	public String getName() {
 		return this.name;
 	}
