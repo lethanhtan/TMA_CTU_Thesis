@@ -123,13 +123,6 @@ public class ManageUserController {
 		return "userdetail";
 	}
 
-	// Delete tour in Detail tour page
-	@RequestMapping(value = "userdetail/delete/{idTour}")
-	public String deleteUser(@PathVariable("idUser") int idUser) {
-		userService.deleteUser(idUser);
-		return "redirect:/manageuser";
-	}
-
 	// Handle required request from client
 	@RequestMapping(value = "edituser/{idUser}", method = RequestMethod.GET)
 	public String showEditForm(ModelMap model, @PathVariable("idUser") int idUser, HttpSession session)

@@ -55,8 +55,8 @@
 					</table>
 				</form>
 				<br> <a
-					href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
-					<button type="button" id="button${user.idUser}" hidden="true"></button>
+					href="<c:url value='/manageuser/deleteuser/${userData.idUser}'/>">
+					<button type="button" id="only${userData.idUser}" hidden="true"></button>
 				</a>
 				<div class="row">
 					<div class="col-lg-4 text-center">
@@ -64,7 +64,7 @@
 								class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 					</div>
 					<div class="col-lg-4 text-center">
-						<button class="btn btn-primary delete" id="${user.idUser}">Xóa</button>
+						<button class="btn btn-primary delete" id="${userData.idUser}">Xóa</button>
 					</div>
 					<div class="col-lg-4 text-center">
 						<a href="<c:url value='/manageuser'/>"><button
