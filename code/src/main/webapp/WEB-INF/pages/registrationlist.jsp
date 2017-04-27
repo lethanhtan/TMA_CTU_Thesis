@@ -31,8 +31,6 @@
 						<!-- End Search Form -->
 						<h2 class="margin-vert-20" style="text-align: center;">Danh
 							Sách Đăng Ký</h2>
-						<a href="${pageContext.request.contextPath}/booktour/${idTour}"><button
-								class="btn btn-primary fa-plus-square">Thêm Mới</button></a>
 						<a href="${pageContext.request.contextPath}/export/${idTour}"><button
 								class="btn btn-danger fa-plus-square">Export</button></a>
 						<div class="row margin-bottom-30">
@@ -105,12 +103,12 @@
 							<table style="font-size: 13px;">
 								<thead>
 									<tr>
-										<th class="text-left">STT</th>
-										<th class="col-sm-3 col-md-3 text-left">Họ tên</th>
-										<th class="text-left">Giới tính</th>
-										<th class="text-left">Năm sinh</th>
-										<th class="text-left">Số điện thoại</th>
-										<th class="col-sm-2 col-md-2 text-left">Đăng ký bởi</th>
+										<th>STT</th>
+										<th>Họ tên</th>
+										<th>Giới tính</th>
+										<th>Năm sinh</th>
+										<th>Số điện thoại</th>
+										<th>Đăng ký bởi</th>
 										<th></th>
 									</tr>
 								</thead>

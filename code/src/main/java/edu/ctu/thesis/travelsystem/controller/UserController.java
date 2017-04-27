@@ -119,7 +119,6 @@ public class UserController extends HttpServlet {
 				return "register";
 			}
 		}
-
 	}
 
 	// Processing for login when required request

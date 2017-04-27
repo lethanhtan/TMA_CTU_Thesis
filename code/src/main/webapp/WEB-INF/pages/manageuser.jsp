@@ -54,12 +54,12 @@
 						<thead>
 							<tr>
 								<th>STT</th>
+								<th>Phân quyền</th>
 								<th>Họ tên</th>
 								<th>Giới tính</th>
 								<th>Ngày sinh</th>
 								<th>Email</th>
 								<th>Số điện thoại</th>
-								<th></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -69,17 +69,17 @@
 								<tr>
 									<c:if test="${user.idUser != id}">
 										<td>${userList.indexOf(user)}</td>
+										<td>${user.descRole}</td>
 										<td>${user.fullName}</td>
 										<td>${user.sex}</td>
-										<td>${user.birthday}</td>
+										<td><fmt:formatDate value="${user.birthday}"
+												pattern="dd/MM/yyyy" /></td>
 										<td>${user.email}</td>
 										<td>${user.phone}</td>
 										<td><a
 											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
-												<button type="button" id="only${user.idUser}"
-													hidden="true"></button>
-										</a></td>
-										<td><a href="<c:url value='userdetail/${user.idUser}'/>">
+												<button type="button" id="only${user.idUser}" hidden="true"></button>
+										</a> <a href="<c:url value='userdetail/${user.idUser}'/>">
 												<button class="btn btn-xs btn-violet">
 													<i class="fa fa-eye">&nbsp;Xem</i>
 												</button>
@@ -87,7 +87,8 @@
 													class="btn btn-xs btn-success">
 													<i class="fa fa-pencil">&nbsp;Sửa</i>
 												</button></a>
-										<button class="btn btn-xs btn-danger delete" id="${user.idUser}">
+											<button class="btn btn-xs btn-danger delete"
+												id="${user.idUser}">
 												<i class="fa fa-trash-o">&nbsp;Xóa</i>
 											</button></td>
 									</c:if>
