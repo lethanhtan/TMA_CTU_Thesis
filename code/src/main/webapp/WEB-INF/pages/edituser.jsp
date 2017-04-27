@@ -48,7 +48,7 @@
 							<div class="col-sm-6">
 								<label>Ngày sinh</label>
 								<!-- Show error -->
-								<br> <small><s:errors path="birthday" cssStyle="color:red;" /></small>
+								<br> <small style="color: red;">${birthdayError}</small>
 								<div class="input-group margin-bottom-20">
 									<span class="input-group-addon"><i
 										class="fa fa-calendar"></i></span>

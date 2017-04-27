@@ -120,6 +120,7 @@ public class ManageUserController {
 	public String showUserDetail(ModelMap model, @PathVariable("idUser") int idUser) {
 		logger.info("Show user detail!");
 		model.put("userData", userService.searchUserById(idUser));
+
 		return "userdetail";
 	}
 
@@ -130,8 +131,8 @@ public class ManageUserController {
 		logger.info("Handle edit form when administrator request!");
 		logger.info("Display edit user form when administrator request!");
 		User user = userService.searchUserById(idUser);
+		model.put("userData", user);
 		if (user != null) {
-			model.addAttribute("userData", userService.searchUserById(idUser));
 			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			String birthday = sdf.format(user.getBirthday());
 			model.addAttribute("dateofbirth", birthday);
@@ -147,9 +148,20 @@ public class ManageUserController {
 			@ModelAttribute("userData") @Valid User user, BindingResult br, HttpSession session) {
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, br);
+		try {
+			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			String birthday = sdf.format(user.getBirthday());
+			logger.info("Date of birth: ------------------" + birthday);
+			model.addAttribute("dateofbirth", birthday);
+		} catch (Exception e) {
+			logger.info("Normaly, reason you don't input birthday!");
+			model.put("birthdayError", "Bạn phải nhập ngày sinh!");
+		}
+		
 		if (br.hasErrors()) {
 			return "edituser";
 		} else {
+			
 			logger.info("Update user if haven't error!");
 			Role role = new Role();
 			if (user.getDescRole().equals("Khách hàng")) {
