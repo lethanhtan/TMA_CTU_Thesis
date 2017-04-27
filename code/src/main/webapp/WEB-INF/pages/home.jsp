@@ -152,11 +152,10 @@
 				<!-- End Filter Buttons -->
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<c:forEach items="${tourList.subList(x,y)}" var="tour">
-						<div class="">
 							<!-- Portfolio -->
 							<ul class="portfolio-group">
 								<!-- Portfolio Item -->
-								<li class="portfolio-item padding-10 col-md-6 col-sm-6 col-xs-6"><a
+								<li class="padding-10 col-md-6 col-sm-6 col-xs-6 portfolio-item"><a
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
@@ -194,7 +193,6 @@
 								<!-- //Portfolio Item// -->
 							</ul>
 							<!-- End Portfolio -->
-						</div>
 					</c:forEach>
 				</div>
 			</c:if>

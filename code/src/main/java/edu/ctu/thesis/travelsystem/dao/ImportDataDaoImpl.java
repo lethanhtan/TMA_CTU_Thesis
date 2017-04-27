@@ -28,12 +28,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 	
-	@Autowired
-	private ScheduleService scheduleService;
-	
-	@Autowired
-	private PromotionService promotionService;
-
 	@Override
 	public void importExcel(MultipartFile excelfile){
 		Session session = getCurrentSession();
