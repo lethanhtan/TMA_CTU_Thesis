@@ -196,6 +196,7 @@
 					</div>
 					<s:input path="ticketAvailability" hidden="true" />
 					<s:input path="howLong" hidden="true" />
+					<s:input path="view" hidden="true" />
 					<label>Chi tiết tour</label>
 					<small><s:errors path="detail" cssStyle="color:red;" /></small>
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
