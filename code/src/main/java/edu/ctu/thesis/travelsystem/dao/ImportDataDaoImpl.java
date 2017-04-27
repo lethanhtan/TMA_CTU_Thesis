@@ -11,17 +11,28 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.ctu.thesis.travelsystem.controller.ImportController;
 import edu.ctu.thesis.travelsystem.model.Import;
+import edu.ctu.thesis.travelsystem.model.Promotion;
+import edu.ctu.thesis.travelsystem.model.Schedule;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.PromotionService;
+import edu.ctu.thesis.travelsystem.service.ScheduleService;
 
 @Service
 public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
+	
+	@Autowired
+	private ScheduleService scheduleService;
+	
+	@Autowired
+	private PromotionService promotionService;
 
 	@Override
 	public void importExcel(MultipartFile excelfile){
@@ -39,6 +50,8 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 			while (i <= worksheet.getLastRowNum()) {
 				// Creates an object for the UserInfo Model
 				Tour tour = new Tour();
+				Schedule schedule = new Schedule();
+				Promotion promotion = new Promotion();
 				// Creates an object representing a single row in excel
 				HSSFRow row = worksheet.getRow(i++);
 				// Sets the Read data to the model class
@@ -56,9 +69,16 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 				tour.setDateAllowReg(row.getCell(11).getDateCellValue());
 				tour.setFullOrNot(row.getCell(12).getBooleanCellValue());
 				tour.setTicketAvailability((int) row.getCell(13).getNumericCellValue());
+				
+				schedule.setTour(tour);
+				promotion.setTour(tour);
 				// persist data into database in here
+				
 				listTours.add(tour);
+				
 				session.save(tour);
+				session.save(promotion);
+				session.save(schedule);
 				session.flush();
 			}			
 			workbook.close();

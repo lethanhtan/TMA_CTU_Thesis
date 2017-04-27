@@ -32,6 +32,13 @@ public class Promotion implements Serializable{
 	
 	private Tour tour;
 	
+	public Promotion() {
+		this.percent = 0;
+		this.createDate = null;
+		this.createTime = null;
+		this.toDate = null;
+		this.fromDate = null;
+	}
 	
 	@Column(name = "PERCENT", nullable = false)
 	public int getPercent() {
