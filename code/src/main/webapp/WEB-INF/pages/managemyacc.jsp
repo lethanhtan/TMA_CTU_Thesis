@@ -57,7 +57,7 @@
 								class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 					</div>
 					<div class="col-lg-4 text-center">
-						<a href="<c:url value='/changemypass/${userData.idUser}'/>"><button
+						<a href="<c:url value='/changepassword/${userData.idUser}'/>"><button
 								class="btn btn-primary" type="button">Đổi Mật Khẩu</button></a>
 					</div>
 					<div class="col-lg-4 text-center">

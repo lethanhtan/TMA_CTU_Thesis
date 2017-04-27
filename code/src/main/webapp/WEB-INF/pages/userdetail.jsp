@@ -59,14 +59,18 @@
 					<button type="button" id="only${userData.idUser}" hidden="true"></button>
 				</a>
 				<div class="row">
-					<div class="col-lg-4 text-center">
+					<div class="col-lg-3 text-center">
 						<a href="<c:url value='/edituser/${userData.idUser}'/>"><button
 								class="btn btn-primary" type="button">Chỉnh Sửa</button></a>
 					</div>
-					<div class="col-lg-4 text-center">
+					<div class="col-lg-3 text-center">
+						<a href="<c:url value='/changepassword/${userData.idUser}'/>"><button
+								class="btn btn-primary">Đổi Mật Khẩu</button></a>
+					</div>
+					<div class="col-lg-3 text-center">
 						<button class="btn btn-primary delete" id="${userData.idUser}">Xóa</button>
 					</div>
-					<div class="col-lg-4 text-center">
+					<div class="col-lg-3 text-center">
 						<a href="<c:url value='/manageuser'/>"><button
 								class="btn btn-primary" type="button">Trở Về</button></a>
 					</div>

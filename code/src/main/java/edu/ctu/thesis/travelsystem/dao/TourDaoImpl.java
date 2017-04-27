@@ -85,7 +85,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	public void deleteTour(int idTour) {
 		Session session = getCurrentSession();
 		Tour tour = (Tour) session.load(Tour.class, new Integer(idTour));
-		Query query = session.createQuery("DELETE FROM Tour WHERE ID_TOUR = :idTour");
+		Query query = session.createQuery("FROM Tour WHERE ID_TOUR = :idTour");
 		query.setParameter("idTour", idTour);
 		Query query2 = session.createQuery("FROM BookTour WHERE ID_TOUR = :idTour");
 		query2.setParameter("idTour", idTour);

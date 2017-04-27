@@ -26,9 +26,9 @@
 									class="col-xs-8 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
 									<label>Tóm tắt lịch trình</label> <small><s:errors
 											path="sumary" cssStyle="color:red;" /></small>
-									<s:textarea placeholder="Nhập tóm tắt lịch trình"
-										id="area2" class="form-control margin-bottom-20" type="text"
-										rows="10" path="sumary" />
+									<s:textarea placeholder="Nhập tóm tắt lịch trình" id="area2"
+										class="form-control margin-bottom-20" type="text" rows="10"
+										path="sumary" />
 								</div>
 							</div>
 							<div class="row margin-bottom-30">
@@ -49,8 +49,8 @@
 											Nhận</button>
 									</div>
 									<div class="col-lg-6 text-center">
-										<a href="managetour"><button class="btn btn-primary"
-												type="button">Hủy Bỏ</button></a>
+										<a href="${pageContext.request.contextPath}/managetour"><button
+												class="btn btn-primary">Hủy Bỏ</button></a>
 									</div>
 								</div>
 							</div>

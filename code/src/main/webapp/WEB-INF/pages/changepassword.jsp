@@ -1,7 +1,13 @@
 <!-- === BEGIN HEADER === -->
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="userheader.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${roleId == 2}">
+	<%@ include file="adminheader.jsp"%>
+</c:if>
+<c:if test="${roleId == null}">
+	<%@ include file="userheader.jsp"%>
+</c:if>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
 <div id="content">
@@ -11,7 +17,7 @@
 				<!-- Edit User Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 					<s:form class="login-page" commandName="userData"
-						action="${pageContext.request.contextPath}/changemypass/${userData.idUser}"
+						action="${pageContext.request.contextPath}/changepassword/${userData.idUser}"
 						method="POST">
 						<div class="login-header margin-bottom-30">
 							<h2 style="text-align: center;">Thay Đổi Mật Khẩu</h2>
@@ -49,8 +55,8 @@
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/manageuser'/>"><button
-										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
+								<button onclick="goBack()" class="btn btn-primary" type="button">Hủy
+									Bỏ</button>
 							</div>
 						</div>
 					</s:form>
@@ -61,4 +67,4 @@
 	</div>
 </div>
 <!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+<%@ include file="userfooter.jsp"%>
