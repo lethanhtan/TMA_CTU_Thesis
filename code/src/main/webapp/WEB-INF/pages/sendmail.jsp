@@ -156,15 +156,10 @@
 									<div class="panel-body">
 										<ul class="list-unstyled">
 											<li><i class="fa-phone color-primary">${phoneUser}</i></li>
-											<li><i class="fa-phone color-primary">${phoneUser}</i></li>
 											<li><a href="mailto:${emailConfig}"><i
 													class="fa-envelope color-primary">${emailConfig}</i></a></li>
 											<li><a href="#"><i class="fa-home color-primary">Quản
 														trị viên</i></a></li>
-										</ul>
-										<ul class="list-unstyled">
-											<li><strong class="color-primary">Thời gian làm
-													việc:</strong> 24/7</li>
 										</ul>
 									</div>
 								</div>
