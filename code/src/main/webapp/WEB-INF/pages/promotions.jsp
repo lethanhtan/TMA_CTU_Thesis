@@ -20,24 +20,18 @@
 								<h3 style="text-align: center;">${tour.getName()}</h3>
 							</div>
 							<hr>
-							<div class="row col-sm-offset-0 margin-bottom-30">
+							<div class="row">
 								<div class="col-sm-6">
-									<label>Mức khuyến mãi</label>
-									<div class="input-group">
-										<span class="input-group-addon"> <i class="fa fa-font"></i>
+									<label>Mức giảm giá</label> <br />
+									<div class="input-group margin-bottom-20">
+										<span class="input-group-addon"> <i class="fa fa-money"></i>
 										</span>
-										<div class="form-control  margin-bottom-20">
-											<s:select path="percent">
-												<option>10</option>
-												<option>20</option>
-												<option>30</option>
-												<option>40</option>
-												<option>50</option>
-												<option>60</option>
-												<option>70</option>
-												<option>80</option>
-											</s:select>
-										</div>
+										<s:select class="form-control margin-bottom-20" path="percent">
+											<option>10%</option>
+											<option>20%</option>
+											<option>30%</option>
+											<option>50%</option>
+										</s:select>
 									</div>
 								</div>
 							</div>

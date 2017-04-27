@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Email;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
@@ -93,7 +94,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		try {
 			Query query = session.createQuery(hql);
 			query.setParameter(0, userName);
-			user =  (User) query.uniqueResult();
+			user = (User) query.uniqueResult();
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
 		}
@@ -140,10 +141,18 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteUser(int idUser) {
 		Session session = getCurrentSession();
 		User user = (User) session.load(User.class, new Integer(idUser));
+		Query query2 = session.createQuery("FROM Email WHERE USER_ID_USER = :idUser");
+		query2.setParameter("idUser", idUser);
+		List<Email> emailList = query2.list();
+		for (Email email : emailList) {
+			session.delete(email);
+			logger.info("Delete email successfully!");
+		}
 		if (user != null) {
 			Query query = session.createQuery("UPDATE User SET ID_ROLE = null WHERE ID_USER = :idUser");
 			query.setParameter("idUser", user.getIdUser());
@@ -278,7 +287,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		String hql = "select u.ID_USER from USER as u where USER_NAME = :userName";
 		Query query = session.createQuery(hql);
 		query.setParameter("userName", userName);
-		
+
 		return (int) query.uniqueResult();
 	}
 }

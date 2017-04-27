@@ -76,7 +76,7 @@
 										<td>${user.phone}</td>
 										<td><a
 											href="<c:url value='manageuser/deleteuser/${user.idUser}'/>">
-												<button type="button" id="button${user.idUser}"
+												<button type="button" id="only${user.idUser}"
 													hidden="true"></button>
 										</a></td>
 										<td><a href="<c:url value='userdetail/${user.idUser}'/>">
