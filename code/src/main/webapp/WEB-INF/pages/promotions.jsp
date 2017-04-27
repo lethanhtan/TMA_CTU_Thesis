@@ -11,7 +11,7 @@
 				<div class="row col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<!-- Update Promotion Box -->
 					<div class="row col-sm-8 col-sm-offset-2">
-						<s:form class="signup-page" modelAttribute="promotionData"
+						<form class="signup-page"
 							action="${pageContext.request.contextPath}/update_promotion/${idTour}"
 							method="POST">
 							<div class="signup-header margin-bottom-30">
@@ -26,12 +26,13 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-money"></i>
 										</span>
-										<s:select class="form-control margin-bottom-20" path="percent">
-											<option>10%</option>
-											<option>20%</option>
-											<option>30%</option>
-											<option>50%</option>
-										</s:select>
+										<select class="form-control margin-bottom-20" name="percent">
+											<option value=10>10%</option>
+											<option value=20>20%</option>
+											<option value=30>30%</option>
+											<option value=40>40%</option>
+											<option value=50>50%</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -42,8 +43,8 @@
 										<span class="input-group-addon"> <i
 											class="fa fa-calendar"></i>
 										</span>
-										<s:input placeholder="mm/dd/yyyy" id="datepicker5"
-											class="form-control margin-bottom-20" path="fromDate" />
+										<input value='<fmt:formatDate value="${fromDate}" pattern="MM/dd/yyyy"/>'id="datepicker5" type="date"
+											class="form-control margin-bottom-20" name="fromDate"/>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -52,8 +53,8 @@
 										<span class="input-group-addon"> <i
 											class="fa fa-calendar"></i>
 										</span>
-										<s:input placeholder="mm/dd/yyyy" id="datepicker6"
-											class="form-control margin-bottom-20" path="toDate" />
+										<input value='<fmt:formatDate value="${toDate}" pattern="MM/dd/yyyy"/>'  id="datepicker6" type="date"
+											class="form-control margin-bottom-20" name="toDate"/>
 									</div>
 								</div>
 							</div>
@@ -67,7 +68,7 @@
 											type="button">Hủy Bỏ</button></a>
 								</div>
 							</div>
-						</s:form>
+						</form>
 						<!-- End Create Tour Box -->
 					</div>
 				</div>

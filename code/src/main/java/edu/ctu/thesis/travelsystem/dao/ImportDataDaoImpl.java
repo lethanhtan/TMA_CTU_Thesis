@@ -11,7 +11,6 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,20 +19,12 @@ import edu.ctu.thesis.travelsystem.model.Import;
 import edu.ctu.thesis.travelsystem.model.Promotion;
 import edu.ctu.thesis.travelsystem.model.Schedule;
 import edu.ctu.thesis.travelsystem.model.Tour;
-import edu.ctu.thesis.travelsystem.service.PromotionService;
-import edu.ctu.thesis.travelsystem.service.ScheduleService;
 
 @Service
 public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
 	
-	@Autowired
-	private ScheduleService scheduleService;
-	
-	@Autowired
-	private PromotionService promotionService;
-
 	@Override
 	public void importExcel(MultipartFile excelfile){
 		Session session = getCurrentSession();
