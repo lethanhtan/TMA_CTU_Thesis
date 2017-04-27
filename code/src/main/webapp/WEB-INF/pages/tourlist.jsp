@@ -26,6 +26,43 @@
 					<div class="col-md-8 animate fadeIn"></div>
 					<div class="col-md-12 animate fadeInRight"></div>
 				</div>
+				<!-- Filter Buttons -->
+				<div class="portfolio-filter-container margin-top-20">
+					<ul class="portfolio-filter">
+						<li class="portfolio-filter-label label label-warning"
+							style="margin-left: 3%;"><i class="fa fa-filter"> Lọc
+								theo:</i></li>
+						<li style="margin-left: 1%"><form role="form"
+								class="form-inline"
+								action="${pageContext.request.contextPath}/tourlist" method="GET">
+								<select id="filterPrice" class="form-control" name="filterPrice"
+									onchange="this.form.submit()">
+									<option selected="selected" disabled="disabled">Giá Vé</option>
+									<option value="All">Tất cả</option>
+									<option value="5">Dưới 500 ngàn</option>
+									<option value="10">Từ 500 - 1 triệu</option>
+									<option value="20">Từ 1 triệu - 2 triệu</option>
+									<option value="30">Trên 2 triệu</option>
+								</select>
+							</form></li>
+						<li style="margin-left: 1%"><form role="form"
+								class="form-inline"
+								action="${pageContext.request.contextPath}/tourlist" method="GET">
+								<select id="filterSale" class="form-control" name="filterSale"
+									onchange="this.form.submit()">
+									<option selected="selected" disabled="disabled">Giảm
+										Giá</option>
+									<option value="All">Tất cả</option>
+									<option value="10">10%</option>
+									<option value="20">20%</option>
+									<option value="30">30%</option>
+									<option value="50">50%</option>
+								</select>
+							</form></li>
+					</ul>
+				</div>
+				<br>
+				<!-- End Filter Buttons -->
 				<!-- Choose Number For Display -->
 				<div class="row">
 					<form role="form" class="form-inline" action="tourlist"
