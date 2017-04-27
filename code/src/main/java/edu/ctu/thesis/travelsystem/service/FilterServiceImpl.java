@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.ctu.thesis.travelsystem.dao.FilterDao;
 import edu.ctu.thesis.travelsystem.model.BookTour;
+import edu.ctu.thesis.travelsystem.model.Tour;
 
 @Service
 public class FilterServiceImpl implements FilterService {
@@ -31,5 +33,17 @@ public class FilterServiceImpl implements FilterService {
 	@Override
 	public List<BookTour> cancelListByFilterAge(String filterAge, int idTour) {
 		return this.filterDao.cancelListByFilterAge(filterAge, idTour);
+	}
+	
+	@Override
+	@Transactional
+	public List<Tour> tourListByFilterPrice(String filterPrice) {
+		return this.filterDao.tourListByFilterPrice(filterPrice);
+	}
+	
+	@Override
+	@Transactional
+	public List<Tour> tourListByFilterSale(String filterSale) {
+		return this.filterDao.tourListByFilterSale(filterSale);
 	}
 }

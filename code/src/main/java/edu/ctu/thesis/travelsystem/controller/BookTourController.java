@@ -35,6 +35,7 @@ import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
+import edu.ctu.thesis.travelsystem.service.FilterService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
 import edu.ctu.thesis.travelsystem.service.TourService;
 import edu.ctu.thesis.travelsystem.validator.BookTourValidator;
@@ -49,6 +50,8 @@ public class BookTourController {
 	private EMailSender emailSenderService;
 	@Autowired
 	private RegInfoService regInfoService;
+	@Autowired
+	private FilterService filterService;
 
 	private static int numOnPage = 5;
 	private static int numOfTicket = 1;
@@ -60,7 +63,9 @@ public class BookTourController {
 	public String booktourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
-			@RequestParam(required = false, value = "numOn") Integer numOn) {
+			@RequestParam(required = false, value = "numOn") Integer numOn,
+			@RequestParam(required = false, value = "filterPrice") String filterPrice,
+			@RequestParam(required = false, value = "filterSale") String filterSale) {
 		model.addAttribute("searchedValue", valueSearch);
 		try {
 			if (!numOn.equals(null)) {
@@ -69,57 +74,94 @@ public class BookTourController {
 		} catch (Exception e) {
 			logger.info("None select number of tour on page!");
 		}
-		if (valueSearch != null) {
-			Integer num = 0;
-			List<Tour> tourList = tourService.tourListByValue(valueSearch);
-			if (tourList.size() == 0) {
-				num = tourList.size() / numOnPage;
-			} else {
-				num = (tourList.size() / numOnPage) + 1;
+		try {
+			if (valueSearch != null) {
+				Integer num = 0;
+				List<Tour> tourList = tourService.tourListByValue(valueSearch);
+				if (tourList.size() == 0) {
+					num = tourList.size() / numOnPage;
+				} else {
+					num = (tourList.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("showTourList", tourList);
+					model.addAttribute("numTour", tourList.size());
+					model.addAttribute("pageNum", pageNum); // Create number of
+															// page
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>());
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
+					return "tourlist";
+				} else {
+					return "tourlist";
+				}
 			}
-			if (page <= num) {
-				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-				logger.info("Search active!");
-				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", tourList);
-				model.addAttribute("numTour", tourList.size());
-				model.addAttribute("pageNum", pageNum); // Create number of page
-				model.addAttribute("numOnPage", numOnPage);
-				model.addAttribute("page", page);
-				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-				model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-				return "tourlist";
-			} else {
-				return "tourlist";
+
+			// Tour list filter by price
+			if (filterPrice != null) {
+				Integer num = 0;
+				List<Tour> tourListByPrice = filterService.tourListByFilterPrice(filterPrice);
+				if ((tourListByPrice.size() % numOnPage) == 0) {
+					num = tourListByPrice.size() / numOnPage;
+				} else {
+					num = (tourListByPrice.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("showTourList", tourListByPrice);
+					model.addAttribute("numTour", tourListByPrice.size());
+					model.addAttribute("pageNum", pageNum);
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>());
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourListByPrice.size(), page, numOnPage));
+					return "tourlist";
+				} else {
+					return "tourlist";
+				}
 			}
-		} else { // Search none active ! Update list tour
-			logger.info("Handel book tour list when search none active!");
-			Integer num = 0;
-			List<Tour> allTourList = tourService.showTourList();
-			if ((allTourList.size() % numOnPage) == 0) {
-				num = allTourList.size() / numOnPage;
-			} else {
-				num = (allTourList.size() / numOnPage) + 1;
+
+			// Search none active ! Update tour list
+			if (valueSearch == null && filterPrice == null && filterSale == null) {
+				logger.info("Handel book tour list when search none active!");
+				Integer num = 0;
+				List<Tour> allTourList = tourService.showTourList();
+				if ((allTourList.size() % numOnPage) == 0) {
+					num = allTourList.size() / numOnPage;
+				} else {
+					num = (allTourList.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("showTourList", allTourList);
+					// Display tour list
+					model.addAttribute("numTour", allTourList.size());
+					// Get number of tour list
+					model.addAttribute("pageNum", pageNum); // Create number of
+															// page
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>());
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(allTourList.size(), page, numOnPage));
+					return "tourlist";
+				} else {
+					return "tourlist";
+				}
 			}
-			if (page <= num) {
-				List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-				model.addAttribute("tour", new Tour());
-				model.addAttribute("showTourList", allTourList);
-				// Display tour list
-				model.addAttribute("numTour", allTourList.size());
-				// Get number of tour list
-				model.addAttribute("pageNum", pageNum); // Create number of page
-				model.addAttribute("numOnPage", numOnPage);
-				model.addAttribute("page", page);
-				model.addAttribute("pageE", new ArrayList<Integer>());
-				model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-				model.addAttribute("y", Pagination.paginationY(allTourList.size(), page, numOnPage));
-				return "tourlist";
-			} else {
-				return "tourlist";
-			}
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
+			return "forbidden";
 		}
+		return "tourlist";
 	}
 
 	// Forward to Book tour page, display book tour form

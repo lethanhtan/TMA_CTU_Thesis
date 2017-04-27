@@ -288,18 +288,18 @@
 										</c:if>
 										<c:if test="${param.page2 > 1 }">
 											<li><a
-												href="${pageContext.request.contextPath }/managemyreg/${idUser}?page=${param.page2 -1}">&laquo;</a>
+												href="${pageContext.request.contextPath }/managemyreg/${idUser}?page2=${param.page2 -1}">&laquo;</a>
 											</li>
 										</c:if>
 									</c:if>
 									<c:forEach items="${pageNum2}" var="pageE2">
 										<c:if test="${pageE2 == page2}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page2=${pageE2}">${pageE2}</a></li>
 										</c:if>
 										<c:if test="${pageE2 != page2}">
 											<li><a
-												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page=${pageE2}">${pageE2}</a></li>
+												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page2=${pageE2}">${pageE2}</a></li>
 										</c:if>
 									</c:forEach>
 									<c:if test="${myNumCancelReg/numOnPage2 - param.page2 == 0}">
@@ -307,7 +307,7 @@
 									</c:if>
 									<c:if test="${myNumCancelReg/numOnPage2 - param.page2 > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/managemyreg/${idUser}?page=${page2 + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath }/managemyreg/${idUser}?page2=${page2 + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
@@ -393,18 +393,18 @@
 										</c:if>
 										<c:if test="${param.page3 > 1 }">
 											<li><a
-												href="${pageContext.request.contextPath }/managemyreg/${idUser}?page=${param.page3 -1}">&laquo;</a>
+												href="${pageContext.request.contextPath }/managemyreg/${idUser}?page3=${param.page3 -1}">&laquo;</a>
 											</li>
 										</c:if>
 									</c:if>
 									<c:forEach items="${pageNum3}" var="pageE3">
 										<c:if test="${pageE3 == page3}">
 											<li class="active"><a
-												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page=${pageE3}">${pageE3}</a></li>
+												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page3=${pageE3}">${pageE3}</a></li>
 										</c:if>
 										<c:if test="${pageE3 != page3}">
 											<li><a
-												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page=${pageE3}">${pageE3}</a></li>
+												href="${pageContext.request.contextPath}/managemyreg/${idUser}?page3=${pageE3}">${pageE3}</a></li>
 										</c:if>
 									</c:forEach>
 									<c:if test="${myNumBookTour/numOnPage3 - param.page3 == 0}">
@@ -412,7 +412,7 @@
 									</c:if>
 									<c:if test="${myNumBookTour/numOnPage3 - param.page3 > 0}">
 										<li><a
-											href="${pageContext.request.contextPath }/managemyreg/${idUser}?page=${page3 + 1}">&raquo;</a>
+											href="${pageContext.request.contextPath }/managemyreg/${idUser}?page3=${page3 + 1}">&raquo;</a>
 										</li>
 									</c:if>
 								</ul>
