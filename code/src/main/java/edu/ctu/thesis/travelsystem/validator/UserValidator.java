@@ -32,7 +32,7 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "address", "NotEmpty.userData.address");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "NotEmpty.userData.phone");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.userData.email");
-		ValidationUtils.rejectIfEmpty(errors, "birthday", "NotEmpty.userData.birthday");
+		//ValidationUtils.rejectIfEmpty(errors, "birthday", "NotEmpty.userData.birthday");
 
 		// Catch other errors
 		// Catch size user name
