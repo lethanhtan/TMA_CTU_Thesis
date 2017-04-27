@@ -194,7 +194,7 @@
 								<!-- //Portfolio Item// -->
 							</ul>
 							<!-- End Portfolio -->
-						</div>
+							</div>
 					</c:forEach>
 				</div>
 			</c:if>
