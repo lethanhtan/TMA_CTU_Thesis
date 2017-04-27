@@ -184,7 +184,7 @@ public class BookTourController {
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
 		if (verify == false) {
-			String errorString = "Báº¡n pháº£i chá»�n reCaptcha!";
+			String errorString = "Bạn phải chọn reCaptcha!";
 			model.addAttribute("errorString", errorString);
 			model.addAttribute("tour", tour);
 			model.addAttribute("numOfTicket", numOfTicket);
