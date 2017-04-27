@@ -24,6 +24,11 @@ public class Schedule implements Serializable{
 	
 	private Tour tour;
 	
+	public Schedule() {
+		this.detailSchedule = null;
+		this.sumary = null;
+	}
+	
 	@Column(name = "DETAIL", nullable = true, length = 5000)
 	public String getDetailSchedule() {
 		return this.detailSchedule;
