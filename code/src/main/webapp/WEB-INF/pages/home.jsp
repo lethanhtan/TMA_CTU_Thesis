@@ -245,7 +245,7 @@
 			<h2 class="animate fadeIn text-center">Cơ hội việc làm</h2>
 			<p class="animate fadeIn text-center">Nếu bạn muốn làm việc với
 				đội ngũ sáng tạo trong một môi trường năng động và thân thiện thì
-				gọi chúng tôi ngay bây giờ!</p>
+				gọi chúng tôi ngay bây giờ!${tourList.size()}</p>
 			<p class="animate fadeInUp text-center">
 				<button class="btn btn-primary btn-lg" type="button">Xem
 					chi tiết</button>
