@@ -159,8 +159,13 @@
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
-												src="${pageContext.request.contextPath}/image/${tour.image}"
-												class="first">
+												src="${pageContext.request.contextPath}/image/${tour.image}">
+											<c:if test="${tour.promotion.percent != 0}">
+												<img alt="new"
+													src="${pageContext.request.contextPath}/resources/img/sale.png"
+													width="80" height="80"
+													style="top: 0; left: 0; position: absolute;">
+											</c:if>
 											<figcaption>
 												<h3 style="color: yellow;">${tour.name}</h3>
 												<h5 style="color: white;">
@@ -178,13 +183,13 @@
 												<h5 style="color: white;">
 													<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
 												</h5>
-												<c:if test="${tour.promotion.percent == 0 }">
+												<c:if test="${tour.promotion.percent == 0}">
 													<h5 style="color: white;">
 														<i class="fa fa-ticket"> Giá vé: <span
 															style="font-size: 18px;"> ${tour.price} đ</span></i>
 													</h5>
 												</c:if>
-												<c:if test="${tour.promotion.percent != 0 }">
+												<c:if test="${tour.promotion.percent != 0}">
 													<h5 style="color: white;">
 														<i class="fa fa-ticket"> Giá vé: </i>
 														<del style="font-size: 18px;">${tour.price} đ</del>
