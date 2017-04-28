@@ -385,7 +385,7 @@ public class BookTourController {
 		model.put("tourData", tourFromDB);
 		model.put("bookTourList", bookTourList);
 		model.put("total", total);
-		String pr = tourFromDB.getPrice().replaceAll(",", "");
+		String pr = tourFromDB.getPriceAfterSale().replaceAll(",", "");
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		model.put("price", formatter.format(Integer.parseInt(pr) * total));
 		return "booksuccess";
