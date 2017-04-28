@@ -57,9 +57,14 @@ public class AdminUriDaoImpl extends AbstractDao implements AdminUriDao {
 		boolean result = false;
 		for (AdminUri adminUri : listAdminUri()) {
 			if (adminUri.getUri().equals(uri)) {
+				logger.info("Find success admin uri!");
 				result = true;
 			} else {
+				logger.info("Find unsuccess admin uri!");
 				result = false;
+			}
+			if (result == true) {
+				break;
 			}
 		}
 		return result;

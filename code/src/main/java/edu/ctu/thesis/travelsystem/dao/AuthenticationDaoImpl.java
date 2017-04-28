@@ -20,10 +20,11 @@ public class AuthenticationDaoImpl implements AuthenticationDao {
 		boolean authen = false;
 		if (idRole == 1 || idRole == 0) {
 			logger.info("Authentication for none admin role: " + idRole);
+			logger.info("Authentication for none admin role with uri: " + uri);
 			if (adminUriService.findUri(uri)) {
-				authen = false;
+				authen = true; //user can't access this uri
 			} else {
-				authen = true;
+				authen = false; //user can access this uri
 			}
 		} else if (idRole == 2) {
 			logger.info("Authentication for admin role: " + idRole);

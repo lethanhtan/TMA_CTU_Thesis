@@ -223,7 +223,7 @@ public class ManageTourController {
 		} else {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
-			return "redirect:/home";
+			return "redirect:/managetour";
 		}
 	}
 
