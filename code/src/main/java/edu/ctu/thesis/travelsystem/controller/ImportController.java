@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.ctu.thesis.travelsystem.extra.Authentication;
 import edu.ctu.thesis.travelsystem.model.Import;
 import edu.ctu.thesis.travelsystem.service.ImportDataService;
 import edu.ctu.thesis.travelsystem.service.UserService;
@@ -29,6 +31,9 @@ public class ImportController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	Authentication authenication;
 	
 	@RequestMapping(value = "/processExcel", method = RequestMethod.POST)
 	public String processExcel(Model model, @ModelAttribute("importData") Import objImp,
@@ -64,7 +69,12 @@ public class ImportController {
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model, HttpServletRequest request, HttpSession session) {
+		if (!authenication.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+			logger.info("Authenticaion user permission!");
+			logger.info("Current uri: " + request.getRequestURI());
+			return "forbidden";
+		}
 		model.addAttribute("importData", new Import());
 		return "import";
 	}

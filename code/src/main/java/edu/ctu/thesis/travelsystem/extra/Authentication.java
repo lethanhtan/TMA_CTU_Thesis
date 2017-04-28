@@ -14,7 +14,11 @@ public class Authentication {
 	public boolean authenticationUser(String uri, int idRole) {
 		boolean authen = false;
 		if (idRole == 1) {
-			authen = adminUriService.findUri(uri);
+			if(adminUriService.findUri(uri)) {
+				authen = false;
+			} else {
+				authen = true;
+			}
 		}
 		else if (idRole == 2) {
 			authen = true;
