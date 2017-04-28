@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -32,6 +33,7 @@ import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 //import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 //import edu.ctu.thesis.travelsystem.service.ExportDataService;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -43,8 +45,11 @@ public class ManageTourController {
 	private TourService tourService;
 	@Autowired
 	private BookTourService bookTourService;
-//	@Autowired
-//	private ExportDataService exportDataService;
+	// @Autowired
+	// private ExportDataService exportDataService;
+
+	@Autowired
+	AuthenticationService authenticationService;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 	private static int numOnPage = 5;
@@ -54,7 +59,19 @@ public class ManageTourController {
 	public String managetourController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
-			@RequestParam(required = false, value = "numOn") Integer numOn) {
+			@RequestParam(required = false, value = "numOn") Integer numOn, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(),
+					(int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		logger.info("Handle when managetour request from admin!");
 		String result; // view page mapping
 		try {
@@ -65,58 +82,54 @@ public class ManageTourController {
 			logger.info("None select number of tour on page!");
 		}
 		try {
-			if ((int) session.getAttribute("roleId") == 2) {
-				model.addAttribute("searchedValue", valueSearch);
-				if (valueSearch != null) {
-					Integer num = 0;
-					List<Tour> tourList = tourService.listTourByValue(valueSearch);
-					if ((tourList.size() % numOnPage) == 0) {
-						num = tourList.size() / numOnPage;
-					} else {
-						num = (tourList.size() / numOnPage) + 1;
-					}
-					if (page <= num) {
-						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-						logger.info("Search active!");
-						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourList);
-						model.addAttribute("numTour", tourList.size());
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("numOnPage", numOnPage);
-						model.addAttribute("page", page);
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-						result = "managetour";
-					} else {
-						result = "managetour";
-					}
-				} else { // search none active ! Update list tour
-					Integer num = 0;
-					List<Tour> tourList = tourService.listTour();
-					if ((tourList.size() % numOnPage) == 0) {
-						num = tourList.size() / numOnPage;
-					} else {
-						num = (tourList.size() / numOnPage) + 1;
-					}
-					if (page <= num) {
-						List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
-						model.addAttribute("tour", new Tour());
-						model.addAttribute("tourList", tourList); // create
-						model.addAttribute("numTour", tourList.size()); // create
-						model.addAttribute("pageNum", pageNum); // create number
-						model.addAttribute("numOnPage", numOnPage);
-						model.addAttribute("page", page);
-						model.addAttribute("pageE", new ArrayList<Integer>()); // create
-						model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-						model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-						result = "managetour";
-					} else {
-						result = "managetour";
-					}
+			model.addAttribute("searchedValue", valueSearch);
+			if (valueSearch != null) {
+				Integer num = 0;
+				List<Tour> tourList = tourService.listTourByValue(valueSearch);
+				if ((tourList.size() % numOnPage) == 0) {
+					num = tourList.size() / numOnPage;
+				} else {
+					num = (tourList.size() / numOnPage) + 1;
 				}
-			} else {
-				result = "forbidden";
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					logger.info("Search active!");
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourList);
+					model.addAttribute("numTour", tourList.size());
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
+					result = "managetour";
+				} else {
+					result = "managetour";
+				}
+			} else { // search none active ! Update list tour
+				Integer num = 0;
+				List<Tour> tourList = tourService.listTour();
+				if ((tourList.size() % numOnPage) == 0) {
+					num = tourList.size() / numOnPage;
+				} else {
+					num = (tourList.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("tourList", tourList); // create
+					model.addAttribute("numTour", tourList.size()); // create
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
+					result = "managetour";
+				} else {
+					result = "managetour";
+				}
 			}
 		} catch (Exception e) {
 			logger.error("Occured ex", e);

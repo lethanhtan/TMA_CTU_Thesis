@@ -40,6 +40,7 @@
 											name="listType">
 											<option>Danh sách tour</option>
 											<option>Danh sách người dùng</option>
+											<option>Danh sách admin uri</option>
 										</select>
 									</div>
 								</div>

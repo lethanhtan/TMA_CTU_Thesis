@@ -53,7 +53,7 @@ public class AdminUri {
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_ROLE")
+	@JoinColumn(name = "ID_ROLE", nullable = false)
 	public Role getRole() {
 		return role;
 	}

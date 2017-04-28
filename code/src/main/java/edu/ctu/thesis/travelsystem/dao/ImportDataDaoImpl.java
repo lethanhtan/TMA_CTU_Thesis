@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.ctu.thesis.travelsystem.controller.ImportController;
 import edu.ctu.thesis.travelsystem.extra.EncoderPassword;
+import edu.ctu.thesis.travelsystem.model.AdminUri;
 import edu.ctu.thesis.travelsystem.model.Import;
 import edu.ctu.thesis.travelsystem.model.Promotion;
 import edu.ctu.thesis.travelsystem.model.Role;
@@ -26,7 +27,7 @@ import edu.ctu.thesis.travelsystem.model.User;
 @Service
 public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TourDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ImportDataDaoImpl.class);
 	
 	EncoderPassword ep = new EncoderPassword();
 	
@@ -92,8 +93,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 			try {
 				logger.info("Import list type: " + listType);
 				
-				List<User> listUser = new ArrayList<>();
-				
 				Role role = new Role();
 				role.setId(1);
 				role.setDescription("role_user");
@@ -121,18 +120,52 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 					user.setRole(role);
 					// persist data into database in here
 					
-					listUser.add(user);
-					
 					session.save(user);
 					session.flush();
 				}			
 				workbook.close();
 			} catch (Exception e) {
 				logger.info("Format file error!");
-				e.printStackTrace();
 				ImportController.status = 1;
 			}
 		}
+		else if (listType.equals("Danh sách admin uri")) {
+			ImportController.status = 0;
+			try {
+				logger.info("Import list type: " + listType);
+				
+				Role role = new Role();
+				role.setDescription("role_admin");
+				role.setId(2);
+				
+				int i = 0;
+				// Creates a workbook object from the uploaded excelfile
+				HSSFWorkbook workbook = new HSSFWorkbook(excelfile.getInputStream());
+				// Creates a worksheet object representing the first sheet
+				HSSFSheet worksheet = workbook.getSheetAt(0);
+				// Reads the data in excel file until last row is encountered
+				while (i <= worksheet.getLastRowNum()) {
+					// Creates an object for the UserInfo Model
+					AdminUri adminUri = new AdminUri();
+					
+					// Creates an object representing a single row in excel
+					HSSFRow row = worksheet.getRow(i++);
+					// Sets the Read data to the model class
+					adminUri.setUri(formatter.formatCellValue(row.getCell(0)));
+					adminUri.setDescription(formatter.formatCellValue(row.getCell(1)));
+					// persist data into database in here
+					adminUri.setRole(role);
+					
+					session.saveOrUpdate(adminUri);
+					session.flush();
+				}			
+				workbook.close();
+			} catch (Exception e) {
+				logger.info("Format file error!");
+				ImportController.status = 1;
+			}
+		}
+		
 	}
 
 	@Override

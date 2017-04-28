@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.ctu.thesis.travelsystem.extra.Authentication;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.ExportDataService;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -39,8 +39,8 @@ public class ExportController {
 	BookTourService bookTourService;
 	
 	@Autowired
-	Authentication authenication;
-
+	AuthenticationService authenticationService;
+	
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView showFormData(@RequestParam(value = "nameFile", required = false) String nameFile,
 			@RequestParam(value = "exportList", required = false) String exportList,
@@ -50,11 +50,18 @@ public class ExportController {
 			HttpServletRequest request) {
 		
 		ModelAndView model = new ModelAndView();
-		if (!authenication.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
-			logger.info("Authenticaion user permission!");
-			logger.info("Current uri: " + request.getRequestURI());
-			model.setViewName("forbidden");
-			return model;
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				model.setViewName("forbidden");
+				return model;
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				model.setViewName("forbidden");
+				return model;
+			}
 		}
 		
 		Export objExport = new Export();
