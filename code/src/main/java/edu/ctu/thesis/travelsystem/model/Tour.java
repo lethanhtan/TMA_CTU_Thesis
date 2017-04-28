@@ -43,6 +43,7 @@ public class Tour {
 	private boolean fieldYearOfBirth = true;
 	private int view;
 	private int howLong;
+	private String priceAfterSale;
 	
 	private Schedule schedule;
 	private Promotion promotion;
@@ -307,7 +308,14 @@ public class Tour {
 		this.howLong = howLong;
 	}
 	
-	
+	@Column(name = "PRICE_AFTER_SALE", nullable = false)
+	public String getPriceAfterSale() {
+		return this.priceAfterSale;
+	}
+
+	public void setPriceAfterSale(String priceAfterSale) {
+		this.priceAfterSale = priceAfterSale;
+	}
 
 	@Override
 	public int hashCode() {
