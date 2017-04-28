@@ -85,7 +85,7 @@ public class Email {
 		this.subject = subject;
 	}
 	
-	@Column(name = "CONTENT", nullable = false, length = 500)
+	@Column(name = "CONTENT", nullable = false, length = 5000)
 	public String getContent() {
 		return this.content;
 	}
