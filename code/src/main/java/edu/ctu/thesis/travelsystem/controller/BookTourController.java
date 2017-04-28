@@ -128,6 +128,32 @@ public class BookTourController {
 				}
 			}
 
+			// Tour list filter by sale
+			if (filterSale != null) {
+				Integer num = 0;
+				List<Tour> tourListBySale = filterService.tourListByFilterSale(filterSale);
+				if ((tourListBySale.size() % numOnPage) == 0) {
+					num = tourListBySale.size() / numOnPage;
+				} else {
+					num = (tourListBySale.size() / numOnPage) + 1;
+				}
+				if (page <= num) {
+					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
+					model.addAttribute("tour", new Tour());
+					model.addAttribute("showTourList", tourListBySale); // create
+					model.addAttribute("numTour", tourListBySale.size()); // create
+					model.addAttribute("pageNum", pageNum); // create number
+					model.addAttribute("numOnPage", numOnPage);
+					model.addAttribute("page", page);
+					model.addAttribute("pageE", new ArrayList<Integer>()); // create
+					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
+					model.addAttribute("y", Pagination.paginationY(tourListBySale.size(), page, numOnPage));
+					return "tourlist";
+				} else {
+					return "tourlist";
+				}
+			}
+
 			// Search none active ! Update tour list
 			if (valueSearch == null && filterPrice == null && filterSale == null) {
 				logger.info("Handel book tour list when search none active!");
