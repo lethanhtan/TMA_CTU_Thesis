@@ -71,14 +71,12 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 	@Override
 	public void updateTour(Tour tour) {
 		Session session = getCurrentSession();
-		if (tour != null) {
-			try {
-				session.update(tour);
-				session.flush();
-				logger.info("Tour updated successfully, Tour details = " + tour);
-			} catch (Exception e) {
-				logger.error("Occured ex", e);
-			}
+		try {
+			session.update(tour);
+			session.flush();
+			logger.info("Tour updated successfully, Tour details = " + tour);
+		} catch (Exception e) {
+			logger.error("Occured ex", e);
 		}
 	}
 

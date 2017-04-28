@@ -36,7 +36,7 @@ public class Role {
 		this.id = id;
 	}
 
-	@Column(name = "DESCRIPTION", nullable = false, length = 40)
+	@Column(name = "DESCRIPTION", nullable = true, length = 40)
 	public String getDescription() {
 		return description;
 	}

@@ -17,7 +17,7 @@
 						</div>
 						<div class="row">
 						<div class="col-lg-12 col-sm-12">
-							<small style="color:red">${error}</small>
+							<small style="color:red">${formatError}</small>
 							<small style="color:red">${failedSize}</small>
 							<br />
 							<label>Chọn tệp</label>
@@ -32,28 +32,16 @@
 						</div>
 						<br />
 							<div class="row">
-								<div class="col-sm-12">
-									<label>Tên file import</label>
-									<div class="input-group margin-bottom-20">
-										<span class="input-group-addon"> <i
-											class="fa fa-font"></i>
-										</span> <input placeholder="Đặt tên"
-											class="form-control margin-bottom-20" type="text" name="name" />
-									</div>
-								</div>
-							</div>
-							<div class="row">
 								<div class="col-sm-7">
 									<label>Loại Import</label> <br />
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-exchange"></i>
-										</span> <s:select class="form-control margin-bottom-20"
-											name="exportList" path="importType">
+										</span> <select class="form-control margin-bottom-20"
+											name="listType">
 											<option>Danh sách tour</option>
 											<option>Danh sách người dùng</option>
-											<option>Danh sách đăng ký</option>
-											<option>Danh sách hủy đăng đăng ký</option>
-										</s:select>
+											<option>Danh sách admin uri</option>
+										</select>
 									</div>
 								</div>
 								<div class="col-sm-5">

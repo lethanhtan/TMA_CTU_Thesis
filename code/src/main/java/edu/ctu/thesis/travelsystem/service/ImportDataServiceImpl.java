@@ -16,8 +16,8 @@ public class ImportDataServiceImpl implements ImportDataService {
 
 	@Override
 	@Transactional
-	public void importExcel(MultipartFile excelfile) {
-		this.importDao.importExcel(excelfile);
+	public void importExcel(MultipartFile excelfile, String listType) {
+		this.importDao.importExcel(excelfile, listType);
 	}
 
 	@Override

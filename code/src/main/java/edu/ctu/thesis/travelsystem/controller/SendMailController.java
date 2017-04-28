@@ -18,6 +18,7 @@ import org.springframework.web.util.UriUtils;
 import edu.ctu.thesis.travelsystem.extra.CheckConnections;
 import edu.ctu.thesis.travelsystem.mail.EMailSender;
 import edu.ctu.thesis.travelsystem.model.Email;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.EmailService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 
@@ -37,6 +38,9 @@ public class SendMailController extends UriUtils{
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	AuthenticationService authenticationService;
+	
 	@RequestMapping(value = "/sendmail", method = RequestMethod.GET)
 	public String showForm(ModelMap model,
 			@RequestParam(value = "from", required = false) String from, 
@@ -49,6 +53,18 @@ public class SendMailController extends UriUtils{
 			@RequestParam(value = "encoding", required = false) String encoding,
 			HttpSession session,
 			HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		Email emailObj = new Email();
 		String sender = null;
 		List<Email> totalList = emailService.listMail();
