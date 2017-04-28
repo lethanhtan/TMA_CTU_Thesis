@@ -54,6 +54,9 @@ public class HomeController {
 			model.addAttribute("searchedValue", valueSearch);
 			if (valueSearch != null) {
 				List<Tour> tourList = tourService.listTourByValue(valueSearch);
+				for( Tour tour : tourList) {
+					model.addAttribute("sale", Integer.valueOf(tour.getPrice()) - Integer.valueOf(tour.getPrice()) * 0.1);
+				}
 				Integer num = 0;
 				if ((tourList.size() % numOnPage) == 0) {
 					num = tourList.size() / numOnPage;

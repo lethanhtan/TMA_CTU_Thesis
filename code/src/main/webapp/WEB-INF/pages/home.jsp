@@ -120,8 +120,7 @@
 								theo:</i></li>
 						<li style="margin-left: 1%"><form role="form"
 								class="form-inline"
-								action="${pageContext.request.contextPath}/home"
-								method="GET">
+								action="${pageContext.request.contextPath}/home" method="GET">
 								<select id="filterPrice" class="form-control" name="filterPrice"
 									onchange="this.form.submit()">
 									<option selected="selected" disabled="disabled">Giá Vé</option>
@@ -134,11 +133,11 @@
 							</form></li>
 						<li style="margin-left: 1%"><form role="form"
 								class="form-inline"
-								action="${pageContext.request.contextPath}/home"
-								method="GET">
+								action="${pageContext.request.contextPath}/home" method="GET">
 								<select id="filterSale" class="form-control" name="filterSale"
 									onchange="this.form.submit()">
-									<option selected="selected" disabled="disabled">Giảm Giá</option>
+									<option selected="selected" disabled="disabled">Giảm
+										Giá</option>
 									<option value="All">Tất cả</option>
 									<option value="10">10%</option>
 									<option value="20">20%</option>
@@ -160,7 +159,8 @@
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
-												src="${pageContext.request.contextPath}/image/${tour.image}">
+												src="${pageContext.request.contextPath}/image/${tour.image}"
+												class="first">
 											<figcaption>
 												<h3 style="color: yellow;">${tour.name}</h3>
 												<h5 style="color: white;">
@@ -178,9 +178,21 @@
 												<h5 style="color: white;">
 													<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
 												</h5>
-												<h5 style="color: white;">
-													<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
-												</h5>
+												<c:if test="${tour.promotion.percent == 0 }">
+													<h5 style="color: white;">
+														<i class="fa fa-ticket"> Giá vé: <span
+															style="font-size: 18px;"> ${tour.price} đ</span></i>
+													</h5>
+												</c:if>
+												<c:if test="${tour.promotion.percent != 0 }">
+													<h5 style="color: white;">
+														<i class="fa fa-ticket"> Giá vé: </i>
+														<del style="font-size: 18px;">${tour.price} đ</del>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Giảm còn: <span
+															style="color: red; font-size: 18px;">${tour.priceAfterSale}
+															đ</span>
+													</h5>
+												</c:if>
 												<div class="text-center">
 													<br> <a
 														href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}"><button
@@ -194,7 +206,7 @@
 								<!-- //Portfolio Item// -->
 							</ul>
 							<!-- End Portfolio -->
-							</div>
+						</div>
 					</c:forEach>
 				</div>
 			</c:if>

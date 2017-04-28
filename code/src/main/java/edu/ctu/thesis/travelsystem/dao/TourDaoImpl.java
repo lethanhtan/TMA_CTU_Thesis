@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.dao;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 				}
 				tour.setFullOrNot(false);
 				tour.setHowLong(daysBetween.daysBetween(tour.getReturnDate(), tour.getDepartureDate()));
+				tour.setPriceAfterSale(tour.getPrice());
 				session.saveOrUpdate(tour);
 				session.flush();
 			} catch (Exception e) {
@@ -129,6 +131,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			} else {
 				tour.setCancelOrNot(true);
 			}
+			Integer price = Integer.valueOf(tour.getPrice().replaceAll(",", ""));
+			DecimalFormat formatter = new DecimalFormat("#,###");
+			tour.setPriceAfterSale(formatter.format((price - (price * tour.getPromotion().getPercent() / 100))));
 			updateTour(tour);
 			logger.info("Tour List:" + tour);
 		}
@@ -174,6 +179,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 			} else {
 				tour.setCancelOrNot(true);
 			}
+			Integer price = Integer.valueOf(tour.getPrice().replaceAll(",", ""));
+			DecimalFormat formatter = new DecimalFormat("#,###");
+			tour.setPriceAfterSale(formatter.format((price - (price * tour.getPromotion().getPercent() / 100))));
 			updateTour(tour);
 			logger.info("Tour List:" + tour);
 		}

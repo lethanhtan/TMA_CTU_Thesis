@@ -27,6 +27,7 @@
 										<span class="input-group-addon"> <i class="fa fa-money"></i>
 										</span>
 										<select class="form-control margin-bottom-20" name="percent">
+										<option value=0>Không giảm giá</option>
 											<option value=10>10%</option>
 											<option value=20>20%</option>
 											<option value=30>30%</option>
