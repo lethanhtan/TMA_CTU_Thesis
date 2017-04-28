@@ -152,6 +152,7 @@ public class UserController extends HttpServlet {
 					session.setAttribute("user", user);
 					session.setAttribute("fullName", user.getFullName());
 					session.setAttribute("userName", user.getUserName());
+					session.setAttribute("roleId", user.getRole().getId());
 					session.setAttribute("idUser", user.getIdUser());
 					return "redirect:login";
 				}

@@ -1,5 +1,6 @@
 package edu.ctu.thesis.travelsystem.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.ctu.thesis.travelsystem.model.Import;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.ImportDataService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 
@@ -30,9 +32,16 @@ public class ImportController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	AuthenticationService authenticationService;
+	
 	@RequestMapping(value = "/processExcel", method = RequestMethod.POST)
-	public String processExcel(Model model, @ModelAttribute("importData") Import objImp,@RequestParam("file") MultipartFile excelfile, 
+	public String processExcel(Model model, @ModelAttribute("importData") Import objImp,
+			@RequestParam("file") MultipartFile excelfile,
+			@RequestParam("listType") String listType,
 			HttpSession session) {
+		logger.info("Processing for import file: " + listType);
+		String jsp = "import";
 		try {
 			if (excelfile.getSize() > 1000000) {
 				model.addAttribute("failedSize", "Vui lòng chọn file có kích thước dưới 1Mb");
@@ -42,14 +51,39 @@ public class ImportController {
 			return "import";
 		}
 		
-		objImp.setOwner(session.getAttribute("userName").toString());
+		importDataService.importExcel(excelfile, listType);
+		if (status == 1) {
+			model.addAttribute("formatError", "Lỗi định dạng file!");
+			return "import";
+		}
+		objImp.setOwner(session.getAttribute("fullName").toString());
+		objImp.setImportType(listType);
 		importDataService.saveImport(objImp);
-		importDataService.importExcel(excelfile);
-		return "redirect:/managetour";
+		if (listType.equals("Danh sách tour")) {
+			jsp = "redirect:/managetour";
+		}
+		else if (listType.equals("Danh sách người dùng")) {
+			jsp = "redirect:/manageuser";
+		}
+		else if (listType.equals("Danh sách admin uri")) {
+			jsp = "redirect:/home";
+		}
+		return jsp;
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model, HttpServletRequest request, HttpSession session) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		model.addAttribute("importData", new Import());
 		return "import";
 	}

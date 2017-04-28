@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -28,6 +29,7 @@ import edu.ctu.thesis.travelsystem.extra.ValidUtil;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Relationship;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.BookTourService;
 import edu.ctu.thesis.travelsystem.service.FilterService;
 import edu.ctu.thesis.travelsystem.service.RegInfoService;
@@ -44,6 +46,9 @@ public class ManageRegController {
 	private RegInfoService regInfoService;
 	@Autowired
 	private FilterService filterService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 
 	private static int numOnPage = 5;
 	private static int numOnPage2 = 5;
@@ -55,7 +60,20 @@ public class ManageRegController {
 	public String manageRegController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
-			@RequestParam(required = false, value = "numOn") Integer numOn) {
+			@RequestParam(required = false, value = "numOn") Integer numOn,
+			HttpServletRequest request) {
+		
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		logger.info("Handle when manage register request from admin!");
 		String result;
 		try {
@@ -139,7 +157,20 @@ public class ManageRegController {
 			@RequestParam(required = false, value = "filterSex") String filterSex,
 			@RequestParam(required = false, value = "filterAge") String filterAge,
 			@RequestParam(required = false, value = "filterSex2") String filterSex2,
-			@RequestParam(required = false, value = "filterAge2") String filterAge2) {
+			@RequestParam(required = false, value = "filterAge2") String filterAge2,
+			HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		logger.info("Handle when manage register request from admin!");
 		String result = null;
 		try {
@@ -384,14 +415,38 @@ public class ManageRegController {
 
 	// Delete customer booked tour
 	@RequestMapping(value = "deletebooktour/{idBT}/{idTour}")
-	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
+	public String deleteBookTour(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour, HttpServletRequest request, HttpSession session) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		regInfoService.deleteBookTour(idBT, idTour);
 		return "redirect:/registrationlist/{idTour}";
 	}
 
 	// Forward to Design form
 	@RequestMapping(value = "designform/{idTour}", method = RequestMethod.GET)
-	public String designForm(ModelMap model, @PathVariable("idTour") int idTour) throws ParseException {
+	public String designForm(ModelMap model, @PathVariable("idTour") int idTour, HttpSession session, HttpServletRequest request) throws ParseException {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		logger.info("Display design form page when admin request!");
 		Tour tour = tourService.findTourById(idTour);
 		if (tour != null) {
@@ -431,21 +486,55 @@ public class ManageRegController {
 
 	// Delete customer after cancel registration
 	@RequestMapping(value = "delcuscancel/{idBT}/{idTour}")
-	public String deleteCusCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour) {
+	public String deleteCusCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idBT") int idTour, HttpSession session, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		regInfoService.deleteBookTour(idBT, idTour);
 		return "redirect:/registrationlist/{idTour}";
 	}
 
 	// Administration undo customer cancel registration
 	@RequestMapping(value = "undocancel/{idBT}/{idTour}")
-	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour) {
+	public String undoCancel(@PathVariable("idBT") Integer idBT, @PathVariable("idTour") int idTour, HttpSession session, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		regInfoService.undoCancel(idBT);
 		return "redirect:/registrationlist/{idTour}";
 	}
 
 	// Forward to Customer detail page
 	@RequestMapping(value = "reginfodetail/{idBT}", method = RequestMethod.GET)
-	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT) {
+	public String showDetail(ModelMap model, @PathVariable("idBT") int idBT, HttpSession session, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		logger.info("Show registration infomation!");
 		model.put("cusData", bookTourService.searchById(idBT));
 		int register = bookTourService.searchById(idBT).getRelationship();
@@ -455,7 +544,19 @@ public class ManageRegController {
 
 	// Forward to Edit information of customer booked tour
 	@RequestMapping(value = "editreginfo/{idBT}/{idTour}", method = RequestMethod.GET)
-	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour) {
+	public String showEditForm(ModelMap model, @PathVariable("idBT") int idBT, @PathVariable("idTour") int idTour, HttpSession session, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		logger.info("Display edit form when admin request!");
 		model.put("cusData", bookTourService.searchById(idBT));
 		model.put("tour", tourService.findTourById(idTour));

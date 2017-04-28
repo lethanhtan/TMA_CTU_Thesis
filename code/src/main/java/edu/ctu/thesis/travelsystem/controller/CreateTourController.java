@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.ctu.thesis.travelsystem.model.Promotion;
 import edu.ctu.thesis.travelsystem.model.Schedule;
 import edu.ctu.thesis.travelsystem.model.Tour;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.PromotionService;
 import edu.ctu.thesis.travelsystem.service.ScheduleService;
 import edu.ctu.thesis.travelsystem.service.TourService;
@@ -38,13 +40,28 @@ public class CreateTourController {
 	
 	@Autowired
 	private PromotionService promotionService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 
 	private static final Logger logger = Logger.getLogger(CreateTourController.class);
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
 	// Decentralization user and admin
-	public String createtourController(ModelMap model, HttpSession session) {
+	public String createtourController(ModelMap model, HttpSession session, HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
+		
 		String result;
 		try {
 			if ((int) session.getAttribute("roleId") == 2) {

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.ctu.thesis.travelsystem.extra.Pagination;
 import edu.ctu.thesis.travelsystem.model.Role;
 import edu.ctu.thesis.travelsystem.model.User;
+import edu.ctu.thesis.travelsystem.service.AuthenticationService;
 import edu.ctu.thesis.travelsystem.service.UserService;
 import edu.ctu.thesis.travelsystem.validator.UserValidator;
 
@@ -32,6 +34,9 @@ import edu.ctu.thesis.travelsystem.validator.UserValidator;
 public class ManageUserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
 	private static int numOnPage = 6;
@@ -41,7 +46,19 @@ public class ManageUserController {
 	public String manageUserController(ModelMap model, HttpSession session,
 			@RequestParam(required = false, value = "valueSearch") String valueSearch,
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
-			@RequestParam(required = false, value = "numOn") Integer numOn) {
+			@RequestParam(required = false, value = "numOn") Integer numOn,
+			HttpServletRequest request) {
+		try {
+			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+				logger.info("Authenticaion user permission!");
+				logger.info("Current uri: " + request.getRequestURI());
+				return "forbidden";
+			}
+		} catch (NullPointerException e) {
+			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
+				return "forbidden";
+			}
+		}
 		logger.info("Handle when managetour request from admin!");
 		String result;
 		try {
