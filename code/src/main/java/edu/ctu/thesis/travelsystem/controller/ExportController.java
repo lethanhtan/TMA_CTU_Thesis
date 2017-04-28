@@ -3,6 +3,7 @@ package edu.ctu.thesis.travelsystem.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.ctu.thesis.travelsystem.extra.Authentication;
 import edu.ctu.thesis.travelsystem.model.BookTour;
 import edu.ctu.thesis.travelsystem.model.Export;
 import edu.ctu.thesis.travelsystem.model.Tour;
@@ -35,15 +37,26 @@ public class ExportController {
 
 	@Autowired
 	BookTourService bookTourService;
+	
+	@Autowired
+	Authentication authenication;
 
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
 	public ModelAndView showFormData(@RequestParam(value = "nameFile", required = false) String nameFile,
 			@RequestParam(value = "exportList", required = false) String exportList,
 			@RequestParam(value = "Date1", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date Date1,
 			@RequestParam(value = "Date2", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date Date2,
-			@RequestParam(value = "exportType", required = false) String exportType, HttpSession session) {
+			@RequestParam(value = "exportType", required = false) String exportType, HttpSession session,
+			HttpServletRequest request) {
 		
 		ModelAndView model = new ModelAndView();
+		if (!authenication.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
+			logger.info("Authenticaion user permission!");
+			logger.info("Current uri: " + request.getRequestURI());
+			model.setViewName("forbidden");
+			return model;
+		}
+		
 		Export objExport = new Export();
 		List<Tour> listTours = tourService.listTour();
 		model.addObject("listTours", listTours);

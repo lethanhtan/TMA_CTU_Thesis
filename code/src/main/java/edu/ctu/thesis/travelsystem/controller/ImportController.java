@@ -31,8 +31,12 @@ public class ImportController {
 	UserService userService;
 	
 	@RequestMapping(value = "/processExcel", method = RequestMethod.POST)
-	public String processExcel(Model model, @ModelAttribute("importData") Import objImp,@RequestParam("file") MultipartFile excelfile, 
+	public String processExcel(Model model, @ModelAttribute("importData") Import objImp,
+			@RequestParam("file") MultipartFile excelfile,
+			@RequestParam("listType") String listType,
 			HttpSession session) {
+		logger.info("Processing for import file: " + listType);
+		String jsp = "import";
 		try {
 			if (excelfile.getSize() > 1000000) {
 				model.addAttribute("failedSize", "Vui lòng chọn file có kích thước dưới 1Mb");
@@ -42,10 +46,21 @@ public class ImportController {
 			return "import";
 		}
 		
-		objImp.setOwner(session.getAttribute("userName").toString());
+		importDataService.importExcel(excelfile, listType);
+		if (status == 1) {
+			model.addAttribute("formatError", "Lỗi định dạng file!");
+			return "import";
+		}
+		objImp.setOwner(session.getAttribute("fullName").toString());
+		objImp.setImportType(listType);
 		importDataService.saveImport(objImp);
-		importDataService.importExcel(excelfile);
-		return "redirect:/managetour";
+		if (listType.equals("Danh sách tour")) {
+			jsp = "redirect:/managetour";
+		}
+		else if (listType.equals("Danh sách người dùng")) {
+			jsp = "redirect:/manageuser";
+		}
+		return jsp;
 	}
 	
 	@RequestMapping(value = "/import", method = RequestMethod.GET)
