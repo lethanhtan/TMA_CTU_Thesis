@@ -308,7 +308,7 @@ public class Tour {
 		this.howLong = howLong;
 	}
 	
-	@Column(name = "PRICE_AFTER_SALE", nullable = false)
+	@Column(name = "PRICE_AFTER_SALE", nullable = true)
 	public String getPriceAfterSale() {
 		return this.priceAfterSale;
 	}
