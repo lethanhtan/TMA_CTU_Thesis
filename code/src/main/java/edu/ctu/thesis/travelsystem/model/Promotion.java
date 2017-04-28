@@ -21,15 +21,10 @@ public class Promotion implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private int percent;
-	
 	private Date fromDate;
-	
 	private Date toDate;
-	
 	private Date createDate;
-	
 	private Date createTime;
-	
 	private Tour tour;
 	
 	public Promotion() {
