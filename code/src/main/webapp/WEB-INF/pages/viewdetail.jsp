@@ -26,23 +26,44 @@
 													value="${tour.departureDate}" pattern="dd/MM/yyyy" />
 											</i>
 										</h4>
-
 										<h4 style="color: white;">
 											<i class="fa fa-clock-o"> Giờ khởi hành:
 												${tour.departureTime} </i>
 										</h4>
+										<c:if test="${tour.promotion.percent != 0}">
+											<h4 style="color: white;">
+												<i class="fa fa-smile-o"> Số chỗ còn nhận:
+													${tour.ticketAvailability}</i>
+											</h4>
+										</c:if>
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-4">
 										<h4 style="color: white;">
 											<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
 										</h4>
-										<h4 style="color: white;">
-											<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
-										</h4>
-										<h4 style="color: white;">
-											<i class="fa fa-smile-o"> Số chỗ còn nhận:
-												${tour.ticketAvailability}</i>
-										</h4>
+										<c:if test="${tour.promotion.percent != 0}">
+											<h4 style="color: white;">
+												<i class="fa fa-ticket"> Giá vé: </i>
+												<del style="font-size: 18px;">${tour.price} đ</del>
+											</h4>
+											<h4 style="color: white;">
+												<i class="fa fa-bell-o"> Giảm còn: <span
+													style="color: red; font-size: 20px;">${tour.priceAfterSale}
+														đ</span></i>
+											</h4>
+											<h4 style="color: white;">
+												<i class="fa fa-calendar-o"> Thời gian khuyến mãi: </i>
+											</h4>
+										</c:if>
+										<c:if test="${tour.promotion.percent == 0}">
+											<h4 style="color: white;">
+												<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
+											</h4>
+											<h4 style="color: white;">
+												<i class="fa fa-smile-o"> Số chỗ còn nhận:
+													${tour.ticketAvailability}</i>
+											</h4>
+										</c:if>
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-4">
 										<img
@@ -50,21 +71,31 @@
 										<br> <a
 											href="${pageContext.request.contextPath}/booktour/${tour.idTour}"><button
 												class="btn btn-danger" style="margin-left: 5%;">Đăng
-												Ký Ngay</button></a>
+												Ký Ngay</button></a><br>
+										<c:if test="${tour.promotion.percent != 0}">
+											<h5 style="color: white;">
+												từ
+												<fmt:formatDate value="${tour.promotion.fromDate}"
+													pattern="dd/MM/yyyy" />
+											</h5>
+											<h5 style="color: white;">
+												đến
+												<fmt:formatDate value="${tour.promotion.toDate}"
+													pattern="dd/MM/yyyy" />
+											</h5>
+										</c:if>
+										<c:if test="${tour.promotion.percent == 0}">
+											<img alt="new"
+												src="${pageContext.request.contextPath}/resources/img/new.png"
+												width="20" height="20">
+										</c:if>
 									</div>
 								</div>
-								<c:if test="${tour.getDepartureDate().after(current)}">
-									<img alt="new"
-										src="${pageContext.request.contextPath}/resources/img/new.png"
-										width="20" height="20">
-								</c:if>
-								<img alt="new"
-									src="${pageContext.request.contextPath}/resources/img/sale.png"
-									width="20" height="20">
-								<h3 style="color: blue;">Thông tin:</h3>
+								<br>
+								<h3 style="color: yellow;">Thông tin:</h3>
 								<h6 style="color: white;">${tour.detail}</h6>
 								<hr>
-								<h3 style="color: blue;">Chi tiết lịch trình:</h3>
+								<h3 style="color: yellow;">Chi tiết lịch trình:</h3>
 								<h6 style="color: white;">${tour.getSchedule().getDetailSchedule()}</h6>
 								<br>
 								<hr>

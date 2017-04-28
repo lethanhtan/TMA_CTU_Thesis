@@ -106,7 +106,6 @@ public class HomeController {
 					result = "home";
 				}
 			}
-
 			
 			// Tour list filter by price
 			if (filterPrice != null) {
