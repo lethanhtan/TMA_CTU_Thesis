@@ -142,6 +142,7 @@
 									<option value="10">10%</option>
 									<option value="20">20%</option>
 									<option value="30">30%</option>
+									<option value="40">40%</option>
 									<option value="50">50%</option>
 								</select>
 							</form></li>
@@ -159,7 +160,7 @@
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
-												src="${pageContext.request.contextPath}/image/${tour.image}">
+												src="${pageContext.request.contextPath}/image/${tour.image}" height=200px width=500px>
 											<c:if test="${tour.promotion.percent != 0}">
 												<img alt="new"
 													src="${pageContext.request.contextPath}/resources/img/sale.png"

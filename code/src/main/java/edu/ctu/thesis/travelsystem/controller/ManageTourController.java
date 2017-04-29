@@ -193,6 +193,7 @@ public class ManageTourController {
 				byte[] bytes = file.getBytes();
 
 				// Creating the directory to store file
+				logger.info("Processing for saving image data!");
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
 				if (!dir.exists())

@@ -109,19 +109,13 @@
 							<div class="col-md-8">
 								<form>
 									<small style="color: green;">${sendSuccess}</small> <small
-										style="color: red;">${failedConnect}</small> <br /> <label>Người
-										nhận <span class="color-red">*</span>
+										style="color: red;">${failedConnect}</small> <br /> <small
+										style="color: red;">${sendingError}</small> <br />
+									<label>Người nhận <span class="color-red">*</span>
 									</label>
 									<div class="row margin-bottom-20">
 										<div class="col-md-6 col-md-offset-0">
 											<input class="form-control" type="text" name="to">
-										</div>
-									</div>
-									<label>Cc <span class="color-red"></span>
-									</label>
-									<div class="row margin-bottom-20">
-										<div class="col-md-6 col-md-offset-0">
-											<input class="form-control" type="text">
 										</div>
 									</div>
 									<label>Chủ đề <span class="color-red">*</span>
@@ -139,9 +133,12 @@
 									</div>
 									<label style="color: red; font-style: italic;">(*) Nội
 										dung bắt buộc phải điền </label>
-									<p>
-										<button type="submit" class="btn btn-primary">Gửi</button>
-									</p>
+									<div class="row margin-bottom-20">
+										<div class="row col-sm-4 col-md-4">
+											<button type="submit" class="btn btn-primary">Gửi</button>
+											<button type="reset" class="btn btn-primary">Làm mới</button>
+										</div>
+									</div>
 								</form>
 							</div>
 							<!-- End Main Content -->

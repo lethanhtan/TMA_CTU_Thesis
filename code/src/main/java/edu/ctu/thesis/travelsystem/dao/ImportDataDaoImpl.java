@@ -134,10 +134,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 			try {
 				logger.info("Import list type: " + listType);
 				
-				Role role = new Role();
-				role.setDescription("role_admin");
-				role.setId(2);
-				
 				int i = 0;
 				// Creates a workbook object from the uploaded excelfile
 				HSSFWorkbook workbook = new HSSFWorkbook(excelfile.getInputStream());
@@ -154,7 +150,6 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 					adminUri.setUri(formatter.formatCellValue(row.getCell(0)));
 					adminUri.setDescription(formatter.formatCellValue(row.getCell(1)));
 					// persist data into database in here
-					adminUri.setRole(role);
 					
 					session.saveOrUpdate(adminUri);
 					session.flush();

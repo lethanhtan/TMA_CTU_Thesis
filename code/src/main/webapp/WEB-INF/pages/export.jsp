@@ -27,6 +27,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Từ ngày</label>
@@ -49,6 +50,7 @@
 								</div>
 							</div>
 						</div>
+						 -->
 						<div class="row">
 							<div class="col-sm-7">
 								<label>Loại Export</label> <br />

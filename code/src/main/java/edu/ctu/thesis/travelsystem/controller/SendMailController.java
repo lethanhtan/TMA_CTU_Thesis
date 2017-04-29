@@ -101,7 +101,23 @@ public class SendMailController extends UriUtils{
 			if (to != null) {
 				logger.info("Handle manual send mail!");
 				logger.info("Process: " + sender + "->" + to);
-				emailSender.SendEmail(to, "ribostrush@outlook.com",  subject, message);
+				try {
+					logger.info("Mail sender address: " + from);
+					emailSender.SendEmail(to, sender,  subject, message);
+				} catch (Exception e) {
+					model.addAttribute("sendingError", "Gửi mail không thành công!");
+					emailObj.setReciever(to);
+					emailObj.setSender(sender); 
+					emailObj.setDate(new Date());
+					emailObj.setTime(new Date());
+					emailObj.setContent(message);
+					emailObj.setStatus(false);
+					emailObj.setSubject(subject);
+					emailObj.setUser(userService.findUserByUserName(((String)session.getAttribute("userName"))));
+					emailService.saveEmail(emailObj);
+					
+					return "sendmail";
+				}
 				logger.info("Config: " + from);
 				emailObj.setReciever(to);
 				emailObj.setSender(sender); 
