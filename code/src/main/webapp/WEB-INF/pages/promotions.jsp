@@ -25,9 +25,8 @@
 									<label>Mức giảm giá</label> <br />
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-money"></i>
-										</span>
-										<select class="form-control margin-bottom-20" name="percent">
-										<option value=0>Không giảm giá</option>
+										</span> <select class="form-control margin-bottom-20" name="percent">
+											<option value=0>Không giảm giá</option>
 											<option value=10>10%</option>
 											<option value=20>20%</option>
 											<option value=30>30%</option>
@@ -43,9 +42,10 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i
 											class="fa fa-calendar"></i>
-										</span>
-										<input value='<fmt:formatDate value="${fromDate}" pattern="MM/dd/yyyy"/>'id="datepicker5" type="date"
-											class="form-control margin-bottom-20" name="fromDate"/>
+										</span> <input
+											value='<fmt:formatDate value="${fromDate}" pattern="MM/dd/yyyy"/>'
+											id="datepicker5" type="date"
+											class="form-control margin-bottom-20" name="fromDate" />
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -53,9 +53,10 @@
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i
 											class="fa fa-calendar"></i>
-										</span>
-										<input value='<fmt:formatDate value="${toDate}" pattern="MM/dd/yyyy"/>'  id="datepicker6" type="date"
-											class="form-control margin-bottom-20" name="toDate"/>
+										</span> <input
+											value='<fmt:formatDate value="${toDate}" pattern="MM/dd/yyyy"/>'
+											id="datepicker6" type="date"
+											class="form-control margin-bottom-20" name="toDate" />
 									</div>
 								</div>
 							</div>
@@ -65,8 +66,8 @@
 									<button class="btn btn-primary" type="submit">Xác Nhận</button>
 								</div>
 								<div class="col-lg-6 text-center">
-									<a href="${pageContext.request.contextPath}/managetour"><button class="btn btn-primary"
-											type="button">Hủy Bỏ</button></a>
+									<a href="${pageContext.request.contextPath}/managetour"><button
+											class="btn btn-primary" type="button">Hủy Bỏ</button></a>
 								</div>
 							</div>
 						</form>

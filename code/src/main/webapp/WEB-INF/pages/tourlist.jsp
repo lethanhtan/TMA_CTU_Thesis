@@ -83,7 +83,7 @@
 					<h1 style="text-align: center;">Không có tour nào!</h1>
 				</c:if>
 				<c:if test="${!empty showTourList}">
-					<table>
+					<table style="font-size: 13px;">
 						<thead>
 							<tr>
 								<th>STT</th>

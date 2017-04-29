@@ -4,11 +4,8 @@
 <%@ include file="userheader.jsp"%>
 <!-- === END HEADER === -->
 <!-- === BEGIN CONTENT === -->
-
 <div id="content">
-
 	<div class="container background-white">
-
 		<div class="container">
 			<div class="row margin-vert-30">
 				<form class="signup-page">
