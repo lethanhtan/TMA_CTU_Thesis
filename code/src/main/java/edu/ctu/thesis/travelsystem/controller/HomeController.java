@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -27,9 +28,9 @@ public class HomeController {
 	private TourService tourService;
 	@Autowired
 	private FilterService filterService;
-
+	
 	private static final Logger logger = Logger.getLogger(HomeController.class);
-	private static int numOnPage = 5;
+	private static int numOnPage = 10;
 
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String redirectController(ModelMap model, HttpSession session,
@@ -37,7 +38,9 @@ public class HomeController {
 			@RequestParam(required = true, defaultValue = "1", value = "page") Integer page,
 			@RequestParam(required = false, value = "numOn") Integer numOn,
 			@RequestParam(required = false, value = "filterPrice") String filterPrice,
-			@RequestParam(required = false, value = "filterSale") String filterSale) {
+			@RequestParam(required = false, value = "filterSale") String filterSale,
+			HttpServletRequest request) {
+		
 		logger.info("Handle home request!");
 		model.addAttribute("tour", new Tour());
 		model.addAttribute("current", new Date());

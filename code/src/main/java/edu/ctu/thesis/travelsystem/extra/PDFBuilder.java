@@ -39,7 +39,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info(model.get("exportList"));
 		if (model.get("exportList").equals("Danh sách tour")) {
 			logger.info("Processing for build pdf file: tour list");
 			// get data model which is passed by the Spring container
@@ -77,17 +76,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.addCell(getNormalCell("Số lượng", SIZE1, font));
 
 			table.addCell(getNormalCell("Giá vé", SIZE1, font));
-			/*
-			 * table.addCell(getNormalCell("Cancel or not", SIZE1, font));
-			 * 
-			 * table.addCell(getNormalCell("Date allow cancel", SIZE1, font));
-			 * 
-			 * table.addCell(getNormalCell("Date allow reg", SIZE1, font));
-			 * 
-			 * table.addCell(getNormalCell("Full or not", SIZE1, font));
-			 * 
-			 * table.addCell(getNormalCell("Ticket available", SIZE1, font));
-			 */
 			// write table row data
 			for (Tour tour : listTours) {
 				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), SIZE1, font));
@@ -98,18 +86,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 				table.addCell(getNormalCell(tour.getReturnTime(), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getQuantum()), SIZE1, font));
 				table.addCell(getNormalCell(String.valueOf(tour.getPrice()), SIZE1, font));
-				/*
-				 * table.addCell(getNormalCell(String.valueOf(tour.
-				 * getCancelOrNot()), SIZE1, font));
-				 * table.addCell(getNormalCell(tour.getDateAllowCancel().
-				 * toString(), SIZE1, font));
-				 * table.addCell(getNormalCell(tour.getDateAllowReg().toString()
-				 * , SIZE1, font));
-				 * table.addCell(getNormalCell(String.valueOf(tour.getFullOrNot(
-				 * )), SIZE1, font));
-				 * table.addCell(getNormalCell(String.valueOf(tour.
-				 * getTicketAvailability()), SIZE1, font));
-				 */
 			}
 
 			doc.add(table);
@@ -159,62 +135,6 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 		}
 		if (model.get("exportList").equals("Tour")) {
-			/*
-			logger.info("-----------Export list of register for each tour!-----------------");
-			// get data model which is passed by the Spring container
-			@SuppressWarnings("unchecked")
-			List<BookTour> listBookTours = (List<BookTour>) model.get("listBookTours");
-
-			// define font for table header row
-			FontFactory.register(FONT2);
-			Font font = FontFactory.getFont(FONT2, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-			Paragraph title = new Paragraph("Danh sách người đăng ký", font);
-			// title.setIndentationLeft(180.0f);
-			doc.add(title);
-			if (!listBookTours.isEmpty()) {
-				Paragraph nameTour = new Paragraph(listBookTours.get(0).getTour().getName(), font);
-				// nameTour.setIndentationLeft(200.0f);
-				doc.add(nameTour);
-			}
-			doc.addTitle("NYTravel List BookTour");
-			doc.addSubject("Danh sách người đăng ký");
-
-			PdfPTable table = new PdfPTable(4);
-			table.setWidthPercentage(100.0f);
-			// table.setWidths(new float[] { 0.5f, 1.5f, 1.5f, 2.0f, 1.0f, 0.5f,
-			// 3.0f });
-			table.setWidths(new float[] { 1.0f, 4.0f, 3.0f, 2.0f });
-			table.setSpacingBefore(10);
-
-			// write table header
-			table.addCell(getNormalCell("STT", SIZE1, font));
-
-			table.addCell(getNormalCell("Người đăng ký", SIZE1, font));
-
-			// table.addCell(getNormalCell("Email", SIZE1, font));
-
-			// table.addCell(getNormalCell("Địa chỉ", SIZE1, font));
-
-			table.addCell(getNormalCell("Điện thoại", SIZE1, font));
-
-			table.addCell(getNormalCell("Giới tính", SIZE1, font));
-
-			// table.addCell(getNormalCell("Người đi cùng", SIZE1, font));
-
-			// write table row data
-			for (BookTour bookTour : listBookTours) {
-				table.addCell(getNormalCell(String.valueOf(bookTour.getIdBT()), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusName(), SIZE1, font));
-				// table.addCell(getNormalCell(bookTour.getCusEmail().toString(),
-				// SIZE1, font));
-				// table.addCell(getNormalCell(bookTour.getCusAddress(), SIZE1,
-				// font));
-				table.addCell(getNormalCell(bookTour.getCusPhone().toString(), SIZE1, font));
-				table.addCell(getNormalCell(bookTour.getCusSex(), SIZE1, font));
-			}
-
-			doc.add(table);
-			*/
 			logger.info("Processing for build pdf file: register tour list");
 			// get data model which is passed by the Spring container
 			@SuppressWarnings("unchecked")
