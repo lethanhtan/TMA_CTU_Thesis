@@ -327,9 +327,9 @@ public class BookTourController {
 		int register = bookTour.getRelationship();
 		model.put("register", regInfoService.getFirstElement(register));
 		if (session.getAttribute("idUser") != null) {
-			model.put("idUser", true);
+			model.put("login", true);
 		} else {
-			model.put("idUser", false);
+			model.put("login", false);
 		}
 		return "booktourdetail";
 	}
