@@ -8,7 +8,7 @@
 	<div class="container background-white">
 		<div class="container">
 			<div class="row margin-vert-30">
-				<h2>Xác nhận hủy đặt vé</h2>
+				<h2 style="text-align: center;">Xác nhận hủy đặt vé</h2>
 				<h2 style="color: blue" align="center">Một email đã được gửi
 					đến hộp thư của bạn</h2>
 				<br>
@@ -22,12 +22,15 @@
 							<div class="input-group margin-bottom-20">
 								<span class="input-group-addon"> <i
 									class="fa fa-envelope"></i>
-								</span><input class="form-control margin-bottom-20" name="confirmCode">
+								</span><input placeholder="Nhập mã xác nhận hủy đăng ký"
+									class="form-control margin-bottom-20" name="confirmCode">
 							</div>
 						</center>
 						<div class="row">
-							<button class="btn btn-primary" type="submit"
-								style="text-align: center;">Xác nhận</button>
+							<div class="text-center">
+								<button class="btn btn-primary" type="submit"center;>Xác
+									nhận</button>
+							</div>
 						</div>
 					</s:form>
 					<br>

@@ -135,7 +135,7 @@
 										dung bắt buộc phải điền </label>
 									<div class="row margin-bottom-20">
 										<div class="row col-sm-4 col-md-4">
-											<button type="submit" class="btn btn-primary">Gửi</button>
+											<button type="submit" class="btn btn-primary" style="margin-left: 8%;">Gửi</button>
 											<button type="reset" class="btn btn-primary">Làm mới</button>
 										</div>
 									</div>
