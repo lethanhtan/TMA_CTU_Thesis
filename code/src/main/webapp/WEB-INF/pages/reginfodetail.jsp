@@ -85,16 +85,30 @@
 				</a> <a
 					href="<c:url value='/cancelallreg/${cusData.idBT}/${cusData.relationship}/${cusData.tour.idTour}'/>">
 					<button type="button" id="allcancel${cusData.idBT}" hidden="true"></button>
-				</a> <br>
+				</a> <a
+					href="<c:url value='/deletebooktour/${cusData.idBT}/${cusData.tour.idTour }'/>">
+					<button type="button" id="only${cusData.idBT}" hidden="true"></button>
+				</a> <a
+					href="<c:url value='/delallbooktour/${cusData.idBT}/${cusData.relationship}/${cusData.tour.idTour }'/>">
+					<button type="button" id="all${cusData.idBT}" hidden="true"></button>
+				</a><br>
 				<div class="row">
 					<c:if test="${not cusData.cusCancel}">
-						<div class="col-lg-4 text-center">
+						<div class="col-lg-3 text-center">
 							<a
 								href="<c:url value='/editreginfo/${cusData.idBT}/${cusData.tour.idTour}'/>"><button
 									class="btn btn-primary">Chỉnh Sửa</button></a>
 						</div>
+						<div class="col-lg-3 text-center">
+							<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
+								<button class="btn btn-primary deleteall" id="${cusData.idBT }">Xóa</button>
+							</c:if>
+							<c:if test="${cusData.cusName ne cusData.whoIsRegistered}">
+								<button class="btn btn-primary delete" id="${cusData.idBT }">Xóa</button>
+							</c:if>
+						</div>
 						<c:if test="${cusData.tour.cancelOrNot}">
-							<div class="col-lg-4 text-center">
+							<div class="col-lg-3 text-center">
 								<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
 									<button class="btn btn-primary cancel"
 										id="cancel${cusData.idBT}">Hủy Đăng Ký</button>
@@ -106,18 +120,26 @@
 								</c:if>
 							</div>
 						</c:if>
-						<div class="col-lg-4 text-center">
+						<div class="col-lg-3 text-center">
 							<button onclick="goBack()" class="btn btn-primary" type="button">Trở
 								Về</button>
 						</div>
 					</c:if>
 					<c:if test="${cusData.cusCancel}">
-						<div class="col-lg-6 text-center">
+						<div class="col-lg-4 text-center">
 							<a
 								href="<c:url value='/undocancel/${cusData.idBT}/${cusData.tour.idTour}'/>"><button
 									class="btn btn-primary">Phục Hồi</button></a>
 						</div>
-						<div class="col-lg-6 text-center">
+						<div class="col-lg-4 text-center">
+							<c:if test="${cusData.cusName eq cusData.whoIsRegistered}">
+								<button class="btn btn-primary deleteall" id="${cusData.idBT }">Xóa</button>
+							</c:if>
+							<c:if test="${cusData.cusName ne cusData.whoIsRegistered}">
+								<button class="btn btn-primary delete" id="${cusData.idBT }">Xóa</button>
+							</c:if>
+						</div>
+						<div class="col-lg-4 text-center">
 							<button onclick="goBack()" class="btn btn-primary" type="button">Trở
 								Về</button>
 						</div>
