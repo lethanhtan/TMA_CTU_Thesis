@@ -644,7 +644,7 @@ public class ManageRegController {
 	public String undoAllCancel(@PathVariable("idBT") int idBT, @PathVariable("relationship") int relationship,
 			@PathVariable("idTour") int idTour, ModelMap model, HttpSession session) {
 		regInfoService.undoAllCancel(idBT, relationship);
-		if (session.getAttribute("roleId") != null) {
+		if ((int) session.getAttribute("roleId") == 2) {
 			// Forward for administrator after undo cancel
 			return "redirect:/registrationlist/{idTour}";
 		} else {

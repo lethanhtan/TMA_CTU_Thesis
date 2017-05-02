@@ -94,7 +94,7 @@
 								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
 							<div class="col-lg-6 text-center">
-								<a href="<c:url value='/manageuser'/>"><button
+								<a href="<c:url value='/managemyacc/${userData.idUser}'/>"><button
 										class="btn btn-primary" type="button">Hủy Bỏ</button></a>
 							</div>
 						</div>
