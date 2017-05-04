@@ -62,7 +62,7 @@ public class ImportDataDaoImpl extends AbstractDao implements ImportDataDao {
 					tour.setReturnDate(row.getCell(3).getDateCellValue());
 					tour.setReturnTime(formatter.formatCellValue(row.getCell(4)));
 					tour.setQuantum((int) row.getCell(5).getNumericCellValue());
-					tour.setDetail(formatter.formatCellValue(row.getCell(6)));
+					//tour.setDetail(formatter.formatCellValue(row.getCell(6)));
 					tour.setPrice(formatter.formatCellValue(row.getCell(7)));
 					tour.setCancelOrNot(row.getCell(8).getBooleanCellValue());
 					tour.setRegOrNot(row.getCell(9).getBooleanCellValue());

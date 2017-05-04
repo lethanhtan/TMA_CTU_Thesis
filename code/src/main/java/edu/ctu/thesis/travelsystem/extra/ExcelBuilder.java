@@ -100,7 +100,7 @@ public class ExcelBuilder extends AbstractExcelView {
                 aRow.createCell(3).setCellValue(tour.getDepartureTime());
                 aRow.createCell(4).setCellValue(tour.getReturnDate());
                 aRow.createCell(5).setCellValue(tour.getReturnTime());
-                aRow.createCell(6).setCellValue(tour.getDetail());
+                //aRow.createCell(6).setCellValue(tour.getDetail());
                 aRow.createCell(7).setCellValue(tour.getCancelOrNot());
                 aRow.createCell(8).setCellValue(tour.getRegOrNot());
                 aRow.createCell(9).setCellValue(tour.getDateAllowReg());

@@ -52,11 +52,11 @@ public class ManageUserController {
 			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
 				logger.info("Authenticaion user permission!");
 				logger.info("Current uri: " + request.getRequestURI());
-				return "forbidden";
+				return "login";
 			}
 		} catch (NullPointerException e) {
 			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
-				return "forbidden";
+				return "login";
 			}
 		}
 		logger.info("Handle when managetour request from admin!");
