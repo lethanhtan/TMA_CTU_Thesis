@@ -5,7 +5,7 @@
 <c:if test="${roleId == 2}">
 	<%@ include file="adminheader.jsp"%>
 </c:if>
-<c:if test="${roleId == null}">
+<c:if test="${roleId == 1}">
 	<%@ include file="userheader.jsp"%>
 </c:if>
 <!-- === END HEADER === -->

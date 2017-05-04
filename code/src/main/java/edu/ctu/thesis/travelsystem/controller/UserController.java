@@ -467,7 +467,7 @@ public class UserController extends HttpServlet {
 				user1.setPassword(ep.enCoded(newPass));
 				userService.editUser(user1);
 				logger.info("Change password successfully!");
-				if (session.getAttribute("roleId") != null) {
+				if (session.getAttribute("roleId") == 2) {
 					return "redirect:/manageuser";
 				} else {
 					session.removeAttribute("user");
