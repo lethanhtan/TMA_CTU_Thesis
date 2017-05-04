@@ -1,3 +1,4 @@
+/*
 package edu.ctu.thesis.travelsystem.extra;
 
 import java.io.BufferedOutputStream;
@@ -73,3 +74,4 @@ public class UploadFile implements Runnable{
 	}
 	
 }
+*/

@@ -3,7 +3,6 @@ package edu.ctu.thesis.travelsystem.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,15 +12,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,9 +53,19 @@ public class ManageTourController {
 
 	@Autowired
 	AuthenticationService authenticationService;
+	
+	@Autowired
+	ServletContext servletContext;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 	private static int numOnPage = 5;
+	
+	@InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+             dateFormat.setLenient(false);
+             webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+         }
 
 	// handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
@@ -150,21 +163,7 @@ public class ManageTourController {
 	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) throws ParseException {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
-		if (tour != null) {
-			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-			String departureDate = sdf.format(tour.getDepartureDate());
-			String returnDate = sdf.format(tour.getReturnDate());
-			String dateAllowReg = sdf.format(tour.getDateAllowReg());
-			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
-			model.addAttribute("date1", departureDate);
-			model.addAttribute("date2", returnDate);
-			model.addAttribute("date3", dateAllowReg);
-			model.addAttribute("date4", dateAllowCancel);
-			model.addAttribute("tourData", tour);
-			model.addAttribute("idTour", idTour);
-		} else {
-			logger.info("Null Object!");
-		}
+		model.addAttribute("tourData", tour);
 		return "updatetour";
 	}
 
@@ -173,29 +172,21 @@ public class ManageTourController {
 	public String updateTour(ModelMap model, @PathVariable("idTour") int idTour,
 			@ModelAttribute("tourData") @Valid Tour tour, BindingResult br, HttpSession session,
 			@RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
-		if (tour != null) {
-			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-			String departureDate = sdf.format(tour.getDepartureDate());
-			String returnDate = sdf.format(tour.getReturnDate());
-			String dateAllowReg = sdf.format(tour.getDateAllowReg());
-			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
-			model.addAttribute("date1", departureDate);
-			model.addAttribute("date2", returnDate);
-			model.addAttribute("date3", dateAllowReg);
-			model.addAttribute("date4", dateAllowCancel);
-			model.addAttribute("tourData", tour);
-			model.addAttribute("idTour", idTour);
-		} else {
-			logger.info("Null Object!");
-		}
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-
 				// Creating the directory to store file
 				logger.info("Processing for saving image data!");
+				/*
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
+				*/
+				String webappRoot = servletContext.getRealPath("/");
+			    String relativeFolder = File.separator + "resources" + File.separator
+			                             + "images" + File.separator;
+			    String filename = webappRoot + relativeFolder
+	                       + file.getOriginalFilename();
+			    File dir = new File(filename);
 				if (!dir.exists())
 					dir.mkdirs();
 
@@ -204,7 +195,7 @@ public class ManageTourController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-
+				
 				logger.info("Server File Location=" + serverFile.getAbsolutePath());
 				tour.setImage(name);
 

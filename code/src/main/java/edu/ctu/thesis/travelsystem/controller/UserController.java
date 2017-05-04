@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,9 +20,12 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +62,13 @@ public class UserController extends HttpServlet {
 	private static int numOnPage = 5;
 	private static int numOnPage2 = 5;
 	private static int numOnPage3 = 5;
-
+	
+	@InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+             dateFormat.setLenient(false);
+             webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+         }
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {

@@ -3,18 +3,22 @@ package edu.ctu.thesis.travelsystem.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,8 +47,18 @@ public class CreateTourController {
 	
 	@Autowired
 	private AuthenticationService authenticationService;
+	
+	@Autowired
+	ServletContext servletContext;
 
 	private static final Logger logger = Logger.getLogger(CreateTourController.class);
+	
+	@InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+             dateFormat.setLenient(false);
+             webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+         }
 
 	// Processing for register when required request
 	@RequestMapping(value = "/createtour", method = RequestMethod.GET)
@@ -84,27 +98,20 @@ public class CreateTourController {
 	public String saveForm(ModelMap model, @ModelAttribute("tourData") @Valid Tour tour, BindingResult br,
 			@ModelAttribute("scheduleData") @Valid Schedule schedule, @ModelAttribute("saleData") @Valid Promotion sale, HttpSession session,
 			@RequestParam("file") MultipartFile file, @RequestParam("nameFile") String name) {
-		if (tour != null) {
-			DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-			String departureDate = sdf.format(tour.getDepartureDate());
-			String returnDate = sdf.format(tour.getReturnDate());
-			String dateAllowReg = sdf.format(tour.getDateAllowReg());
-			String dateAllowCancel = sdf.format(tour.getDateAllowCancel());
-			model.addAttribute("date1", departureDate);
-			model.addAttribute("date2", returnDate);
-			model.addAttribute("date3", dateAllowReg);
-			model.addAttribute("date4", dateAllowCancel);
-			model.addAttribute("tourData", tour);
-		} else {
-			logger.info("Null Object!");
-		}
 		if (file != null && !file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-
 				// Creating the directory to store file
+				/*
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
+				*/
+				String webappRoot = servletContext.getRealPath("/");
+			    String relativeFolder = File.separator + "resources" + File.separator
+			                             + "images" + File.separator;
+			    String filename = webappRoot + relativeFolder
+	                       + file.getOriginalFilename();
+			    File dir = new File(filename);
 				if (!dir.exists())
 					dir.mkdirs();
 
@@ -115,11 +122,12 @@ public class CreateTourController {
 				try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
 					stream.write(bytes);
 					logger.info("Server File Location=" + serverFile.getAbsolutePath());
-					tour.setImage(name);
+					
 				} catch (Exception e) {
 					logger.error("exception when writting to file", e);
 					throw e;
 				}
+				tour.setImage(name);
 
 			} catch (Exception e) {
 				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");
