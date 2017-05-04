@@ -16,7 +16,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
 	<mvc:resources mapping="/image/**"
-		location="file:///${catalina.home}/webapps/TravelSystem/resouces/images"></mvc:resources>
+		location="file:///${catalina.home}/tmpFiles/"></mvc:resources>
 
 	<!-- Set package to scan using annotation -->
 	<context:component-scan base-package="edu.ctu.thesis.travelsystem" />

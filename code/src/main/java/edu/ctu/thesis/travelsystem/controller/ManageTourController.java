@@ -53,19 +53,19 @@ public class ManageTourController {
 
 	@Autowired
 	AuthenticationService authenticationService;
-	
+
 	@Autowired
 	ServletContext servletContext;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
 	private static int numOnPage = 5;
-	
+
 	@InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-             dateFormat.setLenient(false);
-             webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-         }
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		dateFormat.setLenient(false);
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
 
 	// handle for mangeagetour request from admin
 	@RequestMapping(value = "managetour", method = RequestMethod.GET)
@@ -78,11 +78,11 @@ public class ManageTourController {
 					(int) session.getAttribute("roleId"))) {
 				logger.info("Authenticaion user permission!");
 				logger.info("Current uri: " + request.getRequestURI());
-				return "forbidden";
+				return "login";
 			}
 		} catch (NullPointerException e) {
 			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
-				return "forbidden";
+				return "login";
 			}
 		}
 		logger.info("Handle when managetour request from admin!");
@@ -175,18 +175,11 @@ public class ManageTourController {
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
+
 				// Creating the directory to store file
 				logger.info("Processing for saving image data!");
-				/*
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
-				*/
-				String webappRoot = servletContext.getRealPath("/");
-			    String relativeFolder = File.separator + "resources" + File.separator
-			                             + "images" + File.separator;
-			    String filename = webappRoot + relativeFolder
-	                       + file.getOriginalFilename();
-			    File dir = new File(filename);
 				if (!dir.exists())
 					dir.mkdirs();
 
@@ -195,7 +188,7 @@ public class ManageTourController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				
+
 				logger.info("Server File Location=" + serverFile.getAbsolutePath());
 				tour.setImage(name);
 
@@ -204,8 +197,7 @@ public class ManageTourController {
 				return "updatetour";
 			}
 		} else {
-			model.addAttribute("failedEmpty", "You not upload image for tour!");
-			return "updatetour";
+			tour.setImage(tourService.findTourById(idTour).getImage());
 		}
 
 		TourValidator tourValidator = new TourValidator();

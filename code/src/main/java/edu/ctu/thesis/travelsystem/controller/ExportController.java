@@ -54,12 +54,12 @@ public class ExportController {
 			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
 				logger.info("Authenticaion user permission!");
 				logger.info("Current uri: " + request.getRequestURI());
-				model.setViewName("forbidden");
+				model.setViewName("login");
 				return model;
 			}
 		} catch (NullPointerException e) {
 			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
-				model.setViewName("forbidden");
+				model.setViewName("login");
 				return model;
 			}
 		}

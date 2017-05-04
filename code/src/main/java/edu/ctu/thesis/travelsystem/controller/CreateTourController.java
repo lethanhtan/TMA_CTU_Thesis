@@ -68,27 +68,23 @@ public class CreateTourController {
 			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
 				logger.info("Authenticaion user permission!");
 				logger.info("Current uri: " + request.getRequestURI());
-				return "forbidden";
+				return "login";
 			}
 		} catch (NullPointerException e) {
 			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
-				return "forbidden";
+				return "login";
 			}
 		}
 		
 		String result;
 		try {
-			if ((int) session.getAttribute("roleId") == 2) {
 				logger.info("Create tour! In here first!");
 				model.put("tourData", new Tour());
 				model.put("scheduleData", new Schedule());
 				model.put("saleData", new Promotion());
 				result = "createtour";
-			} else {
-				result = "forbidden";
-			}
 		} catch (Exception e) {
-			result = "forbidden";
+			result = "login";
 		}
 		return result;
 	}
@@ -101,17 +97,10 @@ public class CreateTourController {
 		if (file != null && !file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
+
 				// Creating the directory to store file
-				/*
 				String rootPath = System.getProperty("catalina.home");
 				File dir = new File(rootPath + File.separator + "tmpFiles");
-				*/
-				String webappRoot = servletContext.getRealPath("/");
-			    String relativeFolder = File.separator + "resources" + File.separator
-			                             + "images" + File.separator;
-			    String filename = webappRoot + relativeFolder
-	                       + file.getOriginalFilename();
-			    File dir = new File(filename);
 				if (!dir.exists())
 					dir.mkdirs();
 
@@ -122,12 +111,11 @@ public class CreateTourController {
 				try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
 					stream.write(bytes);
 					logger.info("Server File Location=" + serverFile.getAbsolutePath());
-					
+					tour.setImage(name);
 				} catch (Exception e) {
 					logger.error("exception when writting to file", e);
 					throw e;
 				}
-				tour.setImage(name);
 
 			} catch (Exception e) {
 				model.addAttribute("failedUpload", "Tải lên tập tin hình ảnh thất bại!");

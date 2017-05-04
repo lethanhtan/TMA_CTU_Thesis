@@ -169,6 +169,7 @@
 											</c:if>
 											<figcaption>
 												<h3 style="color: yellow;">${tour.name}</h3>
+												<c:if test="${tour.name.length() < 32}"><br /></c:if>
 												<h5 style="color: white;">
 													<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
 												</h5>
