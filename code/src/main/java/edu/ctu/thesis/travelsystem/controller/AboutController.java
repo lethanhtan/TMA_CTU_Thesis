@@ -10,7 +10,7 @@ public class AboutController{
 	
    @RequestMapping(method = RequestMethod.GET)
    public String aboutController() {
-
+	   
       return "aboutus";
    }
    

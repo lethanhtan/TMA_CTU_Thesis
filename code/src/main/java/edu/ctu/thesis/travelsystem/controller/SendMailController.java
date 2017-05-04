@@ -57,11 +57,11 @@ public class SendMailController extends UriUtils{
 			if (authenticationService.authenticationUser(request.getRequestURI(), (int) session.getAttribute("roleId"))) {
 				logger.info("Authenticaion user permission!");
 				logger.info("Current uri: " + request.getRequestURI());
-				return "forbidden";
+				return "login";
 			}
 		} catch (NullPointerException e) {
 			if (authenticationService.authenticationUser(request.getRequestURI(), 0)) {
-				return "forbidden";
+				return "login";
 			}
 		}
 		
