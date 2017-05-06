@@ -80,13 +80,14 @@ public class SendMailController extends UriUtils{
 				else if (host.equals("Outlook")) {
 					host = "smtp-mail.outlook.com";
 				}
+				logger.info(host);
 				if (emailSender.manualConfig(from, password, host, port, encoding)) {
-					model.addAttribute("status", "Cấu hình email thành công! " + host);
+					model.addAttribute("status", "Cấu hình email thành công! ");
 					logger.info(request.getRequestURL().toString() + "?" + request.getQueryString());
 					flag = true;
 				}
 				else {
-					model.addAttribute("status", "Cấu hình email thất bại!");
+					model.addAttribute("statusF", "Cấu hình email thất bại!");
 					flag = false;
 				}
 			}

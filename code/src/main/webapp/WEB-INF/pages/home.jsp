@@ -167,9 +167,17 @@
 													width="80" height="80"
 													style="top: 0; left: 0; position: absolute;">
 											</c:if>
+											<!-- 
+											<c:if test="${tour.getDateAllowReg() le now}">
+												<img alt="new"
+													src="${pageContext.request.contextPath}/resources/img/new.png"
+													width="80" height="80"
+													style="top: 0; right: 0; position: absolute;">
+											</c:if>
+											 -->
 											<figcaption>
 												<h3 style="color: yellow;">${tour.name}</h3>
-												<c:if test="${tour.name.length() < 32}"><br /></c:if>
+												<c:if test="${tour.name.length() < 42}"><br /><br /><br /></c:if>
 												<h5 style="color: white;">
 													<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
 												</h5>
