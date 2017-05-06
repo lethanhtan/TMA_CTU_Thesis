@@ -114,6 +114,8 @@
 							<li><a
 								href="${pageContext.request.contextPath }/manageregister"
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
+							<li><a href="${pageContext.request.contextPath}/sendmail"
+								class="fa-envelope">Email</a></li>
 							<li><a href="${pageContext.request.contextPath }/managedata"
 								class="fa-gear">Quản Lý Dữ Liệu</a>
 								<ul>

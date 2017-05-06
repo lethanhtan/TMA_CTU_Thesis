@@ -23,6 +23,7 @@
 									<div
 										class="col-md-12 col-sm-12 col-md-offset-3 col-sm-offset-3">
 										<div class="col-md-12">
+											<small style="color: red;">${statusF}</small>
 											<small style="color: green;">${status}</small> <br /> <small
 												style="color: red;">${failedConnect}</small> <br /> <label>Tài
 												khoản email</label>

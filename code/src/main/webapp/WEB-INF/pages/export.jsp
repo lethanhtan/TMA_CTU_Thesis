@@ -59,7 +59,7 @@
 									</span> <select class="form-control margin-bottom-20" name="exportList" >
 										<option>Danh sách tour</option>
 										<option>Danh sách người đăng ký</option>
-										<option>Danh sách người dùng</option>
+										<!-- <option>Danh sách người dùng</option> -->
 									</select>
 								</div>
 							</div>

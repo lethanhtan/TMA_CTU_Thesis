@@ -110,6 +110,8 @@
 								class="fa-list-ul">Quản Lý Đăng Ký</a></li>
 							<li><a href="${pageContext.request.contextPath}/manageuser"
 								class="fa-users">Quản Lý Tài Khoản</a></li>
+							<li><a href="${pageContext.request.contextPath}/sendmail"
+								class="fa-envelope">Email</a></li>
 							<li><a class="fa-bar-chart-o">Quản Lý Dữ Liệu</a>
 								<ul>
 									<li><a href="<c:url value="/import" />">Import</a></li>
