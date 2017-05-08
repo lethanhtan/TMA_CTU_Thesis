@@ -47,25 +47,25 @@ public class ExcelBuilder extends AbstractExcelView {
             // create header row
             HSSFRow header = sheet.createRow(0);
              
-            header.createCell(0).setCellValue("Id");
+            header.createCell(0).setCellValue("Mã tour");
             header.getCell(0).setCellStyle(style);
              
-            header.createCell(1).setCellValue("Name");
+            header.createCell(1).setCellValue("Tên tour");
             header.getCell(1).setCellStyle(style);
              
-            header.createCell(2).setCellValue("Departure Date");
+            header.createCell(2).setCellValue("Ngày đi");
             header.getCell(2).setCellStyle(style);
              
-            header.createCell(3).setCellValue("Departure Time");
+            header.createCell(3).setCellValue("Giờ đi");
             header.getCell(3).setCellStyle(style);
             
-            header.createCell(4).setCellValue("Return Date");
+            header.createCell(4).setCellValue("Ngày về");
             header.getCell(4).setCellStyle(style);
              
-            header.createCell(5).setCellValue("Return Time");
+            header.createCell(5).setCellValue("Giờ về");
             header.getCell(5).setCellStyle(style);
-             
-            header.createCell(6).setCellValue("Detail");
+            /*
+            header.createCell(6).setCellValue("");
             header.getCell(6).setCellStyle(style);
             
             header.createCell(7).setCellValue("Cancel or not");
@@ -88,6 +88,7 @@ public class ExcelBuilder extends AbstractExcelView {
             
             header.createCell(13).setCellValue("Quantum");
             header.getCell(13).setCellStyle(style);
+            */
              
             // create data rows
             int rowCount = 1;
@@ -100,6 +101,7 @@ public class ExcelBuilder extends AbstractExcelView {
                 aRow.createCell(3).setCellValue(tour.getDepartureTime());
                 aRow.createCell(4).setCellValue(tour.getReturnDate());
                 aRow.createCell(5).setCellValue(tour.getReturnTime());
+                /*
                 //aRow.createCell(6).setCellValue(tour.getDetail());
                 aRow.createCell(7).setCellValue(tour.getCancelOrNot());
                 aRow.createCell(8).setCellValue(tour.getRegOrNot());
@@ -108,6 +110,7 @@ public class ExcelBuilder extends AbstractExcelView {
                 aRow.createCell(11).setCellValue(tour.getFullOrNot());
                 aRow.createCell(12).setCellValue(tour.getTicketAvailability());
                 aRow.createCell(13).setCellValue(tour.getQuantum());
+                */
             }
         }
     	if (model.get("exportList").equals("Danh sách đăng ký")) {
@@ -131,26 +134,27 @@ public class ExcelBuilder extends AbstractExcelView {
          // create header row
             HSSFRow header = sheet.createRow(0);
              
-            header.createCell(0).setCellValue("Id");
+            header.createCell(0).setCellValue("Stt");
             header.getCell(0).setCellStyle(style);
              
-            header.createCell(1).setCellValue("Name");
+            header.createCell(1).setCellValue("Tên người dùng");
             header.getCell(1).setCellStyle(style);
              
             header.createCell(2).setCellValue("Email");
             header.getCell(2).setCellStyle(style);
              
-            header.createCell(3).setCellValue("Address");
+            header.createCell(3).setCellValue("Địa chỉ");
             header.getCell(3).setCellStyle(style);
             
-            header.createCell(4).setCellValue("Phone");
+            header.createCell(4).setCellValue("Số điện thoại");
             header.getCell(4).setCellStyle(style);
              
-            header.createCell(5).setCellValue("Sex");
+            header.createCell(5).setCellValue("Giới tính");
             header.getCell(5).setCellStyle(style);
-             
+            /* 
             header.createCell(6).setCellValue("Id tour");
             header.getCell(6).setCellStyle(style);
+            */
             
          // create data rows
             int rowCount = 1;
@@ -159,11 +163,13 @@ public class ExcelBuilder extends AbstractExcelView {
                 HSSFRow aRow = sheet.createRow(rowCount++);
                 aRow.createCell(0).setCellValue(btour.getIdBT());
                 aRow.createCell(1).setCellValue(btour.getCusName());
+                /*
                 aRow.createCell(2).setCellValue(btour.getCusEmail());
                 aRow.createCell(3).setCellValue(btour.getCusAddress());
                 aRow.createCell(4).setCellValue(btour.getCusPhone());
                 aRow.createCell(5).setCellValue(btour.getCusSex());
-                aRow.createCell(6).setCellValue(btour.getTour().getIdTour());
+                */
+                //aRow.createCell(6).setCellValue(btour.getTour().getIdTour());
             }
     	}
     }
