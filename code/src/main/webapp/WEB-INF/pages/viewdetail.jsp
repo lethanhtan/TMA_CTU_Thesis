@@ -13,55 +13,55 @@
 						href="#"> <img class="text-center" alt="SaDecFlowerVillage"
 							src="${pageContext.request.contextPath}/image/${tour.image}">
 							<figcaption>
-								<h3 class="text-center" style="color: yellow;">${tour.name}</h3>
+								<h3 class="text-center" style="color: black;"><strong>${tour.name}</strong></h3>
 								<br>
 								<hr>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="col-md-4 col-sm-4 col-xs-4">
-										<h4 style="color: white;">
-											<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
+										<h4  style="color: black;">
+											<i class="fa fa-eye"> Lượt xem: <strong>${tour.view}</strong></i>
 										</h4>
-										<h4 style="color: white;">
-											<i class="fa fa-calendar"> Ngày khởi hành: <fmt:formatDate
-													value="${tour.departureDate}" pattern="dd/MM/yyyy" />
+										<h4  style="color: black;">
+											<i class="fa fa-calendar"> Ngày khởi hành: <strong><fmt:formatDate
+													value="${tour.departureDate}" pattern="dd/MM/yyyy" /></strong>
 											</i>
 										</h4>
-										<h4 style="color: white;">
+										<h4  style="color: black;">
 											<i class="fa fa-clock-o"> Giờ khởi hành:
-												${tour.departureTime} </i>
+												<strong>${tour.departureTime} </strong></i>
 										</h4>
 										<c:if test="${tour.promotion.percent != 0}">
-											<h4 style="color: white;">
+											<h4  style="color: black;">
 												<i class="fa fa-smile-o"> Số chỗ còn nhận:
-													${tour.ticketAvailability}</i>
+													<strong>${tour.ticketAvailability}</strong></i>
 											</h4>
 										</c:if>
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-4">
-										<h4 style="color: white;">
-											<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
+										<h4 style="color: black;">
+											<i class="fa fa-car"> Thời gian: <strong>${tour.howLong} ngày</strong></i>
 										</h4>
 										<c:if test="${tour.promotion.percent != 0}">
-											<h4 style="color: white;">
+											<h4 style="color: black;">
 												<i class="fa fa-ticket"> Giá vé: </i>
-												<del style="font-size: 18px;">${tour.price} đ</del>
+												<del style="font-size: 18px;"><strong>${tour.price} đ</strong></del>
 											</h4>
-											<h4 style="color: white;">
+											<h4 style="color: black;">
 												<i class="fa fa-bell-o"> Giảm còn: <span
-													style="color: red; font-size: 20px;">${tour.priceAfterSale}
-														đ</span></i>
+													style="color: red; font-size: 20px;"><strong>${tour.priceAfterSale}
+														đ</strong></span></i>
 											</h4>
-											<h4 style="color: white;">
+											<h4 style="color: black;">
 												<i class="fa fa-calendar-o"> Thời gian khuyến mãi: </i>
 											</h4>
 										</c:if>
 										<c:if test="${tour.promotion.percent == 0}">
-											<h4 style="color: white;">
-												<i class="fa fa-ticket"> Giá vé: ${tour.price} đ</i>
+											<h4 style="color: black;">
+												<i class="fa fa-ticket"> Giá vé: <strong>${tour.price} đ</strong></i>
 											</h4>
-											<h4 style="color: white;">
+											<h4 style="color: black;">
 												<i class="fa fa-smile-o"> Số chỗ còn nhận:
-													${tour.ticketAvailability}</i>
+													<strong>${tour.ticketAvailability}</strong></i>
 											</h4>
 										</c:if>
 									</div>
@@ -92,38 +92,38 @@
 									</div>
 								</div>
 								<br>
-								<h3 style="color: yellow;">Thông tin:</h3>
-								<h6 style="color: white;">${tour.detail}</h6>
+								<h3 style="color: black;"><strong>Thông tin</strong></h3>
+								<h6 style="color: black;">${tour.detail}</h6>
 								<hr>
-								<h3 style="color: yellow;">Chi tiết lịch trình:</h3>
-								<h6 style="color: white;">${tour.getSchedule().getDetailSchedule()}</h6>
+								<h3 style="color: black;"><strong>Chi tiết lịch trình</strong></h3>
+								<h6 style="color: black;"><strong>${tour.getSchedule().getDetailSchedule()}</strong></h6>
 								<br>
 								<hr>
-								<h4 style="color: white;">Dịch vụ đi kèm:</h4>
+								<h4 style="color: black;"><strong>Dịch vụ đi kèm:</strong></h4>
 								<div class="row fa-icon-list">
 									<div class="col-md-2">
 										<i class="fa fa-umbrella"></i> <br>
-										<h4 style="color: white;">Bảo hiểm</h4>
+										<h4 style="color: black;">Bảo hiểm</h4>
 									</div>
 									<div class="col-md-2">
 										<i class="fa fa-cutlery"></i> <br>
-										<h4 style="color: white;">Bữa ăn theo chương trình</h4>
+										<h4 style="color: black;">Bữa ăn theo chương trình</h4>
 									</div>
 									<div class="col-md-2">
 										<i class="fa fa-coffee"></i> <br>
-										<h4 style="color: white;">Thức uống</h4>
+										<h4 style="color: black;">Thức uống</h4>
 									</div>
 									<div class="col-md-2">
 										<i class="fa fa-flag"></i> <br>
-										<h4 style="color: white;">Hướng dẫn viên</h4>
+										<h4 style="color: black;">Hướng dẫn viên</h4>
 									</div>
 									<div class="col-md-2">
 										<i class="fa fa-ticket"></i> <br>
-										<h4 style="color: white;">Vé tham quan</h4>
+										<h4 style="color: black;">Vé tham quan</h4>
 									</div>
 									<div class="col-md-2">
 										<i class="fa fa-car"></i> <br>
-										<h4 style="color: white;">Xe đưa đón</h4>
+										<h4 style="color: black;">Xe đưa đón</h4>
 									</div>
 								</div>
 								<img style="margin-left: 75%;"
