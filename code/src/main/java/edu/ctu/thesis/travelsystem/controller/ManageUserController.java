@@ -39,7 +39,7 @@ public class ManageUserController {
 	private AuthenticationService authenticationService;
 
 	private static final Logger logger = Logger.getLogger(ManageUserController.class);
-	private static int numOnPage = 6;
+	private static int numOnPage = 10;
 
 	// Handle for manage user request from admin
 	@RequestMapping(value = "manageuser", method = RequestMethod.GET)

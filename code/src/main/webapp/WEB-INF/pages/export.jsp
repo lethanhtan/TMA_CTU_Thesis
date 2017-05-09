@@ -11,23 +11,24 @@
 					<form class="signup-page">
 						<div class="signup-header">
 							<div class="text-center">
-								<h2>Quản lý Export</h2><br>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<label>Tên export</label>
-								<br />
-								<small><font color="red">${failedName}</font></small>
-								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i
-										class="fa fa-font"></i>
-									</span> <input placeholder="Nhập tên tour"
-										class="form-control margin-bottom-20" type="text" name="nameFile"/>
-								</div>
+								<h2>Quản lý Export</h2>
+								<br>
 							</div>
 						</div>
 						<!-- 
+						<div class="row">
+							<div class="col-sm-12">
+								<label>Tên export</label> <br /> <small><font
+									color="red">${failedName}</font></small>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"> <i class="fa fa-font"></i>
+									</span> <input placeholder="Nhập tên tour"
+										class="form-control margin-bottom-20" type="text"
+										name="nameFile" />
+								</div>
+							</div>
+						</div>
+						
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Từ ngày</label>
@@ -55,21 +56,44 @@
 							<div class="col-sm-7">
 								<label>Loại Export</label> <br />
 								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-exchange"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportList" >
+									<span class="input-group-addon"> <i
+										class="fa fa-exchange"></i>
+									</span> <select class="form-control margin-bottom-20"
+										name="exportList" onchange="this.form.submit()">
 										<option>Danh sách tour</option>
 										<option>Danh sách người đăng ký</option>
 										<!-- <option>Danh sách người dùng</option> -->
 									</select>
 								</div>
 							</div>
-							<div class="col-sm-5">
+								<div class="col-sm-5">
 								<label>Loại File</label> <br />
 								<div class="input-group margin-bottom-20">
-									<span class="input-group-addon"> <i class="fa fa-folder-open"></i>
-									</span> <select class="form-control margin-bottom-20" name="exportType" >
+									<span class="input-group-addon"> <i
+										class="fa fa-folder-open"></i>
+									</span> <select class="form-control margin-bottom-20"
+										name="exportType">
 										<option>Pdf</option>
 										<option>Excel</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-xs-12">
+								<label>Danh sách tour</label>
+								<div class="input-group margin-bottom-20">
+									<span class="input-group-addon"><i
+										class="fa fa-exchange"></i></span> <select
+										class="form-control margin-bottom-20" name="tourName">
+										<c:if test="${!empty listTours}">
+											<c:forEach var="tour" items="${listTours}">
+												<option>${tour.getName()}</option>
+											</c:forEach>
+										</c:if>
+										<c:if test="${empty listTours}">
+											<option>Danh sách rỗng!</option>
+										</c:if>
 									</select>
 								</div>
 							</div>
@@ -98,17 +122,17 @@
 						 -->
 						<hr class="margin-bottom-20">
 						<div class="row">
-								<div class="col-lg-4 text-left">
-									<button class="btn btn-primary" type="submit">Xác Nhận</button>
-								</div>
-								<div class="col-lg-4 text-center">
-									<a href="managetour"><button class="btn btn-primary"
-											type="button">Hủy Bỏ</button></a>
-								</div>
-								<div class="col-lg-4 text-right">
-									<input class="btn btn-primary" type="reset" value="Nhập Lại">
-								</div>
+							<div class="col-lg-4 text-left">
+								<button class="btn btn-primary" type="submit">Xác Nhận</button>
 							</div>
+							<div class="col-lg-4 text-center">
+								<a href="managetour"><button class="btn btn-primary"
+										type="button">Hủy Bỏ</button></a>
+							</div>
+							<div class="col-lg-4 text-right">
+								<input class="btn btn-primary" type="reset" value="Nhập Lại">
+							</div>
+						</div>
 					</form>
 				</div>
 				<!-- End Export Box -->
