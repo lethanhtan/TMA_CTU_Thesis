@@ -251,22 +251,6 @@ public class BookTourController {
 		logger.info("Captcha Verify: " + verify);
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
-		if (verify == false) {
-			String errorString = "Bạn phải chọn reCaptcha!";
-			model.addAttribute("errorString", errorString);
-			model.addAttribute("tour", tour);
-			model.addAttribute("numOfTicket", numOfTicket);
-			model.addAttribute("relationship", new Relationship());
-			model.addAttribute("relationshipList", regInfoService.relationshipList());
-			SubBookTourVO cusData = new SubBookTourVO();
-			List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
-			for (int i = 0; i < numOfTicket; i++) {
-				infos.add(new BookTourInfoVO());
-			}
-			cusData.setInfo(infos);
-			model.addAttribute("cusData", cusData);
-			return "booktour";
-		} else {
 			logger.info("Handle for save booktour!");
 			List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
 			List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
@@ -274,6 +258,19 @@ public class BookTourController {
 			model.addAttribute("relationshipList", regInfoService.relationshipList());
 			BookTourValidator bookTourValidator = new BookTourValidator();
 			if (!bookTourValidator.validateRegister(model, tour, bookTourInfo, numOfTicket)) {
+				return "booktour";
+			}
+			if(verify == false) {
+				List<String> invalidInfos = new ArrayList<String>();
+				SubBookTourVO cusData = new SubBookTourVO();
+				List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
+				for (BookTourInfoVO info : bookTourInfo) {
+					invalidInfos.add(info.getCusName());
+					infos.add(info);
+					cusData.setInfo(infos);
+					model.addAttribute("cusData", cusData);
+				}
+				
 				return "booktour";
 			}
 			for (BookTourInfoVO info : bookTourInfo) {
@@ -305,7 +302,6 @@ public class BookTourController {
 			model.put("idTour", idTour);
 			model.put("relationship", maxValue);
 			return "redirect:/booksuccess/{relationship}/{idTour}";
-		}
 	}
 
 	// Forward to Tour detail page
