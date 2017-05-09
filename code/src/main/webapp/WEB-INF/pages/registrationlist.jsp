@@ -40,49 +40,103 @@
 						</div>
 						<hr class="margin-vert-20">
 						<!-- Table -->
+						<!-- Filter Buttons -->
+						<div class="portfolio-filter-container margin-top-20">
+							<ul class="portfolio-filter">
+								<li class="portfolio-filter-label label label-warning"
+									style="margin-left: 3%;"><i class="fa fa-filter"> Lọc
+										theo:</i></li>
+								<li style="margin-left: 1%"><form role="form"
+										class="form-inline"
+										action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+										method="GET">
+										<select id="filterSex" class="form-control" name="filterSex"
+											id="main-select" onchange="this.form.submit()">
+											<c:if test="${filterSex != null && filterSex ne 'All'}">
+												<option selected="selected" value="${filterSex}">${filterSex}</option>
+												<option value="All">Tất cả</option>
+												<c:forTokens items="Nam,Nữ" delims="," var="j">
+													<c:if test="${j ne filterSex}">
+														<option value="${j}">${j}</option>
+													</c:if>
+												</c:forTokens>
+											</c:if>
+											<c:if test="${filterSex != null && filterSex eq 'All'}">
+												<option selected="selected" value="All">Tất cả</option>
+												<option value="Nam">Nam</option>
+												<option value="Nữ">Nữ</option>
+											</c:if>
+											<c:if test="${filterSex == null}">
+												<option selected="selected" disabled="disabled">Giới
+													tính</option>
+												<option value="All">Tất cả</option>
+												<option value="Nam">Nam</option>
+												<option value="Nữ">Nữ</option>
+											</c:if>
+										</select>
+									</form></li>
+								<li style="margin-left: 1%"><form role="form"
+										class="form-inline"
+										action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+										method="GET">
+										<select id="filterAge" class="form-control" name="filterAge"
+											onchange="this.form.submit()">
+											<c:if test="${filterAge != null}">
+												<c:if test="${filterAge eq 'All'}">
+													<option value="All">Tất cả</option>
+												</c:if>
+												<c:if test="${filterAge eq '18'}">
+													<option value="18">Dưới 18</option>
+												</c:if>
+												<c:if test="${filterAge eq '40'}">
+													<option value="40">Từ 18 - 40</option>
+												</c:if>
+												<c:if test="${filterAge eq '60'}">
+													<option value="60">Từ 41 - 60</option>
+												</c:if>
+												<c:if test="${filterAge eq '100'}">
+													<option value="100">Trên 60</option>
+												</c:if>
+												<c:forTokens items="All,18,40,60,100" delims="," var="j">
+													<c:if test="${j ne filterAge}">
+														<c:if test="${j eq 'All'}">
+															<option value="All">Tất cả</option>
+														</c:if>
+														<c:if test="${j eq '18'}">
+															<option value="18">Dưới 18</option>
+														</c:if>
+														<c:if test="${j eq '40'}">
+															<option value="40">Từ 18 - 40</option>
+														</c:if>
+														<c:if test="${j eq '60'}">
+															<option value="60">Từ 41 - 60</option>
+														</c:if>
+														<c:if test="${j eq '100'}">
+															<option value="100">Trên 60</option>
+														</c:if>
+													</c:if>
+												</c:forTokens>
+											</c:if>
+											<c:if test="${filterAge == null}">
+												<option selected="selected" disabled="disabled">Tuổi</option>
+												<option value="All">Tất cả</option>
+												<option value="18">Dưới 18</option>
+												<option value="40">Từ 18 - 40</option>
+												<option value="60">Từ 41 - 60</option>
+												<option value="100">Trên 60</option>
+											</c:if>
+										</select>
+									</form></li>
+							</ul>
+						</div>
+						<br>
+						<!-- End Filter Buttons -->
 						<c:if test="${empty registrationList}">
 							<h1 style="text-align: center;">Chưa có người đăng ký tham
 								gia tour này!</h1>
 						</c:if>
 						<c:if test="${!empty registrationList}">
 							<div class="row">
-								<!-- Filter Buttons -->
-								<div class="portfolio-filter-container margin-top-20">
-									<ul class="portfolio-filter">
-										<li class="portfolio-filter-label label label-warning"
-											style="margin-left: 3%;"><i class="fa fa-filter">
-												Lọc theo:</i></li>
-										<li style="margin-left: 1%"><form role="form"
-												class="form-inline"
-												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-												method="GET">
-												<select id="filterSex" class="form-control" name="filterSex"
-													onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới
-														tính</option>
-													<option value="All">Tất cả</option>
-													<option value="Nam">Nam</option>
-													<option value="Nữ">Nữ</option>
-												</select>
-											</form></li>
-										<li style="margin-left: 1%"><form role="form"
-												class="form-inline"
-												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-												method="GET">
-												<select id="filterAge" class="form-control" name="filterAge"
-													onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Tuổi</option>
-													<option value="All">Tất cả</option>
-													<option value="18">Dưới 18</option>
-													<option value="40">Từ 18 - 40</option>
-													<option value="60">Từ 41 - 60</option>
-													<option value="100">Trên 60</option>
-												</select>
-											</form></li>
-									</ul>
-								</div>
-								<br>
-								<!-- End Filter Buttons -->
 								<!-- Choose Number For Display -->
 								<form role="form" class="form-inline"
 									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
@@ -243,6 +297,97 @@
 						</div>
 						<hr class="margin-vert-20">
 						<!-- Table -->
+						<!-- Filter Buttons -->
+						<div class="portfolio-filter-container margin-top-20">
+							<ul class="portfolio-filter">
+								<li class="portfolio-filter-label label label-warning"
+									style="margin-left: 3%;"><i class="fa fa-filter"> Lọc
+										theo:</i></li>
+								<li style="margin-left: 1%"><form role="form"
+										class="form-inline"
+										action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+										method="GET">
+										<select id="filterSex2" class="form-control" name="filterSex2"
+											onchange="this.form.submit()">
+											<c:if test="${filterSex2 != null && filterSex2 ne 'All'}">
+												<option selected="selected" value="${filterSex2}">${filterSex2}</option>
+												<option value="All">Tất cả</option>
+												<c:forTokens items="Nam,Nữ" delims="," var="j">
+													<c:if test="${j ne filterSex2}">
+														<option value="${j}">${j}</option>
+													</c:if>
+												</c:forTokens>
+											</c:if>
+											<c:if test="${filterSex2 != null && filterSex2 eq 'All'}">
+												<option selected="selected" value="All">Tất cả</option>
+												<option value="Nam">Nam</option>
+												<option value="Nữ">Nữ</option>
+											</c:if>
+											<c:if test="${filterSex2 == null}">
+												<option selected="selected" disabled="disabled">Giới
+													tính</option>
+												<option value="All">Tất cả</option>
+												<option value="Nam">Nam</option>
+												<option value="Nữ">Nữ</option>
+											</c:if>
+										</select>
+									</form></li>
+								<li style="margin-left: 1%"><form role="form"
+										class="form-inline"
+										action="${pageContext.request.contextPath}/registrationlist/${idTour}"
+										method="GET">
+										<select id="filterAge2" class="form-control" name="filterAge2"
+											onchange="this.form.submit()">
+											<c:if test="${filterAge2 != null}">
+												<c:if test="${filterAge2 eq 'All'}">
+													<option value="All">Tất cả</option>
+												</c:if>
+												<c:if test="${filterAge2 eq '18'}">
+													<option value="18">Dưới 18</option>
+												</c:if>
+												<c:if test="${filterAge2 eq '40'}">
+													<option value="40">Từ 18 - 40</option>
+												</c:if>
+												<c:if test="${filterAge2 eq '60'}">
+													<option value="60">Từ 41 - 60</option>
+												</c:if>
+												<c:if test="${filterAge2 eq '100'}">
+													<option value="100">Trên 60</option>
+												</c:if>
+												<c:forTokens items="All,18,40,60,100" delims="," var="j">
+													<c:if test="${j ne filterAge2}">
+														<c:if test="${j eq 'All'}">
+															<option value="All">Tất cả</option>
+														</c:if>
+														<c:if test="${j eq '18'}">
+															<option value="18">Dưới 18</option>
+														</c:if>
+														<c:if test="${j eq '40'}">
+															<option value="40">Từ 18 - 40</option>
+														</c:if>
+														<c:if test="${j eq '60'}">
+															<option value="60">Từ 41 - 60</option>
+														</c:if>
+														<c:if test="${j eq '100'}">
+															<option value="100">Trên 60</option>
+														</c:if>
+													</c:if>
+												</c:forTokens>
+											</c:if>
+											<c:if test="${filterAge2 == null}">
+												<option selected="selected" disabled="disabled">Tuổi</option>
+												<option value="All">Tất cả</option>
+												<option value="18">Dưới 18</option>
+												<option value="40">Từ 18 - 40</option>
+												<option value="60">Từ 41 - 60</option>
+												<option value="100">Trên 60</option>
+											</c:if>
+										</select>
+									</form></li>
+							</ul>
+						</div>
+						<br>
+						<!-- End Filter Buttons -->
 						<c:if test="${empty cancelList}">
 							<h1 style="text-align: center;">Không có người hủy đăng ký
 								tham gia tour này!</h1>
@@ -250,43 +395,6 @@
 						<c:if test="${!empty cancelList}">
 							<!-- Choose Number For Display -->
 							<div class="row">
-								<!-- Filter Buttons -->
-								<div class="portfolio-filter-container margin-top-20">
-									<ul class="portfolio-filter">
-										<li class="portfolio-filter-label label label-warning"
-											style="margin-left: 3%;"><i class="fa fa-filter">
-												Lọc theo:</i></li>
-										<li style="margin-left: 1%"><form role="form"
-												class="form-inline"
-												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-												method="GET">
-												<select id="filterSex2" class="form-control"
-													name="filterSex2" onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Giới
-														tính</option>
-													<option value="All">Tất cả</option>
-													<option value="Nam">Nam</option>
-													<option value="Nữ">Nữ</option>
-												</select>
-											</form></li>
-										<li style="margin-left: 1%"><form role="form"
-												class="form-inline"
-												action="${pageContext.request.contextPath}/registrationlist/${idTour}"
-												method="GET">
-												<select id="filterAge2" class="form-control"
-													name="filterAge2" onchange="this.form.submit()">
-													<option selected="selected" disabled="disabled">Tuổi</option>
-													<option value="All">Tất cả</option>
-													<option value="18">Dưới 18</option>
-													<option value="40">Từ 18 - 40</option>
-													<option value="60">Từ 41 - 60</option>
-													<option value="100">Trên 60</option>
-												</select>
-											</form></li>
-									</ul>
-								</div>
-								<br>
-								<!-- End Filter Buttons -->
 								<form role="form" class="form-inline"
 									action="${pageContext.request.contextPath}/registrationlist/${idTour}"
 									method="get">

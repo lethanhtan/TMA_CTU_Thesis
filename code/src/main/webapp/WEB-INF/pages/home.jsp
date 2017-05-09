@@ -123,12 +123,51 @@
 								action="${pageContext.request.contextPath}/home" method="GET">
 								<select id="filterPrice" class="form-control" name="filterPrice"
 									onchange="this.form.submit()">
-									<option selected="selected" disabled="disabled">Giá Vé</option>
-									<option value="All">Tất cả</option>
-									<option value="5">Dưới 500 ngàn</option>
-									<option value="10">Từ 500 - 1 triệu</option>
-									<option value="20">Từ 1 triệu - 2 triệu</option>
-									<option value="30">Trên 2 triệu</option>
+									<c:if test="${filterPrice != null}">
+										<c:if test="${filterPrice eq 'All'}">
+											<option value="All">Tất cả</option>
+										</c:if>
+										<c:if test="${filterPrice eq '5'}">
+											<option value="5">Dưới 500 ngàn</option>
+										</c:if>
+										<c:if test="${filterPrice eq '10'}">
+											<option value="10">Từ 500 - 1 triệu</option>
+										</c:if>
+										<c:if test="${filterPrice eq '20'}">
+											<option value="20">Từ 1 triệu - 2 triệu</option>
+										</c:if>
+										<c:if test="${filterPrice eq '30'}">
+											<option value="30">Trên 2 triệu</option>
+										</c:if>
+										<c:forTokens items="All,5,10,20,30" delims="," var="j">
+											<c:if test="${j ne filterPrice}">
+												<c:if test="${j eq 'All'}">
+													<option value="All">Tất cả</option>
+												</c:if>
+												<c:if test="${j eq '5'}">
+													<option value="5">Dưới 500 ngàn</option>
+												</c:if>
+												<c:if test="${j eq '10'}">
+													<option value="10">Từ 500 - 1 triệu</option>
+												</c:if>
+												<c:if test="${j eq '20'}">
+													<option value="20">Từ 1 triệu - 2 triệu</option>
+												</c:if>
+												<c:if test="${j eq '30'}">
+													<option value="30">Trên 2 triệu</option>
+												</c:if>
+											</c:if>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterPrice == null}">
+										<option selected="selected" disabled="disabled">Giá
+											Vé</option>
+										<option value="All">Tất cả</option>
+										<option value="5">Dưới 500 ngàn</option>
+										<option value="10">Từ 500 - 1 triệu</option>
+										<option value="20">Từ 1 triệu - 2 triệu</option>
+										<option value="30">Trên 2 triệu</option>
+									</c:if>
 								</select>
 							</form></li>
 						<li style="margin-left: 1%"><form role="form"
@@ -136,14 +175,31 @@
 								action="${pageContext.request.contextPath}/home" method="GET">
 								<select id="filterSale" class="form-control" name="filterSale"
 									onchange="this.form.submit()">
-									<option selected="selected" disabled="disabled">Giảm
-										Giá</option>
-									<option value="All">Tất cả</option>
-									<option value="10">10%</option>
-									<option value="20">20%</option>
-									<option value="30">30%</option>
-									<option value="40">40%</option>
-									<option value="50">50%</option>
+									<c:if test="${filterSale != null && filterSale ne 'All'}">
+										<option value="${filterSale}">${filterSale}%</option>
+										<option value="All">Tất cả</option>
+										<c:forTokens items="10,20,30,50" delims="," var="j">
+											<c:if test="${j ne filterSale}">
+												<option value="${j}">${j}%</option>
+											</c:if>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterSale != null && filterSale eq 'All'}">
+										<option value="All">Tất cả</option>
+										<c:forTokens items="10,20,30,50" delims="," var="j">
+											<option value="${j}">${j}%</option>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterSale == null}">
+										<option selected="selected" disabled="disabled">Giảm
+											Giá</option>
+										<option value="All">Tất cả</option>
+										<option value="10">10%</option>
+										<option value="20">20%</option>
+										<option value="30">30%</option>
+										<option value="40">40%</option>
+										<option value="50">50%</option>
+									</c:if>
 								</select>
 							</form></li>
 					</ul>
@@ -160,7 +216,8 @@
 									href="${pageContext.request.contextPath}/viewdetail/${tour.idTour}">
 										<figure class="animate fadeInLeft">
 											<img alt="${tour.image}"
-												src="${pageContext.request.contextPath}/image/${tour.image}" height=200px width=500px>
+												src="${pageContext.request.contextPath}/image/${tour.image}"
+												height=200px width=500px>
 											<c:if test="${tour.promotion.percent != 0}">
 												<img alt="new"
 													src="${pageContext.request.contextPath}/resources/img/sale.png"
@@ -176,30 +233,30 @@
 											</c:if>
 											 -->
 											<figcaption>
-												<h3 style="color: yellow;">${tour.name}</h3>
-												<h5 style="color: white;">
+												<h3 style="color: black;">${tour.name}</h3>
+												<h5 style="color: black;">
 													<i class="fa fa-eye"> Lượt xem: ${tour.view}</i>
 												</h5>
-												<h5 style="color: white;">
+												<h5 style="color: black;">
 													<i class="fa fa-calendar"> Ngày khởi hành: <fmt:formatDate
 															value="${tour.departureDate}" pattern="dd/MM/yyyy" />
 													</i>
 												</h5>
-												<h5 style="color: white;">
+												<h5 style="color: black;">
 													<i class="fa fa-clock-o"> Giờ khởi hành:
 														${tour.departureTime} </i>
 												</h5>
-												<h5 style="color: white;">
+												<h5 style="color: black;">
 													<i class="fa fa-car"> Thời gian: ${tour.howLong} ngày </i>
 												</h5>
 												<c:if test="${tour.promotion.percent == 0}">
-													<h5 style="color: white;">
+													<h5 style="color: black;">
 														<i class="fa fa-ticket"> Giá vé: <span
 															style="font-size: 18px;"> ${tour.price} đ</span></i>
 													</h5>
 												</c:if>
 												<c:if test="${tour.promotion.percent != 0}">
-													<h5 style="color: white;">
+													<h5 style="color: black;">
 														<i class="fa fa-ticket"> Giá vé: </i>
 														<del style="font-size: 18px;">${tour.price} đ</del>
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Giảm còn: <span

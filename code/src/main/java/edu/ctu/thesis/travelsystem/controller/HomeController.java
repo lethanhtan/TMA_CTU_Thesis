@@ -123,6 +123,7 @@ public class HomeController {
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("tour", new Tour());
 					model.addAttribute("tourList", tourListByPrice); // create
+					model.addAttribute("filterPrice", filterPrice);
 					model.addAttribute("numTour", tourListByPrice.size()); // create
 					model.addAttribute("pageNum", pageNum); // create number
 					model.addAttribute("numOnPage", numOnPage);
@@ -149,6 +150,7 @@ public class HomeController {
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					model.addAttribute("tour", new Tour());
 					model.addAttribute("tourList", tourListBySale); // create
+					model.addAttribute("filterSale", filterSale);
 					model.addAttribute("numTour", tourListBySale.size()); // create
 					model.addAttribute("pageNum", pageNum); // create number
 					model.addAttribute("numOnPage", numOnPage);

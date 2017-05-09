@@ -255,6 +255,7 @@ public class ManageRegController {
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
 						model.addAttribute("registrationList", regListBySex);
+						model.addAttribute("filterSex", filterSex);
 						model.addAttribute("numBookTour", regListBySex.size());
 						model.addAttribute("pageNum", pageNum);
 						model.addAttribute("numOnPage", numOnPage);
@@ -282,6 +283,7 @@ public class ManageRegController {
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
 						model.addAttribute("registrationList", regListByTicket);
+						model.addAttribute("filterAge", filterAge);
 						model.addAttribute("numBookTour", regListByTicket.size());
 						model.addAttribute("pageNum", pageNum);
 						model.addAttribute("numOnPage", numOnPage);
@@ -364,6 +366,7 @@ public class ManageRegController {
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
 						model.addAttribute("cancelList", cancelListBySex);
+						model.addAttribute("filterSex2", filterSex2);
 						model.addAttribute("numCancelReg", cancelListBySex.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);
@@ -391,6 +394,7 @@ public class ManageRegController {
 						model.addAttribute("bookTour", new BookTour());
 						model.addAttribute("tour", tourService.findTourById(idTour));
 						model.addAttribute("cancelList", cancelListByTicket);
+						model.addAttribute("filterAge2", filterAge2);
 						model.addAttribute("numCancelReg", cancelListByTicket.size());
 						model.addAttribute("pageNum2", pageNum2);
 						model.addAttribute("numOnPage2", numOnPage2);

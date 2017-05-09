@@ -105,8 +105,6 @@
 								class="fa-book">Đặt Vé</a></li>
 							<li><a href="${pageContext.request.contextPath}/news"
 								class="fa-tachometer">Tin Tức</a></li>
-							<li><a href="${pageContext.request.contextPath}/blog"
-								class="fa-tasks">Blog</a></li>
 							<li><a href="${pageContext.request.contextPath}/contact"
 								class="fa-phone">Liên Hệ</a></li>
 							<!-- Test Account -->
