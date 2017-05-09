@@ -148,7 +148,7 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		List<Tour> tourList = tourService.listTour();
 		switch (filterPrice) {
 		case "All": {
-			query = session.createQuery("FROM Tour");
+			query = session.createQuery("FROM Tour WHERE full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "5": {
@@ -158,7 +158,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "10": {
@@ -168,7 +169,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "20": {
@@ -178,7 +180,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		default: {
@@ -188,7 +191,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 		}
 		}
 		return query.list();
@@ -203,7 +207,7 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 		List<Tour> tourList = tourService.listTour();
 		switch (filterSale) {
 		case "All": {
-			query = session.createQuery("FROM Tour");
+			query = session.createQuery("FROM Tour WHERE full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "10": {
@@ -213,7 +217,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "20": {
@@ -223,7 +228,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		case "30": {
@@ -233,7 +239,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 			break;
 		}
 		default: {
@@ -243,7 +250,8 @@ public class FilterDaoImpl extends AbstractDao implements FilterDao {
 					separator = getMultiId(listOfTourId, separator, tour);
 				}
 			}
-			query = session.createQuery("FROM Tour WHERE Id_Tour IN (" + listOfTourId + ")");
+			query = session.createQuery(
+					"FROM Tour WHERE Id_Tour IN (" + listOfTourId + ") AND full_or_not = false AND reg_or_not = true");
 		}
 			break;
 		}
