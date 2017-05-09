@@ -58,7 +58,7 @@ public class ManageTourController {
 	ServletContext servletContext;
 
 	private static final Logger logger = Logger.getLogger(ManageTourController.class);
-	private static int numOnPage = 5;
+	private static int numOnPage = 10;
 
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
