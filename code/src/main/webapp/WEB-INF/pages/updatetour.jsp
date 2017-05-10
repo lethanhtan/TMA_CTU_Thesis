@@ -18,6 +18,11 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
+							<c:if test="${!empty status}">
+								<div class="alert alert-success">
+									<strong>${status}</strong>
+								</div>
+							</c:if>
 							<label>Tên tour</label> <br />
 							<!-- Show error -->
 							<small><s:errors path="name" cssStyle="color:red;" /></small>
@@ -201,7 +206,8 @@
 					<small><s:errors path="detail" cssStyle="color:red;" /></small>
 					<s:textarea placeholder="Nhập chi tiết về tour" id="area2"
 						class="form-control margin-bottom-20" type="text" rows="10"
-						path="detail" /><br>
+						path="detail" />
+					<br>
 					<hr>
 					<div class="row">
 						<div class="col-lg-6 text-center">

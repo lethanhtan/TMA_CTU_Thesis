@@ -19,14 +19,33 @@
 					<div class="tab-pane fade in active" id="mailconfig">
 						<form>
 							<div>
+								<div class="row">
+									<div
+										class="col-md-12 col-sm-12 col-md-offset-3 col-sm-offset-3">
+										<div class="col-md-6">
+											<c:if test="${!empty status}">
+												<div class="alert alert-success">
+													<strong>${status}</strong>
+												</div>
+											</c:if>
+											<c:if test="${!empty statusF}">
+												<div class="alert alert-danger">
+													<strong>${statusF}</strong>
+												</div>
+											</c:if>
+											<c:if test="${!empty failedConnect}">
+												<div class="alert alert-warning">
+													<strong>${status}</strong>
+												</div>
+											</c:if>
+										</div>
+									</div>
+								</div>
 								<div class="row margin-bottom-20">
 									<div
 										class="col-md-12 col-sm-12 col-md-offset-3 col-sm-offset-3">
 										<div class="col-md-12">
-											<small style="color: red;">${statusF}</small>
-											<small style="color: green;">${status}</small> <br /> <small
-												style="color: red;">${failedConnect}</small> <br /> <label>Tài
-												khoản email</label>
+											<label>Tài khoản email</label>
 											<div class="input-group col-sm-6 col-md-6">
 												<span class="input-group-addon"> <i
 													class="fa fa-envelope"></i>
@@ -109,9 +128,25 @@
 						<div class="row">
 							<div class="col-md-8">
 								<form>
-									<small style="color: green;">${sendSuccess}</small> <small
-										style="color: red;">${failedConnect}</small> <br /> <small
-										style="color: red;">${sendingError}</small> <br />
+									<div class="row">
+										<div class="col-md-6">
+											<c:if test="${!empty sendSuccess}">
+												<div class="alert alert-success">
+													<strong>${sendSuccess}</strong>
+												</div>
+											</c:if>
+											<c:if test="${!empty sendingError}">
+												<div class="alert alert-danger">
+													<strong>${sendingError}</strong>
+												</div>
+											</c:if>
+											<c:if test="${!empty failedConnect}">
+												<div class="alert alert-warning">
+													<strong>${status}</strong>
+												</div>
+											</c:if>
+										</div>
+									</div>
 									<label>Người nhận <span class="color-red">*</span>
 									</label>
 									<div class="row margin-bottom-20">
@@ -136,7 +171,8 @@
 										dung bắt buộc phải điền </label>
 									<div class="row margin-bottom-20">
 										<div class="row col-sm-4 col-md-4">
-											<button type="submit" class="btn btn-primary" style="margin-left: 8%;">Gửi</button>
+											<button type="submit" class="btn btn-primary"
+												style="margin-left: 8%;">Gửi</button>
 											<button type="reset" class="btn btn-primary">Làm mới</button>
 										</div>
 									</div>

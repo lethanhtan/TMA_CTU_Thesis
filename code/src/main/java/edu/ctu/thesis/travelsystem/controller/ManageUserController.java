@@ -176,6 +176,7 @@ public class ManageUserController {
 		}
 		
 		if (br.hasErrors()) {
+			model.addAttribute("statusF", "Cập nhật không thành công!");
 			return "edituser";
 		} else {
 			
@@ -188,7 +189,8 @@ public class ManageUserController {
 			}
 			user.setRole(role);
 			userService.editUser(user);
-			return "redirect:/manageuser";
+			model.addAttribute("status", "Cập nhật thành công!");
+			return "edituser";
 		}
 	}
 
