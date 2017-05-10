@@ -21,6 +21,20 @@
 							<div class="signup-header">
 								<h4 style="text-align: center;"></h4>
 							</div>
+							<div class="row">
+								<div class="col-md-8 col-sm-8 col-xs-8 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
+									<c:if test="${!empty status}">
+										<div class="alert alert-success">
+											<strong>${status}</strong>
+										</div>
+									</c:if>
+									<c:if test="${!empty statusF}">
+										<div class="alert alert-danger">
+											<strong>${statusF}</strong>
+										</div>
+									</c:if>
+								</div>
+							</div>
 							<div class="row margin-bottom-30">
 								<div
 									class="col-xs-8 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
