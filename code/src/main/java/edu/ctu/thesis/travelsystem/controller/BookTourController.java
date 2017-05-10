@@ -75,9 +75,9 @@ public class BookTourController {
 			logger.info("None select number of tour on page!");
 		}
 		try {
-			if (valueSearch != null) {
+			List<Tour> tourList = tourService.tourListByValue(valueSearch);
+			if (valueSearch != null && !tourList.isEmpty()) {
 				Integer num = 0;
-				List<Tour> tourList = tourService.tourListByValue(valueSearch);
 				if (tourList.size() == 0) {
 					num = tourList.size() / numOnPage;
 				} else {
@@ -100,6 +100,10 @@ public class BookTourController {
 				} else {
 					return "tourlist";
 				}
+			}
+
+			if (valueSearch != null && tourList.isEmpty()) {
+				return "redirect:/resultsearchtour";
 			}
 
 			// Tour list filter by price
@@ -251,57 +255,57 @@ public class BookTourController {
 		logger.info("Captcha Verify: " + verify);
 		tour = tourService.findTourById(idTour);
 		int maxValue = bookTourService.getMaxValue();
-			logger.info("Handle for save booktour!");
-			List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
-			List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
-			model.addAttribute("numOfTicket", numOfTicket);
-			model.addAttribute("relationshipList", regInfoService.relationshipList());
-			BookTourValidator bookTourValidator = new BookTourValidator();
-			if (!bookTourValidator.validateRegister(model, tour, bookTourInfo, numOfTicket)) {
-				return "booktour";
-			}
-			if(verify == false) {
-				List<String> invalidInfos = new ArrayList<String>();
-				SubBookTourVO cusData = new SubBookTourVO();
-				List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
-				for (BookTourInfoVO info : bookTourInfo) {
-					invalidInfos.add(info.getCusName());
-					infos.add(info);
-					cusData.setInfo(infos);
-					model.addAttribute("cusData", cusData);
-				}
-				
-				return "booktour";
-			}
+		logger.info("Handle for save booktour!");
+		List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
+		List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
+		model.addAttribute("numOfTicket", numOfTicket);
+		model.addAttribute("relationshipList", regInfoService.relationshipList());
+		BookTourValidator bookTourValidator = new BookTourValidator();
+		if (!bookTourValidator.validateRegister(model, tour, bookTourInfo, numOfTicket)) {
+			return "booktour";
+		}
+		if (verify == false) {
+			List<String> invalidInfos = new ArrayList<String>();
+			SubBookTourVO cusData = new SubBookTourVO();
+			List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
 			for (BookTourInfoVO info : bookTourInfo) {
-				BookTour bookedTour = new BookTour();
-				bookedTour.setTour(tour);
-				bookedTour.setCusName(info.getCusName());
-				bookedTour.setCusSex(info.getCusSex());
-				bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
-				bookedTour.setCusPhone(info.getCusPhone());
-				bookedTour.setCusIdCard(info.getCusIdCard());
-				bookedTour.setCusEmail(info.getCusEmail());
-				bookedTour.setCusAddress(info.getCusAddress());
-				bookedTour.setDateBook(Calendar.getInstance().getTime());
-				bookedTour.setRelationship(maxValue);
-				bookedTour.setRelation(info.getRelation());
-				bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
-				if (session.getAttribute("idUser") != null) {
-					bookedTour.setIdUser((int) session.getAttribute("idUser"));
-				} else {
-					bookedTour.setIdUser(0);
-				}
-				bookTours.add(bookedTour);
+				invalidInfos.add(info.getCusName());
+				infos.add(info);
+				cusData.setInfo(infos);
+				model.addAttribute("cusData", cusData);
 			}
-			bookTourService.saveBookTours(bookTours, idTour);
-			logger.info("Handle for save booktour!");
-			model.put("idBT", bookTour.getIdBT());
-			emailSenderService.SendEmail("pc.nt95@gmail.com", MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
-					MailTemplate.bookSuccessBody);
-			model.put("idTour", idTour);
-			model.put("relationship", maxValue);
-			return "redirect:/booksuccess/{relationship}/{idTour}";
+
+			return "booktour";
+		}
+		for (BookTourInfoVO info : bookTourInfo) {
+			BookTour bookedTour = new BookTour();
+			bookedTour.setTour(tour);
+			bookedTour.setCusName(info.getCusName());
+			bookedTour.setCusSex(info.getCusSex());
+			bookedTour.setCusYearOfBirth(info.getCusYearOfBirth());
+			bookedTour.setCusPhone(info.getCusPhone());
+			bookedTour.setCusIdCard(info.getCusIdCard());
+			bookedTour.setCusEmail(info.getCusEmail());
+			bookedTour.setCusAddress(info.getCusAddress());
+			bookedTour.setDateBook(Calendar.getInstance().getTime());
+			bookedTour.setRelationship(maxValue);
+			bookedTour.setRelation(info.getRelation());
+			bookedTour.setWhoIsRegistered(info.getWhoIsRegistered());
+			if (session.getAttribute("idUser") != null) {
+				bookedTour.setIdUser((int) session.getAttribute("idUser"));
+			} else {
+				bookedTour.setIdUser(0);
+			}
+			bookTours.add(bookedTour);
+		}
+		bookTourService.saveBookTours(bookTours, idTour);
+		logger.info("Handle for save booktour!");
+		model.put("idBT", bookTour.getIdBT());
+		emailSenderService.SendEmail("pc.nt95@gmail.com", MailTemplate.hostMail, MailTemplate.bookSuccessTitle,
+				MailTemplate.bookSuccessBody);
+		model.put("idTour", idTour);
+		model.put("relationship", maxValue);
+		return "redirect:/booksuccess/{relationship}/{idTour}";
 	}
 
 	// Forward to Tour detail page
@@ -427,6 +431,20 @@ public class BookTourController {
 		} else {
 			model.addAttribute("notFound", "Không tìm thấy kết quả trùng khớp với từ khóa");
 			return "resultsearch";
+		}
+	}
+
+	@RequestMapping(value = "resultsearchtour", method = RequestMethod.GET)
+	public String resultSearchTour(ModelMap model, HttpSession session,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
+		List<Tour> tourList = tourService.tourListByValue(valueSearch);
+		if (valueSearch != null && !tourList.isEmpty()) {
+			logger.info("Search active!");
+			model.addAttribute("searched", valueSearch);
+			return "redirect:/tourlist?valueSearch={searched}";
+		} else {
+			model.addAttribute("notFound", "Không tìm thấy kết quả trùng khớp với từ khóa");
+			return "resultsearchtour";
 		}
 	}
 }
