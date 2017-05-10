@@ -215,7 +215,7 @@ public class ManageTourController {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
 			model.addAttribute("status", "Cập nhật thành công!");
-			return "redirect:/managetour";
+			return "updatetour";
 		}
 	}
 
