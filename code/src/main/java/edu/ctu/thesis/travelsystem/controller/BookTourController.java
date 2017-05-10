@@ -259,6 +259,7 @@ public class BookTourController {
 		List<BookTourInfoVO> bookTourInfo = subBookTourVO.getInfo();
 		List<BookTour> bookTours = new ArrayList<>(bookTourInfo.size());
 		model.addAttribute("numOfTicket", numOfTicket);
+		model.addAttribute("tour", tour);
 		model.addAttribute("relationshipList", regInfoService.relationshipList());
 		BookTourValidator bookTourValidator = new BookTourValidator();
 		if (!bookTourValidator.validateRegister(model, tour, bookTourInfo, numOfTicket)) {
@@ -274,7 +275,6 @@ public class BookTourController {
 				cusData.setInfo(infos);
 				model.addAttribute("cusData", cusData);
 			}
-
 			return "booktour";
 		}
 		for (BookTourInfoVO info : bookTourInfo) {
