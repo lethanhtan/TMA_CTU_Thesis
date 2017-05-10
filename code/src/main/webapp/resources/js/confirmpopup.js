@@ -31,13 +31,21 @@ $(function() {
 												},
 												function(isConfirm) {
 													if (isConfirm) {
-														document.getElementById( "only" + cid) .click();
-														$(".file").addClass("isDeleted");
-														swal("Đã xóa!", "Dữ liệu đã được xóa khỏi hệ thống.", "success");
+														$(".file").addClass(
+																"isDeleted");
+														swal(
+																"Đã xóa!",
+																"Dữ liệu đã được xóa khỏi hệ thống.",
+																"success");
+														setTimeout(function() { document.getElementById("only" + cid).click() }, 900);
 													} else {
-														document.getElementById("all" + cid).click();
-														$(".file").addClass("isDeleted");
-														swal("Đã xóa!", "Dữ liệu đã được xóa khỏi hệ thống.", "success");
+														$(".file").addClass(
+																"isDeleted");
+														swal(
+																"Đã xóa!",
+																"Dữ liệu đã được xóa khỏi hệ thống.",
+																"success");
+														setTimeout(function() { document.getElementById("all" + cid).click() }, 900);
 													}
 												})
 									}
@@ -63,19 +71,20 @@ $(function() {
 					closeOnConfirm : false
 				}, function(isConfirmed) {
 					if (isConfirmed) {
-						document.getElementById("only" + cid).click();
 						$(".file").addClass("isDeleted");
 						swal("Đã xóa!", "Dữ liệu đã được xóa khỏi hệ thống.",
 								"success");
+						setTimeout(function() { document.getElementById("only" + cid).click() }, 900);
 					}
 				});
 			});
 });
 /* Confirm popup for delete only one */
 
-/* Confirm popup for cancel all*/
+/* Confirm popup for cancel all */
 $(function() {
-	$(".cancelall").click(
+	$(".cancelall")
+			.click(
 					function(e) {
 						e.preventDefault();
 						var cid = this.id;
@@ -105,14 +114,21 @@ $(function() {
 												},
 												function(isConfirm) {
 													if (isConfirm) {
-														document.getElementById("reg" + cid).click();
-														$(".file").addClass("isDeleted");
-														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
-													} else {
-														document.getElementById("all" + cid).click();
 														$(".file").addClass(
-														"isDeleted");
-														swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
+																"isDeleted");
+														swal(
+																"Đã hủy!",
+																"Đăng ký đã được hủy.",
+																"success");
+														setTimeout(function() { document.getElementById("reg"+ cid).click() }, 900);
+													} else {
+														$(".file").addClass(
+																"isDeleted");
+														swal(
+																"Đã hủy!",
+																"Đăng ký đã được hủy.",
+																"success");
+														setTimeout(function() { document.getElementById("all" + cid).click() }, 900);
 													}
 												})
 									}
@@ -123,27 +139,26 @@ $(function() {
 
 /* Confirm popup cancel only one */
 $(function() {
-	$(".cancel").click(
-			function(e) {
-				e.preventDefault();
-				var cid = this.id;
-				swal({
-					title : "Bạn muốn hủy đăng ký?",
-					type : "warning",
-					showCancelButton : true,
-					cancelButtonText : "Không",
-					confirmButtonColor : "#DD6B55",
-					confirmButtonText : "Hủy đăng ký",
-					closeOnConfirm : false
-				}, function(isConfirmed) {
-					if (isConfirmed) {
-						document.getElementById("reg" + cid).click();
-						$(".file").addClass("isDeleted");
-						swal("Đã hủy!", "Đăng ký đã được hủy.",
-								"success");
-					}
-				});
-			});
+	$(".cancel").click(function(e) {
+		e.preventDefault();
+		var cid = this.id;
+		swal({
+			title : "Bạn muốn hủy đăng ký?",
+			type : "warning",
+			showCancelButton : true,
+			cancelButtonText : "Không",
+			confirmButtonColor : "#DD6B55",
+			confirmButtonText : "Hủy đăng ký",
+			closeOnConfirm : false
+		}, function(isConfirmed) {
+			if (isConfirmed) {
+				$(".file").addClass("isDeleted");
+				swal("Đã hủy!", "Đăng ký đã được hủy.", "success");
+				setTimeout(function() {
+					document.getElementById("reg" + cid).click() }, 900);
+			}
+		});
+	});
 });
 /* End Confirm popup cancel only one */
 
@@ -180,13 +195,21 @@ $(function() {
 												},
 												function(isConfirm) {
 													if (isConfirm) {
-														document.getElementById("only" + cid).click();
-														$(".file").addClass("isDeleted");
-														swal("Đã phục hồi!","Đăng ký bị hủy đã được phục hồi.", "success");
+														$(".file").addClass(
+																"isDeleted");
+														swal(
+																"Đã phục hồi!",
+																"Đăng ký bị hủy đã được phục hồi.",
+																"success");
+														setTimeout(function() { document.getElementById("only" + cid).click() }, 900);
 													} else {
-														document.getElementById("all" + cid).click();
-														$(".file").addClass("isDeleted");
-														swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
+														$(".file").addClass(
+																"isDeleted");
+														swal(
+																"Đã phục hồi!",
+																"Đăng ký bị hủy đã được phục hồi.",
+																"success");
+														setTimeout(function() { document.getElementById("all" + cid).click() }, 900);
 													}
 												})
 									}
@@ -211,9 +234,10 @@ $(function() {
 					closeOnConfirm : false
 				}, function(isConfirmed) {
 					if (isConfirmed) {
-						document.getElementById("only" + cid).click();
 						$(".file").addClass("isDeleted");
-						swal("Đã phục hồi!", "Đăng ký bị hủy đã được phục hồi.", "success");
+						swal("Đã phục hồi!",
+								"Đăng ký bị hủy đã được phục hồi.", "success");
+						setTimeout(function() { document.getElementById("only" + cid).click() }, 900);
 					}
 				});
 			});
