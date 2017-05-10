@@ -266,6 +266,8 @@ public class BookTourController {
 			return "booktour";
 		}
 		if (verify == false) {
+			String errorString = "Bạn phải chọn reCaptcha!";
+			model.addAttribute("errorString", errorString);
 			List<String> invalidInfos = new ArrayList<String>();
 			SubBookTourVO cusData = new SubBookTourVO();
 			List<BookTourInfoVO> infos = new ArrayList<>(numOfTicket);
