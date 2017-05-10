@@ -186,14 +186,13 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		return showTourList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tour> tourListByValue(String value) {
-		System.out.println(value.contains(value));
 		Session session = getCurrentSession();
-		String hql = "FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value ORDER BY ID_TOUR DESC";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery(
+				"FROM Tour WHERE full_or_not = false AND reg_or_not = true AND name LIKE :value ORDER BY ID_TOUR DESC");
 		query.setParameter("value", "%" + value + "%");
-		@SuppressWarnings("unchecked")
 		List<Tour> tourList = query.list();
 		return tourList;
 	}

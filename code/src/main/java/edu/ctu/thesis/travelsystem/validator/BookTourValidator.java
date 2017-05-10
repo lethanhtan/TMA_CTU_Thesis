@@ -44,7 +44,8 @@ public class BookTourValidator implements Validator {
 			errors.rejectValue("cusName", "Size.cusData.cusName");
 		}
 		// In Customer year of birth field
-		if (bookTour.getCusYearOfBirth() != null && bookTour.getCusYearOfBirth().length() != 4) {
+		if (bookTour.getCusYearOfBirth() != null && (bookTour.getCusYearOfBirth().length() < 1
+				|| bookTour.getCusYearOfBirth().length() > 10)) {
 			errors.rejectValue("cusYearOfBirth", "Size.cusData.cusYearOfBirth");
 		}
 		// In Customer email field
@@ -116,7 +117,7 @@ public class BookTourValidator implements Validator {
 				if (info.getCusYearOfBirth() == null) {
 					info.setValidCusYearOfBirth(2);
 				}
-				if (info.getCusYearOfBirth().length() != 4) {
+				if (info.getCusYearOfBirth().length() < 1 || info.getCusYearOfBirth().length() > 10) {
 					info.setValidCusYearOfBirth(3);
 				}
 			}

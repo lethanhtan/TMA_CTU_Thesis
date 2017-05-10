@@ -94,7 +94,7 @@
 								</tr>
 								<tr>
 									<c:if test="${tourData.fieldYearOfBirth == true}">
-										<td>Năm sinh:</td>
+										<td>Ngày sinh:</td>
 										<td>${bookTour.cusYearOfBirth}</td>
 									</c:if>
 									<c:if test="${tourData.fieldPhone == true}">

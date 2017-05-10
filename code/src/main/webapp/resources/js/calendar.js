@@ -17,6 +17,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$("#datepicker6").datepicker();
 });
+$('.datefield').datepicker({ dateFormat: 'dd/mm/yy'});
 
 /* End Calendar */
 

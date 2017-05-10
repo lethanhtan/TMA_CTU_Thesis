@@ -86,7 +86,6 @@ public class ManageTourController {
 			}
 		}
 		logger.info("Handle when managetour request from admin!");
-		String result; // view page mapping
 		try {
 			if (!numOn.equals(null)) {
 				numOnPage = numOn; // numOn
@@ -96,31 +95,37 @@ public class ManageTourController {
 		}
 		try {
 			model.addAttribute("searchedValue", valueSearch);
-			if (valueSearch != null) {
+			List<Tour> tourListByValue = tourService.listTourByValue(valueSearch);
+			if (valueSearch != null && !tourListByValue.isEmpty()) {
 				Integer num = 0;
-				List<Tour> tourList = tourService.listTourByValue(valueSearch);
-				if ((tourList.size() % numOnPage) == 0) {
-					num = tourList.size() / numOnPage;
+				if ((tourListByValue.size() % numOnPage) == 0) {
+					num = tourListByValue.size() / numOnPage;
 				} else {
-					num = (tourList.size() / numOnPage) + 1;
+					num = (tourListByValue.size() / numOnPage) + 1;
 				}
 				if (page <= num) {
 					List<Integer> pageNum = IntStream.rangeClosed(1, num).boxed().collect(Collectors.toList());
 					logger.info("Search active!");
 					model.addAttribute("tour", new Tour());
-					model.addAttribute("tourList", tourList);
-					model.addAttribute("numTour", tourList.size());
+					model.addAttribute("tourList", tourListByValue);
+					model.addAttribute("numTour", tourListByValue.size());
 					model.addAttribute("pageNum", pageNum); // create number
 					model.addAttribute("numOnPage", numOnPage);
 					model.addAttribute("page", page);
 					model.addAttribute("pageE", new ArrayList<Integer>()); // create
 					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
-					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-					result = "managetour";
+					model.addAttribute("y", Pagination.paginationY(tourListByValue.size(), page, numOnPage));
+					return "managetour";
 				} else {
-					result = "managetour";
+					return "managetour";
 				}
-			} else { // search none active ! Update list tour
+			}
+
+			if (valueSearch != null && tourListByValue.isEmpty()) {
+				return "redirect:/resultsearchtours";
+			}
+
+			if (valueSearch == null) { // search none active ! Update list tour
 				Integer num = 0;
 				List<Tour> tourList = tourService.listTour();
 				if ((tourList.size() % numOnPage) == 0) {
@@ -139,16 +144,16 @@ public class ManageTourController {
 					model.addAttribute("pageE", new ArrayList<Integer>()); // create
 					model.addAttribute("x", Pagination.paginationX(page, numOnPage));
 					model.addAttribute("y", Pagination.paginationY(tourList.size(), page, numOnPage));
-					result = "managetour";
+					return "managetour";
 				} else {
-					result = "managetour";
+					return "managetour";
 				}
 			}
 		} catch (Exception e) {
 			logger.error("Occured ex", e);
-			result = "forbidden";
+			return "forbidden";
 		}
-		return result;
+		return "managetour";
 	}
 
 	// handle delete request from client
@@ -208,7 +213,7 @@ public class ManageTourController {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
 			model.addAttribute("status", "Cập nhật thành công!");
-			return "updatetour";
+			return "redirect:/updatetour";
 		}
 	}
 
@@ -260,5 +265,19 @@ public class ManageTourController {
 	@RequestMapping(value = "tourreg/{idTour}", method = RequestMethod.POST)
 	public String creatChart(ModelMap model, @PathVariable("idTour") int idTour) {
 		return "redirect:/charttourres";
+	}
+
+	@RequestMapping(value = "resultsearchtours", method = RequestMethod.GET)
+	public String resultSearchTour(ModelMap model, HttpSession session,
+			@RequestParam(required = false, value = "valueSearch") String valueSearch) {
+		List<Tour> tourList = tourService.tourListByValue(valueSearch);
+		if (valueSearch != null && !tourList.isEmpty()) {
+			logger.info("Search active!");
+			model.addAttribute("searched", valueSearch);
+			return "redirect:/managetour?valueSearch={searched}";
+		} else {
+			model.addAttribute("notFound", "Không tìm thấy kết quả trùng khớp với từ khóa");
+			return "resultsearchtour";
+		}
 	}
 }

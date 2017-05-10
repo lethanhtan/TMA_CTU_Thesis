@@ -34,29 +34,88 @@
 								theo:</i></li>
 						<li style="margin-left: 1%"><form role="form"
 								class="form-inline"
-								action="${pageContext.request.contextPath}/tourlist" method="GET">
+								action="${pageContext.request.contextPath}/tourlist"
+								method="GET">
 								<select id="filterPrice" class="form-control" name="filterPrice"
 									onchange="this.form.submit()">
-									<option selected="selected" disabled="disabled">Giá Vé</option>
-									<option value="All">Tất cả</option>
-									<option value="5">Dưới 500 ngàn</option>
-									<option value="10">Từ 500 - 1 triệu</option>
-									<option value="20">Từ 1 triệu - 2 triệu</option>
-									<option value="30">Trên 2 triệu</option>
+									<c:if test="${filterPrice != null}">
+										<c:if test="${filterPrice eq 'All'}">
+											<option value="All">Tất cả</option>
+										</c:if>
+										<c:if test="${filterPrice eq '5'}">
+											<option value="5">Dưới 500 ngàn</option>
+										</c:if>
+										<c:if test="${filterPrice eq '10'}">
+											<option value="10">Từ 500 - 1 triệu</option>
+										</c:if>
+										<c:if test="${filterPrice eq '20'}">
+											<option value="20">Từ 1 triệu - 2 triệu</option>
+										</c:if>
+										<c:if test="${filterPrice eq '30'}">
+											<option value="30">Trên 2 triệu</option>
+										</c:if>
+										<c:forTokens items="All,5,10,20,30" delims="," var="j">
+											<c:if test="${j ne filterPrice}">
+												<c:if test="${j eq 'All'}">
+													<option value="All">Tất cả</option>
+												</c:if>
+												<c:if test="${j eq '5'}">
+													<option value="5">Dưới 500 ngàn</option>
+												</c:if>
+												<c:if test="${j eq '10'}">
+													<option value="10">Từ 500 - 1 triệu</option>
+												</c:if>
+												<c:if test="${j eq '20'}">
+													<option value="20">Từ 1 triệu - 2 triệu</option>
+												</c:if>
+												<c:if test="${j eq '30'}">
+													<option value="30">Trên 2 triệu</option>
+												</c:if>
+											</c:if>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterPrice == null}">
+										<option selected="selected" disabled="disabled">Giá
+											Vé</option>
+										<option value="All">Tất cả</option>
+										<option value="5">Dưới 500 ngàn</option>
+										<option value="10">Từ 500 - 1 triệu</option>
+										<option value="20">Từ 1 triệu - 2 triệu</option>
+										<option value="30">Trên 2 triệu</option>
+									</c:if>
 								</select>
 							</form></li>
 						<li style="margin-left: 1%"><form role="form"
 								class="form-inline"
-								action="${pageContext.request.contextPath}/tourlist" method="GET">
+								action="${pageContext.request.contextPath}/tourlist"
+								method="GET">
 								<select id="filterSale" class="form-control" name="filterSale"
 									onchange="this.form.submit()">
-									<option selected="selected" disabled="disabled">Giảm
-										Giá</option>
-									<option value="All">Tất cả</option>
-									<option value="10">10%</option>
-									<option value="20">20%</option>
-									<option value="30">30%</option>
-									<option value="50">50%</option>
+									<c:if test="${filterSale != null && filterSale ne 'All'}">
+										<option value="${filterSale}">${filterSale}%</option>
+										<option value="All">Tất cả</option>
+										<c:forTokens items="10,20,30,50" delims="," var="j">
+											<c:if test="${j ne filterSale}">
+												<option value="${j}">${j}%</option>
+											</c:if>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterSale != null && filterSale eq 'All'}">
+										<option value="All">Tất cả</option>
+										<c:forTokens items="10,20,30,50" delims="," var="j">
+											<option value="${j}">${j}%</option>
+										</c:forTokens>
+									</c:if>
+									<c:if test="${filterSale == null}">
+										<option selected="selected" disabled="disabled">Giảm
+											Giá</option>
+										<option value="All">Tất cả</option>
+										<option value="10">10%</option>
+										<option value="20">20%</option>
+										<option value="30">30%</option>
+										<option value="40">40%</option>
+										<option value="50">50%</option>
+									</c:if>
 								</select>
 							</form></li>
 					</ul>
@@ -110,11 +169,11 @@
 									<td>${tour.returnTime}</td>
 									<td>${tour.ticketAvailability}</td>
 									<td><a href="<c:url value='viewdetail/${tour.idTour}'/>">
-											<button class="btn btn-sm btn-success">
+											<button class="btn btn-xs btn-success">
 												<i class="fa fa-eye">&nbsp;Xem</i>
 											</button>
 									</a><a href="<c:url value='booktour/${tour.idTour}'/>"><button
-												class="btn btn-sm btn-danger">
+												class="btn btn-xs btn-danger">
 												<i class="fa fa-edit">&nbsp;Đăng Ký</i>
 											</button></a></td>
 								</tr>
