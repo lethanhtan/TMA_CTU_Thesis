@@ -105,14 +105,14 @@
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
-														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+														test="${bookTour.cusName eq bookTour.whoIsRegistered && myRegList[loop.index].relationship == myRegList[loop.index + 1].relationship}">
 														<button class="btn btn-xs btn-danger cancelall"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 													<c:if
-														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+														test="${bookTour.cusName ne bookTour.whoIsRegistered || (bookTour.cusName eq bookTour.whoIsRegistered && myRegList[loop.index].relationship == myRegList[loop.index + 1].relationship)}">
 														<button class="btn btn-xs btn-danger cancel"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
@@ -256,14 +256,14 @@
 													</button>
 											</a> <c:if test="${myCancelReg.tour.regOrNot}">
 													<c:if
-														test="${myCancelReg.cusName eq myCancelReg.whoIsRegistered}">
+														test="${myCancelReg.cusName eq myCancelReg.whoIsRegistered && myCancelList[loop.index].relationship == myCancelList[loop.index + 1].relationship}">
 														<button class="btn btn-xs btn-success undoall"
 															id="undo${myCancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button>
 													</c:if>
 													<c:if
-														test="${myCancelReg.cusName ne myCancelReg.whoIsRegistered}">
+														test="${myCancelReg.cusName ne myCancelReg.whoIsRegistered || (myCancelReg.cusName eq myCancelReg.whoIsRegistered && myCancelList[loop.index].relationship == myCancelList[loop.index + 1].relationship)}">
 														<button class="btn btn-xs btn-success undo"
 															id="undo${myCancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>

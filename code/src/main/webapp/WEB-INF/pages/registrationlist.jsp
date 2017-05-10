@@ -203,27 +203,27 @@
 														<i class="fa fa-pencil">&nbsp;Sửa</i>
 													</button></a> <c:if test="${bookTour.tour.cancelOrNot}">
 													<c:if
-														test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+														test="${bookTour.cusName eq bookTour.whoIsRegistered && registrationList[loop.index].relationship == registrationList[loop.index + 1].relationship}">
 														<button class="btn btn-xs btn-aqua cancelall"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 													<c:if
-														test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+														test="${bookTour.cusName ne bookTour.whoIsRegistered || (bookTour.cusName eq bookTour.whoIsRegistered && registrationList[loop.index].relationship != registrationList[loop.index + 1].relationship)}">
 														<button class="btn btn-xs btn-aqua cancel"
 															id="cancel${bookTour.idBT}">
 															<i class="fa fa-times">&nbsp;Hủy Đăng Ký</i>
 														</button>
 													</c:if>
 												</c:if> <c:if
-													test="${bookTour.cusName eq bookTour.whoIsRegistered}">
+													test="${bookTour.cusName eq bookTour.whoIsRegistered && registrationList[loop.index].relationship == registrationList[loop.index + 1].relationship}">
 													<button class="btn btn-xs btn-danger deleteall"
 														id="${bookTour.idBT }">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
 													</button>
 												</c:if> <c:if
-													test="${bookTour.cusName ne bookTour.whoIsRegistered}">
+													test="${bookTour.cusName ne bookTour.whoIsRegistered || (bookTour.cusName eq bookTour.whoIsRegistered && registrationList[loop.index].relationship != registrationList[loop.index + 1].relationship)}">
 													<button class="btn btn-xs btn-danger delete"
 														id="${bookTour.idBT }">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
@@ -456,27 +456,27 @@
 													</button>
 											</a> <c:if test="${cancelReg.tour.regOrNot}">
 													<c:if
-														test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+														test="${cancelReg.cusName eq cancelReg.whoIsRegistered && cancelList[loop.index].relationship == cancelList[loop.index + 1].relationship}">
 														<button class="btn btn-xs btn-success undoall"
 															id="undo${cancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button>
 													</c:if>
 													<c:if
-														test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+														test="${cancelReg.cusName ne cancelReg.whoIsRegistered || (cancelReg.cusName eq cancelReg.whoIsRegistered && cancelList[loop.index].relationship != cancelList[loop.index + 1].relationship)}">
 														<button class="btn btn-xs btn-success undo"
 															id="undo${cancelReg.idBT}">
 															<i class="fa fa-undo">&nbsp;Phục Hồi</i>
 														</button>
 													</c:if>
 												</c:if> <c:if
-													test="${cancelReg.cusName eq cancelReg.whoIsRegistered}">
+													test="${cancelReg.cusName eq cancelReg.whoIsRegistered && cancelList[loop.index].relationship == cancelList[loop.index + 1].relationship}">
 													<button class="btn btn-xs btn-danger deleteall"
 														id="${cancelReg.idBT}">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
 													</button>
 												</c:if> <c:if
-													test="${cancelReg.cusName ne cancelReg.whoIsRegistered}">
+													test="${cancelReg.cusName ne cancelReg.whoIsRegistered || (cancelReg.cusName eq cancelReg.whoIsRegistered && cancelList[loop.index].relationship != cancelList[loop.index + 1].relationship)}">
 													<button class="btn btn-xs btn-danger delete"
 														id="${cancelReg.idBT}">
 														<i class="fa fa-trash-o">&nbsp;Xóa</i>
