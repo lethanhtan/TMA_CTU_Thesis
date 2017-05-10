@@ -137,23 +137,24 @@
 							<div class="row">
 								<c:if test="${tour.fieldYearOfBirth}">
 									<div class="col-sm-6">
-										<label>Năm sinh</label>
+										<label>Ngày sinh</label>
 										<!-- Show error -->
 										<c:if test="${info.validCusYearOfBirth == 1}">
-											<p style="color: red;">Năm sinh không được chứa ký tự!</p>
+											<p style="color: red;">Ngày sinh không được chứa ký tự!</p>
 										</c:if>
 										<c:if test="${info.validCusYearOfBirth == 2}">
-											<p style="color: red;">Bạn phải nhập năm sinh!</p>
+											<p style="color: red;">Bạn phải nhập ngày sinh!</p>
 										</c:if>
 										<c:if test="${info.validCusYearOfBirth == 3}">
-											<p style="color: red;">Năm sinh phải có 4 ký tự!</p>
+											<p style="color: red;">Ngày sinh phải có 10 ký tự!</p>
 										</c:if>
 										<div class="input-group margin-bottom-20">
 											<span class="input-group-addon"> <i
 												class="fa fa-calendar"></i>
 											</span>
-											<s:input placeholder="Nhập năm sinh" class="form-control"
-												type="text" path="info[${status.index}].cusYearOfBirth" />
+											<s:input placeholder="dd/mm/yyyy"
+												class="form-control datefield" type="text"
+												path="info[${status.index}].cusYearOfBirth" />
 										</div>
 									</div>
 								</c:if>
@@ -273,8 +274,8 @@
 					<p style="color: red;">Bạn phải nhập địa chỉ!</p>
 				</c:if>
 				<c:if test="${info.validCusAddress == 3}">
-					<p style="color: red;">Địa chỉ phải ít nhất 6 ký tự và
-						không vượt quá 100 ký tự!</p>
+					<p style="color: red;">Địa chỉ phải ít nhất 6 ký tự và không
+						vượt quá 100 ký tự!</p>
 				</c:if>
 				<div class="input-group margin-bottom-20">
 					<span class="input-group-addon"> <i class="fa fa-home"></i>
