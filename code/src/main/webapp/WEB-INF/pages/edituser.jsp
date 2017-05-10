@@ -20,6 +20,20 @@
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
 						<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<c:if test="${!empty status}">
+										<div class="alert alert-success">
+											<strong>${status}</strong>
+										</div>
+									</c:if>
+									<c:if test="${!empty statusF}">
+										<div class="alert alert-danger">
+											<strong>${statusF}</strong>
+										</div>
+									</c:if>
+								</div>
+							</div>
+						<div class="row">
 							<div class="col-sm-8">
 								<label>Họ tên</label>
 								<!-- Show error -->

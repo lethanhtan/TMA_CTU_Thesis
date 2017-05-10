@@ -51,7 +51,7 @@ public class PromotionController {
 	}
 	
 	@RequestMapping(value = "/update_promotion/{idTour}", method = RequestMethod.POST)
-	public String processForm(@RequestParam(value="fromDate") Date fromDate,
+	public String processForm(ModelMap model, @RequestParam(value="fromDate") Date fromDate,
 			@RequestParam(value="toDate") Date toDate,
 			@RequestParam(value="percent") int percent,
 			@PathVariable("idTour") int idTour) {
@@ -61,7 +61,8 @@ public class PromotionController {
 			tour.getPromotion().setToDate(toDate);
 			tour.getPromotion().setPercent(percent);
 			tourService.updateTour(tour);
+			model.addAttribute("status", "Cập nhật thành công!");
 			
-		return "redirect:/managetour";
+		return "promotions";
 	}
 }
