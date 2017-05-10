@@ -14,6 +14,8 @@
 						<s:form class="signup-page" modelAttribute="scheduleData"
 							action="${pageContext.request.contextPath}/update_schedule/${idTour}"
 							method="POST">
+							<a href="${pageContext.request.contextPath}/managetour"><button
+							class="btn btn-primary fa fa-arrow-left" id="back">Trở về</button></a>
 							<div class="signup-header">
 								<h2 style="text-align: center;">Quản lý lịch trình</h2>
 								<h3 style="text-align: center;">${tour.getName()}</h3>
@@ -59,7 +61,7 @@
 								<div
 									class="col-xs-8 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
 									<div class="col-lg-6 text-center">
-										<button class="btn btn-primary" type="submit">Xác
+										<button class="btn btn-primary update" type="submit">Xác
 											Nhận</button>
 									</div>
 									<div class="col-lg-6 text-center">

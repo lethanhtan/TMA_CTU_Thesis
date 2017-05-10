@@ -47,6 +47,6 @@ public class ScheduleController {
 			tourService.updateTour(tour);
 			model.addAttribute("status", "Cập nhật thành công!");
 		
-		return "schedules";
+		return "redirect:/managetour";
 }
 }

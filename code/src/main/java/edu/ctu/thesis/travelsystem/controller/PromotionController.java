@@ -60,8 +60,12 @@ public class PromotionController {
 			tour.getPromotion().setFromDate(fromDate);
 			tour.getPromotion().setToDate(toDate);
 			tour.getPromotion().setPercent(percent);
-			tourService.updateTour(tour);
-			model.addAttribute("status", "Cập nhật thành công!");
+			try {
+				tourService.updateTour(tour);
+				model.addAttribute("status", true);
+			} catch (Exception e) {
+				model.addAttribute("status", false);
+			}
 			
 		return "promotions";
 	}
