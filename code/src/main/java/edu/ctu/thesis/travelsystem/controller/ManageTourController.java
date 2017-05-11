@@ -169,7 +169,6 @@ public class ManageTourController {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		model.addAttribute("tourData", tour);
-		session.setAttribute("oldImage", tour.getImage());
 		return "updatetour";
 	}
 
@@ -204,7 +203,7 @@ public class ManageTourController {
 			}
 		} else {
 			logger.info("Set image for update tour!");
-			tour.setImage((String) session.getAttribute("oldImage"));
+			tourService.findTourById(idTour).getImage();
 		}
 
 		TourValidator tourValidator = new TourValidator();

@@ -18,10 +18,27 @@
 							<h2 style="text-align: center;">Cập nhật Thông Tin Đặt Vé</h2>
 							<br>
 						</div>
+						<script>
+							function redirect() {
+								window
+										.setTimeout(
+												function() {
+													window.location.href = "${pageContext.request.contextPath}/managetour";
+												}, 2000);
+							}
+						</script>
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
 							<c:if test="${!empty cusData.cusName}">
 								<div class="col-sm-8">
+									<c:if test="${!empty status}">
+										<div class="alert alert-success">
+											<strong>${status}</strong>
+										</div>
+										<script>
+											redirect();
+										</script>
+									</c:if>
 									<label>Họ tên</label>
 									<!-- Show error -->
 									<br> <small><s:errors path="cusName"

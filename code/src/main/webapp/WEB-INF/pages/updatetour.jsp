@@ -16,12 +16,22 @@
 					<div class="signup-header">
 						<h2 style="text-align: center;">Cập nhật Thông Tin Tour</h2>
 					</div>
+					<script>
+							function redirect() {
+						 			window.setTimeout(function(){
+						        		window.location.href = "${pageContext.request.contextPath}/managetour";
+						    		}, 2000);
+							}
+							</script>
 					<div class="row">
 						<div class="col-sm-12">
 							<c:if test="${!empty status}">
 								<div class="alert alert-success">
 									<strong>${status}</strong>
 								</div>
+								<script>
+									redirect();
+								</script>
 							</c:if>
 							<label>Tên tour</label> <br />
 							<!-- Show error -->

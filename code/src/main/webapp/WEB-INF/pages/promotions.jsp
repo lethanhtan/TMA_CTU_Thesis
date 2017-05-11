@@ -13,9 +13,6 @@
 							class="btn btn-primary fa fa-arrow-left" id="back">Trở
 							về</button></a>
 				</div>
-				<c:if test="${status}">
-					<button class="btn btn-primary update" id="succe">Success</button>
-				</c:if>
 				<div class="row col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<!-- Update Promotion Box -->
 					<div class="row col-sm-8 col-sm-offset-2">
@@ -28,23 +25,33 @@
 								<h3 style="text-align: center;">${tour.getName()}</h3>
 							</div>
 							<hr>
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-md-12 col-sm-12"> -->
-<!-- 									<c:if test="${!empty status}"> --%>
-<!-- 										<div class="alert alert-success"> -->
-<!-- 											<strong>${status}</strong> --%>
-<!-- 										</div> -->
-<!-- 									</c:if> --%>
-<!-- 									<c:if test="${!empty statusF}"> --%>
-<!-- 										<div class="alert alert-danger"> -->
-<!-- 											<strong>${statusF}</strong> --%>
-<!-- 										</div> -->
-<!-- 									</c:if> --%>
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<script>
+							function redirect() {
+						 			window.setTimeout(function(){
+						        		window.location.href = "${pageContext.request.contextPath}/managetour";
+						    		}, 2000);
+							}
+							</script>
+ 							<div class="row">
+ 								<div class="col-md-12 col-sm-12">
+ 									<c:if test="${! empty status}">
+ 										<div class="alert alert-success">
+ 											<strong>${status}</strong>
+ 										</div>
+ 										<script>
+ 											redirect();
+ 										</script>
+ 									</c:if>
+ 									<c:if test="${!empty statusF}">
+ 										<div class="alert alert-danger">
+ 											<strong>${statusF}</strong>
+ 										</div>
+ 									</c:if>
+ 								</div>
+ 							</div>
 							<div class="row">
 								<div class="col-sm-6">
-									<label>Mức giảm giá</label> <br />
+									<label id="label">Mức giảm giá</label> <br />
 									<div class="input-group margin-bottom-20">
 										<span class="input-group-addon"> <i class="fa fa-money"></i>
 										</span> <select class="form-control margin-bottom-20" name="percent">
@@ -85,7 +92,7 @@
 							<hr>
 							<div class="row">
 								<div class="col-lg-6 text-center">
-									<button class="btn btn-primary update" type="submit">Xác Nhận</button>
+									<button class="btn btn-primary" type="submit" onclick="redirect();">Xác Nhận</button>
 								</div>
 								<div class="col-lg-6 text-center">
 									<a href="${pageContext.request.contextPath}/managetour"><button

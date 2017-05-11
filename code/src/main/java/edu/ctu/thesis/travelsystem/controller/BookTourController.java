@@ -383,7 +383,8 @@ public class BookTourController {
 				bookTour.setIdUser((int) session.getAttribute("idUser"));
 				bookTourService.editBookTour(bookTour);
 				model.addAttribute("idUser", bookTour.getIdUser());
-				return "redirect:/managemyreg/{idUser}";
+				model.addAttribute("status", "Cập nhật thành công!");
+				return "editbooktour";
 			} else {
 				bookTour.setIdUser(0);
 				bookTourService.editBookTour(bookTour);

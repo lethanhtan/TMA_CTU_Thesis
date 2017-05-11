@@ -6,6 +6,7 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -51,21 +52,26 @@ public class PromotionController {
 	}
 	
 	@RequestMapping(value = "/update_promotion/{idTour}", method = RequestMethod.POST)
-	public String processForm(ModelMap model, @RequestParam(value="fromDate") Date fromDate,
-			@RequestParam(value="toDate") Date toDate,
+	public String processForm(ModelMap model, @RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date fromDate,
+			@RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "mm/dd/yyyy") Date toDate,
 			@RequestParam(value="percent") int percent,
 			@PathVariable("idTour") int idTour) {
 			logger.info("Updating promotion with id tour: " + idTour);
 			Tour tour = tourService.findTourById(idTour);
+			if (fromDate == null || toDate == null && percent == 0) {
+				model.addAttribute("statusF", "Ngày khuyến mãi không hợp lệ!");
+				return "promotions";
+			}
+			else if(fromDate.after(toDate)) {
+				model.addAttribute("statusF", "Ngày khuyến mãi không hợp lệ!");
+				return "promotions";
+			}
 			tour.getPromotion().setFromDate(fromDate);
 			tour.getPromotion().setToDate(toDate);
 			tour.getPromotion().setPercent(percent);
-			try {
-				tourService.updateTour(tour);
-				model.addAttribute("status", true);
-			} catch (Exception e) {
-				model.addAttribute("status", false);
-			}
+			logger.info("Processing for update schedule: ");
+			tourService.updateTour(tour);
+			model.addAttribute("status", "Cập nhật thành công!");
 			
 		return "promotions";
 	}
