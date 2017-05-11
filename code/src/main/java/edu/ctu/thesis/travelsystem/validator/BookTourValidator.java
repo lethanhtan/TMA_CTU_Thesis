@@ -40,7 +40,7 @@ public class BookTourValidator implements Validator {
 		// Catch length character errors
 		// In Customer name field
 		if (bookTour.getCusName() != null
-				&& (bookTour.getCusName().length() > 40 || bookTour.getCusName().length() < 8)) {
+				&& (bookTour.getCusName().length() > 40 || bookTour.getCusName().length() < 4)) {
 			errors.rejectValue("cusName", "Size.cusData.cusName");
 		}
 		// In Customer year of birth field
@@ -103,7 +103,7 @@ public class BookTourValidator implements Validator {
 				if (info.getCusName() == null) {
 					info.setValidCusName(2);
 				}
-				if (info.getCusName().length() > 40 || info.getCusName().length() < 8) {
+				if (info.getCusName().length() > 40 || info.getCusName().length() < 4) {
 					info.setValidCusName(3);
 				}
 			}

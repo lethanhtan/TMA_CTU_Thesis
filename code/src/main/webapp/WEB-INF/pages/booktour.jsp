@@ -110,7 +110,7 @@
 										<p style="color: red;">Bạn phải nhập họ tên!</p>
 									</c:if>
 									<c:if test="${info.validCusName == 3}">
-										<p style="color: red;">Họ tên phải ít nhất 8 ký tự và
+										<p style="color: red;">Họ tên phải ít nhất 4 ký tự và
 											không vượt quá 40 ký tự!</p>
 									</c:if>
 									<div class="input-group margin-bottom-20">
