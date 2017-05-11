@@ -165,10 +165,11 @@ public class ManageTourController {
 
 	// handle required reuest from client
 	@RequestMapping(value = "updatetour/{idTour}", method = RequestMethod.GET)
-	public String showForm(ModelMap model, @PathVariable("idTour") int idTour) throws ParseException {
+	public String showForm(ModelMap model, @PathVariable("idTour") int idTour, HttpSession session) throws ParseException {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		model.addAttribute("tourData", tour);
+		session.setAttribute("oldImage", tour.getImage());
 		return "updatetour";
 	}
 
@@ -202,7 +203,8 @@ public class ManageTourController {
 				return "updatetour";
 			}
 		} else {
-			tour.setImage(tourService.findTourById(idTour).getImage());
+			logger.info("Set image for update tour!");
+			tour.setImage((String) session.getAttribute("oldImage"));
 		}
 
 		TourValidator tourValidator = new TourValidator();
@@ -213,7 +215,7 @@ public class ManageTourController {
 			logger.info("Update! In Update Tour Second!");
 			tourService.updateTour(tour);
 			model.addAttribute("status", "Cập nhật thành công!");
-			return "redirect:/updatetour";
+			return "updatetour";
 		}
 	}
 
