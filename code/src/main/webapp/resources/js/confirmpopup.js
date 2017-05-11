@@ -243,3 +243,25 @@ $(function() {
 			});
 });
 /* End Confirm popup for undo cancel only one */
+/* Confirm popup for update success*/
+$(function() {
+	$(".update").click(
+			function(e) {
+				e.preventDefault();
+				var cid = this.id;
+					swal({
+						title : "Cập nhật thành công!",
+						type : "success",
+						showCancelButton : false,
+						cancelButtonText : "Không",
+						confirmButtonColor : "#DD6B55",
+						confirmButtonText : "Ok",
+						closeOnConfirm : false
+					}, function(isConfirmed) {
+						if (isConfirmed) {
+							document.getElementById("back").click();
+						}
+					});
+			});
+});
+/* End Confirm popup for update success*/
