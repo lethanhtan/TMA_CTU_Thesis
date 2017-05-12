@@ -57,7 +57,7 @@
 									class="btn btn-primary"> Tập tin&hellip; <input
 										type="file" name="file" style="display: none;" multiple>
 								</span>
-								</label> <input type="text" name="nameFile" class="form-control"
+								</label> <input type="text" name="nameFile" class="form-control" value="${oldImage}"
 									readonly>
 							</div>
 						</div>

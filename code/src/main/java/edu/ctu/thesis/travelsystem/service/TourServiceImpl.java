@@ -80,4 +80,9 @@ public class TourServiceImpl implements TourService {
 	public void addView(Tour tour) {
 		this.tourDao.addView(tour);
 	}
+
+	@Override
+	public String searchImage(int idTour) {
+		return tourDao.searchImage(idTour);
+	}
 }
