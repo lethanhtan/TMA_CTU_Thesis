@@ -228,7 +228,8 @@ public class UserController extends HttpServlet {
 			role.setId(1);
 			user.setRole(role);
 			userService.editUser(user);
-			return "redirect:/managemyacc/{idUser}";
+			model.addAttribute("status", "Cập nhật thành công!");
+			return "editmyacc";
 		}
 	}
 
@@ -466,9 +467,10 @@ public class UserController extends HttpServlet {
 			if (newPass.equals(comPass)) {
 				user1.setPassword(ep.enCoded(newPass));
 				userService.editUser(user1);
+				model.addAttribute("status", "Cập nhật thành công!");
 				logger.info("Change password successfully!");
 				if ((int) session.getAttribute("roleId") == 2) {
-					return "redirect:/manageuser";
+					return "changepassword";
 				} else {
 					session.removeAttribute("user");
 					session.removeValue("userName"); // Remove username value

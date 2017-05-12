@@ -27,4 +27,6 @@ public interface TourDao {
 	public List<Tour> tourListByValue(String value);
 	
 	public void addView(Tour tour);
+	
+	public String searchImage(int idTour);
 }

@@ -219,4 +219,9 @@ public class TourDaoImpl extends AbstractDao implements TourDao {
 		updateTour(tour);
 		session.flush();
 	}
+
+	@Override
+	public String searchImage(int idTour) {
+		return findTourById(idTour).getImage();
+	}
 }

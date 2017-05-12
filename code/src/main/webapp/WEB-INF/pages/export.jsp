@@ -15,7 +15,6 @@
 								<br>
 							</div>
 						</div>
-						<!-- 
 						<div class="row">
 							<div class="col-sm-12">
 								<label>Tên export</label> <br /> <small><font
@@ -28,7 +27,7 @@
 								</div>
 							</div>
 						</div>
-						
+						<!--
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Từ ngày</label>
@@ -59,7 +58,7 @@
 									<span class="input-group-addon"> <i
 										class="fa fa-exchange"></i>
 									</span> <select class="form-control margin-bottom-20"
-										name="exportList" onchange="this.form.submit()">
+										name="exportList">
 										<option>Danh sách tour</option>
 										<option>Danh sách người đăng ký</option>
 										<!-- <option>Danh sách người dùng</option> -->
@@ -79,6 +78,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- 
 						<div class="row">
 							<div class="col-sm-12 col-md-12 col-xs-12">
 								<label>Danh sách tour</label>
@@ -98,6 +98,7 @@
 								</div>
 							</div>
 						</div>
+						 -->
 						<!-- 
 						<c:if test="${!empty param.exportList}">
 						<div class="row">
