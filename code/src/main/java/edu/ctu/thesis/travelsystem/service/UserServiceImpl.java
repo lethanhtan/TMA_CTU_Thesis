@@ -117,4 +117,14 @@ public class UserServiceImpl implements UserService {
 	public int findIdByUserName(String userName) {
 		return this.userDao.findIdByUserName(userName);
 	}
+
+	@Override
+	public boolean findExistEmail(String email) {
+		return this.userDao.findExistEmail(email);
+	}
+
+	@Override
+	public boolean findExistUserName(String userName) {
+		return this.userDao.findExistUserName(userName);
+	}
 }

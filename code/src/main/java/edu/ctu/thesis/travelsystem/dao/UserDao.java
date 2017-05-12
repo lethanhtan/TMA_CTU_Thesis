@@ -42,4 +42,8 @@ public interface UserDao {
 	public List<BookTour> myBookTourList(int idUser);
 	
 	public int findIdByUserName(String userName);
+	
+	public boolean findExistEmail(String email);
+	
+	public boolean findExistUserName(String userName);
 }

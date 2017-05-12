@@ -21,17 +21,17 @@
 							</p>
 						</div>
 						<small style="color: red;">${failedConnect}</small>
-						<label>Tên tài khoản</label>
+						<label id="label">Tên tài khoản</label>
 						<br />
 						<small><s:errors path="userName" cssStyle="color:red;" /></small>
 						<br />
-						<small Style="color: red">${invalidUserName}</small>
+						<small Style="color: red" id="errorUN">${invalidUserName}</small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
 							</span>
 							<s:input placeholder="Nhập tên tài khoản"
 								class="form-control margin-bottom-20" type="text"
-								path="userName" />
+								path="userName" id="un" onchange="this.form.submit();"/>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
@@ -104,12 +104,13 @@
 						</div>
 						<label>Email</label>
 						<br />
+						<small style="color:red">${invalidEmail}</small>
 						<small><s:errors path="email" cssStyle="color:red;" /></small>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-envelope"></i>
 							</span>
 							<s:input placeholder="Nhập email"
-								class="form-control margin-bottom-20" type="email" path="email" />
+								class="form-control margin-bottom-20" type="email" path="email" name="email" onchange="this.form.submit();"/>
 						</div>
 						<label>Địa chỉ</label>
 						<br />
