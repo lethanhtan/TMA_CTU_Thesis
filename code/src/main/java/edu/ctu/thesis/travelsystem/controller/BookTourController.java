@@ -207,7 +207,7 @@ public class BookTourController {
 				numOfTicket = numTicket; // numOn
 			}
 		} catch (Exception e) {
-			logger.error("Occured ex", e);
+			logger.error("Occured ex");
 		}
 		try {
 			model.addAttribute("searchedValue", valueSearch);

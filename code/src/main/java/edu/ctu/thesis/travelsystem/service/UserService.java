@@ -41,4 +41,7 @@ public interface UserService {
 	
 	public int findIdByUserName(String userName);
 	
+	public boolean findExistEmail(String email);
+	
+	public boolean findExistUserName(String userName);
 }

@@ -17,12 +17,14 @@
 						<h2 style="text-align: center;">Cập nhật Thông Tin Tour</h2>
 					</div>
 					<script>
-							function redirect() {
-						 			window.setTimeout(function(){
-						        		window.location.href = "${pageContext.request.contextPath}/managetour";
-						    		}, 2000);
-							}
-							</script>
+						function redirect() {
+							window
+									.setTimeout(
+											function() {
+												window.location.href = "${pageContext.request.contextPath}/managetour";
+											}, 2000);
+						}
+					</script>
 					<div class="row">
 						<div class="col-sm-12">
 							<c:if test="${!empty status}">
@@ -57,8 +59,8 @@
 									class="btn btn-primary"> Tập tin&hellip; <input
 										type="file" name="file" style="display: none;" multiple>
 								</span>
-								</label> <input type="text" name="nameFile" class="form-control" value="${oldImage}"
-									readonly>
+								</label> <input type="text" name="nameFile" class="form-control"
+									value="${oldImage}" readonly>
 							</div>
 						</div>
 					</div>
