@@ -23,6 +23,15 @@
 							<h2 style="text-align: center;">Thay Đổi Mật Khẩu</h2>
 							<br>
 						</div>
+						<script>
+							function redirect() {
+								window
+										.setTimeout(
+												function() {
+													window.location.href = "${pageContext.request.contextPath}/managetour";
+												}, 2000);
+							}
+						</script>
 						<s:input path="userName" hidden="true" />
 						<s:input path="fullName" hidden="true" />
 						<s:input path="sex" hidden="true" />
@@ -32,6 +41,19 @@
 						<s:input path="email" hidden="true" />
 						<s:input path="address" hidden="true" />
 						<p style="color: red;">${wrongPass}</p>
+						<c:if test="${!empty status}">
+									<div class="alert alert-success update">
+										<strong>${status}</strong>
+									</div>
+									<script>
+										redirect();
+									</script>
+								</c:if>
+								<c:if test="${!empty statusF}">
+									<div class="alert alert-danger">
+										<strong>${statusF}</strong>
+									</div>
+								</c:if>
 						<div class="input-group margin-bottom-20">
 							<span class="input-group-addon"> <i class="fa fa-lock"></i>
 							</span> <input placeholder="Mật khẩu hiện tại" class="form-control"

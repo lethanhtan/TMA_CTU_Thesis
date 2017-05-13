@@ -26,6 +26,7 @@
 	width: 100%;
 	height: 500px;
 }
+
 .amcharts-export-menu-top-right {
 	top: 10px;
 	right: 0;
@@ -145,27 +146,22 @@
 			<div class="container background-white">
 				<h1 align="center">Biểu đồ doanh số tour theo tháng</h1>
 				<h1 align="center">(${year})</h1>
+				<a href="${pageContext.request.contextPath}/managetour"><button
+							class="btn btn-primary fa fa-arrow-left">Trở về</button></a>
 				<div class="container">
-						<div class="row">
-							<form role="form" class="form-inline">
-								<div class="form-group">
-									<label for="selectUser"
-										style="float: left; padding: 6px 12px 2px 12px;">Năm:</label>
-									<select id="selectUser" style="width: auto;"
-										class="form-control selectWidth" name="year">
-										<option class="">2016</option>
-										<option class="">2017</option>
-										<option class="">2018</option>
-									</select>
-								</div>
-								<div class="btn-group">
-									<button class="btn btn-default">Chọn</button>
-								</div>
-							</form>
+					<form role="form" class="form-inline">
+						<div class="form-group">
+							<label for="selectUser"
+								style="float: left; padding: 6px 12px 2px 12px;">Năm:</label> <select
+								id="selectUser" style="width: auto;"
+								class="form-control selectWidth" name="year"
+								onchange="this.form.submit()">
+								<option class="">2016</option>
+								<option class="">2017</option>
+								<option class="">2018</option>
+							</select>
 						</div>
-						<!-- End Row -->
-					<!-- End Container -->
-
+					</form>
 					<!-- Chart code -->
 					<script>
 						var chartData = [ {
@@ -261,4 +257,4 @@
 			</div>
 		</div>
 		<!-- === END CONTENT === -->
-<%@ include file="adminfooter.jsp"%>
+		<%@ include file="adminfooter.jsp"%>

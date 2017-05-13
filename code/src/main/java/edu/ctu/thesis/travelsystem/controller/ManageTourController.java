@@ -169,7 +169,7 @@ public class ManageTourController {
 		logger.info("Handle update form managetour when user request!");
 		Tour tour = tourService.findTourById(idTour);
 		model.addAttribute("tourData", tour);
-		session.setAttribute("oldImage", tour.getImage());
+		model.addAttribute("oldImage", tour.getImage());
 		return "updatetour";
 	}
 
@@ -199,20 +199,19 @@ public class ManageTourController {
 				tour.setImage(name);
 
 			} catch (Exception e) {
-				model.addAttribute("failedUpload", "You failed to upload!");
+				model.addAttribute("failedUpload", "Lỗi tải ảnh!");
 				return "updatetour";
 			}
 		} else {
 			logger.info("Set image for update tour!");
-			tour.setImage((String) session.getAttribute("oldImage"));
+			tour.setImage(name);
 		}
-
 		TourValidator tourValidator = new TourValidator();
 		tourValidator.validate(tour, br);
 		if (br.hasErrors()) {
 			return "updatetour";
 		} else {
-			logger.info("Update! In Update Tour Second!");
+			logger.info("Processing update tour!");
 			tourService.updateTour(tour);
 			model.addAttribute("status", "Cập nhật thành công!");
 			return "updatetour";

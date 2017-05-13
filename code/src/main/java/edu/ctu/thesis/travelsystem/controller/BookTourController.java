@@ -207,7 +207,7 @@ public class BookTourController {
 				numOfTicket = numTicket; // numOn
 			}
 		} catch (Exception e) {
-			logger.error("Occured ex", e);
+			logger.error("Occured ex");
 		}
 		try {
 			model.addAttribute("searchedValue", valueSearch);
@@ -383,7 +383,8 @@ public class BookTourController {
 				bookTour.setIdUser((int) session.getAttribute("idUser"));
 				bookTourService.editBookTour(bookTour);
 				model.addAttribute("idUser", bookTour.getIdUser());
-				return "redirect:/managemyreg/{idUser}";
+				model.addAttribute("status", "Cập nhật thành công!");
+				return "editbooktour";
 			} else {
 				bookTour.setIdUser(0);
 				bookTourService.editBookTour(bookTour);

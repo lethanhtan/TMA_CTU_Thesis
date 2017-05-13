@@ -1,5 +1,4 @@
 package edu.ctu.thesis.travelsystem.dao;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -289,5 +288,29 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		query.setParameter("userName", userName);
 
 		return (int) query.uniqueResult();
+	}
+
+	@Override
+	public boolean findExistEmail(String email) {
+		boolean result = false;
+		logger.info("Find existing email!");
+		for (User user : userList()) {
+			if (user.getEmail().equals(email)) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public boolean findExistUserName(String userName) {
+		boolean result = false;
+		logger.info("Find existing user name!");
+		for (User user : userList()) {
+			if (user.getUserName().equals(userName)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 }

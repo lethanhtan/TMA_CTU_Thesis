@@ -7,6 +7,9 @@
 <div id="content">
 	<div class="container background-white">
 		<div class="container">
+		<a href="${pageContext.request.contextPath}/managetour"><button
+							class="btn btn-primary fa fa-arrow-left" id="back">Trở
+							về</button></a>
 			<div class="row margin-vert-30">
 				<!-- Edit User Box -->
 				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
@@ -17,22 +20,35 @@
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
 							<br>
 						</div>
+						<script>
+							function redirect() {
+								window
+										.setTimeout(
+												function() {
+													window.location.href = "${pageContext.request.contextPath}/managetour";
+												}, 2000);
+							}
+						</script>
+						
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
 						<div class="row">
-								<div class="col-md-12 col-sm-12">
-									<c:if test="${!empty status}">
-										<div class="alert alert-success">
-											<strong>${status}</strong>
-										</div>
-									</c:if>
-									<c:if test="${!empty statusF}">
-										<div class="alert alert-danger">
-											<strong>${statusF}</strong>
-										</div>
-									</c:if>
-								</div>
+							<div class="col-md-12 col-sm-12">
+								<c:if test="${!empty status}">
+									<div class="alert alert-success update" id="notify">
+										<strong>${status}</strong>
+									</div>
+									<script>
+										redirect();
+									</script>
+								</c:if>
+								<c:if test="${!empty statusF}">
+									<div class="alert alert-danger">
+										<strong>${statusF}</strong>
+									</div>
+								</c:if>
 							</div>
+						</div>
 						<div class="row">
 							<div class="col-sm-8">
 								<label>Họ tên</label>
@@ -117,7 +133,7 @@
 						<hr>
 						<div class="row">
 							<div class="col-lg-6 text-center">
-								<button class="btn btn-primary" type="submit">Xác Nhận</button>
+								<button class="btn btn-primary" type="submit")>Xác Nhận</button>
 							</div>
 							<div class="col-lg-6 text-center">
 								<a href="<c:url value='/manageuser'/>"><button

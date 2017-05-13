@@ -26,4 +26,6 @@ public interface TourService {
 	public List<Tour> listTourByYear(int year);
 	
 	public void addView(Tour tour);
+	
+	public String searchImage(int idTour);
 }

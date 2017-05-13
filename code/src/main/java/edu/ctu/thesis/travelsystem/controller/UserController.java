@@ -62,13 +62,14 @@ public class UserController extends HttpServlet {
 	private static int numOnPage = 5;
 	private static int numOnPage2 = 5;
 	private static int numOnPage3 = 5;
-	
+
 	@InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-             dateFormat.setLenient(false);
-             webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-         }
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		dateFormat.setLenient(false);
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+
 	// Processing for register when required request
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
@@ -83,23 +84,16 @@ public class UserController extends HttpServlet {
 			HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "password") String password,
 			@RequestParam(value = "passwordConfirm") String passwordConfirm,
-			@RequestParam(value = "userName") String userName) throws ServletException, IOException {
-		logger.info("Handle register form action when user submit!");
-		try {
-			if (!userService.findUserByUserName(userName).equals(null)) {
-				model.addAttribute("invalidUserName", "Tên người dùng đã tồn tại!");
-			}
-		} catch (NullPointerException e) {
-
+			@RequestParam(value = "userName") String userName, @RequestParam(value = "email") String email)
+			throws ServletException, IOException {
+		if (userService.findExistUserName(userName)) {
+			model.addAttribute("invalidUserName", "Tên người dùng đã tồn tại!");
+			return "register";
 		}
-		if (passwordConfirm.equals(null)) {
-			model.addAttribute("failedPasswordConfirm", "Xin vui lòng nhập lại mật khẩu!");
-		} else if (!password.equals(passwordConfirm)) {
-			logger.info(passwordConfirm);
-			model.addAttribute("failedPasswordConfirm", "Vui lòng nhập lại chính xác mật khẩu!");
+		if (userService.findExistEmail(email)) {
+			model.addAttribute("invalidEmail", "Email đã được đăng ký!");
+			return "register";
 		}
-		UserValidator userValidator = new UserValidator();
-		userValidator.validate(user, br);
 		boolean verify = true;
 		if (CheckConnections.checkConnect("https://www.google.com")) {
 			String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
@@ -119,10 +113,19 @@ public class UserController extends HttpServlet {
 			return "register";
 		} else { // form input is ok
 			if (CheckConnections.checkConnect("https://www.google.com")) {
-				emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
-						MailTemplate.regBody);
+				if (passwordConfirm.equals(null)) {
+					model.addAttribute("failedPasswordConfirm", "Xin vui lòng nhập lại mật khẩu!");
+				} else if (!password.equals(passwordConfirm)) {
+					logger.info(passwordConfirm);
+					model.addAttribute("failedPasswordConfirm", "Vui lòng nhập lại chính xác mật khẩu!");
+				}
+				logger.info("Handle register form action when user submit!");
+				UserValidator userValidator = new UserValidator();
+				userValidator.validate(user, br);
 				user.setDate(Calendar.getInstance().getTime());
 				userService.saveUser(user);
+				emailSenderService.SendEmail(user.getEmail(), MailTemplate.hostMail, MailTemplate.regTitle,
+						MailTemplate.regBody);
 				return "redirect:regsuccess";
 			} else {
 				model.addAttribute("failedConnect", "Không có kết nối internet!");
@@ -228,7 +231,8 @@ public class UserController extends HttpServlet {
 			role.setId(1);
 			user.setRole(role);
 			userService.editUser(user);
-			return "redirect:/managemyacc/{idUser}";
+			model.addAttribute("status", "Cập nhật thành công!");
+			return "editmyacc";
 		}
 	}
 
@@ -466,9 +470,10 @@ public class UserController extends HttpServlet {
 			if (newPass.equals(comPass)) {
 				user1.setPassword(ep.enCoded(newPass));
 				userService.editUser(user1);
+				model.addAttribute("status", "Cập nhật thành công!");
 				logger.info("Change password successfully!");
 				if ((int) session.getAttribute("roleId") == 2) {
-					return "redirect:/manageuser";
+					return "changepassword";
 				} else {
 					session.removeAttribute("user");
 					session.removeValue("userName"); // Remove username value
