@@ -122,7 +122,7 @@
 									<li><a href="<c:url value="/import" />">Import</a></li>
 									<li><a href="<c:url value="/export" />">Export</a></li>
 								</ul></li>
-							<li><span class="fa-user"> ${userName}</span>
+							<li><span class="fa-user"> ${fullName}</span>
 								<ul>
 									<li><a href="<c:url value="/logout" />">Đăng Xuất</a></li>
 								</ul></li>
