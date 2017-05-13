@@ -17,9 +17,26 @@
 							<h2 style="text-align: center;">Thông Tin Tài Khoản</h2>
 							<br>
 						</div>
+						<script>
+							function redirect() {
+								window
+										.setTimeout(
+												function() {
+													window.location.href = "${pageContext.request.contextPath}/managemyacc/${userData.idUser}";
+												}, 2000);
+							}
+						</script>
 						<s:input path="userName" hidden="true" />
 						<s:input path="password" hidden="true" />
 						<div class="row">
+							<c:if test="${!empty status}">
+									<div class="alert alert-success update" id="notify">
+										<strong>${status}</strong>
+									</div>
+									<script>
+										redirect();
+									</script>
+								</c:if>
 							<div class="col-sm-8">
 								<label>Họ tên</label>
 								<!-- Show error -->

@@ -7,12 +7,13 @@
 <div id="content">
 	<div class="container background-white">
 		<div class="container">
-		<a href="${pageContext.request.contextPath}/managetour"><button
+		<br />
+			<a href="${pageContext.request.contextPath}/managetour"><button
 							class="btn btn-primary fa fa-arrow-left" id="back">Trở
 							về</button></a>
 			<div class="row margin-vert-30">
 				<!-- Edit User Box -->
-				<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+				<div class="col-md-8 col-md-offset-2 col-sm-offset-2">
 					<s:form class="signup-page" commandName="userData"
 						action="${pageContext.request.contextPath}/edituser/${userData.idUser}/${idRole}"
 						method="POST">
@@ -25,7 +26,7 @@
 								window
 										.setTimeout(
 												function() {
-													window.location.href = "${pageContext.request.contextPath}/managetour";
+													window.location.href = "${pageContext.request.contextPath}/manageuser";
 												}, 2000);
 							}
 						</script>

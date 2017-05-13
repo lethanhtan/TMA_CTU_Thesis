@@ -61,7 +61,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 			table.setSpacingBefore(10);
 
 			// write table header
-			table.addCell(getNormalCell("Mã tour", SIZE1, font));
+			table.addCell(getNormalCell("Stt", SIZE1, font));
 
 			table.addCell(getNormalCell("Tên tour", SIZE1, font));
 
@@ -77,8 +77,11 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			table.addCell(getNormalCell("Giá vé", SIZE1, font));
 			// write table row data
+			
+			// 
+			Integer i = 1;
 			for (Tour tour : listTours) {
-				table.addCell(getNormalCell(String.valueOf(tour.getIdTour()), SIZE1, font));
+				table.addCell(getNormalCell((i++).toString(), SIZE1, font));
 				table.addCell(getNormalCell(tour.getName(), SIZE1, font));
 				table.addCell(getNormalCell(sdf.format(tour.getDepartureDate()), SIZE1, font));
 				table.addCell(getNormalCell(tour.getDepartureTime(), SIZE1, font));

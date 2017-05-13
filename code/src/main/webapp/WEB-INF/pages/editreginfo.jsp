@@ -32,8 +32,7 @@
 						<s:input path="confirmCode" hidden="true" />
 						<div class="row">
 							<c:if test="${!empty cusData.cusName}">
-								<div class="col-sm-8">
-									<c:if test="${!empty status}">
+								<c:if test="${!empty status}">
 										<div class="alert alert-success update" id="notify">
 											<strong>${status}</strong>
 										</div>
@@ -41,11 +40,7 @@
 											redirect();
 										</script>
 									</c:if>
-									<c:if test="${!empty statusF}">
-										<div class="alert alert-danger">
-											<strong>${statusF}</strong>
-										</div>
-									</c:if>
+								<div class="col-sm-8">
 									<label>Họ tên</label>
 									<!-- Show error -->
 									<br> <small><s:errors path="cusName"
