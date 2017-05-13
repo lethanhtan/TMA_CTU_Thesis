@@ -25,7 +25,7 @@
 								window
 										.setTimeout(
 												function() {
-													window.location.href = "${pageContext.request.contextPath}/managetour";
+													window.location.href = "${pageContext.request.contextPath}/manageuser";
 												}, 2000);
 							}
 						</script>
