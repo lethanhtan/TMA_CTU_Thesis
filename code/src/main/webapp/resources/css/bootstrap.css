@@ -6103,7 +6103,7 @@ body.modal-open,
 .carousel-control .glyphicon-chevron-right {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 20%;
   z-index: 5;
   display: inline-block;
 }
@@ -6214,7 +6214,7 @@ body.modal-open,
 }
 
 .show {
-  display: block !important;
+  display: center !important;
 }
 
 .invisible {
