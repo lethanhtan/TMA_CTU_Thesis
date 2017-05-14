@@ -589,7 +589,8 @@ public class ManageRegController {
 			logger.info("Edit registration infomation success!");
 			bookTour.setDateBook(Calendar.getInstance().getTime());
 			bookTourService.saveBookTour(bookTour, idTour);
-			return "redirect:/registrationlist/{idTour}";
+			model.addAttribute("status", "Cập nhật thành công!");
+			return "editreginfo";
 		}
 	}
 

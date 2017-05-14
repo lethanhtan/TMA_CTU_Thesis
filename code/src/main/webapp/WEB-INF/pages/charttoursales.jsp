@@ -125,8 +125,10 @@
 													ký</a></li>
 										</ul></li>
 								</ul></li>
-							<li><span class="fa-user"> ${userName}</span>
+							<li style="margin-left: 70%;"><span class="fa-user">Xin
+									chào ${fullName}!</span>
 								<ul>
+									<li><a href="<c:url value="/home" />">Về trang chủ</a>
 									<li><a href="<c:url value="/logout" />">Đăng xuất</a></li>
 								</ul></li>
 						</ul>
